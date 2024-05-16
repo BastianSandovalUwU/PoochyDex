@@ -12,12 +12,11 @@ export class MenuComponent implements OnInit {
 
   constructor(private router: Router) {
 
-    this.router.events.subscribe((data) => {
-      if (data instanceof NavigationEnd) {
-           console.log(data);
-           this.url = data.url;
-      }
-  });
+    // this.router.events.subscribe((data) => {
+    //   if (data instanceof NavigationEnd) {
+    //        this.url = data.url;
+    //   }
+    // });
   }
 
   ngOnInit() {

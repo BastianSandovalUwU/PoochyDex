@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Pokemon } from '../../../../../entities/pokemon.entity';
+import { PokemonTypes } from '../../../../../entities/types.entity';
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +24,9 @@ export class PokeApiService {
     );
   }
 
-  getPokemonByName(name: string): Observable<any> {
+  getPokemonByName(name: string): Observable<Pokemon> {
     const url = `${this.apiUrl}/pokemon/${name}/`;
-    return this.http.get<any>(url).pipe(
+    return this.http.get<Pokemon>(url).pipe(
       catchError(error => {
         console.error('Error al obtener el pokémon:', name, error);
         return throwError(error);
@@ -37,6 +39,25 @@ export class PokeApiService {
     return this.http.get<any>(url).pipe(
       catchError(error => {
         console.error('Error al obtener los pokémon de la generacion número:', generationNumber, error);
+        return throwError(error);
+      })
+    );
+  }
+
+  getPokemonTypeByName(typeName: string): Observable<PokemonTypes> {
+    const url = `${this.apiUrl}/type/${typeName}/`;
+    return this.http.get<PokemonTypes>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener el tipo:', typeName, error);
+        return throwError(error);
+      })
+    );
+  }
+
+  getLanguageById(url: string): Observable<any> {
+    return this.http.get<any>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener el lenguaje:', error);
         return throwError(error);
       })
     );
