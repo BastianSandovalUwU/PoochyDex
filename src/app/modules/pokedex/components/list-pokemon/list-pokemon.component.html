@@ -1,9 +1,24 @@
-<div class="mx-4 mt-4">
-  <h1 class="text-black text-2xl font-bold">Listado de Pokémon</h1>
+<div class="mt-4">
+  <h1 class="mx-5 text-black text-2xl font-bold">Listado de Pokémon</h1>
+  <hr class="my-2">
+  <div class="mt-4 mx-5">
+    <span class="text-xl">Filtros de busqueda</span>
+    <div class="grid grid-cols-9 gap-2">
+      <button (click)="getPokemonByGeneration(1)" class="bg-blue-300 rounded">Gen 1</button>
+      <button (click)="getPokemonByGeneration(2)" class="bg-blue-300 rounded">Gen 2</button>
+      <button (click)="getPokemonByGeneration(3)" class="bg-blue-300 rounded">Gen 3</button>
+      <button (click)="getPokemonByGeneration(4)" class="bg-blue-300 rounded">Gen 4</button>
+      <button (click)="getPokemonByGeneration(5)" class="bg-blue-300 rounded">Gen 5</button>
+      <button (click)="getPokemonByGeneration(6)" class="bg-blue-300 rounded">Gen 6</button>
+      <button (click)="getPokemonByGeneration(7)" class="bg-blue-300 rounded">Gen 7</button>
+      <button (click)="getPokemonByGeneration(8)" class="bg-blue-300 rounded">Gen 8</button>
+      <button (click)="getPokemonByGeneration(9)" class="bg-blue-300 rounded">Gen 9</button>
+    </div>
+  </div>
 
   <div class="grid grid-cols-5 gap-2 mx-5 mt-5">
     <div *ngFor="let pokemon of allPokemon">
-      <div class="bg-gray-200 col-span-1">
+      <div class="bg-gray-200 rounded-lg border border-black col-span-1">
         <img *ngIf="pokemon.sprites.front_default" [src]="pokemon.sprites.other.home.front_default" width="300">
         <div *ngIf="!pokemon.sprites.other.home.front_default" class="placeholder-image text-red-500 font-bold">No Hay Imagen</div>
         <h2 class="text-center pb-2 text-xl">{{ pokemon.name | titlecase}}</h2>
