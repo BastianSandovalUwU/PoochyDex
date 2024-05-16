@@ -16,20 +16,29 @@ export class PokeApiService {
     const url = `${this.apiUrl}/pokemon/?limit=1302`;
     return this.http.get<any>(url).pipe(
       catchError(error => {
-        console.error('Error al obtener el pokemon:', error);
+        console.error('Error al obtener los pokémon:', error);
         return throwError(error);
       })
     );
   }
 
   getPokemonById(id: number): Observable<any> {
-    const url = `${this.apiUrl}/pokemon/${id}`;
+    const url = `${this.apiUrl}/pokemon/${id}/`;
     return this.http.get<any>(url).pipe(
       catchError(error => {
-        console.error('Error al obtener el pokemon:', error);
+        console.error('Error al obtener el pokémon número:', id, error);
         return throwError(error);
       })
     );
   }
 
+  getPokemonByGeneration(generationNumber: number): Observable<any> {
+    const url = `${this.apiUrl}/generation/${generationNumber}/`;
+    return this.http.get<any>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener los pokémon de la generacion número:', generationNumber, error);
+        return throwError(error);
+      })
+    );
+  }
 }
