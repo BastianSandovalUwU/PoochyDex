@@ -22,11 +22,11 @@ export class PokeApiService {
     );
   }
 
-  getPokemonById(id: number): Observable<any> {
-    const url = `${this.apiUrl}/pokemon/${id}/`;
+  getPokemonByName(name: string): Observable<any> {
+    const url = `${this.apiUrl}/pokemon/${name}/`;
     return this.http.get<any>(url).pipe(
       catchError(error => {
-        console.error('Error al obtener el pokémon número:', id, error);
+        console.error('Error al obtener el pokémon:', name, error);
         return throwError(error);
       })
     );
