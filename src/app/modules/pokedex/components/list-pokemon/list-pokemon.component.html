@@ -1,0 +1,14 @@
+<div class="mx-4 mt-4">
+  <h1 class="text-black text-2xl font-bold">Listado de Pokémon</h1>
+
+  <div class="grid grid-cols-5 gap-2 mx-5 mt-5">
+    <div *ngFor="let pokemon of allPokemon">
+      <div class="bg-gray-200 col-span-1">
+        <img *ngIf="pokemon.sprites.front_default" [src]="pokemon.sprites.other.home.front_default" width="300">
+        <div *ngIf="!pokemon.sprites.other.home.front_default" class="placeholder-image text-red-500 font-bold">No Hay Imagen</div>
+        <h2 class="text-center pb-2 text-xl">{{ pokemon.name | titlecase}}</h2>
+      </div>
+    </div>
+  </div>
+
+</div>
