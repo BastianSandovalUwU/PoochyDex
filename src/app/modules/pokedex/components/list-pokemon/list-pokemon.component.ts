@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
+import { Pokemon } from '../../../../../../entities/pokemon.entity';
 
 @Component({
   selector: 'app-list-pokemon',
@@ -9,7 +10,7 @@ import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 })
 export class ListPokemonComponent implements OnInit {
 
-  allPokemon = [];
+  allPokemon: Pokemon[] = [];
 
   constructor(private pokeApi: PokeApiService,
               ) { }
