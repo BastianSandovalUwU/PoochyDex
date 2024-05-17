@@ -1,50 +1,48 @@
 import { Versions } from "./versions.entity";
 
 export type Sprites = {
-  backDefault:      null;
-  backFemale:       null;
-  backShiny:        null;
-  backShinyFemale:  null;
-  frontDefault:     string;
-  frontFemale:      null;
-  frontShiny:       string;
-  frontShinyFemale: null;
+  back_default:      null;
+  back_female:       null;
+  back_shiny:        null;
+  back_shiny_female:  null;
+  front_default:     string;
+  front_female:      null;
+  front_shiny:       string;
+  front_shiny_female: null;
   other:            Other;
   versions:         Versions;
 }
 
-
-export type Other = {
-  dreamWorld:      DreamWorld;
-  home:            Home;
-  officialArtwork: OfficialArtwork;
-  showdown:        Showdown;
+export interface Other {
+  "dream_world": DreamWorld;
+  "home": Home;
+  "official-artwork": OfficialArtwork;
+  "showdown": Showdown;
 }
-
 export type DreamWorld = {
-  frontDefault: null;
-  frontFemale:  null;
+  front_default: null;
+  front_female:  null;
 }
 
 export type Home = {
   front_default:     string;
   front_female:      null;
   front_shiny:       string;
-  front_shinyFemale: null;
+  front_shiny_female: null;
 }
 
 export type OfficialArtwork = {
-  frontDefault: string;
-  frontShiny:   string;
+  front_default: string;
+  front_shiny:   string;
 }
 
 export type Showdown = {
-  backDefault:      null;
-  backFemale:       null;
-  backShiny:        null;
-  backShinyFemale:  null;
-  frontDefault:     null;
-  frontFemale:      null;
-  frontShiny:       null;
-  frontShinyFemale: null;
+  back_default:      null;
+  back_female:       null;
+  back_shiny:        null;
+  back_shiny_female:  null;
+  front_default:     null;
+  front_female:      null;
+  front_shiny:       null;
+  front_shiny_female: null;
 }

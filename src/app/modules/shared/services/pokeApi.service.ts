@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Pokemon } from '../../../../../entities/pokemon.entity';
 import { PokemonTypes } from '../../../../../entities/types.entity';
+import { PokemonSpecie } from '../../../../../entities/pokemon-specie.entity';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,15 @@ export class PokeApiService {
     return this.http.get<Pokemon>(url).pipe(
       catchError(error => {
         console.error('Error al obtener el pokémon:', name, error);
+        return throwError(error);
+      })
+    );
+  }
+  getPokemonSpecieById(id: number): Observable<PokemonSpecie> {
+    const url = `${this.apiUrl}/pokemon-species/${id}/`;
+    return this.http.get<PokemonSpecie>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener la especie pokémon:', id, error);
         return throwError(error);
       })
     );
