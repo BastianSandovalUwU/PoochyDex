@@ -1,0 +1,294 @@
+<div>
+  <div class="bg-gray-100 rounded-md p-4 mt-4">
+    <h1 class="font-bold text-xl">Sprites</h1>
+    <div>
+      <h1 class="font-bold text-xl text-center">1ra Generación</h1>
+      <div class="grid grid-cols-7">
+        <div class="col-start-4 mt-2 bg-white rounded-md border border-black">
+          <h1 class="text-center font-bold">Red - Blue</h1>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-i']['red-blue'].front_transparent">
+              <img class="w-full" [src]="versionSprites['generation-i']['red-blue'].front_transparent">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-i']['red-blue'].back_transparent">
+              <img class="w-full" [src]="versionSprites['generation-i']['red-blue'].back_transparent">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h1 class="font-bold text-xl text-center">2da Generación</h1>
+      <div class="grid grid-cols-7 gap-2">
+        <div class="h-full w-full col-start-3 bg-white rounded-md border border-black">
+          <h1 class="text-center font-bold">Cristal</h1>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-ii'].crystal.front_transparent">
+              <img class="w-full" [src]="versionSprites['generation-ii'].crystal.front_transparent">
+            </div>
+            <div  *ngIf="versionSprites['generation-ii'].crystal.back_transparent">
+              <img class="w-full" [src]="versionSprites['generation-ii'].crystal.back_transparent">
+            </div>
+          </div>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-ii'].crystal.front_shiny_transparent">
+              <img class="w-full" [src]="versionSprites['generation-ii'].crystal.front_shiny_transparent">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-ii'].crystal.back_shiny_transparent">
+              <img class="w-full" [src]="versionSprites['generation-ii'].crystal.back_shiny_transparent">
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-md border border-black">
+          <h1 class="text-center font-bold">Gold</h1>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-ii'].gold.front_transparent">
+              <img class="w-full" [src]="versionSprites['generation-ii'].gold.front_transparent">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-ii'].gold.back_default">
+              <img class="w-full" [src]="versionSprites['generation-ii'].gold.back_default">
+            </div>
+          </div>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-ii'].gold.front_shiny">
+              <img class="w-full" [src]="versionSprites['generation-ii'].gold.front_shiny">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-ii'].gold.back_shiny">
+              <img class="w-full" [src]="versionSprites['generation-ii'].gold.back_shiny">
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-md border border-black">
+          <h1 class="text-center font-bold">Silver</h1>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-ii'].silver.front_transparent">
+              <img class="w-full" [src]="versionSprites['generation-ii'].silver.front_transparent">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-ii'].silver.back_default">
+              <img class="w-full" [src]="versionSprites['generation-ii'].silver.back_default">
+            </div>
+          </div>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-ii'].silver.front_shiny">
+              <img class="w-full" [src]="versionSprites['generation-ii'].silver.front_shiny">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-ii'].silver.back_shiny">
+              <img class="w-full" [src]="versionSprites['generation-ii'].silver.back_shiny">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h1 class="font-bold text-xl text-center">3ra Generación</h1>
+      <div class="grid grid-cols-7 gap-2">
+        <div class="col-start-3 bg-white rounded-md border border-black">
+          <h1 class="text-center font-bold">Esmeralda</h1>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-iii'].emerald.front_default">
+              <img class="w-full" [src]="versionSprites['generation-iii'].emerald.front_default">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-iii'].emerald.front_shiny">
+              <img class="w-full" [src]="versionSprites['generation-iii'].emerald.front_shiny">
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-md border border-black">
+          <h1 class="text-center font-bold">Ruby - Sapphire</h1>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-iii']['ruby-sapphire'].front_default">
+              <img class="w-full" [src]="versionSprites['generation-iii']['ruby-sapphire'].front_default">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-iii']['ruby-sapphire'].back_default">
+              <img class="w-full" [src]="versionSprites['generation-iii']['ruby-sapphire'].back_default">
+            </div>
+          </div>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-iii']['ruby-sapphire'].front_shiny">
+              <img class="w-full" [src]="versionSprites['generation-iii']['ruby-sapphire'].front_shiny">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-iii']['ruby-sapphire'].back_shiny">
+              <img class="w-full" [src]="versionSprites['generation-iii']['ruby-sapphire'].back_shiny">
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-md border border-black">
+          <h1 class="text-center font-bold">Fire Red - Leaf Green</h1>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-iii']['firered-leafgreen'].front_default">
+              <img class="w-full" [src]="versionSprites['generation-iii']['firered-leafgreen'].front_default">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-iii']['firered-leafgreen'].back_default">
+              <img class="w-full" [src]="versionSprites['generation-iii']['firered-leafgreen'].back_default">
+            </div>
+          </div>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-iii']['firered-leafgreen'].front_shiny">
+              <img class="w-full" [src]="versionSprites['generation-iii']['firered-leafgreen'].front_shiny">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-iii']['firered-leafgreen'].back_shiny">
+              <img class="w-full" [src]="versionSprites['generation-iii']['firered-leafgreen'].back_shiny">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h1 class="font-bold text-xl text-center">4ta Generación</h1>
+      <div class="grid grid-cols-7 gap-2">
+        <div class="col-start-3 bg-white rounded-md border border-black">
+          <h1 class="text-center font-bold">Diamond - Pearl</h1>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-iv']['diamond-pearl'].front_default">
+              <img class="w-full" [src]="versionSprites['generation-iv']['diamond-pearl'].front_default">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-iv']['diamond-pearl'].front_shiny">
+              <img class="w-full" [src]="versionSprites['generation-iv']['diamond-pearl'].front_shiny">
+            </div>
+          </div>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-iv']['diamond-pearl'].back_default">
+              <img class="w-full" [src]="versionSprites['generation-iv']['diamond-pearl'].back_default">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-iv']['diamond-pearl'].back_shiny">
+              <img class="w-full" [src]="versionSprites['generation-iv']['diamond-pearl'].back_shiny">
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-md border border-black">
+          <h1 class="text-center font-bold">Platinum</h1>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-iv'].platinum.front_default">
+              <img class="w-full" [src]="versionSprites['generation-iv'].platinum.front_default">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-iv'].platinum.back_default">
+              <img class="w-full" [src]="versionSprites['generation-iv'].platinum.back_default">
+            </div>
+          </div>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-iv'].platinum.front_shiny">
+              <img class="w-full" [src]="versionSprites['generation-iv'].platinum.front_shiny">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-iv'].platinum.back_shiny">
+              <img class="w-full" [src]="versionSprites['generation-iv'].platinum.back_shiny">
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-md border border-black">
+          <h1 class="text-center font-bold">Fire Red - Leaf Green</h1>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-iv']['heartgold-soulsilver'].front_default">
+              <img class="w-full" [src]="versionSprites['generation-iv']['heartgold-soulsilver'].front_default">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-iv']['heartgold-soulsilver'].back_default">
+              <img class="w-full" [src]="versionSprites['generation-iv']['heartgold-soulsilver'].back_default">
+            </div>
+          </div>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-iv']['heartgold-soulsilver'].front_shiny">
+              <img class="w-full" [src]="versionSprites['generation-iv']['heartgold-soulsilver'].front_shiny">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-iv']['heartgold-soulsilver'].back_shiny">
+              <img class="w-full" [src]="versionSprites['generation-iv']['heartgold-soulsilver'].back_shiny">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h1 class="font-bold text-xl text-center">5ta Generación</h1>
+      <div class="grid grid-cols-7 gap-2">
+        <div class="col-start-4 bg-white rounded-md border border-black">
+          <h1 class="text-center font-bold">Black - White</h1>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-v']['black-white'].animated.front_default">
+              <img class="w-full" [src]="versionSprites['generation-v']['black-white'].animated.front_default">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-v']['black-white'].animated.front_shiny">
+              <img class="w-full" [src]="versionSprites['generation-v']['black-white'].animated.front_shiny">
+            </div>
+          </div>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-v']['black-white'].animated.back_default">
+              <img class="w-full" [src]="versionSprites['generation-v']['black-white'].animated.back_default">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-v']['black-white'].animated.back_shiny">
+              <img class="w-full" [src]="versionSprites['generation-v']['black-white'].animated.back_shiny">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h1 class="font-bold text-xl text-center">6ta Generación</h1>
+      <div class="grid grid-cols-6 gap-2">
+        <div class="col-start-3 bg-white rounded-md border border-black">
+          <h1 class="text-center font-bold">X - Y</h1>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-vi']['x-y'].front_default">
+              <img class="w-full" [src]="versionSprites['generation-vi']['x-y'].front_default">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-vi']['x-y'].front_female">
+              <img class="w-full" [src]="versionSprites['generation-vi']['x-y'].front_female">
+            </div>
+          </div>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-vi']['x-y'].front_shiny">
+              <img class="w-full" [src]="versionSprites['generation-vi']['x-y'].front_shiny">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-vi']['x-y'].front_shiny_female">
+              <img class="w-full" [src]="versionSprites['generation-vi']['x-y'].front_shiny_female">
+            </div>
+          </div>
+        </div>
+        <div class=" bg-white rounded-md border border-black">
+          <h1 class="text-center font-bold">Omega Ruby - Alpha Sapphire</h1>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_default">
+              <img class="w-full" [src]="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_default">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_female">
+              <img class="w-full" [src]="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_female">
+            </div>
+          </div>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_shiny">
+              <img class="w-full" [src]="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_shiny">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_shiny_female">
+              <img class="w-full" [src]="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_shiny_female">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h1 class="font-bold text-xl text-center">7ma Generación</h1>
+      <div class="grid grid-cols-7 gap-2">
+        <div class="col-start-4 bg-white rounded-md border border-black">
+          <h1 class="text-center font-bold">Sol - Luna</h1>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_default">
+              <img class="w-full" [src]="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_default">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_female">
+              <img class="w-full" [src]="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_female">
+            </div>
+          </div>
+          <div class="grid grid-cols-2">
+            <div class="w-20" *ngIf="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_shiny">
+              <img class="w-full" [src]="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_shiny">
+            </div>
+            <div class="w-20" *ngIf="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_shiny_female">
+              <img class="w-full" [src]="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_shiny_female">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -20,9 +20,6 @@ export class ShowPokemonComponent implements OnInit {
   pokemontypes: { language: string, typeName: string }[][];
   pokemonSpecie: PokemonSpecie;
 
-  otherSprites: Other;
-  versionSprites: Versions;
-
   constructor(private pokeApiService: PokeApiService,
               private helperService: HelperService,
               private activatedRoute: ActivatedRoute) {
@@ -39,8 +36,6 @@ export class ShowPokemonComponent implements OnInit {
     this.pokeApiService.getPokemonByName(this.pokemonName).subscribe((pokeInfo) => {
       console.log(pokeInfo);
       this.pokemon = pokeInfo;
-      this.otherSprites = pokeInfo.sprites.other;
-      this.versionSprites = pokeInfo.sprites.versions;
       this.getPokemonSpecie();
       this.helperService.getPokemonTypes(this.pokemon.types).subscribe((types) => {
         this.pokemontypes = types;
@@ -57,6 +52,12 @@ export class ShowPokemonComponent implements OnInit {
 
   getColorClassByLanguageAndType(typeName: string, language: string): string {
       return this.helperService.getTypeColorClass(typeName, language);
+  }
+  getGenerationName(generationName: string): string {
+      return this.helperService.getGenerationName(generationName);
+  }
+  getEggGroupName(groupName: string): string {
+      return this.helperService.getEggGroupName(groupName);
   }
 
   playAudio(idAudio: string) {

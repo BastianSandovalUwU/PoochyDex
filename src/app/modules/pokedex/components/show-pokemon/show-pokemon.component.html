@@ -20,30 +20,32 @@
     </div>
 
     <div class="col-span-3 bg-gray-100 p-4 rounded-md">
-      <h1>Generación: {{pokemonSpecie.generation.name}}</h1>
+      <h1><span class="font-bold">Generación: </span>{{getGenerationName(pokemonSpecie.generation.name)}}</h1>
       <div *ngFor="let genera of pokemonSpecie.genera">
-        <span *ngIf="genera.language.name === language">Categoria: {{ genera.genus }} </span>
+        <span *ngIf="genera.language.name === language"><span class="font-bold">Categoria: </span>{{ genera.genus }} </span>
       </div>
-      <div *ngFor="let dex of pokemonSpecie.pokedex_numbers">
-        Número: {{ dex.entry_number }} - {{ dex.pokedex.name }}
+      <div class="grid grid-cols-4">
+        <div class="col-span-1" *ngFor="let dex of pokemonSpecie.pokedex_numbers">
+          <span class="font-bold">Número: </span>{{ dex.entry_number }} - {{ dex.pokedex.name }}
+        </div>
       </div>
       <div *ngFor="let ability of pokemon.abilities">
-        Habilidad: {{ ability.ability.name }}
+        <span class="font-bold">Habilidad <span *ngIf="!ability.is_hidden">{{ ability.slot }}</span><span *ngIf="ability.is_hidden">Oculta</span>:</span> {{ ability.ability.name }}
       </div>
       <div *ngFor="let eggGroup of pokemonSpecie.egg_groups">
-        Grupo huevo: {{ eggGroup.name }}
+        <span class="font-bold">Grupo huevo: </span>{{ getEggGroupName(eggGroup.name) }}
       </div>
-      <h1>Es Legendario: {{pokemonSpecie.is_legendary}}</h1>
-      <h1>Es Mitico: {{pokemonSpecie.is_mythical}}</h1>
-      <h1>Es Bebé: {{pokemonSpecie.is_baby}}</h1>
-      <h1>Grito Actual:
+      <h1 class="font-bold" *ngIf="pokemonSpecie.is_legendary">Pokémon Legendario</h1>
+      <h1 class="font-bold" *ngIf="pokemonSpecie.is_mythical">Pokémon Mitico</h1>
+      <h1 class="font-bold" *ngIf="pokemonSpecie.is_baby">Pokémon Bebé</h1>
+      <h1 class="font-bold">Grito Actual:
         <button (click)="playAudio('audioPlayer')">|></button>
         <audio id="audioPlayer" controls>
           <source [src]="pokemon.cries.latest" type="audio/mpeg">
           Tu navegador no soporta el elemento de audio.
         </audio>
       </h1>
-      <h1>Grito Antiguo
+      <h1 class="font-bold">Grito Antiguo
         <button (click)="playAudio('audioPlayer2')">|></button>
         <audio id="audioPlayer2" controls>
           <source [src]="pokemon.cries.legacy" type="audio/mpeg">
@@ -54,196 +56,7 @@
   </div>
 
   <div>
-    <div class="bg-gray-100 rounded-md p-4 mt-4">
-      <h1 class="font-bold text-xl">Sprites</h1>
-      <div>
-        <h1 class="font-bold text-xl text-center">1ra Generación</h1>
-        <div class="grid grid-cols-7">
-          <div class="col-start-4 mt-2 bg-white rounded-md border border-black">
-            <h1 class="text-center font-bold">Red - Blue</h1>
-            <div class="grid grid-cols-2">
-              <div class="w-20" *ngIf="versionSprites['generation-i']['red-blue'].front_transparent">
-                <img class="w-full" [src]="versionSprites['generation-i']['red-blue'].front_transparent">
-              </div>
-              <div class="w-20" *ngIf="versionSprites['generation-i']['red-blue'].back_transparent">
-                <img class="w-full" [src]="versionSprites['generation-i']['red-blue'].back_transparent">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <h1 class="font-bold text-xl text-center">2da Generación</h1>
-        <div class="grid grid-cols-7 gap-2">
-          <div class="col-start-3 mt-2 bg-white rounded-md border border-black">
-            <h1 class="text-center font-bold">Cristal</h1>
-            <div class="grid grid-cols-2">
-              <div class="w-20" *ngIf="versionSprites['generation-ii'].crystal.front_transparent">
-                <img class="w-full" [src]="versionSprites['generation-ii'].crystal.front_transparent">
-              </div>
-              <div class="w-20" *ngIf="versionSprites['generation-ii'].crystal.back_transparent">
-                <img class="w-full" [src]="versionSprites['generation-ii'].crystal.back_transparent">
-              </div>
-            </div>
-            <div class="grid grid-cols-2">
-              <div class="w-20" *ngIf="versionSprites['generation-ii'].crystal.front_shiny_transparent">
-                <img class="w-full" [src]="versionSprites['generation-ii'].crystal.front_shiny_transparent">
-              </div>
-              <div class="w-20" *ngIf="versionSprites['generation-ii'].crystal.back_shiny_transparent">
-                <img class="w-full" [src]="versionSprites['generation-ii'].crystal.back_shiny_transparent">
-              </div>
-            </div>
-          </div>
-          <div class="bg-white rounded-md border border-black">
-            <h1 class="text-center font-bold">Gold</h1>
-            <div class="grid grid-cols-2">
-              <div class="w-20" *ngIf="versionSprites['generation-ii'].gold.front_transparent">
-                <img class="w-full" [src]="versionSprites['generation-ii'].gold.front_transparent">
-              </div>
-              <div class="w-20" *ngIf="versionSprites['generation-ii'].gold.back_default">
-                <img class="w-full" [src]="versionSprites['generation-ii'].gold.back_default">
-              </div>
-            </div>
-            <div class="grid grid-cols-2">
-              <div class="w-20" *ngIf="versionSprites['generation-ii'].gold.front_shiny">
-                <img class="w-full" [src]="versionSprites['generation-ii'].gold.front_shiny">
-              </div>
-              <div class="w-20" *ngIf="versionSprites['generation-ii'].gold.back_shiny">
-                <img class="w-full" [src]="versionSprites['generation-ii'].gold.back_shiny">
-              </div>
-            </div>
-          </div>
-          <div class="bg-white rounded-md border border-black">
-            <h1 class="text-center font-bold">Silver</h1>
-            <div class="grid grid-cols-2">
-              <div class="w-20" *ngIf="versionSprites['generation-ii'].silver.front_transparent">
-                <img class="w-full" [src]="versionSprites['generation-ii'].silver.front_transparent">
-              </div>
-              <div class="w-20" *ngIf="versionSprites['generation-ii'].silver.back_default">
-                <img class="w-full" [src]="versionSprites['generation-ii'].silver.back_default">
-              </div>
-            </div>
-            <div class="grid grid-cols-2">
-              <div class="w-20" *ngIf="versionSprites['generation-ii'].silver.front_shiny">
-                <img class="w-full" [src]="versionSprites['generation-ii'].silver.front_shiny">
-              </div>
-              <div class="w-20" *ngIf="versionSprites['generation-ii'].silver.back_shiny">
-                <img class="w-full" [src]="versionSprites['generation-ii'].silver.back_shiny">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <h1 class="font-bold text-xl text-center">3ra Generación</h1>
-        <div class="grid grid-cols-7 gap-2">
-          <div class="col-start-3 mt-2 bg-white rounded-md border border-black">
-            <h1 class="text-center font-bold">Esmeralda</h1>
-            <div class="grid grid-cols-2">
-              <div class="w-20" *ngIf="versionSprites['generation-iii'].emerald.front_default">
-                <img class="w-full" [src]="versionSprites['generation-iii'].emerald.front_default">
-              </div>
-            </div>
-            <div class="grid grid-cols-2">
-              <div class="w-20" *ngIf="versionSprites['generation-iii'].emerald.front_shiny">
-                <img class="w-full" [src]="versionSprites['generation-iii'].emerald.front_shiny">
-              </div>
-            </div>
-          </div>
-          <div class="bg-white rounded-md border border-black">
-            <h1 class="text-center font-bold">Ruby - Sapphire</h1>
-            <div class="grid grid-cols-2">
-              <div class="w-20" *ngIf="versionSprites['generation-iii']['ruby-sapphire'].front_default">
-                <img class="w-full" [src]="versionSprites['generation-iii']['ruby-sapphire'].front_default">
-              </div>
-              <div class="w-20" *ngIf="versionSprites['generation-iii']['ruby-sapphire'].back_default">
-                <img class="w-full" [src]="versionSprites['generation-iii']['ruby-sapphire'].back_default">
-              </div>
-            </div>
-            <div class="grid grid-cols-2">
-              <div class="w-20" *ngIf="versionSprites['generation-iii']['ruby-sapphire'].front_shiny">
-                <img class="w-full" [src]="versionSprites['generation-iii']['ruby-sapphire'].front_shiny">
-              </div>
-              <div class="w-20" *ngIf="versionSprites['generation-iii']['ruby-sapphire'].back_shiny">
-                <img class="w-full" [src]="versionSprites['generation-iii']['ruby-sapphire'].back_shiny">
-              </div>
-            </div>
-          </div>
-          <div class="bg-white rounded-md border border-black">
-            <h1 class="text-center font-bold">Fire Red - Leaf Green</h1>
-            <div class="grid grid-cols-2">
-              <div class="w-20" *ngIf="versionSprites['generation-iii']['firered-leafgreen'].front_default">
-                <img class="w-full" [src]="versionSprites['generation-iii']['firered-leafgreen'].front_default">
-              </div>
-              <div class="w-20" *ngIf="versionSprites['generation-iii']['firered-leafgreen'].back_default">
-                <img class="w-full" [src]="versionSprites['generation-iii']['firered-leafgreen'].back_default">
-              </div>
-            </div>
-            <div class="grid grid-cols-2">
-              <div class="w-20" *ngIf="versionSprites['generation-iii']['firered-leafgreen'].front_shiny">
-                <img class="w-full" [src]="versionSprites['generation-iii']['firered-leafgreen'].front_shiny">
-              </div>
-              <div class="w-20" *ngIf="versionSprites['generation-iii']['firered-leafgreen'].back_shiny">
-                <img class="w-full" [src]="versionSprites['generation-iii']['firered-leafgreen'].back_shiny">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="grid grid-cols-6 mt-2">
-        <div class="w-auto" *ngIf="pokemon.sprites.front_default">
-          <img class="w-full" [src]="pokemon.sprites.front_default">
-          <h1 class="text-center">De frente Masculino</h1>
-        </div>
-        <div class="w-auto" *ngIf="pokemon.sprites.back_default">
-          <img class="w-full" [src]="pokemon.sprites.back_default">
-          <h1 class="text-center">De espalda Masculino</h1>
-        </div>
-        <div class="w-auto" *ngIf="pokemon.sprites.front_female">
-          <img class="w-full" [src]="pokemon.sprites.front_female">
-          <h1 class="text-center">De frente Femenino</h1>
-        </div>
-        <div class="w-auto" *ngIf="pokemon.sprites.back_female">
-          <img class="w-full" [src]="pokemon.sprites.back_female">
-          <h1 class="text-center">De espalda Femenino</h1>
-        </div>
-        <div class="w-auto" *ngIf="pokemon.sprites.front_shiny">
-          <img class="w-full" [src]="pokemon.sprites.front_shiny">
-          <h1 class="text-center">De frente shiny</h1>
-        </div>
-        <div class="w-auto" *ngIf="pokemon.sprites.back_shiny">
-          <img class="w-full" [src]="pokemon.sprites.back_shiny">
-          <h1 class="text-center">De espalda shiny</h1>
-        </div>
-        <div class="w-auto" *ngIf="pokemon.sprites.front_shiny_female">
-          <img class="w-full" [src]="pokemon.sprites.front_shiny_female">
-          <h1 class="text-center">De frente Femenino shiny</h1>
-        </div>
-        <div class="w-auto" *ngIf="pokemon.sprites.back_shiny_female">
-          <img class="w-full" [src]="pokemon.sprites.back_shiny_female">
-          <h1 class="text-center">De espalda Femenino shiny</h1>
-        </div>
-        <div class="w-auto" *ngIf="pokemon.sprites.other.dream_world.front_default">
-          <img class="w-full" [src]="pokemon.sprites.other.dream_world.front_default">
-          <h1 class="text-center">Dreamworld</h1>
-        </div>
-        <div class="w-auto" *ngIf="pokemon.sprites.other.dream_world.front_female">
-          <img class="w-full" [src]="pokemon.sprites.other.dream_world.front_female">
-          <h1 class="text-center">Dreamworld shiny</h1>
-        </div>
-        <div class="w-auto" *ngIf="otherSprites['official-artwork'].front_default">
-          <img class="w-full" [src]="otherSprites['official-artwork'].front_default">
-          <h1 class="text-center">Arte Oficial</h1>
-        </div>
-        <div class="w-auto" *ngIf="otherSprites['official-artwork'].front_shiny">
-          <img class="w-full" [src]="otherSprites['official-artwork'].front_shiny">
-          <h1 class="text-center">Arte Oficial shiny</h1>
-        </div>
-      </div>
-
-
-    </div>
+    <app-pokeSprites [pokemon]="pokemon"></app-pokeSprites>
   </div>
-
 
 </div>

@@ -26,7 +26,7 @@ export type Pokemon = {
 
 export type Ability = {
   ability:  Species;
-  isHidden: boolean;
+  is_hidden: boolean;
   slot:     number;
 }
 

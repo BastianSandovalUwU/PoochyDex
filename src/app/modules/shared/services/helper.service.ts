@@ -76,5 +76,40 @@ export class HelperService {
       return 'bg-default';
     }
   }
+  getGenerationName(generationName: string): string {
+      switch (generationName.toLowerCase()) {
+        case 'generation-i': return 'Primera Generación';
+        case 'generation-ii': return 'Segunda Generación';
+        case 'generation-iii': return 'Tercera Generación';
+        case 'generation-iv': return 'Cuarta Generación';
+        case 'generation-v': return 'Quinta Generación';
+        case 'generation-vi': return 'Sexta Generación';
+        case 'generation-vii': return 'Septima Generación';
+        case 'generation-vii': return 'Octava Generación';
+        case 'generation-ix': return 'Novena Generación';
+        case 'generation-x': return 'Decima Generación';
+        default: return '';
+      }
+  }
+  getEggGroupName(groupName: string): string {
+      switch (groupName.toLowerCase()) {
+        case 'no-eggs': return 'Desconocido';
+        case 'dragon': return 'Dragón';
+        case 'ditto': return 'Ditto';
+        case 'water2': return 'Agua 2';
+        case 'indeterminate': return 'Amorfo';
+        case 'mineral': return 'Mineral';
+        case 'water3': return 'Agua 3';
+        case 'humanshape': return 'Humanoide';
+        case 'plant': return 'Planta';
+        case 'fairy': return 'Hada';
+        case 'ground': return 'Campo';
+        case 'flying': return 'Volador';
+        case 'bug': return 'Bicho';
+        case 'water1': return 'Agua 1';
+        case 'monster': return 'Monstruo';
+        default: return '';
+      }
+  }
 
 }
