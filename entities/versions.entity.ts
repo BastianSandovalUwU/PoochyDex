@@ -52,7 +52,7 @@ export type GoldSilver = {
 
 export type GenerationIii = {
   "emerald":          Emerald;
-  "firered-Leafgreen": FireredLeafgreen;
+  "firered-leafgreen": FireredLeafgreen;
   "ruby-sapphire":     FireredLeafgreen;
 }
 
