@@ -1,111 +1,110 @@
 import { DreamWorld, Showdown } from "./sprites.entity";
 
-export type Versions = {
-  generationI:    GenerationI;
-  generationIi:   GenerationIi;
-  generationIii:  GenerationIii;
-  generationIv:   GenerationIv;
-  generationV:    GenerationV;
-  generationVi:   GenerationVi;
-  generationVii:  GenerationVii;
-  generationViii: GenerationViii;
+export interface Versions {
+  "generation-i": GenerationI;
+  "generation-ii": GenerationIi;
+  "generation-iii": GenerationIii;
+  "generation-iv": GenerationIv;
+  "generation-v": GenerationV;
+  "generation-vi": GenerationVi;
+  "generation-vii": GenerationVii;
+  "generation-viii": GenerationViii;
 }
 
-
 export type GenerationI = {
-  redBlue: RedBlue;
-  yellow:  RedBlue;
+  "red-blue": RedBlue;
+  "yellow":  RedBlue;
 }
 
 export type RedBlue = {
-  backDefault:      null;
-  backGray:         null;
-  backTransparent:  null;
-  frontDefault:     null;
-  frontGray:        null;
-  frontTransparent: null;
+  back_default:      null;
+  back_gray:         null;
+  back_transparent:  null;
+  front_default:     null;
+  front_gray:        null;
+  front_transparent: null;
 }
 
 export type GenerationIi = {
   crystal: Crystal;
-  gold:    Gold;
-  silver:  Gold;
+  gold:    GoldSilver;
+  silver:  GoldSilver;
 }
 
 export type Crystal = {
-  backDefault:           null;
-  backShiny:             null;
-  backShinyTransparent:  null;
-  backTransparent:       null;
-  frontDefault:          null;
-  frontShiny:            null;
-  frontShinyTransparent: null;
-  frontTransparent:      null;
+  back_default:           null;
+  back_shiny:             null;
+  back_shiny_transparent:  null;
+  back_transparent:       null;
+  front_default:          null;
+  front_shiny:            null;
+  front_shiny_transparent: null;
+  front_transparent:      null;
 }
 
-export type Gold = {
-  backDefault:      null;
-  backShiny:        null;
-  frontDefault:     null;
-  frontShiny:       null;
-  frontTransparent: null;
+export type GoldSilver = {
+  back_default:      null;
+  back_shiny:        null;
+  front_default:     null;
+  front_shiny:       null;
+  front_transparent: null;
 }
 
 export type GenerationIii = {
-  emerald:          Emerald;
-  fireredLeafgreen: FireredLeafgreen;
-  rubySapphire:     FireredLeafgreen;
+  "emerald":          Emerald;
+  "firered-Leafgreen": FireredLeafgreen;
+  "ruby-sapphire":     FireredLeafgreen;
 }
 
 export type Emerald = {
-  frontDefault: null;
-  frontShiny:   null;
+  front_default: null;
+  front_shiny:   null;
 }
 
 export type FireredLeafgreen = {
-  backDefault:  null;
-  backShiny:    null;
-  frontDefault: null;
-  frontShiny:   null;
+  back_default:  null;
+  back_shiny:    null;
+  front_default: null;
+  front_shiny:   null;
 }
 
 export type GenerationIv = {
-  diamondPearl:        Showdown;
-  heartgoldSoulsilver: Showdown;
-  platinum:            Showdown;
+  "diamond-pearl":        Showdown;
+  "heartgold-soulsilver": Showdown;
+  "platinum":            Showdown;
 }
 
 export type GenerationV = {
-  blackWhite: BlackWhite;
+  "black-white": BlackWhite;
 }
 
 export type BlackWhite = {
   animated:         Showdown;
-  backDefault:      null;
-  backFemale:       null;
-  backShiny:        null;
-  backShinyFemale:  null;
-  frontDefault:     null;
-  frontFemale:      null;
-  frontShiny:       null;
-  frontShinyFemale: null;
+  back_default:      null;
+  back_female:       null;
+  back_shiny:        null;
+  back_shiny_female:  null;
+  front_default:     null;
+  front_female:      null;
+  front_shiny:       null;
+  front_shiny_female: null;
 }
 
 export type GenerationVi = {
-  omegarubyAlphasapphire: OmegarubyAlphasapphire;
-  xY:                     OmegarubyAlphasapphire;
+  "omegaruby-alphasapphire": OmegarubyAlphasapphire;
+  "x-y":                     OmegarubyAlphasapphire;
 }
 
 export type OmegarubyAlphasapphire = {
-  frontDefault:     null;
-  frontFemale:      null;
-  frontShiny:       null;
-  frontShinyFemale: null;
+  front_default:     null;
+  front_female:      null;
+  front_shiny:       null;
+  front_shiny_female: null;
 }
 
 export type GenerationVii = {
-  icons:             DreamWorld;
-  ultraSunUltraMoon: OmegarubyAlphasapphire;
+  "icons":             DreamWorld;
+  "ultra-sun-ultra-moon": OmegarubyAlphasapphire;
 }
 
 export type GenerationViii = {
