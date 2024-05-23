@@ -72,4 +72,14 @@ export class PokeApiService {
       })
     );
   }
+
+  getMoveById(id: string): Observable<any> {
+    const url = `${this.apiUrl}/move/${id}/`;
+    return this.http.get<any>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener el movimiento:', id, error);
+        return throwError(error);
+      })
+    );
+  }
 }

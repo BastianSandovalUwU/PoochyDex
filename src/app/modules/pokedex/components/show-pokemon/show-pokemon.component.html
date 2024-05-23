@@ -55,6 +55,45 @@
     </div>
   </div>
 
+  <div class="bg-gray-100 p-4 rounded-md mt-2">
+    <h1 class="font-bold text-xl">Movimientos Pokemon</h1>
+    <h1 class="font-bold">Subiendo de nivel</h1>
+
+    <label for="versionGroup">Seleccionar Juego:</label> &nbsp;
+    <select id="versionGroup" [(ngModel)]="selectedVersionGroup" (change)="onVersionGroupChange($event)">
+      <option *ngFor="let group of versionGroups" [value]="group">{{ group }}</option>
+    </select>
+
+    <div class="grid grid-cols-4 gap-4">
+      <span class="font-semibold">{{ language === 'es' ? 'Nivel': 'Level' }}</span>
+      <span class="font-semibold">{{ language === 'es' ? 'Movimiento': 'Move' }}</span>
+      <span class="font-semibold">{{ language === 'es' ? 'Juego': 'Game' }}</span>
+      <span class="font-semibold">{{ language === 'es' ? 'Tipo': 'Type' }}</span>
+    </div>
+    <div *ngFor="let pokeMove of filteredMoves" class="my-1">
+      <div *ngFor="let detail of pokeMove.move.version_group_details">
+        <div class="grid grid-cols-4 gap-2 mb-1">
+          <div class="col-span-1">
+            {{ detail.level_learned_at }}
+          </div>
+          <div class="col-span-1">
+            {{ pokeMove.move.move.name }}
+          </div>
+          <div class="col-span-1">
+            {{ detail.version_group.name }}
+          </div>
+          <div *ngFor="let type of pokeMove.types">
+            <div class="grid grid-cols-3">
+              <div [ngClass]="getColorClassByLanguageAndType(type.typeName, type.language)" class="rounded-md px-2 text-white text-center">
+                {{ type.typeName | titlecase }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div>
     <app-pokeSprites [pokemon]="pokemon"></app-pokeSprites>
   </div>
