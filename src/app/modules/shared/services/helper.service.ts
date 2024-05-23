@@ -27,6 +27,17 @@ export class HelperService {
     );
   }
 
+  getMoveType(typeName: string): Observable<{ language: string, typeName: string }[]> {
+    return this.pokeApiService.getPokemonTypeByName(typeName).pipe(
+      map((type: any) => {
+        return type.names.map(nameInfo => ({
+          language: nameInfo.language.name,
+          typeName: nameInfo.name
+        }));
+      })
+    );
+  }
+
   getTypeColorClass(typeName: string, language: string): string {
     if (language === 'en') {
       switch (typeName.toLowerCase()) {
@@ -76,7 +87,8 @@ export class HelperService {
       return 'bg-default';
     }
   }
-  getGenerationName(generationName: string): string {
+  getGenerationName(generationName: string, language: string): string {
+    if (language === 'es') {
       switch (generationName.toLowerCase()) {
         case 'generation-i': return 'Primera Generación';
         case 'generation-ii': return 'Segunda Generación';
@@ -90,6 +102,23 @@ export class HelperService {
         case 'generation-x': return 'Decima Generación';
         default: return '';
       }
+    } else if (language === 'en'){
+      switch (generationName.toLowerCase()) {
+        case 'generation-i': return 'First Generación';
+        case 'generation-ii': return 'Second Generación';
+        case 'generation-iii': return 'Third Generación';
+        case 'generation-iv': return 'Fourth Generación';
+        case 'generation-v': return 'Fifth Generación';
+        case 'generation-vi': return 'Sixth Generación';
+        case 'generation-vii': return 'Seventh Generación';
+        case 'generation-vii': return 'Eighth Generación';
+        case 'generation-ix': return 'Ninth Generación';
+        case 'generation-x': return 'Tenth Generación';
+        default: return '';
+      }
+    } else {
+      return '';
+    }
   }
   getEggGroupName(groupName: string): string {
       switch (groupName.toLowerCase()) {

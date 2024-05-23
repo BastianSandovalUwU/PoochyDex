@@ -5,10 +5,12 @@ import { RouterModule } from '@angular/router';
 import { pokedexRoute } from './pokedex.routing';
 import { ShowPokemonComponent } from './components/show-pokemon/show-pokemon.component';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(pokedexRoute),
     SharedModule
   ],
