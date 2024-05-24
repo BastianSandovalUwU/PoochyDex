@@ -45,7 +45,7 @@ export class HelperService {
         case 'fire': return 'bg-fire';
         case 'water': return 'bg-water';
         case 'bug': return 'bg-bug';
-        case 'normal': return 'bg-normal';
+        case 'normal': return 'bg-normal text-black';
         case 'poison': return 'bg-poison';
         case 'electric': return 'bg-electric';
         case 'ground': return 'bg-ground';
@@ -67,7 +67,7 @@ export class HelperService {
         case 'fuego': return 'bg-fire';
         case 'agua': return 'bg-water';
         case 'bicho': return 'bg-bug';
-        case 'normal': return 'bg-normal';
+        case 'normal': return 'bg-normal text-black';
         case 'veneno': return 'bg-poison';
         case 'eléctrico': return 'bg-electric';
         case 'tierra': return 'bg-ground';

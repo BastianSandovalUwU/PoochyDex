@@ -4,9 +4,7 @@ import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Pokemon } from '../../../../../../entities/pokemon.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { PokemonSpecie } from '../../../../../../entities/pokemon-specie.entity';
-import { Other } from '../../../../../../entities/sprites.entity';
-import { Versions } from '../../../../../../entities/versions.entity';
-import { DetailMove, Move, TypeDetail } from '../../../../../../entities/moves.entity';
+import { ShowMove, TypeDetail } from '../../../../../../entities/moves.entity';
 import { forkJoin } from 'rxjs';
 
 @Component({
@@ -19,7 +17,7 @@ export class ShowPokemonComponent implements OnInit {
   language: string = 'es';
   pokemonName: string;
   pokemon: Pokemon;
-  moves: DetailMove[];
+  moves: ShowMove[];
   pokemontypes: { language: string, typeName: string }[][];
   pokemonSpecie: PokemonSpecie;
   versionGroups: string[] = [];
@@ -100,23 +98,24 @@ export class ShowPokemonComponent implements OnInit {
       // Obtener los nombres de los tipos para cada movimiento
       const typeNamesObservables = this.moves.map(move => this.helperService.getMoveType(move.detailMove.type.name));
       forkJoin(typeNamesObservables).subscribe(typeNamesArray => {
-        // Aquí actualizamos this.movesWithTypes con los datos obtenidos
-        typeNamesArray.forEach((typeNames, index) => {
+        this.movesWithTypes = typeNamesArray.map((typeNames, index) => {
           // Filtrar los tipos por idioma
-          typeNames = typeNames.filter(f => f.language === this.language);
-          // Creamos un nuevo objeto que contiene el movimiento y los tipos con su información de idioma
-          this.movesWithTypes.push({
+          const filteredTypeNames = typeNames.filter(f => f.language === this.language);
+
+          // Filtrar los nombres de los movimientos por idioma
+          const moveName = this.moves[index].detailMove.names.find(name => name.language.name === this.language)?.name || this.moves[index].move.name;
+
+          return {
             move: this.moves[index], // El movimiento actual
-            types: typeNames // Los nombres de los tipos con su información de idioma
-          });
+            types: filteredTypeNames, // Los nombres de los tipos con su información de idioma
+            moveName // El nombre del movimiento en el idioma seleccionado
+          };
         });
-        // Ahora this.movesWithTypes contiene la información del movimiento junto con los tipos y sus idiomas
+
         console.log(this.movesWithTypes);
 
         this.extractVersionGroups();
         this.filterMoves();
-        // Aquí puedes realizar cualquier otra operación que necesites con this.movesWithTypes
-        // Por ejemplo, puedes usar this.movesWithTypes en tu plantilla HTML
       });
     });
   }
