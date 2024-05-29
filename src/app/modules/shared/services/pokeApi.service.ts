@@ -5,13 +5,15 @@ import { catchError } from 'rxjs/operators';
 import { Pokemon } from '../../../../../entities/pokemon.entity';
 import { PokemonTypes } from '../../../../../entities/types.entity';
 import { PokemonSpecie } from '../../../../../entities/pokemon-specie.entity';
+import { MachineMove } from '../../../../../entities/machine-move.entity';
+import { DetailMove } from '../../../../../entities/moves.entity';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokeApiService {
 
-  apiUrl = 'https://pokeapi.co/api/v2/'
+  apiUrl = 'https://pokeapi.co/api/v2'
 
   constructor(private http: HttpClient) { }
 
@@ -73,11 +75,20 @@ export class PokeApiService {
     );
   }
 
-  getMoveById(id: string): Observable<any> {
+  getMoveById(id: string): Observable<DetailMove> {
     const url = `${this.apiUrl}/move/${id}/`;
-    return this.http.get<any>(url).pipe(
+    return this.http.get<DetailMove>(url).pipe(
       catchError(error => {
         console.error('Error al obtener el movimiento:', id, error);
+        return throwError(error);
+      })
+    );
+  }
+
+  getMachineMoveByUrl(url: string): Observable<MachineMove> {
+    return this.http.get<MachineMove>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener el movimiento:', error);
         return throwError(error);
       })
     );
