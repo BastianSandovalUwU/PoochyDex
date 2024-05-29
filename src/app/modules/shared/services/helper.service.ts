@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { PokeApiService } from './pokeApi.service';
 import { Observable, forkJoin, map } from 'rxjs';
-import { PokemonTypes } from '../../../../../entities/types.entity';
-import { Type } from '../../../../../entities/pokemon.entity';
-import { Languages } from '../../../../../entities/common/const.interface';
+import { Ability, Type } from '../../../../../entities/pokemon.entity';
+import { AbilityName, AbilityResponse, Name } from '../../../../../entities/pokemon-ability.entity';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +21,24 @@ export class HelperService {
             language: nameInfo.language.name,
             typeName: nameInfo.name
           }));
+        });
+      })
+    );
+  }
+
+  getAbilityNames(abilities: Ability[]): Observable<{ ability: Ability, names: AbilityName[] }[]> {
+    const observables = abilities.map(ability =>
+      this.pokeApiService.getAbilityById(ability.ability.name)
+    );
+
+    return forkJoin(observables).pipe(
+      map((results: AbilityResponse[], index: number) => {
+        return results.map((result, i) => {
+          const names = result.names.map((nameInfo: Name) => ({
+            language: nameInfo.language.name,
+            abilityName: nameInfo.name
+          }));
+          return { ability: abilities[i], names };
         });
       })
     );
@@ -120,7 +137,8 @@ export class HelperService {
       return '';
     }
   }
-  getEggGroupName(groupName: string): string {
+  getEggGroupName(groupName: string, language: string): string {
+    if(language === 'es'){
       switch (groupName.toLowerCase()) {
         case 'no-eggs': return 'Desconocido';
         case 'dragon': return 'Dragón';
@@ -139,6 +157,9 @@ export class HelperService {
         case 'monster': return 'Monstruo';
         default: return '';
       }
+    } else {
+      return groupName;
+    }
   }
 
 }

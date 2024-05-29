@@ -7,6 +7,7 @@ import { PokemonTypes } from '../../../../../entities/types.entity';
 import { PokemonSpecie } from '../../../../../entities/pokemon-specie.entity';
 import { MachineMove } from '../../../../../entities/machine-move.entity';
 import { DetailMove } from '../../../../../entities/moves.entity';
+import { PokemonAbility } from '../../../../../entities/pokemon-ability.entity';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ export class PokeApiService {
       })
     );
   }
-  getPokemonSpecieById(id: number): Observable<PokemonSpecie> {
+  getPokemonSpecieById(id: string): Observable<PokemonSpecie> {
     const url = `${this.apiUrl}/pokemon-species/${id}/`;
     return this.http.get<PokemonSpecie>(url).pipe(
       catchError(error => {
@@ -89,6 +90,16 @@ export class PokeApiService {
     return this.http.get<MachineMove>(url).pipe(
       catchError(error => {
         console.error('Error al obtener el movimiento:', error);
+        return throwError(error);
+      })
+    );
+  }
+
+  getAbilityById(id: string): Observable<PokemonAbility> {
+    const url = `${this.apiUrl}/ability/${id}/`;
+    return this.http.get<PokemonAbility>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener la habilidad:', id, error);
         return throwError(error);
       })
     );
