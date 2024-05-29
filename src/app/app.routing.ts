@@ -8,6 +8,7 @@ export const appRoutes: Route[] = [
     path: '',
     children: [
         { path: 'pokedex', loadChildren: () => import('./modules/pokedex/pokedex.module').then(m => m.PokedexModule) },
+        { path: 'movement', loadChildren: () => import('./modules/movements/movement.module').then(m => m.MovementModule) },
     ]
 },
 
