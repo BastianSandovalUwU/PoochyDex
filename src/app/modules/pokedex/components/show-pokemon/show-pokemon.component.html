@@ -20,32 +20,38 @@
     </div>
 
     <div class="col-span-3 bg-gray-100 p-4 rounded-md">
-      <h1><span class="font-bold">Generación: </span>{{getGenerationName(pokemonSpecie.generation.name)}}</h1>
+      <h1><span class="font-bold">{{ language === 'es' ? 'Generación': 'Generation' }}: </span>{{getGenerationName(pokemonSpecie.generation.name)}}</h1>
       <div *ngFor="let genera of pokemonSpecie.genera">
-        <span *ngIf="genera.language.name === language"><span class="font-bold">Categoria: </span>{{ genera.genus }} </span>
+        <span *ngIf="genera.language.name === language"><span class="font-bold">{{ language === 'es' ? 'Categoria': 'Category' }}: </span>{{ genera.genus }} </span>
       </div>
       <div class="grid grid-cols-4">
         <div class="col-span-1" *ngFor="let dex of pokemonSpecie.pokedex_numbers">
-          <span class="font-bold">Número: </span>{{ dex.entry_number }} - {{ dex.pokedex.name }}
+          <span class="font-bold">{{ language === 'es' ? 'Número': 'Number' }}: </span>{{ dex.entry_number }} - {{ dex.pokedex.name }}
         </div>
       </div>
-      <div *ngFor="let ability of pokemon.abilities">
-        <span class="font-bold">Habilidad <span *ngIf="!ability.is_hidden">{{ ability.slot }}</span><span *ngIf="ability.is_hidden">Oculta</span>:</span> {{ ability.ability.name }}
+      <div *ngFor="let abilityGroup of filteredAbilityNames">
+        <div>
+          <span class="font-bold">
+            {{ language === 'es' ? 'Habilidad': 'Ability' }} <span *ngIf="!abilityGroup.ability.is_hidden">{{ abilityGroup.ability.slot }}</span>
+            <span *ngIf="abilityGroup.ability.is_hidden">{{ language === 'es' ? 'Oculta': 'Hidden' }}</span>:
+          </span>
+          <span>{{ abilityGroup.name }}</span>
+        </div>
       </div>
       <div *ngFor="let eggGroup of pokemonSpecie.egg_groups">
-        <span class="font-bold">Grupo huevo: </span>{{ getEggGroupName(eggGroup.name) }}
+        <span class="font-bold">{{ language === 'es' ? 'Grupo Huevo': 'Egg Group' }}: </span>{{ getEggGroupName(eggGroup.name) }}
       </div>
       <h1 class="font-bold" *ngIf="pokemonSpecie.is_legendary">Pokémon Legendario</h1>
       <h1 class="font-bold" *ngIf="pokemonSpecie.is_mythical">Pokémon Mitico</h1>
       <h1 class="font-bold" *ngIf="pokemonSpecie.is_baby">Pokémon Bebé</h1>
-      <h1 class="font-bold">Grito Actual:
+      <h1 *ngIf="pokemon.cries.latest" class="font-bold">{{ language === 'es' ? 'Grito Actual': 'Current Cry' }}:
         <button (click)="playAudio('audioPlayer')">|></button>
         <audio id="audioPlayer" controls>
           <source [src]="pokemon.cries.latest" type="audio/mpeg">
           Tu navegador no soporta el elemento de audio.
         </audio>
       </h1>
-      <h1 class="font-bold">Grito Antiguo
+      <h1 *ngIf="pokemon.cries.legacy" class="font-bold">{{ language === 'es' ? 'Grito Antiguo': 'Previus Scream' }}:
         <button (click)="playAudio('audioPlayer2')">|></button>
         <audio id="audioPlayer2" controls>
           <source [src]="pokemon.cries.legacy" type="audio/mpeg">

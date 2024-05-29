@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
-import { Pokemon } from '../../../../../../entities/pokemon.entity';
+import { Pokemon, Ability } from '../../../../../../entities/pokemon.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { PokemonSpecie } from '../../../../../../entities/pokemon-specie.entity';
 import { Move, ShowMove, TypeDetail, DetailMove, VersionGroupDetail, FilteredByMachine, FilteredMove } from '../../../../../../entities/moves.entity';
 import { forkJoin } from 'rxjs';
 import { ExtendedMachineDetail, MachineDetail } from '../../../../../../entities/machine-move.entity';
+import { AbilityName } from '../../../../../../entities/pokemon-ability.entity';
 
 @Component({
   selector: 'app-show-pokemon',
@@ -19,6 +20,8 @@ export class ShowPokemonComponent implements OnInit {
   pokemonName: string;
   pokemon: Pokemon;
   moves: ShowMove[];
+  abilityNames: { ability: Ability, names: AbilityName[] }[];
+  filteredAbilityNames: { ability: Ability, name: string }[] = [];
   pokemontypes: { language: string, typeName: string }[][];
   pokemonSpecie: PokemonSpecie;
   versionGroups: string[] = [];
@@ -51,6 +54,7 @@ export class ShowPokemonComponent implements OnInit {
       this.moves = this.pokemon.moves;
       this.getPokemonMoves();
       this.getPokemonSpecie();
+      this.getPokemonAbility();
       this.helperService.getPokemonTypes(this.pokemon.types).subscribe((types) => {
         this.pokemontypes = types;
       });
@@ -58,8 +62,26 @@ export class ShowPokemonComponent implements OnInit {
   }
 
   getPokemonSpecie() {
-    this.pokeApiService.getPokemonSpecieById(this.pokemon.id).subscribe((specie) => {
+    this.pokeApiService.getPokemonSpecieById(this.pokemon.species.name).subscribe((specie) => {
       this.pokemonSpecie = specie;
+    });
+  }
+
+  getPokemonAbility() {
+    this.helperService.getAbilityNames(this.pokemon.abilities).subscribe((abilities) => {
+      console.log(abilities);
+      this.abilityNames = abilities;
+      this.filterAbilityNamesByLanguage();
+    });
+  }
+
+  filterAbilityNamesByLanguage(): void {
+    this.filteredAbilityNames = this.abilityNames.map(abilityGroup => {
+      const nameEntry = abilityGroup.names.find(n => n.language === this.language);
+      return {
+        ability: abilityGroup.ability,
+        name: nameEntry ? nameEntry.abilityName : abilityGroup.ability.ability.name
+      };
     });
   }
 
@@ -72,7 +94,7 @@ export class ShowPokemonComponent implements OnInit {
   }
 
   getEggGroupName(groupName: string): string {
-      return this.helperService.getEggGroupName(groupName);
+      return this.helperService.getEggGroupName(groupName, this.language);
   }
 
   playAudio(idAudio: string) {
