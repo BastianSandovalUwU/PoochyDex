@@ -23,6 +23,7 @@ export class ShowPokemonComponent implements OnInit {
   abilityNames: { ability: Ability, names: AbilityName[] }[];
   filteredAbilityNames: { ability: Ability, name: string }[] = [];
   pokemontypes: { language: string, typeName: string }[][];
+  flavorTextEntries: { flavor_text: string, version: string }[] = [];
   pokemonSpecie: PokemonSpecie;
   versionGroups: string[] = [];
   levelUpSelectedVersionGroup: string = '';
@@ -64,12 +65,13 @@ export class ShowPokemonComponent implements OnInit {
   getPokemonSpecie() {
     this.pokeApiService.getPokemonSpecieById(this.pokemon.species.name).subscribe((specie) => {
       this.pokemonSpecie = specie;
+      console.log(this.pokemonSpecie);
+      this.filterFlavorTextEntries();
     });
   }
 
   getPokemonAbility() {
     this.helperService.getAbilityNames(this.pokemon.abilities).subscribe((abilities) => {
-      console.log(abilities);
       this.abilityNames = abilities;
       this.filterAbilityNamesByLanguage();
     });
@@ -85,16 +87,40 @@ export class ShowPokemonComponent implements OnInit {
     });
   }
 
+  filterFlavorTextEntries(): void {
+    this.flavorTextEntries = this.pokemonSpecie.flavor_text_entries
+      .filter(entry => entry.language.name === this.language)
+      .map(entry => ({
+        flavor_text: entry.flavor_text,
+        version: entry.version.name
+      }));
+  }
+
   getColorClassByLanguageAndType(typeName: string, language: string): string {
       return this.helperService.getTypeColorClass(typeName, language);
+  }
+
+  getGameVersionColor(gameVersion: string): string {
+      return this.helperService.getGameVersionColor(gameVersion);
   }
 
   getGenerationName(generationName: string): string {
       return this.helperService.getGenerationName(generationName, this.language);
   }
 
+  getGameName(gameName: string): string {
+      return this.helperService.getGameName(gameName, this.language);
+  }
+
   getEggGroupName(groupName: string): string {
       return this.helperService.getEggGroupName(groupName, this.language);
+  }
+
+  calculateGenderRateMale(genderRate: number): number {
+      return 100 - (genderRate * 12.5);
+  }
+  calculateGenderRateFemale(genderRate: number): number {
+      return genderRate * 12.5;
   }
 
   playAudio(idAudio: string) {
@@ -272,6 +298,5 @@ export class ShowPokemonComponent implements OnInit {
       .filter(moveWithTypes => moveWithTypes.move.version_group_details.length > 0);
 
     this.filteredMovesByEgg = filteredMoves;
-    console.log(this.filteredMovesByEgg);
   }
 }
