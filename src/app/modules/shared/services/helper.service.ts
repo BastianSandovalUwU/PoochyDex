@@ -162,4 +162,118 @@ export class HelperService {
     }
   }
 
+  getGameVersionColor(gameVersion: string): string {
+    switch(gameVersion) {
+      case 'red': return 'bg-red';
+      case 'blue': return 'bg-blue';
+      case 'yellow': return 'bg-yellow text-black';
+      case 'gold': return 'bg-gold';
+      case 'silver': return 'bg-silver';
+      case 'crystal': return 'bg-crystal';
+      case 'ruby': return 'bg-ruby';
+      case 'sapphire': return 'bg-sapphire';
+      case 'emerald': return 'bg-emerald';
+      case 'firered': return 'bg-fire-red';
+      case 'leafgreen': return 'bg-leaf-green';
+      case 'diamond': return 'bg-diamond text-black';
+      case 'pearl': return 'bg-pearl text-black';
+      case 'platinum': return 'bg-platinum text-black';
+      case 'heartgold': return 'bg-heartgold';
+      case 'soulsilver': return 'bg-soulsilver';
+      case 'black': return 'bg-black';
+      case 'white': return 'bg-white text-black';
+      case 'black-2': return 'bg-black-2';
+      case 'white-2': return 'bg-white-2 text-black';
+      case 'x': return 'bg-x';
+      case 'y': return 'bg-y';
+      case 'omega-ruby': return 'bg-omega-ruby';
+      case 'alpha-sapphire': return 'bg-alpha-sapphire';
+      case 'sun': return 'bg-sun';
+      case 'moon': return 'bg-moon';
+      case 'ultra-sun': return 'bg-ultra-sun';
+      case 'ultra-moon': return 'bg-ultra-moon';
+      case 'lets-go-pikachu': return 'bg-letsGo-pikachu text-black';
+      case 'lets-go-eevee': return 'bg-letsGo-eevee text-black';
+      case 'sword': return 'bg-sword';
+      case 'shield': return 'bg-shield';
+      case 'scarlet': return 'bg-scarlet';
+      case 'violet': return 'bg-violet';
+      case 'red-blue': return 'bg-red';
+      case 'gold-silver': return 'bg-gold';
+      case 'ruby-sapphire': return 'bg-ruby';
+      case 'fire-red-leaf-green': return 'bg-fire-red';
+      case 'diamond-pearl': return 'bg-diamond';
+      case 'heartgold-soulsilver': return 'bg-heartgold';
+      case 'black-white': return 'bg-black';
+      case 'black-2-white-2': return 'bg-black-2';
+      case 'x-y': return 'bg-x';
+      case 'omega-ruby-alpha-sapphire': return 'bg-omega-ruby';
+      case 'sun-moon': return 'bg-sun';
+      case 'ultra-sun-ultra-moon': return 'bg-ultra-sun';
+      case 'lets-go-pikachu-lets-go-eevee': return 'bg-letsGo-pikachu text-black';
+      case 'sword-shield': return 'bg-sword';
+      case 'scarlet-violet': return 'bg-scarlet';
+      default: return '';
+    }
+  }
+
+  getGameName(gameName: string, language: string): string {
+    if(language === 'es'){
+      switch (gameName.toLowerCase()) {
+        case 'red': return 'Rojo';
+        case 'blue': return 'Azul';
+        case 'yellow': return 'Amarillo';
+        case 'gold': return 'Oro';
+        case 'silver': return 'PLata';
+        case 'crystal': return 'Cristal';
+        case 'colosseum': return 'Colosseum';
+        case 'ruby': return 'Rubí';
+        case 'sapphire': return 'Zafiro';
+        case 'emerald': return 'Esmeralda';
+        case 'firered': return 'Rojo Fuego';
+        case 'leafgreen': return 'Verde Hoja';
+        case 'diamond': return 'Diamante';
+        case 'pearl': return 'Perla';
+        case 'platinum': return 'PLatino';
+        case 'heartgold': return 'Oro HeartGold';
+        case 'soulsilver': return 'Plta SoulSilver';
+        case 'black': return 'Negro';
+        case 'white': return 'Blanco';
+        case 'black-2': return 'Negro 2';
+        case 'white-2': return 'Blanco 2';
+        case 'x': return 'Pokémon X';
+        case 'y': return 'Pokémon Y';
+        case 'omega-ruby': return 'Rubí Omega';
+        case 'alpha-sapphire': return 'Zafiro Alfa';
+        case 'sun': return 'Sol';
+        case 'moon': return 'Luna';
+        case 'ultra-sun': return 'Ultrasol';
+        case 'ultra-moon': return 'Ultraluna';
+        case 'lets-go-pikachu': return "Let's Go, Pikachu!";
+        case 'lets-go-eevee': return "Let's Go, Eevee!";
+        case 'sword': return 'Espada';
+        case 'shield': return 'Escudo';
+        case 'scarlet': return 'Escarlata';
+        case 'violet': return 'Purpura';
+        case 'red-blue': return 'Rojo - Azul';
+        case 'gold-silver': return 'Oro - Plata';
+        case 'ruby-sapphire': return 'Rubí - Zafiro';
+        case 'firered-leafgreen': return 'Rojo Fuego - Verde Hoja';
+        case 'diamond-pearl': return 'Diamante - Perla';
+        case 'black-white': return 'Negro - Blanco';
+        case 'black-2-white-2': return 'Negro 2 - Blanco 2';
+        case 'x-y': return 'Pokémon X - Pokémon Y';
+        case 'omega-ruby-alpha-sapphire': return 'Rubí Omega - Zafiro Alfa';
+        case 'sun-moon': return 'Sol - Luna';
+        case 'ultra-sun-ultra-moon': return 'Ultrasol - Ultraluna';
+        case 'lets-go-pikachu-lets-go-eevee': return "Let's Go, Pikachu! - Let's Go, Eevee!";
+        case 'sword-shield': return 'Espada - Escudo';
+        case 'scarlet-violet': return 'Escarlata - Purpura';
+        default: return '';
+      }
+    } else {
+      return gameName;
+    }
+  }
+
 }
