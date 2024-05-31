@@ -1,6 +1,7 @@
 <div class="m-4" *ngIf="pokemon && pokemontypes">
     <div class="bg-gray-100 p-4 rounded-md col-span-1">
       <h1 class="font-bold text-4xl text-center">{{pokemon.name |titlecase}}</h1>
+      <h1 class="font-bold text-lg text-center"><span class="cursor-pointer">{{pokemonNameHirgana.name |titlecase}}</span> ({{pokemonNameRomaji.name |titlecase}})</h1>
       <div class="grid grid-cols-3 gap-1">
         <div class="col-span-3 flex justify-center">
           <img class="w-80" *ngIf="pokemon.sprites.other.home.front_default" [src]="pokemon.sprites.other.home.front_default">
@@ -146,21 +147,19 @@
 
   <!-- Sección de movimientos por máquina -->
   <div class="bg-gray-100 p-4 rounded-md mt-2">
-    <h1 class="font-bold">{{ language === 'es' ? 'Mediante máquina' : 'By Machine' }}</h1>
+    <h1 class="font-bold">{{ language === 'es' ? 'Mediante Máquina Tecnica' : 'By Technical Machine' }}</h1>
     <label for="versionGroup">{{ language === 'es' ? 'Seleccionar Juego': 'Select Game' }}</label> &nbsp;
     <select id="versionGroup" [(ngModel)]="machineSelectedVersionGroup" (change)="machineChangeGame($event)">
       <option *ngFor="let group of versionGroups" [value]="group">{{ group }}</option>
     </select>
     <div class="p-3 border-black border rounded-md">
       <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2">
-        <span class="font-semibold">{{ language === 'es' ? 'Numero Máquina' : 'Machine Number' }}</span>
         <span class="font-semibold">{{ language === 'es' ? 'Movimiento' : 'Move' }}</span>
         <span class="font-semibold">{{ language === 'es' ? 'Juego' : 'Game' }}</span>
         <span class="font-semibold">{{ language === 'es' ? 'Tipo' : 'Type' }}</span>
       </div>
       <div *ngFor="let pokeMove of filteredMovesByMachine">
         <div class="grid grid-cols-4 gap-2 mb-1">
-          <div class="col-span-1" *ngIf="pokeMove.machineDetail?.moveDetails">{{ pokeMove.machineDetail?.moveDetails.item.name }}</div>
           <div class="col-span-1">{{ pokeMove.moveName }}</div>
           <div class="grid grid-cols-3">
             <div class="col-span-2 rounded-md px-2 text-white text-center border border-black" [ngClass]="getGameVersionColor(pokeMove.machineDetail?.version_group.name)">
@@ -249,8 +248,9 @@
       </div>
     </div>
   </div>
-  <div>
+
+  <!-- <div>
     <app-pokeSprites [pokemon]="pokemon"></app-pokeSprites>
-  </div>
+  </div> -->
 
 </div>
