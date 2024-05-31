@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { PokeApiService } from './pokeApi.service';
-import { Observable, forkJoin, map } from 'rxjs';
+import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { Ability, Type } from '../../../../../entities/pokemon.entity';
 import { AbilityName, AbilityResponse, Name } from '../../../../../entities/pokemon-ability.entity';
+import { DetailMove } from '../../../../../entities/moves.entity';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,11 @@ export class HelperService {
           language: nameInfo.language.name,
           typeName: nameInfo.name
         }));
+      }),
+      catchError(error => {
+        console.error(`Error al obtener el tipo del movimiento ${typeName}:`, error);
+        // Return an empty array or a default value in case of error
+        return of([]);
       })
     );
   }
