@@ -1,16 +1,25 @@
+import { ExtendedMachineDetail, MachineDetail } from "./machine-move.entity";
 import { Data } from "./pokemon-specie.entity";
 
-export type Move = {
+export interface Move {
   move:                Data;
   detailMove?:         DetailMove;
   version_group_details: VersionGroupDetail[];
 }
+
+export type FilteredMove = {
+  move:     Move;
+  types:    TypeDetail[];
+  moveName: string;
+}
+
+export interface FilteredByMachine extends FilteredMove {
+  machineDetail:      ExtendedMachineDetail;
+}
 export interface ShowMove extends Move {
   moveName?: string;
-  types?: [{
-    language: string;
-    typeName: string;
-  }];
+  machineDetail?:      MachineDetail;
+  types?: TypeDetail[];
 }
 
 export type DetailMove = {
@@ -26,7 +35,7 @@ export type DetailMove = {
   generation:           Data;
   id:                   number;
   learned_by_pokemon:   Data[];
-  machines:             any[];
+  machines:             Machine[];
   meta:                 Meta;
   name:                 string;
   names:                Name[];
@@ -95,4 +104,9 @@ export type Meta = {
 export type Name = {
   language: Data;
   name:     string;
+}
+
+export type Machine = {
+  machine:       ContestEffect;
+  version_group: Data;
 }

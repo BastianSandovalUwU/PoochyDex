@@ -24,6 +24,7 @@ table {
     display: inline!important;
   }
 }
+
 .bg-grass { background-color: #48bb78; }
 .bg-fire { background-color: #f56565; }
 .bg-water { background-color: #4299e1; }
@@ -43,3 +44,39 @@ table {
 .bg-steel { background-color: #718096; }
 .bg-flying { background-color: #90cdf4; }
 .bg-default { background-color: #a0aec0; } /* Default color */
+
+/* Colores de fondo para cada juego de Pokémon */
+.bg-red { background-color: #FF0000; } /* Rojo */
+.bg-blue { background-color: #0000FF; } /* Azul */
+.bg-yellow { background-color: #FFFF00; } /* Amarillo */
+.bg-gold { background-color: #FFD700; } /* Oro */
+.bg-silver { background-color: #C0C0C0; } /* Plata */
+.bg-crystal { background-color: #00BFFF; } /* Cristal */
+.bg-ruby { background-color: #E0115F; } /* Rubí */
+.bg-sapphire { background-color: #0000FF; } /* Zafiro */
+.bg-emerald { background-color: #50C878; } /* Esmeralda */
+.bg-fire-red { background-color: #FF4500; } /* Rojo Fuego */
+.bg-leaf-green { background-color: #32CD32; } /* Verde Hoja */
+.bg-diamond { background-color: #B9F2FF; } /* Diamante */
+.bg-pearl { background-color: #FEE7F0; } /* Perla */
+.bg-platinum { background-color: #E5E4E2; } /* Platino */
+.bg-heartgold { background-color: #FFD700; } /* Oro HeartGold */
+.bg-soulsilver { background-color: #C0C0C0; } /* Plata SoulSilver */
+.bg-black { background-color: #000000; } /* Negro */
+.bg-white { background-color: #FFFFFF; } /* Blanco */
+.bg-black-2 { background-color: #333333; } /* Negro 2 */
+.bg-white-2 { background-color: #F8F8FF; } /* Blanco 2 */
+.bg-x { background-color: #00BFFF; } /* X */
+.bg-y { background-color: #FF1493; } /* Y */
+.bg-omega-ruby { background-color: #FF4500; } /* Rubí Omega */
+.bg-alpha-sapphire { background-color: #0000CD; } /* Zafiro Alfa */
+.bg-sun { background-color: #FFA500; } /* Sol */
+.bg-moon { background-color: #9370DB; } /* Luna */
+.bg-ultra-sun { background-color: #FF8C00; } /* Ultra Sol */
+.bg-ultra-moon { background-color: #6A5ACD; } /* Ultra Luna */
+.bg-letsGo-pikachu { background-color: #fff836; } /* let's Go Pikachu */
+.bg-letsGo-eevee { background-color: #DFC879; } /* let's Go Eevee */
+.bg-sword { background-color: #4169E1; } /* Espada */
+.bg-shield { background-color: #FF6347; } /* Escudo */
+.bg-scarlet { background-color: #9E2A22; } /* Escarlata */
+.bg-violet { background-color: #552277; } /* Purpura */
