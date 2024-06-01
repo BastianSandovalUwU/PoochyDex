@@ -3,7 +3,7 @@ import { ShowMovementComponent } from "./components/show-movement/show-movement.
 
 export const movementRoute: Route[] = [
     {
-        path: 'show-movement',
+        path: 'show-movement/:id',
         component: ShowMovementComponent
     }
   ]

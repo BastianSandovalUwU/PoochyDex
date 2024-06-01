@@ -1,42 +1,53 @@
-<div>
-
-    <h1>Habilidades</h1>
-    
-    
-    <h2>Nombre: Megapuño</h2>
-   
+<div class="p-4 m-4 bg-gray-100 rounded-md shadow-md" *ngIf="move">
+    <h2 class="font-bold text-xl">Nombre: {{ move.name | titlecase}}</h2>
      <img src="https://images.wikidexcdn.net/mwuploads/wikidex/6/6d/latest/20120713014717/Megapu%C3%B1o_OPC.png">
-    
-    
-    <h3>Descripcion</h3>
+
+    <div class="grid grid-cols-4 gap-1">
+      <div>
+        <h3 class="font-bold text-xl">Descripcion</h3>
         Causa daño y no tiene ningún efecto secundario.
-    
-    <h3>Generacion donde implementa</h3>
-        Primera generacion
-   
-    <h3>Tipo de daño</h3>
+      </div>
+      <div>
+        <h3 class="font-bold text-xl">Generacion donde implementa</h3>
+        {{ move.generation.name }}
+      </div>
+      <div>
+        <h3 class="font-bold text-xl">Tipo de daño</h3>
         Tipo fisico
-    
-    <h3>Daño</h3>
-    80 de daño
-   
-    <h3>Precision</h3>
-    85 de Precision
-
-
-    <h3>PP</h3>
-    20 y se puede aumentar hasta 32
-    
-    <h3>Prioridad</h3>
-    0
-   
-    <h3>objetivos</h3>
-       1 solo objetivo
-   
-    <h3>Tipo de movimiento</h3>
+      </div>
+      <div>
+        <h3 class="font-bold text-xl">Daño</h3>
+        80 de daño
+      </div>
+      <div>
+        <h3 class="font-bold text-xl">Precision</h3>
+        85 de Precision
+      </div>
+      <div>
+        <h3 class="font-bold text-xl">PP</h3>
+        20 y se puede aumentar hasta 32
+      </div>
+      <div>
+        <h3 class="font-bold text-xl">Prioridad</h3>
+        0
+      </div>
+      <div>
+        <h3 class="font-bold text-xl">objetivos</h3>
+        1 solo objetivo
+      </div>
+      <div>
+        <h3 class="font-bold text-xl">Tipo de movimiento</h3>
         Normal
-
+      </div>
     </div>
+    <div>
+      <h1 class="font-bold text-xl">Pokemon que aprenden {{move.name}}</h1>
+      <div class="pl-1" *ngFor="let learnBy of move.learned_by_pokemon">
+        <div>{{learnBy.name |titlecase}}</div>
+      </div>
+    </div>
+
+</div>
 
 
 
