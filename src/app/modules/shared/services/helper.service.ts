@@ -223,6 +223,22 @@ export class HelperService {
     }
   }
 
+  getPokemonColor(color: string): string {
+    switch(color) {
+      case 'red': return 'bg-red-100';
+      case 'blue': return 'bg-blue-100';
+      case 'yellow': return 'bg-yellow-100';
+      case 'purple': return 'bg-purple-100';
+      case 'pink': return 'bg-pink-100';
+      case 'green': return 'bg-green-100';
+      case 'gray': return 'bg-gray-100';
+      case 'brown': return 'bg-amber-100';
+      case 'black': return 'bg-black';
+      case 'white': return 'bg-white';
+      default: return '';
+    }
+  }
+
   getGameName(gameName: string, language: string): string {
     if(language === 'es'){
       switch (gameName.toLowerCase()) {

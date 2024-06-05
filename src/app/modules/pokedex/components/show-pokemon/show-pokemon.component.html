@@ -1,5 +1,5 @@
-<div class="m-4" *ngIf="pokemon && pokemontypes">
-    <div class="bg-gray-100 p-4 rounded-md col-span-1">
+<div class="m-4" *ngIf="pokemon && pokemontypes && pokemonSpecie">
+    <div [ngClass]="getPokemonColor(pokemonSpecie.color.name)" class="p-4 rounded-md col-span-1 border border-black">
       <h1 class="font-bold text-4xl text-center">{{pokemon.name |titlecase}}</h1>
       <h1 class="font-bold text-lg text-center"><span class="cursor-pointer">{{pokemonNameHirgana.name |titlecase}}</span> ({{pokemonNameRomaji.name |titlecase}})</h1>
       <div class="grid grid-cols-3 gap-1">

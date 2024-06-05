@@ -108,6 +108,10 @@ export class ShowPokemonComponent implements OnInit {
       return this.helperService.getGameVersionColor(gameVersion);
   }
 
+  getPokemonColor(color: string): string {
+      return this.helperService.getPokemonColor(color);
+  }
+
   getGenerationName(generationName: string): string {
       return this.helperService.getGenerationName(generationName, this.language);
   }
