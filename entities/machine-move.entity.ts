@@ -1,3 +1,4 @@
+import { VersionGroupDetail } from "./moves.entity";
 import { Data } from "./pokemon-specie.entity";
 
 export type MachineMove = {
@@ -17,8 +18,11 @@ export interface MachineDetail {
   };
 }
 
-export interface ExtendedMachineDetail extends MachineDetail {
+export interface ExtendedMachineDetail extends VersionGroupDetail {
   moveDetails?: any;  // Puedes definir un tipo más específico si conoces la estructura de los detalles del movimiento
+  machine: {
+    url: string;
+  };
 }
 
 export interface MoveWithDetails {

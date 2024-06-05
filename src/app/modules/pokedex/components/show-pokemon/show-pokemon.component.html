@@ -1,7 +1,10 @@
 <div class="m-4" *ngIf="pokemon && pokemontypes && pokemonSpecie">
     <div [ngClass]="getPokemonColor(pokemonSpecie.color.name)" class="p-4 rounded-md col-span-1 border border-black">
       <h1 class="font-bold text-4xl text-center">{{pokemon.name |titlecase}}</h1>
-      <h1 class="font-bold text-lg text-center"><span class="cursor-pointer">{{pokemonNameHirgana.name |titlecase}}</span> ({{pokemonNameRomaji.name |titlecase}})</h1>
+      <h1 class="font-bold text-lg text-center">
+        <span class="cursor-pointer" *ngIf="pokemonNameHirgana">{{pokemonNameHirgana.name |titlecase}}</span>
+        <span *ngIf="pokemonNameRomaji">({{pokemonNameRomaji.name |titlecase}})</span>
+        </h1>
       <div class="grid grid-cols-3 gap-1">
         <div class="col-span-3 flex justify-center">
           <img class="w-80" *ngIf="pokemon.sprites.other.home.front_default" [src]="pokemon.sprites.other.home.front_default">
@@ -98,6 +101,40 @@
       <div class="col-span-1" *ngFor="let dex of pokemonSpecie.pokedex_numbers">
         <span class="font-bold">{{ language === 'es' ? 'Número': 'Number' }}: </span>{{ dex.entry_number }} - {{ dex.pokedex.name }}
       </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-100 p-4 rounded-md mt-2">
+    <h1 class="font-bold text-xl">{{ language === 'es' ? 'Cadena Evolutiva': 'Evolution Chain' }}</h1>
+    <div class="flex justify-center space-x-8" *ngIf="evolutionChain">
+      <div class="flex flex-col items-center">
+        <p>{{ evolutionChain.chain.species.name |titlecase}}</p>
+        <img class="w-32" *ngIf="evolutionChain.chain.detailPokemon.sprites.other.home.front_default" [src]="evolutionChain.chain.detailPokemon.sprites.other.home.front_default">
+      </div>
+      <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
+        <div class="flex flex-col items-center">
+          <p>{{ stage.species.name |titlecase}}</p>
+          <img class="w-32" *ngIf="stage.detailPokemon.sprites.other.home.front_default" [src]="stage.detailPokemon.sprites.other.home.front_default">
+          <p *ngIf="stage.evolution_details[0].trigger">{{ stage.evolution_details[0].trigger.name }}</p>
+          <p *ngIf="stage.evolution_details[0].time_of_day">{{ stage.evolution_details[0].time_of_day }}</p>
+          <p *ngIf="stage.evolution_details[0].min_happiness">{{ stage.evolution_details[0].min_happiness }}</p>
+          <p *ngIf="stage.evolution_details[0].known_move_type">{{ stage.evolution_details[0].known_move_type.name }} move</p>
+          <p *ngIf="stage.evolution_details[0].min_level">{{ stage.evolution_details[0].min_level }}</p>
+          <p *ngIf="stage.evolution_details[0].item">{{ stage.evolution_details[0].item.name }}</p>
+        </div>
+        <ng-container *ngFor="let stage2 of stage.evolves_to">
+          <div class="flex flex-col items-center">
+            <p>{{ stage2.species.name |titlecase}}</p>
+            <img class="w-32" *ngIf="stage2.detailPokemon.sprites.other.home.front_default" [src]="stage2.detailPokemon.sprites.other.home.front_default">
+            <p *ngIf="stage2.evolution_details[0].trigger">{{ stage2.evolution_details[0].trigger.name }}</p>
+            <p *ngIf="stage2.evolution_details[0].time_of_day">{{ stage2.evolution_details[0].time_of_day }}</p>
+            <p *ngIf="stage2.evolution_details[0].min_happiness">{{ stage2.evolution_details[0].min_happiness }}</p>
+            <p *ngIf="stage2.evolution_details[0].known_move_type">{{ stage2.evolution_details[0].known_move_type.name }} move</p>
+            <p *ngIf="stage2.evolution_details[0].min_level">{{ stage2.evolution_details[0].min_level }}</p>
+            <p *ngIf="stage2.evolution_details[0].item">{{ stage2.evolution_details[0].item.name }}</p>
+          </div>
+        </ng-container>
+      </ng-container>
     </div>
   </div>
 
