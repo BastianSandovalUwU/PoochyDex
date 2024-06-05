@@ -4,10 +4,11 @@ import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Pokemon, Ability } from '../../../../../../entities/pokemon.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Name, PokemonSpecie } from '../../../../../../entities/pokemon-specie.entity';
-import { Move, ShowMove, TypeDetail, DetailMove, VersionGroupDetail, FilteredByMachine, FilteredMove, Machine } from '../../../../../../entities/moves.entity';
-import { forkJoin, map, of } from 'rxjs';
+import { Move, ShowMove, TypeDetail, DetailMove, VersionGroupDetail, FilteredByMachine, FilteredMove, Machine, FilteredByTutor, FilteredByEgg } from '../../../../../../entities/moves.entity';
+import { Subject, catchError, forkJoin, map, of, switchMap, takeUntil } from 'rxjs';
 import { ExtendedMachineDetail, MachineDetail } from '../../../../../../entities/machine-move.entity';
 import { AbilityName } from '../../../../../../entities/pokemon-ability.entity';
+import { Chain, DetailChain, EvolutionChain } from '../../../../../../entities/evolution-chain.entity.';
 
 @Component({
   selector: 'app-show-pokemon',
@@ -15,6 +16,7 @@ import { AbilityName } from '../../../../../../entities/pokemon-ability.entity';
   styleUrls: ['./show-pokemon.component.scss']
 })
 export class ShowPokemonComponent implements OnInit {
+  private unsubscribe$ = new Subject<void>();
 
   language: string = 'es';
   pokemonName: string;
@@ -34,9 +36,10 @@ export class ShowPokemonComponent implements OnInit {
   eggSelectedVersionGroup: string = '';
   filteredMoves: FilteredMove[] = [];
   filteredMovesByMachine: FilteredByMachine[] = [];
-  filteredMovesByTutor: FilteredMove[] = [];
-  filteredMovesByEgg: FilteredMove[] = [];
+  filteredMovesByTutor: FilteredByTutor[] = [];
+  filteredMovesByEgg: FilteredByEgg[] = [];
   movesWithTypes: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
+  evolutionChain: EvolutionChain;
 
   constructor(private pokeApiService: PokeApiService,
               private helperService: HelperService,
@@ -48,6 +51,11 @@ export class ShowPokemonComponent implements OnInit {
       this.pokemonName = name;
       this.getPokemonByName();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   getPokemonByName() {
@@ -70,8 +78,41 @@ export class ShowPokemonComponent implements OnInit {
       this.pokemonNameRomaji = this.pokemonSpecie.names.filter(f => f.language.name === 'roomaji')[0];
       this.pokemonNameHirgana = this.pokemonSpecie.names.filter(f => f.language.name === 'ja-Hrkt')[0];
       console.log(this.pokemonSpecie);
+      this.getEvolutionChain(this.pokemonSpecie.evolution_chain.url);
       this.filterFlavorTextEntries();
     });
+  }
+
+  getEvolutionChain(url: string) {
+    this.pokeApiService.getEvolutionChainByUrl(url).subscribe((evolution) => {
+      this.populateEvolutionChainDetails(evolution);
+    });
+  }
+
+  populateEvolutionChainDetails(evolution: EvolutionChain) {
+    this.pokeApiService.getPokemonByName(evolution.chain.species.name).subscribe((species) => {
+      evolution.chain.detailPokemon = species;
+    });
+    if (evolution.chain.evolves_to && evolution.chain.evolves_to.length > 0) {
+      evolution.chain.evolves_to.forEach((evolvesTo) => {
+        // Obtener detalles de la especie de Pokémon para esta etapa de la cadena de evolución
+        this.pokeApiService.getPokemonByName(evolvesTo.species.name).subscribe((species) => {
+          evolvesTo.detailPokemon = species;
+          // Si hay evoluciones, llamar a la función recursivamente para cada una
+        });
+        if(evolvesTo.evolves_to && evolvesTo.evolves_to.length > 0) {
+          evolvesTo.evolves_to.forEach((evolvesTo2) => {
+            this.pokeApiService.getPokemonByName(evolvesTo2.species.name).subscribe((species) => {
+              evolvesTo2.detailPokemon = species;
+              // Si hay evoluciones, llamar a la función recursivamente para cada una
+            });
+          }
+        )};
+      });
+    }
+    let evolutionChain: EvolutionChain = evolution;
+    this.evolutionChain = evolutionChain;
+    console.log(evolutionChain);
   }
 
   getPokemonAbility() {
@@ -164,15 +205,15 @@ export class ShowPokemonComponent implements OnInit {
   }
 
   getPokemonMoves(): void {
-    const observables = this.moves.map(move => this.pokeApiService.getMoveByUrl(move.move.url, move.move.name, move.version_group_details[0].version_group.name));
+    const observables = this.moves.map(move =>
+      this.pokeApiService.getMoveByUrl(move.move.url, move.move.name, move.version_group_details[0].version_group.name)
+    );
 
     forkJoin(observables).subscribe(details => {
-      const movesArray = this.moves.map((move, index) => {
-        return {
-          ...move,
-          detailMove: details[index]
-        };
-      });
+      const movesArray = this.moves.map((move, index) => ({
+        ...move,
+        detailMove: details[index]
+      }));
 
       this.moves = movesArray;
 
@@ -251,67 +292,108 @@ export class ShowPokemonComponent implements OnInit {
   }
 
   filterMovesByMachine(): void {
-    const filteredMoves: FilteredByMachine[] = this.movesWithTypes
+    const machineMoves = this.movesWithTypes
       .map(moveWithTypes => {
-        const machineDetails: any[] = moveWithTypes.move.version_group_details.filter((machine) =>
-          machine.move_learn_method.name === 'machine'
-        );
+        const machineDetails: ExtendedMachineDetail[] = moveWithTypes.move.detailMove.machines.filter((machine) =>
+          machine.version_group.name === this.machineSelectedVersionGroup
+        ).map((machine): ExtendedMachineDetail => ({
+          ...machine,
+          move_learn_method: { name: 'machine', url: '' },
+          version_group: { name: this.machineSelectedVersionGroup, url: '' },
+          machine: { url: machine.machine.url },
+          level_learned_at: 0
+        }));
 
+        // Si hay máquinas para el juego seleccionado, proceder
         if (machineDetails.length > 0) {
-          const matchingMachineDetail = machineDetails.find(detail =>
-            detail.version_group.name === this.machineSelectedVersionGroup
-          );
+          // Seleccionar solo la primera máquina que coincida
+          const matchingMachineDetail = machineDetails[0];
 
-          if (matchingMachineDetail) {
-              let moveDetails = undefined;
-              this.pokeApiService.getMachineMoveByUrl(moveWithTypes.move.move.url).subscribe(details => {
-                moveDetails = details;
-              });
-            return {
-              ...moveWithTypes,
-              machineDetail: matchingMachineDetail
-            };
-          }
+          // Retornar el movimiento con el detalle de la máquina correspondiente
+          return {
+            ...moveWithTypes,
+            machineDetail: matchingMachineDetail
+          };
         }
 
         return null;
       })
       .filter(moveWithDetails => moveWithDetails !== null) as FilteredByMachine[];
 
-    this.filteredMovesByMachine = filteredMoves;
+    // Realizar las llamadas a la API para obtener los detalles de las máquinas
+    const machineDetailObservables = machineMoves.map(move =>
+      this.pokeApiService.getMachineMoveByUrl(move.machineDetail.machine.url).pipe(
+        catchError(error => {
+          return of(null); // Devuelve null en caso de error
+        })
+      )
+    );
+
+    // Realizar todas las llamadas de manera concurrente
+    forkJoin(machineDetailObservables)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(machineDetails => {
+        // Asignar los detalles de las máquinas a cada movimiento
+        this.filteredMovesByMachine = machineMoves.map((move, index) => {
+          if (machineDetails[index]) {
+            move.machineDetail.moveDetails = machineDetails[index];
+          }
+          return move;
+        });
+      });
   }
 
   filterMovesByTutor(): void {
-    const filteredMoves = this.movesWithTypes
-      .map(moveWithTypes => ({
-        ...moveWithTypes,
-        move: {
-          ...moveWithTypes.move,
-          version_group_details: moveWithTypes.move.version_group_details.filter(detail =>
-            detail.move_learn_method.name === 'tutor' &&
-            detail.version_group.name === this.tutorSelectedVersionGroup
-          )
+    const tutorMoves = this.movesWithTypes
+      .map(moveWithTypes => {
+        const tutorDetails = moveWithTypes.move.version_group_details.filter(detail =>
+          detail.move_learn_method.name === 'tutor' &&
+          detail.version_group.name === this.tutorSelectedVersionGroup
+        );
+
+        if (tutorDetails) {
+          return {
+            ...moveWithTypes,
+            move: {
+              ...moveWithTypes.move,
+              version_group_details: tutorDetails
+            }
+          };
         }
-      }))
-      .filter(moveWithTypes => moveWithTypes.move.version_group_details.length > 0);
 
-    this.filteredMovesByTutor = filteredMoves;
+        return null;
+      })
+      .filter(moveWithDetails => moveWithDetails !== null);
 
+    // Assuming you don't need additional API calls for tutor details as with machines
+    this.filteredMovesByTutor = tutorMoves as FilteredByTutor[];
   }
+
   filterMovesByEgg(): void {
     const filteredMoves = this.movesWithTypes
-      .map(moveWithTypes => ({
-        ...moveWithTypes,
-        move: {
-          ...moveWithTypes.move,
-          version_group_details: moveWithTypes.move.version_group_details.filter(detail =>
-            detail.move_learn_method.name === 'egg' &&
-            detail.version_group.name === this.eggSelectedVersionGroup
-          )
-        }
-      }))
-      .filter(moveWithTypes => moveWithTypes.move.version_group_details.length > 0);
+      .map(moveWithTypes => {
+        const eggDetails = moveWithTypes.move.version_group_details.filter(detail =>
+          detail.move_learn_method.name === 'egg' &&
+          detail.version_group.name === this.eggSelectedVersionGroup
+        );
 
-    this.filteredMovesByEgg = filteredMoves;
+        if (eggDetails.length > 0) {
+          // Crear una copia del objeto moveWithTypes y asignar los eggDetails
+          return {
+            ...moveWithTypes,
+            move: {
+              ...moveWithTypes.move,
+              version_group_details: eggDetails
+            }
+          };
+        }
+
+        return null;
+      })
+      .filter(moveWithDetails => moveWithDetails !== null);
+
+    this.filteredMovesByEgg = filteredMoves as FilteredByEgg[];
+
   }
+
 }
