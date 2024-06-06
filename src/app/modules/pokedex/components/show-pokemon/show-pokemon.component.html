@@ -1,80 +1,13 @@
-<div class="m-4" *ngIf="pokemon && pokemontypes && pokemonSpecie">
-    <div [ngClass]="getPokemonColor(pokemonSpecie.color.name)" class="p-4 rounded-md col-span-1 border border-black">
-      <h1 class="font-bold text-4xl text-center">{{pokemon.name |titlecase}}</h1>
-      <h1 class="font-bold text-lg text-center">
-        <span class="cursor-pointer" *ngIf="pokemonNameHirgana">{{pokemonNameHirgana.name |titlecase}}</span>
-        <span *ngIf="pokemonNameRomaji">({{pokemonNameRomaji.name |titlecase}})</span>
-        </h1>
-      <div class="grid grid-cols-3 gap-1">
-        <div class="col-span-3 flex justify-center">
-          <img class="w-80" *ngIf="pokemon.sprites.other.home.front_default" [src]="pokemon.sprites.other.home.front_default">
-        </div>
-        <div *ngIf="!pokemon.sprites.other.home.front_default" class="col-span-3 text-center text-red-500 font-bold">No Hay Imagen</div>
-        <div *ngIf="!pokemon.sprites.other['official-artwork'].front_default" class="col-span-3 text-center text-red-500 font-bold">No Hay Imagen</div>
-      </div>
-
-      <div class="grid grid-cols-3 sm:grid-cols-5 gap-0 mt-2">
-        <div class="col-span-3 sm:col-span-5 flex justify-center">
-          <div [ngClass]="'gap-1 grid grid-cols-' + pokemon.types.length">
-            <div *ngFor="let languageTypes of pokemontypes">
-              <div *ngFor="let type of languageTypes">
-                <div *ngIf="type.language === language" [ngClass]="getColorClassByLanguageAndType(type.typeName, type.language)" class="border border-black rounded-md px-2 text-white text-center">
-                  {{ type.typeName | titlecase }}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-6 gap-1 mt-2">
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:col-span-2 sm:col-start-3">
-        <div *ngFor="let abilityGroup of filteredAbilityNames">
-          <div>
-            <span class="font-bold">
-              {{ language === 'es' ? 'Habilidad': 'Ability' }} <span *ngIf="!abilityGroup.ability.is_hidden">{{ abilityGroup.ability.slot }}</span>
-              <span *ngIf="abilityGroup.ability.is_hidden">{{ language === 'es' ? 'Oculta': 'Hidden' }}</span>:
-            </span>
-            <span>{{ abilityGroup.name }}</span>
-          </div>
-        </div>
-        <div *ngFor="let eggGroup of pokemonSpecie.egg_groups">
-          <span class="font-bold">{{ language === 'es' ? 'Grupo Huevo': 'Egg Group' }}: </span>{{ getEggGroupName(eggGroup.name) }}
-        </div>
-        <h1><span class="font-bold">{{ language === 'es' ? 'Sexo': 'Sex' }}: </span>
-          <span class="text-blue-400 cursor-pointer">{{ calculateGenderRateMale(pokemonSpecie.gender_rate) }}%</span> -
-          <span class="text-pink-400 cursor-pointer">{{ calculateGenderRateFemale(pokemonSpecie.gender_rate) }}%</span>
-        </h1>
-        <h1><span class="font-bold">{{ language === 'es' ? 'Peso': 'Weigth' }}: </span>{{ pokemon.weight *0.1 }}kg</h1>
-        <h1><span class="font-bold">{{ language === 'es' ? 'Altura': 'Heigth' }}: </span>{{ pokemon.height*0.1 }}m</h1>
-        <h1 class="font-bold" *ngIf="pokemonSpecie.is_legendary">Pokémon Legendario</h1>
-        <h1 class="font-bold" *ngIf="pokemonSpecie.is_legendary">Pokémon Legendario</h1>
-        <h1 class="font-bold" *ngIf="pokemonSpecie.is_mythical">Pokémon Mitico</h1>
-        <h1 class="font-bold" *ngIf="pokemonSpecie.is_baby">Pokémon Bebé</h1>
-        <h1 *ngIf="pokemon.cries.latest" class="font-bold">{{ language === 'es' ? 'Grito Actual': 'Current Cry' }}:
-          <button (click)="playAudio('audioPlayer')">|></button>
-          <audio id="audioPlayer" controls>
-            <source [src]="pokemon.cries.latest" type="audio/mpeg">
-            Tu navegador no soporta el elemento de audio.
-          </audio>
-        </h1>
-        <h1 *ngIf="pokemon.cries.legacy" class="font-bold">{{ language === 'es' ? 'Grito Antiguo': 'Previus Scream' }}:
-          <button (click)="playAudio('audioPlayer2')">|></button>
-          <audio id="audioPlayer2" controls>
-            <source [src]="pokemon.cries.legacy" type="audio/mpeg">
-            Tu navegador no soporta el elemento de audio.
-          </audio>
-        </h1>
-        <h1><span class="font-bold">{{ language === 'es' ? 'Generación': 'Generation' }}: </span>{{getGenerationName(pokemonSpecie.generation.name)}}</h1>
-        <div *ngFor="let genera of pokemonSpecie.genera">
-          <span *ngIf="genera.language.name === language"><span class="font-bold">{{ language === 'es' ? 'Categoria': 'Category' }}: </span>{{ genera.genus }} </span>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="m-4" *ngIf="pokemon && pokemonSpecie && evolutionChain">
+  <app-pokemon-info
+    [language]="language"
+    [pokemon]="pokemon"
+    [pokemonSpecie]="pokemonSpecie"
+    >
+  </app-pokemon-info>
 
   <!-- Sección de descripcion pokedex -->
-  <div class="bg-gray-100 p-4 rounded-md mt-2">
+  <div class="bg-gray-100 p-4 rounded-md mt-2 border border-black">
     <h1 class="font-bold text-xl">{{ language === 'es' ? 'Descripción Pokédex': 'Pokédex Entries' }}</h1>
     <div class="border-black border p-3 rounded-md">
       <div class="grid grid-cols-6 gap-4 border-b border-black pb-1">
@@ -95,7 +28,7 @@
   </div>
 
   <!-- Sección de numeros de pokedex -->
-  <div class="bg-gray-100 p-4 rounded-md mt-2">
+  <div class="bg-gray-100 p-4 rounded-md mt-2 border border-black">
     <h1 class="font-bold text-xl">{{ language === 'es' ? 'Numeros de Pokédex': 'Pokédex Numbers' }}</h1>
     <div class="grid grid-cols-4">
       <div class="col-span-1" *ngFor="let dex of pokemonSpecie.pokedex_numbers">
@@ -104,34 +37,46 @@
     </div>
   </div>
 
-  <div class="bg-gray-100 p-4 rounded-md mt-2">
-    <h1 class="font-bold text-xl">{{ language === 'es' ? 'Cadena Evolutiva': 'Evolution Chain' }}</h1>
+  <div class="bg-gray-100 p-4 rounded-md mt-2 border border-black">
+    <h1 class="font-bold text-xl">{{ language === 'es' ? 'Cadena Evolutiva' : 'Evolution Chain' }}</h1>
     <div class="flex justify-center space-x-8" *ngIf="evolutionChain">
       <div class="flex flex-col items-center">
-        <p>{{ evolutionChain.chain.species.name |titlecase}}</p>
-        <img class="w-32" *ngIf="evolutionChain.chain.detailPokemon.sprites.other.home.front_default" [src]="evolutionChain.chain.detailPokemon.sprites.other.home.front_default">
+        <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(evolutionChain.chain.species.name)">
+          {{ evolutionChain.chain.species.name | titlecase }}
+        </p>
+        <img class="w-48 cursor-pointer hover:opacity-80" *ngIf="evolutionChain.chain?.detailPokemon?.sprites?.other?.home?.front_default"
+             (click)="goToPokemonPage(evolutionChain.chain.species.name)"
+             [src]="evolutionChain.chain?.detailPokemon?.sprites?.other?.home?.front_default">
       </div>
       <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
         <div class="flex flex-col items-center">
-          <p>{{ stage.species.name |titlecase}}</p>
-          <img class="w-32" *ngIf="stage.detailPokemon.sprites.other.home.front_default" [src]="stage.detailPokemon.sprites.other.home.front_default">
-          <p *ngIf="stage.evolution_details[0].trigger">{{ stage.evolution_details[0].trigger.name }}</p>
-          <p *ngIf="stage.evolution_details[0].time_of_day">{{ stage.evolution_details[0].time_of_day }}</p>
-          <p *ngIf="stage.evolution_details[0].min_happiness">{{ stage.evolution_details[0].min_happiness }}</p>
-          <p *ngIf="stage.evolution_details[0].known_move_type">{{ stage.evolution_details[0].known_move_type.name }} move</p>
-          <p *ngIf="stage.evolution_details[0].min_level">{{ stage.evolution_details[0].min_level }}</p>
-          <p *ngIf="stage.evolution_details[0].item">{{ stage.evolution_details[0].item.name }}</p>
+          <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage.species.name)">
+            {{ stage.species.name | titlecase }}
+          </p>
+          <img class="w-48 cursor-pointer hover:opacity-80" *ngIf="stage?.detailPokemon?.sprites?.other?.home?.front_default"
+               (click)="goToPokemonPage(stage.species.name)"
+               [src]="stage?.detailPokemon?.sprites?.other?.home?.front_default">
+          <p *ngIf="stage.evolution_details[0]?.trigger">{{ stage.evolution_details[0]?.trigger.name }}</p>
+          <p *ngIf="stage.evolution_details[0]?.time_of_day">{{ stage.evolution_details[0]?.time_of_day }}</p>
+          <p *ngIf="stage.evolution_details[0]?.min_happiness">{{ stage.evolution_details[0]?.min_happiness }}</p>
+          <p *ngIf="stage.evolution_details[0]?.known_move_type">{{ stage.evolution_details[0]?.known_move_type.name }} move</p>
+          <p *ngIf="stage.evolution_details[0]?.min_level">{{ stage.evolution_details[0]?.min_level }}</p>
+          <p *ngIf="stage.evolution_details[0]?.item">{{ stage.evolution_details[0]?.item.name }}</p>
         </div>
         <ng-container *ngFor="let stage2 of stage.evolves_to">
           <div class="flex flex-col items-center">
-            <p>{{ stage2.species.name |titlecase}}</p>
-            <img class="w-32" *ngIf="stage2.detailPokemon.sprites.other.home.front_default" [src]="stage2.detailPokemon.sprites.other.home.front_default">
-            <p *ngIf="stage2.evolution_details[0].trigger">{{ stage2.evolution_details[0].trigger.name }}</p>
-            <p *ngIf="stage2.evolution_details[0].time_of_day">{{ stage2.evolution_details[0].time_of_day }}</p>
-            <p *ngIf="stage2.evolution_details[0].min_happiness">{{ stage2.evolution_details[0].min_happiness }}</p>
-            <p *ngIf="stage2.evolution_details[0].known_move_type">{{ stage2.evolution_details[0].known_move_type.name }} move</p>
-            <p *ngIf="stage2.evolution_details[0].min_level">{{ stage2.evolution_details[0].min_level }}</p>
-            <p *ngIf="stage2.evolution_details[0].item">{{ stage2.evolution_details[0].item.name }}</p>
+            <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage2.species.name)">
+              {{ stage2.species.name | titlecase }}
+            </p>
+            <img class="max-w-48 cursor-pointer hover:opacity-80" *ngIf="stage2?.detailPokemon?.sprites?.other?.home?.front_default"
+                 (click)="goToPokemonPage(stage2.species.name)"
+                 [src]="stage2?.detailPokemon?.sprites?.other?.home?.front_default">
+            <p *ngIf="stage2.evolution_details[0]?.trigger">{{ stage2.evolution_details[0]?.trigger.name }}</p>
+            <p *ngIf="stage2.evolution_details[0]?.time_of_day">{{ stage2.evolution_details[0]?.time_of_day }}</p>
+            <p *ngIf="stage2.evolution_details[0]?.min_happiness">{{ stage2.evolution_details[0]?.min_happiness }}</p>
+            <p *ngIf="stage2.evolution_details[0]?.known_move_type">{{ stage2.evolution_details[0]?.known_move_type.name }} move</p>
+            <p *ngIf="stage2.evolution_details[0]?.min_level">{{ stage2.evolution_details[0]?.min_level }}</p>
+            <p *ngIf="stage2.evolution_details[0]?.item">{{ stage2.evolution_details[0]?.item.name }}</p>
           </div>
         </ng-container>
       </ng-container>
@@ -139,7 +84,7 @@
   </div>
 
   <!-- Sección de movimientos por nivel -->
-  <div class="bg-gray-100 p-4 rounded-md mt-2">
+  <div class="bg-gray-100 p-4 rounded-md mt-2 border border-black">
     <h1 class="font-bold text-xl">{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
     <h1 class="font-bold">{{ language === 'es' ? 'Subiendo de nivel': 'By Level Up' }}</h1>
 
@@ -183,7 +128,7 @@
   </div>
 
   <!-- Sección de movimientos por máquina -->
-  <div class="bg-gray-100 p-4 rounded-md mt-2">
+  <div class="bg-gray-100 p-4 rounded-md mt-2 border border-black">
     <h1 class="font-bold">{{ language === 'es' ? 'Mediante Máquina Tecnica' : 'By Technical Machine' }}</h1>
     <label for="versionGroup">{{ language === 'es' ? 'Seleccionar Juego': 'Select Game' }}</label> &nbsp;
     <select id="versionGroup" [(ngModel)]="machineSelectedVersionGroup" (change)="machineChangeGame($event)">
@@ -217,7 +162,7 @@
   </div>
 
   <!-- Sección de movimientos por tutor -->
-  <div class="bg-gray-100 p-4 rounded-md mt-2">
+  <div class="bg-gray-100 p-4 rounded-md mt-2 border border-black">
     <h1 class="font-bold">{{ language === 'es' ? 'Mediante tutor' : 'By Tutor' }}</h1>
     <label for="versionGroup">{{ language === 'es' ? 'Seleccionar Juego': 'Select Game' }}</label> &nbsp;
     <select id="versionGroup" [(ngModel)]="tutorSelectedVersionGroup" (change)="tutorChangeGame($event)">
@@ -252,7 +197,7 @@
   </div>
 
   <!-- Sección de movimientos por huevo -->
-  <div class="bg-gray-100 p-4 rounded-md mt-2">
+  <div class="bg-gray-100 p-4 rounded-md mt-2 border border-black">
     <h1 class="font-bold">{{ language === 'es' ? 'Mediante Huevo' : 'By Egg' }}</h1>
     <label for="versionGroup">{{ language === 'es' ? 'Seleccionar Juego': 'Select Game' }}</label> &nbsp;
     <select id="versionGroup" [(ngModel)]="eggSelectedVersionGroup" (change)="eggChangeGame($event)">

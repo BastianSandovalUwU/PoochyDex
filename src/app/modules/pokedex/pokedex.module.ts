@@ -6,17 +6,23 @@ import { pokedexRoute } from './pokedex.routing';
 import { ShowPokemonComponent } from './components/show-pokemon/show-pokemon.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { PokemonInfoComponent } from './components/show-pokemon/pokemon-info/pokemon-info.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(pokedexRoute),
-    SharedModule
+    SharedModule,
+    MatButtonModule,
+    MatIconModule
   ],
   declarations: [
     ListPokemonComponent,
-    ShowPokemonComponent
+    ShowPokemonComponent,
+    PokemonInfoComponent
   ],
 })
 export class PokedexModule { }

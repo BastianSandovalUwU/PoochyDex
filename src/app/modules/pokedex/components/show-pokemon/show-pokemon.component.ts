@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Pokemon, Ability } from '../../../../../../entities/pokemon.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
@@ -16,6 +16,8 @@ import { Chain, DetailChain, EvolutionChain } from '../../../../../../entities/e
   styleUrls: ['./show-pokemon.component.scss']
 })
 export class ShowPokemonComponent implements OnInit {
+  @ViewChild('audioPlayer', { static: false }) audioPlayer: ElementRef<HTMLAudioElement>;
+
   private unsubscribe$ = new Subject<void>();
 
   language: string = 'es';
@@ -24,8 +26,6 @@ export class ShowPokemonComponent implements OnInit {
   pokemonNameHirgana: Name;
   pokemon: Pokemon;
   moves: ShowMove[];
-  abilityNames: { ability: Ability, names: AbilityName[] }[];
-  filteredAbilityNames: { ability: Ability, name: string }[] = [];
   pokemontypes: { language: string, typeName: string }[][];
   flavorTextEntries: { flavor_text: string, version: string }[] = [];
   pokemonSpecie: PokemonSpecie;
@@ -43,6 +43,7 @@ export class ShowPokemonComponent implements OnInit {
 
   constructor(private pokeApiService: PokeApiService,
               private helperService: HelperService,
+              private router: Router,
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -63,21 +64,14 @@ export class ShowPokemonComponent implements OnInit {
       this.pokemon = pokeInfo;
       console.log(this.pokemon);
       this.moves = this.pokemon.moves;
-      this.getPokemonMoves();
       this.getPokemonSpecie();
-      this.getPokemonAbility();
-      this.helperService.getPokemonTypes(this.pokemon.types).subscribe((types) => {
-        this.pokemontypes = types;
-      });
+      this.getPokemonMoves();
     });
   }
 
   getPokemonSpecie() {
     this.pokeApiService.getPokemonSpecieById(this.pokemon.species.name).subscribe((specie) => {
       this.pokemonSpecie = specie;
-      this.pokemonNameRomaji = this.pokemonSpecie.names.filter(f => f.language.name === 'roomaji')[0];
-      this.pokemonNameHirgana = this.pokemonSpecie.names.filter(f => f.language.name === 'ja-Hrkt')[0];
-      console.log(this.pokemonSpecie);
       this.getEvolutionChain(this.pokemonSpecie.evolution_chain.url);
       this.filterFlavorTextEntries();
     });
@@ -112,24 +106,6 @@ export class ShowPokemonComponent implements OnInit {
     }
     let evolutionChain: EvolutionChain = evolution;
     this.evolutionChain = evolutionChain;
-    console.log(evolutionChain);
-  }
-
-  getPokemonAbility() {
-    this.helperService.getAbilityNames(this.pokemon.abilities).subscribe((abilities) => {
-      this.abilityNames = abilities;
-      this.filterAbilityNamesByLanguage();
-    });
-  }
-
-  filterAbilityNamesByLanguage(): void {
-    this.filteredAbilityNames = this.abilityNames.map(abilityGroup => {
-      const nameEntry = abilityGroup.names.find(n => n.language === this.language);
-      return {
-        ability: abilityGroup.ability,
-        name: nameEntry ? nameEntry.abilityName : abilityGroup.ability.ability.name
-      };
-    });
   }
 
   filterFlavorTextEntries(): void {
@@ -149,9 +125,6 @@ export class ShowPokemonComponent implements OnInit {
       return this.helperService.getGameVersionColor(gameVersion);
   }
 
-  getPokemonColor(color: string): string {
-      return this.helperService.getPokemonColor(color);
-  }
 
   getGenerationName(generationName: string): string {
       return this.helperService.getGenerationName(generationName, this.language);
@@ -394,6 +367,10 @@ export class ShowPokemonComponent implements OnInit {
 
     this.filteredMovesByEgg = filteredMoves as FilteredByEgg[];
 
+  }
+
+  goToPokemonPage(pokemonName: string) {
+    this.router.navigate(['/pokedex/show-pokemon/', pokemonName]); // Reemplaza con la ruta deseada
   }
 
 }
