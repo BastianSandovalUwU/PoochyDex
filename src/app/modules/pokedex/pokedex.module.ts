@@ -9,6 +9,10 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { PokemonInfoComponent } from './components/show-pokemon/pokemon-info/pokemon-info.component';
+import { PokedexEntriesComponent } from './components/show-pokemon/pokedex-entries/pokedex-entries.component';
+import { ChainEvolutionComponent } from './components/show-pokemon/chain-evolution/chain-evolution.component';
+import { PokedexNumbersComponent } from './components/show-pokemon/pokedex-numbers/pokedex-numbers.component';
+import { PokemonMovesComponent } from './components/show-pokemon/pokemon-moves/pokemon-moves.component';
 
 @NgModule({
   imports: [
@@ -22,7 +26,11 @@ import { PokemonInfoComponent } from './components/show-pokemon/pokemon-info/pok
   declarations: [
     ListPokemonComponent,
     ShowPokemonComponent,
-    PokemonInfoComponent
+    PokemonInfoComponent,
+    PokedexEntriesComponent,
+    ChainEvolutionComponent,
+    PokedexNumbersComponent,
+    PokemonMovesComponent
   ],
 })
 export class PokedexModule { }
