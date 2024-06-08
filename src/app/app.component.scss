@@ -1,7 +1,65 @@
-.flex {
-  display: flex;
+/* Ocultar y mostrar el menú lateral */
+@media (max-width: 640px) { /* Tailwind's sm breakpoint */
+  .menu-hidden {
+    display: none;
+  }
+
+  .menu-visible {
+    display: flex;
+  }
 }
 
-.flex-1 {
-  flex: 1;
+/* Transiciones */
+.transition-transform {
+  transition: transform 0.3s ease-in-out;
+}
+
+.fixed {
+  position: fixed;
+}
+.top-4 {
+  top: 1rem;
+}
+.left-4 {
+  left: 1rem;
+}
+.p-2 {
+  padding: 0.5rem;
+}
+.bg-blue-600 {
+  background-color: #2563eb;
+}
+.text-white {
+  color: #ffffff;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+.z-50 {
+  z-index: 50;
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+}
+
+/* Estilo en app-menu.component.css */
+.hidden {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+.absolute {
+  position: absolute;
+}
+
+/* Estilo para ajustar el botón de cerrar en pantallas grandes */
+.sm\\:relative {
+  position: relative;
 }

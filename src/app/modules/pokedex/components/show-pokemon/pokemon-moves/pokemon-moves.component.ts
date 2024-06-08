@@ -286,4 +286,22 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
+  getLevelLearnedAt(pokeMove): number {
+    const detail = pokeMove.move.version_group_details.find(
+      detail => detail.version_group.name === this.levelUpSelectedVersionGroup
+    );
+    return detail ? detail.level_learned_at : 0;
+  }
+
+  getVersionGroupName(pokeMove): string {
+    const detail = pokeMove.move.version_group_details.find(
+      detail => detail.version_group.name === this.levelUpSelectedVersionGroup
+    );
+    return detail ? detail.version_group.name : '';
+  }
+
+  getTypeName(pokeMove): string {
+    return pokeMove.types[0]?.typeName || '';
+  }
+
 }

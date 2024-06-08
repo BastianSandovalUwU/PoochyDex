@@ -41,7 +41,7 @@ export type Cries = {
 }
 
 export type Stat = {
-  baseStat: number;
+  base_stat: number;
   effort:   number;
   stat:     Species;
 }

@@ -6,11 +6,11 @@
       <span class="font-semibold col-span-5">{{ language === 'es' ? 'Descipción': 'Description' }}</span>
     </div>
     <div class="grid grid-cols-4">
-      <div *ngFor="let entry of flavorTextEntries" class="col-span-4 grid grid-cols-6 gap-4 border-b border-black py-2">
-        <div [ngClass]="getGameVersionColor(entry.version)" class="text-center col-span-1 rounded-md text-white border border-black">
+      <div *ngFor="let entry of flavorTextEntries" class="col-span-4 grid grid-cols-5 sm:grid-cols-6 gap-4 border-b border-black py-2">
+        <div [ngClass]="getGameVersionColor(entry.version)" class="text-center col-span-2 sm:col-span-1 rounded-md text-white border border-black h-6 mt-14 sm:mt-0">
           <span>{{ getGameName(entry.version) }}</span>
         </div>
-        <div class="col-span-5">
+        <div class="col-span-3 sm:col-span-5">
           <p>{{ entry.flavor_text }}</p>
         </div>
       </div>

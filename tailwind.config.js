@@ -130,5 +130,11 @@ module.exports = {
         },
     }
 },
+variants: {
+  extend: {
+    display: ['responsive'],
+    transform: ['responsive'],
+  },
+},
 }
 

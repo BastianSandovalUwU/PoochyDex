@@ -13,6 +13,8 @@ import { PokedexEntriesComponent } from './components/show-pokemon/pokedex-entri
 import { ChainEvolutionComponent } from './components/show-pokemon/chain-evolution/chain-evolution.component';
 import { PokedexNumbersComponent } from './components/show-pokemon/pokedex-numbers/pokedex-numbers.component';
 import { PokemonMovesComponent } from './components/show-pokemon/pokemon-moves/pokemon-moves.component';
+import { PokemonCryComponent } from './components/show-pokemon/pokemon-cry/pokemon-cry.component';
+import { PokemonStatsComponent } from './components/show-pokemon/pokemon-stats/pokemon-stats.component';
 
 @NgModule({
   imports: [
@@ -30,7 +32,9 @@ import { PokemonMovesComponent } from './components/show-pokemon/pokemon-moves/p
     PokedexEntriesComponent,
     ChainEvolutionComponent,
     PokedexNumbersComponent,
-    PokemonMovesComponent
+    PokemonMovesComponent,
+    PokemonCryComponent,
+    PokemonStatsComponent
   ],
 })
 export class PokedexModule { }
