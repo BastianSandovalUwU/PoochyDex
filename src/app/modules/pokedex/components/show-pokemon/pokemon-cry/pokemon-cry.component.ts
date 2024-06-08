@@ -1,10 +1,10 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { Pokemon } from '../../../../../entities/pokemon.entity';
+import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 
 @Component({
-  selector: 'app-pokemonCry',
-  templateUrl: './pokemonCry.component.html',
-  styleUrls: ['./pokemonCry.component.scss']
+  selector: 'app-pokemon-cry',
+  templateUrl: './pokemon-cry.component.html',
+  styleUrls: ['./pokemon-cry.component.scss']
 })
 export class PokemonCryComponent implements OnInit, OnChanges {
   @Input() pokemon: Pokemon;

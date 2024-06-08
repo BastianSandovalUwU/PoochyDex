@@ -34,6 +34,8 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
     this.pokemonNameHirgana = this.pokemonSpecie.names.filter(f => f.language.name === 'ja-Hrkt')[0];
   }
   ngOnChanges(changes: SimpleChanges): void {
+    this.pokemonNameRomaji = this.pokemonSpecie.names.filter(f => f.language.name === 'roomaji')[0];
+    this.pokemonNameHirgana = this.pokemonSpecie.names.filter(f => f.language.name === 'ja-Hrkt')[0];
   }
 
   getPokemonColor() {

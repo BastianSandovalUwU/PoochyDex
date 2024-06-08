@@ -30,7 +30,6 @@ export class ShowPokemonComponent implements OnInit {
   getPokemonByName() {
     this.pokeApiService.getPokemonByName(this.pokemonName).subscribe((pokeInfo) => {
       this.pokemon = pokeInfo;
-      console.log(this.pokemon);
       this.getPokemonSpecie();
     });
   }
