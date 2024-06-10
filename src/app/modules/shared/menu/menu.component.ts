@@ -18,7 +18,6 @@ export class MenuComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-      console.log(changes);
       this.isOpen = changes['isOpen'].currentValue;
   }
 

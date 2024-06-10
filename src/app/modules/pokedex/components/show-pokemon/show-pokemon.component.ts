@@ -23,19 +23,21 @@ export class ShowPokemonComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(({ name }) => {
       this.pokemonName = name;
-      this.getPokemonByName();
+      this.getPokemonByName(name);
     });
   }
 
-  getPokemonByName() {
-    this.pokeApiService.getPokemonByName(this.pokemonName).subscribe((pokeInfo) => {
+  getPokemonByName(name: string) {
+    this.pokeApiService.getPokemonByName(name).subscribe((pokeInfo) => {
+      console.log(pokeInfo);
       this.pokemon = pokeInfo;
-      this.getPokemonSpecie();
+      this.getPokemonSpecie(pokeInfo.species.name);
     });
   }
 
-  getPokemonSpecie() {
-    this.pokeApiService.getPokemonSpecieById(this.pokemon.species.name).subscribe((specie) => {
+  getPokemonSpecie(name: string) {
+    this.pokeApiService.getPokemonSpecieById(name).subscribe((specie) => {
+      console.log(specie);
       this.pokemonSpecie = specie;
     });
   }
