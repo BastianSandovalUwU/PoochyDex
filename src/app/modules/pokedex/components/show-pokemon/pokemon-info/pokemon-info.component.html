@@ -7,8 +7,11 @@
   <div class="grid grid-cols-3 gap-1">
     <div class="col-span-3 flex justify-center">
       <img [src]="pokemon.sprites.other.home.front_shiny" style="display: none;">
+      <img [src]="pokemon.sprites.other['official-artwork'].front_shiny" style="display: none;">
       <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = true" *ngIf="pokemon.sprites.other.home.front_default && !showShiny" [src]="pokemon.sprites.other.home.front_default">
       <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = false" *ngIf="pokemon.sprites.other.home.front_shiny && showShiny" [src]="pokemon.sprites.other.home.front_shiny">
+      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = true" *ngIf="!pokemon.sprites.other.home.front_default && !showShiny" [src]="pokemon.sprites.other['official-artwork'].front_default">
+      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = false" *ngIf="!pokemon.sprites.other.home.front_default && showShiny" [src]="pokemon.sprites.other['official-artwork'].front_shiny">
     </div>
     <div *ngIf="!pokemon.sprites.other.home.front_default" class="col-span-3 text-center text-red-500 font-bold">No Hay Imagen</div>
     <div *ngIf="!pokemon.sprites.other['official-artwork'].front_default" class="col-span-3 text-center text-red-500 font-bold">No Hay Imagen</div>
@@ -34,10 +37,11 @@
         <div *ngFor="let abilityGroup of filteredAbilityNames">
           <div>
             <span class="font-bold">
-              {{ language === 'es' ? 'Habilidad': 'Ability' }} <span *ngIf="!abilityGroup.ability.is_hidden">{{ abilityGroup.ability.slot }}</span>
+              {{ language === 'es' ? 'Habilidad': 'Ability' }}
+              <span routerLinkActive *ngIf="!abilityGroup.ability.is_hidden">{{ abilityGroup.ability.slot }}</span>
               <span *ngIf="abilityGroup.ability.is_hidden">{{ language === 'es' ? 'Oculta': 'Hidden' }}</span>:
             </span>
-            <span>{{ abilityGroup.name }}</span>
+            <span class="hover:font-bold cursor-pointer" [routerLink]="['/pokedex/show-ability', abilityGroup.ability.ability.name]" >{{ abilityGroup.name }}</span>
           </div>
         </div>
         <div *ngFor="let eggGroup of pokemonSpecie.egg_groups">

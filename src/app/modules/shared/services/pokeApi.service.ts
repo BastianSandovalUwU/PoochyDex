@@ -33,11 +33,18 @@ export class PokeApiService {
   }
 
   getPokemonByName(name: string): Observable<Pokemon> {
+    if (this.pokemonListcache.has(name)) {
+      return of(this.pokemonListcache.get(name));
+    }
     const url = `${this.apiUrl}/pokemon/${name}/`;
     return this.http.get<Pokemon>(url).pipe(
       catchError(error => {
         console.error('Error al obtener el pokémon:', name, error);
         return throwError(error);
+      }),
+      map(response => {
+        this.pokemonListcache.set(name, response);
+        return response;
       })
     );
   }
@@ -153,6 +160,15 @@ export class PokeApiService {
     return this.http.get<EvolutionChain>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la cadena evolutiva:', error);
+        return throwError(error);
+      })
+    );
+  }
+
+  getAbilityByUrl(url: string): Observable<PokemonAbility> {
+    return this.http.get<PokemonAbility>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener la habilidad:', error);
         return throwError(error);
       })
     );
