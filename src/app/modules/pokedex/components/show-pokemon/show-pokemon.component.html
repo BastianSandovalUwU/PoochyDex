@@ -18,6 +18,9 @@
   <!-- Sección de cadena evolutiva -->
   <app-chain-evolution [language]="language" [pokemonSpecie]="pokemonSpecie"></app-chain-evolution>
 
+  <!-- Sección de formas -->
+  <app-pokemon-varieties [language]="language" [pokemonSpecie]="pokemonSpecie" *ngIf="pokemonSpecie.varieties.length > 1"></app-pokemon-varieties>
+
   <!-- Sección de movimientos por nivel -->
   <app-pokemon-moves [language]="language" [pokemonSpecie]="pokemonSpecie" [pokemon]="pokemon"></app-pokemon-moves>
 

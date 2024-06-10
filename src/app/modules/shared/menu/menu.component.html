@@ -1,5 +1,5 @@
 
-<aside [ngClass]="{'translate-x-0': isOpen, '-translate-x-full': !isOpen}" class="fixed top-0 left-0 w-64 h-screen bg-gray-50 dark:bg-gray-800 transition-transform duration-300 z-40">
+<aside [ngClass]="{'translate-x-0': isOpen, 'sm:-translate-x-60': !isOpen, '-translate-x-full': !isOpen}" class="fixed top-0 left-0 w-64 h-screen bg-gray-50 dark:bg-gray-800 transition-transform duration-300 z-40">
   <div class="h-full px-3 py-4 overflow-y-auto relative">
     <!-- Botón para cerrar el menú -->
     <button *ngIf="isOpen" (click)="closeMenu()" class="absolute top-4 right-4 p-2 bg-red-600 text-white rounded-full">

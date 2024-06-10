@@ -15,7 +15,8 @@ import { PokedexNumbersComponent } from './components/show-pokemon/pokedex-numbe
 import { PokemonMovesComponent } from './components/show-pokemon/pokemon-moves/pokemon-moves.component';
 import { PokemonCryComponent } from './components/show-pokemon/pokemon-cry/pokemon-cry.component';
 import { PokemonStatsComponent } from './components/show-pokemon/pokemon-stats/pokemon-stats.component';
-import { ShowAbilityComponent } from './show-ability/show-ability.component';
+import { ShowAbilityComponent } from './components/show-ability/show-ability.component';
+import { PokemonVarietiesComponent } from './components/show-pokemon/pokemon-varieties/pokemon-varieties.component';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { ShowAbilityComponent } from './show-ability/show-ability.component';
     PokemonMovesComponent,
     PokemonCryComponent,
     PokemonStatsComponent,
-    ShowAbilityComponent
+    ShowAbilityComponent,
+    PokemonVarietiesComponent
   ],
 })
 export class PokedexModule { }

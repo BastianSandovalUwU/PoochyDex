@@ -10,7 +10,7 @@ export type Pokemon = {
   height:                 number;
   heldItems:              any[];
   id:                     number;
-  isDefault:              boolean;
+  is_default:              boolean;
   locationAreaEncounters: string;
   moves:                  Move[];
   name:                   string;
