@@ -19,10 +19,15 @@
   <div class="grid grid-cols-5 gap-2 mx-5 mt-5">
     <div *ngFor="let pokemon of allPokemon">
       <div class="bg-gray-200 rounded-lg border border-black col-span-1">
-        <img *ngIf="pokemon.sprites.other.home.front_default" [src]="pokemon.sprites.other.home.front_default" width="300">
-        <div *ngIf="!pokemon.sprites.other.home.front_default" class="placeholder-image text-red-500 font-bold">No Hay Imagen</div>
-        <h2 class="text-center pb-2 text-xl">{{ pokemon.name | titlecase}}</h2>
-        <button routerLinkActive="router-link-active" [routerLink]="['/pokedex/show-pokemon', pokemon.name]">Ver Pokémon</button>
+        <img class="w-80 hover:opacity-80 cursor-pointer" *ngIf="pokemon.sprites.other.home.front_default"
+             [src]="pokemon.sprites.other.home.front_default" width="300"
+             routerLinkActive="router-link-active"
+            [routerLink]="['/pokedex/show-pokemon', pokemon.name]">
+        <img class="w-80 hover:opacity-80 cursor-pointer" *ngIf="!pokemon.sprites.other.home.front_default"
+             [src]="pokemon.sprites.other['official-artwork'].front_default"
+             routerLinkActive="router-link-active"
+            [routerLink]="['/pokedex/show-pokemon', pokemon.name]">
+        <h2 class="text-center pb-2 text-xl hover:text-blue-500 cursor-pointer">{{ pokemon.name | titlecase}}</h2>
       </div>
     </div>
   </div>

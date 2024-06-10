@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
-import { PokemonAbility } from '../../../../../entities/pokemon-ability.entity';
 import { map, switchMap } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
 import { HelperService } from 'app/modules/shared/services/helper.service';
+import { PokemonAbility } from '../../../../../../entities/pokemon-ability.entity';
 
 @Component({
   selector: 'app-show-ability',
