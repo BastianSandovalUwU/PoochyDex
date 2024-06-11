@@ -1,54 +1,63 @@
 <div class="p-4 m-4 bg-gray-100 rounded-md shadow-md" *ngIf="move">
-    <h2 class="font-bold text-xl">Nombre: {{ move.name | titlecase}}</h2>
-     <img src="https://images.wikidexcdn.net/mwuploads/wikidex/6/6d/latest/20120713014717/Megapu%C3%B1o_OPC.png">
+  <h2 class="font-bold text-xl">Nombre: {{ move.name | titlecase}}</h2>
+   <img src="https://images.wikidexcdn.net/mwuploads/wikidex/6/6d/latest/20120713014717/Megapu%C3%B1o_OPC.png">
 
-    <div class="grid grid-cols-4 gap-1">
-      <div>
-        <h3 class="font-bold text-xl">Descripcion</h3>
-        Causa daño y no tiene ningún efecto secundario.
-      </div>
-      <div>
-        <h3 class="font-bold text-xl">Generacion donde implementa</h3>
-        {{ move.generation.name }}
-      </div>
-      <div>
-        <h3 class="font-bold text-xl">Tipo de daño</h3>
-        Tipo fisico
-      </div>
-      <div>
-        <h3 class="font-bold text-xl">Daño</h3>
-        80 de daño
-      </div>
-      <div>
-        <h3 class="font-bold text-xl">Precision</h3>
-        85 de Precision
-      </div>
-      <div>
-        <h3 class="font-bold text-xl">PP</h3>
-        20 y se puede aumentar hasta 32
-      </div>
-      <div>
-        <h3 class="font-bold text-xl">Prioridad</h3>
-        0
-      </div>
-      <div>
-        <h3 class="font-bold text-xl">objetivos</h3>
-        1 solo objetivo
-      </div>
-      <div>
-        <h3 class="font-bold text-xl">Tipo de movimiento</h3>
-        Normal
-      </div>
+  <div class="grid grid-cols-4 gap-1">
+    <div>
+      <h3 class="font-bold text-xl">Descripcion</h3>
+      Causa daño y no tiene ningún efecto secundario.
     </div>
     <div>
-      <h1 class="font-bold text-xl">Pokemon que aprenden {{move.name}}</h1>
-      <div class="pl-1" *ngFor="let learnBy of move.learned_by_pokemon">
-        <div>{{learnBy.name |titlecase}}</div>
-      </div>
+      <h3 class="font-bold text-xl">Generacion donde implementa</h3>
+      {{ move.generation.name }}
     </div>
+    <div>
+      <h3 class="font-bold text-xl">Tipo de daño</h3>
+      Tipo fisico
+    </div>
+    <div>
+      <h3 class="font-bold text-xl">Daño</h3>
+      80 de daño
+    </div>
+    <div>
+      <h3 class="font-bold text-xl">Precision</h3>
+      85 de Precision
+    </div>
+    <div>
+      <h3 class="font-bold text-xl">PP</h3>
+      20 y se puede aumentar hasta 32
+    </div>
+    <div>
+      <h3 class="font-bold text-xl">Prioridad</h3>
+      0
+    </div>
+    <div>
+      <h3 class="font-bold text-xl">objetivos</h3>
+      1 solo objetivo
+    </div>
+    <div>
+      <h3 class="font-bold text-xl">Tipo de movimiento</h3>
+      Normal
+    </div>
+    <div>
+      <h3 class="font-bold text-xl">Imagen del movimiento</h3>
+      <img src="https://images.wikidexcdn.net/mwuploads/wikidex/thumb/d/d9/latest/20130516200829/Megapu%C3%B1o_N2B2.gif/200px-Megapu%C3%B1o_N2B2.gif" alt="">
+  <div>
+    <h3 class="font-bold text-xl">Aprendizaje del movimiento</h3>
+    Como aprende el movimiento 
+  </div>
+  <div>
+    <h3 class="font-bold text-xl">Como se obtiene</h3>
+    Mediante la historia o del mapa
+  </div>
+  <div>
+    <h1 class="font-bold text-xl">Pokemon que aprenden {{move.name}}</h1>
+    <div class="pl-1" *ngFor="let learnBy of move.learned_by_pokemon">
+      <div>{{learnBy.name |titlecase}}</div>
+    </div>
+  </div>
 
 </div>
-
 
 
 
