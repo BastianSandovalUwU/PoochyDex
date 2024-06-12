@@ -45,38 +45,53 @@ table {
 .bg-flying { background-color: #90cdf4; }
 .bg-default { background-color: #a0aec0; } /* Default color */
 
+/* Clases de fondo personalizadas para colores de Pokémon */
+.bg-pokemon-color-red { background-color: #ffc3c3; }
+.bg-pokemon-color-blue { background-color: #83aefd; }
+.bg-pokemon-color-yellow { background-color: #fafa9b; }
+.bg-pokemon-color-purple { background-color: #9c3b9c; }
+.bg-pokemon-color-pink { background-color: #FFC0CB; }
+.bg-pokemon-color-green { background-color: #c5f8c5; }
+.bg-pokemon-color-gray { background-color: #b4b4b4; }
+.bg-pokemon-color-brown { background-color: #967070; }
+.bg-pokemon-color-black { background-color: #5a5a5a; }
+.bg-pokemon-color-white { background-color: #FFFFFF; }
+
 /* Colores de fondo para cada juego de Pokémon */
-.bg-red { background-color: #FF0000; } /* Rojo */
-.bg-blue { background-color: #0000FF; } /* Azul */
-.bg-yellow { background-color: #FFFF00; } /* Amarillo */
-.bg-gold { background-color: #FFD700; } /* Oro */
-.bg-silver { background-color: #C0C0C0; } /* Plata */
-.bg-crystal { background-color: #00BFFF; } /* Cristal */
-.bg-ruby { background-color: #E0115F; } /* Rubí */
-.bg-sapphire { background-color: #0000FF; } /* Zafiro */
-.bg-emerald { background-color: #50C878; } /* Esmeralda */
-.bg-fire-red { background-color: #FF4500; } /* Rojo Fuego */
-.bg-leaf-green { background-color: #32CD32; } /* Verde Hoja */
-.bg-diamond { background-color: #B9F2FF; } /* Diamante */
-.bg-pearl { background-color: #FEE7F0; } /* Perla */
-.bg-platinum { background-color: #E5E4E2; } /* Platino */
-.bg-heartgold { background-color: #FFD700; } /* Oro HeartGold */
-.bg-soulsilver { background-color: #C0C0C0; } /* Plata SoulSilver */
-.bg-black { background-color: #000000; } /* Negro */
-.bg-white { background-color: #FFFFFF; } /* Blanco */
-.bg-black-2 { background-color: #333333; } /* Negro 2 */
-.bg-white-2 { background-color: #F8F8FF; } /* Blanco 2 */
-.bg-x { background-color: #00BFFF; } /* X */
-.bg-y { background-color: #FF1493; } /* Y */
-.bg-omega-ruby { background-color: #FF4500; } /* Rubí Omega */
-.bg-alpha-sapphire { background-color: #0000CD; } /* Zafiro Alfa */
-.bg-sun { background-color: #FFA500; } /* Sol */
-.bg-moon { background-color: #9370DB; } /* Luna */
-.bg-ultra-sun { background-color: #FF8C00; } /* Ultra Sol */
-.bg-ultra-moon { background-color: #6A5ACD; } /* Ultra Luna */
-.bg-letsGo-pikachu { background-color: #fff836; } /* let's Go Pikachu */
-.bg-letsGo-eevee { background-color: #DFC879; } /* let's Go Eevee */
-.bg-sword { background-color: #4169E1; } /* Espada */
-.bg-shield { background-color: #FF6347; } /* Escudo */
-.bg-scarlet { background-color: #9E2A22; } /* Escarlata */
-.bg-violet { background-color: #552277; } /* Purpura */
+.bg-pokemon-red { background-color: #FF0000; } /* Rojo */
+.bg-pokemon-blue { background-color: #0000FF; } /* Azul */
+.bg-pokemon-yellow { background-color: #FFFF00; } /* Amarillo */
+.bg-pokemon-gold { background-color: #FFD700; } /* Oro */
+.bg-pokemon-silver { background-color: #C0C0C0; } /* Plata */
+.bg-pokemon-crystal { background-color: #00BFFF; } /* Cristal */
+.bg-pokemon-ruby { background-color: #E0115F; } /* Rubí */
+.bg-pokemon-sapphire { background-color: #0000FF; } /* Zafiro */
+.bg-pokemon-emerald { background-color: #50C878; } /* Esmeralda */
+.bg-pokemon-fire-red { background-color: #FF4500; } /* Rojo Fuego */
+.bg-pokemon-leaf-green { background-color: #32CD32; } /* Verde Hoja */
+.bg-pokemon-diamond { background-color: #B9F2FF; } /* Diamante */
+.bg-pokemon-pearl { background-color: #FEE7F0; } /* Perla */
+.bg-pokemon-platinum { background-color: #E5E4E2; } /* Platino */
+.bg-pokemon-heartgold { background-color: #FFD700; } /* Oro HeartGold */
+.bg-pokemon-soulsilver { background-color: #C0C0C0; } /* Plata SoulSilver */
+.bg-pokemon-black { background-color: #000000; } /* Negro */
+.bg-pokemon-white { background-color: #FFFFFF; } /* Blanco */
+.bg-pokemon-black-2 { background-color: #333333; } /* Negro 2 */
+.bg-pokemon-white-2 { background-color: #F8F8FF; } /* Blanco 2 */
+.bg-pokemon-x { background-color: #00BFFF; } /* X */
+.bg-pokemon-y { background-color: #FF1493; } /* Y */
+.bg-pokemon-omega-ruby { background-color: #FF4500; } /* Rubí Omega */
+.bg-pokemon-alpha-sapphire { background-color: #0000CD; } /* Zafiro Alfa */
+.bg-pokemon-sun { background-color: #FFA500; } /* Sol */
+.bg-pokemon-moon { background-color: #9370DB; } /* Luna */
+.bg-pokemon-ultra-sun { background-color: #FF8C00; } /* Ultra Sol */
+.bg-pokemon-ultra-moon { background-color: #6A5ACD; } /* Ultra Luna */
+.bg-pokemon-letsGo-pikachu { background-color: #fff836; } /* let's Go Pikachu */
+.bg-pokemon-letsGo-eevee { background-color: #DFC879; } /* let's Go Eevee */
+.bg-pokemon-sword { background-color: #4169E1; } /* Espada */
+.bg-pokemon-shield { background-color: #FF6347; } /* Escudo */
+.bg-pokemon-scarlet { background-color: #9E2A22; } /* Escarlata */
+.bg-pokemon-violet { background-color: #552277; } /* Purpura */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

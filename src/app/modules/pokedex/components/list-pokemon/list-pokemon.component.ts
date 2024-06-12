@@ -12,16 +12,18 @@ export class ListPokemonComponent implements OnInit {
 
   allPokemon: Pokemon[] = [];
 
-  constructor(private pokeApi: PokeApiService,
+  constructor(private pokeApiService: PokeApiService,
               ) { }
 
   ngOnInit() {
-    this.pokeApi.getAllPokemon().subscribe((pokeData) => {
+    this.pokeApiService.getAllPokemon().subscribe((pokeData) => {
       console.log(pokeData);
-      const pokemon = []
+      const pokemon: Pokemon[] = []
       for (let i = 0; i < pokeData.results.length; i++) {
-        this.pokeApi.getPokemonByName(pokeData.results[i].name).subscribe((pokeInfo) => {
-          pokemon.push(pokeInfo);
+        this.pokeApiService.getPokemonByName(pokeData.results[i].name).subscribe((pokeInfo) => {
+          if(pokeInfo.is_default === true) {
+            pokemon.push(pokeInfo);
+          }
         });
       }
       this.allPokemon = pokemon;
@@ -31,11 +33,11 @@ export class ListPokemonComponent implements OnInit {
 
   getPokemonByGeneration(generationNumber: number) {
     this.allPokemon = [];
-    this.pokeApi.getPokemonByGeneration(generationNumber).subscribe((pokeData) => {
+    this.pokeApiService.getPokemonByGeneration(generationNumber).subscribe((pokeData) => {
       console.log(pokeData);
       const pokemon = []
       for (let i = 0; i < pokeData.pokemon_species.length; i++) {
-        this.pokeApi.getPokemonByName(pokeData.pokemon_species[i].name).subscribe((pokeInfo) => {
+        this.pokeApiService.getPokemonByName(pokeData.pokemon_species[i].name).subscribe((pokeInfo) => {
           pokemon.push(pokeInfo);
         });
       }

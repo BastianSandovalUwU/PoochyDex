@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Pokemon } from '../../../../../entities/pokemon.entity';
 import { PokemonTypes } from '../../../../../entities/types.entity';
 import { PokemonSpecie } from '../../../../../entities/pokemon-specie.entity';
@@ -9,11 +9,14 @@ import { MachineMove } from '../../../../../entities/machine-move.entity';
 import { DetailMove } from '../../../../../entities/moves.entity';
 import { PokemonAbility } from '../../../../../entities/pokemon-ability.entity';
 import { HelperService } from './helper.service';
+import { EvolutionChain } from '../../../../../entities/evolution-chain.entity.';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokeApiService {
+  private movementsCache = new Map<string, any>();
+  private pokemonListcache = new Map<string, any>();
 
   apiUrl = 'https://pokeapi.co/api/v2'
 
@@ -30,19 +33,44 @@ export class PokeApiService {
   }
 
   getPokemonByName(name: string): Observable<Pokemon> {
+    if (this.pokemonListcache.has(name)) {
+      return of(this.pokemonListcache.get(name));
+    }
     const url = `${this.apiUrl}/pokemon/${name}/`;
     return this.http.get<Pokemon>(url).pipe(
       catchError(error => {
         console.error('Error al obtener el pokémon:', name, error);
         return throwError(error);
+      }),
+      map(response => {
+        this.pokemonListcache.set(name, response);
+        return response;
       })
     );
   }
+
+  getPokemonByUrl(url: string): Observable<Pokemon> {
+    return this.http.get<Pokemon>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener el pokémon:', error);
+        return throwError(error);
+      })
+    );
+  }
+
   getPokemonSpecieById(id: string): Observable<PokemonSpecie> {
     const url = `${this.apiUrl}/pokemon-species/${id}/`;
     return this.http.get<PokemonSpecie>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la especie pokémon:', id, error);
+        return throwError(error);
+      })
+    );
+  }
+  getPokemonSpecieByUrl(url: string): Observable<PokemonSpecie> {
+    return this.http.get<PokemonSpecie>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener la especie pokémon:', error);
         return throwError(error);
       })
     );
@@ -77,13 +105,28 @@ export class PokeApiService {
     );
   }
 
+  // getMoveByUrl(url: string, name: string, gameName: string): Observable<DetailMove> {
+  //   return this.http.get<DetailMove>(url).pipe(
+  //     catchError(error => {
+  //       // Devolver un objeto placeholder en lugar de lanzar un error
+  //       const placeHolderMove = this.createPlaceHolderMove(name, gameName);
+  //       return of(placeHolderMove);
+  //     })
+  //   );
+  // }
+
   getMoveByUrl(url: string, name: string, gameName: string): Observable<DetailMove> {
+    if (this.movementsCache.has(url)) {
+      return of(this.movementsCache.get(url));
+    }
     return this.http.get<DetailMove>(url).pipe(
       catchError(error => {
-        console.error('Error al obtener el movimiento:', error);
-        // Devolver un objeto placeholder en lugar de lanzar un error
         const placeHolderMove = this.createPlaceHolderMove(name, gameName);
         return of(placeHolderMove);
+      }),
+      map(response => {
+        this.movementsCache.set(url, response);
+        return response;
       })
     );
   }
@@ -100,10 +143,16 @@ export class PokeApiService {
   }
 
   getMachineMoveByUrl(url: string): Observable<MachineMove> {
+    if (this.movementsCache.has(url)) {
+      return of(this.movementsCache.get(url));
+    }
     return this.http.get<MachineMove>(url).pipe(
       catchError(error => {
-        console.error('Error al obtener el movimiento:', error);
-        return throwError(error);
+        return of(null);
+      }),
+      map(response => {
+        this.movementsCache.set(url, response);
+        return response;
       })
     );
   }
@@ -113,6 +162,24 @@ export class PokeApiService {
     return this.http.get<PokemonAbility>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la habilidad:', id, error);
+        return throwError(error);
+      })
+    );
+  }
+
+  getEvolutionChainByUrl(url: string): Observable<EvolutionChain> {
+    return this.http.get<EvolutionChain>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener la cadena evolutiva:', error);
+        return throwError(error);
+      })
+    );
+  }
+
+  getAbilityByUrl(url: string): Observable<PokemonAbility> {
+    return this.http.get<PokemonAbility>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener la habilidad:', error);
         return throwError(error);
       })
     );

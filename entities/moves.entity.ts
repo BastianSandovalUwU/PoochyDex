@@ -13,6 +13,13 @@ export type FilteredMove = {
   moveName: string;
 }
 
+export interface FilteredByTutor extends FilteredMove {
+  tutorDetail: VersionGroupDetail;
+}
+
+export interface FilteredByEgg extends FilteredMove {
+  eggDetail: VersionGroupDetail;
+}
 export interface FilteredByMachine extends FilteredMove {
   machineDetail:      ExtendedMachineDetail;
 }

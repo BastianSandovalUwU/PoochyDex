@@ -1,16 +1,16 @@
 import { Data } from "./pokemon-specie.entity";
-import { Ability } from "./pokemon.entity";
+import { Ability, Pokemon } from "./pokemon.entity";
 
 export interface PokemonAbility {
   effectChanges:     EffectChange[];
   effectEntries:     PokemonAbilityEffectEntry[];
-  flavorTextEntries: FlavorTextEntry[];
+  flavor_text_entries: FlavorTextEntry[];
   generation:        Data;
   id:                number;
   isMainSeries:      boolean;
   name:              string;
   names:             Name[];
-  pokemon:           Pokemon[];
+  pokemon:           { pokemon: { name: string, url: string }, pokemonDetail?: Pokemon }[];
 }
 
 export interface EffectChange {
@@ -30,20 +30,14 @@ export interface PokemonAbilityEffectEntry {
 }
 
 export interface FlavorTextEntry {
-  flavorText:   string;
+  flavor_text:   string;
   language:     Data;
-  versionGroup: Data;
+  version_group: Data;
 }
 
 export interface Name {
   language: Data;
   name:     string;
-}
-
-export interface Pokemon {
-  isHidden: boolean;
-  pokemon:  Data;
-  slot:     number;
 }
 
 export interface AbilityName {

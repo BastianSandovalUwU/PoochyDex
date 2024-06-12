@@ -1,0 +1,36 @@
+/* Estilos responsivos */
+@media (max-width: 640px) {
+  .move-header {
+    display: none; /* Ocultar encabezado de la tabla en dispositivos móviles */
+  }
+
+  .move-row {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #000;
+    border-radius: 0.5rem;
+    background-color: #fff;
+  }
+
+  .move-detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+  }
+
+  .move-label {
+    font-weight: bold;
+    flex: 1;
+  }
+
+  .move-value {
+    flex: 2;
+    text-align: right;
+  }
+
+  .game-version, .type {
+    padding: 0.2rem 0.5rem;
+  }
+}

@@ -1,0 +1,27 @@
+<h1 *ngIf="pokemon?.cries?.latest" class="font-bold">
+  {{ language === 'es' ? 'Grito Actual' : 'Current Cry' }}:
+  <button *ngIf="!isPlayingLatest" class="bg-blue-300" mat-icon-button (click)="playAudio('latest')">
+    <mat-icon>play_arrow</mat-icon>
+  </button>
+  <button *ngIf="isPlayingLatest" class="bg-red-300" mat-icon-button (click)="pauseAudio('latest')">
+    <mat-icon>pause</mat-icon>
+  </button>
+  <audio id="audioPlayerLatest" #audioPlayerLatest controls (ended)="audioEnded('latest')">
+    <source [src]="pokemon?.cries?.latest" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+</h1>
+
+<h1 *ngIf="pokemon?.cries?.legacy" class="font-bold">
+  {{ language === 'es' ? 'Grito Antiguo' : 'Previous Scream' }}:
+  <button *ngIf="!isPlayingLegacy" class="bg-blue-300" mat-icon-button (click)="playAudio('legacy')">
+    <mat-icon>play_arrow</mat-icon>
+  </button>
+  <button *ngIf="isPlayingLegacy" class="bg-red-300" mat-icon-button (click)="pauseAudio('legacy')">
+    <mat-icon>pause</mat-icon>
+  </button>
+  <audio id="audioPlayerLegacy" #audioPlayerLegacy controls (ended)="audioEnded('legacy')">
+    <source [src]="pokemon?.cries?.legacy" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+</h1>

@@ -1,0 +1,78 @@
+<div class="m-4" *ngIf="ability">
+  <div class="bg-gray-100 p-4 rounded-md col-span-1 border border-black">
+    <div *ngFor="let abilityName of ability.names">
+        <div *ngIf="abilityName.language.name === language" class="font-bold text-4xl text-center">
+          {{ abilityName.name | titlecase }}
+        </div>
+    </div>
+
+    <div>
+      <p>Es una habilidad introducida en la {{ getGenerationName(ability.generation.name) }} </p>
+    </div>
+
+  </div>
+
+  <div class="bg-gray-100 p-4 rounded-md col-span-1 border border-black mt-2">
+    <h1 class="font-bold">{{ language === 'es' ? 'Efecto' : 'Efect'}}</h1>
+    <div>
+      <h1 class="font-bold">{{ language === 'es' ? 'En combate' : 'In combat'}}</h1>
+      <div *ngFor="let abilityText of ability.flavor_text_entries">
+        <div *ngIf="abilityText.language.name === language" class="">
+          {{ abilityText.flavor_text | titlecase }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-100 p-4 rounded-md col-span-1 border border-black mt-2">
+    <h1 class="font-bold text-xl">
+      {{ language === 'es' ? 'Pokémon con esta habilidad' : 'Pokémon with this ability'}}
+    </h1>
+    <div class="grid grid-cols-5 justify-center items-center border border-black mt-1">
+      <div *ngFor="let pokemon of ability.pokemon" class="flex flex-col items-center justify-center border border-black">
+        <div class="text-center bg-gray-900 text-white w-full hover:text-blue-400 cursor-pointer"
+        [routerLink]="['/pokedex/show-pokemon', pokemon.pokemon.name]"
+        routerLinkActive>
+          {{ pokemon.pokemon.name | titlecase }}
+        </div>
+        <img
+          [routerLink]="['/pokedex/show-pokemon', pokemon.pokemon.name]"
+          routerLinkActive
+          class="w-26 hover:opacity-80 cursor-pointer"
+          *ngIf="pokemon.pokemonDetail.sprites.other.home.front_default"
+          [src]="pokemon.pokemonDetail.sprites.other.home.front_default"
+          alt="{{ pokemon.pokemon.name }}"
+        />
+        <img
+          [routerLink]="['/pokedex/show-pokemon', pokemon.pokemon.name]"
+          routerLinkActive
+          class="w-26 hover:opacity-80 cursor-pointer"
+          *ngIf="!pokemon.pokemonDetail.sprites.other.home.front_default"
+          [src]="pokemon.pokemonDetail.sprites.other['official-artwork'].front_default"
+          alt="{{ pokemon.pokemon.name }}"
+        />
+        <div class="grid grid-cols-1 text-black w-full">
+          <div *ngFor="let ability of pokemon.pokemonDetail.abilities">
+            <div class="text-center bg-gray-200  hover:text-blue-400 cursor-pointer"
+            [routerLink]="['/pokedex/show-ability', ability.ability.name]"
+            routerLinkActive>
+              <span class="font-bold">Habilidad {{ ability.is_hidden === true ? 'Oculta' : ability.slot }}: </span>{{ ability.ability.name | titlecase }}
+            </div>
+          </div>
+          <div *ngIf="pokemon.pokemonDetail.abilities.length < 2">
+            <div class="text-center bg-gray-200"
+            routerLinkActive>
+            &nbsp;
+            </div>
+          </div>
+          <div *ngIf="pokemon.pokemonDetail.abilities.length < 3">
+            <div class="text-center bg-gray-200"
+            routerLinkActive>
+            &nbsp;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
