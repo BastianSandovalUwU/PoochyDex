@@ -1,0 +1,70 @@
+<div [ngClass]="backgroundColor" class=" p-4 rounded-md col-span-1 border border-black">
+  <h1 class="font-bold text-4xl text-center">{{pokemon.name | titlecase}}</h1>
+  <h1 class="font-bold text-lg text-center">
+    <span class="cursor-pointer" *ngIf="pokemonNameHirgana">{{pokemonNameHirgana.name | titlecase}}</span>
+    <span *ngIf="pokemonNameRomaji">({{pokemonNameRomaji.name | titlecase}})</span>
+  </h1>
+  <div class="grid grid-cols-3 gap-1">
+    <div class="col-span-3 flex justify-center">
+      <img [src]="pokemon.sprites.other.home.front_shiny" style="display: none;">
+      <img [src]="pokemon.sprites.other['official-artwork'].front_shiny" style="display: none;">
+      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = true" *ngIf="pokemon.sprites.other.home.front_default && !showShiny" [src]="pokemon.sprites.other.home.front_default">
+      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = false" *ngIf="pokemon.sprites.other.home.front_shiny && showShiny" [src]="pokemon.sprites.other.home.front_shiny">
+      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = true" *ngIf="!pokemon.sprites.other.home.front_default && !showShiny" [src]="pokemon.sprites.other['official-artwork'].front_default">
+      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = false" *ngIf="!pokemon.sprites.other.home.front_default && showShiny" [src]="pokemon.sprites.other['official-artwork'].front_shiny">
+    </div>
+    <div *ngIf="!pokemon.sprites.other.home.front_default" class="col-span-3 text-center text-red-500 font-bold">No Hay Imagen</div>
+    <div *ngIf="!pokemon.sprites.other['official-artwork'].front_default" class="col-span-3 text-center text-red-500 font-bold">No Hay Imagen</div>
+  </div>
+
+  <div class="grid grid-cols-3 sm:grid-cols-5 gap-0 mt-2">
+    <div class="col-span-3 sm:col-span-5 flex justify-center">
+      <div [ngClass]="'gap-1 grid grid-cols-' + pokemon.types.length">
+        <div *ngFor="let languageTypes of pokemontypes">
+          <div *ngFor="let type of languageTypes">
+            <div *ngIf="type.language === language" [ngClass]="getColorClassByLanguageAndType(type.typeName, type.language)" class="border border-black rounded-md px-2 text-white text-center">
+              {{ type.typeName | titlecase }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-center mt-1">
+    <div class="bg-white rounded-md border border-black p-3">
+      <div class="max-w-screen-sm">
+        <div *ngFor="let abilityGroup of filteredAbilityNames">
+          <div>
+            <span class="font-bold">
+              {{ language === 'es' ? 'Habilidad': 'Ability' }}
+              <span routerLinkActive *ngIf="!abilityGroup.ability.is_hidden">{{ abilityGroup.ability.slot }}</span>
+              <span *ngIf="abilityGroup.ability.is_hidden">{{ language === 'es' ? 'Oculta': 'Hidden' }}</span>:
+            </span>
+            <span class="hover:font-bold cursor-pointer" [routerLink]="['/pokedex/show-ability', abilityGroup.ability.ability.name]" >{{ abilityGroup.name }}</span>
+          </div>
+        </div>
+        <div *ngFor="let eggGroup of pokemonSpecie.egg_groups">
+          <span class="font-bold">{{ language === 'es' ? 'Grupo Huevo': 'Egg Group' }}: </span>{{ getEggGroupName(eggGroup.name) }}
+        </div>
+        <h1><span class="font-bold">{{ language === 'es' ? 'Sexo': 'Sex' }}: </span>
+          <span class="text-blue-400 cursor-pointer">{{ calculateGenderRateMale(pokemonSpecie.gender_rate) }}%</span> -
+          <span class="text-pink-400 cursor-pointer">{{ calculateGenderRateFemale(pokemonSpecie.gender_rate) }}%</span>
+        </h1>
+        <h1><span class="font-bold">{{ language === 'es' ? 'Peso': 'Weight' }}: </span>{{ (pokemon.weight * 0.1).toFixed(1) }}kg</h1>
+        <h1><span class="font-bold">{{ language === 'es' ? 'Altura': 'Heigth' }}: </span>{{ (pokemon.height*0.1).toFixed(1)  }}m</h1>
+        <h1 class="font-bold" *ngIf="pokemonSpecie.is_legendary">Pokémon Legendario</h1>
+        <h1 class="font-bold" *ngIf="pokemonSpecie.is_mythical">Pokémon Mitico</h1>
+        <h1 class="font-bold" *ngIf="pokemonSpecie.is_baby">Pokémon Bebé</h1>
+        <h1><span class="font-bold">{{ language === 'es' ? 'Generación': 'Generation' }}: </span>{{getGenerationName(pokemonSpecie.generation.name)}}</h1>
+        <div *ngFor="let genera of pokemonSpecie.genera">
+          <span *ngIf="genera.language.name === language"><span class="font-bold">{{ language === 'es' ? 'Categoria': 'Category' }}: </span>{{ genera.genus }} </span>
+        </div>
+
+        <app-pokemon-cry [pokemon]="pokemon" [language]="language"></app-pokemon-cry>
+
+      </div>
+    </div>
+  </div>
+
+</div>
