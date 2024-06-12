@@ -45,7 +45,9 @@ export class ShowMovementComponent implements OnInit {
       const pokemon: Pokemon[] = []
       for (let i = 0; i < this.move.learned_by_pokemon.length; i++) {
         this.pokeApiService.getPokemonByName(this.move.learned_by_pokemon[i].name).subscribe((pokeInfo) => {
-            pokemon.push(pokeInfo);
+            if(pokeInfo.is_default === true) {
+              pokemon.push(pokeInfo);
+            }
         });
       }
       this.pokemon = pokemon;
