@@ -61,6 +61,18 @@ export class HelperService {
     );
   }
 
+  getMoveNameByLanguage(move: DetailMove, language: string): Observable<{ language: string, moveName: string }> {
+    return of(move).pipe(
+      map(moveDetail => {
+        const nameInfo = moveDetail.names.find(name => name.language.name === language);
+        return {
+          language: language,
+          moveName: nameInfo ? nameInfo.name : 'Not Available'
+        };
+      })
+    );
+  }
+
   getTypeColorClass(typeName: string, language: string): string {
     if (language === 'en') {
       switch (typeName.toLowerCase()) {
@@ -245,7 +257,7 @@ export class HelperService {
         case 'blue': return 'Azul';
         case 'yellow': return 'Amarillo';
         case 'gold': return 'Oro';
-        case 'silver': return 'PLata';
+        case 'silver': return 'Plata';
         case 'crystal': return 'Cristal';
         case 'colosseum': return 'Colosseum';
         case 'ruby': return 'Rubí';
@@ -255,9 +267,9 @@ export class HelperService {
         case 'leafgreen': return 'Verde Hoja';
         case 'diamond': return 'Diamante';
         case 'pearl': return 'Perla';
-        case 'platinum': return 'PLatino';
+        case 'platinum': return 'Platino';
         case 'heartgold': return 'Oro HeartGold';
-        case 'soulsilver': return 'Plta SoulSilver';
+        case 'soulsilver': return 'Plata SoulSilver';
         case 'black': return 'Negro';
         case 'white': return 'Blanco';
         case 'black-2': return 'Negro 2';
