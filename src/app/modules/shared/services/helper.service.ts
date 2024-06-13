@@ -4,6 +4,7 @@ import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { Ability, Type } from '../../../../../entities/pokemon.entity';
 import { AbilityName, AbilityResponse, Name } from '../../../../../entities/pokemon-ability.entity';
 import { DetailMove } from '../../../../../entities/moves.entity';
+import { TargetTypes } from '../../../../../entities/common/const.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -153,6 +154,60 @@ export class HelperService {
       }
     } else {
       return '';
+    }
+  }
+  getTargetTypeName(targetType: TargetTypes, language: string): string {
+    if (language === 'es') {
+      switch (targetType) {
+        case 'specific-move': return 'Primera Generación';
+        case 'selected-pokemon-me-first': return 'Segunda Generación';
+        case 'ally': return 'Aliado Adyacente';
+        case 'users-field': return 'Campo del Usuario';
+        case 'user-or-ally': return 'Usuario o Aliado';
+        case 'opponents-field': return 'Campo Rival';
+        case 'user': return 'Usuario';
+        case 'random-opponent': return 'Aleatorio';
+        case 'all-other-pokemon': return 'Pokémon Adyacentes';
+        case 'selected-pokemon': return 'Octava Generación';
+        case 'all-opponents': return 'Novena Generación';
+        case 'entire-field': return 'Campo Entero';
+        case 'user-and-allies': return 'Decima Generación';
+        case 'all-pokemon': return 'Todos los Pokémon';
+        case 'all-allies': return 'Todos los Aliados';
+        case 'fainting-pokemon': return 'Pokémon Debilitado';
+        default: return '';
+      }
+    } else if (language === 'en'){
+        return targetType;
+    } else {
+      return targetType;
+    }
+  }
+  getTranslateTypeName(typeName: string, language: string): string {
+    if(language === 'es') {
+      switch (typeName.toLowerCase()) {
+        case 'grass': return 'Planta';
+        case 'fire': return 'Fuego';
+        case 'water': return 'Agua';
+        case 'bug': return 'Bicho';
+        case 'normal': return 'Normal';
+        case 'poison': return 'Veneno';
+        case 'electric': return 'Electrico';
+        case 'ground': return 'Tierra';
+        case 'fairy': return 'Hada';
+        case 'fighting': return 'Lucha';
+        case 'psychic': return 'Psiquico';
+        case 'rock': return 'Roca';
+        case 'ghost': return 'Fantasma';
+        case 'ice': return 'Hielo';
+        case 'dragon': return 'Dragón';
+        case 'dark': return 'Siniestro';
+        case 'steel': return 'Acero';
+        case 'flying': return 'Volador';
+        default: return 'bg-default';
+      }
+    } else {
+      return typeName;
     }
   }
   getEggGroupName(groupName: string, language: string): string {
