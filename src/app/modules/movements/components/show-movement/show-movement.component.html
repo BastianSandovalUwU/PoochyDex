@@ -1,71 +1,58 @@
-<div class="p-4 m-4 bg-gray-100 rounded-md shadow-md" *ngIf="move">
+<div class="p-4 m-1 sm:m-4 bg-gray-100 rounded-md shadow-md" *ngIf="move">
 
+   <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 sm:p-4">
 
-   <!-- <img src="https://images.wikidexcdn.net/mwuploads/wikidex/6/6d/latest/20120713014717/Megapu%C3%B1o_OPC.png"> -->
+    <div class="sm:col-span-4 bg-yellow-500 rounded-md sm:p-4 p-2 max-w-md border border-black">
 
-   <div>
-     <h3 class="font-bold text-xl">Descripcion</h3>
-     Causa daño y no tiene ningún efecto secundario.
-   </div>
+      <div class="text-center mb-4">
+        <h2 class="font-bold text-3xl">{{ moveName | titlecase }}</h2>
+      </div>
 
-   <div class="grid grid-cols-12">
-    <div class="col-span-12 ">
       <div class="grid grid-cols-4 bg-yellow-500 rounded-md">
-        <h2 class=" font-bold text-4xl">{{ moveName| titlecase }}</h2>
+        <div class="col-span-2 border-l border-t border-b border-black text-lg font-bold rounded-tl-md rounded-bl-md bg-white">
+          <div class="px-2 border-b border-black text-right">Tipo:</div>
+          <div class="px-2 border-b border-black text-right">Generación:</div>
+          <div class="px-2 border-b border-black text-right">Clase:</div>
+          <div class="px-2 border-b border-black text-right">Potencia:</div>
+          <div class="px-2 border-b border-black text-right">Precisión:</div>
+          <div class="px-2 border-b border-black text-right">PP:</div>
+          <div class="px-2 border-b border-black text-right">Prioridad:</div>
+          <div class="px-2 text-right">Blanco:</div>
+        </div>
+
+        <div class="col-span-2 border-r border-l border-t border-b border-black text-lg rounded-tr-md rounded-br-md bg-white">
+          <div class="px-2 mb-0.5 border-b border-black">
+            <div [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')"
+                 class="border border-black rounded-md px-2 text-lg text-white text-center w-20">
+              {{ getTranslateTypeName(move.type.name) | titlecase }}
+            </div>
+          </div>
+          <div class="px-2 border-b border-black">{{ getGenerationName(move.generation.name) }}</div>
+          <div class="py-1 px-2 border-b border-black">
+            <img *ngIf="move.damage_class.name === 'physical'"
+                 src="./assets/icons/movement_category/physical_category_6_7_gen.png" alt="Physical">
+            <img *ngIf="move.damage_class.name === 'special'"
+                 src="./assets/icons/movement_category/special_category_6_7_gen.png" alt="Special">
+            <img *ngIf="move.damage_class.name === 'status'"
+                 src="./assets/icons/movement_category/status_category_6_7_gen.png" alt="Status">
+          </div>
+          <div class="px-2 border-b border-black">{{ move.power !== null ? move.power : '-' }}</div>
+          <div class="px-2 border-b border-black">{{ move.accuracy !== null ? move.accuracy : '-' }}</div>
+          <div class="px-2 border-b border-black">{{ move.pp }}</div>
+          <div class="px-2 border-b border-black">{{ move.priority }}</div>
+          <div class="px-2">{{ getTargetTypeName(move.target.name, language) }}</div>
+        </div>
       </div>
     </div>
-   <div class="grid grid-cols-4 mt-1 col-span-4 bg-yellow-500 p-2 rounded-md ">
-      <div class="col-span-2 border-l border-t border-b border-black p-2 text-xl font-bold rounded-tl-md rounded-bl-md bg-white">
-        <div class="text-right">Tipo:</div>
-        <div class="text-right">Generacion:</div>
-        <div class="text-right font-bold">Clase:</div>
-        <div class="text-right">Potencia:</div>
-        <div class="text-right">Precision:</div>
-        <div class="text-right">PP:</div>
-        <div class="text-right">Prioridad:</div>
-        <div class="text-right">Objetivos:</div>
+
+    <div class="sm:col-span-8">
+
+      <div class="bg-gray-200 rounded-md p-4 h-full border border-black">
+        <h3 class="font-bold text-xl">Descripcion</h3>
+        Causa daño y no tiene ningún efecto secundario.
       </div>
-      <div class="col-span-2 border-r border-l border-t border-b border-black p-2 text-xl rounded-tr-md rounded-br-md bg-white">
-        <div [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')" class="border border-black rounded-md px-2 text-white text-center w-20">
-          {{ move.type.name | titlecase }}
-        </div>
-        <div>
-          {{ getGenerationName(move.generation.name) }}
-        </div>
-        <div class="mt-2">
-          <img *ngIf="move.damage_class.name === 'physical'" src="./assets/icons/movement_category/physical_category_6_7_gen.png">
-          <img *ngIf="move.damage_class.name === 'special'" src="./assets/icons/movement_category/special_category_6_7_gen.png">
-          <img *ngIf="move.damage_class.name === 'status'" src="./assets/icons/movement_category/status_category_6_7_gen.png">
-        </div>
-        <div>
-          {{ move.power !== null ? move.power : '-' }}
-        </div>
-        <div>
-          {{ move.accuracy !== null ? move.accuracy : '-' }}
-        </div>
-        <div>
-          {{ move.pp }}
-        </div>
-        <div>
-          {{ move.priority }}
-        </div>
-        <div>
-          {{ move.target.name }}
-        </div>
-      </div>
-      <!-- <div>
-        <h3 class="font-bold text-xl">Imagen del movimiento</h3>
-        <img src="https://images.wikidexcdn.net/mwuploads/wikidex/thumb/d/d9/latest/20130516200829/Megapu%C3%B1o_N2B2.gif/200px-Megapu%C3%B1o_N2B2.gif" alt="">
-        <div>
-          <h3 class="font-bold text-xl">Aprendizaje del movimiento</h3>
-          Como aprende el movimiento
-        </div>
-        <div>
-          <h3 class="font-bold text-xl">Como se obtiene</h3>
-          Mediante la historia o del mapa
-        </div>
-      </div> -->
-   </div>
+
+    </div>
   </div>
 </div>
 
@@ -97,14 +84,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
 
 
 

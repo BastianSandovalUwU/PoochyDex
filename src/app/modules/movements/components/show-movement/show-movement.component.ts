@@ -56,6 +56,12 @@ export class ShowMovementComponent implements OnInit {
   getColorClassByLanguageAndType(typeName: string, language: string): string {
     return this.helperService.getTypeColorClass(typeName, language);
   }
+  getTargetTypeName(targetName: string, language: string): string {
+    return this.helperService.getTargetTypeName(targetName, language);
+  }
+  getTranslateTypeName(targetName: string): string {
+    return this.helperService.getTranslateTypeName(targetName, this.language);
+  }
 
   getMoveNameByLanguage(): string {
     let name;
