@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
@@ -8,18 +8,23 @@ import { HelperService } from 'app/modules/shared/services/helper.service';
   templateUrl: './pokemon-stats.component.html',
   styleUrls: ['./pokemon-stats.component.scss']
 })
-export class PokemonStatsComponent implements OnInit {
-  @Input() language: string = 'es';
+export class PokemonStatsComponent implements OnInit, OnChanges {
+  @Input() language: string;
   @Input() pokemon: Pokemon;
   @Input() pokemonSpecie: PokemonSpecie;
 
   backgroundColor: string = '';
 
-  statNames = this.language === 'es' ? ['PS', 'Ataque', 'Defensa', 'At. esp', 'Def. esp', 'Velocidad'] : ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
+  statNames: string [];
 
   constructor(private helperService: HelperService,) { }
 
   ngOnInit() {
+    this.setStatsNames();
+    this.getPokemonColor();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.setStatsNames();
     this.getPokemonColor();
   }
 
@@ -43,6 +48,10 @@ export class PokemonStatsComponent implements OnInit {
     } else {
       return '#f56565'; // Rojo
     }
+  }
+
+  setStatsNames(){
+    this.statNames = this.language === 'es' ? ['PS', 'Ataque', 'Defensa', 'At. esp', 'Def. esp', 'Velocidad'] : ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
   }
 
   getMaxStat(): number {

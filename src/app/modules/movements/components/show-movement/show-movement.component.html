@@ -1,0 +1,87 @@
+
+   <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 p-4"  *ngIf="move">
+
+    <div class="sm:col-span-4 rounded-md sm:p-4 p-2 max-w-md border border-black" [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')">
+
+      <div class="text-center mb-4">
+        <h2 class="font-bold text-3xl">{{ moveName | titlecase }}</h2>
+      </div>
+
+      <div class="grid grid-cols-4 rounded-md" [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')">
+        <div class="col-span-2 border-l border-t border-b border-black text-lg font-bold rounded-tl-md rounded-bl-md bg-white">
+          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Tipo' : 'Type' }}:</div>
+          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Generación' : 'Generation'}}:</div>
+          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Clase' : 'Class'}}:</div>
+          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Potencia' : 'Power' }}:</div>
+          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Precisión' : 'Accuaracy'}}:</div>
+          <div class="px-2 border-b border-black text-right">PP:</div>
+          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Prioridad' : 'Priority'}}:</div>
+          <div class="px-2 text-right">{{ language === 'es' ? 'Blanco' : 'Target'}}:</div>
+        </div>
+
+        <div class="col-span-2 border-r border-l border-t border-b border-black text-lg rounded-tr-md rounded-br-md bg-white">
+          <div class="px-2 mb-0.5 border-b border-black">
+            <div [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')"
+                 class="border border-black rounded-md px-2 text-lg text-white text-center w-20">
+              {{ getTranslateTypeName(move.type.name) | titlecase }}
+            </div>
+          </div>
+          <div class="px-2 border-b border-black">{{ getGenerationName(move.generation.name) }}</div>
+          <div class="py-1 px-2 border-b border-black">
+            <img *ngIf="move.damage_class.name === 'physical'"
+                 src="./assets/icons/movement_category/physical_category_6_7_gen.png" alt="Physical">
+            <img *ngIf="move.damage_class.name === 'special'"
+                 src="./assets/icons/movement_category/special_category_6_7_gen.png" alt="Special">
+            <img *ngIf="move.damage_class.name === 'status'"
+                 src="./assets/icons/movement_category/status_category_6_7_gen.png" alt="Status">
+          </div>
+          <div class="px-2 border-b border-black">{{ move.power !== null ? move.power : '-' }}</div>
+          <div class="px-2 border-b border-black">{{ move.accuracy !== null ? move.accuracy : '-' }}</div>
+          <div class="px-2 border-b border-black">{{ move.pp }}</div>
+          <div class="px-2 border-b border-black">{{ move.priority }}</div>
+          <div class="px-2">{{ getTargetTypeName(move.target.name, language) |titlecase}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sm:col-span-8">
+
+      <div class="rounded-md p-4 h-full border border-black" [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')">
+        <h3 class="font-bold text-xl">{{ language === 'es' ? 'Efecto del Movimiento' : 'Move Effect' }}</h3>
+        {{ moveEffectEntry.effect }}
+      </div>
+
+    </div>
+  </div>
+
+<div class="p-4 m-4 rounded-md shadow-md" [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')" *ngIf="pokemon && move">
+  <h1 class="font-bold text-xl">Pokemon que aprenden {{ moveName| titlecase }}</h1>
+  <div class="grid grid-cols-3 sm:grid-cols-5 justify-center items-center border border-black mt-1 bg-white">
+    <div *ngFor="let pokemon of pokemon" class="flex flex-col items-center justify-center border border-black">
+      <div class="text-center bg-gray-900 text-white w-full hover:text-blue-400 cursor-pointer"
+      [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
+      routerLinkActive>
+        {{ pokemon.name | titlecase }}
+      </div>
+      <img
+        [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
+        routerLinkActive
+        class="w-26 hover:opacity-80 cursor-pointer"
+        *ngIf="pokemon.sprites.other.home.front_default"
+        [src]="pokemon.sprites.other.home.front_default"
+        alt="{{ pokemon.name }}"
+      />
+      <img
+        [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
+        routerLinkActive
+        class="w-26 hover:opacity-80 cursor-pointer"
+        *ngIf="!pokemon.sprites.other.home.front_default"
+        [src]="pokemon.sprites.other['official-artwork'].front_default"
+        alt="{{ pokemon.name }}"
+      />
+    </div>
+  </div>
+</div>
+
+
+

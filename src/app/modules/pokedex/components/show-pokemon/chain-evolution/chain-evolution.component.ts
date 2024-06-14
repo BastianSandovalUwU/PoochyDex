@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { EvolutionChain } from '../../../../../../../entities/evolution-chain.entity.';
@@ -10,8 +10,8 @@ import { HelperService } from 'app/modules/shared/services/helper.service';
   templateUrl: './chain-evolution.component.html',
   styleUrls: ['./chain-evolution.component.scss']
 })
-export class ChainEvolutionComponent implements OnInit {
-  @Input() language: string = 'es';
+export class ChainEvolutionComponent implements OnInit, OnChanges {
+  @Input() language: string;
   @Input() pokemonSpecie: PokemonSpecie;
 
   evolutionChain: EvolutionChain;
@@ -22,6 +22,11 @@ export class ChainEvolutionComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.getPokemonColor();
+    this.getEvolutionChain();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     this.getPokemonColor();
     this.getEvolutionChain();
   }

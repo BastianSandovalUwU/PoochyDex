@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Pokemon } from '../../../../../../entities/pokemon.entity';
 import { PokemonSpecie } from '../../../../../../entities/pokemon-specie.entity';
+import { LanguageService } from 'app/modules/shared/services/language.service';
 
 @Component({
   selector: 'app-show-pokemon',
@@ -11,19 +12,27 @@ import { PokemonSpecie } from '../../../../../../entities/pokemon-specie.entity'
 })
 export class ShowPokemonComponent implements OnInit {
 
-  language: string = 'es';
+  language: string;
   pokemonName: string;
   pokemon: Pokemon;
   pokemonSpecie: PokemonSpecie;
 
   constructor(private pokeApiService: PokeApiService,
+              private languageService: LanguageService,
               private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.getLanguage();
     this.activatedRoute.params.subscribe(({ name }) => {
       this.pokemonName = name;
       this.getPokemonByName(name);
+    });
+  }
+
+  getLanguage() {
+    this.languageService.currentLanguage$.subscribe(language => {
+      this.language = language;
     });
   }
 

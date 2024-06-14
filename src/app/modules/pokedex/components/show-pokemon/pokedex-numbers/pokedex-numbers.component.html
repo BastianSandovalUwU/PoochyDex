@@ -2,7 +2,7 @@
   <h1 class="font-bold text-xl">{{ language === 'es' ? 'Numeros de Pokédex': 'Pokédex Numbers' }}</h1>
   <div class="grid sm:grid-cols-4">
     <div class="col-span-1" *ngFor="let dex of pokemonSpecie.pokedex_numbers">
-      <span class="font-bold">{{ language === 'es' ? 'Número': 'Number' }}: </span>{{ dex.entry_number }} - {{ dex.pokedex.name }}
+      <span class="font-bold">{{ language === 'es' ? 'Número': 'Number' }}: </span>{{ dex.entry_number }} - {{ dex.pokedex.name |replaceDash |titlecase}}
     </div>
   </div>
 </div>
