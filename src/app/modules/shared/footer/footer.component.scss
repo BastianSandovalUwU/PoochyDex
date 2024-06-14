@@ -1,0 +1,32 @@
+.footer-container {
+  display: flex;
+  justify-content: space-between; /* Ajusta el espacio entre Poochy y las banderas */
+  align-items: center;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-top: 1px solid #ddd;
+  width: 100%;
+}
+
+.footer-header {
+  transition: transform 0.3s ease;
+  font-weight: bold;
+}
+.footer-header:hover {
+  transform: scale(1.1);
+}
+
+.language-flags {
+  display: flex;
+}
+
+.language-flag {
+  height: 24px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.language-flag:hover {
+  transform: scale(1.1);
+}

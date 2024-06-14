@@ -1,0 +1,19 @@
+<div class="footer-container">
+  <span class="footer-header sm:ml-4 cursor-pointer hover:text-blue-500">
+    Poochy&copy; {{currentYear}}
+  </span>
+  <div class="language-flags">
+    <img
+      src="./assets/icons/flags/usa_flag.png"
+      alt="Inglés"
+      (click)="setLanguage('en')"
+      class="language-flag"
+      title="Cambiar a Inglés">
+    <img
+      src="./assets/icons/flags/spain_flag.png"
+      alt="Español"
+      (click)="setLanguage('es')"
+      class="language-flag"
+      title="Cambiar a Español">
+  </div>
+</div>

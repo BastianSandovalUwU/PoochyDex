@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Pokemon } from '../../../../../../entities/pokemon.entity';
+import { LanguageService } from 'app/modules/shared/services/language.service';
 
 @Component({
   selector: 'app-list-pokemon',
@@ -11,11 +12,14 @@ import { Pokemon } from '../../../../../../entities/pokemon.entity';
 export class ListPokemonComponent implements OnInit {
 
   allPokemon: Pokemon[] = [];
+  language: string;
 
   constructor(private pokeApiService: PokeApiService,
+              private languageService: LanguageService,
               ) { }
 
   ngOnInit() {
+    this.getLanguage();
     this.pokeApiService.getAllPokemon().subscribe((pokeData) => {
       console.log(pokeData);
       const pokemon: Pokemon[] = []
@@ -28,6 +32,12 @@ export class ListPokemonComponent implements OnInit {
       }
       this.allPokemon = pokemon;
       console.log(this.allPokemon);
+    });
+  }
+
+  getLanguage() {
+    this.languageService.currentLanguage$.subscribe(language => {
+      this.language = language;
     });
   }
 

@@ -3,7 +3,7 @@ import { PokeApiService } from './pokeApi.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { Ability, Type } from '../../../../../entities/pokemon.entity';
 import { AbilityName, AbilityResponse, Name } from '../../../../../entities/pokemon-ability.entity';
-import { DetailMove } from '../../../../../entities/moves.entity';
+import { DetailMove, EffectEntry } from '../../../../../entities/moves.entity';
 import { TargetTypes } from '../../../../../entities/common/const.interface';
 
 @Injectable({
@@ -69,6 +69,27 @@ export class HelperService {
         return {
           language: language,
           moveName: nameInfo ? nameInfo.name : 'Not Available'
+        };
+      })
+    );
+  }
+
+  getMoveEffectEntryByLanguage(move: DetailMove, language: string): Observable<{ language: string, moveName: string, effect: string, shortEffect: string }> {
+    return of(move).pipe(
+      map(moveDetail => {
+        const nameInfo = moveDetail.names.find(name => name.language.name === language);
+        let effectInfo = moveDetail.effect_entries.find(effect => effect.language.name === language);
+
+        // If not found in the desired language, try to get the English version
+        if (!effectInfo) {
+          effectInfo = moveDetail.effect_entries.find(effect => effect.language.name === 'en');
+        }
+
+        return {
+          language: language,
+          moveName: nameInfo ? nameInfo.name : 'Not Available',
+          effect: effectInfo ? effectInfo.effect : 'Effect not available',
+          shortEffect: effectInfo ? effectInfo.short_effect : 'Short effect not available'
         };
       })
     );
@@ -159,8 +180,8 @@ export class HelperService {
   getTargetTypeName(targetType: TargetTypes, language: string): string {
     if (language === 'es') {
       switch (targetType) {
-        case 'specific-move': return 'Primera Generación';
-        case 'selected-pokemon-me-first': return 'Segunda Generación';
+        case 'specific-move': return 'Usuario';
+        case 'selected-pokemon-me-first': return 'Pokémon Seleccionado';
         case 'ally': return 'Aliado Adyacente';
         case 'users-field': return 'Campo del Usuario';
         case 'user-or-ally': return 'Usuario o Aliado';
@@ -168,17 +189,17 @@ export class HelperService {
         case 'user': return 'Usuario';
         case 'random-opponent': return 'Aleatorio';
         case 'all-other-pokemon': return 'Pokémon Adyacentes';
-        case 'selected-pokemon': return 'Octava Generación';
-        case 'all-opponents': return 'Novena Generación';
+        case 'selected-pokemon': return 'Pokémon Seleccionado';
+        case 'all-opponents': return 'Todos';
         case 'entire-field': return 'Campo Entero';
-        case 'user-and-allies': return 'Decima Generación';
+        case 'user-and-allies': return 'Usuario y Aliados';
         case 'all-pokemon': return 'Todos los Pokémon';
         case 'all-allies': return 'Todos los Aliados';
         case 'fainting-pokemon': return 'Pokémon Debilitado';
         default: return '';
       }
     } else if (language === 'en'){
-        return targetType;
+        return targetType.replace(/-/g, ' ');
     } else {
       return targetType;
     }

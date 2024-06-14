@@ -4,6 +4,7 @@ import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { DetailMove } from '../../../../../../entities/moves.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Pokemon } from '../../../../../../entities/pokemon.entity';
+import { LanguageService } from 'app/modules/shared/services/language.service';
 
 @Component({
   selector: 'app-show-movement',
@@ -12,20 +13,30 @@ import { Pokemon } from '../../../../../../entities/pokemon.entity';
 })
 export class ShowMovementComponent implements OnInit {
 
-  language: string = 'es';
+  language: string;
+  backgroundColor: string = '';
   pokemonMove: string;
   moveName: string = '';
   move: DetailMove;
   pokemon: Pokemon[] = [];
+  moveEffectEntry: any;
 
   constructor(private activatedRoute: ActivatedRoute,
+              private languageService: LanguageService,
               private pokeApiService: PokeApiService,
               private helperService: HelperService,) {
     this.activatedRoute.params.subscribe(({ id }) => this.pokemonMove = id);
   }
 
   ngOnInit(): void {
+  this.getLanguage();
   this.getMove();
+  }
+
+  getLanguage() {
+    this.languageService.currentLanguage$.subscribe(language => {
+      this.language = language;
+    });
   }
 
   getMove() {
@@ -33,12 +44,23 @@ export class ShowMovementComponent implements OnInit {
       console.log(movement);
       this.move = movement;
       this.moveName = this.getMoveNameByLanguage();
+      this.moveEffectEntry = this.getMoveEffectEntryByLanguage();
       this.getPokemonDetails();
     });
   }
 
   getGenerationName(generationName: string): string {
     return this.helperService.getGenerationName(generationName, this.language);
+  }
+  getTypeColorClass(typeName: string): string {
+    return this.helperService.getTypeColorClass(typeName, this.language);
+  }
+  getMoveEffectEntryByLanguage() {
+    let effectEntry = null;
+    this.helperService.getMoveEffectEntryByLanguage(this.move, this.language).subscribe((effect) => {
+      effectEntry = effect
+    });
+    return effectEntry;
   }
   getPokemonDetails() {
 

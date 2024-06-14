@@ -56,7 +56,7 @@
             <div class="text-center bg-gray-200  hover:text-blue-400 cursor-pointer"
             [routerLink]="['/pokedex/show-ability', ability.ability.name]"
             routerLinkActive>
-              <span class="font-bold">Habilidad {{ ability.is_hidden === true ? 'Oculta' : ability.slot }}: </span>{{ ability.ability.name | titlecase }}
+              <span class="font-bold">{{ language === 'es' ? 'Habilidad' : ability.is_hidden === true ? 'Hidden' : 'Ability' }} {{ ability.is_hidden === true ? language === 'es' ? 'Oculta': 'Ability' : ability.slot }}: </span>{{ ability.ability.name | titlecase }}
             </div>
           </div>
           <div *ngIf="pokemon.pokemonDetail.abilities.length < 2">

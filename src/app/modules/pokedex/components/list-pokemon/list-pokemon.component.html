@@ -1,8 +1,8 @@
 <div class="mt-4">
-  <h1 class="mx-5 text-black text-2xl font-bold">Listado de Pokémon</h1>
+  <h1 class="mx-5 text-black text-2xl font-bold">{{ language === 'es' ? 'Listado de Pokémon' : 'Pokémon List'}}</h1>
   <hr class="my-2">
   <div class="mt-4 mx-5">
-    <span class="text-xl">Filtros de busqueda</span>
+    <span class="text-xl">{{ language === 'es' ? 'Filtros de busqueda' : 'Search Filters' }}</span>
     <div class="grid grid-cols-9 gap-2">
       <button (click)="getPokemonByGeneration(1)" class="bg-blue-300 rounded">Gen 1</button>
       <button (click)="getPokemonByGeneration(2)" class="bg-blue-300 rounded">Gen 2</button>
