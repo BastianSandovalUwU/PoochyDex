@@ -17,12 +17,12 @@
         <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage?.detailPokemon?.sprites?.other?.home?.front_default"
              (click)="goToPokemonPage(stage.species.name)"
              [src]="stage?.detailPokemon?.sprites?.other?.home?.front_default">
-        <p *ngIf="stage.evolution_details[0]?.trigger">{{ stage.evolution_details[0]?.trigger.name }}</p>
-        <p *ngIf="stage.evolution_details[0]?.time_of_day">{{ stage.evolution_details[0]?.time_of_day }}</p>
-        <p *ngIf="stage.evolution_details[0]?.min_happiness">{{ stage.evolution_details[0]?.min_happiness }}</p>
-        <p *ngIf="stage.evolution_details[0]?.known_move_type">{{ stage.evolution_details[0]?.known_move_type.name }} move</p>
+        <p *ngIf="stage.evolution_details[0]?.trigger">{{ stage.evolution_details[0]?.trigger.name |replaceDash |titlecase}}</p>
+        <p *ngIf="stage.evolution_details[0]?.time_of_day">{{ stage.evolution_details[0]?.time_of_day |replaceDash |titlecase}}</p>
+        <p *ngIf="stage.evolution_details[0]?.min_happiness">{{ stage.evolution_details[0]?.min_happiness |replaceDash |titlecase}}</p>
+        <p *ngIf="stage.evolution_details[0]?.known_move_type">{{ stage.evolution_details[0]?.known_move_type.name |replaceDash |titlecase}} move</p>
         <p *ngIf="stage.evolution_details[0]?.min_level">{{ stage.evolution_details[0]?.min_level }}</p>
-        <p *ngIf="stage.evolution_details[0]?.item">{{ stage.evolution_details[0]?.item.name }}</p>
+        <p class="hover:text-blue-500 cursor-pointer" *ngIf="stage.evolution_details[0]?.item">{{ stage.evolution_details[0]?.item.name |replaceDash |titlecase}}</p>
       </div>
       <ng-container *ngFor="let stage2 of stage.evolves_to">
         <div class="flex flex-col items-center evolution-step">
@@ -32,12 +32,12 @@
           <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage2?.detailPokemon?.sprites?.other?.home?.front_default"
                (click)="goToPokemonPage(stage2.species.name)"
                [src]="stage2?.detailPokemon?.sprites?.other?.home?.front_default">
-          <p *ngIf="stage2.evolution_details[0]?.trigger">{{ stage2.evolution_details[0]?.trigger.name }}</p>
-          <p *ngIf="stage2.evolution_details[0]?.time_of_day">{{ stage2.evolution_details[0]?.time_of_day }}</p>
-          <p *ngIf="stage2.evolution_details[0]?.min_happiness">{{ stage2.evolution_details[0]?.min_happiness }}</p>
-          <p *ngIf="stage2.evolution_details[0]?.known_move_type">{{ stage2.evolution_details[0]?.known_move_type.name }} move</p>
+          <p *ngIf="stage2.evolution_details[0]?.trigger">{{ stage2.evolution_details[0]?.trigger.name |replaceDash |titlecase}}</p>
+          <p *ngIf="stage2.evolution_details[0]?.time_of_day">{{ stage2.evolution_details[0]?.time_of_day |replaceDash |titlecase}}</p>
+          <p *ngIf="stage2.evolution_details[0]?.min_happiness">{{ stage2.evolution_details[0]?.min_happiness |replaceDash |titlecase}}</p>
+          <p *ngIf="stage2.evolution_details[0]?.known_move_type">{{ stage2.evolution_details[0]?.known_move_type.name |replaceDash |titlecase}} move</p>
           <p *ngIf="stage2.evolution_details[0]?.min_level">{{ stage2.evolution_details[0]?.min_level }}</p>
-          <p *ngIf="stage2.evolution_details[0]?.item">{{ stage2.evolution_details[0]?.item.name }}</p>
+          <p class="hover:text-blue-500 cursor-pointer" *ngIf="stage2.evolution_details[0]?.item">{{ stage2.evolution_details[0]?.item.name |replaceDash |titlecase}}</p>
         </div>
       </ng-container>
     </ng-container>

@@ -1,23 +1,22 @@
-<div class="p-4 m-1 sm:m-4 bg-gray-100 rounded-md shadow-md" *ngIf="move">
 
-   <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 sm:p-4">
+   <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 p-4"  *ngIf="move">
 
-    <div class="sm:col-span-4 bg-yellow-500 rounded-md sm:p-4 p-2 max-w-md border border-black">
+    <div class="sm:col-span-4 rounded-md sm:p-4 p-2 max-w-md border border-black" [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')">
 
       <div class="text-center mb-4">
         <h2 class="font-bold text-3xl">{{ moveName | titlecase }}</h2>
       </div>
 
-      <div class="grid grid-cols-4 bg-yellow-500 rounded-md">
+      <div class="grid grid-cols-4 rounded-md" [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')">
         <div class="col-span-2 border-l border-t border-b border-black text-lg font-bold rounded-tl-md rounded-bl-md bg-white">
-          <div class="px-2 border-b border-black text-right">Tipo:</div>
-          <div class="px-2 border-b border-black text-right">Generación:</div>
-          <div class="px-2 border-b border-black text-right">Clase:</div>
-          <div class="px-2 border-b border-black text-right">Potencia:</div>
-          <div class="px-2 border-b border-black text-right">Precisión:</div>
+          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Tipo' : 'Type' }}:</div>
+          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Generación' : 'Generation'}}:</div>
+          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Clase' : 'Class'}}:</div>
+          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Potencia' : 'Power' }}:</div>
+          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Precisión' : 'Accuaracy'}}:</div>
           <div class="px-2 border-b border-black text-right">PP:</div>
-          <div class="px-2 border-b border-black text-right">Prioridad:</div>
-          <div class="px-2 text-right">Blanco:</div>
+          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Prioridad' : 'Priority'}}:</div>
+          <div class="px-2 text-right">{{ language === 'es' ? 'Blanco' : 'Target'}}:</div>
         </div>
 
         <div class="col-span-2 border-r border-l border-t border-b border-black text-lg rounded-tr-md rounded-br-md bg-white">
@@ -40,25 +39,24 @@
           <div class="px-2 border-b border-black">{{ move.accuracy !== null ? move.accuracy : '-' }}</div>
           <div class="px-2 border-b border-black">{{ move.pp }}</div>
           <div class="px-2 border-b border-black">{{ move.priority }}</div>
-          <div class="px-2">{{ getTargetTypeName(move.target.name, language) }}</div>
+          <div class="px-2">{{ getTargetTypeName(move.target.name, language) |titlecase}}</div>
         </div>
       </div>
     </div>
 
     <div class="sm:col-span-8">
 
-      <div class="bg-gray-200 rounded-md p-4 h-full border border-black">
-        <h3 class="font-bold text-xl">Descripcion</h3>
-        Causa daño y no tiene ningún efecto secundario.
+      <div class="rounded-md p-4 h-full border border-black" [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')">
+        <h3 class="font-bold text-xl">{{ language === 'es' ? 'Efecto del Movimiento' : 'Move Effect' }}</h3>
+        {{ moveEffectEntry.effect }}
       </div>
 
     </div>
   </div>
-</div>
 
-<div class="p-4 m-4 bg-gray-100 rounded-md shadow-md" *ngIf="pokemon && move">
+<div class="p-4 m-4 rounded-md shadow-md" [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')" *ngIf="pokemon && move">
   <h1 class="font-bold text-xl">Pokemon que aprenden {{ moveName| titlecase }}</h1>
-  <div class="grid grid-cols-3 sm:grid-cols-5 justify-center items-center border border-black mt-1">
+  <div class="grid grid-cols-3 sm:grid-cols-5 justify-center items-center border border-black mt-1 bg-white">
     <div *ngFor="let pokemon of pokemon" class="flex flex-col items-center justify-center border border-black">
       <div class="text-center bg-gray-900 text-white w-full hover:text-blue-400 cursor-pointer"
       [routerLink]="['/pokedex/show-pokemon', pokemon.name]"

@@ -10,7 +10,7 @@ import { AbilityName } from '../../../../../../../entities/pokemon-ability.entit
   styleUrls: ['./pokemon-info.component.scss']
 })
 export class PokemonInfoComponent implements OnInit, OnChanges {
-  @Input() language: string = 'es';
+  @Input() language: string;
   @Input() pokemon: Pokemon;
   @Input() pokemonSpecie: PokemonSpecie;
 
@@ -25,15 +25,18 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   constructor(private helperService: HelperService,) { }
 
   ngOnInit() {
+
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.loadInfo();
+  }
+
+  loadInfo() {
     this.getPokemonColor();
     this.getPokemonAbility();
     this.helperService.getPokemonTypes(this.pokemon.types).subscribe((types) => {
       this.pokemontypes = types;
     });
-    this.pokemonNameRomaji = this.pokemonSpecie.names.filter(f => f.language.name === 'roomaji')[0];
-    this.pokemonNameHirgana = this.pokemonSpecie.names.filter(f => f.language.name === 'ja-Hrkt')[0];
-  }
-  ngOnChanges(changes: SimpleChanges): void {
     this.pokemonNameRomaji = this.pokemonSpecie.names.filter(f => f.language.name === 'roomaji')[0];
     this.pokemonNameHirgana = this.pokemonSpecie.names.filter(f => f.language.name === 'ja-Hrkt')[0];
   }

@@ -4,6 +4,8 @@ import { MenuComponent } from './menu/menu.component';
 import { PokeSpritesComponent } from './pokeSprites/pokeSprites.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { FooterComponent } from './footer/footer.component';
+import { ReplaceDashPipe } from './pipes/replaceDash.pipe';
 
 @NgModule({
   imports: [
@@ -14,10 +16,14 @@ import { MatButtonModule } from '@angular/material/button';
   exports: [
     MenuComponent,
     PokeSpritesComponent,
+    FooterComponent,
+    ReplaceDashPipe
   ],
   declarations: [
     MenuComponent,
     PokeSpritesComponent,
+    FooterComponent,
+    ReplaceDashPipe
   ]
 })
 export class SharedModule { }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 
@@ -7,8 +7,8 @@ import { HelperService } from 'app/modules/shared/services/helper.service';
   templateUrl: './pokedex-entries.component.html',
   styleUrls: ['./pokedex-entries.component.scss']
 })
-export class PokedexEntriesComponent implements OnInit {
-  @Input() language: string = 'es';
+export class PokedexEntriesComponent implements OnInit, OnChanges {
+  @Input() language: string;
   @Input() pokemonSpecie: PokemonSpecie;
 
   flavorTextEntries: { flavor_text: string, version: string }[] = [];
@@ -17,6 +17,11 @@ export class PokedexEntriesComponent implements OnInit {
   constructor(private helperService: HelperService) { }
 
   ngOnInit() {
+    this.getPokemonColor();
+    this.filterFlavorTextEntries();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     this.getPokemonColor();
     this.filterFlavorTextEntries();
   }

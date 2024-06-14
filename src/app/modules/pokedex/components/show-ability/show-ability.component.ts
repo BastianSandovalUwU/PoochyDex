@@ -5,6 +5,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { PokemonAbility } from '../../../../../../entities/pokemon-ability.entity';
+import { LanguageService } from 'app/modules/shared/services/language.service';
 
 @Component({
   selector: 'app-show-ability',
@@ -18,17 +19,24 @@ export class ShowAbilityComponent implements OnInit {
   constructor(
     private pokeApiService: PokeApiService,
     private activatedRoute: ActivatedRoute,
+    private languageService: LanguageService,
     private helperService: HelperService
   ) {}
 
   ngOnInit() {
+    this.getLanguage();
     this.activatedRoute.params.subscribe(({ ability }) => {
-      console.log('Route parameter ability:', ability);
       if (ability) {
         this.getAbilityWithPokemonDetails(ability);
       } else {
         console.error('Invalid route parameter:', ability);
       }
+    });
+  }
+
+  getLanguage() {
+    this.languageService.currentLanguage$.subscribe(language => {
+      this.language = language;
     });
   }
 
