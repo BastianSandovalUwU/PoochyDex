@@ -1,5 +1,5 @@
 <div [ngClass]="backgroundColor" class=" p-4 rounded-md col-span-1 border border-black">
-  <h1 class="font-bold text-4xl text-center">{{pokemon.name | titlecase}}</h1>
+  <h1 class="font-bold text-4xl text-center">{{pokemon.name |replaceDash | titlecase}}</h1>
   <h1 class="font-bold text-lg text-center">
     <span class="cursor-pointer" *ngIf="pokemonNameHirgana">{{pokemonNameHirgana.name | titlecase}}</span>
     <span *ngIf="pokemonNameRomaji">({{pokemonNameRomaji.name | titlecase}})</span>
@@ -41,7 +41,7 @@
               <span routerLinkActive *ngIf="!abilityGroup.ability.is_hidden">{{ abilityGroup.ability.slot }}</span>
               <span *ngIf="abilityGroup.ability.is_hidden">{{ language === 'es' ? 'Oculta': 'Hidden' }}</span>:
             </span>
-            <span class="hover:font-bold cursor-pointer" [routerLink]="['/pokedex/show-ability', abilityGroup.ability.ability.name]" >{{ abilityGroup.name }}</span>
+            <span class="hover:font-bold text-blue-500 cursor-pointer" [routerLink]="['/pokedex/show-ability', abilityGroup.ability.ability.name]" >{{ abilityGroup.name }}</span>
           </div>
         </div>
         <div *ngFor="let eggGroup of pokemonSpecie.egg_groups">

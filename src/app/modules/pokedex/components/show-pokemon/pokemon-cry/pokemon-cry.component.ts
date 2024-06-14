@@ -8,7 +8,7 @@ import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 })
 export class PokemonCryComponent implements OnInit, OnChanges {
   @Input() pokemon: Pokemon;
-  @Input() language: string = 'es';
+  @Input() language: string;
   @ViewChild('audioPlayerLatest', { static: false }) audioPlayerLatest: ElementRef<HTMLAudioElement>;
   @ViewChild('audioPlayerLegacy', { static: false }) audioPlayerLegacy: ElementRef<HTMLAudioElement>;
 

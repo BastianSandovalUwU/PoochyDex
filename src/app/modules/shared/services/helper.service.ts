@@ -3,7 +3,8 @@ import { PokeApiService } from './pokeApi.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { Ability, Type } from '../../../../../entities/pokemon.entity';
 import { AbilityName, AbilityResponse, Name } from '../../../../../entities/pokemon-ability.entity';
-import { DetailMove } from '../../../../../entities/moves.entity';
+import { DetailMove, EffectEntry } from '../../../../../entities/moves.entity';
+import { TargetTypes } from '../../../../../entities/common/const.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,39 @@ export class HelperService {
         console.error(`Error al obtener el tipo del movimiento ${typeName}:`, error);
         // Return an empty array or a default value in case of error
         return of([]);
+      })
+    );
+  }
+
+  getMoveNameByLanguage(move: DetailMove, language: string): Observable<{ language: string, moveName: string }> {
+    return of(move).pipe(
+      map(moveDetail => {
+        const nameInfo = moveDetail.names.find(name => name.language.name === language);
+        return {
+          language: language,
+          moveName: nameInfo ? nameInfo.name : 'Not Available'
+        };
+      })
+    );
+  }
+
+  getMoveEffectEntryByLanguage(move: DetailMove, language: string): Observable<{ language: string, moveName: string, effect: string, shortEffect: string }> {
+    return of(move).pipe(
+      map(moveDetail => {
+        const nameInfo = moveDetail.names.find(name => name.language.name === language);
+        let effectInfo = moveDetail.effect_entries.find(effect => effect.language.name === language);
+
+        // If not found in the desired language, try to get the English version
+        if (!effectInfo) {
+          effectInfo = moveDetail.effect_entries.find(effect => effect.language.name === 'en');
+        }
+
+        return {
+          language: language,
+          moveName: nameInfo ? nameInfo.name : 'Not Available',
+          effect: effectInfo ? effectInfo.effect : 'Effect not available',
+          shortEffect: effectInfo ? effectInfo.short_effect : 'Short effect not available'
+        };
       })
     );
   }
@@ -141,6 +175,60 @@ export class HelperService {
       }
     } else {
       return '';
+    }
+  }
+  getTargetTypeName(targetType: TargetTypes, language: string): string {
+    if (language === 'es') {
+      switch (targetType) {
+        case 'specific-move': return 'Usuario';
+        case 'selected-pokemon-me-first': return 'Pokémon Seleccionado';
+        case 'ally': return 'Aliado Adyacente';
+        case 'users-field': return 'Campo del Usuario';
+        case 'user-or-ally': return 'Usuario o Aliado';
+        case 'opponents-field': return 'Campo Rival';
+        case 'user': return 'Usuario';
+        case 'random-opponent': return 'Aleatorio';
+        case 'all-other-pokemon': return 'Pokémon Adyacentes';
+        case 'selected-pokemon': return 'Pokémon Seleccionado';
+        case 'all-opponents': return 'Todos';
+        case 'entire-field': return 'Campo Entero';
+        case 'user-and-allies': return 'Usuario y Aliados';
+        case 'all-pokemon': return 'Todos los Pokémon';
+        case 'all-allies': return 'Todos los Aliados';
+        case 'fainting-pokemon': return 'Pokémon Debilitado';
+        default: return '';
+      }
+    } else if (language === 'en'){
+        return targetType.replace(/-/g, ' ');
+    } else {
+      return targetType;
+    }
+  }
+  getTranslateTypeName(typeName: string, language: string): string {
+    if(language === 'es') {
+      switch (typeName.toLowerCase()) {
+        case 'grass': return 'Planta';
+        case 'fire': return 'Fuego';
+        case 'water': return 'Agua';
+        case 'bug': return 'Bicho';
+        case 'normal': return 'Normal';
+        case 'poison': return 'Veneno';
+        case 'electric': return 'Electrico';
+        case 'ground': return 'Tierra';
+        case 'fairy': return 'Hada';
+        case 'fighting': return 'Lucha';
+        case 'psychic': return 'Psiquico';
+        case 'rock': return 'Roca';
+        case 'ghost': return 'Fantasma';
+        case 'ice': return 'Hielo';
+        case 'dragon': return 'Dragón';
+        case 'dark': return 'Siniestro';
+        case 'steel': return 'Acero';
+        case 'flying': return 'Volador';
+        default: return 'bg-default';
+      }
+    } else {
+      return typeName;
     }
   }
   getEggGroupName(groupName: string, language: string): string {
@@ -245,7 +333,7 @@ export class HelperService {
         case 'blue': return 'Azul';
         case 'yellow': return 'Amarillo';
         case 'gold': return 'Oro';
-        case 'silver': return 'PLata';
+        case 'silver': return 'Plata';
         case 'crystal': return 'Cristal';
         case 'colosseum': return 'Colosseum';
         case 'ruby': return 'Rubí';
@@ -255,9 +343,9 @@ export class HelperService {
         case 'leafgreen': return 'Verde Hoja';
         case 'diamond': return 'Diamante';
         case 'pearl': return 'Perla';
-        case 'platinum': return 'PLatino';
+        case 'platinum': return 'Platino';
         case 'heartgold': return 'Oro HeartGold';
-        case 'soulsilver': return 'Plta SoulSilver';
+        case 'soulsilver': return 'Plata SoulSilver';
         case 'black': return 'Negro';
         case 'white': return 'Blanco';
         case 'black-2': return 'Negro 2';

@@ -130,6 +130,17 @@ export class PokeApiService {
       })
     );
   }
+  getMoveByName(name: string, gameName: string): Observable<DetailMove> {
+    const url = `${this.apiUrl}/move/${name}/`;
+    return this.http.get<DetailMove>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener el movimiento:', error);
+        // Devolver un objeto placeholder en lugar de lanzar un error
+        const placeHolderMove = this.createPlaceHolderMove(name, gameName);
+        return of(placeHolderMove);
+      })
+    );
+  }
 
   getMachineMoveByUrl(url: string): Observable<MachineMove> {
     if (this.movementsCache.has(url)) {
