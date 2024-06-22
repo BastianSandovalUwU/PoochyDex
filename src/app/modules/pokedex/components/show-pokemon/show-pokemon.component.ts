@@ -38,7 +38,6 @@ export class ShowPokemonComponent implements OnInit {
 
   getPokemonByName(name: string) {
     this.pokeApiService.getPokemonByName(name).subscribe((pokeInfo) => {
-      console.log(pokeInfo);
       this.pokemon = pokeInfo;
       this.getPokemonSpecie(pokeInfo.species.name);
     });
@@ -46,7 +45,6 @@ export class ShowPokemonComponent implements OnInit {
 
   getPokemonSpecie(name: string) {
     this.pokeApiService.getPokemonSpecieById(name).subscribe((specie) => {
-      console.log(specie);
       this.pokemonSpecie = specie;
     });
   }
