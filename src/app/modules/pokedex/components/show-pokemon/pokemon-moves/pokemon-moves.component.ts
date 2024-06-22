@@ -159,7 +159,6 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     });
 
     this.filteredMoves = filteredMoves;
-    console.log(this.filteredMoves);
   }
 
   filterMovesByMachine(): void {

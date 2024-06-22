@@ -6,24 +6,29 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from './footer/footer.component';
 import { ReplaceDashPipe } from './pipes/replaceDash.pipe';
+import { SearchButtonComponent } from './search-button/search-button.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule
   ],
   exports: [
     MenuComponent,
     PokeSpritesComponent,
     FooterComponent,
-    ReplaceDashPipe
+    ReplaceDashPipe,
+    SearchButtonComponent
   ],
   declarations: [
     MenuComponent,
     PokeSpritesComponent,
     FooterComponent,
-    ReplaceDashPipe
+    ReplaceDashPipe,
+    SearchButtonComponent
   ]
 })
 export class SharedModule { }
