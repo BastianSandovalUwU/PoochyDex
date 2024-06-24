@@ -42,6 +42,7 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
       this.getPokemonMoves();
+      this.getPokemonColor();
   }
 
   ngOnDestroy(): void {

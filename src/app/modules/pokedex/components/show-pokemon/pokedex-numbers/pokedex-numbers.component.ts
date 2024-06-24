@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 
@@ -7,7 +7,7 @@ import { HelperService } from 'app/modules/shared/services/helper.service';
   templateUrl: './pokedex-numbers.component.html',
   styleUrls: ['./pokedex-numbers.component.scss']
 })
-export class PokedexNumbersComponent implements OnInit {
+export class PokedexNumbersComponent implements OnInit, OnChanges {
   @Input() language: string = 'es';
   @Input() pokemonSpecie: PokemonSpecie;
 
@@ -17,6 +17,10 @@ export class PokedexNumbersComponent implements OnInit {
 
   ngOnInit() {
     this.getPokemonColor();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+      this.getPokemonColor();
   }
 
   getPokemonColor() {
