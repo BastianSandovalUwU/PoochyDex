@@ -17,6 +17,7 @@ import { PokemonCryComponent } from './components/show-pokemon/pokemon-cry/pokem
 import { PokemonStatsComponent } from './components/show-pokemon/pokemon-stats/pokemon-stats.component';
 import { ShowAbilityComponent } from './components/show-ability/show-ability.component';
 import { PokemonVarietiesComponent } from './components/show-pokemon/pokemon-varieties/pokemon-varieties.component';
+import { PokedexComponent } from './pokedex.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { PokemonVarietiesComponent } from './components/show-pokemon/pokemon-var
     MatIconModule
   ],
   declarations: [
+    PokedexComponent,
     ListPokemonComponent,
     ShowPokemonComponent,
     PokemonInfoComponent,
