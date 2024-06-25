@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Pokemon } from '../../../../../../entities/pokemon.entity';
 import { LanguageService } from 'app/modules/shared/services/language.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-pokemon',
