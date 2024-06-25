@@ -13,7 +13,7 @@
           (click)="navigateToPokemon(item.name)"
           *ngFor="let item of limitedFilteredData">
           <img [src]="'./assets/all-sprites/' + item.number + '.png'" alt="" class="w-20 mr-2">
-          <span>{{ item.name | titlecase }}</span>
+          <span>{{ item.name |replaceDash | titlecase }}</span>
       </li>
       <li *ngIf="limitedFilteredData.length === 0 && searchQuery !== ''">
         {{ language === 'es' ? 'No se encontró un Pokémon con el nombre: ' + searchQuery :
