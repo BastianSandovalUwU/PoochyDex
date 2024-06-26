@@ -1167,7 +1167,7 @@ export const ALL_POKEMON = [
     { name: "fezandipiti", number: 1016 },
     { name: "ogerpon", number: 1017 },
     { name: "ogerpon-hearthflame-mask", number: 1017.1 },
-    { name: "ogerpon-cornerstone-mask", number: 1017.3 },
+    { name: "ogerpon-cornerstone-mask", number: 1017.2 },
     { name: "ogerpon-wellspring-mask", number: 1017.3 },
     { name: "archaludon", number: 1018 },
     { name: "hydrapple", number: 1019 },
@@ -1181,4 +1181,4 @@ export const ALL_POKEMON = [
     { name: "pecharunt", number: 1025 }
 ];
 
-export type AlPokemon = (typeof ALL_POKEMON)[number];
+export type AllPokemon = (typeof ALL_POKEMON)[number];

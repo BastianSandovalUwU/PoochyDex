@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Pokemon } from '../../../../../../entities/pokemon.entity';
 import { LanguageService } from 'app/modules/shared/services/language.service';
-import { ALL_POKEMON } from '../../../../../../entities/common/const.interface';
+import { ALL_POKEMON, AllPokemon } from '../../../../../../entities/common/const.interface';
 
 @Component({
   selector: 'app-list-pokemon',
@@ -11,7 +11,8 @@ import { ALL_POKEMON } from '../../../../../../entities/common/const.interface';
 })
 export class ListPokemonComponent implements OnInit {
 
-  allPokemon = ALL_POKEMON;
+  allPokemon: AllPokemon[] = ALL_POKEMON;
+  filteredPokemon: AllPokemon[] = ALL_POKEMON;
   language: string;
 
   constructor(private pokeApiService: PokeApiService,
@@ -20,17 +21,6 @@ export class ListPokemonComponent implements OnInit {
 
   ngOnInit() {
     this.getLanguage();
-    // this.pokeApiService.getAllPokemon().subscribe((pokeData) => {
-    //   const pokemon: Pokemon[] = []
-    //   for (let i = 0; i < pokeData.results.length; i++) {
-    //     this.pokeApiService.getPokemonByName(pokeData.results[i].name).subscribe((pokeInfo) => {
-    //       if(pokeInfo.is_default === true) {
-    //         pokemon.push(pokeInfo);
-    //       }
-    //     });
-    //   }
-    //   this.allPokemon = pokemon;
-    // });
   }
 
   getLanguage() {
@@ -40,15 +30,38 @@ export class ListPokemonComponent implements OnInit {
   }
 
   getPokemonByGeneration(generationNumber: number) {
-    this.allPokemon = [];
-    this.pokeApiService.getPokemonByGeneration(generationNumber).subscribe((pokeData) => {
-      const pokemon = []
-      for (let i = 0; i < pokeData.pokemon_species.length; i++) {
-        this.pokeApiService.getPokemonByName(pokeData.pokemon_species[i].name).subscribe((pokeInfo) => {
-        });
-      }
-      this.allPokemon = pokemon.sort((a,b) => b.order - a.order);
-    });
+    switch (generationNumber) {
+      case 1:
+          this.filteredPokemon = this.allPokemon.filter(f => f.number > 0 && f.number < 152);
+        break;
+      case 2:
+          this.filteredPokemon = this.allPokemon.filter(f => f.number > 151 && f.number < 252);
+        break;
+      case 3:
+          this.filteredPokemon = this.allPokemon.filter(f => f.number > 251 && f.number < 387);
+        break;
+      case 4:
+          this.filteredPokemon = this.allPokemon.filter(f => f.number >= 387 && f.number < 494);
+        break;
+      case 5:
+          this.filteredPokemon = this.allPokemon.filter(f => f.number > 493 && f.number < 650);
+        break;
+      case 6:
+          this.filteredPokemon = this.allPokemon.filter(f => f.number > 649 && f.number < 722);
+        break;
+      case 7:
+          this.filteredPokemon = this.allPokemon.filter(f => f.number > 721 && f.number < 810);
+        break;
+      case 8:
+          this.filteredPokemon = this.allPokemon.filter(f => f.number > 809 && f.number < 906);
+        break;
+      case 9:
+          this.filteredPokemon = this.allPokemon.filter(f => f.number > 905 && f.number < 1026);
+        break;
+
+      default:
+        break;
+    }
 
   }
 
