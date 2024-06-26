@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Pokemon } from '../../../../../../entities/pokemon.entity';
 import { LanguageService } from 'app/modules/shared/services/language.service';
+import { ALL_POKEMON } from '../../../../../../entities/common/const.interface';
 
 @Component({
   selector: 'app-list-pokemon',
@@ -10,7 +11,7 @@ import { LanguageService } from 'app/modules/shared/services/language.service';
 })
 export class ListPokemonComponent implements OnInit {
 
-  allPokemon: Pokemon[] = [];
+  allPokemon = ALL_POKEMON;
   language: string;
 
   constructor(private pokeApiService: PokeApiService,
@@ -19,17 +20,17 @@ export class ListPokemonComponent implements OnInit {
 
   ngOnInit() {
     this.getLanguage();
-    this.pokeApiService.getAllPokemon().subscribe((pokeData) => {
-      const pokemon: Pokemon[] = []
-      for (let i = 0; i < pokeData.results.length; i++) {
-        this.pokeApiService.getPokemonByName(pokeData.results[i].name).subscribe((pokeInfo) => {
-          if(pokeInfo.is_default === true) {
-            pokemon.push(pokeInfo);
-          }
-        });
-      }
-      this.allPokemon = pokemon;
-    });
+    // this.pokeApiService.getAllPokemon().subscribe((pokeData) => {
+    //   const pokemon: Pokemon[] = []
+    //   for (let i = 0; i < pokeData.results.length; i++) {
+    //     this.pokeApiService.getPokemonByName(pokeData.results[i].name).subscribe((pokeInfo) => {
+    //       if(pokeInfo.is_default === true) {
+    //         pokemon.push(pokeInfo);
+    //       }
+    //     });
+    //   }
+    //   this.allPokemon = pokemon;
+    // });
   }
 
   getLanguage() {
