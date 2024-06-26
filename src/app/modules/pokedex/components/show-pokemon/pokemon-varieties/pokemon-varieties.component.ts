@@ -28,6 +28,7 @@ export class PokemonVarietiesComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
       this.getVarietiesInfo();
+      this.getPokemonColor();
   }
 
   getVarietiesInfo() {
@@ -40,7 +41,6 @@ export class PokemonVarietiesComponent implements OnInit, OnChanges {
           }
       });
     }
-    console.log(pokemonVarieties);
     this.pokemonVarieties = pokemonVarieties;
 
   }

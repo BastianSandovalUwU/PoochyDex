@@ -17,23 +17,21 @@
   </div>
 
   <div class="grid grid-cols-3 sm:grid-cols-8 gap-2 mx-5 mt-5">
-    <div *ngFor="let pokemon of allPokemon">
+    <div *ngFor="let pokemon of filteredPokemon" class="hover:opacity-80">
       <h1 class="bg-gray-200 rounded-t-lg border-t border-x border-black text-center pb-2 text-xl hover:text-blue-500 cursor-pointer">#{{ pokemon.number }}</h1>
-      <div class="bg-gray-200 border-x border-black col-span-1 w-full flex justify-center">
-        <img class="w-80 hover:opacity-80 cursor-pointer" [src]="'./assets/all-sprites/' + pokemon.number + '.png'" alt="" class="w-20 mr-2">
+      <div class="bg-gray-200 border-x border-black col-span-1 flex justify-center cursor-pointer">
+        <img class="w-80"
+             routerLinkActive="router-link-active"
+             [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
+             [src]="'./assets/all-sprites/' + pokemon.number + '.png'" alt="" class="w-20 mr-2"
+        >
       </div>
-      <h1 class="bg-gray-200 rounded-b-lg border-b border-x border-black text-center pb-2 text-xl hover:text-blue-500 cursor-pointer">{{ pokemon.name |replaceDash | titlecase }}</h1>
-      <!-- <div class="bg-gray-200 rounded-lg border border-black col-span-1">
-        <img class="w-80 hover:opacity-80 cursor-pointer" *ngIf="pokemon.sprites.other.home.front_default"
-             [src]="pokemon.sprites.other.home.front_default" width="300"
-             routerLinkActive="router-link-active"
-            [routerLink]="['/pokedex/show-pokemon', pokemon.name]">
-        <img class="w-80 hover:opacity-80 cursor-pointer" *ngIf="!pokemon.sprites.other.home.front_default"
-             [src]="pokemon.sprites.other['official-artwork'].front_default"
-             routerLinkActive="router-link-active"
-            [routerLink]="['/pokedex/show-pokemon', pokemon.name]">
-        <h2 class="text-center pb-2 text-xl hover:text-blue-500 cursor-pointer">{{ pokemon.name | titlecase}}</h2>
-      </div> -->
+      <h1 class="bg-gray-200 rounded-b-lg border-b
+          border-x border-black text-center pb-2
+          text-xl hover:text-blue-500 cursor-pointer"
+          [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
+          routerLinkActive="router-link-active"
+      >{{ pokemon.name |replaceDash | titlecase }}</h1>
     </div>
   </div>
 
