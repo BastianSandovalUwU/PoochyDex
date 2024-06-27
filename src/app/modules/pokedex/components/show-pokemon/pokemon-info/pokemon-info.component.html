@@ -6,10 +6,13 @@
   </h1>
   <div class="grid grid-cols-3 gap-1">
     <div class="col-span-3 flex justify-center">
+      <!-- <img [src]="pokemon.sprites.other.home.front_shiny" style="display: none;"> -->
       <img [src]="pokemon.sprites.other.home.front_shiny" style="display: none;">
-      <img [src]="pokemon.sprites.other['official-artwork'].front_shiny" style="display: none;">
-      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = true" *ngIf="pokemon.sprites.other.home.front_default && !showShiny" [src]="pokemon.sprites.other.home.front_default">
-      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = false" *ngIf="pokemon.sprites.other.home.front_shiny && showShiny" [src]="pokemon.sprites.other.home.front_shiny">
+      <img [src]="'./assets/all-home-shiny-sprites/' + pokemon.id + '.png'" style="display: none;">
+      <!-- <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = true" *ngIf="pokemon.sprites.other.home.front_default && !showShiny" [src]="pokemon.sprites.other.home.front_default"> -->
+      <!-- <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = false" *ngIf="pokemon.sprites.other.home.front_shiny && showShiny" [src]="pokemon.sprites.other.home.front_shiny"> -->
+      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = true" *ngIf="pokemon.sprites.other.home.front_default && !showShiny" [src]="'./assets/all-home-sprites/' + pokemonId + '.png'">
+      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = false" *ngIf="pokemon.sprites.other.home.front_shiny && showShiny" [src]="'./assets/all-home-shiny-sprites/' + pokemonId + '.png'">
       <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = true" *ngIf="!pokemon.sprites.other.home.front_default && !showShiny" [src]="pokemon.sprites.other['official-artwork'].front_default">
       <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = false" *ngIf="!pokemon.sprites.other.home.front_default && showShiny" [src]="pokemon.sprites.other['official-artwork'].front_shiny">
     </div>
