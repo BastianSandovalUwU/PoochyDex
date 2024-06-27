@@ -4,12 +4,13 @@ import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { Ability, Type } from '../../../../../entities/pokemon.entity';
 import { AbilityName, AbilityResponse, Name } from '../../../../../entities/pokemon-ability.entity';
 import { DetailMove, EffectEntry } from '../../../../../entities/moves.entity';
-import { TargetTypes } from '../../../../../entities/common/const.interface';
+import { TargetTypes, AllPokemon, ALL_POKEMON } from '../../../../../entities/common/const.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelperService {
+  allPokemon: AllPokemon[] = ALL_POKEMON;
 
   constructor(private pokeApiService: PokeApiService) { }
 
@@ -385,4 +386,12 @@ export class HelperService {
     }
   }
 
+  getPokemonIdNumber(pokemonName: string): string {
+    const pokemon = this.allPokemon.filter(f => f.name === pokemonName)[0];
+    if(pokemon === undefined) {
+      return null;
+    }
+    console.log(pokemon);
+    return pokemon.number;
+  }
 }

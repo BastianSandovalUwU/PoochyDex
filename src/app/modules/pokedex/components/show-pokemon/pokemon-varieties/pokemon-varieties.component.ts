@@ -16,6 +16,7 @@ export class PokemonVarietiesComponent implements OnInit, OnChanges {
 
   backgroundColor: string = '';
   pokemonVarieties: Pokemon[];
+  pokemonId: string;
 
   constructor(private helperService: HelperService,
               private pokeApiService: PokeApiService,
@@ -34,14 +35,21 @@ export class PokemonVarietiesComponent implements OnInit, OnChanges {
   getVarietiesInfo() {
 
     const pokemonVarieties = [];
+    console.log(this.pokemonSpecie.varieties);
     for (let i = 0; i < this.pokemonSpecie.varieties.length; i++) {
-      this.pokeApiService.getPokemonByName(this.pokemonSpecie.varieties[i].pokemon.name).subscribe((pokeInfo) => {
-        if(pokeInfo.is_default === false) {
-            pokemonVarieties.push(pokeInfo);
-          }
-      });
+      const pokeId = this.helperService.getPokemonIdNumber(this.pokemonSpecie.varieties[i].pokemon.name);
+      // this.pokeApiService.getPokemonByName(this.pokemonSpecie.varieties[i].pokemon.name).subscribe((pokeInfo) => {
+      //   if(pokeInfo.is_default === false) {
+      const pokeInfo = {
+        id: pokeId,
+        name: this.pokemonSpecie.varieties[i].pokemon.name
+      }
+      pokemonVarieties.push(pokeInfo);
+      //     }
+      // });
     }
     this.pokemonVarieties = pokemonVarieties;
+    console.log(this.pokemonVarieties);
 
   }
 
