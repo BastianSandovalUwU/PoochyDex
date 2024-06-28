@@ -4,13 +4,15 @@ import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { Ability, Type } from '../../../../../entities/pokemon.entity';
 import { AbilityName, AbilityResponse, Name } from '../../../../../entities/pokemon-ability.entity';
 import { DetailMove, EffectEntry } from '../../../../../entities/moves.entity';
-import { TargetTypes, AllPokemon, ALL_POKEMON } from '../../../../../entities/common/const.interface';
+import { TargetTypes, AllPokemon, ALL_POKEMON, AllPokemonGmaxForms, ALL_GMAX_POKEMON_FORMS, ALL_POKEMON_MEGA_FORMS, AllPokemonMegaForms } from '../../../../../entities/common/const.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelperService {
   allPokemon: AllPokemon[] = ALL_POKEMON;
+  allPokemonGmax: AllPokemonGmaxForms[] = ALL_GMAX_POKEMON_FORMS;
+  allPokemonMega: AllPokemonMegaForms[] = ALL_POKEMON_MEGA_FORMS;
 
   constructor(private pokeApiService: PokeApiService) { }
 
@@ -386,12 +388,13 @@ export class HelperService {
     }
   }
 
-  getPokemonIdNumber(pokemonName: string): string {
-    const pokemon = this.allPokemon.filter(f => f.name === pokemonName)[0];
+  getPokemonSpriteImg(pokemonName: string): string {
+    let allPokemon = this.allPokemon;
+    allPokemon = allPokemon.concat(this.allPokemonGmax, this.allPokemonMega);
+    const pokemon = allPokemon.filter(f => f.name === pokemonName)[0];
     if(pokemon === undefined) {
       return null;
     }
-    console.log(pokemon);
-    return pokemon.number;
+    return pokemon.imageName;
   }
 }
