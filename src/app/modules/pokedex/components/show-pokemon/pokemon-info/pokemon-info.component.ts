@@ -26,7 +26,7 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   constructor(private helperService: HelperService,) { }
 
   ngOnInit() {
-    this.pokemonId = this.helperService.getPokemonIdNumber(this.pokemon.name);
+    this.pokemonId = this.helperService.getPokemonSpriteImg(this.pokemon.name);
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.loadInfo();
@@ -36,7 +36,7 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
     this.getPokemonColor();
     this.showShiny = false;
     this.getPokemonAbility();
-    this.pokemonId = this.helperService.getPokemonIdNumber(this.pokemon.name);
+    this.pokemonId = this.helperService.getPokemonSpriteImg(this.pokemon.name);
     this.helperService.getPokemonTypes(this.pokemon.types).subscribe((types) => {
       this.pokemontypes = types;
     });
