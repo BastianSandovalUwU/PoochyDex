@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ReplaceDashPipe } from './pipes/replaceDash.pipe';
 import { SearchButtonComponent } from './search-button/search-button.component';
 import { FormsModule } from '@angular/forms';
+import { TranslateEvoMethodPipe } from './pipes/translateEvoMethod.pipe';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     PokeSpritesComponent,
     FooterComponent,
     ReplaceDashPipe,
+    TranslateEvoMethodPipe,
     SearchButtonComponent
   ],
   declarations: [
@@ -28,6 +30,7 @@ import { FormsModule } from '@angular/forms';
     PokeSpritesComponent,
     FooterComponent,
     ReplaceDashPipe,
+    TranslateEvoMethodPipe,
     SearchButtonComponent
   ]
 })

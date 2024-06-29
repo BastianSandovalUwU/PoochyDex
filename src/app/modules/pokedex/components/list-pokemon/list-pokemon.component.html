@@ -1,22 +1,55 @@
 <div class="mt-4">
-  <h1 class="mx-5 text-black text-2xl font-bold">{{ language === 'es' ? 'Listado de Pokémon' : 'Pokémon List'}}</h1>
+  <h1 class="mx-5 pl-2 text-black text-2xl font-bold">{{ language === 'es' ? 'Listado de Pokémon' : 'Pokémon List'}}</h1>
   <hr class="my-2">
-  <div class="mt-4 mx-5">
-    <span class="text-xl">{{ language === 'es' ? 'Filtros de busqueda' : 'Search Filters' }}</span>
-    <div class="grid grid-cols-3 sm:grid-cols-9 gap-2">
-      <button (click)="getPokemonByGeneration(1)" class="bg-blue-300 rounded">Gen 1</button>
-      <button (click)="getPokemonByGeneration(2)" class="bg-blue-300 rounded">Gen 2</button>
-      <button (click)="getPokemonByGeneration(3)" class="bg-blue-300 rounded">Gen 3</button>
-      <button (click)="getPokemonByGeneration(4)" class="bg-blue-300 rounded">Gen 4</button>
-      <button (click)="getPokemonByGeneration(5)" class="bg-blue-300 rounded">Gen 5</button>
-      <button (click)="getPokemonByGeneration(6)" class="bg-blue-300 rounded">Gen 6</button>
-      <button (click)="getPokemonByGeneration(7)" class="bg-blue-300 rounded">Gen 7</button>
-      <button (click)="getPokemonByGeneration(8)" class="bg-blue-300 rounded">Gen 8</button>
-      <button (click)="getPokemonByGeneration(9)" class="bg-blue-300 rounded">Gen 9</button>
+  <div class="mt-4 mx-5 bg-gray-100 rounded-md p-4 border border-black">
+    <div class="flex justify-between items-center">
+      <span class="text-xl">{{ language === 'es' ? 'Filtros de búsqueda' : 'Search Filters' }}</span>
+      <button mat-icon-button (click)="toggleFilters()">
+        <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </button>
+    </div>
+    <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="filters-container">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
+        <div class="grid grid-cols-3">
+          <label *ngFor="let gen of generations">
+            <input type="checkbox" [value]="gen" [checked]="selectedGenerations.includes(gen)" (change)="toggleGeneration(gen, $event)" />
+            {{ 'Gen ' + gen }}
+          </label>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3">
+          <label>
+            <input type="checkbox" [value]="'alola'" [checked]="selectedForms.includes('alola')" (change)="toggleForm('alola', $event)" />
+            {{ language === 'es' ? 'Formas Alola' : 'Alola Forms' }}
+          </label>
+          <label>
+            <input type="checkbox" [value]="'galar'" [checked]="selectedForms.includes('galar')" (change)="toggleForm('galar', $event)" />
+            {{ language === 'es' ? 'Formas Galar' : 'Galar Forms' }}
+          </label>
+          <label>
+            <input type="checkbox" [value]="'paldea'" [checked]="selectedForms.includes('paldea')" (change)="toggleForm('paldea', $event)" />
+            {{ language === 'es' ? 'Formas Paldea' : 'Paldea Forms' }}
+          </label>
+          <label>
+            <input type="checkbox" [value]="'hisui'" [checked]="selectedForms.includes('hisui')" (change)="toggleForm('hisui', $event)" />
+            {{ language === 'es' ? 'Formas Hisui' : 'Hisui Forms' }}
+          </label>
+          <label>
+            <input type="checkbox" [value]="'gmax'" [checked]="selectedForms.includes('gmax')" (change)="toggleForm('gmax', $event)" />
+            {{ language === 'es' ? 'Formas Gigamax ' : 'Gigantamax  Forms' }}
+          </label>
+          <label>
+            <input type="checkbox" [value]="'mega'" [checked]="selectedForms.includes('mega')" (change)="toggleForm('mega', $event)" />
+            {{ language === 'es' ? 'Formas Mega' : 'Mega Forms' }}
+          </label>
+        </div>
+      </div>
+      <button (click)="applyFilters()" class="bg-blue-500 text-white rounded-md mt-4 px-4 py-2">
+        {{ language === 'es' ? 'Aplicar Filtros' : 'Apply Filters' }}
+      </button>
     </div>
   </div>
 
-  <div class="grid grid-cols-3 sm:grid-cols-8 gap-2 mx-5 mt-5">
+  <div class="grid grid-cols-3 sm:grid-cols-8 gap-2 mx-5 my-5">
     <div *ngFor="let pokemon of filteredPokemon" class="hover:opacity-80">
       <h1 class="bg-gray-200 rounded-t-lg border-t border-x border-black text-center pb-2 text-xl hover:text-blue-500 cursor-pointer">#{{ pokemon.number }}</h1>
       <div class="bg-gray-200 border-x border-black col-span-1 flex justify-center cursor-pointer">

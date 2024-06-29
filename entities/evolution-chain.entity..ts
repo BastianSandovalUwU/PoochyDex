@@ -12,7 +12,8 @@ export type Chain = {
   evolves_to:        Chain[];
   is_baby:           boolean;
   species:           NameUrl;
-  detailPokemon?:    Pokemon;
+  pokemonName?:       string;
+  imageName?:        string;
 }
 
 export type EvolutionDetail = {
