@@ -35,7 +35,6 @@ export class PokemonVarietiesComponent implements OnInit, OnChanges {
   getVarietiesInfo() {
 
     const pokemonVarieties = [];
-    console.log(this.pokemonSpecie.varieties);
     for (let i = 0; i < this.pokemonSpecie.varieties.length; i++) {
       const pokeImgname = this.helperService.getPokemonSpriteImg(this.pokemonSpecie.varieties[i].pokemon.name);
       const pokeInfo = {
@@ -45,7 +44,6 @@ export class PokemonVarietiesComponent implements OnInit, OnChanges {
       pokemonVarieties.push(pokeInfo);
     }
     this.pokemonVarieties = pokemonVarieties;
-    console.log(this.pokemonVarieties);
 
   }
 
