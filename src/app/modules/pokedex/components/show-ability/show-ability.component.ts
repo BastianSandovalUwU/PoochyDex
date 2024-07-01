@@ -15,6 +15,7 @@ import { LanguageService } from 'app/modules/shared/services/language.service';
 export class ShowAbilityComponent implements OnInit {
   language: string = 'es';
   ability: PokemonAbility;
+  abilityDescription: any;
 
   constructor(
     private pokeApiService: PokeApiService,
@@ -40,10 +41,13 @@ export class ShowAbilityComponent implements OnInit {
     });
   }
 
+  getAbilitDescriptionLanguage(): void {
+    this.abilityDescription = this.ability.flavor_text_entries.filter(f => f.language.name === this.language)
+    console.log(this.abilityDescription);
+  }
   getAbilityWithPokemonDetails(abilityName: string) {
     this.pokeApiService.getAbilityById(abilityName).pipe(
       switchMap((ability) => {
-        console.log('Received Ability data:', ability);
         if (ability && ability.pokemon) {
           // Map array of Pokémon URLs/names to an array of observables
           const pokemonObservables = ability.pokemon.map(entry => {
@@ -62,7 +66,6 @@ export class ShowAbilityComponent implements OnInit {
             }))
           );
         } else {
-          console.error('Invalid ability data:', ability);
           return [];
         }
       })
@@ -70,6 +73,8 @@ export class ShowAbilityComponent implements OnInit {
       (abilityWithDetails) => {
         console.log('Ability with enriched Pokémon data:', abilityWithDetails);
         this.ability = abilityWithDetails;
+        console.log(this.ability);
+        this.getAbilitDescriptionLanguage();
       },
       (error) => {
         console.error('Error fetching Pokémon details:', error);
