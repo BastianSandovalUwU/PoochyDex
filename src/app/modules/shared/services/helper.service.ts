@@ -4,7 +4,7 @@ import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { Ability, Type } from '../../../../../entities/pokemon.entity';
 import { AbilityName, AbilityResponse, Name } from '../../../../../entities/pokemon-ability.entity';
 import { DetailMove, EffectEntry } from '../../../../../entities/moves.entity';
-import { TargetTypes, AllPokemon, ALL_POKEMON, AllPokemonGmaxForms, ALL_GMAX_POKEMON_FORMS, ALL_POKEMON_MEGA_FORMS, AllPokemonMegaForms } from '../../../../../entities/common/const.interface';
+import { TargetTypes, AllPokemon, ALL_POKEMON, AllPokemonGmaxForms, ALL_GMAX_POKEMON_FORMS, ALL_POKEMON_MEGA_FORMS, AllPokemonMegaForms, MISC_POKEMON_FORMS } from '../../../../../entities/common/const.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,7 @@ export class HelperService {
   allPokemon: AllPokemon[] = ALL_POKEMON;
   allPokemonGmax: AllPokemonGmaxForms[] = ALL_GMAX_POKEMON_FORMS;
   allPokemonMega: AllPokemonMegaForms[] = ALL_POKEMON_MEGA_FORMS;
+  allPokemonMisc: any[] = MISC_POKEMON_FORMS;
 
   constructor(private pokeApiService: PokeApiService) { }
 
@@ -293,14 +294,16 @@ export class HelperService {
       case 'lets-go-eevee': return 'bg-pokemon-letsGo-eevee text-black';
       case 'sword': return 'bg-pokemon-sword';
       case 'shield': return 'bg-pokemon-shield';
+      case 'brilliant-diamond': return 'bg-brilliant-diamond';
+      case 'shining-pearl': return 'bg-shining-pearl';
       case 'scarlet': return 'bg-pokemon-scarlet';
       case 'violet': return 'bg-pokemon-violet';
       case 'red-blue': return 'bg-pokemon-red';
-      case 'gold-silver': return 'bg-pokemon-gold';
+      case 'gold-silver': return 'bg-pokemon-gold text-black';
       case 'ruby-sapphire': return 'bg-pokemon-ruby';
       case 'fire-red-leaf-green': return 'bg-pokemon-fire-red';
-      case 'diamond-pearl': return 'bg-pokemon-diamond';
-      case 'heartgold-soulsilver': return 'bg-pokemon-heartgold';
+      case 'diamond-pearl': return 'bg-pokemon-diamond text-black';
+      case 'heartgold-soulsilver': return 'bg-pokemon-heartgold text-black';
       case 'black-white': return 'bg-pokemon-black';
       case 'black-2-white-2': return 'bg-pokemon-black-2';
       case 'x-y': return 'bg-pokemon-x';
@@ -309,7 +312,9 @@ export class HelperService {
       case 'ultra-sun-ultra-moon': return 'bg-pokemon-ultra-sun';
       case 'lets-go-pikachu-lets-go-eevee': return 'bg-pokemon-letsGo-pikachu text-black';
       case 'sword-shield': return 'bg-pokemon-sword';
+      case 'brilliant-diamond-and-shining-pearl': return 'bg-pokemon-brilliant-diamond text-black';
       case 'scarlet-violet': return 'bg-pokemon-scarlet';
+      case 'legends-arceus': return 'bg-white text-black';
       default: return '';
     }
   }
@@ -372,6 +377,7 @@ export class HelperService {
         case 'ruby-sapphire': return 'Rubí - Zafiro';
         case 'firered-leafgreen': return 'Rojo Fuego - Verde Hoja';
         case 'diamond-pearl': return 'Diamante - Perla';
+        case 'heartgold-soulsilver': return 'Oro HeartGold - Plata SoulSilver';
         case 'black-white': return 'Negro - Blanco';
         case 'black-2-white-2': return 'Negro 2 - Blanco 2';
         case 'x-y': return 'Pokémon X - Pokémon Y';
@@ -381,6 +387,8 @@ export class HelperService {
         case 'lets-go-pikachu-lets-go-eevee': return "Let's Go, Pikachu! - Let's Go, Eevee!";
         case 'sword-shield': return 'Espada - Escudo';
         case 'scarlet-violet': return 'Escarlata - Purpura';
+        case 'brilliant-diamond-and-shining-pearl': return 'Diamante Brillante - Perla Reluciente';
+        case 'legends-arceus': return 'Legendas Arceus';
         default: return '';
       }
     } else {
@@ -390,7 +398,7 @@ export class HelperService {
 
   getPokemonSpriteImg(pokemonName: string): string {
     let allPokemon = this.allPokemon;
-    allPokemon = allPokemon.concat(this.allPokemonGmax, this.allPokemonMega);
+    allPokemon = allPokemon.concat(this.allPokemonGmax, this.allPokemonMega, this.allPokemonMisc);
     const pokemon = allPokemon.filter(f => f.name === pokemonName)[0];
     if(pokemon === undefined) {
       return null;

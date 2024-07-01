@@ -1253,3 +1253,43 @@ export const ALL_POKEMON_HISUI_REGIONAL_FORMS = [
 
 export type AllPokemonHisuiRegionalForms = (typeof ALL_POKEMON_HISUI_REGIONAL_FORMS)[number];
 
+export const MISC_POKEMON_FORMS = [
+  { name: 'pikachu-starter', imageName: '25-starter' , number: 25.10},
+];
+
+
+export const POKEMON_VERSION_ICON = [
+  { name: 'red', imageName: '6' , number: 6 },
+  { name: 'green', imageName: '3' , number: 3},
+  { name: 'blue', imageName: '9' , number: 9 },
+  { name: 'yellow', imageName: '25' , number: 25  },
+  { name: 'silver', imageName: '249' , number: 249 },
+  { name: 'gold', imageName: '250' , number: 250 },
+  { name: 'crystal', imageName: '245' , number: 245 },
+  { name: 'ruby', imageName: '382' , number: 382 },
+  { name: 'sapphire', imageName: '383' , number: 383 },
+  { name: 'emerald', imageName: '384' , number: 384 },
+  { name: 'firered', imageName: '6' , number: 6 },
+  { name: 'leafgreen', imageName: '3' , number: 3 },
+  { name: 'diamond', imageName: '483' , number: 483 },
+  { name: 'pearl', imageName: '484' , number: 484 },
+  { name: 'platinum', imageName: '487' , number: 487 },
+  { name: 'heartgold', imageName: '250' , number: 250 },
+  { name: 'soulsilver', imageName: '249' , number: 249 },
+  { name: 'black', imageName: '643' , number: 643 },
+  { name: 'white', imageName: '644' , number: 644 },
+  { name: 'white-2', imageName: '646' , number: 646 },
+  { name: 'black-2', imageName: '646' , number: 646 },
+  { name: 'x', imageName: '716' , number: 716 },
+  { name: 'y', imageName: '717' , number: 717 },
+  { name: 'sun', imageName: '791' , number: 791 },
+  { name: 'moon', imageName: '792' , number: 792 },
+  { name: 'ultra-sun', imageName: '800' , number: 800 },
+  { name: 'ultra-moon', imageName: '800' , number: 800 },
+  { name: 'sword', imageName: '888' , number: 888 },
+  { name: 'shield', imageName: '889' , number: 889 },
+  { name: 'scarlet', imageName: '1007' , number: 1007},
+  { name: 'violet', imageName: '1008' , number: 1008},
+];
+
+export type PokemonVersionIcon = (typeof POKEMON_VERSION_ICON)[number];

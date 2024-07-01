@@ -33,6 +33,7 @@ export class PokedexEntriesComponent implements OnInit, OnChanges {
         flavor_text: entry.flavor_text,
         version: entry.version.name
       }));
+    console.log(this.flavorTextEntries);
   }
 
   getGameVersionColor(gameVersion: string): string {
