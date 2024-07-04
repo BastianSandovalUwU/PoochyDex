@@ -1,0 +1,37 @@
+<div>
+  <h1 class="text-black text-2xl font-bold">{{ language === 'es' ? 'Ajustes Visuales' : 'Visual Settings'}}</h1>
+
+  <hr class="my-2">
+
+  <div class="mt-3">
+    <p class="font-bold text-xl">Elegir pantalla de inicio</p>
+    <div class="pl-3">
+      <p>Seleccionar la pantalla inicial cada vez que entres a la aplicación.</p>
+      <select>
+        <option *ngFor="let view of mainViewsOptions" [value]="view" (clicl)="seletectedView = view">{{ view }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <p class="font-bold text-xl">Elegir Sprites preferidos</p>
+    <div class="pl-3">
+      <p>Solamente si el pokémon posee ese sprite, sino existe tal sprite se mostrara el sprite de Home.</p>
+      <select>
+        <option *ngFor="let view of mainViewsOptions" [value]="view" (clicl)="seletectedView = view">{{ view }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <p class="font-bold text-xl">¿Incluir formas extras en el listado de pokémon?</p>
+    <div class="pl-3">
+      <p>Se agregaran por defecto a la carga inicial del listado todas las formas extras.</p>
+      <select>
+        <option value="Si">Si</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+  </div>
+
+</div>
