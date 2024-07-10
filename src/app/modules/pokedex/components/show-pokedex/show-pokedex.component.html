@@ -1,0 +1,22 @@
+<div>
+  <div class="grid grid-cols-3 sm:grid-cols-8 gap-2 mx-5 my-5">
+    <div *ngFor="let pokemon of pokedex" class="hover:opacity-80">
+      <h1 class="bg-gray-200 rounded-t-lg border-t border-x border-black text-center pb-2 text-xl hover:text-blue-500 cursor-pointer">
+        #{{ pokemon.entry_number }}
+      </h1>
+      <div class="bg-gray-200 border-x border-black col-span-1 flex justify-center cursor-pointer">
+        <img class="w-80"
+             routerLinkActive="router-link-active"
+             [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
+             [src]="'./assets/all-sprites/' + pokemon.imageName + '.png'" alt="" class="w-20 mr-2"
+        >
+      </div>
+      <h1 class="bg-gray-200 rounded-b-lg border-b
+          border-x border-black text-center pb-2
+          text-xl hover:text-blue-500 cursor-pointer"
+          [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
+          routerLinkActive="router-link-active"
+      >{{ pokemon.pokemon_species.name |replaceDash | titlecase }}</h1>
+    </div>
+  </div>
+</div>

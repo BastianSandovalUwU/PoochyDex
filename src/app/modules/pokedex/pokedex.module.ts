@@ -18,6 +18,7 @@ import { PokemonStatsComponent } from './components/show-pokemon/pokemon-stats/p
 import { ShowAbilityComponent } from './components/show-ability/show-ability.component';
 import { PokemonVarietiesComponent } from './components/show-pokemon/pokemon-varieties/pokemon-varieties.component';
 import { PokedexComponent } from './pokedex.component';
+import { ShowPokedexComponent } from './components/show-pokedex/show-pokedex.component';
 
 @NgModule({
   imports: [
@@ -26,10 +27,11 @@ import { PokedexComponent } from './pokedex.component';
     RouterModule.forChild(pokedexRoute),
     SharedModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ],
   declarations: [
     PokedexComponent,
+    ShowPokedexComponent,
     ListPokemonComponent,
     ShowPokemonComponent,
     PokemonInfoComponent,

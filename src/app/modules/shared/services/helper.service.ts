@@ -397,9 +397,70 @@ export class HelperService {
   }
 
   getPokemonSpriteImg(pokemonName: string): string {
+
+    let name = '';
+    switch (pokemonName) {
+      case 'deoxys':
+          name = 'deoxys-normal'
+        break;
+      case 'wormadam':
+          name = 'wormadam-plant'
+        break;
+      case 'giratina':
+          name = 'giratina-altered'
+        break;
+      case 'shaymin':
+          name = 'shaymin-land'
+        break;
+      case 'basculin':
+          name = 'basculin-red-striped'
+        break;
+      case 'basculegion':
+          name = 'basculegion-male'
+        break;
+      case 'darmanitan':
+          name = 'darmanitan-standard'
+        break;
+      case 'keldeo':
+          name = 'keldeo-ordinary'
+        break;
+      case 'meloetta':
+          name = 'meloetta-aria'
+        break;
+      case 'tornadus':
+          name = 'tornadus-incarnate'
+        break;
+      case 'thundurus':
+          name = 'thundurus-incarnate'
+        break;
+      case 'landorus':
+          name = 'landorus-incarnate'
+        break;
+      case 'enamorus':
+          name = 'enamorus-incarnate'
+        break;
+      case 'aegislash':
+          name = 'aegislash-shield'
+        break;
+      case 'meowstic':
+          name = 'meowstic-male'
+        break;
+      case 'pumpkaboo':
+          name = 'pumpkaboo-average'
+        break;
+      case 'gourgeist':
+          name = 'gourgeist-average'
+        break;
+      case 'zygarde':
+          name = 'zygarde-50'
+        break;
+      default:
+        name = pokemonName;
+        break;
+    }
     let allPokemon = this.allPokemon;
     allPokemon = allPokemon.concat(this.allPokemonGmax, this.allPokemonMega, this.allPokemonMisc);
-    const pokemon = allPokemon.filter(f => f.name === pokemonName)[0];
+    const pokemon = allPokemon.filter(f => f.name === name)[0];
     if(pokemon === undefined) {
       return null;
     }

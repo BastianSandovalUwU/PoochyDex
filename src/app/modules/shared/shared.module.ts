@@ -9,6 +9,7 @@ import { ReplaceDashPipe } from './pipes/replaceDash.pipe';
 import { SearchButtonComponent } from './search-button/search-button.component';
 import { FormsModule } from '@angular/forms';
 import { TranslateEvoMethodPipe } from './pipes/translateEvoMethod.pipe';
+import { TranslatePokedexNamePipe } from './pipes/translate-pokedex-name.pipe';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { TranslateEvoMethodPipe } from './pipes/translateEvoMethod.pipe';
     FooterComponent,
     ReplaceDashPipe,
     TranslateEvoMethodPipe,
-    SearchButtonComponent
+    SearchButtonComponent,
+    TranslatePokedexNamePipe
   ],
   declarations: [
     MenuComponent,
@@ -31,7 +33,8 @@ import { TranslateEvoMethodPipe } from './pipes/translateEvoMethod.pipe';
     FooterComponent,
     ReplaceDashPipe,
     TranslateEvoMethodPipe,
-    SearchButtonComponent
+    SearchButtonComponent,
+    TranslatePokedexNamePipe
   ]
 })
 export class SharedModule { }
