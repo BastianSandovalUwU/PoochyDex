@@ -35,6 +35,8 @@ export class TranslateEvoMethodPipe implements PipeTransform {
         case 'fairy': return 'Hada';
         case 'use-item': return 'Usar Objeto';
         case 'trade': return 'Intercambiar';
+        case 'take-damage': return 'Recibir Daño';
+        case 'spin': return 'Girar';
         default: return value;
       }
     } else {

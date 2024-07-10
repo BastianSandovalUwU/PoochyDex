@@ -185,6 +185,16 @@ export class PokeApiService {
     );
   }
 
+  getPokedex(pokdexNumber: number): Observable<any> {
+    const url = `${this.apiUrl}/pokedex/${pokdexNumber}/`;
+    return this.http.get<any>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener la Pokédex:', error);
+        return throwError(error);
+      })
+    );
+  }
+
   createPlaceHolderMove(id: string, gameName: string): DetailMove {
     const placeHolderMove: DetailMove = {
       id: -1,

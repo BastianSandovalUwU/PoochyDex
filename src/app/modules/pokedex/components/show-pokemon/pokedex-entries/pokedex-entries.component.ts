@@ -33,7 +33,6 @@ export class PokedexEntriesComponent implements OnInit, OnChanges {
         flavor_text: entry.flavor_text,
         version: entry.version.name
       }));
-    console.log(this.flavorTextEntries);
   }
 
   getGameVersionColor(gameVersion: string): string {
@@ -48,7 +47,7 @@ export class PokedexEntriesComponent implements OnInit, OnChanges {
     if (this.pokemonSpecie && this.pokemonSpecie.color) {
       this.backgroundColor = this.helperService.getPokemonColor(this.pokemonSpecie.color.name);
     } else {
-      this.backgroundColor = ''; // Asigna una cadena vacía si no hay color
+      this.backgroundColor = '';
     }
   }
 
