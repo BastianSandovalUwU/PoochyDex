@@ -26,8 +26,8 @@ export class TranslatePokedexNamePipe implements PipeTransform {
           case "original-sinnoh" : return 'Sinnoh';
           case "extended-sinnoh" : return 'Sinnoh (Platino)';
           case "updated-johto" : return 'Johto (Remakes)';
-          case "original-unova" : return 'Unova';
-          case "updated-unova" : return 'Unova (Secuela)';
+          case "original-unova" : return 'Teselia';
+          case "updated-unova" : return 'Teselia (Secuela)';
           case "conquest-gallery" : return 'Conquest';
           case "kalos-central" : return 'Kalos Centro';
           case "kalos-coastal" : return 'Kalos Costa';

@@ -19,6 +19,7 @@ import { ShowAbilityComponent } from './components/show-ability/show-ability.com
 import { PokemonVarietiesComponent } from './components/show-pokemon/pokemon-varieties/pokemon-varieties.component';
 import { PokedexComponent } from './pokedex.component';
 import { ShowPokedexComponent } from './components/show-pokedex/show-pokedex.component';
+import { PokedexDescriptionComponent } from './components/show-pokedex/pokedex-description/pokedex-description.component';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { ShowPokedexComponent } from './components/show-pokedex/show-pokedex.com
     PokemonCryComponent,
     PokemonStatsComponent,
     ShowAbilityComponent,
-    PokemonVarietiesComponent
+    PokemonVarietiesComponent,
+    PokedexDescriptionComponent
   ],
 })
 export class PokedexModule { }
