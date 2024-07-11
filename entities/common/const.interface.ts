@@ -1255,6 +1255,11 @@ export type AllPokemonHisuiRegionalForms = (typeof ALL_POKEMON_HISUI_REGIONAL_FO
 
 export const MISC_POKEMON_FORMS = [
   { name: 'pikachu-starter', imageName: '25-starter' , number: 25.10},
+  { name: 'giratina-origin', imageName: '487-1' , number: 487.1 },
+  { name: 'tornadus-therian', imageName: '641-1' , number: 641.1 },
+  { name: 'thundurus-therian', imageName: '642-1' , number: 642.1 },
+  { name: 'landorus-therian', imageName: '645-1' , number: 645.1 },
+  { name: 'enamorus-therian', imageName: '905-1' , number: 905.1 },
 ];
 
 

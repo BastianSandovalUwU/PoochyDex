@@ -3,7 +3,10 @@
   <div class="grid sm:grid-cols-4">
     <div class="col-span-1" *ngFor="let dex of pokemonSpecie.pokedex_numbers">
       <span class="font-bold">{{ language === 'es' ? 'Número': 'Number' }}: </span>
-      <span class="cursor-pointer hover:text-blue-500">{{ dex.entry_number }} - {{ dex.pokedex.name |translatePokedexName |replaceDash |titlecase}}</span>
+      <span [routerLink]="['/pokedex/show-pokedex', dex.pokedex.name]"
+        class="cursor-pointer hover:text-blue-500">
+        {{ dex.entry_number }} - {{ dex.pokedex.name |translatePokedexName |replaceDash |titlecase}}
+      </span>
     </div>
   </div>
 </div>
