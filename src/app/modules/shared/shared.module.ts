@@ -12,6 +12,7 @@ import { TranslateEvoMethodPipe } from './pipes/translateEvoMethod.pipe';
 import { TranslatePokedexNamePipe } from './pipes/translate-pokedex-name.pipe';
 import { HyperlinkComponent } from './hyperlink/hyperlink.component';
 import { RouterModule } from '@angular/router';
+import { TranslatePokemonNamePipe } from './pipes/translate-pokemon-name.pipe';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { RouterModule } from '@angular/router';
     TranslateEvoMethodPipe,
     SearchButtonComponent,
     TranslatePokedexNamePipe,
-    HyperlinkComponent
+    HyperlinkComponent,
+    TranslatePokemonNamePipe
   ],
   declarations: [
     MenuComponent,
@@ -39,7 +41,8 @@ import { RouterModule } from '@angular/router';
     TranslateEvoMethodPipe,
     SearchButtonComponent,
     TranslatePokedexNamePipe,
-    HyperlinkComponent
+    HyperlinkComponent,
+    TranslatePokemonNamePipe
   ]
 })
 export class SharedModule { }

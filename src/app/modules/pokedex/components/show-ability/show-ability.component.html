@@ -31,7 +31,7 @@
         <div class="text-center bg-gray-900 text-white w-full hover:text-blue-400 cursor-pointer"
         [routerLink]="['/pokedex/show-pokemon', pokemon.pokemon.name]"
         routerLinkActive>
-          {{ pokemon.pokemon.name | titlecase }}
+          {{ pokemon.pokemon.name |translatePokemonName |replaceDash | titlecase }}
         </div>
         <img
           [routerLink]="['/pokedex/show-pokemon', pokemon.pokemon.name]"
