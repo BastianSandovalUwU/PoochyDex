@@ -194,6 +194,15 @@ export class PokeApiService {
       })
     );
   }
+  getPokemonLocalization(pokdexNumber: number): Observable<any> {
+    const url = `${this.apiUrl}/pokemon/${pokdexNumber}/encounters/`;
+    return this.http.get<any>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener la localización:', error);
+        return throwError(error);
+      })
+    );
+  }
 
   createPlaceHolderMove(id: string, gameName: string): DetailMove {
     const placeHolderMove: DetailMove = {

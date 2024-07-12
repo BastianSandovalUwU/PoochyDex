@@ -3,7 +3,7 @@
   <div class="flex flex-wrap justify-center space-x-8 evolution-container" *ngIf="evolutionChain">
     <div class="flex flex-col items-center evolution-step">
       <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(evolutionChain.chain.species.name)">
-        {{ evolutionChain.chain.species.name | titlecase }}
+        {{ evolutionChain.chain.species.name |translatePokemonName |replaceDash | titlecase }}
       </p>
       <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="evolutionChain.chain?.imageName"
            (click)="goToPokemonPage(evolutionChain.chain.species.name)"
@@ -12,7 +12,7 @@
     <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
       <div class="flex flex-col items-center evolution-step">
         <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage.species.name)">
-          {{ stage.species.name | titlecase }}
+          {{ stage.species.name |translatePokemonName |replaceDash | titlecase }}
         </p>
         <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage?.imageName"
              (click)="goToPokemonPage(stage.species.name)"
@@ -52,7 +52,7 @@
       <ng-container *ngFor="let stage2 of stage.evolves_to">
         <div class="flex flex-col items-center evolution-step">
           <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage2.species.name)">
-            {{ stage2.species.name | titlecase }}
+            {{ stage2.species.name |translatePokemonName |replaceDash | titlecase }}
           </p>
           <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage2?.imageName"
                (click)="goToPokemonPage(stage2.species.name)"

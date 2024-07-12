@@ -20,6 +20,7 @@ import { PokemonVarietiesComponent } from './components/show-pokemon/pokemon-var
 import { PokedexComponent } from './pokedex.component';
 import { ShowPokedexComponent } from './components/show-pokedex/show-pokedex.component';
 import { PokedexDescriptionComponent } from './components/show-pokedex/pokedex-description/pokedex-description.component';
+import { PokemonLocalizationComponent } from './components/show-pokemon/pokemon-localization/pokemon-localization.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { PokedexDescriptionComponent } from './components/show-pokedex/pokedex-d
     PokemonStatsComponent,
     ShowAbilityComponent,
     PokemonVarietiesComponent,
-    PokedexDescriptionComponent
+    PokedexDescriptionComponent,
+    PokemonLocalizationComponent
   ],
 })
 export class PokedexModule { }
