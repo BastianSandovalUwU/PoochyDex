@@ -1,6 +1,20 @@
 <div [ngClass]="backgroundColor" class=" p-4 rounded-md mt-2 border border-black">
   <h1 class="font-bold text-xl">{{ language === 'es' ? 'Localización': 'Localization' }}</h1>
   <div class="border-black border p-3 rounded-md bg-white">
-
+    <!-- <div *ngIf="groupedLocations">
+      <div *ngFor="let version of groupedLocations | keyvalue">
+        <h2>{{ version.key }}</h2>
+        <div *ngFor="let location of version">
+          <h3>{{ location.location_area.name }}</h3>
+          <p>Max chance: {{ location.max_chance }}</p>
+          <div *ngFor="let encounter of location.encounter_details">
+            <p>Method: {{ encounter.method.name }}</p>
+            <p>Chance: {{ encounter.chance }}</p>
+            <p>Min Level: {{ encounter.min_level }}</p>
+            <p>Max Level: {{ encounter.max_level }}</p>
+          </div>
+        </div>
+      </div>
+    </div> -->
   </div>
 </div>

@@ -10,6 +10,7 @@ import { DetailMove } from '../../../../../entities/moves.entity';
 import { PokemonAbility } from '../../../../../entities/pokemon-ability.entity';
 import { HelperService } from './helper.service';
 import { EvolutionChain } from '../../../../../entities/evolution-chain.entity.';
+import { Localization } from '../../../../../entities/localitzation.entity';
 
 @Injectable({
   providedIn: 'root'
