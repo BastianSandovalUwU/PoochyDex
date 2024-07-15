@@ -10,17 +10,17 @@ interface Method {
   url: string;
 }
 
-interface ConditionValue {
-  name: string;
-  url: string;
-}
-
 interface EncounterDetail {
   chance: number;
-  condition_values: ConditionValue[];
+  condition_values: any[];
   max_level: number;
   method: Method;
   min_level: number;
+}
+
+interface LocationArea {
+  name: string;
+  url: string;
 }
 
 interface Version {
@@ -34,24 +34,15 @@ interface VersionDetail {
   version: Version;
 }
 
-interface LocationArea {
-  name: string;
-  url: string;
-}
-
 interface LocationData {
   location_area: LocationArea;
   version_details: VersionDetail[];
 }
 
 interface GroupedData {
-  [versionName: string]: {
-    location_area: LocationArea;
-    encounter_details: EncounterDetail[];
-    max_chance: number;
-  }[];
+  versionName: string;
+  methods: { [methodName: string]: string[] };
 }
-
 
 @Component({
   selector: 'app-pokemon-localization',
@@ -63,7 +54,9 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
   @Input() pokemonSpecie: PokemonSpecie;
   @Input() pokemon: Pokemon;
   backgroundColor: string = '';
-  groupedLocations: any;
+  data: LocationData[];
+  groupedLocations: GroupedData[] | null = null;
+
 
   constructor(private helperService: HelperService,
               private pokeApiService: PokeApiService
@@ -81,9 +74,7 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
 
   getPokemonLocalization(): void {
     this.pokeApiService.getPokemonLocalization(this.pokemon.id).subscribe((localizationData) => {
-        console.log(localizationData);
-        this.groupedLocations = this.groupByVersion(localizationData);
-        console.log(this.groupedLocations);
+        this.groupedLocations = this.groupByVersionAndMethod(localizationData);
     });
 
   }
@@ -96,26 +87,41 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
     }
   }
 
-  groupByVersion(data: LocationData[]): GroupedData {
-    const groupedData: GroupedData = {};
+  getGameVersionColor(gameVersion: string): string {
+    return this.helperService.getGameVersionColor(gameVersion);
+  }
+
+  getGameName(gameName: string): string {
+    return this.helperService.getGameName(gameName, this.language);
+  }
+
+  groupByVersionAndMethod(data: LocationData[]): GroupedData[] {
+    const groupedData: { [versionName: string]: { [methodName: string]: string[] } } = {};
 
     data.forEach(location => {
       location.version_details.forEach(versionDetail => {
         const versionName = versionDetail.version.name;
 
         if (!groupedData[versionName]) {
-          groupedData[versionName] = [];
+          groupedData[versionName] = {};
         }
 
-        groupedData[versionName].push({
-          location_area: location.location_area,
-          encounter_details: versionDetail.encounter_details,
-          max_chance: versionDetail.max_chance
+        versionDetail.encounter_details.forEach(encounterDetail => {
+          const methodName = encounterDetail.method.name;
+
+          if (!groupedData[versionName][methodName]) {
+            groupedData[versionName][methodName] = [];
+          }
+
+          groupedData[versionName][methodName].push(location.location_area.name);
         });
       });
     });
 
-    return groupedData;
+    return Object.keys(groupedData).map(versionName => ({
+      versionName,
+      methods: groupedData[versionName]
+    }));
   }
 
 }

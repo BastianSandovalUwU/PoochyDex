@@ -13,6 +13,7 @@ import { TranslatePokedexNamePipe } from './pipes/translate-pokedex-name.pipe';
 import { HyperlinkComponent } from './hyperlink/hyperlink.component';
 import { RouterModule } from '@angular/router';
 import { TranslatePokemonNamePipe } from './pipes/translate-pokemon-name.pipe';
+import { TranslateLocalizationMethodPipe } from './pipes/translate-localization-method.pipe';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { TranslatePokemonNamePipe } from './pipes/translate-pokemon-name.pipe';
     SearchButtonComponent,
     TranslatePokedexNamePipe,
     HyperlinkComponent,
-    TranslatePokemonNamePipe
+    TranslatePokemonNamePipe,
+    TranslateLocalizationMethodPipe
   ],
   declarations: [
     MenuComponent,
@@ -42,7 +44,8 @@ import { TranslatePokemonNamePipe } from './pipes/translate-pokemon-name.pipe';
     SearchButtonComponent,
     TranslatePokedexNamePipe,
     HyperlinkComponent,
-    TranslatePokemonNamePipe
+    TranslatePokemonNamePipe,
+    TranslateLocalizationMethodPipe
   ]
 })
 export class SharedModule { }

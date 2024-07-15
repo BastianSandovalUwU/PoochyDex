@@ -27,7 +27,6 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.pokemonId = this.helperService.getPokemonSpriteImg(this.pokemon.name);
-    console.log(this.pokemonId);
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.loadInfo();
