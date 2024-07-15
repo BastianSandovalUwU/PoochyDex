@@ -19,6 +19,7 @@ export class TranslatePokemonNamePipe implements PipeTransform {
   transform(value: string): string {
     if(this.language === 'es') {
       switch (value) {
+        case 'giratina-altered': return 'Giratina';
         case 'gouging-fire': return 'Flamariete';
         case 'raging-bolt': return 'Electrofuria';
         case 'iron-boulder': return 'Ferromole';
@@ -43,6 +44,8 @@ export class TranslatePokemonNamePipe implements PipeTransform {
         case 'ogerpon-wellspring-mask': return 'Ogerpon Máscara Fuente';
         case 'ogerpon-cornerstone-mask': return 'Ogerpon Máscara Cimiento';
         case 'ogerpon-teal-mask': return 'Ogerpon Máscara Turquesa';
+        case 'terapagos-terastal': return 'Terapagos Teracristal';
+        case 'terapagos-stellar': return 'Terapagos Astral';
         default: return value;
       }
     } else {

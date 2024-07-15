@@ -61,7 +61,6 @@ export class ChainEvolutionComponent implements OnInit, OnChanges {
 
     let evolutionChain: EvolutionChain = evolution;
     this.evolutionChain = evolutionChain;
-    console.log(this.evolutionChain);
   }
 
   getPokemonColor() {

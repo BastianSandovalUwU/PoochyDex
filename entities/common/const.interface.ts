@@ -1092,8 +1092,7 @@ export const ALL_POKEMON = [
   { name: 'iron-boulder', imageName: '1022' , number: 1022},
   { name: 'iron-crown', imageName: '1023' , number: 1023},
   { name: 'terapagos', imageName: '1024' , number: 1024},
-  { name: 'terapagos-terastal', imageName: '1024-1' , number: 1024.1},
-  { name: 'terapagos-stellar', imageName: '1024-2' , number: 1024.2},
+
   { name: 'pecharunt', imageName: '1025' , number: 1025},
 ];
 
@@ -1259,7 +1258,10 @@ export const MISC_POKEMON_FORMS = [
   { name: 'tornadus-therian', imageName: '641-1' , number: 641.1 },
   { name: 'thundurus-therian', imageName: '642-1' , number: 642.1 },
   { name: 'landorus-therian', imageName: '645-1' , number: 645.1 },
+  { name: 'floette-eternal', imageName: '670-eternal' , number: 670},
   { name: 'enamorus-therian', imageName: '905-1' , number: 905.1 },
+  { name: 'terapagos-terastal', imageName: '1024-1' , number: 1024.1},
+  { name: 'terapagos-stellar', imageName: '1024-2' , number: 1024.2},
 ];
 
 
