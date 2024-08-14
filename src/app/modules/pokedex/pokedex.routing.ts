@@ -3,19 +3,28 @@ import { ListPokemonComponent } from "./components/list-pokemon/list-pokemon.com
 import { ShowPokemonComponent } from "./components/show-pokemon/show-pokemon.component";
 import { ShowAbilityComponent } from "./components/show-ability/show-ability.component";
 import { PokedexComponent } from "./pokedex.component";
+import { ShowPokedexComponent } from "./components/show-pokedex/show-pokedex.component";
 
 export const pokedexRoute: Route[] = [
-  { path: '',
+  {
+    path: '',
     component: PokedexComponent
   },
-  { path: 'list',
+  {
+    path: 'list',
     component: ListPokemonComponent
   },
-  { path: 'show-pokemon/:name',
+  {
+    path: 'show-pokemon/:name',
     component: ShowPokemonComponent
   },
-  { path: 'show-ability/:ability',
+  {
+    path: 'show-ability/:ability',
     component: ShowAbilityComponent
+  },
+  {
+    path: 'show-pokedex/:number',
+    component: ShowPokedexComponent
   },
 ]
 

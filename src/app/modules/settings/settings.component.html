@@ -1,0 +1,21 @@
+<div class="mt-4">
+  <h1 class="mx-5 pl-2 text-black text-2xl font-bold">{{ language === 'es' ? 'Configuración Pokédex' : 'Pokédex Settings'}}</h1>
+  <hr class="my-2">
+
+  <div class="mt-4 grid grid-cols-4">
+    <div class="grid grid-cols-1">
+      <div class="col-span-1 rounded-md p-4 border bg-gray-100 mx-5 border-black">
+        <h1 (click)="showVisualSettings = true" class="hover:text-blue-500 cursor-pointer text-center text-black text-2xl font-bold">{{ language === 'es' ? 'Ajustes Visuales' : 'Visual Settings'}}</h1>
+      </div>
+      <div class="col-span-1 rounded-md p-4 border bg-gray-100 mx-5 border-black mt-2">
+        <h1 class="hover:text-blue-500 cursor-pointer text-center text-black text-2xl font-bold">{{ language === 'es' ? 'Cuenta' : 'Account'}}</h1>
+      </div>
+    </div>
+
+    <div class="col-span-3" *ngIf="showVisualSettings">
+      <app-visual-settings [language]="language"></app-visual-settings>
+    </div>
+
+  </div>
+
+</div>

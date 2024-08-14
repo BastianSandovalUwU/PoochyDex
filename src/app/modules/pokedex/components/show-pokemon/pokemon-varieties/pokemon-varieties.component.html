@@ -5,11 +5,11 @@
     <ng-container *ngFor="let variety of pokemonVarieties">
       <div class="flex flex-col items-center evolution-step">
         <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(variety.name)">
-          {{ variety.name |replaceDash | titlecase }}
+          {{ variety.name |translatePokemonName |replaceDash | titlecase }}
         </p>
-        <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="variety.sprites?.other?.home?.front_default"
+        <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image"
              (click)="goToPokemonPage(variety.name)"
-             [src]="variety?.sprites?.other?.home?.front_default">
+             [src]="'./assets/all-home-sprites/' + variety.imageName + '.png'">
       </div>
     </ng-container>
   </div>
