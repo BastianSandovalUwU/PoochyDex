@@ -8,6 +8,7 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit, OnChanges {
   @Input() isOpen = false;
+  @Input() language: string;
   @Output() close = new EventEmitter<void>();
   url: string;
 

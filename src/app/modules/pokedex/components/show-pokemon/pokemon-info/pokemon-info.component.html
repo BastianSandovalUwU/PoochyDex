@@ -1,20 +1,15 @@
 <div [ngClass]="backgroundColor" class=" p-4 rounded-md col-span-1 border border-black">
-  <h1 class="font-bold text-4xl text-center">{{pokemon.name |replaceDash | titlecase}}</h1>
+  <h1 class="font-bold text-4xl text-center">{{pokemon.name |translatePokemonName |replaceDash | titlecase}}</h1>
   <h1 class="font-bold text-lg text-center">
     <span class="cursor-pointer" *ngIf="pokemonNameHirgana">{{pokemonNameHirgana.name | titlecase}}</span>
     <span *ngIf="pokemonNameRomaji">({{pokemonNameRomaji.name | titlecase}})</span>
   </h1>
   <div class="grid grid-cols-3 gap-1">
     <div class="col-span-3 flex justify-center">
-      <img [src]="pokemon.sprites.other.home.front_shiny" style="display: none;">
-      <img [src]="pokemon.sprites.other['official-artwork'].front_shiny" style="display: none;">
-      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = true" *ngIf="pokemon.sprites.other.home.front_default && !showShiny" [src]="pokemon.sprites.other.home.front_default">
-      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = false" *ngIf="pokemon.sprites.other.home.front_shiny && showShiny" [src]="pokemon.sprites.other.home.front_shiny">
-      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = true" *ngIf="!pokemon.sprites.other.home.front_default && !showShiny" [src]="pokemon.sprites.other['official-artwork'].front_default">
-      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = false" *ngIf="!pokemon.sprites.other.home.front_default && showShiny" [src]="pokemon.sprites.other['official-artwork'].front_shiny">
+      <img [src]="'./assets/all-home-shiny-sprites/' + pokemonId + '.png'" style="display: none;">
+      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = true" *ngIf="!showShiny" [src]="'./assets/all-home-sprites/' + pokemonId + '.png'">
+      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = false" *ngIf="showShiny" [src]="'./assets/all-home-shiny-sprites/' + pokemonId + '.png'">
     </div>
-    <div *ngIf="!pokemon.sprites.other.home.front_default" class="col-span-3 text-center text-red-500 font-bold">No Hay Imagen</div>
-    <div *ngIf="!pokemon.sprites.other['official-artwork'].front_default" class="col-span-3 text-center text-red-500 font-bold">No Hay Imagen</div>
   </div>
 
   <div class="grid grid-cols-3 sm:grid-cols-5 gap-0 mt-2">

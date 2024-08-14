@@ -16,10 +16,8 @@
     <h1 class="font-bold">{{ language === 'es' ? 'Efecto' : 'Efect'}}</h1>
     <div>
       <h1 class="font-bold">{{ language === 'es' ? 'En combate' : 'In combat'}}</h1>
-      <div *ngFor="let abilityText of ability.flavor_text_entries">
-        <div *ngIf="abilityText.language.name === language" class="">
-          {{ abilityText.flavor_text | titlecase }}
-        </div>
+      <div>
+        {{ abilityDescription[abilityDescription.length - 1]?.flavor_text}}
       </div>
     </div>
   </div>
@@ -28,12 +26,12 @@
     <h1 class="font-bold text-xl">
       {{ language === 'es' ? 'Pokémon con esta habilidad' : 'Pokémon with this ability'}}
     </h1>
-    <div class="grid grid-cols-5 justify-center items-center border border-black mt-1">
+    <div class="grid grid-cols-2 sm:grid-cols-5 justify-center items-center border border-black mt-1">
       <div *ngFor="let pokemon of ability.pokemon" class="flex flex-col items-center justify-center border border-black">
         <div class="text-center bg-gray-900 text-white w-full hover:text-blue-400 cursor-pointer"
         [routerLink]="['/pokedex/show-pokemon', pokemon.pokemon.name]"
         routerLinkActive>
-          {{ pokemon.pokemon.name | titlecase }}
+          {{ pokemon.pokemon.name |translatePokemonName |replaceDash | titlecase }}
         </div>
         <img
           [routerLink]="['/pokedex/show-pokemon', pokemon.pokemon.name]"
@@ -53,10 +51,16 @@
         />
         <div class="grid grid-cols-1 text-black w-full">
           <div *ngFor="let ability of pokemon.pokemonDetail.abilities">
-            <div class="text-center bg-gray-200  hover:text-blue-400 cursor-pointer"
+            <div class="text-left sm:text-center bg-gray-200"
             [routerLink]="['/pokedex/show-ability', ability.ability.name]"
             routerLinkActive>
-              <span class="font-bold">{{ language === 'es' ? 'Habilidad' : ability.is_hidden === true ? 'Hidden' : 'Ability' }} {{ ability.is_hidden === true ? language === 'es' ? 'Oculta': 'Ability' : ability.slot }}: </span>{{ ability.ability.name | titlecase }}
+              <span class="font-bold">
+                {{ language === 'es' ? 'Habilidad' : ability.is_hidden === true ? 'Hidden' : 'Ability' }}
+                {{ ability.is_hidden === true ? language === 'es' ? 'Oculta': 'Ability' : ability.slot }}:
+              </span>
+              <span class="hover:text-blue-400 cursor-pointer">
+                {{ ability.ability.name | titlecase }}
+              </span>
             </div>
           </div>
           <div *ngIf="pokemon.pokemonDetail.abilities.length < 2">

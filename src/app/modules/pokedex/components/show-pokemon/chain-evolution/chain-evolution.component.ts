@@ -38,26 +38,27 @@ export class ChainEvolutionComponent implements OnInit, OnChanges {
   }
 
   populateEvolutionChainDetails(evolution: EvolutionChain) {
-    this.pokeApiService.getPokemonByName(evolution.chain.species.name).subscribe((species) => {
-      evolution.chain.detailPokemon = species;
-    });
+    evolution.chain.pokemonName = evolution.chain.species.name;
+    const pokeImgname = this.helperService.getPokemonSpriteImg(evolution.chain.species.name);
+    evolution.chain.imageName = pokeImgname;
+
     if (evolution.chain.evolves_to && evolution.chain.evolves_to.length > 0) {
+
       evolution.chain.evolves_to.forEach((evolvesTo) => {
-        // Obtener detalles de la especie de Pokémon para esta etapa de la cadena de evolución
-        this.pokeApiService.getPokemonByName(evolvesTo.species.name).subscribe((species) => {
-          evolvesTo.detailPokemon = species;
-          // Si hay evoluciones, llamar a la función recursivamente para cada una
-        });
+        evolution.chain.pokemonName = evolvesTo.species.name;
+        const pokeImgname = this.helperService.getPokemonSpriteImg(evolvesTo.species.name);
+        evolvesTo.imageName = pokeImgname;
+
         if(evolvesTo.evolves_to && evolvesTo.evolves_to.length > 0) {
-          evolvesTo.evolves_to.forEach((evolvesTo2) => {
-            this.pokeApiService.getPokemonByName(evolvesTo2.species.name).subscribe((species) => {
-              evolvesTo2.detailPokemon = species;
-              // Si hay evoluciones, llamar a la función recursivamente para cada una
-            });
-          }
-        )};
+            evolvesTo.evolves_to.forEach((evolvesTo2) => {
+            const pokeImgname = this.helperService.getPokemonSpriteImg(evolvesTo2.species.name);
+            evolvesTo2.imageName = pokeImgname;
+          })
+        };
+
       });
     }
+
     let evolutionChain: EvolutionChain = evolution;
     this.evolutionChain = evolutionChain;
   }
@@ -66,12 +67,12 @@ export class ChainEvolutionComponent implements OnInit, OnChanges {
     if (this.pokemonSpecie && this.pokemonSpecie.color) {
       this.backgroundColor = this.helperService.getPokemonColor(this.pokemonSpecie.color.name);
     } else {
-      this.backgroundColor = ''; // Asigna una cadena vacía si no hay color
+      this.backgroundColor = '';
     }
   }
 
   goToPokemonPage(pokemonName: string) {
-    this.router.navigate(['/pokedex/show-pokemon/', pokemonName]); // Reemplaza con la ruta deseada
+    this.router.navigate(['/pokedex/show-pokemon/', pokemonName]);
   }
 
 

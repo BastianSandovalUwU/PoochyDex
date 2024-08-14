@@ -4,12 +4,16 @@ import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { Ability, Type } from '../../../../../entities/pokemon.entity';
 import { AbilityName, AbilityResponse, Name } from '../../../../../entities/pokemon-ability.entity';
 import { DetailMove, EffectEntry } from '../../../../../entities/moves.entity';
-import { TargetTypes } from '../../../../../entities/common/const.interface';
+import { TargetTypes, AllPokemon, ALL_POKEMON, AllPokemonGmaxForms, ALL_GMAX_POKEMON_FORMS, ALL_POKEMON_MEGA_FORMS, AllPokemonMegaForms, MISC_POKEMON_FORMS } from '../../../../../entities/common/const.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelperService {
+  allPokemon: AllPokemon[] = ALL_POKEMON;
+  allPokemonGmax: AllPokemonGmaxForms[] = ALL_GMAX_POKEMON_FORMS;
+  allPokemonMega: AllPokemonMegaForms[] = ALL_POKEMON_MEGA_FORMS;
+  allPokemonMisc: any[] = MISC_POKEMON_FORMS;
 
   constructor(private pokeApiService: PokeApiService) { }
 
@@ -290,14 +294,16 @@ export class HelperService {
       case 'lets-go-eevee': return 'bg-pokemon-letsGo-eevee text-black';
       case 'sword': return 'bg-pokemon-sword';
       case 'shield': return 'bg-pokemon-shield';
+      case 'brilliant-diamond': return 'bg-brilliant-diamond';
+      case 'shining-pearl': return 'bg-shining-pearl';
       case 'scarlet': return 'bg-pokemon-scarlet';
       case 'violet': return 'bg-pokemon-violet';
       case 'red-blue': return 'bg-pokemon-red';
-      case 'gold-silver': return 'bg-pokemon-gold';
+      case 'gold-silver': return 'bg-pokemon-gold text-black';
       case 'ruby-sapphire': return 'bg-pokemon-ruby';
       case 'fire-red-leaf-green': return 'bg-pokemon-fire-red';
-      case 'diamond-pearl': return 'bg-pokemon-diamond';
-      case 'heartgold-soulsilver': return 'bg-pokemon-heartgold';
+      case 'diamond-pearl': return 'bg-pokemon-diamond text-black';
+      case 'heartgold-soulsilver': return 'bg-pokemon-heartgold text-black';
       case 'black-white': return 'bg-pokemon-black';
       case 'black-2-white-2': return 'bg-pokemon-black-2';
       case 'x-y': return 'bg-pokemon-x';
@@ -306,7 +312,9 @@ export class HelperService {
       case 'ultra-sun-ultra-moon': return 'bg-pokemon-ultra-sun';
       case 'lets-go-pikachu-lets-go-eevee': return 'bg-pokemon-letsGo-pikachu text-black';
       case 'sword-shield': return 'bg-pokemon-sword';
+      case 'brilliant-diamond-and-shining-pearl': return 'bg-pokemon-brilliant-diamond text-black';
       case 'scarlet-violet': return 'bg-pokemon-scarlet';
+      case 'legends-arceus': return 'bg-white text-black';
       default: return '';
     }
   }
@@ -369,6 +377,7 @@ export class HelperService {
         case 'ruby-sapphire': return 'Rubí - Zafiro';
         case 'firered-leafgreen': return 'Rojo Fuego - Verde Hoja';
         case 'diamond-pearl': return 'Diamante - Perla';
+        case 'heartgold-soulsilver': return 'Oro HeartGold - Plata SoulSilver';
         case 'black-white': return 'Negro - Blanco';
         case 'black-2-white-2': return 'Negro 2 - Blanco 2';
         case 'x-y': return 'Pokémon X - Pokémon Y';
@@ -378,10 +387,131 @@ export class HelperService {
         case 'lets-go-pikachu-lets-go-eevee': return "Let's Go, Pikachu! - Let's Go, Eevee!";
         case 'sword-shield': return 'Espada - Escudo';
         case 'scarlet-violet': return 'Escarlata - Purpura';
+        case 'brilliant-diamond-and-shining-pearl': return 'Diamante Brillante - Perla Reluciente';
+        case 'legends-arceus': return 'Legendas Arceus';
         default: return '';
       }
     } else {
       return gameName;
+    }
+  }
+
+  getPokemonSpriteImg(pokemonName: string): string {
+
+    let name = this.getCorrectPokemonName(pokemonName);
+    let allPokemon = this.allPokemon;
+    allPokemon = allPokemon.concat(this.allPokemonGmax, this.allPokemonMega, this.allPokemonMisc);
+    const pokemon = allPokemon.filter(f => f.name === name)[0];
+    if(pokemon === undefined) {
+      return null;
+    }
+    return pokemon.imageName;
+  }
+
+  getCorrectPokemonName(pokemonName): string {
+    switch (pokemonName) {
+      case 'deoxys':
+        return 'deoxys-normal'
+      case 'wormadam':
+          return 'wormadam-plant'
+      case 'giratina':
+        return 'giratina-altered'
+      case 'shaymin':
+        return 'shaymin-land'
+      case 'basculin':
+        return 'basculin-red-striped'
+      case 'basculegion':
+        return 'basculegion-male'
+      case 'darmanitan':
+        return 'darmanitan-standard'
+      case 'keldeo':
+        return 'keldeo-ordinary'
+      case 'meloetta':
+        return 'meloetta-aria'
+      case 'tornadus':
+        return 'tornadus-incarnate'
+      case 'thundurus':
+        return 'thundurus-incarnate'
+      case 'landorus':
+        return 'landorus-incarnate'
+      case 'enamorus':
+        return 'enamorus-incarnate'
+      case 'aegislash':
+        return 'aegislash-shield'
+      case 'meowstic':
+        return 'meowstic-male'
+      case 'pumpkaboo':
+        return 'pumpkaboo-average'
+      case 'gourgeist':
+        return 'gourgeist-average'
+      case 'zygarde':
+        return 'zygarde-50'
+      case 'lycanroc':
+        return 'lycanroc-midday'
+      case 'minior':
+        return 'minior-red-meteor'
+      case 'morpeko':
+        return 'morpeko-full-belly'
+      case 'oricorio':
+        return 'oricorio-baile'
+      case 'mimikyu':
+        return 'mimikyu-disguised'
+      case 'indeedee':
+        return 'indeedee-male'
+      case 'wishiwashi':
+        return 'wishiwashi-solo'
+      case 'toxtricity':
+        return 'toxtricity-amped'
+      case 'eiscue':
+        return 'eiscue-ice'
+      default:
+        return pokemonName;
+    }
+  }
+
+  getPokedexNumber(pokedexName: string): number {
+    switch (pokedexName) {
+      case "national" : return 1;
+      case "kanto" : return 2;
+      case "original-johto" : return 3;
+      case "johto" : return 3;
+      case "hoenn" : return 4;
+      case "original-sinnoh" : return 5;
+      case "sinnoh" : return 5;
+      case "extended-sinnoh" : return 6;
+      case "platinum-sinnoh" : return 6;
+      case "updated-johto" : return 7;
+      case "unova" : return 8;
+      case "unova-2" : return 9;
+      case "original-unova" : return 8;
+      case "updated-unova" : return 9;
+      case "conquest-gallery" : return 11;
+      case "kalos-central" : return 12;
+      case "kalos-coastal" : return 13;
+      case "kalos-mountain" : return 14;
+      case "updated-hoenn" : return 15;
+      case "alola" : return 16;
+      case "alola-ultra" : return 21;
+      case "original-alola" : return 16;
+      case "original-melemele" : return 17;
+      case "original-akala" : return 18;
+      case "original-ulaula" : return 19;
+      case "original-poni" : return 20;
+      case "updated-alola" : return 21;
+      case "updated-melemele" : return 22;
+      case "updated-akala" : return 23;
+      case "updated-ulaula" : return 24;
+      case "updated-poni" : return 25;
+      case "letsgo" : return 26;
+      case "letsgo-kanto" : return 26;
+      case "galar" : return 27;
+      case "isle-of-armor" : return 28;
+      case "crown-tundra" : return 29;
+      case "hisui" : return 30;
+      case "paldea" : return 31;
+      case "kitakami" : return 32;
+      case "blueberry" : return 33;
+    default: return 0;
     }
   }
 

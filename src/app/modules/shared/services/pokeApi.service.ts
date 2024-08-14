@@ -10,6 +10,8 @@ import { DetailMove } from '../../../../../entities/moves.entity';
 import { PokemonAbility } from '../../../../../entities/pokemon-ability.entity';
 import { HelperService } from './helper.service';
 import { EvolutionChain } from '../../../../../entities/evolution-chain.entity.';
+import { Localization } from '../../../../../entities/localitzation.entity';
+import { AllPokemon } from '../../../../../entities/common/const.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +21,19 @@ export class PokeApiService {
   private pokemonListcache = new Map<string, any>();
 
   apiUrl = 'https://pokeapi.co/api/v2'
+  apiUrlCore = 'https://localhost:7194'
 
   constructor(private http: HttpClient) { }
+
+  postPokemonAzure(pokemonObjet: AllPokemon): Observable<any> {
+    const url = `${this.apiUrlCore}/api/pokemon`;
+    return this.http.post<any>(url, pokemonObjet).pipe(
+      catchError(error => {
+        console.error('Error al subir los pokémon:', error);
+        return throwError(error);
+      })
+    );
+  }
 
   getAllPokemon(): Observable<any> {
     const url = `${this.apiUrl}/pokemon/?limit=1302`;
@@ -180,6 +193,25 @@ export class PokeApiService {
     return this.http.get<PokemonAbility>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la habilidad:', error);
+        return throwError(error);
+      })
+    );
+  }
+
+  getPokedex(pokdexNumber: number): Observable<any> {
+    const url = `${this.apiUrl}/pokedex/${pokdexNumber}/`;
+    return this.http.get<any>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener la Pokédex:', error);
+        return throwError(error);
+      })
+    );
+  }
+  getPokemonLocalization(pokdexNumber: number): Observable<any> {
+    const url = `${this.apiUrl}/pokemon/${pokdexNumber}/encounters/`;
+    return this.http.get<any>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener la localización:', error);
         return throwError(error);
       })
     );
