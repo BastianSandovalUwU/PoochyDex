@@ -6,6 +6,7 @@ import { FilteredByEgg, FilteredByMachine, FilteredByTutor, FilteredMove, Move, 
 import { Subject, catchError, forkJoin, of, takeUntil } from 'rxjs';
 import { ExtendedMachineDetail } from '../../../../../../../entities/machine-move.entity';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-pokemon-moves',
@@ -31,6 +32,8 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   filteredMovesByTutor: FilteredByTutor[] = [];
   filteredMovesByEgg: FilteredByEgg[] = [];
   backgroundColor: string = '';
+  selectedTabIndex = 0;
+  selectedTabIndex2 = 0;
 
   constructor(private pokeApiService: PokeApiService,
               private helperService: HelperService,) { }
@@ -86,14 +89,14 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     });
   }
 
-  levelUpChangeGame(event: Event): void {
-    const selectedGroup = (event.target as HTMLSelectElement).value;
+  levelUpChangeGame(event: MatTabChangeEvent): void {
+    const selectedGroup = this.versionGroups[event.index];
     this.levelUpSelectedVersionGroup = selectedGroup;
     this.filterMovesByLevel();
   }
 
-  machineChangeGame(event: Event): void {
-    const selectedGroup = (event.target as HTMLSelectElement).value;
+  machineChangeGame(event: MatTabChangeEvent): void {
+    const selectedGroup = this.versionGroups[event.index];
     this.machineSelectedVersionGroup = selectedGroup;
     this.filterMovesByMachine();
   }
@@ -110,28 +113,63 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   extractVersionGroups(): void {
-    const versionGroupsSet = new Set<string>();
-    this.movesWithTypes.forEach(moveWithTypes => {
-      moveWithTypes.move.version_group_details.forEach(detail => {
-        versionGroupsSet.add(detail.version_group.name);
-      });
+
+    const desiredOrder = [
+      "scarlet-violet",
+      "brilliant-diamond-and-shining-pearl",
+      "sword-shield",
+      "lets-go-pikachu-lets-go-eevee",
+      "ultra-sun-ultra-moon",
+      "sun-moon",
+      "omega-ruby-alpha-sapphire",
+      "x-y",
+      "black-2-white-2",
+      "black-white",
+      "heartgold-soulsilver",
+      "platinum",
+      "diamond-pearl",
+      "emerald",
+      "firered-leafgreen",
+      "ruby-sapphire",
+      "crystal",
+      "gold-silver",
+      "yellow",
+      "red-blue",
+    ];
+
+  const versionGroupsSet = new Set<string>();
+
+  this.movesWithTypes.forEach(moveWithTypes => {
+    moveWithTypes.move.version_group_details.forEach(detail => {
+      versionGroupsSet.add(detail.version_group.name);
     });
-    this.versionGroups = Array.from(versionGroupsSet).sort();
-    if (this.versionGroups.includes('scarlet-violet')) {
-      this.machineSelectedVersionGroup = 'scarlet-violet';
-      this.levelUpSelectedVersionGroup = 'scarlet-violet';
-      this.tutorSelectedVersionGroup = 'scarlet-violet';
-      this.eggSelectedVersionGroup = 'scarlet-violet';
-    } else if (this.versionGroups.length > 0) {
-      this.machineSelectedVersionGroup = this.versionGroups[this.versionGroups.length - 1];
-      this.levelUpSelectedVersionGroup = this.versionGroups[this.versionGroups.length - 1];
-      this.tutorSelectedVersionGroup = this.versionGroups[this.versionGroups.length - 1];
-      this.eggSelectedVersionGroup = this.versionGroups[this.versionGroups.length - 1];
-    }
-    this.filterMovesByLevel();
-    this.filterMovesByMachine();
-    this.filterMovesByTutor();
-    this.filterMovesByEgg();
+  });
+
+  this.versionGroups = Array.from(versionGroupsSet);
+
+  this.versionGroups = desiredOrder.filter(version => this.versionGroups.includes(version));
+
+  this.versionGroups.sort((a, b) => desiredOrder.indexOf(a) - desiredOrder.indexOf(b));
+
+  const defaultVersion = 'scarlet-violet';
+
+  if (this.versionGroups.includes(defaultVersion)) {
+    this.machineSelectedVersionGroup = defaultVersion;
+    this.levelUpSelectedVersionGroup = defaultVersion;
+    this.tutorSelectedVersionGroup = defaultVersion;
+    this.eggSelectedVersionGroup = defaultVersion;
+  } else if (this.versionGroups.length > 0) {
+    const lastVersion = this.versionGroups[this.versionGroups.length - 1];
+    this.machineSelectedVersionGroup = lastVersion;
+    this.levelUpSelectedVersionGroup = lastVersion;
+    this.tutorSelectedVersionGroup = lastVersion;
+    this.eggSelectedVersionGroup = lastVersion;
+  }
+
+  this.filterMovesByLevel();
+  this.filterMovesByMachine();
+  this.filterMovesByTutor();
+  this.filterMovesByEgg();
   }
 
 

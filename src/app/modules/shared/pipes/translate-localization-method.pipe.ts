@@ -25,6 +25,10 @@ export class TranslateLocalizationMethodPipe implements PipeTransform {
         case 'sos-encounter': return 'Encuentro SOS';
         case 'island-scan': return 'Escáner Insular';
         case 'only-one': return 'Solo uno';
+        case 'gift-egg': return 'Regalado en Huevo';
+        case 'old-rod': return 'Caña Vieja';
+        case 'good-rod': return 'Caña Buena';
+        case 'super-rod': return 'Super Caña';
         default: return value;
       }
     } else {
