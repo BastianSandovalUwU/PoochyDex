@@ -56,7 +56,9 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
   backgroundColor: string = '';
   data: LocationData[];
   groupedLocations: GroupedData[] | null = null;
-
+  expandedVersions: { [key: string]: boolean } = {};
+  expandedMethods: { [versionName: string]: { [methodName: string]: boolean } } = {};
+  minimumVisibleItems = 20;
 
   constructor(private helperService: HelperService,
               private pokeApiService: PokeApiService
@@ -122,6 +124,28 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
       versionName,
       methods: groupedData[versionName]
     }));
+  }
+
+  toggleMethod(versionName: string, methodName: string) {
+    if (!this.expandedMethods[versionName]) {
+      this.expandedMethods[versionName] = {};
+    }
+    this.expandedMethods[versionName][methodName] = !this.expandedMethods[versionName][methodName];
+  }
+
+  isMethodExpanded(versionName: string, methodName: string): boolean {
+    return this.expandedMethods[versionName]?.[methodName] || false;
+  }
+
+  getVisibleMethodValues(methodValues: string[], versionName: string, methodName: string): string[] {
+    if (this.isMethodExpanded(versionName, methodName)) {
+      return methodValues;
+    }
+    return methodValues.slice(0, this.minimumVisibleItems);
+  }
+
+  hasMoreMethodItems(methodValues: string[]): boolean {
+    return methodValues.length > this.minimumVisibleItems;
   }
 
 }

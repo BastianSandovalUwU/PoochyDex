@@ -8,7 +8,7 @@ import { HelperService } from 'app/modules/shared/services/helper.service';
   styleUrls: ['./pokedex-numbers.component.scss']
 })
 export class PokedexNumbersComponent implements OnInit, OnChanges {
-  @Input() language: string = 'es';
+  @Input() language: string;
   @Input() pokemonSpecie: PokemonSpecie;
 
   backgroundColor: string = '';

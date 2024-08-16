@@ -7,19 +7,29 @@
     </div>
     <div *ngFor="let version of groupedLocations" class="grid grid-cols-4">
       <div class="col-span-4 grid grid-cols-1 sm:grid-cols-6 gap-4 border-b border-black py-2">
-        <div [ngClass]="getGameVersionColor(version.versionName)" class="relative col-span-2 sm:col-span-1 rounded-md text-white border border-black flex justify-center items-center">
-          <span class="text-center hover:text-blue-500 cursor-pointer">{{ getGameName(version.versionName) | replaceDash | titlecase }}</span>
-          <img class="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 mr-2" [src]="'./assets/pokemon-version-icon-sprite/' + version.versionName + '.png'" alt="">
+        <div [ngClass]="getGameVersionColor(version.versionName)"
+             class="relative col-span-2 sm:col-span-1 rounded-md text-white border border-black flex justify-center items-center">
+          <span class="text-center hover:text-blue-500 cursor-pointer">
+            {{ getGameName(version.versionName) | replaceDash | titlecase }}
+          </span>
+          <img class="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 mr-2"
+               [src]="'./assets/pokemon-version-icon-sprite/' + version.versionName + '.png'" alt="">
         </div>
         <div class="col-span-3 sm:col-span-5">
           <div *ngFor="let method of version.methods | keyvalue">
             <p>
               <strong>
-                {{ method.key |translateLocalizationMethod | replaceDash | titlecase }}:
+                {{ method.key | translateLocalizationMethod | replaceDash | titlecase }}:
               </strong>
-              <span *ngFor="let methodValue of method.value">
+              <span *ngFor="let methodValue of getVisibleMethodValues(method.value, version.versionName, method.key)">
                 <app-hyperlink [value]="methodValue | replaceDash | titlecase"></app-hyperlink>,
               </span>
+              <ng-container *ngIf="hasMoreMethodItems(method.value)">
+                <button class="text-blue-500 underline cursor-pointer"
+                        (click)="toggleMethod(version.versionName, method.key)">
+                  {{ isMethodExpanded(version.versionName, method.key) ? 'Ver menos' : 'Ver más' }}
+                </button>
+              </ng-container>
             </p>
           </div>
         </div>
