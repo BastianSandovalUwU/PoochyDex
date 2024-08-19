@@ -101,7 +101,7 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden">
   <h1 class="font-bold">{{ language === 'es' ? 'Mediante Máquina Tecnica' : 'By Technical Machine' }}</h1>
 
-  <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndex2" (selectedTabChange)="machineChangeGame($event)">
+  <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexMT" (selectedTabChange)="machineChangeGame($event)">
     <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group)">
 
       <div class="bg-white p-3 border-black border rounded-md">
@@ -144,7 +144,7 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:hidden block">
   <h1 class="font-bold">{{ language === 'es' ? 'Mediante Máquina Tecnica' : 'By Technical Machine' }}</h1>
 
-  <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndex2" (selectedTabChange)="machineChangeGame($event)">
+  <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexMT" (selectedTabChange)="machineChangeGame($event)">
     <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group)">
 
   <div class="bg-white p-3 border-black border rounded-md">
@@ -186,14 +186,13 @@
 </mat-tab-group>
 </div>
 
-
 <!-- Sección de movimientos por tutor -->
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden">
   <h1 class="font-bold">{{ language === 'es' ? 'Mediante tutor' : 'By Tutor' }}</h1>
-  <label for="versionGroup">{{ language === 'es' ? 'Seleccionar Juego': 'Select Game' }}</label> &nbsp;
-  <select id="versionGroup" [(ngModel)]="tutorSelectedVersionGroup" (change)="tutorChangeGame($event)">
-    <option *ngFor="let group of versionGroups" [value]="group">{{ group }}</option>
-  </select>
+
+  <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutor" (selectedTabChange)="tutorChangeGame($event)">
+    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group)">
+
   <div class="bg-white p-3 border-black border rounded-md">
     <div class="grid grid-cols-5 gap-4 border-b border-black pb-1 mb-2">
       <span class="font-semibold">{{ language === 'es' ? 'Movimiento' : 'Move' }}</span>
@@ -228,14 +227,16 @@
       </div>
     </div>
   </div>
+</mat-tab>
+</mat-tab-group>
 </div>
 
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black tutor-container block sm:hidden">
   <h1 class="font-bold">{{ language === 'es' ? 'Mediante tutor' : 'By Tutor' }}</h1>
   <label for="versionGroup">{{ language === 'es' ? 'Seleccionar Juego': 'Select Game' }}</label>&nbsp;
-  <select id="versionGroup" [(ngModel)]="tutorSelectedVersionGroup" (change)="tutorChangeGame($event)">
-    <option *ngFor="let group of versionGroups" [value]="group">{{ group }}</option>
-  </select>
+
+  <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutor" (selectedTabChange)="tutorChangeGame($event)">
+    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group)">
 
   <div class="bg-white p-3 border-black border rounded-md">
     <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2">
@@ -273,15 +274,18 @@
     </div>
   </div>
   </div>
+</mat-tab>
+</mat-tab-group>
 </div>
 
 <!-- Sección de movimientos por huevo -->
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden">
   <h1 class="font-bold">{{ language === 'es' ? 'Mediante Huevo' : 'By Egg' }}</h1>
   <label for="versionGroup">{{ language === 'es' ? 'Seleccionar Juego': 'Select Game' }}</label> &nbsp;
-  <select id="versionGroup" [(ngModel)]="eggSelectedVersionGroup" (change)="eggChangeGame($event)">
-    <option *ngFor="let group of versionGroups" [value]="group">{{ group }}</option>
-  </select>
+
+  <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutorEgg" (selectedTabChange)="tutorChangeGame($event)">
+    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group)">
+
   <div class="bg-white p-3 border-black border rounded-md">
     <div class="grid grid-cols-5 gap-4 border-b border-black pb-1 mb-2">
       <span class="font-semibold">{{ language === 'es' ? 'Movimiento' : 'Move' }}</span>
@@ -316,14 +320,16 @@
       </div>
     </div>
   </div>
+</mat-tab>
+</mat-tab-group>
 </div>
 
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black tutor-container block sm:hidden">
   <h1 class="font-bold">{{ language === 'es' ? 'Mediante Huevo' : 'By Egg' }}</h1>
   <label for="versionGroup">{{ language === 'es' ? 'Seleccionar Juego': 'Select Game' }}</label> &nbsp;
-  <select id="versionGroup" [(ngModel)]="eggSelectedVersionGroup" (change)="eggChangeGame($event)">
-    <option *ngFor="let group of versionGroups" [value]="group">{{ group }}</option>
-  </select>
+
+  <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutorEgg" (selectedTabChange)="tutorChangeGame($event)">
+    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group)">
 
   <div class="bg-white p-3 border-black border rounded-md">
     <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2">
@@ -361,4 +367,6 @@
     </div>
   </div>
   </div>
+</mat-tab>
+</mat-tab-group>
 </div>

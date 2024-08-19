@@ -33,7 +33,9 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   filteredMovesByEgg: FilteredByEgg[] = [];
   backgroundColor: string = '';
   selectedTabIndex = 0;
-  selectedTabIndex2 = 0;
+  selectedTabIndexMT = 0;
+  selectedTabIndexTutor = 0;
+  selectedTabIndexTutorEgg = 0;
 
   constructor(private pokeApiService: PokeApiService,
               private helperService: HelperService,) { }
@@ -101,13 +103,13 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     this.filterMovesByMachine();
   }
 
-  tutorChangeGame(event: Event): void {
-    const selectedGroup = (event.target as HTMLSelectElement).value;
+  tutorChangeGame(event: MatTabChangeEvent): void {
+    const selectedGroup = this.versionGroups[event.index];
     this.tutorSelectedVersionGroup = selectedGroup;
     this.filterMovesByTutor();
   }
-  eggChangeGame(event: Event): void {
-    const selectedGroup = (event.target as HTMLSelectElement).value;
+  eggChangeGame(event: MatTabChangeEvent): void {
+    const selectedGroup = this.versionGroups[event.index];
     this.eggSelectedVersionGroup = selectedGroup;
     this.filterMovesByEgg();
   }
