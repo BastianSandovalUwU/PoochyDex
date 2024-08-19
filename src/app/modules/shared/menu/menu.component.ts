@@ -19,7 +19,9 @@ export class MenuComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if(changes['isOpen']) {
       this.isOpen = changes['isOpen'].currentValue;
+    }
   }
 
   toggleMenu() {
