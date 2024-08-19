@@ -100,6 +100,46 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
   groupByVersionAndMethod(data: LocationData[]): GroupedData[] {
     const groupedData: { [versionName: string]: { [methodName: string]: string[] } } = {};
 
+    // Lista con el orden deseado de los juegos
+    const gameOrder = [
+      "scarlet",
+      "violet",
+      "brilliant-diamond",
+      "shining-pearl",
+      "sword",
+      "shield",
+      "lets-go-pikachu",
+      "lets-go-eevee",
+      "ultra-sun",
+      "ultra-moon",
+      "sun",
+      "moon",
+      "omega-ruby",
+      "alpha-sapphire",
+      "x",
+      "y",
+      "black-2",
+      "white-2",
+      "black",
+      "white",
+      "heartgold",
+      "soulsilver",
+      "platinum",
+      "diamond",
+      "pearl",
+      "emerald",
+      "firered",
+      "leafgreen",
+      "ruby",
+      "sapphire",
+      "crystal",
+      "gold",
+      "silver",
+      "yellow",
+      "blue",
+      "red",
+    ];
+
     data.forEach(location => {
       location.version_details.forEach(versionDetail => {
         const versionName = versionDetail.version.name;
@@ -120,10 +160,13 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
       });
     });
 
-    return Object.keys(groupedData).map(versionName => ({
-      versionName,
-      methods: groupedData[versionName]
-    }));
+    // Ordenar las versiones usando el orden deseado
+    return Object.keys(groupedData)
+      .sort((a, b) => gameOrder.indexOf(a) - gameOrder.indexOf(b))
+      .map(versionName => ({
+        versionName,
+        methods: groupedData[versionName]
+      }));
   }
 
   toggleMethod(versionName: string, methodName: string) {

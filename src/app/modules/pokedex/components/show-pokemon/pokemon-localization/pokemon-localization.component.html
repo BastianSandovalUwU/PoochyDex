@@ -1,4 +1,4 @@
-<div [ngClass]="backgroundColor" class=" p-4 rounded-md mt-2 border border-black">
+<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black">
   <h1 class="font-bold text-xl">{{ language === 'es' ? 'Localización': 'Localization' }}</h1>
   <div class="border-black border p-3 rounded-md bg-white">
     <div class="grid grid-cols-6 gap-4 border-b border-black pb-1">
@@ -21,8 +21,10 @@
               <strong>
                 {{ method.key | translateLocalizationMethod | replaceDash | titlecase }}:
               </strong>
-              <span *ngFor="let methodValue of getVisibleMethodValues(method.value, version.versionName, method.key)">
-                <app-hyperlink [value]="methodValue | replaceDash | titlecase"></app-hyperlink>,
+              <span *ngFor="let methodValue of getVisibleMethodValues(method.value, version.versionName, method.key); let i = index">
+                <app-hyperlink [value]="methodValue | replaceDash | titlecase | translateLocalizationName"></app-hyperlink>
+                <ng-container *ngIf="i < getVisibleMethodValues(method.value, version.versionName, method.key).length - 1">,</ng-container>
+                <ng-container *ngIf="i === getVisibleMethodValues(method.value, version.versionName, method.key).length - 1">.</ng-container>
               </span>
               <ng-container *ngIf="hasMoreMethodItems(method.value)">
                 <button class="text-blue-500 underline cursor-pointer"
