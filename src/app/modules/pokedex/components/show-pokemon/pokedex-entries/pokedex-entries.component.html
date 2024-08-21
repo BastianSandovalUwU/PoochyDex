@@ -9,7 +9,7 @@
       <div *ngFor="let entry of flavorTextEntries" class="col-span-4 grid grid-cols-1 sm:grid-cols-6 gap-4 border-b border-black py-2">
         <div [ngClass]="getGameVersionColor(entry.version)" class="relative col-span-2 sm:col-span-1 rounded-md text-white border border-black flex justify-center items-center">
           <span class="text-center hover:text-blue-500 cursor-pointer">{{ getGameName(entry.version) |replaceDash |titlecase }}</span>
-          <img class="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 mr-2" [src]="'./assets/pokemon-version-icon-sprite/' + entry.version + '.png'" alt="">
+          <img class="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 mr-2" [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(entry.version)[0] + '.png'" alt="">
         </div>
         <div class="col-span-3 sm:col-span-5">
           <p>{{ entry.flavor_text }}</p>

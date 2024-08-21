@@ -3,7 +3,7 @@
   <h1 class="font-bold">{{ language === 'es' ? 'Subiendo de nivel': 'By Level Up' }}</h1>
 
   <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="levelUpChangeGame($event)">
-    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group)">
+    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
       <div class="bg-white p-3 border-black border rounded-md">
         <div class="grid grid-cols-6 gap-4 border-b border-black pb-1 mb-2">
           <span class="font-semibold">{{ language === 'es' ? 'Nivel': 'Level' }}</span>
@@ -27,8 +27,14 @@
                 <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'status'" src="./assets/icons/movement_category/status_category_6_7_gen.png">
               </div>
               <div class="grid grid-cols-3 col-span-2">
-                <div class="col-span-2 rounded-md px-2 text-white text-center border border-black" [ngClass]="getGameVersionColor(detail.version_group.name)">
-                  {{ getGameName(detail.version_group.name) }}
+                <div class="relative col-span-2 rounded-md px-2 text-white text-center border border-black flex justify-center items-center" [ngClass]="getGameVersionColor(detail.version_group.name)">
+                  <img class="absolute left-0 top-1/2 transform -translate-y-1/2 w-8 ml-2"
+                       [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(detail.version_group.name)[0] + '.png'" alt="Sun Icon">
+                  <span class="hover:text-blue-500 cursor-pointer">
+                    {{ getGameName(detail.version_group.name) |replaceDash |titlecase }}
+                  </span>
+                  <img *ngIf="getGameIconGame(detail.version_group.name)[1]" class="absolute right-0 top-1/2 transform -translate-y-1/2 w-8 mr-2"
+                       [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(detail.version_group.name)[1] + '.png'" alt="Moon Icon">
                 </div>
               </div>
               <div *ngFor="let type of pokeMove.types">
@@ -82,7 +88,7 @@
       <div class="move-detail">
         <span class="move-label">{{ language === 'es' ? 'Juego': 'Game' }}</span>
         <span class="game-version rounded-md px-2 text-white text-center border border-black" [ngClass]="getGameVersionColor(getVersionGroupName(pokeMove))">
-          {{ getGameName(getVersionGroupName(pokeMove)) }}
+          {{ getGameName(getVersionGroupName(pokeMove)) | replaceDash | titlecase}}
         </span>
       </div>
       <div class="move-detail">
@@ -102,7 +108,7 @@
   <h1 class="font-bold">{{ language === 'es' ? 'Mediante Máquina Tecnica' : 'By Technical Machine' }}</h1>
 
   <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexMT" (selectedTabChange)="machineChangeGame($event)">
-    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group)">
+    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
 
       <div class="bg-white p-3 border-black border rounded-md">
     <div class="grid grid-cols-5 gap-4 border-b border-black pb-1 mb-2">
@@ -123,7 +129,7 @@
         </div>
         <div class="grid grid-cols-3">
           <div class="col-span-2 rounded-md px-2 text-white text-center border border-black" [ngClass]="getGameVersionColor(pokeMove.machineDetail?.version_group.name)">
-            {{ getGameName(pokeMove.machineDetail?.version_group.name) }}
+            {{ getGameName(pokeMove.machineDetail?.version_group.name) | replaceDash | titlecase}}
           </div>
         </div>
         <div *ngFor="let type of pokeMove.types">
@@ -145,7 +151,7 @@
   <h1 class="font-bold">{{ language === 'es' ? 'Mediante Máquina Tecnica' : 'By Technical Machine' }}</h1>
 
   <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexMT" (selectedTabChange)="machineChangeGame($event)">
-    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group)">
+    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
 
   <div class="bg-white p-3 border-black border rounded-md">
     <!-- Encabezado para pantallas grandes -->
@@ -171,7 +177,7 @@
       <div class="move-detail">
         <span class="move-label">{{ language === 'es' ? 'Juego': 'Game' }}</span>
         <span class="game-version rounded-md px-2 text-white text-center border border-black" [ngClass]="getGameVersionColor(pokeMove.machineDetail?.version_group.name)">
-          {{ getGameName(pokeMove.machineDetail?.version_group.name) }}
+          {{ getGameName(pokeMove.machineDetail?.version_group.name) | replaceDash | titlecase}}
         </span>
       </div>
       <div class="move-detail">
@@ -191,7 +197,7 @@
   <h1 class="font-bold">{{ language === 'es' ? 'Mediante tutor' : 'By Tutor' }}</h1>
 
   <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutor" (selectedTabChange)="tutorChangeGame($event)">
-    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group)">
+    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
 
   <div class="bg-white p-3 border-black border rounded-md">
     <div class="grid grid-cols-5 gap-4 border-b border-black pb-1 mb-2">
@@ -213,7 +219,7 @@
           </div>
           <div class="grid grid-cols-3">
             <div class="col-span-2 rounded-md px-2 text-white text-center border border-black" [ngClass]="getGameVersionColor(detail.version_group.name)">
-              {{ getGameName(detail.version_group.name) }}
+              {{ getGameName(detail.version_group.name) | replaceDash | titlecase }}
             </div>
           </div>
           <div *ngFor="let type of pokeMove.types">
@@ -236,7 +242,7 @@
   <label for="versionGroup">{{ language === 'es' ? 'Seleccionar Juego': 'Select Game' }}</label>&nbsp;
 
   <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutor" (selectedTabChange)="tutorChangeGame($event)">
-    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group)">
+    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
 
   <div class="bg-white p-3 border-black border rounded-md">
     <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2">
@@ -262,7 +268,7 @@
         <div class="move-detail">
           <span class="move-label">{{ language === 'es' ? 'Juego' : 'Game' }}</span>
           <span class="game-version rounded-md px-2 text-white text-center border border-black" [ngClass]="getGameVersionColor(detail.version_group.name)">
-            {{ getGameName(detail.version_group.name) }}
+            {{ getGameName(detail.version_group.name) | replaceDash | titlecase }}
           </span>
         </div>
         <div class="move-detail">
@@ -284,7 +290,7 @@
   <label for="versionGroup">{{ language === 'es' ? 'Seleccionar Juego': 'Select Game' }}</label> &nbsp;
 
   <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutorEgg" (selectedTabChange)="tutorChangeGame($event)">
-    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group)">
+    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
 
   <div class="bg-white p-3 border-black border rounded-md">
     <div class="grid grid-cols-5 gap-4 border-b border-black pb-1 mb-2">
@@ -306,7 +312,7 @@
           </div>
           <div class="grid grid-cols-3">
             <div class="col-span-2 rounded-md px-2 text-white text-center border border-black" [ngClass]="getGameVersionColor(detail.version_group.name)">
-              {{ getGameName(detail.version_group.name) }}
+              {{ getGameName(detail.version_group.name) | replaceDash | titlecase }}
             </div>
           </div>
           <div *ngFor="let type of pokeMove.types">
@@ -329,7 +335,7 @@
   <label for="versionGroup">{{ language === 'es' ? 'Seleccionar Juego': 'Select Game' }}</label> &nbsp;
 
   <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutorEgg" (selectedTabChange)="tutorChangeGame($event)">
-    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group)">
+    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
 
   <div class="bg-white p-3 border-black border rounded-md">
     <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2">
@@ -355,7 +361,7 @@
         <div class="move-detail">
           <span class="move-label">{{ language === 'es' ? 'Juego' : 'Game' }}</span>
           <span class="game-version rounded-md px-2 text-white text-center border border-black" [ngClass]="getGameVersionColor(detail.version_group.name)">
-            {{ getGameName(detail.version_group.name) }}
+            {{ getGameName(detail.version_group.name) | replaceDash | titlecase }}
           </span>
         </div>
         <div class="move-detail">

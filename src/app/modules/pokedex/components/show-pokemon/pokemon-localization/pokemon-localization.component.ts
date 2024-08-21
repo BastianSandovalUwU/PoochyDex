@@ -97,47 +97,51 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
     return this.helperService.getGameName(gameName, this.language);
   }
 
+  getGameIconGame(gameName: string): string[] {
+    return this.helperService.getGameIconGame(gameName);
+  }
+
   groupByVersionAndMethod(data: LocationData[]): GroupedData[] {
     const groupedData: { [versionName: string]: { [methodName: string]: string[] } } = {};
 
     // Lista con el orden deseado de los juegos
     const gameOrder = [
-      "scarlet",
-      "violet",
-      "brilliant-diamond",
-      "shining-pearl",
-      "sword",
-      "shield",
-      "lets-go-pikachu",
-      "lets-go-eevee",
-      "ultra-sun",
-      "ultra-moon",
-      "sun",
-      "moon",
-      "omega-ruby",
-      "alpha-sapphire",
-      "x",
-      "y",
-      "black-2",
-      "white-2",
-      "black",
-      "white",
-      "heartgold",
-      "soulsilver",
-      "platinum",
-      "diamond",
-      "pearl",
-      "emerald",
-      "firered",
-      "leafgreen",
-      "ruby",
-      "sapphire",
-      "crystal",
-      "gold",
-      "silver",
-      "yellow",
-      "blue",
       "red",
+      "blue",
+      "yellow",
+      "silver",
+      "gold",
+      "crystal",
+      "sapphire",
+      "ruby",
+      "leafgreen",
+      "firered",
+      "emerald",
+      "pearl",
+      "diamond",
+      "platinum",
+      "soulsilver",
+      "heartgold",
+      "white",
+      "black",
+      "white-2",
+      "black-2",
+      "y",
+      "x",
+      "alpha-sapphire",
+      "omega-ruby",
+      "moon",
+      "sun",
+      "ultra-moon",
+      "ultra-sun",
+      "lets-go-eevee",
+      "lets-go-pikachu",
+      "shield",
+      "sword",
+      "shining-pearl",
+      "brilliant-diamond",
+      "violet",
+      "scarlet"
     ];
 
     data.forEach(location => {

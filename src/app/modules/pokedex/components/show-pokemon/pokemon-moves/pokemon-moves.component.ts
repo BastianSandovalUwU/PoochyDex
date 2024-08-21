@@ -311,6 +311,10 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     return this.helperService.getGameName(gameName, this.language);
   }
 
+  getGameIconGame(gameName: string): string[] {
+    return this.helperService.getGameIconGame(gameName);
+  }
+
   getColorClassByLanguageAndType(typeName: string, language: string): string {
     return this.helperService.getTypeColorClass(typeName, language);
   }
