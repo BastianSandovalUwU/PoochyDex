@@ -301,7 +301,7 @@ export class HelperService {
       case 'red-blue': return 'bg-pokemon-red';
       case 'gold-silver': return 'bg-pokemon-gold text-black';
       case 'ruby-sapphire': return 'bg-pokemon-ruby';
-      case 'fire-red-leaf-green': return 'bg-pokemon-fire-red';
+      case 'firered-leafgreen': return 'bg-pokemon-fire-red';
       case 'diamond-pearl': return 'bg-pokemon-diamond text-black';
       case 'heartgold-soulsilver': return 'bg-pokemon-heartgold text-black';
       case 'black-white': return 'bg-pokemon-black';
@@ -394,6 +394,67 @@ export class HelperService {
     } else {
       return gameName;
     }
+  }
+
+  getGameIconGame(gameName: string): string[] {
+      switch (gameName.toLowerCase()) {
+        case 'red': return ['red'];
+        case 'blue': return ['blue'];
+        case 'yellow': return ['yellow'];
+        case 'gold': return ['gold'];
+        case 'silver': return ['silver'];
+        case 'crystal': return ['crystal'];
+        case 'ruby': return ['ruby'];
+        case 'sapphire': return ['sapphire'];
+        case 'emerald': return ['emerald'];
+        case 'firered': return ['red'];
+        case 'leafgreen': return ['green'];
+        case 'diamond': return ['diamond'];
+        case 'pearl': return ['pearl'];
+        case 'platinum': return ['platinum'];
+        case 'heartgold': return ['gold'];
+        case 'soulsilver': return ['silver'];
+        case 'black': return ['black'];
+        case 'white': return ['white'];
+        case 'black-2': return ['black-2'];
+        case 'white-2': return ['white-2'];
+        case 'x': return ['x'];
+        case 'y': return ['y'];
+        case 'omega-ruby': return ['omega-ruby'];
+        case 'alpha-sapphire': return ['alpha-sapphire'];
+        case 'sun': return ['sun'];
+        case 'moon': return ['moon'];
+        case 'ultra-sun': return ['ultra-sun'];
+        case 'ultra-moon': return ['ultra-moon'];
+        case 'lets-go-pikachu': return ["yellow"];
+        case 'lets-go-eevee': return ["lets-go-eevee"];
+        case 'sword': return ['sword'];
+        case 'shield': return ['shield'];
+        case 'scarlet': return ['scarlet'];
+        case 'violet': return ['violet'];
+        case 'red-blue': return ['red', 'blue'];
+        case 'yellow': return ['yellow'];
+        case 'gold-silver': return ['gold', 'silver'];
+        case 'crystal': return ['crystal'];
+        case 'ruby-sapphire': return ['ruby', 'sapphire'];
+        case 'emerald': return ['emerald'];
+        case 'firered-leafgreen': return ['red', 'green'];
+        case 'diamond-pearl': return ['diamond', 'pearl'];
+        case 'platinum': return ['platinum'];
+        case 'heartgold-soulsilver': return ['gold', 'silver'];
+        case 'black-white': return ['black', 'white'];
+        case 'black-2-white-2': return ['black-2', 'white-2'];
+        case 'x-y': return ['x', 'y'];
+        case 'omega-ruby-alpha-sapphire': return ['omega-ruby', 'alpha-sapphire'];
+        case 'sun-moon': return ['sun', 'moon'];
+        case 'ultra-sun-ultra-moon': return ['ultra-sun', 'ultra-moon'];
+        case 'lets-go-pikachu-lets-go-eevee': return ['yellow', 'lets-go-eevee'];
+        case 'sword-shield': return ['sword', 'shield'];
+        case 'scarlet-violet': return ['scarlet', 'violet'];
+        case 'brilliant-diamond-and-shining-pearl': return ['diamond', 'pearl'];
+        case 'legends-arceus': return ['legends-arceus'];
+        default: return [];
+      }
   }
 
   getPokemonSpriteImg(pokemonName: string): string {

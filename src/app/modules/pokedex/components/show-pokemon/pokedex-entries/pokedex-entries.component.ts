@@ -43,6 +43,10 @@ export class PokedexEntriesComponent implements OnInit, OnChanges {
     return this.helperService.getGameName(gameName, this.language);
   }
 
+  getGameIconGame(gameName: string): string[] {
+    return this.helperService.getGameIconGame(gameName);
+  }
+
   getPokemonColor() {
     if (this.pokemonSpecie && this.pokemonSpecie.color) {
       this.backgroundColor = this.helperService.getPokemonColor(this.pokemonSpecie.color.name);

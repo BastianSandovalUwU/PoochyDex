@@ -13,7 +13,7 @@
             {{ getGameName(version.versionName) | replaceDash | titlecase }}
           </span>
           <img class="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 mr-2"
-               [src]="'./assets/pokemon-version-icon-sprite/' + version.versionName + '.png'" alt="">
+               [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(version.versionName)[0] + '.png'" alt="">
         </div>
         <div class="col-span-3 sm:col-span-5">
           <div *ngFor="let method of version.methods | keyvalue">
