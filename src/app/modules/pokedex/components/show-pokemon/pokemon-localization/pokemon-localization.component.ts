@@ -55,10 +55,11 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
   @Input() pokemon: Pokemon;
   backgroundColor: string = '';
   data: LocationData[];
-  groupedLocations: GroupedData[] | null = null;
+  groupedLocations: GroupedData[] = [];
   expandedVersions: { [key: string]: boolean } = {};
   expandedMethods: { [versionName: string]: { [methodName: string]: boolean } } = {};
   minimumVisibleItems = 20;
+  loadInfo: boolean;
 
   constructor(private helperService: HelperService,
               private pokeApiService: PokeApiService
@@ -77,6 +78,11 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
   getPokemonLocalization(): void {
     this.pokeApiService.getPokemonLocalization(this.pokemon.id).subscribe((localizationData) => {
         this.groupedLocations = this.groupByVersionAndMethod(localizationData);
+        if(this.groupedLocations.length > 0) {
+          this.loadInfo = true;
+        } else {
+          this.loadInfo = false;
+        }
     });
 
   }
