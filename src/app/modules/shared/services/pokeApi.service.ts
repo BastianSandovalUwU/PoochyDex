@@ -9,9 +9,11 @@ import { MachineMove } from '../../../../../entities/machine-move.entity';
 import { DetailMove } from '../../../../../entities/moves.entity';
 import { PokemonAbility } from '../../../../../entities/pokemon-ability.entity';
 import { HelperService } from './helper.service';
-import { EvolutionChain } from '../../../../../entities/evolution-chain.entity.';
+import { EvolutionChain } from '../../../../../entities/evolution-chain.entity';
 import { Localization } from '../../../../../entities/localitzation.entity';
 import { AllPokemon } from '../../../../../entities/common/const.interface';
+import { GameVersion } from '../../../../../entities/game-version.entity';
+import { GenerationInfo } from '../../../../../entities/generation.entity';
 
 @Injectable({
   providedIn: 'root'
@@ -212,6 +214,33 @@ export class PokeApiService {
     return this.http.get<any>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la localización:', error);
+        return throwError(error);
+      })
+    );
+  }
+  getGenerationInfo(generationName: string): Observable<GenerationInfo> {
+    const url = `${this.apiUrl}/generation/${generationName}/`;
+    return this.http.get<any>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener la generación:', error);
+        return throwError(error);
+      })
+    );
+  }
+  getGameVersionInfo(versionName: string): Observable<GameVersion> {
+    const url = `${this.apiUrl}/version/${versionName}/`;
+    return this.http.get<GameVersion>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener la Versión:', error);
+        return throwError(error);
+      })
+    );
+  }
+  getVersionGroupInfo(versionGroupName: string): Observable<any> {
+    const url = `${this.apiUrl}/version-group/${versionGroupName}/`;
+    return this.http.get<any>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener la Versión:', error);
         return throwError(error);
       })
     );

@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
-import { EvolutionChain } from '../../../../../../../entities/evolution-chain.entity.';
+import { EvolutionChain } from '../../../../../../../entities/evolution-chain.entity';
 import { Router } from '@angular/router';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 
