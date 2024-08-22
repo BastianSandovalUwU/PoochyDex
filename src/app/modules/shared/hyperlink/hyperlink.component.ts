@@ -23,7 +23,7 @@ export class HyperlinkComponent implements OnInit {
         this.routerTo(url);
         break;
       case 'game':
-        url = '';
+        url = '/game/show-game/' + this.value.toLowerCase();
         this.routerTo(url);
         break
       default:

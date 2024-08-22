@@ -1,0 +1,76 @@
+<div class="p-4 mt-2 rounded-md border border-black text-center">
+  <h1 class="font-bold text-4xl inline-block">
+    {{ language === 'es' ? 'Pokémon Edición' : 'Pokémon'}} {{ getGameName(gameName)[0] }} {{ language === 'es' ? '' : 'Edition'}}
+  </h1>
+  <h1 class="font-bold text-4xl inline-block" *ngIf="getGameName(gameName)[1]">
+    &nbsp;y {{ language === 'es' ? 'Pokémon Edición' : 'Pokémon'}} {{ getGameName(gameName)[1] }} {{ language === 'es' ? '' : 'Edition'}}
+  </h1>
+
+  <div class="flex justify-center gap-1">
+    <div class="flex justify-center">
+      <img src="https://i.imgur.com/LXL066K.jpeg" alt="Imagen 1" class="max-w-full">
+    </div>
+    <div class="flex justify-center" *ngIf="getGameName(gameName)[1]">
+      <img src="https://i.imgur.com/JL2zmZW.jpeg" alt="Imagen 2" class="max-w-full">
+    </div>
+  </div>
+
+  <div class="flex justify-center mt-1">
+    <div class="bg-white rounded-md border border-black p-3">
+      <div class="max-w-screen-sm">
+        <h1><span class="font-bold">{{ language === 'es' ? 'Plataforma': 'Platform' }}: </span>Game Boy</h1>
+        <h1><span class="font-bold">{{ language === 'es' ? 'Genero': 'Genre' }}: </span>RPG</h1>
+        <h1><span class="font-bold">{{ language === 'es' ? 'Jugadores': 'Players' }}: </span>1-2</h1>
+        <h1><span class="font-bold">{{ language === 'es' ? 'Publicado por': 'Published By' }}: </span>Nintendo</h1>
+        <h1><span class="font-bold">{{ language === 'es' ? 'Desarrollado por': 'Developed By' }}: </span>Game Freak</h1>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="p-4 mt-2 rounded-md border border-black">
+  <h1 class="font-bold text-xl">
+    {{ language === 'es' ? 'Resumen juego' : 'Game resume'}}
+  </h1>
+  <p>
+    Pokémon Rojo y Pokémon Azul (Pokémon Red y Pokémon Blue en inglés, ポケットモンスター 赤 Pocket Monsters Aka y ポケットモンスター青 Pocket Monsters Ao en japonés) son los dos primeros videojuegos de Pokémon que fueron lanzados al mercado occidental para la consola portátil Game Boy y posteriormente el 27 de febrero de 2016 se estrenó en la eShop de Nintendo 3DS. Estos videojuegos utilizan el motor y los gráficos del videojuego japonés Pokémon Azul, aunque la disponibilidad de Pokémon se corresponde con las ediciones japonesas Pokémon Rojo y Pokémon Verde (los primeros dos videojuegos Pokémon).
+    El término edición (versión en inglés) se debe a que ambos videojuegos son casi idénticos. Su única diferencia a grandes rasgos es la disponibilidad de Pokémon, puesto que cada edición presenta 11 criaturas exclusivas que no aparecen en la otra edición. Esta es una característica que se mantendría en todos los títulos siguientes de Pokémon.
+    Este videojuego presenta a los 151 Pokémon originales que luego se denominarían "la primera generación."
+    Este contenido proviene de wikidex.net, y debe darse atribución a sus autores, tal como especifica la licencia.
+  </p>
+</div>
+
+<div class="p-4 mt-2 rounded-md border border-black">
+  <h1 class="font-bold text-xl">
+    {{ language === 'es' ? 'Historia del juego' : 'Game History'}}
+  </h1>
+  <p>
+    El jugador toma el mando de un niño que vive en Pueblo Paleta, y ha cumplido la edad para poder irse de su casa y dedicarse a entrenar Pokémon. El nombre del protagonista puede ser escogido por el jugador, aunque su nombre genérico es Rojo. El profesor Oak te permitirá elegir uno de entre tres Pokémon iniciales (Bulbasaur, Charmander y Squirtle) para iniciar la aventura y poder combatir contra otros Pokémon salvajes y entrenadores.
+    Al mismo tiempo se presenta al nieto del profesor Oak que también escogerá a su Pokémon inicial y se convertirá en tu rival durante el videojuego, por lo que deberás combatirlo varias veces.
+    La meta principal del videojuego es llegar a la Liga Pokémon y enfrentarse al implacable Alto Mando. Para ello el jugador debe reunir las ocho medallas de gimnasio que se consiguen derrotando a los líderes de cada gimnasio Pokémon ubicados en distintas partes de la región Kanto. Para avanzar en su viaje el jugador debe sortear todo tipo de obstáculos, cumplir objetivos y entrenar constantemente a los Pokémon de su equipo para que aumenten su nivel y aprendan nuevos movimientos.
+    Dentro de la aventura además el jugador deberá hacer frente a un grupo de villanos conocidos como el Team Rocket liderados por el misterioso Giovanni quienes con sus ambiciosos planes amenazan el bienestar de las personas y los Pokémon de Kanto.
+    Otro objetivo del videojuego, es completar la Pokédex para el profesor Oak, pero para ello el jugador necesita intercambiar Pokémon con otro que tenga la otra edición, como en la mayoría de los videojuegos de Pokémon.
+  </p>
+</div>
+
+<div class="p-4 mt-2 rounded-md border border-black">
+  <h1 class="font-bold text-xl">
+    {{ language === 'es' ? 'Pokémon Iniciales' : 'Pokémon Starters'}}
+  </h1>
+
+</div>
+
+<div class="p-4 mt-2 rounded-md border border-black">
+  <h1 class="font-bold text-xl">
+    {{ language === 'es' ? 'Pokémon Legendarios y Singulares' : 'Legendarie and Mithical Pokémon'}}
+  </h1>
+
+</div>
+
+<div class="p-4 mt-2 rounded-md border border-black">
+  <h1 class="font-bold text-xl">
+    {{ language === 'es' ? 'Nuevas Habilidades' : 'New Abilites'}}
+  </h1>
+
+</div>

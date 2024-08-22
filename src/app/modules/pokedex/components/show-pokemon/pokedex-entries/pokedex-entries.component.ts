@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokedex-entries',
@@ -14,7 +15,8 @@ export class PokedexEntriesComponent implements OnInit, OnChanges {
   flavorTextEntries: { flavor_text: string, version: string }[] = [];
   backgroundColor: string = '';
 
-  constructor(private helperService: HelperService) { }
+  constructor(private helperService: HelperService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getPokemonColor();
@@ -52,6 +54,51 @@ export class PokedexEntriesComponent implements OnInit, OnChanges {
       this.backgroundColor = this.helperService.getPokemonColor(this.pokemonSpecie.color.name);
     } else {
       this.backgroundColor = '';
+    }
+  }
+
+  navigateToGame(gameName: string) {
+    const gameMap: { [key: string]: string } = {
+      'red': 'red-blue',
+      'blue': 'red-blue',
+      'yellow': 'yellow',
+      'gold': 'gold-silver',
+      'silver': 'gold-silver',
+      'crystal': 'crystal',
+      'ruby': 'ruby-sapphire',
+      'sapphire': 'ruby-sapphire',
+      'emerald': 'emerald',
+      'firered': 'firered-leafgreen',
+      'leafgreen': 'firered-leafgreen',
+      'diamond': 'diamond-pearl',
+      'pearl': 'diamond-pearl',
+      'platinum': 'platinum',
+      'heartgold': 'heartgold-soulsilver',
+      'soulsilver': 'heartgold-soulsilver',
+      'black': 'black-white',
+      'white': 'black-white',
+      'black-2': 'black-2-white-2',
+      'white-2': 'black-2-white-2',
+      'x': 'x-y',
+      'y': 'x-y',
+      'omega-ruby': 'omega-ruby-alpha-sapphire',
+      'alpha-sapphire': 'omega-ruby-alpha-sapphire',
+      'sun': 'sun-moon',
+      'moon': 'sun-moon',
+      'ultra-sun': 'ultra-sun-ultra-moon',
+      'ultra-moon': 'ultra-sun-ultra-moon',
+      'lets-go-pikachu': 'lets-go-pikachu-lets-go-eevee',
+      'lets-go-eevee': 'lets-go-pikachu-lets-go-eevee',
+      'sword': 'sword-shield',
+      'shield': 'sword-shield',
+      'scarlet': 'scarlet-violet',
+      'violet': 'scarlet-violet',
+    };
+
+    const name = gameMap[gameName];
+
+    if (name) {
+      this.router.navigate(['/game/show-game', name]);
     }
   }
 
