@@ -21,6 +21,7 @@ export class TranslateLocalizationMethodPipe implements PipeTransform {
       switch (value) {
         case 'surf': return 'Salvaje, haciendo Surf';
         case 'walk': return 'Salvaje';
+        case 'dark-grass': return 'Hierba Oscura';
         case 'gift': return 'Regalo';
         case 'sos-encounter': return 'Encuentro SOS';
         case 'island-scan': return 'Escáner Insular';
