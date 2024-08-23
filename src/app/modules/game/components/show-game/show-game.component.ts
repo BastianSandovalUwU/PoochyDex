@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
+import { Games } from '../../../../../../entities/common/game-data';
+import { GamesService } from '../../services/games.service';
 
 @Component({
   selector: 'app-show-game',
@@ -12,10 +14,12 @@ import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 export class ShowGameComponent implements OnInit {
   language: string;
   gameName: string;
+  gameInfo: Games;
 
   constructor(private activatedRoute: ActivatedRoute,
               private pokeApiService: PokeApiService,
               private helperService: HelperService,
+              private gamesService: GamesService,
               private languageService: LanguageService,) {
   }
 
@@ -23,6 +27,7 @@ export class ShowGameComponent implements OnInit {
     this.getLanguage();
     this.activatedRoute.params.subscribe((params) => {
       this.gameName = params['game'];
+      this.getGameInfo();
       this.getInfo();
     });
   }
@@ -36,61 +41,33 @@ export class ShowGameComponent implements OnInit {
       });
   }
 
+  getGameInfo() {
+    switch (this.gameName) {
+      case 'red-blue':
+        this.gameInfo = this.gamesService.getPokemonRedBlueData();
+        break;
+      case 'yellow':
+        this.gameInfo = this.gamesService.getPokemonYellowData();
+        break;
+      case 'gold-silver':
+        this.gameInfo = this.gamesService.getPokemonGoldSilverData();
+        break;
+      case 'crystal':
+        this.gameInfo = this.gamesService.getPokemonCrystalData();
+        break;
+      case 'ruby-sapphire':
+        this.gameInfo = this.gamesService.getPokemonRubySapphireData();
+        break;
+
+      default: null
+        break;
+    }
+  }
+
   getLanguage() {
     this.languageService.currentLanguage$.subscribe(language => {
       this.language = language;
     });
   }
-
-  getGameName(gameName: string): string[] {
-    if(this.language === 'es') {
-      switch (gameName) {
-        case 'red-blue': return ['Rojo', 'Azul'];
-        case 'gold-silver': return ['Oro', 'Plata'];
-        case 'crystal': return ['Cristal'];
-        case 'ruby-sapphire': return ['Rubí', ' Zafiro'];
-        case 'emerald': return ['Esmeralda'];
-        case 'firered-leafgreen': return ['Rojo Fuego', 'Verde Hoja'];
-        case 'diamond-pearl': return ['Diamante', 'Perla'];
-        case 'heartgold-soulsilver': return ['Oro HeartGold', 'Plata SoulSilver'];
-        case 'black-white': return ['Negro', 'Blanco'];
-        case 'black-2-white-2': return ['Negro 2', 'Blanco 2'];
-        case 'x-y': return ['X', 'Y'];
-        case 'omega-ruby-alpha-sapphire': return ['Rubí Omega', 'Zafiro Alfa'];
-        case 'sun-moon': return ['Sol', 'Luna'];
-        case 'ultra-sun-ultra-moon': return ['Ultrasol', 'Ultraluna'];
-        case 'lets-go-pikachu-lets-go-eevee': return ["Let's Go, Pikachu!", "Let's Go, Eevee!"];
-        case 'sword-shield': return ['Espada', 'Escudo'];
-        case 'scarlet-violet': return ['Escarlata', 'Purpura'];
-        case 'brilliant-diamond-and-shining-pearl': return ['Diamante Brillante', 'Perla Reluciente'];
-        case 'legends-arceus': return ['Legendas Arceus'];
-        default: return[]
-      }
-    } else {
-      switch (gameName) {
-        case 'red-blue': return ['Red', 'Blue'];
-        case 'gold-silver': return ['Gold', 'Silver'];
-        case 'crystal': return ['Crystal'];
-        case 'ruby-sapphire': return ['Ruby', ' Sapphire'];
-        case 'emerald': return ['Emerald'];
-        case 'firered-leafgreen': return ['Firered', 'Leafgreen'];
-        case 'diamond-pearl': return ['Diamond', 'Pearl'];
-        case 'platinum': return ['Platinum'];
-        case 'heartgold-soulsilver': return ['HeartGold', 'SoulSilver'];
-        case 'black-white': return ['Black', 'White'];
-        case 'black-2-white-2': return ['Black 2', 'White 2'];
-        case 'x-y': return ['X', 'Y'];
-        case 'omega-ruby-alpha-sapphire': return ['Omega Ruby', 'Alfa Sapphire'];
-        case 'sun-moon': return ['Sun', 'Moon'];
-        case 'ultra-sun-ultra-moon': return ['ultraSun', 'UltraMoon'];
-        case 'lets-go-pikachu-lets-go-eevee': return ["Let's Go, Pikachu!", "Let's Go, Eevee!"];
-        case 'sword-shield': return ['Sword', 'Shield'];
-        case 'scarlet-violet': return ['Scarlet', 'Violet'];
-        case 'brilliant-diamond-and-shining-pearl': return ['Brilliant Diamond', 'Shining Pearl'];
-        case 'legends-arceus': return ['Legends Arceus'];
-        default: return[]
-    }
-  }
-}
 
 }
