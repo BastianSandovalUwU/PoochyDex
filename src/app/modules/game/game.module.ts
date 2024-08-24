@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { gameRoute } from './game.routing';
 import { SharedModule } from '../shared/shared.module';
 import { GameInfoComponent } from './components/show-game/game-info/game-info.component';
+import { ListGamesComponent } from './components/list-games/list-games.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { GameInfoComponent } from './components/show-game/game-info/game-info.co
   ],
   declarations: [
     ShowGameComponent,
-    GameInfoComponent
+    GameInfoComponent,
+    ListGamesComponent
   ]
 })
 export class GameModule { }
