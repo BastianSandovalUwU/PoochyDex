@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { pokemonCrystalData, pokemonGoldSiverData, pokemonRedBlueData, pokemonRubySapphireData, pokemonYellowData } from '../../../../../entities/common/game-data';
+import { pokemonCrystalData, pokemonDiamondPearlData, pokemonEmeraldData, pokemonFireRedLeafGreenData, pokemonGoldSiverData, pokemonPlatinumData, pokemonRedBlueData, pokemonRubySapphireData, pokemonYellowData } from '../../../../../entities/common/game-data';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +23,20 @@ constructor() { }
   }
   getPokemonRubySapphireData() {
     return pokemonRubySapphireData;
+  }
+  getPokemonRubyEmeraldData() {
+    return pokemonEmeraldData;
+  }
+  getPokemonFireRedLeafGreenData() {
+    return pokemonFireRedLeafGreenData;
+  }
+  getPokemonDiamondPearlData() {
+    return pokemonDiamondPearlData;
+  }
+  getPokemonPlatinumData() {
+    return pokemonPlatinumData;
+  }
+  getAllGames() {
+    return [pokemonRedBlueData, pokemonYellowData, pokemonGoldSiverData, pokemonCrystalData, pokemonRubySapphireData, pokemonEmeraldData, pokemonFireRedLeafGreenData, pokemonDiamondPearlData, pokemonPlatinumData]
   }
 }

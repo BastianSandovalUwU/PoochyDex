@@ -1,5 +1,6 @@
 export interface Games {
   generation:   string;
+  generationId: number;
   games:        string[];
   urlFrontPage: string[];
   genre:        string;
@@ -23,6 +24,7 @@ export interface ReleaseDate {
 
 export const pokemonRedBlueData: Games = {
   generation: "generation-i",
+  generationId: 1,
   games: ['Red', 'Blue'],
   urlFrontPage: ["https://i.imgur.com/LXL066K.jpeg", "https://i.imgur.com/JL2zmZW.jpeg"],
   genre: "RPG",
@@ -87,6 +89,7 @@ export const pokemonRedBlueData: Games = {
 
 export const pokemonYellowData: Games = {
   generation: "generation-i",
+  generationId: 1,
   games: ['Yellow'],
   urlFrontPage: ["https://i.imgur.com/NNOouHx.png"],
   genre: "RPG",
@@ -146,6 +149,7 @@ export const pokemonYellowData: Games = {
 
 export const pokemonGoldSiverData: Games = {
   generation: "generation-ii",
+  generationId: 2,
   games: ['Gold', 'Silver'],
   urlFrontPage: ["https://i.imgur.com/bOJ8fon.jpeg", "https://i.imgur.com/WIIy6jx.jpeg"],
   genre: "RPG",
@@ -207,6 +211,7 @@ export const pokemonGoldSiverData: Games = {
 
 export const pokemonCrystalData: Games = {
   generation: "generation-ii",
+  generationId: 2,
   games: ['Crystal'],
   urlFrontPage: ["https://i.imgur.com/7lAdv50.jpeg"],
   genre: "RPG",
@@ -259,6 +264,7 @@ export const pokemonCrystalData: Games = {
 
 export const pokemonRubySapphireData: Games = {
   generation: "generation-iii",
+  generationId: 3,
   games: ['Ruby', 'Sapphire'],
   urlFrontPage: ["https://i.imgur.com/m7cl5V6.png", "https://i.imgur.com/n65LQ1y.png"],
   genre: "RPG",
@@ -292,6 +298,158 @@ export const pokemonRubySapphireData: Games = {
         console: "Game Boy Advance",
         region: "Europa",
         date: "25 de julio de 2003",
+      },
+  ]
+}
+
+export const pokemonEmeraldData: Games = {
+  generation: "generation-iii",
+  generationId: 3,
+  games: ['Emerald'],
+  urlFrontPage: ["https://i.imgur.com/iBt2PjX.jpeg"],
+  genre: "RPG",
+  players: "1-4",
+  publishedBy: "Nintendo",
+  developedBy: "Game Freak",
+  platforms: ["Game Boy Advance"],
+  characters: "",
+  gameHistory: `La aventura tiene lugar en la región de Hoenn, un archipiélago localizado al sureste de las regiones Kanto y Johto. Se caracteriza por la introducción de batallas dobles, concursos Pokémon, el complejo del Frente Batalla y dos nuevos equipos antagonistas, el Equipo Magma y el Equipo Aqua que desean capturar a Groudon y Kyogre respectivamente para cumplir sus planes. Primera batalla entre Groudon y Kyogre Esta región se divide en varias islas, algunas de estas solo disponibles con tickets entregados en eventos especiales organizados por Nintendo: Isla Origen, Isla Suprema, Roca Ombligo e Isla del Sur donde se encontrarán Pokémon legendarios (Deoxys, Mew, Ho-Oh, Lugia, Latios o Latias). Las rutas se numeran de la 101 a 134 y entre las ciudades y pueblos destacan Villa Raíz donde está el laboratorio del profesor Abedul y el jugador comienza su viaje, Arrecípolis, donde se encuentra la Cueva Ancestral, y en ciudad Algaria está el centro espacial, por mencionar unos cuantos. El origen de la región data de la antigua leyenda Pokémon, el Pokémon continente Groudon hizo crecer la tierra durante la batalla con el Pokémon océano Kyogre quien extendió los mares, para resolver el conflicto de los cielos apareció Rayquaza terminando con la batalla. Cada uno regresó a dormir, desde ese momento no se sabe nada de ellos, creyendo que solo desaparecieron. Los tres se pueden obtener en el videojuego. Pokémon Esmeralda El viaje del protagonista comienza justo después de que sus padres y este se muden a la región de Hoenn. Después de instalarse en tu cuarto y poner la hora, tendrá que conocer a su vecino (Aura o Bruno dependiendo del género del protagonista), su futuro rival e hijo del profesor Abedul. El Profesor es atacado por un Zigzagoon en las afueras del pueblo (en Rubí/Zafiro era un Poochyena). Ahí, el jugador podrá escoger entre Treecko, Torchic o Mudkip, cualquiera de ellos se convertirá en su Pokémon inicial. Después de completar una pequeña tarea, en el laboratorio el profesor le entrega una Pokédex y 5 Poké Balls. Ahora, junto a su Pokémon, el jugador está listo para iniciar una aventura donde encontrará amigos, aliados, enemigos y cientos de Pokémon que le permitirán convertirse en un maestro Pokémon.`,
+  summary: `Pokémon Esmeralda (Pokémon Emerald en inglés, ポケットモンスター エメラルド Pocket Monsters Emerald en japonés) es la edición superior que cierra la tercera generación en los videojuegos principales de Pokémon iniciada por Pokémon Rubí y Pokémon Zafiro. También se le conoce como "Pokémon Edición Esmeralda". Al igual que otras terceras versiones o ediciones superiores, este comparte la base con su dúo antecesor, pero con varias novedades, lugares y eventos en la historia que hacen que el videojuego sea más completo.`,
+  releaseDates:
+    [
+      {
+        console: "Game Boy Advance",
+        region: "Japon",
+        date: "16 de septiembre de 2004",
+      },
+      {
+        console: "Game Boy Advance",
+        region: "America",
+        date: "1 de mayo de 2005",
+      },
+      {
+        console: "Game Boy Advance",
+        region: "Australia",
+        date: "9 de junio de 2005",
+      },
+      {
+        console: "Game Boy Advance",
+        region: "Europa",
+        date: "21 de octubre de 2005",
+      },
+  ]
+}
+
+export const pokemonFireRedLeafGreenData: Games = {
+  generation: "generation-iii",
+  generationId: 3,
+  games: ['Ruby', 'Sapphire'],
+  urlFrontPage: ["https://i.imgur.com/iCOfHbf.png", "https://i.imgur.com/VFYX7iK.png"],
+  genre: "RPG",
+  players: "1-4",
+  publishedBy: "Nintendo",
+  developedBy: "Game Freak",
+  platforms: ["Game Boy Advance"],
+  characters: "",
+  gameHistory: `Como en el videojuego original, llevas a tu personaje a través de Kanto. El profesor Oak te da a elegir entre Bulbasaur, Charmander o Squirtle. Tu rival es el vecino de la casa de al lado y se enfrentará a ti con ventaja, pues elegirá al Pokémon inicial cuyo tipo será ventajoso contra el que tú elijas. Estos Pokémon no son capturables. Sólo los puedes conseguir de la mano del profesor Oak, así que para conseguirlos a todos, tendrás que intercambiar con los conseguidos en otros cartuchos. Región de Kanto, donde se desarrolla la aventura. Deberás convertirte en el mejor entrenador Pokémon y para ello deberás derrotar a los ocho líderes de gimnasio para conseguir las medallas y así poder enfrentarte al Alto Mando. Por el camino tendrás que resolver algunas situaciones y dar su merecido al Team Rocket. Además deberás capturar a todos los Pokémon para completar la Pokédex y así ayudar al profesor Oak en sus investigaciones. Tras haber ganado la Liga Pokémon podrás visitar un nuevo archipiélago (Archi7) donde se podrán seguir pequeñas historias secundarias y donde aparecen algunos Pokémon de otras generaciones. Después de pasarte el videojuego aún tienes muchas cosas que hacer: Visitar Archi7 y capturar parte de los Pokémon de Johto. Criar Pokémon de Kanto para obtener Pokémon de Johto (Tyrogue, Pichu, Elekid, Magby, Smoochum, Togepi, Cleffa, Igglybuff entre otros). Competir en la Torre Desafío en Isla Sétima. Capturar a uno de los perros legendarios (Suicune si escogiste a Charmander, Raikou si Squirtle fue tu inicial, y Entei si te decidiste por Bulbasaur) que correrá por todo Kanto. Intercambiar Pokémon con un amigo que tenga la edición opuesta a la tuya para completar la Pokédex de Kanto. Intercambiar Pokémon con las ediciones de Pokémon Rubí y Pokémon Zafiro o Esmeralda para completar la Pokédex de Hoenn (después de conseguir el Rubí y el Zafiro y activar la máquina de redes de Celio). Intercambiar con Pokémon Colosseum y XD: Tempestad oscura para obtener Pokémon de la segunda generación (después de conseguir el Rubí y el Zafiro y activar la máquina de redes de Celio). Visitar la casa de Consu en Isla Inta y enseñarle el Pokémon indicado para que te obsequie algún objeto valioso (Carameloraro, Lujo Ball, entre otros). Este contenido proviene de wikidex.net, y debe darse atribución a sus autores, tal como especifica la licencia. Se prohíbe su uso a PlagioDex (el wiki de FANDOOM), por copiar reiteradamente sin dar atribución`,
+  summary: `Pokémon Rojo Fuego y Pokémon Verde Hoja (Pokémon FireRed y Pokémon LeafGreen en inglés, ポケットモンスター ファイアレッド Pocket Monsters FireRed y ポケットモンスター リーフグリーン Pocket Monsters LeafGreen en japonés) son las ediciones reeditadas de los videojuegos originales Pokémon Rojo y Pokémon Verde (Rojo y Azul fuera de Japón), con las novedades de los videojuegos para Game Boy Advance de Pokémon Rubí y Pokémon Zafiro. También llamados "Pokémon Edición Rojo Fuego" y "Pokémon Edición Verde Hoja", ambas ediciones fueron lanzadas a las tiendas europeas el 1 de octubre de 2004.`,
+  releaseDates:
+    [
+      {
+        console: "Game Boy Advance",
+        region: "Japon",
+        date: "29 de enero de 2004",
+      },
+      {
+        console: "Game Boy Advance",
+        region: "America",
+        date: "9 de septiembre de 2004",
+      },
+      {
+        console: "Game Boy Advance",
+        region: "Australia",
+        date: "23 de septiembre de 2004",
+      },
+      {
+        console: "Game Boy Advance",
+        region: "Europa",
+        date: "1 de octubre de 2004",
+      },
+  ]
+}
+
+export const pokemonDiamondPearlData: Games = {
+  generation: "generation-iv",
+  generationId: 4,
+  games: ['Diamond', 'Pearl'],
+  urlFrontPage: ["https://i.imgur.com/BTSnnx8.png", "https://i.imgur.com/jpBEyi2.png"],
+  genre: "RPG",
+  players: "1-4",
+  publishedBy: "Nintendo",
+  developedBy: "Game Freak",
+  platforms: ["Nintendo DS"],
+  characters: "",
+  gameHistory: `El videojuego nos sitúa en Sinnoh, una región aislada de todas las anteriores donde encontraremos nuevos Pokémon. Al comienzo, gracias al Profesor Serbal obtendremos nuestro primer Pokémon, a elegir entre Turtwig (Pokémon de tipo planta), Chimchar (Pokémon de tipo fuego) y Piplup (Pokémon de tipo agua). A partir de ese momento, el objetivo será el mismo que en el resto de RPG's Pokémon, obtener tantos Pokémon como puedas para vencer a los Líderes de Gimnasio que aguardan en la región hasta llegar al Alto Mando y vencer a la campeona. Sin embargo, por el camino nos encontraremos con otros muchos entrenadores, tendremos que recorrer cuevas, bosques, cruzar lagos... Como siempre, la manera de conseguir a tu primer Pokémon ha cambiado, como en las ediciones anteriores. Esta vez, comienzas en tu casa en Pueblo Hojaverde y tras ver en la tele un documental sobre un Gyarados rojo, harás una visita a tu amigo/a (que será el rival en el videojuego) y te irás con él en busca del profesor Serbal, que está en Orilla Veraz con la/el hija/o de uno de sus colaboradores comprobando si hay presencia del Gyarados rojo. Una vez allí hablaréis con el profesor y se irá sin darse cuenta de que se ha dejado el maletín en el lago. Tú y tu amigo/a iréis a coger el maletín para devolverlo a su dueño, pero, en ese mismo instante, dos Pokémon salvajes os atacarán. Vuestra única opción es coger las Poké Ball que hay dentro del maletín para así combatir contra estos dos Pokémon. En este momento tienes la posibilidad de elegir tu primer Pokémon, que será, como en las demás ediciones quien te acompañe a lo largo de tu aventura.`,
+  summary: `Pokémon Diamante y Pokémon Perla (Pokémon Diamond y Pokémon Pearl en inglés, ポケットモンスター ダイヤモンド Pocket Monsters Diamond y ポケットモンスター パール Pocket Monsters Pearl en japonés), son los primeros videojuegos de la cuarta generación de Pokémon y el primer dúo de videojuegos RPG para Nintendo DS1. También llamados "Pokémon Edición Diamante" y "Pokémon Edición Perla", fueron lanzados en Japón en septiembre del 2006. Tuvieron el lanzamiento más exitoso de las otras generaciones de Pokémon en Japón, y la mejor semana de lanzamiento de cualquier videojuego de Nintendo DS. Tienen el récord de ser los segundos videojuegos más vendidos de su consola. El lanzamiento en América de los videojuegos consiguió muchas reservas, llegando casi al doble del número de reservas de Pokémon Rojo Fuego y Pokémon Verde Hoja. Salió a la venta el 22 de abril de 2007 y el 27 de julio de 2007, llegó finalmente al público europeo. A finales de 2008 fue lanzada a la venta en Japón la tercera entrega de esta serie, Pocket Monsters Platinum, en castellano Pokémon Platino. En España se puso a la venta el 22 de mayo de 2009. En 2021 se anunció el lanzamiento de los remakes para Nintendo Switch de estas entregas: Pokémon Diamante Brillante y Pokémon Perla Reluciente, para finales del mismo año.`,
+  releaseDates:
+    [
+      {
+        console: "Nintendo DS",
+        region: "Japon",
+        date: "28 de septiembre de 2006",
+      },
+      {
+        console: "Nintendo DS",
+        region: "America",
+        date: "22 de abril de 2007",
+      },
+      {
+        console: "Nintendo DS",
+        region: "Australia",
+        date: "21 de junio de 2007",
+      },
+      {
+        console: "Nintendo DS",
+        region: "Europa",
+        date: "27 de julio de 2007",
+      },
+  ]
+}
+
+export const pokemonPlatinumData: Games = {
+  generation: "generation-iv",
+  generationId: 4,
+  games: ['Platinum'],
+  urlFrontPage: ["https://i.imgur.com/cdUw5h4.png"],
+  genre: "RPG",
+  players: "1-4",
+  publishedBy: "Nintendo",
+  developedBy: "Game Freak",
+  platforms: ["Nintendo DS"],
+  characters: "",
+  gameHistory: `En los videojuegos Pokémon Diamante y Pokémon Perla se puede ver cómo es el videojuego. Sin embargo, Pokémon Platino introduce mejoras, como el cambio de los gimnasios Pradera y Corazón y la Montaña Dura, las sombras y neblinas nuevas del Bosque Vetusto, el nuevo Mundo Distorsión... La trama principal de este videojuego se centra en Giratina, pues esta vez el Equipo Galaxia intentará crear un nuevo mundo sin saber que ya existía otro mundo llamado Mundo Distorsión que está bajo el reinado del Pokémon Giratina. En esta ocasión, este equipo invoca a Palkia y a Dialga, por lo que se pueden capturar ambos llevando sus respectivas esferas en la mochila.`,
+  summary: `Pokémon Platino (Pokémon Platinum en inglés; ポケットモンスター プラチナ Pocket Monsters Platinum en japonés), también llamado "Pokémon Edición Platino", es la edición superior del dúo Pokémon Diamante y Pokémon Perla. Pocos días después de su lanzamiento en Japón, se vendieron alrededor de un millón de copias, convirtiéndose en el videojuego más rápidamente vendido de la historia para Nintendo DS en aquel momento1. El 22 de marzo de 2009 salió a la venta en Estados Unidos y en España salió el 22 de mayo del mismo año.`,
+  releaseDates:
+    [
+      {
+        console: "Nintendo DS",
+        region: "Japon",
+        date: "13 de septiembre de 2008",
+      },
+      {
+        console: "Nintendo DS",
+        region: "America",
+        date: "22 de marzo de 2009",
+      },
+      {
+        console: "Nintendo DS",
+        region: "Australia",
+        date: "14 de mayo de 2009",
+      },
+      {
+        console: "Nintendo DS",
+        region: "Europa",
+        date: "22 de mayo de 2009",
       },
   ]
 }

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
-import { Games } from '../../../../../../entities/common/game-data';
+import { Games, pokemonEmeraldData } from '../../../../../../entities/common/game-data';
 import { GamesService } from '../../services/games.service';
 
 @Component({
@@ -42,7 +42,7 @@ export class ShowGameComponent implements OnInit {
   }
 
   getGameInfo() {
-    switch (this.gameName) {
+    switch (this.gameName.toLowerCase()) {
       case 'red-blue':
         this.gameInfo = this.gamesService.getPokemonRedBlueData();
         break;
@@ -57,6 +57,18 @@ export class ShowGameComponent implements OnInit {
         break;
       case 'ruby-sapphire':
         this.gameInfo = this.gamesService.getPokemonRubySapphireData();
+        break;
+      case 'emerald':
+        this.gameInfo = this.gamesService.getPokemonRubyEmeraldData();
+        break;
+      case 'firered-leafgreen':
+        this.gameInfo = this.gamesService.getPokemonFireRedLeafGreenData();
+        break;
+      case 'diamond-pearl':
+        this.gameInfo = this.gamesService.getPokemonDiamondPearlData();
+        break;
+      case 'platinum':
+        this.gameInfo = this.gamesService.getPokemonPlatinumData();
         break;
 
       default: null

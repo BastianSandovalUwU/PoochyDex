@@ -1,0 +1,35 @@
+<div class="mt-4">
+  <h1 class="mx-5 pl-2 text-black text-2xl font-bold">{{ language === 'es' ? 'Listado de Juegos' : 'Games List'}}</h1>
+  <hr class="my-2">
+  <div class="grid grid-cols-1 sm:grid-cols-5 gap-2 mx-5 my-5">
+    <div *ngFor="let gameInfo of games" class="hover:opacity-80 bg-gray-200 border border-black rounded-lg flex flex-col justify-between h-full">
+      <h1 class="rounded-t-lg text-center pb-2 text-xl hover:text-blue-500 cursor-pointer"
+        [routerLink]="['/game/show-game', gameInfo.games[0] + '-' + gameInfo.games[1]]"
+        routerLinkActive="router-link-active">
+        {{ getGenerationName(gameInfo.generation) }}
+      </h1>
+      <div class="flex justify-center items-center cursor-pointer flex-grow">
+        <img class="w-26"
+          [routerLink]="gameInfo.games.length > 1
+            ? ['/game/show-game', gameInfo.games[0] + '-' + gameInfo.games[1]]
+            : ['/game/show-game', gameInfo.games[0]]"
+          [src]="gameInfo.urlFrontPage[0]" alt="" class="w-30">
+        <img class="w-26" *ngIf="gameInfo.urlFrontPage[1]"
+          [routerLink]="gameInfo.games.length > 1
+            ? ['/game/show-game', gameInfo.games[0] + '-' + gameInfo.games[1]]
+            : ['/game/show-game', gameInfo.games[0]]"
+          [src]="gameInfo.urlFrontPage[1]" alt="" class="w-30">
+      </div>
+      <h1 class="rounded-b-lg text-center pb-2 text-xl hover:text-blue-500 cursor-pointer"
+      [routerLink]="gameInfo.games.length > 1
+        ? ['/game/show-game', gameInfo.games[0] + '-' + gameInfo.games[1]]
+        : ['/game/show-game', gameInfo.games[0]]"
+      routerLinkActive="router-link-active">
+      {{ language === 'es' ? 'Pokémon Edición' : 'Pokémon'}} {{ getGameName(gameInfo.games[0]) }} {{ language === 'es' ? '' : 'Edition'}}
+      <span class="inline-block" *ngIf="gameInfo.games[1]">
+        &nbsp;y {{ language === 'es' ? 'Pokémon Edición' : 'Pokémon'}} {{ getGameName(gameInfo.games[1]) }} {{ language === 'es' ? '' : 'Edition'}}
+      </span>
+    </h1>
+    </div>
+  </div>
+</div>
