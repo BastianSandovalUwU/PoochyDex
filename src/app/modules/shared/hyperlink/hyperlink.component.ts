@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HelperService } from '../services/helper.service';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-hyperlink',
@@ -8,11 +10,22 @@ import { Router } from '@angular/router';
 })
 export class HyperlinkComponent implements OnInit {
   @Input() value: string = '';
-  @Input() type: string = '';
+  @Input() type: 'pokemon' | 'game' | 'localization';
+  @Input() textBlue: boolean = true;
+  language: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private helperService: HelperService,
+              private languageService: LanguageService
+  ) { }
 
   ngOnInit() {
+    this.getLanguage()
+  }
+
+  getLanguage() {
+    this.languageService.currentLanguage$.subscribe(language => {
+      this.language = language;
+    });
   }
 
   redirecTo(): void {
@@ -23,7 +36,12 @@ export class HyperlinkComponent implements OnInit {
         this.routerTo(url);
         break;
       case 'game':
-        url = '/game/show-game/' + this.value.toLowerCase();
+        const name = this.navigateToGame(this.value);
+        if(name === '') {
+          console.error('juego no agregado')
+          return;
+        }
+        url = '/game/show-game/' + name;
         this.routerTo(url);
         break
       default:
@@ -33,6 +51,15 @@ export class HyperlinkComponent implements OnInit {
 
   routerTo(url: string) {
     this.router.navigateByUrl(url);
+  }
+
+  getGameName(gameName: string): string {
+    return this.helperService.getGameName(gameName, this.language);
+  }
+
+  navigateToGame(gameName: string): string {
+    const name = this.helperService.navigateToGame(gameName);
+    return name;
   }
 
 }

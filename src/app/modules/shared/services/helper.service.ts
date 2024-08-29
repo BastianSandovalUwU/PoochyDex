@@ -5,6 +5,7 @@ import { Ability, Type } from '../../../../../entities/pokemon.entity';
 import { AbilityName, AbilityResponse, Name } from '../../../../../entities/pokemon-ability.entity';
 import { DetailMove, EffectEntry } from '../../../../../entities/moves.entity';
 import { TargetTypes, AllPokemon, ALL_POKEMON, AllPokemonGmaxForms, ALL_GMAX_POKEMON_FORMS, ALL_POKEMON_MEGA_FORMS, AllPokemonMegaForms, MISC_POKEMON_FORMS } from '../../../../../entities/common/const.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class HelperService {
   allPokemonMega: AllPokemonMegaForms[] = ALL_POKEMON_MEGA_FORMS;
   allPokemonMisc: any[] = MISC_POKEMON_FORMS;
 
-  constructor(private pokeApiService: PokeApiService) { }
+  constructor(private pokeApiService: PokeApiService,
+  ) { }
 
   getPokemonTypes(types: Type[]): Observable<{ language: string, typeName: string }[][]> {
     const observables = types.map(type => this.pokeApiService.getPokemonTypeByName(type.type.name));
@@ -97,6 +99,53 @@ export class HelperService {
         };
       })
     );
+  }
+
+  navigateToGame(gameName: string) {
+    const gameMap: { [key: string]: string } = {
+      'red': 'red-blue',
+      'blue': 'red-blue',
+      'yellow': 'yellow',
+      'gold': 'gold-silver',
+      'silver': 'gold-silver',
+      'crystal': 'crystal',
+      'ruby': 'ruby-sapphire',
+      'sapphire': 'ruby-sapphire',
+      'emerald': 'emerald',
+      'firered': 'firered-leafgreen',
+      'leafgreen': 'firered-leafgreen',
+      'diamond': 'diamond-pearl',
+      'pearl': 'diamond-pearl',
+      'platinum': 'platinum',
+      // 'heartgold': 'heartgold-soulsilver',
+      // 'soulsilver': 'heartgold-soulsilver',
+      // 'black': 'black-white',
+      // 'white': 'black-white',
+      // 'black-2': 'black-2-white-2',
+      // 'white-2': 'black-2-white-2',
+      // 'x': 'x-y',
+      // 'y': 'x-y',
+      // 'omega-ruby': 'omega-ruby-alpha-sapphire',
+      // 'alpha-sapphire': 'omega-ruby-alpha-sapphire',
+      // 'sun': 'sun-moon',
+      // 'moon': 'sun-moon',
+      // 'ultra-sun': 'ultra-sun-ultra-moon',
+      // 'ultra-moon': 'ultra-sun-ultra-moon',
+      // 'lets-go-pikachu': 'lets-go-pikachu-lets-go-eevee',
+      // 'lets-go-eevee': 'lets-go-pikachu-lets-go-eevee',
+      // 'sword': 'sword-shield',
+      // 'shield': 'sword-shield',
+      // 'scarlet': 'scarlet-violet',
+      // 'violet': 'scarlet-violet',
+    };
+
+    const name = gameMap[gameName];
+
+    if (name) {
+      return name;
+    } else {
+      return '';
+    }
   }
 
   getTypeColorClass(typeName: string, language: string): string {

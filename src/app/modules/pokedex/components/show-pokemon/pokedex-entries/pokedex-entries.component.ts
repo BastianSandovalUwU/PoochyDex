@@ -16,7 +16,8 @@ export class PokedexEntriesComponent implements OnInit, OnChanges {
   backgroundColor: string = '';
 
   constructor(private helperService: HelperService,
-              private router: Router) { }
+              private router: Router
+  ) { }
 
   ngOnInit() {
     this.getPokemonColor();
@@ -56,51 +57,5 @@ export class PokedexEntriesComponent implements OnInit, OnChanges {
       this.backgroundColor = '';
     }
   }
-
-  navigateToGame(gameName: string) {
-    const gameMap: { [key: string]: string } = {
-      'red': 'red-blue',
-      'blue': 'red-blue',
-      'yellow': 'yellow',
-      'gold': 'gold-silver',
-      'silver': 'gold-silver',
-      'crystal': 'crystal',
-      'ruby': 'ruby-sapphire',
-      'sapphire': 'ruby-sapphire',
-      'emerald': 'emerald',
-      'firered': 'firered-leafgreen',
-      'leafgreen': 'firered-leafgreen',
-      'diamond': 'diamond-pearl',
-      'pearl': 'diamond-pearl',
-      'platinum': 'platinum',
-      'heartgold': 'heartgold-soulsilver',
-      'soulsilver': 'heartgold-soulsilver',
-      'black': 'black-white',
-      'white': 'black-white',
-      'black-2': 'black-2-white-2',
-      'white-2': 'black-2-white-2',
-      'x': 'x-y',
-      'y': 'x-y',
-      'omega-ruby': 'omega-ruby-alpha-sapphire',
-      'alpha-sapphire': 'omega-ruby-alpha-sapphire',
-      'sun': 'sun-moon',
-      'moon': 'sun-moon',
-      'ultra-sun': 'ultra-sun-ultra-moon',
-      'ultra-moon': 'ultra-sun-ultra-moon',
-      'lets-go-pikachu': 'lets-go-pikachu-lets-go-eevee',
-      'lets-go-eevee': 'lets-go-pikachu-lets-go-eevee',
-      'sword': 'sword-shield',
-      'shield': 'sword-shield',
-      'scarlet': 'scarlet-violet',
-      'violet': 'scarlet-violet',
-    };
-
-    const name = gameMap[gameName];
-
-    if (name) {
-      this.router.navigate(['/game/show-game', name]);
-    }
-  }
-
 
 }
