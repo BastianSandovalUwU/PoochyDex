@@ -1,4 +1,6 @@
-<span (click)="redirecTo()"
-  class="text-blue-500 cursor-pointer hover:text-blue-600">
-  {{value}}
+<span (click)="redirecTo()" [ngClass]="{'text-blue-500': textBlue, 'hover:text-blue-600': textBlue}"
+  class="cursor-pointer">
+  {{ (type === 'game' ? getGameName(value) : '') |replaceDash |titlecase}}
+  {{ (type === 'pokemon' ? value : '') |replaceDash |titlecase}}
+  {{ (type === 'localization' ? value : '') |replaceDash |titlecase |translateLocalizationName}}
 </span>

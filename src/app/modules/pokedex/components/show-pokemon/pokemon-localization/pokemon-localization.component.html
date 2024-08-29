@@ -10,7 +10,7 @@
         <div [ngClass]="getGameVersionColor(version.versionName)"
              class="relative col-span-2 sm:col-span-1 rounded-md text-white border border-black flex justify-center items-center">
           <span class="text-center hover:text-blue-500 cursor-pointer">
-            {{ getGameName(version.versionName) | replaceDash | titlecase }}
+            <app-hyperlink type="game" [value]="version.versionName" [textBlue]="false"></app-hyperlink>
           </span>
           <img class="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 mr-2"
                [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(version.versionName)[0] + '.png'" alt="">
@@ -22,7 +22,7 @@
                 {{ method.key | translateLocalizationMethod | replaceDash | titlecase }}:
               </strong>
               <span *ngFor="let methodValue of getVisibleMethodValues(method.value, version.versionName, method.key); let i = index">
-                <app-hyperlink [value]="methodValue | replaceDash | titlecase | translateLocalizationName"></app-hyperlink>
+                <app-hyperlink type="localization" [value]="methodValue"></app-hyperlink>
                 <ng-container *ngIf="i < getVisibleMethodValues(method.value, version.versionName, method.key).length - 1">,</ng-container>
                 <ng-container *ngIf="i === getVisibleMethodValues(method.value, version.versionName, method.key).length - 1">.</ng-container>
               </span>
