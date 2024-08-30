@@ -23,19 +23,8 @@ export class PokeApiService {
   private pokemonListcache = new Map<string, any>();
 
   apiUrl = 'https://pokeapi.co/api/v2'
-  apiUrlCore = 'https://localhost:7194'
 
   constructor(private http: HttpClient) { }
-
-  postPokemonAzure(pokemonObjet: AllPokemon): Observable<any> {
-    const url = `${this.apiUrlCore}/api/pokemon`;
-    return this.http.post<any>(url, pokemonObjet).pipe(
-      catchError(error => {
-        console.error('Error al subir los pokémon:', error);
-        return throwError(error);
-      })
-    );
-  }
 
   getAllPokemon(): Observable<any> {
     const url = `${this.apiUrl}/pokemon/?limit=1302`;

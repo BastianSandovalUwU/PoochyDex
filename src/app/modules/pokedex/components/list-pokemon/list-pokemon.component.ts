@@ -46,19 +46,7 @@ export class ListPokemonComponent implements OnInit {
   ngOnInit() {
     this.selectedGenerations = [...this.generations];
     this.getLanguage();
-    // this.updateBD();
   }
-
-  // async updateBD() {
-  //   for (const poke of this.allPokemon) {
-  //     try {
-  //       const result = await this.pokeApiService.postPokemonAzure(poke).toPromise();
-  //       console.log(result);
-  //     } catch (error) {
-  //       console.error('Error al guardar Pokémon:', error);
-  //     }
-  //   }
-  // }
 
   getLanguage() {
     this.languageService.currentLanguage$.subscribe(language => {
