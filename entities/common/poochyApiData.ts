@@ -1123,777 +1123,1811 @@ export const ALL_POKEMON_KANTO: any[] = [
 
 export const ALL_POKEMON_JOTHO: any[] = [
   {
-    "id": 152,
-    "name": "chikorita",
-    "imageURL": "",
-    "number": 152,
-    "type": "Grass",
-    "generationId": 2
-  },
-  {
-    "id": 153,
-    "name": "bayleef",
-    "imageURL": "",
-    "number": 153,
-    "type": "Grass",
-    "generationId": 2
-  },
-  {
-    "id": 154,
-    "name": "meganium",
-    "imageURL": "",
-    "number": 154,
-    "type": "Grass",
-    "generationId": 2
-  },
-  {
-    "id": 155,
-    "name": "cyndaquil",
-    "imageURL": "",
-    "number": 155,
-    "type": "Fire",
-    "generationId": 2
-  },
-  {
-    "id": 156,
-    "name": "quilava",
-    "imageURL": "",
-    "number": 156,
-    "type": "Fire",
-    "generationId": 2
-  },
-  {
-    "id": 157,
-    "name": "typhlosion",
-    "imageURL": "",
-    "number": 157,
-    "type": "Fire",
-    "generationId": 2
-  },
-  {
-    "id": 158,
-    "name": "totodile",
-    "imageURL": "",
-    "number": 158,
-    "type": "Water",
-    "generationId": 2
-  },
-  {
-    "id": 159,
-    "name": "croconaw",
-    "imageURL": "",
-    "number": 159,
-    "type": "Water",
-    "generationId": 2
-  },
-  {
-    "id": 160,
-    "name": "feraligatr",
-    "imageURL": "",
-    "number": 160,
-    "type": "Water",
-    "generationId": 2
-  },
-  {
-    "id": 161,
-    "name": "sentret",
-    "imageURL": "",
-    "number": 161,
-    "type": "Normal",
-    "generationId": 2
-  },
-  {
-    "id": 162,
-    "name": "furret",
-    "imageURL": "",
-    "number": 162,
-    "type": "Normal",
-    "generationId": 2
-  },
-  {
-    "id": 163,
-    "name": "hoothoot",
-    "imageURL": "",
-    "number": 163,
-    "type": "Flying",
-    "type2": "Normal",
-    "generationId": 2
-  },
-  {
-    "id": 164,
-    "name": "noctowl",
-    "imageURL": "",
-    "number": 164,
-    "type": "Flying",
-    "type2": "Normal",
-    "generationId": 2
-  },
-  {
-    "id": 165,
-    "name": "ledyba",
-    "imageURL": "",
-    "number": 165,
-    "type": "Bug",
-    "type2": "Flying",
-    "generationId": 2
-  },
-  {
-    "id": 166,
-    "name": "ledian",
-    "imageURL": "",
-    "number": 166,
-    "type": "Bug",
-    "type2": "Flying",
-    "generationId": 2
-  },
-  {
-    "id": 167,
-    "name": "spinarak",
-    "imageURL": "",
-    "number": 167,
-    "type": "Bug",
-    "type2": "Poison",
-    "generationId": 2
-  },
-  {
-    "id": 168,
-    "name": "ariados",
-    "imageURL": "",
-    "number": 168,
-    "type": "Bug",
-    "type2": "Poison",
-    "generationId": 2
-  },
-  {
-    "id": 169,
-    "name": "crobat",
-    "imageURL": "",
-    "number": 169,
-    "type": "Poison",
-    "type2": "Flying",
-    "generationId": 2
-  },
-  {
-    "id": 170,
-    "name": "chinchou",
-    "imageURL": "",
-    "number": 170,
-    "type": "Water",
-    "type2": "Electric",
-    "generationId": 2
-  },
+    id: 152,
+    name: 'chikorita',
+    imageURL: '',
+    number: 152,
+    type: 'Grass',
+    generationId: 2,
+  },
+  {
+    id: 153,
+    name: 'bayleef',
+    imageURL: '',
+    number: 153,
+    type: 'Grass',
+    generationId: 2,
+  },
+  {
+    id: 154,
+    name: 'meganium',
+    imageURL: '',
+    number: 154,
+    type: 'Grass',
+    generationId: 2,
+  },
+  {
+    id: 155,
+    name: 'cyndaquil',
+    imageURL: '',
+    number: 155,
+    type: 'Fire',
+    generationId: 2,
+  },
+  {
+    id: 156,
+    name: 'quilava',
+    imageURL: '',
+    number: 156,
+    type: 'Fire',
+    generationId: 2,
+  },
+  {
+    id: 157,
+    name: 'typhlosion',
+    imageURL: '',
+    number: 157,
+    type: 'Fire',
+    generationId: 2,
+  },
+  {
+    id: 158,
+    name: 'totodile',
+    imageURL: '',
+    number: 158,
+    type: 'Water',
+    generationId: 2,
+  },
+  {
+    id: 159,
+    name: 'croconaw',
+    imageURL: '',
+    number: 159,
+    type: 'Water',
+    generationId: 2,
+  },
+  {
+    id: 160,
+    name: 'feraligatr',
+    imageURL: '',
+    number: 160,
+    type: 'Water',
+    generationId: 2,
+  },
+  {
+    id: 161,
+    name: 'sentret',
+    imageURL: '',
+    number: 161,
+    type: 'Normal',
+    generationId: 2,
+  },
+  {
+    id: 162,
+    name: 'furret',
+    imageURL: '',
+    number: 162,
+    type: 'Normal',
+    generationId: 2,
+  },
+  {
+    id: 163,
+    name: 'hoothoot',
+    imageURL: '',
+    number: 163,
+    type: 'Flying',
+    type2: 'Normal',
+    generationId: 2,
+  },
+  {
+    id: 164,
+    name: 'noctowl',
+    imageURL: '',
+    number: 164,
+    type: 'Flying',
+    type2: 'Normal',
+    generationId: 2,
+  },
+  {
+    id: 165,
+    name: 'ledyba',
+    imageURL: '',
+    number: 165,
+    type: 'Bug',
+    type2: 'Flying',
+    generationId: 2,
+  },
+  {
+    id: 166,
+    name: 'ledian',
+    imageURL: '',
+    number: 166,
+    type: 'Bug',
+    type2: 'Flying',
+    generationId: 2,
+  },
+  {
+    id: 167,
+    name: 'spinarak',
+    imageURL: '',
+    number: 167,
+    type: 'Bug',
+    type2: 'Poison',
+    generationId: 2,
+  },
+  {
+    id: 168,
+    name: 'ariados',
+    imageURL: '',
+    number: 168,
+    type: 'Bug',
+    type2: 'Poison',
+    generationId: 2,
+  },
+  {
+    id: 169,
+    name: 'crobat',
+    imageURL: '',
+    number: 169,
+    type: 'Poison',
+    type2: 'Flying',
+    generationId: 2,
+  },
+  {
+    id: 170,
+    name: 'chinchou',
+    imageURL: '',
+    number: 170,
+    type: 'Water',
+    type2: 'Electric',
+    generationId: 2,
+  },
   {
-    "id": 171,
-    "name": "lanturn",
-    "imageURL": "",
-    "number": 171,
-    "type": "Water",
-    "type2": "Electric",
-    "generationId": 2
+    id: 171,
+    name: 'lanturn',
+    imageURL: '',
+    number: 171,
+    type: 'Water',
+    type2: 'Electric',
+    generationId: 2,
   },
   {
-    "id": 172,
-    "name": "pichu",
-    "imageURL": "",
-    "number": 172,
-    "type": "Electric",
-    "generationId": 2
+    id: 172,
+    name: 'pichu',
+    imageURL: '',
+    number: 172,
+    type: 'Electric',
+    generationId: 2,
   },
   {
-    "name": "cleffa",
-    "imageURL": "",
-    "type": "Fairy",
-    "number": 173,
-    "generationId": 2
+    name: 'cleffa',
+    imageURL: '',
+    type: 'Fairy',
+    number: 173,
+    generationId: 2,
   },
   {
-    "name": "igglybuff",
-    "imageURL": "",
-    "type": "Normal",
-    "type2": "Fairy",
-    "number": 174,
-    "generationId": 2
+    name: 'igglybuff',
+    imageURL: '',
+    type: 'Normal',
+    type2: 'Fairy',
+    number: 174,
+    generationId: 2,
   },
   {
-    "name": "togepi",
-    "imageURL": "",
-    "type": "Fairy",
-    "number": 175,
-    "generationId": 2
+    name: 'togepi',
+    imageURL: '',
+    type: 'Fairy',
+    number: 175,
+    generationId: 2,
   },
   {
-    "name": "togetic",
-    "imageURL": "",
-    "type": "Fairy",
-    "type2": "Flying",
-    "number": 176,
-    "generationId": 2
+    name: 'togetic',
+    imageURL: '',
+    type: 'Fairy',
+    type2: 'Flying',
+    number: 176,
+    generationId: 2,
   },
   {
-    "name": "natu",
-    "imageURL": "",
-    "type": "Psychic",
-    "type2": "Flying",
-    "number": 177,
-    "generationId": 2
+    name: 'natu',
+    imageURL: '',
+    type: 'Psychic',
+    type2: 'Flying',
+    number: 177,
+    generationId: 2,
   },
   {
-    "name": "xatu",
-    "imageURL": "",
-    "type": "Psychic",
-    "type2": "Flying",
-    "number": 178,
-    "generationId": 2
+    name: 'xatu',
+    imageURL: '',
+    type: 'Psychic',
+    type2: 'Flying',
+    number: 178,
+    generationId: 2,
   },
   {
-    "name": "mareep",
-    "imageURL": "",
-    "type": "Electric",
-    "number": 179,
-    "generationId": 2
+    name: 'mareep',
+    imageURL: '',
+    type: 'Electric',
+    number: 179,
+    generationId: 2,
   },
   {
-    "name": "flaaffy",
-    "imageURL": "",
-    "type": "Electric",
-    "number": 180,
-    "generationId": 2
+    name: 'flaaffy',
+    imageURL: '',
+    type: 'Electric',
+    number: 180,
+    generationId: 2,
   },
   {
-    "name": "ampharos",
-    "imageURL": "",
-    "type": "Electric",
-    "number": 181,
-    "generationId": 2
+    name: 'ampharos',
+    imageURL: '',
+    type: 'Electric',
+    number: 181,
+    generationId: 2,
   },
   {
-    "name": "bellossom",
-    "imageURL": "",
-    "type": "Grass",
-    "number": 182,
-    "generationId": 2
+    name: 'bellossom',
+    imageURL: '',
+    type: 'Grass',
+    number: 182,
+    generationId: 2,
   },
   {
-    "name": "marill",
-    "imageURL": "",
-    "type": "Water",
-    "type2": "Fairy",
-    "number": 183,
-    "generationId": 2
+    name: 'marill',
+    imageURL: '',
+    type: 'Water',
+    type2: 'Fairy',
+    number: 183,
+    generationId: 2,
   },
   {
-    "name": "azumarill",
-    "imageURL": "",
-    "type": "Water",
-    "type2": "Fairy",
-    "number": 184,
-    "generationId": 2
+    name: 'azumarill',
+    imageURL: '',
+    type: 'Water',
+    type2: 'Fairy',
+    number: 184,
+    generationId: 2,
   },
   {
-    "name": "sudowoodo",
-    "imageURL": "",
-    "type": "Rock",
-    "number": 185,
-    "generationId": 2
+    name: 'sudowoodo',
+    imageURL: '',
+    type: 'Rock',
+    number: 185,
+    generationId: 2,
   },
   {
-    "name": "politoed",
-    "imageURL": "",
-    "type": "Water",
-    "number": 186,
-    "generationId": 2
+    name: 'politoed',
+    imageURL: '',
+    type: 'Water',
+    number: 186,
+    generationId: 2,
   },
   {
-    "name": "hoppip",
-    "imageURL": "",
-    "type": "Grass",
-    "type2": "Flying",
-    "number": 187,
-    "generationId": 2
+    name: 'hoppip',
+    imageURL: '',
+    type: 'Grass',
+    type2: 'Flying',
+    number: 187,
+    generationId: 2,
   },
   {
-    "name": "skiploom",
-    "imageURL": "",
-    "type": "Grass",
-    "type2": "Flying",
-    "number": 188,
-    "generationId": 2
+    name: 'skiploom',
+    imageURL: '',
+    type: 'Grass',
+    type2: 'Flying',
+    number: 188,
+    generationId: 2,
   },
   {
-    "name": "jumpluff",
-    "imageURL": "",
-    "type": "Grass",
-    "type2": "Flying",
-    "number": 189,
-    "generationId": 2
+    name: 'jumpluff',
+    imageURL: '',
+    type: 'Grass',
+    type2: 'Flying',
+    number: 189,
+    generationId: 2,
   },
   {
-    "name": "aipom",
-    "imageURL": "",
-    "type": "Normal",
-    "number": 190,
-    "generationId": 2
+    name: 'aipom',
+    imageURL: '',
+    type: 'Normal',
+    number: 190,
+    generationId: 2,
   },
   {
-    "name": "sunkern",
-    "imageURL": "",
-    "type": "Grass",
-    "number": 191,
-    "generationId": 2
+    name: 'sunkern',
+    imageURL: '',
+    type: 'Grass',
+    number: 191,
+    generationId: 2,
   },
   {
-    "name": "sunflora",
-    "imageURL": "",
-    "type": "Grass",
-    "number": 192,
-    "generationId": 2
+    name: 'sunflora',
+    imageURL: '',
+    type: 'Grass',
+    number: 192,
+    generationId: 2,
   },
   {
-    "name": "yanma",
-    "imageURL": "",
-    "type": "Bug",
-    "type2": "Flying",
-    "number": 193,
-    "generationId": 2
+    name: 'yanma',
+    imageURL: '',
+    type: 'Bug',
+    type2: 'Flying',
+    number: 193,
+    generationId: 2,
   },
   {
-    "name": "wooper",
-    "imageURL": "",
-    "type": "Water",
-    "type2": "Ground",
-    "number": 194,
-    "generationId": 2
+    name: 'wooper',
+    imageURL: '',
+    type: 'Water',
+    type2: 'Ground',
+    number: 194,
+    generationId: 2,
   },
   {
-    "name": "quagsire",
-    "imageURL": "",
-    "type": "Water",
-    "type2": "Ground",
-    "number": 195,
-    "generationId": 2
+    name: 'quagsire',
+    imageURL: '',
+    type: 'Water',
+    type2: 'Ground',
+    number: 195,
+    generationId: 2,
   },
   {
-    "name": "espeon",
-    "imageURL": "",
-    "type": "Psychic",
-    "number": 196,
-    "generationId": 2
+    name: 'espeon',
+    imageURL: '',
+    type: 'Psychic',
+    number: 196,
+    generationId: 2,
   },
   {
-    "name": "umbreon",
-    "imageURL": "",
-    "type": "Dark",
-    "number": 197,
-    "generationId": 2
+    name: 'umbreon',
+    imageURL: '',
+    type: 'Dark',
+    number: 197,
+    generationId: 2,
   },
   {
-    "name": "murkrow",
-    "imageURL": "",
-    "type": "Dark",
-    "type2": "Flying",
-    "number": 198,
-    "generationId": 2
+    name: 'murkrow',
+    imageURL: '',
+    type: 'Dark',
+    type2: 'Flying',
+    number: 198,
+    generationId: 2,
   },
   {
-    "name": "slowking",
-    "imageURL": "",
-    "type": "Water",
-    "type2": "Psychic",
-    "number": 199,
-    "generationId": 2
+    name: 'slowking',
+    imageURL: '',
+    type: 'Water',
+    type2: 'Psychic',
+    number: 199,
+    generationId: 2,
   },
   {
-    "name": "misdreavus",
-    "imageURL": "",
-    "type": "Ghost",
-    "number": 200,
-    "generationId": 2
+    name: 'misdreavus',
+    imageURL: '',
+    type: 'Ghost',
+    number: 200,
+    generationId: 2,
   },
   {
-    "name": "unown",
-    "imageURL": "",
-    "type": "Psychic",
-    "number": 201,
-    "generationId": 2
+    name: 'unown',
+    imageURL: '',
+    type: 'Psychic',
+    number: 201,
+    generationId: 2,
   },
   {
-    "name": "wobbuffet",
-    "imageURL": "",
-    "type": "Psychic",
-    "number": 202,
-    "generationId": 2
+    name: 'wobbuffet',
+    imageURL: '',
+    type: 'Psychic',
+    number: 202,
+    generationId: 2,
   },
   {
-    "name": "girafarig",
-    "imageURL": "",
-    "type": "Psychic",
-    "type2": "Normal",
-    "number": 203,
-    "generationId": 2
+    name: 'girafarig',
+    imageURL: '',
+    type: 'Psychic',
+    type2: 'Normal',
+    number: 203,
+    generationId: 2,
   },
   {
-    "name": "pineco",
-    "imageURL": "",
-    "type": "Bug",
-    "number": 204,
-    "generationId": 2
+    name: 'pineco',
+    imageURL: '',
+    type: 'Bug',
+    number: 204,
+    generationId: 2,
   },
   {
-    "name": "forretress",
-    "imageURL": "",
-    "type": "Bug",
-    "type2": "Steel",
-    "number": 205,
-    "generationId": 2
+    name: 'forretress',
+    imageURL: '',
+    type: 'Bug',
+    type2: 'Steel',
+    number: 205,
+    generationId: 2,
   },
   {
-    "name": "dunsparce",
-    "imageURL": "",
-    "type": "Normal",
-    "number": 206,
-    "generationId": 2
+    name: 'dunsparce',
+    imageURL: '',
+    type: 'Normal',
+    number: 206,
+    generationId: 2,
   },
   {
-    "name": "gligar",
-    "imageURL": "",
-    "type": "Ground",
-    "type2": "Flying",
-    "number": 207,
-    "generationId": 2
+    name: 'gligar',
+    imageURL: '',
+    type: 'Ground',
+    type2: 'Flying',
+    number: 207,
+    generationId: 2,
   },
   {
-    "name": "steelix",
-    "imageURL": "",
-    "type": "Steel",
-    "type2": "Ground",
-    "number": 208,
-    "generationId": 2
+    name: 'steelix',
+    imageURL: '',
+    type: 'Steel',
+    type2: 'Ground',
+    number: 208,
+    generationId: 2,
   },
   {
-    "name": "snubbull",
-    "imageURL": "",
-    "type": "Fairy",
-    "number": 209,
-    "generationId": 2
+    name: 'snubbull',
+    imageURL: '',
+    type: 'Fairy',
+    number: 209,
+    generationId: 2,
   },
   {
-    "name": "granbull",
-    "imageURL": "",
-    "type": "Fairy",
-    "number": 210,
-    "generationId": 2
+    name: 'granbull',
+    imageURL: '',
+    type: 'Fairy',
+    number: 210,
+    generationId: 2,
   },
   {
-    "name": "qwilfish",
-    "imageURL": "",
-    "type": "Water",
-    "type2": "Poison",
-    "number": 211,
-    "generationId": 2
+    name: 'qwilfish',
+    imageURL: '',
+    type: 'Water',
+    type2: 'Poison',
+    number: 211,
+    generationId: 2,
   },
   {
-    "name": "scizor",
-    "imageURL": "",
-    "type": "Bug",
-    "type2": "Steel",
-    "number": 212,
-    "generationId": 2
+    name: 'scizor',
+    imageURL: '',
+    type: 'Bug',
+    type2: 'Steel',
+    number: 212,
+    generationId: 2,
   },
   {
-    "name": "shuckle",
-    "imageURL": "",
-    "type": "Bug",
-    "type2": "Rock",
-    "number": 213,
-    "generationId": 2
+    name: 'shuckle',
+    imageURL: '',
+    type: 'Bug',
+    type2: 'Rock',
+    number: 213,
+    generationId: 2,
   },
   {
-    "name": "heracross",
-    "imageURL": "",
-    "type": "Bug",
-    "type2": "Fighting",
-    "number": 214,
-    "generationId": 2
+    name: 'heracross',
+    imageURL: '',
+    type: 'Bug',
+    type2: 'Fighting',
+    number: 214,
+    generationId: 2,
   },
   {
-    "name": "sneasel",
-    "imageURL": "",
-    "type": "Dark",
-    "type2": "Ice",
-    "number": 215,
-    "generationId": 2
+    name: 'sneasel',
+    imageURL: '',
+    type: 'Dark',
+    type2: 'Ice',
+    number: 215,
+    generationId: 2,
   },
   {
-    "name": "teddiursa",
-    "imageURL": "",
-    "type": "Normal",
-    "number": 216,
-    "generationId": 2
+    name: 'teddiursa',
+    imageURL: '',
+    type: 'Normal',
+    number: 216,
+    generationId: 2,
   },
   {
-    "name": "ursaring",
-    "imageURL": "",
-    "type": "Normal",
-    "number": 217,
-    "generationId": 2
+    name: 'ursaring',
+    imageURL: '',
+    type: 'Normal',
+    number: 217,
+    generationId: 2,
   },
   {
-    "name": "slugma",
-    "imageURL": "",
-    "type": "Fire",
-    "number": 218,
-    "generationId": 2
+    name: 'slugma',
+    imageURL: '',
+    type: 'Fire',
+    number: 218,
+    generationId: 2,
   },
   {
-    "name": "magcargo",
-    "imageURL": "",
-    "type": "Fire",
-    "type2": "Rock",
-    "number": 219,
-    "generationId": 2
+    name: 'magcargo',
+    imageURL: '',
+    type: 'Fire',
+    type2: 'Rock',
+    number: 219,
+    generationId: 2,
   },
   {
-    "name": "swinub",
-    "imageURL": "",
-    "type": "Ice",
-    "type2": "Ground",
-    "number": 220,
-    "generationId": 2
+    name: 'swinub',
+    imageURL: '',
+    type: 'Ice',
+    type2: 'Ground',
+    number: 220,
+    generationId: 2,
   },
   {
-    "name": "piloswine",
-    "imageURL": "",
-    "type": "Ice",
-    "type2": "Ground",
-    "number": 221,
-    "generationId": 2
+    name: 'piloswine',
+    imageURL: '',
+    type: 'Ice',
+    type2: 'Ground',
+    number: 221,
+    generationId: 2,
   },
   {
-    "name": "corsola",
-    "imageURL": "",
-    "type": "Water",
-    "type2": "Rock",
-    "number": 222,
-    "generationId": 2
+    name: 'corsola',
+    imageURL: '',
+    type: 'Water',
+    type2: 'Rock',
+    number: 222,
+    generationId: 2,
   },
   {
-    "name": "remoraid",
-    "imageURL": "",
-    "type": "Water",
-    "number": 223,
-    "generationId": 2
+    name: 'remoraid',
+    imageURL: '',
+    type: 'Water',
+    number: 223,
+    generationId: 2,
   },
   {
-    "name": "octillery",
-    "imageURL": "",
-    "type": "Water",
-    "number": 224,
-    "generationId": 2
+    name: 'octillery',
+    imageURL: '',
+    type: 'Water',
+    number: 224,
+    generationId: 2,
   },
   {
-    "name": "delibird",
-    "imageURL": "",
-    "type": "Ice",
-    "type2": "Flying",
-    "number": 225,
-    "generationId": 2
+    name: 'delibird',
+    imageURL: '',
+    type: 'Ice',
+    type2: 'Flying',
+    number: 225,
+    generationId: 2,
   },
   {
-    "name": "mantine",
-    "imageURL": "",
-    "type": "Water",
-    "type2": "Flying",
-    "number": 226,
-    "generationId": 2
+    name: 'mantine',
+    imageURL: '',
+    type: 'Water',
+    type2: 'Flying',
+    number: 226,
+    generationId: 2,
   },
   {
-    "name": "skarmory",
-    "imageURL": "",
-    "type": "Steel",
-    "type2": "Flying",
-    "number": 227,
-    "generationId": 2
+    name: 'skarmory',
+    imageURL: '',
+    type: 'Steel',
+    type2: 'Flying',
+    number: 227,
+    generationId: 2,
   },
   {
-    "name": "houndour",
-    "imageURL": "",
-    "type": "Dark",
-    "type2": "Fire",
-    "number": 228,
-    "generationId": 2
+    name: 'houndour',
+    imageURL: '',
+    type: 'Dark',
+    type2: 'Fire',
+    number: 228,
+    generationId: 2,
   },
   {
-    "name": "houndoom",
-    "imageURL": "",
-    "type": "Dark",
-    "type2": "Fire",
-    "number": 229,
-    "generationId": 2
+    name: 'houndoom',
+    imageURL: '',
+    type: 'Dark',
+    type2: 'Fire',
+    number: 229,
+    generationId: 2,
   },
   {
-    "name": "kingdra",
-    "imageURL": "",
-    "type": "Water",
-    "type2": "Dragon",
-    "number": 230,
-    "generationId": 2
+    name: 'kingdra',
+    imageURL: '',
+    type: 'Water',
+    type2: 'Dragon',
+    number: 230,
+    generationId: 2,
   },
   {
-    "name": "phanpy",
-    "imageURL": "",
-    "type": "Ground",
-    "number": 231,
-    "generationId": 2
+    name: 'phanpy',
+    imageURL: '',
+    type: 'Ground',
+    number: 231,
+    generationId: 2,
   },
   {
-    "name": "donphan",
-    "imageURL": "",
-    "type": "Ground",
-    "number": 232,
-    "generationId": 2
+    name: 'donphan',
+    imageURL: '',
+    type: 'Ground',
+    number: 232,
+    generationId: 2,
   },
   {
-    "name": "porygon2",
-    "imageURL": "",
-    "type": "Normal",
-    "number": 233,
-    "generationId": 2
+    name: 'porygon2',
+    imageURL: '',
+    type: 'Normal',
+    number: 233,
+    generationId: 2,
   },
   {
-    "name": "stantler",
-    "imageURL": "",
-    "type": "Normal",
-    "number": 234,
-    "generationId": 2
+    name: 'stantler',
+    imageURL: '',
+    type: 'Normal',
+    number: 234,
+    generationId: 2,
   },
   {
-    "name": "smeargle",
-    "imageURL": "",
-    "type": "Normal",
-    "number": 235,
-    "generationId": 2
+    name: 'smeargle',
+    imageURL: '',
+    type: 'Normal',
+    number: 235,
+    generationId: 2,
   },
   {
-    "name": "tyrogue",
-    "imageURL": "",
-    "type": "Fighting",
-    "number": 236,
-    "generationId": 2
+    name: 'tyrogue',
+    imageURL: '',
+    type: 'Fighting',
+    number: 236,
+    generationId: 2,
   },
   {
-    "name": "hitmontop",
-    "imageURL": "",
-    "type": "Fighting",
-    "number": 237,
-    "generationId": 2
+    name: 'hitmontop',
+    imageURL: '',
+    type: 'Fighting',
+    number: 237,
+    generationId: 2,
   },
   {
-    "name": "smoochum",
-    "imageURL": "",
-    "type": "Ice",
-    "type2": "Psychic",
-    "number": 238,
-    "generationId": 2
+    name: 'smoochum',
+    imageURL: '',
+    type: 'Ice',
+    type2: 'Psychic',
+    number: 238,
+    generationId: 2,
   },
   {
-    "name": "elekid",
-    "imageURL": "",
-    "type": "Electric",
-    "number": 239,
-    "generationId": 2
+    name: 'elekid',
+    imageURL: '',
+    type: 'Electric',
+    number: 239,
+    generationId: 2,
   },
   {
-    "name": "magby",
-    "imageURL": "",
-    "type": "Fire",
-    "number": 240,
-    "generationId": 2
+    name: 'magby',
+    imageURL: '',
+    type: 'Fire',
+    number: 240,
+    generationId: 2,
   },
   {
-    "name": "miltank",
-    "imageURL": "",
-    "type": "Normal",
-    "number": 241,
-    "generationId": 2
+    name: 'miltank',
+    imageURL: '',
+    type: 'Normal',
+    number: 241,
+    generationId: 2,
   },
   {
-    "name": "blissey",
-    "imageURL": "",
-    "type": "Normal",
-    "number": 242,
-    "generationId": 2
+    name: 'blissey',
+    imageURL: '',
+    type: 'Normal',
+    number: 242,
+    generationId: 2,
   },
   {
-    "name": "raikou",
-    "imageURL": "",
-    "type": "Electric",
-    "number": 243,
-    "generationId": 2
+    name: 'raikou',
+    imageURL: '',
+    type: 'Electric',
+    number: 243,
+    generationId: 2,
   },
   {
-    "name": "entei",
-    "imageURL": "",
-    "type": "Fire",
-    "number": 244,
-    "generationId": 2
+    name: 'entei',
+    imageURL: '',
+    type: 'Fire',
+    number: 244,
+    generationId: 2,
   },
   {
-    "name": "suicune",
-    "imageURL": "",
-    "type": "Water",
-    "number": 245,
-    "generationId": 2
+    name: 'suicune',
+    imageURL: '',
+    type: 'Water',
+    number: 245,
+    generationId: 2,
   },
   {
-    "name": "larvitar",
-    "imageURL": "",
-    "type": "Rock",
-    "type2": "Ground",
-    "number": 246,
-    "generationId": 2
+    name: 'larvitar',
+    imageURL: '',
+    type: 'Rock',
+    type2: 'Ground',
+    number: 246,
+    generationId: 2,
   },
   {
-    "name": "pupitar",
-    "imageURL": "",
-    "type": "Rock",
-    "type2": "Ground",
-    "number": 247,
-    "generationId": 2
+    name: 'pupitar',
+    imageURL: '',
+    type: 'Rock',
+    type2: 'Ground',
+    number: 247,
+    generationId: 2,
   },
   {
-    "name": "tyranitar",
-    "imageURL": "",
-    "type": "Rock",
-    "type2": "Dark",
-    "number": 248,
-    "generationId": 2
+    name: 'tyranitar',
+    imageURL: '',
+    type: 'Rock',
+    type2: 'Dark',
+    number: 248,
+    generationId: 2,
   },
   {
-    "name": "lugia",
-    "imageURL": "",
-    "type": "Psychic",
-    "type2": "Flying",
-    "number": 249,
-    "generationId": 2
+    name: 'lugia',
+    imageURL: '',
+    type: 'Psychic',
+    type2: 'Flying',
+    number: 249,
+    generationId: 2,
   },
   {
-    "name": "ho-oh",
-    "imageURL": "",
-    "type": "Fire",
-    "type2": "Flying",
-    "number": 250,
-    "generationId": 2
+    name: 'ho-oh',
+    imageURL: '',
+    type: 'Fire',
+    type2: 'Flying',
+    number: 250,
+    generationId: 2,
   },
   {
-    "name": "celebi",
-    "imageURL": "",
-    "type": "Psychic",
-    "type2": "Grass",
-    "number": 251,
-    "generationId": 2
-  }
+    name: 'celebi',
+    imageURL: '',
+    type: 'Psychic',
+    type2: 'Grass',
+    number: 251,
+    generationId: 2,
+  },
 ];
 
+export const ALL_POKEMON_HOENN: any = [
+  {
+    name: "treecko",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 252,
+    type: "Grass",
+    generationId: 3
+  },
+  {
+    name: "grovyle",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 253,
+    type: "Grass",
+    generationId: 3
+  },
+  {
+    name: "sceptile",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 254,
+    type: "Grass",
+    generationId: 3
+  },
+  {
+    name: "torchic",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 255,
+    type: "Fire",
+    generationId: 3
+  },
+  {
+    name: "combusken",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 256,
+    type: "Fire",
+    type2: "Fighting",
+    generationId: 3
+  },
+  {
+    name: "blaziken",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 257,
+    type: "Fire",
+    type2: "Fighting",
+    generationId: 3
+  },
+  {
+    name: "mudkip",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 258,
+    type: "Water",
+    generationId: 3
+  },
+  {
+    name: "marshtomp",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 259,
+    type: "Water",
+    type2: "Ground",
+    generationId: 3
+  },
+  {
+    name: "swampert",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 260,
+    type: "Water",
+    type2: "Ground",
+    generationId: 3
+  },
+  {
+    name: "poochyena",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 261,
+    type: "Dark",
+    generationId: 3
+  },
+  {
+    name: "mightyena",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 262,
+    type: "Dark",
+    generationId: 3
+  },
+  {
+    name: "zigzagoon",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 263,
+    type: "Normal",
+    generationId: 3
+  },
+  {
+    name: "linoone",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 264,
+    type: "Normal",
+    generationId: 3
+  },
+  {
+    name: "wurmple",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 265,
+    type: "Bug",
+    generationId: 3
+  },
+  {
+    name: "silcoon",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 266,
+    type: "Bug",
+    generationId: 3
+  },
+  {
+    name: "beautifly",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 267,
+    type: "Bug",
+    type2: "Flying",
+    generationId: 3
+  },
+  {
+    name: "cascoon",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 268,
+    type: "Bug",
+    generationId: 3
+  },
+  {
+    name: "dustox",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 269,
+    type: "Bug",
+    type2: "Poison",
+    generationId: 3
+  },
+  {
+    name: "lotad",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 270,
+    type: "Water",
+    type2: "Grass",
+    generationId: 3
+  },
+  {
+    name: "lombre",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 271,
+    type: "Water",
+    type2: "Grass",
+    generationId: 3
+  },
+  {
+    name: "ludicolo",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 272,
+    type: "Water",
+    type2: "Grass",
+    generationId: 3
+  },
+  {
+    name: "seedot",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 273,
+    type: "Grass",
+    generationId: 3
+  },
+  {
+    name: "nuzleaf",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 274,
+    type: "Grass",
+    type2: "Dark",
+    generationId: 3
+  },
+  {
+    name: "shiftry",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 275,
+    type: "Grass",
+    type2: "Dark",
+    generationId: 3
+  },
+  {
+    name: "taillow",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 276,
+    type: "Normal",
+    type2: "Flying",
+    generationId: 3
+  },
+  {
+    name: "swellow",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 277,
+    type: "Normal",
+    type2: "Flying",
+    generationId: 3
+  },
+  {
+    name: "wingull",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 278,
+    type: "Water",
+    type2: "Flying",
+    generationId: 3
+  },
+  {
+    name: "pelipper",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 279,
+    type: "Water",
+    type2: "Flying",
+    generationId: 3
+  },
+  {
+    name: "ralts",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 280,
+    type: "Psychic",
+    type2: "Fairy",
+    generationId: 3
+  },
+  {
+    name: "kirlia",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 281,
+    type: "Psychic",
+    type2: "Fairy",
+    generationId: 3
+  },
+  {
+    name: "gardevoir",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 282,
+    type: "Psychic",
+    type2: "Fairy",
+    generationId: 3
+  },
+  {
+    name: "surskit",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 283,
+    type: "Bug",
+    type2: "Water",
+    generationId: 3
+  },
+  {
+    name: "masquerain",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 284,
+    type: "Bug",
+    type2: "Flying",
+    generationId: 3
+  },
+  {
+    name: "shroomish",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 285,
+    type: "Grass",
+    generationId: 3
+  },
+  {
+    name: "breloom",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 286,
+    type: "Grass",
+    type2: "Fighting",
+    generationId: 3
+  },
+  {
+    name: "slakoth",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 287,
+    type: "Normal",
+    generationId: 3
+  },
+  {
+    name: "vigoroth",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 288,
+    type: "Normal",
+    generationId: 3
+  },
+  {
+    name: "slaking",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 289,
+    type: "Normal",
+    generationId: 3
+  },
+  {
+    name: "nincada",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 290,
+    type: "Bug",
+    type2: "Ground",
+    generationId: 3
+  },
+  {
+    name: "ninjask",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 291,
+    type: "Bug",
+    type2: "Flying",
+    generationId: 3
+  },
+  {
+    name: "shedinja",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 292,
+    type: "Bug",
+    type2: "Ghost",
+    generationId: 3
+  },
+  {
+    name: "whismur",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 293,
+    type: "Normal",
+    generationId: 3
+  },
+  {
+    name: "loudred",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 294,
+    type: "Normal",
+    generationId: 3
+  },
+  {
+    name: "exploud",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 295,
+    type: "Normal",
+    generationId: 3
+  },
+  {
+    name: "makuhita",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 296,
+    type: "Fighting",
+    generationId: 3
+  },
+  {
+    name: "hariyama",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 297,
+    type: "Fighting",
+    generationId: 3
+  },
+  {
+    name: "azurill",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 298,
+    type: "Normal",
+    type2: "Fairy",
+    generationId: 3
+  },
+  {
+    name: "nosepass",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 299,
+    type: "Rock",
+    generationId: 3
+  },
+  {
+    name: "skitty",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 300,
+    type: "Normal",
+    generationId: 3
+  },
+  {
+    name: "delcatty",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 301,
+    type: "Normal",
+    generationId: 3
+  },
+  {
+    name: "sableye",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 302,
+    type: "Dark",
+    type2: "Ghost",
+    generationId: 3
+  },
+  {
+    name: "mawile",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 303,
+    type: "Steel",
+    type2: "Fairy",
+    generationId: 3
+  },
+  {
+    name: "aron",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 304,
+    type: "Steel",
+    type2: "Rock",
+    generationId: 3
+  },
+  {
+    name: "lairon",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 305,
+    type: "Steel",
+    type2: "Rock",
+    generationId: 3
+  },
+  {
+    name: "aggron",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 306,
+    type: "Steel",
+    type2: "Rock",
+    generationId: 3
+  },
+  {
+    name: "meditite",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 307,
+    type: "Fighting",
+    type2: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "medicham",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 308,
+    type: "Fighting",
+    type2: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "electrike",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 309,
+    type: "Electric",
+    generationId: 3
+  },
+  {
+    name: "manectric",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 310,
+    type: "Electric",
+    generationId: 3
+  },
+  {
+    name: "plusle",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 311,
+    type: "Electric",
+    generationId: 3
+  },
+  {
+    name: "minun",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 312,
+    type: "Electric",
+    generationId: 3
+  },
+  {
+    name: "volbeat",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 313,
+    type: "Bug",
+    generationId: 3
+  },
+  {
+    name: "illumise",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 314,
+    type: "Bug",
+    generationId: 3
+  },
+  {
+    name: "roselia",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 315,
+    type: "Grass",
+    type2: "Poison",
+    generationId: 3
+  },
+  {
+    name: "gulpin",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 316,
+    type: "Poison",
+    generationId: 3
+  },
+  {
+    name: "swalot",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 317,
+    type: "Poison",
+    generationId: 3
+  },
+  {
+    name: "carvanha",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 318,
+    type: "Water",
+    type2: "Dark",
+    generationId: 3
+  },
+  {
+    name: "sharpedo",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 319,
+    type: "Water",
+    type2: "Dark",
+    generationId: 3
+  },
+  {
+    name: "wailmer",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 320,
+    type: "Water",
+    generationId: 3
+  },
+  {
+    name: "wailord",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 321,
+    type: "Water",
+    generationId: 3
+  },
+  {
+    name: "numel",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 322,
+    type: "Fire",
+    type2: "Ground",
+    generationId: 3
+  },
+  {
+    name: "camerupt",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 323,
+    type: "Fire",
+    type2: "Ground",
+    generationId: 3
+  },
+  {
+    name: "torkoal",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 324,
+    type: "Fire",
+    generationId: 3
+  },
+  {
+    name: "spoink",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 325,
+    type: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "grumpig",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 326,
+    type: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "spinda",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 327,
+    type: "Normal",
+    generationId: 3
+  },
+  {
+    name: "trapinch",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 328,
+    type: "Ground",
+    generationId: 3
+  },
+  {
+    name: "vibrava",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 329,
+    type: "Ground",
+    type2: "Dragon",
+    generationId: 3
+  },
+  {
+    name: "flygon",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 330,
+    type: "Ground",
+    type2: "Dragon",
+    generationId: 3
+  },
+  {
+    name: "cacnea",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 331,
+    type: "Grass",
+    generationId: 3
+  },
+  {
+    name: "cacturne",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 332,
+    type: "Grass",
+    type2: "Dark",
+    generationId: 3
+  },
+  {
+    name: "swablu",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 333,
+    type: "Normal",
+    type2: "Flying",
+    generationId: 3
+  },
+  {
+    name: "altaria",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 334,
+    type: "Dragon",
+    type2: "Flying",
+    generationId: 3
+  },
+  {
+    name: "zangoose",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 335,
+    type: "Normal",
+    generationId: 3
+  },
+  {
+    name: "seviper",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 336,
+    type: "Poison",
+    generationId: 3
+  },
+  {
+    name: "lunatone",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 337,
+    type: "Rock",
+    type2: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "solrock",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 338,
+    type: "Rock",
+    type2: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "barboach",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 339,
+    type: "Water",
+    type2: "Ground",
+    generationId: 3
+  },
+  {
+    name: "whiscash",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 340,
+    type: "Water",
+    type2: "Ground",
+    generationId: 3
+  },
+  {
+    name: "corphish",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 341,
+    type: "Water",
+    generationId: 3
+  },
+  {
+    name: "crawdaunt",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 342,
+    type: "Water",
+    type2: "Dark",
+    generationId: 3
+  },
+  {
+    name: "baltoy",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 343,
+    type: "Ground",
+    type2: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "claydol",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 344,
+    type: "Ground",
+    type2: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "lileep",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 345,
+    type: "Rock",
+    type2: "Grass",
+    generationId: 3
+  },
+  {
+    name: "cradily",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 346,
+    type: "Rock",
+    type2: "Grass",
+    generationId: 3
+  },
+  {
+    name: "anorith",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 347,
+    type: "Rock",
+    type2: "Bug",
+    generationId: 3
+  },
+  {
+    name: "armaldo",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 348,
+    type: "Rock",
+    type2: "Bug",
+    generationId: 3
+  },
+  {
+    name: "feebas",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 349,
+    type: "Water",
+    generationId: 3
+  },
+  {
+    name: "milotic",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 350,
+    type: "Water",
+    generationId: 3
+  },
+  {
+    name: "castform",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 351,
+    type: "Normal",
+    generationId: 3
+  },
+  {
+    name: "castform-sunny",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 351.1,
+    type: "Fire",
+    generationId: 3
+  },
+  {
+    name: "castform-rainy",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 351.2,
+    type: "Water",
+    generationId: 3
+  },
+  {
+    name: "castform-snowy",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 351.3,
+    type: "Ice",
+    generationId: 3
+  },
+  {
+    name: "kecleon",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 352,
+    type: "Normal",
+    generationId: 3
+  },
+  {
+    name: "shuppet",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 353,
+    type: "Ghost",
+    generationId: 3
+  },
+  {
+    name: "banette",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 354,
+    type: "Ghost",
+    generationId: 3
+  },
+  {
+    name: "duskull",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 355,
+    type: "Ghost",
+    generationId: 3
+  },
+  {
+    name: "dusclops",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 356,
+    type: "Ghost",
+    generationId: 3
+  },
+  {
+    name: "tropius",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 357,
+    type: "Grass",
+    type2: "Flying",
+    generationId: 3
+  },
+  {
+    name: "chimecho",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 358,
+    type: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "absol",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 359,
+    type: "Dark",
+    generationId: 3
+  },
+  {
+    name: "wynaut",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 360,
+    type: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "snorunt",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 361,
+    type: "Ice",
+    generationId: 3
+  },
+  {
+    name: "glalie",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 362,
+    type: "Ice",
+    generationId: 3
+  },
+  {
+    name: "spheal",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 363,
+    type: "Ice",
+    type2: "Water",
+    generationId: 3
+  },
+  {
+    name: "sealeo",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 364,
+    type: "Ice",
+    type2: "Water",
+    generationId: 3
+  },
+  {
+    name: "walrein",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 365,
+    type: "Ice",
+    type2: "Water",
+    generationId: 3
+  },
+  {
+    name: "clamperl",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 366,
+    type: "Water",
+    generationId: 3
+  },
+  {
+    name: "huntail",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 367,
+    type: "Water",
+    generationId: 3
+  },
+  {
+    name: "gorebyss",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 368,
+    type: "Water",
+    generationId: 3
+  },
+  {
+    name: "relicanth",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 369,
+    type: "Water",
+    type2: "Rock",
+    generationId: 3
+  },
+  {
+    name: "luvdisc",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 370,
+    type: "Water",
+    generationId: 3
+  },
+  {
+    name: "bagon",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 371,
+    type: "Dragon",
+    generationId: 3
+  },
+  {
+    name: "shelgon",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 372,
+    type: "Dragon",
+    generationId: 3
+  },
+  {
+    name: "salamence",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 373,
+    type: "Dragon",
+    type2: "Flying",
+    generationId: 3
+  },
+  {
+    name: "beldum",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 374,
+    type: "Steel",
+    type2: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "metang",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 375,
+    type: "Steel",
+    type2: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "metagross",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 376,
+    type: "Steel",
+    type2: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "regirock",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 377,
+    type: "Rock",
+    generationId: 3
+  },
+  {
+    name: "regice",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 378,
+    type: "Ice",
+    generationId: 3
+  },
+  {
+    name: "registeel",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 379,
+    type: "Steel",
+    generationId: 3
+  },
+  {
+    name: "latias",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 380,
+    type: "Dragon",
+    type2: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "latios",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 381,
+    type: "Dragon",
+    type2: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "kyogre",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 382,
+    type: "Water",
+    generationId: 3
+  },
+  {
+    name: "groudon",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 383,
+    type: "Ground",
+    generationId: 3
+  },
+  {
+    name: "rayquaza",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 384,
+    type: "Dragon",
+    type2: "Flying",
+    generationId: 3
+  },
+  {
+    name: "jirachi",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 385,
+    type: "Steel",
+    type2: "Psychic",
+    generationId: 3
+  },
+  {
+    name: "deoxys-normal",
+    imageUrl: "https://i.imgur.com/.png",
+    number: 386,
+    type: "Psychic",
+    generationId: 3
+  }
+];
 
 // <img src="https://i.imgur.com/en4AMHD.png">
 // <img src="https://i.imgur.com/tlWedap.png">
