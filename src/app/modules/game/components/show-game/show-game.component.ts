@@ -29,6 +29,7 @@ export class ShowGameComponent implements OnInit {
       this.gameName = params['game'];
       this.getGameInfo();
       this.getInfo();
+      console.log(this.gameInfo);
     });
   }
 
