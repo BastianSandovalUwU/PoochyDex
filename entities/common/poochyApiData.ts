@@ -1897,35 +1897,35 @@ export const ALL_POKEMON_JOTHO: any[] = [
 export const ALL_POKEMON_HOENN: any = [
   {
     name: "treecko",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 252,
     type: "Grass",
     generationId: 3
   },
   {
     name: "grovyle",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 253,
     type: "Grass",
     generationId: 3
   },
   {
     name: "sceptile",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 254,
     type: "Grass",
     generationId: 3
   },
   {
     name: "torchic",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 255,
     type: "Fire",
     generationId: 3
   },
   {
     name: "combusken",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 256,
     type: "Fire",
     type2: "Fighting",
@@ -1933,7 +1933,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "blaziken",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 257,
     type: "Fire",
     type2: "Fighting",
@@ -1941,14 +1941,14 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "mudkip",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 258,
     type: "Water",
     generationId: 3
   },
   {
     name: "marshtomp",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 259,
     type: "Water",
     type2: "Ground",
@@ -1956,7 +1956,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "swampert",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 260,
     type: "Water",
     type2: "Ground",
@@ -1964,49 +1964,49 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "poochyena",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 261,
     type: "Dark",
     generationId: 3
   },
   {
     name: "mightyena",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 262,
     type: "Dark",
     generationId: 3
   },
   {
     name: "zigzagoon",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 263,
     type: "Normal",
     generationId: 3
   },
   {
     name: "linoone",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 264,
     type: "Normal",
     generationId: 3
   },
   {
     name: "wurmple",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 265,
     type: "Bug",
     generationId: 3
   },
   {
     name: "silcoon",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 266,
     type: "Bug",
     generationId: 3
   },
   {
     name: "beautifly",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 267,
     type: "Bug",
     type2: "Flying",
@@ -2014,14 +2014,14 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "cascoon",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 268,
     type: "Bug",
     generationId: 3
   },
   {
     name: "dustox",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 269,
     type: "Bug",
     type2: "Poison",
@@ -2029,7 +2029,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "lotad",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 270,
     type: "Water",
     type2: "Grass",
@@ -2037,7 +2037,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "lombre",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 271,
     type: "Water",
     type2: "Grass",
@@ -2045,7 +2045,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "ludicolo",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 272,
     type: "Water",
     type2: "Grass",
@@ -2053,14 +2053,14 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "seedot",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 273,
     type: "Grass",
     generationId: 3
   },
   {
     name: "nuzleaf",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 274,
     type: "Grass",
     type2: "Dark",
@@ -2068,7 +2068,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "shiftry",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 275,
     type: "Grass",
     type2: "Dark",
@@ -2076,7 +2076,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "taillow",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 276,
     type: "Normal",
     type2: "Flying",
@@ -2084,7 +2084,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "swellow",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 277,
     type: "Normal",
     type2: "Flying",
@@ -2092,7 +2092,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "wingull",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 278,
     type: "Water",
     type2: "Flying",
@@ -2100,7 +2100,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "pelipper",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 279,
     type: "Water",
     type2: "Flying",
@@ -2108,7 +2108,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "ralts",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 280,
     type: "Psychic",
     type2: "Fairy",
@@ -2116,7 +2116,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "kirlia",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 281,
     type: "Psychic",
     type2: "Fairy",
@@ -2124,7 +2124,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "gardevoir",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 282,
     type: "Psychic",
     type2: "Fairy",
@@ -2132,7 +2132,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "surskit",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 283,
     type: "Bug",
     type2: "Water",
@@ -2140,7 +2140,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "masquerain",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 284,
     type: "Bug",
     type2: "Flying",
@@ -2148,14 +2148,14 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "shroomish",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 285,
     type: "Grass",
     generationId: 3
   },
   {
     name: "breloom",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 286,
     type: "Grass",
     type2: "Fighting",
@@ -2163,28 +2163,28 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "slakoth",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 287,
     type: "Normal",
     generationId: 3
   },
   {
     name: "vigoroth",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 288,
     type: "Normal",
     generationId: 3
   },
   {
     name: "slaking",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 289,
     type: "Normal",
     generationId: 3
   },
   {
     name: "nincada",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 290,
     type: "Bug",
     type2: "Ground",
@@ -2192,7 +2192,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "ninjask",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 291,
     type: "Bug",
     type2: "Flying",
@@ -2200,7 +2200,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "shedinja",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 292,
     type: "Bug",
     type2: "Ghost",
@@ -2208,42 +2208,42 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "whismur",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 293,
     type: "Normal",
     generationId: 3
   },
   {
     name: "loudred",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 294,
     type: "Normal",
     generationId: 3
   },
   {
     name: "exploud",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 295,
     type: "Normal",
     generationId: 3
   },
   {
     name: "makuhita",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 296,
     type: "Fighting",
     generationId: 3
   },
   {
     name: "hariyama",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 297,
     type: "Fighting",
     generationId: 3
   },
   {
     name: "azurill",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 298,
     type: "Normal",
     type2: "Fairy",
@@ -2251,28 +2251,28 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "nosepass",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 299,
     type: "Rock",
     generationId: 3
   },
   {
     name: "skitty",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 300,
     type: "Normal",
     generationId: 3
   },
   {
     name: "delcatty",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 301,
     type: "Normal",
     generationId: 3
   },
   {
     name: "sableye",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 302,
     type: "Dark",
     type2: "Ghost",
@@ -2280,7 +2280,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "mawile",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 303,
     type: "Steel",
     type2: "Fairy",
@@ -2288,7 +2288,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "aron",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 304,
     type: "Steel",
     type2: "Rock",
@@ -2296,7 +2296,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "lairon",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 305,
     type: "Steel",
     type2: "Rock",
@@ -2304,7 +2304,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "aggron",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 306,
     type: "Steel",
     type2: "Rock",
@@ -2312,7 +2312,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "meditite",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 307,
     type: "Fighting",
     type2: "Psychic",
@@ -2320,7 +2320,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "medicham",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 308,
     type: "Fighting",
     type2: "Psychic",
@@ -2328,49 +2328,49 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "electrike",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 309,
     type: "Electric",
     generationId: 3
   },
   {
     name: "manectric",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 310,
     type: "Electric",
     generationId: 3
   },
   {
     name: "plusle",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 311,
     type: "Electric",
     generationId: 3
   },
   {
     name: "minun",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 312,
     type: "Electric",
     generationId: 3
   },
   {
     name: "volbeat",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 313,
     type: "Bug",
     generationId: 3
   },
   {
     name: "illumise",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 314,
     type: "Bug",
     generationId: 3
   },
   {
     name: "roselia",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 315,
     type: "Grass",
     type2: "Poison",
@@ -2378,21 +2378,21 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "gulpin",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 316,
     type: "Poison",
     generationId: 3
   },
   {
     name: "swalot",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 317,
     type: "Poison",
     generationId: 3
   },
   {
     name: "carvanha",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 318,
     type: "Water",
     type2: "Dark",
@@ -2400,7 +2400,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "sharpedo",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 319,
     type: "Water",
     type2: "Dark",
@@ -2408,21 +2408,21 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "wailmer",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 320,
     type: "Water",
     generationId: 3
   },
   {
     name: "wailord",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 321,
     type: "Water",
     generationId: 3
   },
   {
     name: "numel",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 322,
     type: "Fire",
     type2: "Ground",
@@ -2430,7 +2430,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "camerupt",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 323,
     type: "Fire",
     type2: "Ground",
@@ -2438,42 +2438,42 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "torkoal",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 324,
     type: "Fire",
     generationId: 3
   },
   {
     name: "spoink",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 325,
     type: "Psychic",
     generationId: 3
   },
   {
     name: "grumpig",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 326,
     type: "Psychic",
     generationId: 3
   },
   {
     name: "spinda",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 327,
     type: "Normal",
     generationId: 3
   },
   {
     name: "trapinch",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 328,
     type: "Ground",
     generationId: 3
   },
   {
     name: "vibrava",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 329,
     type: "Ground",
     type2: "Dragon",
@@ -2481,7 +2481,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "flygon",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 330,
     type: "Ground",
     type2: "Dragon",
@@ -2489,14 +2489,14 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "cacnea",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 331,
     type: "Grass",
     generationId: 3
   },
   {
     name: "cacturne",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 332,
     type: "Grass",
     type2: "Dark",
@@ -2504,7 +2504,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "swablu",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 333,
     type: "Normal",
     type2: "Flying",
@@ -2512,7 +2512,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "altaria",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 334,
     type: "Dragon",
     type2: "Flying",
@@ -2520,21 +2520,21 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "zangoose",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 335,
     type: "Normal",
     generationId: 3
   },
   {
     name: "seviper",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 336,
     type: "Poison",
     generationId: 3
   },
   {
     name: "lunatone",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 337,
     type: "Rock",
     type2: "Psychic",
@@ -2542,7 +2542,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "solrock",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 338,
     type: "Rock",
     type2: "Psychic",
@@ -2550,7 +2550,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "barboach",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 339,
     type: "Water",
     type2: "Ground",
@@ -2558,7 +2558,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "whiscash",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 340,
     type: "Water",
     type2: "Ground",
@@ -2566,14 +2566,14 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "corphish",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 341,
     type: "Water",
     generationId: 3
   },
   {
     name: "crawdaunt",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 342,
     type: "Water",
     type2: "Dark",
@@ -2581,7 +2581,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "baltoy",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 343,
     type: "Ground",
     type2: "Psychic",
@@ -2589,7 +2589,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "claydol",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 344,
     type: "Ground",
     type2: "Psychic",
@@ -2597,7 +2597,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "lileep",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 345,
     type: "Rock",
     type2: "Grass",
@@ -2605,7 +2605,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "cradily",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 346,
     type: "Rock",
     type2: "Grass",
@@ -2613,7 +2613,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "anorith",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 347,
     type: "Rock",
     type2: "Bug",
@@ -2621,7 +2621,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "armaldo",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 348,
     type: "Rock",
     type2: "Bug",
@@ -2629,84 +2629,84 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "feebas",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 349,
     type: "Water",
     generationId: 3
   },
   {
     name: "milotic",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 350,
     type: "Water",
     generationId: 3
   },
   {
     name: "castform",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 351,
     type: "Normal",
     generationId: 3
   },
   {
     name: "castform-sunny",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 351.1,
     type: "Fire",
     generationId: 3
   },
   {
     name: "castform-rainy",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 351.2,
     type: "Water",
     generationId: 3
   },
   {
     name: "castform-snowy",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 351.3,
     type: "Ice",
     generationId: 3
   },
   {
     name: "kecleon",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 352,
     type: "Normal",
     generationId: 3
   },
   {
     name: "shuppet",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 353,
     type: "Ghost",
     generationId: 3
   },
   {
     name: "banette",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 354,
     type: "Ghost",
     generationId: 3
   },
   {
     name: "duskull",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 355,
     type: "Ghost",
     generationId: 3
   },
   {
     name: "dusclops",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 356,
     type: "Ghost",
     generationId: 3
   },
   {
     name: "tropius",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 357,
     type: "Grass",
     type2: "Flying",
@@ -2714,42 +2714,42 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "chimecho",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 358,
     type: "Psychic",
     generationId: 3
   },
   {
     name: "absol",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 359,
     type: "Dark",
     generationId: 3
   },
   {
     name: "wynaut",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 360,
     type: "Psychic",
     generationId: 3
   },
   {
     name: "snorunt",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 361,
     type: "Ice",
     generationId: 3
   },
   {
     name: "glalie",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 362,
     type: "Ice",
     generationId: 3
   },
   {
     name: "spheal",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 363,
     type: "Ice",
     type2: "Water",
@@ -2757,7 +2757,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "sealeo",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 364,
     type: "Ice",
     type2: "Water",
@@ -2765,7 +2765,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "walrein",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 365,
     type: "Ice",
     type2: "Water",
@@ -2773,28 +2773,28 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "clamperl",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 366,
     type: "Water",
     generationId: 3
   },
   {
     name: "huntail",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 367,
     type: "Water",
     generationId: 3
   },
   {
     name: "gorebyss",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 368,
     type: "Water",
     generationId: 3
   },
   {
     name: "relicanth",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 369,
     type: "Water",
     type2: "Rock",
@@ -2802,28 +2802,28 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "luvdisc",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 370,
     type: "Water",
     generationId: 3
   },
   {
     name: "bagon",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 371,
     type: "Dragon",
     generationId: 3
   },
   {
     name: "shelgon",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 372,
     type: "Dragon",
     generationId: 3
   },
   {
     name: "salamence",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 373,
     type: "Dragon",
     type2: "Flying",
@@ -2831,7 +2831,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "beldum",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 374,
     type: "Steel",
     type2: "Psychic",
@@ -2839,7 +2839,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "metang",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 375,
     type: "Steel",
     type2: "Psychic",
@@ -2847,7 +2847,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "metagross",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 376,
     type: "Steel",
     type2: "Psychic",
@@ -2855,28 +2855,28 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "regirock",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 377,
     type: "Rock",
     generationId: 3
   },
   {
     name: "regice",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 378,
     type: "Ice",
     generationId: 3
   },
   {
     name: "registeel",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 379,
     type: "Steel",
     generationId: 3
   },
   {
     name: "latias",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 380,
     type: "Dragon",
     type2: "Psychic",
@@ -2884,7 +2884,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "latios",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 381,
     type: "Dragon",
     type2: "Psychic",
@@ -2892,21 +2892,21 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "kyogre",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 382,
     type: "Water",
     generationId: 3
   },
   {
     name: "groudon",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 383,
     type: "Ground",
     generationId: 3
   },
   {
     name: "rayquaza",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 384,
     type: "Dragon",
     type2: "Flying",
@@ -2914,7 +2914,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "jirachi",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 385,
     type: "Steel",
     type2: "Psychic",
@@ -2922,7 +2922,7 @@ export const ALL_POKEMON_HOENN: any = [
   },
   {
     name: "deoxys-normal",
-    imageUrl: "https://i.imgur.com/.png",
+    imageUrl: "",
     number: 386,
     type: "Psychic",
     generationId: 3

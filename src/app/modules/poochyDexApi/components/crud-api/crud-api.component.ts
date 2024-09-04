@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CreatePokemon, PoochyDexApiService } from '../../services/poochyDexApi.service';
-import { ALL_POKEMON_JOTHO, ALL_POKEMON_KANTO } from '../../../../../../entities/common/poochyApiData';
+import { ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KANTO } from '../../../../../../entities/common/poochyApiData';
 import { Games, pokemonCrystalData, pokemonEmeraldData, pokemonFireRedLeafGreenData, pokemonGoldSiverData, pokemonRedBlueData, pokemonRubySapphireData, pokemonYellowData } from '../../../../../../entities/common/game-data';
 
 @Component({
@@ -12,6 +12,7 @@ export class CrudApiComponent implements OnInit {
 
   kantoPokemon: CreatePokemon[] = ALL_POKEMON_KANTO;
   jothoPokemon: CreatePokemon[] = ALL_POKEMON_JOTHO;
+  hoennPokemon: CreatePokemon[] = ALL_POKEMON_HOENN;
 
   firstGenerationGames: Games[] = [pokemonRedBlueData, pokemonYellowData];
   secondGenerationGames: Games[] = [pokemonGoldSiverData, pokemonCrystalData];
@@ -27,24 +28,28 @@ export class CrudApiComponent implements OnInit {
   }
 
   createPokemonData(): void {
-    return;
-    this.updateBD(this.kantoPokemon);
+    this.createPokemonBD(this.kantoPokemon);
   }
   createPokemonDataJotho(): void {
-    return;
-    this.updateBD(this.jothoPokemon);
+    this.createPokemonBD(this.jothoPokemon);
+  }
+  createPokemonDataHoenn(): void {
+    this.createPokemonBD(this.hoennPokemon);
   }
 
   createGenerationGamesData(generation: number): void {
     switch (generation) {
       case 1:
         console.log(this.firstGenerationGames);
+        this.createGame(this.firstGenerationGames);
         break;
       case 2:
         console.log(this.secondGenerationGames);
+        this.createGame(this.secondGenerationGames);
         break;
       case 3:
         console.log(this.thirdGenerationGames);
+        this.createGame(this.thirdGenerationGames);
         break;
 
       default:
@@ -52,7 +57,18 @@ export class CrudApiComponent implements OnInit {
     }
   }
 
-  async updateBD(data: any) {
+  async createGame(games: Games[]) {
+    for (const game of games) {
+      try {
+        const result = await this.poochyDexApiService.postPokemonVideogame(game).toPromise();
+        console.log(result);
+      } catch (error) {
+        console.error('Error al guardar juego:', error);
+      }
+    }
+  }
+
+  async createPokemonBD(data: any) {
     for (const poke of data) {
       try {
         const result = await this.poochyDexApiService.postPokemonApi(poke).toPromise();

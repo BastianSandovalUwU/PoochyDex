@@ -1,6 +1,7 @@
 export interface Games {
   generation:   string;
   generationId: number;
+  regionId:     number;
   games:        string[];
   urlFrontPage: string[];
   genre:        string;
@@ -24,6 +25,7 @@ export interface ReleaseDate {
 export const pokemonRedBlueData: Games = {
   generation: "generation-i",
   generationId: 1,
+  regionId: 1,
   games: ['Red', 'Blue'],
   urlFrontPage: ["https://i.imgur.com/LXL066K.jpeg", "https://i.imgur.com/JL2zmZW.jpeg"],
   genre: "RPG",
@@ -82,6 +84,7 @@ export const pokemonRedBlueData: Games = {
 export const pokemonYellowData: Games = {
   generation: "generation-i",
   generationId: 1,
+  regionId: 1,
   games: ['Yellow'],
   urlFrontPage: ["https://i.imgur.com/NNOouHx.png"],
   genre: "RPG",
@@ -139,6 +142,7 @@ export const pokemonYellowData: Games = {
 export const pokemonGoldSiverData: Games = {
   generation: "generation-ii",
   generationId: 2,
+  regionId: 2,
   games: ['Gold', 'Silver'],
   urlFrontPage: ["https://i.imgur.com/bOJ8fon.jpeg", "https://i.imgur.com/WIIy6jx.jpeg"],
   genre: "RPG",
@@ -191,6 +195,7 @@ export const pokemonGoldSiverData: Games = {
 export const pokemonCrystalData: Games = {
   generation: "generation-ii",
   generationId: 2,
+  regionId: 2,
   games: ['Crystal'],
   urlFrontPage: ["https://i.imgur.com/7lAdv50.jpeg"],
   genre: "RPG",
@@ -244,6 +249,7 @@ export const pokemonCrystalData: Games = {
 export const pokemonRubySapphireData: Games = {
   generation: "generation-iii",
   generationId: 3,
+  regionId: 3,
   games: ['Ruby', 'Sapphire'],
   urlFrontPage: ["https://i.imgur.com/m7cl5V6.png", "https://i.imgur.com/n65LQ1y.png"],
   genre: "RPG",
@@ -283,6 +289,7 @@ export const pokemonRubySapphireData: Games = {
 export const pokemonEmeraldData: Games = {
   generation: "generation-iii",
   generationId: 3,
+  regionId: 3,
   games: ['Emerald'],
   urlFrontPage: ["https://i.imgur.com/iBt2PjX.jpeg"],
   genre: "RPG",
@@ -320,6 +327,7 @@ export const pokemonEmeraldData: Games = {
 export const pokemonFireRedLeafGreenData: Games = {
   generation: "generation-iii",
   generationId: 3,
+  regionId: 1,
   games: ['FireRed', 'LeafGreen'],
   urlFrontPage: ["https://i.imgur.com/iCOfHbf.png", "https://i.imgur.com/VFYX7iK.png"],
   genre: "RPG",
@@ -357,6 +365,7 @@ export const pokemonFireRedLeafGreenData: Games = {
 export const pokemonDiamondPearlData: Games = {
   generation: "generation-iv",
   generationId: 4,
+  regionId: 4,
   games: ['Diamond', 'Pearl'],
   urlFrontPage: ["https://i.imgur.com/BTSnnx8.png", "https://i.imgur.com/jpBEyi2.png"],
   genre: "RPG",
@@ -394,6 +403,7 @@ export const pokemonDiamondPearlData: Games = {
 export const pokemonPlatinumData: Games = {
   generation: "generation-iv",
   generationId: 4,
+  regionId: 4,
   games: ['Platinum'],
   urlFrontPage: ["https://i.imgur.com/cdUw5h4.png"],
   genre: "RPG",
