@@ -23,7 +23,7 @@ export class PoochyDexApiService {
 
 constructor(private http: HttpClient) { }
 
-postPokemonAzure(pokemonObjet: CreatePokemon): Observable<any> {
+postPokemonApi(pokemonObjet: CreatePokemon): Observable<any> {
   const url = `${this.apiUrlCore}/api/pokemon`;
   return this.http.post<any>(url, pokemonObjet).pipe(
     catchError(error => {
