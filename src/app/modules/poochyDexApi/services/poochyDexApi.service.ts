@@ -70,4 +70,24 @@ updatePokemon(id: number, pokemon: PokemonApi): Observable<PokemonApi> {
     })
   );
 }
+
+getAllGames(): Observable<Games[]> {
+  const url = `${this.poochyDexApiUrl}/api/Games/getAll`;
+  return this.http.get<Games[]>(url).pipe(
+    catchError(error => {
+      console.error('error:', error);
+      return throwError(error);
+    })
+  );
+}
+getGameById(id: number): Observable<Games> {
+  const url = `${this.poochyDexApiUrl}/api/Games/${id}`;
+  return this.http.get<Games>(url).pipe(
+    catchError(error => {
+      console.error('error:', error);
+      return throwError(error);
+    })
+  )
+}
+
 }

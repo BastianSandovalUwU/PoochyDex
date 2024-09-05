@@ -6,7 +6,7 @@
       <h1 class="rounded-t-lg text-center pb-2 text-xl hover:text-blue-500 cursor-pointer"
         [routerLink]="['/game/show-game', gameInfo.games[0] + '-' + gameInfo.games[1]]"
         routerLinkActive="router-link-active">
-        {{ getGenerationName(gameInfo.generation) }}
+        {{ getGenerationName(gameInfo.generation.name) }}
       </h1>
       <div class="flex justify-center items-center cursor-pointer flex-grow">
         <img class="w-26"

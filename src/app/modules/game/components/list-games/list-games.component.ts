@@ -3,6 +3,7 @@ import { GamesService } from '../../services/games.service';
 import { Games } from '../../../../../../entities/common/game-data';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
+import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
 
 @Component({
   selector: 'app-list-games',
@@ -14,12 +15,20 @@ export class ListGamesComponent implements OnInit {
   games: Games[] = [];
 
   constructor(private gamesService: GamesService,
+              private poochyDexAPiService: PoochyDexApiService,
               private helperService: HelperService,
               private languageService: LanguageService,) { }
 
   ngOnInit() {
+    this.getAllGamesApiDex();
     this.getLanguage();
-    this.getAllGames();
+  }
+
+  getAllGamesApiDex(){
+    this.poochyDexAPiService.getAllGames().subscribe((resp) => {
+      console.log(resp);
+      this.games = resp;
+    });
   }
 
   getAllGames() {

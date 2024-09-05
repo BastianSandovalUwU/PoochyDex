@@ -21,7 +21,7 @@
         <h1><span class="font-bold text-center">{{ language === 'es' ? 'Datos': 'Data' }} </span></h1>
       </div>
       <div class="max-w-screen-sm">
-        <h1><span class="font-bold text-center">{{ getGenerationName(gameInfo.generation) }} </span></h1>
+        <h1><span class="font-bold text-center">{{ getGenerationName(gameInfo.generation.name) }} </span></h1>
         <h1><span class="font-bold">{{ language === 'es' ? 'Plataforma': 'Platform' }}: </span>{{gameInfo.platforms}}</h1>
         <h1><span class="font-bold">{{ language === 'es' ? 'Genero': 'Genre' }}: </span>{{gameInfo.genre}}</h1>
         <h1><span class="font-bold">{{ language === 'es' ? 'Jugadores': 'Players' }}: </span>{{gameInfo.players}}</h1>
@@ -32,14 +32,11 @@
         <h1><span class="font-bold text-center">{{ language === 'es' ? 'Fechas de Lanzamiento': 'Release Dates' }} </span></h1>
       </div>
       <div class="max-w-screen-sm">
-        <div *ngFor="let region of groupedReleaseDates">
-          <h1><span class="font-bold">{{ language === 'es' ? region.region : region.region }}. </span></h1>
-          <div *ngFor="let console of region.consoles">
-            <p>{{ console.console }}:</p>
-            <div *ngFor="let date of console.dates">
-              <p>{{ date }}</p>
-            </div>
-          </div>
+        <div *ngFor="let release of gameInfo.releaseDates">
+          <h1><span class="font-bold">{{ language === 'es' ? release.region : release.region }}. </span></h1>
+          <p>{{ release.console }}:</p>
+          <p>{{ release.date }}</p>
+          <p *ngIf="release.date2">{{ release.date2 }}</p>
         </div>
       </div>
     </div>

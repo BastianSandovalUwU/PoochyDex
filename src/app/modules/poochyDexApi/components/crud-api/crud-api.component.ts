@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CreatePokemon, PoochyDexApiService } from '../../services/poochyDexApi.service';
-import { ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KANTO } from '../../../../../../entities/common/poochyApiData';
-import { Games, pokemonCrystalData, pokemonEmeraldData, pokemonFireRedLeafGreenData, pokemonGoldSiverData, pokemonRedBlueData, pokemonRubySapphireData, pokemonYellowData } from '../../../../../../entities/common/game-data';
+import { ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KANTO, ALL_POKEMON_SINNOH } from '../../../../../../entities/common/poochyApiData';
+import { Games, pokemonBlackWithe2Data, pokemonBlackWitheData, pokemonCrystalData, pokemonDiamondPearlData, pokemonEmeraldData, pokemonFireRedLeafGreenData, pokemonGoldSiverData, pokemonHeartGoldSoulSilverData, pokemonPlatinumData, pokemonRedBlueData, pokemonRubySapphireData, pokemonYellowData } from '../../../../../../entities/common/game-data';
 import { PokemonApi } from '../../interfaces/pokemon.interface';
 
 @Component({
@@ -14,23 +14,36 @@ export class CrudApiComponent implements OnInit {
   kantoPokemon: CreatePokemon[] = ALL_POKEMON_KANTO;
   jothoPokemon: CreatePokemon[] = ALL_POKEMON_JOTHO;
   hoennPokemon: CreatePokemon[] = ALL_POKEMON_HOENN;
+  sinnohPokemon: CreatePokemon[] = ALL_POKEMON_SINNOH;
 
   firstGenerationGames: Games[] = [pokemonRedBlueData, pokemonYellowData];
   secondGenerationGames: Games[] = [pokemonGoldSiverData, pokemonCrystalData];
   thirdGenerationGames: Games[] = [pokemonRubySapphireData, pokemonEmeraldData, pokemonFireRedLeafGreenData];
+  fourthGenerationGames: Games[] = [pokemonDiamondPearlData, pokemonPlatinumData, pokemonHeartGoldSoulSilverData];
+  fifthGenerationGames: Games[] = [pokemonBlackWitheData, pokemonBlackWithe2Data];
 
-  // urlData: any[] = allPokemonUrl;
+  // urlData: any[] = urlsSinnoh;
   allPokemonAPI: PokemonApi[] = [];
 
   constructor(private poochyDexApiService: PoochyDexApiService) { }
 
   ngOnInit() {
-    this.getAllPokemon();
+    // this.getAllPokemon();
   }
 
   getAllPokemon(): void {
     this.poochyDexApiService.getAllPokemon().subscribe((resp) => {
-      this.allPokemonAPI = resp;
+      // this.allPokemonAPI = resp;
+      // console.log(resp.filter(f => f.generationId === 4).map((map) => {
+      //   return {
+      //     name: map.name,
+      //     imageURL: map.imageURL,
+      //     number: map.number,
+      //     generationId: map.generationId,
+      //     type: map.type,
+      //     type2: map.type2,
+      //   }
+      // }))
     }, (error => {
       console.log(error);
     }));
@@ -44,6 +57,9 @@ export class CrudApiComponent implements OnInit {
   }
   createPokemonDataHoenn(): void {
     this.createPokemonBD(this.hoennPokemon);
+  }
+  createPokemonDataSinnoh(): void {
+    this.createPokemonBD(this.sinnohPokemon);
   }
 
   createGenerationGamesData(generation: number): void {
@@ -60,16 +76,25 @@ export class CrudApiComponent implements OnInit {
         console.log(this.thirdGenerationGames);
         this.createGame(this.thirdGenerationGames);
         break;
+      case 4:
+        console.log(this.fourthGenerationGames);
+        this.createGame(this.fourthGenerationGames);
+        break;
+      case 5:
+        console.log(this.fifthGenerationGames);
+        this.createGame(this.fifthGenerationGames);
+        break;
 
       default:
         break;
     }
   }
 
-  async updateUrlImagePokemon(allPokemon: PokemonApi[], urlData: string[]) {
+  async updateUrlImagePokemon(allPokemon: PokemonApi[], urlData: string[], generation: number) {
     // Filtrar los Pokémon de la generación 3
-    const pokemonFiltered = allPokemon.filter(f => f.generationId === 3);
-
+    const pokemonFiltered = allPokemon.filter(f => f.generationId === generation);
+    console.log(pokemonFiltered);
+    console.log(urlData);
     // Verificar que urlData tenga suficientes URLs para todos los Pokémon filtrados
     if (pokemonFiltered.length !== urlData.length) {
       console.error('La cantidad de URLs no coincide con la cantidad de Pokémon filtrados.');

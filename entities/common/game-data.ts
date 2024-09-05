@@ -1,5 +1,5 @@
 export interface Games {
-  generation:   string;
+  generation?:   any;
   generationId: number;
   regionId:     number;
   games:        string[];
@@ -434,6 +434,120 @@ export const pokemonPlatinumData: Games = {
         console: "Nintendo DS",
         region: "Europa",
         date: "22 de mayo de 2009",
+      },
+  ]
+}
+
+export const pokemonHeartGoldSoulSilverData: Games = {
+  generation: "generation-iv",
+  generationId: 4,
+  regionId: 2,
+  games: ['HeartGold', 'SoulSilver'],
+  urlFrontPage: ["https://i.imgur.com/ea0xdZi.png", "https://i.imgur.com/xCzhLcx.jpeg"],
+  genre: "RPG",
+  players: "1 - 4 (2-5 con el intercambio giro)",
+  publishedBy: "Nintendo",
+  developedBy: "Game Freak",
+  platforms: ["Nintendo DS"],
+  gameHistory: `La historia sigue el mismo rumbo que su predecesoras Pokémon Oro, Pokémon Plata y Pokémon Cristal: viajar por Johto y después visitar Kanto, pero con algunos cambios en el argumento. Comienzas en Pueblo Primavera, tres años después de los acontecimientos de Pokémon Rojo Fuego y Pokémon Verde Hoja, eligiendo a tu Pokémon inicial entre Chikorita, Totodile y Cyndaquil. Después recorres toda la región de Johto para vencer a todos los líderes de gimnasio y poder proclamarte así como Campeón de Johto, no sin antes superar la dura Liga Pokémon de esta región. Tu aventura no será nada fácil, pues el Team Rocket resurge con la esperanza de llamar a Giovanni para volver a hacer otra vez de las suyas. Tu misión será acabar con ellos de una vez y para siempre. Cuando hayas terminado todo esto no creas que todo ha acabado; te quedan jugosos retos que superar, como hacerte con las 8 medallas de Kanto, superar de nuevo la Liga Pokémon, vencer al campeón de Kanto: Rojo, capturar a los Pokémon legendarios o incluso completar la Pokédex con sus 493 especies de Pokémon, sin olvidarnos de los eventos Pokémon para poder finiquitar nuestra partida.`,
+  summary: `Pokémon Oro HeartGold y Pokémon Plata SoulSilver (Pokémon HeartGold y Pokémon SoulSilver en inglés, ポケットモンスター ハートゴールド Pocket Monsters HeartGold y ポケットモンスター ソウルシルバー Pocket Monsters SoulSilver en japonés) son dos videojuegos de Pokémon pertenecientes a la cuarta generación para la consola Nintendo DS. Se trata de los remakes de los videojuegos de la segunda generación, Pokémon Oro y Pokémon Plata. También llamados "Pokémon Edición Oro HeartGold" y "Pokémon Edición Plata SoulSilver", repasan la historia de la región de Johto de igual forma que el primer remake repasa la historia de Kanto. Aunque hay varios cambios en el argumento del videojuego, este sigue casi la misma historia que en las primeras ediciones, Oro y Plata. Además se incluyen varias cosas que fueron exclusivas de Pokémon Cristal, como es la introducción de la historia de Eusine y Suicune. En estos nuevos videojuegos hay una nueva protagonista femenina llamada Lira, sustituyendo a Cristi. Esta, si no es elegida como protagonista por el jugador, continuará haciendo un papel de amiga. El rival, al igual que en las ediciones originales, seguirá siendo ese chico pelirrojo misterioso que está enfrente del laboratorio del profesor Elm al principio del videojuego. Los videojuegos salieron a la venta el 12 de septiembre de 2009 en Japón, el 4 de febrero de 2010 en Corea, el 14 de marzo de 2010 en América del Norte, el 25 de marzo de 2010 en Australia y el 26 de marzo de 2010 en Europa.`,
+  releaseDates:
+    [
+      {
+        console: "Nintendo DS",
+        region: "Japon",
+        date: "12 de septiembre de 2009",
+      },
+      {
+        console: "Nintendo DS",
+        region: "America",
+        date: "14 de marzo de 2010",
+      },
+      {
+        console: "Nintendo DS",
+        region: "Australia",
+        date: "25 de mayo de 2010",
+      },
+      {
+        console: "Nintendo DS",
+        region: "Europa",
+        date: "26 de marzo de 2010",
+      },
+  ]
+}
+
+export const pokemonBlackWitheData: Games = {
+  generation: "generation-v",
+  generationId: 5,
+  regionId: 5,
+  games: ['Black', 'White'],
+  urlFrontPage: ["https://i.imgur.com/oWWYeb0.png", "https://i.imgur.com/OkwAHdb.png"],
+  genre: "RPG",
+  players: "1 - 4",
+  publishedBy: "Nintendo",
+  developedBy: "Game Freak",
+  platforms: ["Nintendo DS"],
+  gameHistory: `Al igual que los videojuegos anteriores de Pokémon, Pokémon Negro y Pokémon Blanco siguen una historia lineal; los eventos principales ocurren en un orden fijo. El protagonista de las entregas es un adolescente que emprende un viaje a través de Teselia para convertirse en el Campeón de la Liga Pokémon. Al comienzo de la partida, el jugador elige a Snivy, Tepig u Oshawott como su Pokémon inicial como regalo de la profesora Encina. Los amigos del protagonista, Cheren y Bel, también son Entrenadores Pokémon y rivales que ocasionalmente luchan contra el jugador; Cheren elegirá los Pokémon con una ventaja de tipo frente al protagonista, mientras que Bel elegirá los Pokémon con una desventaja de tipo. El objetivo principal del jugador es obtener las ocho medallas de gimnasio de Teselia y, en última instancia, desafiar al Alto Mando de la Liga Pokémon y a su Campeón para completar la historia principal.Por otra parte, el jugador también tendrá que derrotar a la principal fuerza antagonista de los videojuegos, el Equipo Plasma, un grupo que afirma que los Pokémon están oprimidos por la humanidad y que busca liberarlos de sus entrenadores. El Equipo Plasma está dirigido por N, un joven que se crió junto a Pokémon y que los percibe como amigos.`,
+  summary: `Pokémon Negro y Pokémon Blanco (Pokémon Black y Pokémon White en inglés, ポケットモンスター ブラック Pocket Monsters Black y ポケットモンスター ホワイト Pocket Monsters White en japonés) son dos videojuegos de Pokémon pertenecientes a la quinta generación. Fueron anunciados oficialmente por la web oficial de Pokémon en Japón el día 9 de abril de 2010. Se conoce que salieron a la venta el 18 de septiembre del 2010 en Japón. También llamados "Pokémon Edición Negra" y "Pokémon Edición Blanca", fueron lanzados el 18 de septiembre en Japón y en tan solo 2 días obtuvo el récord de más vendidos en menos tiempo de Nintendo, con 2.63 millones de copias vendidas. Por su parte en España salió a la venta el 4 de marzo de 2011 y en América el 6 de marzo del mismo año. Estos videojuegos transcurren en la región Teselia. En la edición Negra esta región sufre una remodelación más futurista en algunos de sus lugares, mientras que en la edición Blanca esta región es muy pintoresca y tradicional. Estos cambios se pueden observar en Ciudad Caolín, y en el Bosque Blanco que es sustituido en la edición Negra por Ciudad Negra. Estos videojuegos tienen una secuela, llamada Pokémon Negro 2 y Pokémon Blanco 2.`,
+  releaseDates:
+    [
+      {
+        console: "Nintendo DS",
+        region: "Japon",
+        date: "18 de septiembre de 2010",
+      },
+      {
+        console: "Nintendo DS",
+        region: "America",
+        date: "6 de marzo de 2011",
+      },
+      {
+        console: "Nintendo DS",
+        region: "Australia",
+        date: "10 de marzo de 2011",
+      },
+      {
+        console: "Nintendo DS",
+        region: "Europa",
+        date: "4 de marzo de 2011",
+      },
+  ]
+}
+
+export const pokemonBlackWithe2Data: Games = {
+  generation: "generation-v",
+  generationId: 5,
+  regionId: 5,
+  games: ['Black-2', 'White-2'],
+  urlFrontPage: ["https://i.imgur.com/xBNyLyd.png", "https://i.imgur.com/PlB5b34.png"],
+  genre: "RPG",
+  players: "1 - 4",
+  publishedBy: "Nintendo",
+  developedBy: "Game Freak",
+  platforms: ["Nintendo DS"],
+  gameHistory: `Al igual que los videojuegos anteriores de Pokémon, Pokémon Negro y Pokémon Blanco siguen una historia lineal; los eventos principales ocurren en un orden fijo. El protagonista de las entregas es un adolescente que emprende un viaje a través de Teselia para convertirse en el Campeón de la Liga Pokémon. Al comienzo de la partida, el jugador elige a Snivy, Tepig u Oshawott como su Pokémon inicial como regalo de la profesora Encina. Los amigos del protagonista, Cheren y Bel, también son Entrenadores Pokémon y rivales que ocasionalmente luchan contra el jugador; Cheren elegirá los Pokémon con una ventaja de tipo frente al protagonista, mientras que Bel elegirá los Pokémon con una desventaja de tipo. El objetivo principal del jugador es obtener las ocho medallas de gimnasio de Teselia y, en última instancia, desafiar al Alto Mando de la Liga Pokémon y a su Campeón para completar la historia principal.Por otra parte, el jugador también tendrá que derrotar a la principal fuerza antagonista de los videojuegos, el Equipo Plasma, un grupo que afirma que los Pokémon están oprimidos por la humanidad y que busca liberarlos de sus entrenadores. El Equipo Plasma está dirigido por N, un joven que se crió junto a Pokémon y que los percibe como amigos.`,
+  summary: `Pokémon Negro y Pokémon Blanco (Pokémon Black y Pokémon White en inglés, ポケットモンスター ブラック Pocket Monsters Black y ポケットモンスター ホワイト Pocket Monsters White en japonés) son dos videojuegos de Pokémon pertenecientes a la quinta generación. Fueron anunciados oficialmente por la web oficial de Pokémon en Japón el día 9 de abril de 2010. Se conoce que salieron a la venta el 18 de septiembre del 2010 en Japón. También llamados "Pokémon Edición Negra" y "Pokémon Edición Blanca", fueron lanzados el 18 de septiembre en Japón y en tan solo 2 días obtuvo el récord de más vendidos en menos tiempo de Nintendo, con 2.63 millones de copias vendidas. Por su parte en España salió a la venta el 4 de marzo de 2011 y en América el 6 de marzo del mismo año. Estos videojuegos transcurren en la región Teselia. En la edición Negra esta región sufre una remodelación más futurista en algunos de sus lugares, mientras que en la edición Blanca esta región es muy pintoresca y tradicional. Estos cambios se pueden observar en Ciudad Caolín, y en el Bosque Blanco que es sustituido en la edición Negra por Ciudad Negra. Estos videojuegos tienen una secuela, llamada Pokémon Negro 2 y Pokémon Blanco 2.`,
+  releaseDates:
+    [
+      {
+        console: "Nintendo DS",
+        region: "Japon",
+        date: "23 de junio de 2012",
+      },
+      {
+        console: "Nintendo DS",
+        region: "America",
+        date: "7 de octubre de 2012",
+      },
+      {
+        console: "Nintendo DS",
+        region: "Australia",
+        date: "11 de octubre de 2012",
+      },
+      {
+        console: "Nintendo DS",
+        region: "Europa",
+        date: "11 de octubre de 2012",
       },
   ]
 }

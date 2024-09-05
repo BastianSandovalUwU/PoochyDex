@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
-import { Games, pokemonEmeraldData } from '../../../../../../entities/common/game-data';
-import { GamesService } from '../../services/games.service';
+import { Games } from '../../../../../../entities/common/game-data';
+import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
 
 @Component({
   selector: 'app-show-game',
@@ -19,7 +19,7 @@ export class ShowGameComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               private pokeApiService: PokeApiService,
               private helperService: HelperService,
-              private gamesService: GamesService,
+              private poochyDexAPiService: PoochyDexApiService,
               private languageService: LanguageService,) {
   }
 
@@ -27,9 +27,23 @@ export class ShowGameComponent implements OnInit {
     this.getLanguage();
     this.activatedRoute.params.subscribe((params) => {
       this.gameName = params['game'];
-      this.getGameInfo();
-      this.getInfo();
-      console.log(this.gameInfo);
+      this.getGameApiDex();
+    });
+  }
+
+  getGameApiDex() {
+    // Dividimos el string this.gameName, pero unimos "Black-2" y "White-2" como juegos completos
+    const gameNamesArray = this.gameName.split('-').reduce((acc, part, index, array) => {
+      if (index > 0 && /\d/.test(part)) {
+        acc[acc.length - 1] += `-${part}`;  // Unimos si es parte de un juego con número (e.g. "Black-2")
+      } else {
+        acc.push(part);
+      }
+      return acc;
+    }, [] as string[]);
+
+    this.poochyDexAPiService.getAllGames().subscribe((resp) => {
+      this.gameInfo = resp.filter(f => gameNamesArray.every(game => f.games.includes(game)))[0];
     });
   }
 
@@ -40,41 +54,6 @@ export class ShowGameComponent implements OnInit {
           console.log(gen);
         });
       });
-  }
-
-  getGameInfo() {
-    switch (this.gameName.toLowerCase()) {
-      case 'red-blue':
-        this.gameInfo = this.gamesService.getPokemonRedBlueData();
-        break;
-      case 'yellow':
-        this.gameInfo = this.gamesService.getPokemonYellowData();
-        break;
-      case 'gold-silver':
-        this.gameInfo = this.gamesService.getPokemonGoldSilverData();
-        break;
-      case 'crystal':
-        this.gameInfo = this.gamesService.getPokemonCrystalData();
-        break;
-      case 'ruby-sapphire':
-        this.gameInfo = this.gamesService.getPokemonRubySapphireData();
-        break;
-      case 'emerald':
-        this.gameInfo = this.gamesService.getPokemonRubyEmeraldData();
-        break;
-      case 'firered-leafgreen':
-        this.gameInfo = this.gamesService.getPokemonFireRedLeafGreenData();
-        break;
-      case 'diamond-pearl':
-        this.gameInfo = this.gamesService.getPokemonDiamondPearlData();
-        break;
-      case 'platinum':
-        this.gameInfo = this.gamesService.getPokemonPlatinumData();
-        break;
-
-      default: null
-        break;
-    }
   }
 
   getLanguage() {
