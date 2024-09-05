@@ -266,11 +266,11 @@ export class HelperService {
         case 'bug': return 'Bicho';
         case 'normal': return 'Normal';
         case 'poison': return 'Veneno';
-        case 'electric': return 'Electrico';
+        case 'electric': return 'Eléctrico';
         case 'ground': return 'Tierra';
         case 'fairy': return 'Hada';
         case 'fighting': return 'Lucha';
-        case 'psychic': return 'Psiquico';
+        case 'psychic': return 'Psíquico';
         case 'rock': return 'Roca';
         case 'ghost': return 'Fantasma';
         case 'ice': return 'Hielo';
