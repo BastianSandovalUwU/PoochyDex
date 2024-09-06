@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CreatePokemon, PoochyDexApiService } from '../../services/poochyDexApi.service';
-import { ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KANTO, ALL_POKEMON_SINNOH } from '../../../../../../entities/common/poochyApiData';
+import { ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KANTO, ALL_POKEMON_SINNOH, ALL_POKEMON_UNOVA } from '../../../../../../entities/common/poochyApiData';
 import { Games, pokemonBlackWithe2Data, pokemonBlackWitheData, pokemonCrystalData, pokemonDiamondPearlData, pokemonEmeraldData, pokemonFireRedLeafGreenData, pokemonGoldSiverData, pokemonHeartGoldSoulSilverData, pokemonPlatinumData, pokemonRedBlueData, pokemonRubySapphireData, pokemonYellowData } from '../../../../../../entities/common/game-data';
 import { PokemonApi } from '../../interfaces/pokemon.interface';
 
@@ -15,6 +15,7 @@ export class CrudApiComponent implements OnInit {
   jothoPokemon: CreatePokemon[] = ALL_POKEMON_JOTHO;
   hoennPokemon: CreatePokemon[] = ALL_POKEMON_HOENN;
   sinnohPokemon: CreatePokemon[] = ALL_POKEMON_SINNOH;
+  unovaPokemon: CreatePokemon[] = ALL_POKEMON_UNOVA;
 
   firstGenerationGames: Games[] = [pokemonRedBlueData, pokemonYellowData];
   secondGenerationGames: Games[] = [pokemonGoldSiverData, pokemonCrystalData];
@@ -49,17 +50,26 @@ export class CrudApiComponent implements OnInit {
     }));
   }
 
-  createPokemonData(): void {
-    this.createPokemonBD(this.kantoPokemon);
-  }
-  createPokemonDataJotho(): void {
-    this.createPokemonBD(this.jothoPokemon);
-  }
-  createPokemonDataHoenn(): void {
-    this.createPokemonBD(this.hoennPokemon);
-  }
-  createPokemonDataSinnoh(): void {
-    this.createPokemonBD(this.sinnohPokemon);
+  createPokemonByGeneration(generationId: number) {
+    switch (generationId) {
+      case 1:
+        this.createPokemonBD(this.kantoPokemon);
+        break;
+      case 2:
+        this.createPokemonBD(this.jothoPokemon);
+        break;
+      case 3:
+        this.createPokemonBD(this.hoennPokemon);
+        break;
+      case 4:
+        this.createPokemonBD(this.sinnohPokemon);
+        break;
+      case 5:
+        this.createPokemonBD(this.unovaPokemon);
+        break;
+      default:
+        break;
+    }
   }
 
   createGenerationGamesData(generation: number): void {
