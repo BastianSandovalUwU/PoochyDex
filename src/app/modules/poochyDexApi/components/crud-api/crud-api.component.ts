@@ -23,7 +23,7 @@ export class CrudApiComponent implements OnInit {
   fourthGenerationGames: Games[] = [pokemonDiamondPearlData, pokemonPlatinumData, pokemonHeartGoldSoulSilverData];
   fifthGenerationGames: Games[] = [pokemonBlackWitheData, pokemonBlackWithe2Data];
 
-  // urlData: any[] = urlsSinnoh;
+  // urlData: any[] = unovaURLS;
   allPokemonAPI: PokemonApi[] = [];
 
   constructor(private poochyDexApiService: PoochyDexApiService) { }
@@ -34,7 +34,7 @@ export class CrudApiComponent implements OnInit {
 
   getAllPokemon(): void {
     this.poochyDexApiService.getAllPokemon().subscribe((resp) => {
-      // this.allPokemonAPI = resp;
+      this.allPokemonAPI = resp;
       // console.log(resp.filter(f => f.generationId === 4).map((map) => {
       //   return {
       //     name: map.name,
@@ -101,7 +101,6 @@ export class CrudApiComponent implements OnInit {
   }
 
   async updateUrlImagePokemon(allPokemon: PokemonApi[], urlData: string[], generation: number) {
-    // Filtrar los Pokémon de la generación 3
     const pokemonFiltered = allPokemon.filter(f => f.generationId === generation);
     console.log(pokemonFiltered);
     console.log(urlData);
