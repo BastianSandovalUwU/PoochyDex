@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CreatePokemon, PoochyDexApiService } from '../../services/poochyDexApi.service';
-import { ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KANTO, ALL_POKEMON_SINNOH, ALL_POKEMON_UNOVA } from '../../../../../../entities/common/poochyApiData';
+import { ALL_POKEMON_ALOLA, ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KALOS, ALL_POKEMON_KANTO, ALL_POKEMON_SINNOH, ALL_POKEMON_UNOVA } from '../../../../../../entities/common/poochyApiData';
 import { Games, pokemonBlackWithe2Data, pokemonBlackWitheData, pokemonCrystalData, pokemonDiamondPearlData, pokemonEmeraldData, pokemonFireRedLeafGreenData, pokemonGoldSiverData, pokemonHeartGoldSoulSilverData, pokemonPlatinumData, pokemonRedBlueData, pokemonRubySapphireData, pokemonYellowData } from '../../../../../../entities/common/game-data';
 import { PokemonApi } from '../../interfaces/pokemon.interface';
 
@@ -16,6 +16,8 @@ export class CrudApiComponent implements OnInit {
   hoennPokemon: CreatePokemon[] = ALL_POKEMON_HOENN;
   sinnohPokemon: CreatePokemon[] = ALL_POKEMON_SINNOH;
   unovaPokemon: CreatePokemon[] = ALL_POKEMON_UNOVA;
+  kalosPokemon: CreatePokemon[] = ALL_POKEMON_KALOS;
+  alolaPokemon: CreatePokemon[] = ALL_POKEMON_ALOLA;
 
   firstGenerationGames: Games[] = [pokemonRedBlueData, pokemonYellowData];
   secondGenerationGames: Games[] = [pokemonGoldSiverData, pokemonCrystalData];
@@ -23,13 +25,13 @@ export class CrudApiComponent implements OnInit {
   fourthGenerationGames: Games[] = [pokemonDiamondPearlData, pokemonPlatinumData, pokemonHeartGoldSoulSilverData];
   fifthGenerationGames: Games[] = [pokemonBlackWitheData, pokemonBlackWithe2Data];
 
-  // urlData: any[] = unovaURLS;
+  // urlData: any[] = urlsAlola;
   allPokemonAPI: PokemonApi[] = [];
 
   constructor(private poochyDexApiService: PoochyDexApiService) { }
 
   ngOnInit() {
-    // this.getAllPokemon();
+    this.getAllPokemon();
   }
 
   getAllPokemon(): void {
@@ -53,19 +55,25 @@ export class CrudApiComponent implements OnInit {
   createPokemonByGeneration(generationId: number) {
     switch (generationId) {
       case 1:
-        this.createPokemonBD(this.kantoPokemon);
+        // this.createPokemonBD(this.kantoPokemon);
         break;
       case 2:
-        this.createPokemonBD(this.jothoPokemon);
+        // this.createPokemonBD(this.jothoPokemon);
         break;
       case 3:
-        this.createPokemonBD(this.hoennPokemon);
+        // this.createPokemonBD(this.hoennPokemon);
         break;
       case 4:
-        this.createPokemonBD(this.sinnohPokemon);
+        // this.createPokemonBD(this.sinnohPokemon);
         break;
       case 5:
-        this.createPokemonBD(this.unovaPokemon);
+        // this.createPokemonBD(this.unovaPokemon);
+        break;
+      case 6:
+        // this.createPokemonBD(this.kalosPokemon);
+        break;
+      case 7:
+        // this.createPokemonBD(this.alolaPokemon);
         break;
       default:
         break;
@@ -76,23 +84,23 @@ export class CrudApiComponent implements OnInit {
     switch (generation) {
       case 1:
         console.log(this.firstGenerationGames);
-        this.createGame(this.firstGenerationGames);
+        // this.createGame(this.firstGenerationGames);
         break;
       case 2:
         console.log(this.secondGenerationGames);
-        this.createGame(this.secondGenerationGames);
+        // this.createGame(this.secondGenerationGames);
         break;
       case 3:
         console.log(this.thirdGenerationGames);
-        this.createGame(this.thirdGenerationGames);
+        // this.createGame(this.thirdGenerationGames);
         break;
       case 4:
         console.log(this.fourthGenerationGames);
-        this.createGame(this.fourthGenerationGames);
+        // this.createGame(this.fourthGenerationGames);
         break;
       case 5:
         console.log(this.fifthGenerationGames);
-        this.createGame(this.fifthGenerationGames);
+        // this.createGame(this.fifthGenerationGames);
         break;
 
       default:
@@ -100,7 +108,7 @@ export class CrudApiComponent implements OnInit {
     }
   }
 
-  async updateUrlImagePokemon(allPokemon: PokemonApi[], urlData: string[], generation: number) {
+  async updateUrlImagePokemon(allPokemon: PokemonApi[], urlData: any ,generation: number) {
     const pokemonFiltered = allPokemon.filter(f => f.generationId === generation);
     console.log(pokemonFiltered);
     console.log(urlData);

@@ -59,7 +59,16 @@ export class ListPokemonComponent implements OnInit {
     this.poochyDexApiService.getAllPokemon().subscribe((resp) => {
       this.allPokemonAPI = resp;
       this.filteredPokemon = resp;
-      console.log(this.allPokemonAPI);
+      console.log(this.allPokemonAPI.filter(f => f.generationId === 6).map((poke) => {
+        return {
+          name: poke.name,
+          imageURL: poke.imageURL,
+          number: poke.number,
+          type: poke.type,
+          type2: poke.type2,
+          generationId: poke.generationId
+        }
+      }));
     }, (error => {
       console.log(error);
     }));
