@@ -38,7 +38,7 @@ export class ListPokemonComponent implements OnInit {
   filteredPokemon: PokemonApi[] = [];
   allPokemonAPI: PokemonApi[] = [];
   language: string;
-  generations = [1, 2, 3, 4];
+  generations = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   selectedGenerations: number[] = [];
   selectedForms: string[] = [];
   filtersVisible = false;

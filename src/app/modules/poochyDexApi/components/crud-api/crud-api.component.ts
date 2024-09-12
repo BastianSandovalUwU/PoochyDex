@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CreatePokemon, PoochyDexApiService } from '../../services/poochyDexApi.service';
-import { ALL_POKEMON_ALOLA, ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KALOS, ALL_POKEMON_KANTO, ALL_POKEMON_SINNOH, ALL_POKEMON_UNOVA } from '../../../../../../entities/common/poochyApiData';
+import { ALL_POKEMON_ALOLA, ALL_POKEMON_GALAR, ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KALOS, ALL_POKEMON_KANTO, ALL_POKEMON_PALDEA, ALL_POKEMON_SINNOH, ALL_POKEMON_UNOVA } from '../../../../../../entities/common/poochyApiData';
 import { Games, pokemonBlackWithe2Data, pokemonBlackWitheData, pokemonCrystalData, pokemonDiamondPearlData, pokemonEmeraldData, pokemonFireRedLeafGreenData, pokemonGoldSiverData, pokemonHeartGoldSoulSilverData, pokemonPlatinumData, pokemonRedBlueData, pokemonRubySapphireData, pokemonYellowData } from '../../../../../../entities/common/game-data';
 import { PokemonApi } from '../../interfaces/pokemon.interface';
 
@@ -18,6 +18,8 @@ export class CrudApiComponent implements OnInit {
   unovaPokemon: CreatePokemon[] = ALL_POKEMON_UNOVA;
   kalosPokemon: CreatePokemon[] = ALL_POKEMON_KALOS;
   alolaPokemon: CreatePokemon[] = ALL_POKEMON_ALOLA;
+  galarPokemon: CreatePokemon[] = ALL_POKEMON_GALAR;
+  paldeaPokemon: CreatePokemon[] = ALL_POKEMON_PALDEA;
 
   firstGenerationGames: Games[] = [pokemonRedBlueData, pokemonYellowData];
   secondGenerationGames: Games[] = [pokemonGoldSiverData, pokemonCrystalData];
@@ -25,7 +27,6 @@ export class CrudApiComponent implements OnInit {
   fourthGenerationGames: Games[] = [pokemonDiamondPearlData, pokemonPlatinumData, pokemonHeartGoldSoulSilverData];
   fifthGenerationGames: Games[] = [pokemonBlackWitheData, pokemonBlackWithe2Data];
 
-  // urlData: any[] = urlsAlola;
   allPokemonAPI: PokemonApi[] = [];
 
   constructor(private poochyDexApiService: PoochyDexApiService) { }
@@ -37,16 +38,16 @@ export class CrudApiComponent implements OnInit {
   getAllPokemon(): void {
     this.poochyDexApiService.getAllPokemon().subscribe((resp) => {
       this.allPokemonAPI = resp;
-      // console.log(resp.filter(f => f.generationId === 4).map((map) => {
-      //   return {
-      //     name: map.name,
-      //     imageURL: map.imageURL,
-      //     number: map.number,
-      //     generationId: map.generationId,
-      //     type: map.type,
-      //     type2: map.type2,
-      //   }
-      // }))
+      console.log(resp.filter(f => f.generationId === 8).map((map) => {
+        return {
+          name: map.name,
+          imageURL: map.imageURL,
+          number: map.number,
+          generationId: map.generationId,
+          type: map.type,
+          type2: map.type2,
+        }
+      }))
     }, (error => {
       console.log(error);
     }));
@@ -74,6 +75,12 @@ export class CrudApiComponent implements OnInit {
         break;
       case 7:
         // this.createPokemonBD(this.alolaPokemon);
+        break;
+      case 8:
+        // this.createPokemonBD(this.galarPokemon);
+        break;
+      case 9:
+        // this.createPokemonBD(this.paldeaPokemon);
         break;
       default:
         break;
@@ -112,7 +119,7 @@ export class CrudApiComponent implements OnInit {
     const pokemonFiltered = allPokemon.filter(f => f.generationId === generation);
     console.log(pokemonFiltered);
     console.log(urlData);
-    // Verificar que urlData tenga suficientes URLs para todos los Pokémon filtrados
+    // // Verificar que urlData tenga suficientes URLs para todos los Pokémon filtrados
     if (pokemonFiltered.length !== urlData.length) {
       console.error('La cantidad de URLs no coincide con la cantidad de Pokémon filtrados.');
       return;
@@ -150,7 +157,7 @@ export class CrudApiComponent implements OnInit {
     }
   }
 
-  async createPokemonBD(data: any) {
+  async createPokemonBD(data: CreatePokemon[]) {
     for (const poke of data) {
       try {
         const result = await this.poochyDexApiService.postPokemonApi(poke).toPromise();
