@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CreatePokemon, PoochyDexApiService } from '../../services/poochyDexApi.service';
-import { ALL_POKEMON_ALOLA, ALL_POKEMON_GALAR, ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KALOS, ALL_POKEMON_KANTO, ALL_POKEMON_PALDEA, ALL_POKEMON_SINNOH, ALL_POKEMON_UNOVA } from '../../../../../../entities/common/poochyApiData';
+import { ALL_POKEMON_ALOLA, ALL_POKEMON_GALAR, ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KALOS, ALL_POKEMON_KANTO, ALL_POKEMON_PALDEA, ALL_POKEMON_SINNOH, ALL_POKEMON_UNOVA, HOME_KANTO_SPRITES } from '../../../../../../entities/common/poochyApiData';
 import { Games, pokemonBlackWithe2Data, pokemonBlackWitheData, pokemonCrystalData, pokemonDiamondPearlData, pokemonEmeraldData, pokemonFireRedLeafGreenData, pokemonGoldSiverData, pokemonHeartGoldSoulSilverData, pokemonPlatinumData, pokemonRedBlueData, pokemonRubySapphireData, pokemonYellowData } from '../../../../../../entities/common/game-data';
 import { PokemonApi } from '../../interfaces/pokemon.interface';
 
@@ -26,6 +26,8 @@ export class CrudApiComponent implements OnInit {
   thirdGenerationGames: Games[] = [pokemonRubySapphireData, pokemonEmeraldData, pokemonFireRedLeafGreenData];
   fourthGenerationGames: Games[] = [pokemonDiamondPearlData, pokemonPlatinumData, pokemonHeartGoldSoulSilverData];
   fifthGenerationGames: Games[] = [pokemonBlackWitheData, pokemonBlackWithe2Data];
+
+  kantoHomeSprites = HOME_KANTO_SPRITES;
 
   allPokemonAPI: PokemonApi[] = [];
 
@@ -114,6 +116,28 @@ export class CrudApiComponent implements OnInit {
         break;
     }
   }
+  createSpriteGeneration(generation: number): void {
+    switch (generation) {
+      case 1:
+        // this.createHomeSprites(this.kantoHomeSprites);
+        break;
+      case 2:
+        // this.createGame(this.secondGenerationGames);
+        break;
+      case 3:
+        // this.createGame(this.thirdGenerationGames);
+        break;
+      case 4:
+        // this.createGame(this.fourthGenerationGames);
+        break;
+      case 5:
+        // this.createGame(this.fifthGenerationGames);
+        break;
+
+      default:
+        break;
+    }
+  }
 
   async updateUrlImagePokemon(allPokemon: PokemonApi[], urlData: any ,generation: number) {
     const pokemonFiltered = allPokemon.filter(f => f.generationId === generation);
@@ -150,6 +174,17 @@ export class CrudApiComponent implements OnInit {
     for (const game of games) {
       try {
         const result = await this.poochyDexApiService.postPokemonVideogame(game).toPromise();
+        console.log(result);
+      } catch (error) {
+        console.error('Error al guardar juego:', error);
+      }
+    }
+  }
+
+  async createHomeSprites(sprites: any[]) {
+    for (const sprite of sprites) {
+      try {
+        const result = await this.poochyDexApiService.postGameSprites(sprite).toPromise();
         console.log(result);
       } catch (error) {
         console.error('Error al guardar juego:', error);

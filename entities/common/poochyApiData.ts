@@ -7874,3 +7874,611 @@ export const ALL_POKEMON_PALDEA: CreatePokemon[] = [
     generationId: 9
   }
 ];
+
+
+export const HOME_KANTO_SPRITES = [
+  {
+      homeUrlSprite: "https://i.imgur.com/FrdlDNA.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/3acqHlY.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/aQDH6fb.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/Fv7jH0f.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/mZI1wQX.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/RrUUT4r.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/UbGZLna.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/nSduOlj.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/X5X7EUc.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/IJKnWpl.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/qN4RAlk.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/Elc2rSJ.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/IkooRli.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/gMYezOB.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/IIklnSa.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/Xuc5CBI.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/8XuPbdU.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/A7ic0Bt.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/kFKUMLM.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/7crSlAK.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/weYOEuu.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/0aS8zYM.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/U79ak3m.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/kHAteaX.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/LIinyrq.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/L1FV9BT.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/mQDOLsc.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/1pU1L5u.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/mkXkJ17.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/toWMDrc.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/Enyfixb.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/sY78HfI.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/3wyK6Aw.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/NhRVo6x.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/xkm5NKu.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/9xf8Mhg.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/GUgMU73.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/Yc86AUe.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/iKRWSH8.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/EFRSGWE.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/EFqged6.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/hacNFpT.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/GpbLDkL.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/2xGjTC2.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/kYAXELE.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/ErbJgcf.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/ABGEpqk.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/zwhGIHn.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/SZbfdc4.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/SOSB0QB.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/llig8PU.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/rV96rDi.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/6kqQlL6.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/3I1rrcd.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/Ky0ruIv.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/RZHnpa9.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/YfarR5u.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/n3HKEBV.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/r6xgwfB.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/sgWRfFx.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/ga8udh9.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/rG9l7FI.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/ibjaKYS.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/D59bZkr.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/mtbhlKz.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/7lFA4M4.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/TPj2wLs.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/ppyMVzM.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/EM48tHd.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/cgmFnjx.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/d4CyQFX.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/9Enwezj.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/zB5Gtxw.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/J5tps8w.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/AkHlDn5.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/Yt6TFID.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/vtvNh6Z.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/PCp99vb.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/cFhsFyd.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/s46CzBM.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/NXK3EE8.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/lADc28Q.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/Kh0KkTl.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/fzOMxng.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/lmOMsDA.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/QKqDuid.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/FV5l9Dk.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/Dqmz9XW.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/pWzqRXN.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/XcYot8a.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/Pnq2cpv.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/UZrlGK2.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/fMDHmrR.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/NNSD8HK.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/5EF5HxP.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/Q2QKXND.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/UG9yUo7.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/SnWHtMD.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/iFJqyqV.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/ezcJIfV.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/dKC9LsC.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/cGhw48Z.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/Sb2d8ZA.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/mYlyFjc.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/JavT1OJ.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/rqJTg80.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/VwJ67uF.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/wRL8DpS.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/iKWOTES.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/wTkZy93.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/SB1bUmT.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/RylKX1U.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/9dXCHGg.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/IHgAIbb.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/7QBH7M2.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/v2GOfYO.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/NS7zXt1.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/BJNt3wV.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/FsakIXl.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/XJNosR9.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/KmVlt8m.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/Itd9her.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/cfxWbbV.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/jmgnNEw.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/YudxQwg.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/K3C7AyP.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/MlRThxb.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/KZLJaxQ.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/WlYhkXR.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/9R0GBVl.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/prKAgup.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/Gqbrk0h.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/mUVqqCn.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/rhaLrb0.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/3K7yF9h.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/A4Xgkyg.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/gxeT88D.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/CWwtPAa.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/FMvPf4x.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/JzOypT4.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/h1bOGUb.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/jglQRYU.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/LNWGkGz.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/rrBz4vC.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/G4Pjyqa.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/7jYCQtA.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/XSirNGq.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/uGyTb6g.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/TzLRQ6W.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/9zcGv0z.png",
+      homeUrlShinySprite: null,
+  },
+  {
+      homeUrlSprite: "https://i.imgur.com/mLJmVr1.png",
+      homeUrlShinySprite: null,
+  },
+  ];

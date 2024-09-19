@@ -20,7 +20,8 @@ export interface CreatePokemon {
 })
 export class PoochyDexApiService {
 
-  poochyDexApiUrl = 'https://aspnetclusters-182703-0.cloudclusters.net'
+  poochyDexApiUrl = 'https://aspnetclusters-182703-0.cloudclusters.net';
+  localHostUrl = 'http://localhost:5132'
 
 
 constructor(private http: HttpClient) { }
@@ -83,6 +84,15 @@ getAllGames(): Observable<Games[]> {
 getGameById(id: number): Observable<Games> {
   const url = `${this.poochyDexApiUrl}/api/Games/${id}`;
   return this.http.get<Games>(url).pipe(
+    catchError(error => {
+      console.error('error:', error);
+      return throwError(error);
+    })
+  )
+}
+postGameSprites(sprite: any): Observable<any> {
+  const url = `${this.localHostUrl}/api/HomeSprites`;
+  return this.http.post<any>(url, sprite).pipe(
     catchError(error => {
       console.error('error:', error);
       return throwError(error);
