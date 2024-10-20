@@ -2,18 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AllPokemon } from '../../../../../entities/common/const.interface';
 import { Games } from '../../../../../entities/common/game-data';
+import { PokemonList } from '../../../../../entities/pokemon-list.entity';
 
-export interface CreatePokemon {
-  name: string;
-  imageURL: string;
-  type: string;
-  type2?: string;
-  generationId: number;
-  number: number;
-
-}
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +15,7 @@ export class PoochyDexApiService {
 
 constructor(private http: HttpClient) { }
 
-postPokemonApi(pokemonObjet: CreatePokemon): Observable<any> {
+postPokemonApi(pokemonObjet: PokemonList): Observable<any> {
   const url = `${this.apiUrlCore}/api/pokemon`;
   return this.http.post<any>(url, pokemonObjet).pipe(
     catchError(error => {

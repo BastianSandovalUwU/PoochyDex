@@ -4,16 +4,20 @@ import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { Ability, Type } from '../../../../../entities/pokemon.entity';
 import { AbilityName, AbilityResponse, Name } from '../../../../../entities/pokemon-ability.entity';
 import { DetailMove, EffectEntry } from '../../../../../entities/moves.entity';
-import { TargetTypes, AllPokemon, ALL_POKEMON, AllPokemonGmaxForms, ALL_GMAX_POKEMON_FORMS, ALL_POKEMON_MEGA_FORMS, AllPokemonMegaForms, MISC_POKEMON_FORMS } from '../../../../../entities/common/const.interface';
+import { TargetTypes, AllPokemon, ALL_POKEMON,  MISC_POKEMON_FORMS } from '../../../../../entities/common/const.interface';
 import { Router } from '@angular/router';
+import { ALL_POKEMON_ALOLA, ALL_POKEMON_GALAR, ALL_POKEMON_GIGAMAX_FORMS, ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KALOS, ALL_POKEMON_KANTO, ALL_POKEMON_MEGA_FORMS, ALL_POKEMON_PALDEA, ALL_POKEMON_SINNOH, ALL_POKEMON_UNOVA } from '../../../../../entities/common/poochyApiData';
+import { PokemonList } from '../../../../../entities/pokemon-list.entity';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelperService {
-  allPokemon: AllPokemon[] = ALL_POKEMON;
-  allPokemonGmax: AllPokemonGmaxForms[] = ALL_GMAX_POKEMON_FORMS;
-  allPokemonMega: AllPokemonMegaForms[] = ALL_POKEMON_MEGA_FORMS;
+  allPokemon: PokemonList[] = [...ALL_POKEMON_KANTO, ...ALL_POKEMON_JOTHO,
+    ...ALL_POKEMON_HOENN, ...ALL_POKEMON_SINNOH, ...ALL_POKEMON_UNOVA,
+    ...ALL_POKEMON_KALOS, ...ALL_POKEMON_ALOLA, ...ALL_POKEMON_GALAR, ...ALL_POKEMON_PALDEA];
+  allPokemonGmax: PokemonList[] = ALL_POKEMON_GIGAMAX_FORMS;
+  allPokemonMega: PokemonList[] = ALL_POKEMON_MEGA_FORMS;
   allPokemonMisc: any[] = MISC_POKEMON_FORMS;
 
   constructor(private pokeApiService: PokeApiService,
@@ -515,7 +519,7 @@ export class HelperService {
     if(pokemon === undefined) {
       return null;
     }
-    return pokemon.imageName;
+    return pokemon.number.toString();
   }
 
   getCorrectPokemonName(pokemonName): string {

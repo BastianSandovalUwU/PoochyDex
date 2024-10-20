@@ -1,4 +1,4 @@
-import { CreatePokemon } from "app/modules/poochyDexApi/services/poochyDexApi.service";
+import { PokemonList } from "../pokemon-list.entity";
 
 export const ALL_POKEMON_KANTO: any[] = [
   {
@@ -750,7 +750,7 @@ export const ALL_POKEMON_KANTO: any[] = [
   {
     name: 'electrode',
     imageURL: 'https://i.imgur.com/pTpzbKR.png',
-    number: 101,
+    number: 10,
     type: 'electric',
     generationId: 1,
   },
@@ -1515,7 +1515,7 @@ export const ALL_POKEMON_JOTHO: any[] = [
     name: 'unown',
     imageURL: 'https://i.imgur.com/IEOiKsD.png',
     type: 'Psychic',
-    number: 201,
+    number: 20,
     generationId: 2,
   },
   {
@@ -2268,7 +2268,7 @@ export const ALL_POKEMON_HOENN: any = [
   {
     name: "delcatty",
     imageURL: "https://i.imgur.com/npgoVDd.png",
-    number: 301,
+    number: 30,
     type: "Normal",
     generationId: 3
   },
@@ -3020,7 +3020,7 @@ export const ALL_POKEMON_SINNOH: any = [
   {
     name: "kricketot",
     imageURL: "https://i.imgur.com/FjLubag.png",
-    number: 401,
+    number: 40,
     generationId: 4,
     type: "Bug",
   },
@@ -3771,7 +3771,7 @@ export const ALL_POKEMON_UNOVA: any = [
   {
     name: "oshawott",
     imageURL: "https://i.imgur.com/mAC0Nnc.png",
-    number: 501,
+    number: 50,
     type: "Water",
     generationId: 5
   },
@@ -4513,7 +4513,7 @@ export const ALL_POKEMON_UNOVA: any = [
   {
     name: "klinklang",
     imageURL: "https://i.imgur.com/zOHN8yV.png",
-    number: 601,
+    number: 60,
     type: "Steel",
     generationId: 5
   },
@@ -5273,7 +5273,7 @@ export const ALL_POKEMON_KALOS = [
   {
     name: "hawlucha",
     imageURL: "https://i.imgur.com/J2RXMPh.png",
-    number: 701,
+    number: 70,
     type: "Fighting",
     type2: "Flying",
     generationId: 6
@@ -5401,7 +5401,7 @@ export const ALL_POKEMON_KALOS = [
     generationId: 6
   },
   {
-    name: "zygarde",
+    name: "zygarde-50",
     imageURL: "https://i.imgur.com/KcFjjb0.png",
     number: 718,
     type: "Dragon",
@@ -5434,7 +5434,7 @@ export const ALL_POKEMON_KALOS = [
   }
 ];
 
-export const ALL_POKEMON_ALOLA: CreatePokemon[] = [
+export const ALL_POKEMON_ALOLA: PokemonList[] = [
   {
     name: "rowlet",
     imageURL: "https://i.imgur.com/Jp5rSge.png",
@@ -5852,7 +5852,7 @@ export const ALL_POKEMON_ALOLA: CreatePokemon[] = [
     type2: null
   },
   {
-    name: "minior",
+    name: "minior-red-meteor",
     imageURL: "https://i.imgur.com/21hHAa0.png",
     number: 774,
     generationId: 7,
@@ -6070,7 +6070,7 @@ export const ALL_POKEMON_ALOLA: CreatePokemon[] = [
   {
     name: "magearna",
     imageURL: "https://i.imgur.com/o815ubK.png",
-    number: 801,
+    number: 80,
     generationId: 7,
     type: "Steel",
     type2: "Fairy"
@@ -6141,7 +6141,7 @@ export const ALL_POKEMON_ALOLA: CreatePokemon[] = [
   }
 ];
 
-export const ALL_POKEMON_GALAR: CreatePokemon[] = [
+export const ALL_POKEMON_GALAR: PokemonList[] = [
   {
     name: "grookey",
     imageURL: "https://i.imgur.com/nH3RRlH.png",
@@ -6873,7 +6873,7 @@ export const ALL_POKEMON_GALAR: CreatePokemon[] = [
   {
     name: "ursaluna",
     imageURL: "https://i.imgur.com/aEi7KUB.png",
-    number: 901,
+    number: 90,
     generationId: 8,
     type: "Ground",
     type2: "Normal"
@@ -6912,7 +6912,7 @@ export const ALL_POKEMON_GALAR: CreatePokemon[] = [
   }
 ];
 
-export const ALL_POKEMON_PALDEA: CreatePokemon[] = [
+export const ALL_POKEMON_PALDEA: PokemonList[] = [
   {
     name: "sprigatito",
     imageURL: "",
@@ -7676,7 +7676,7 @@ export const ALL_POKEMON_PALDEA: CreatePokemon[] = [
   {
     name: 'wo-chien',
     imageURL: "",
-    number: 1001,
+    number: 100,
     type: "Dark",
     type2: "Grass",
     generationId: 9
@@ -7748,7 +7748,7 @@ export const ALL_POKEMON_PALDEA: CreatePokemon[] = [
   {
     name: 'iron-leaves',
     imageURL: "",
-    number: 1010,
+    number: 100,
     type: "Grass",
     type2: "psychic",
     generationId: 9
@@ -7756,7 +7756,7 @@ export const ALL_POKEMON_PALDEA: CreatePokemon[] = [
   {
     name: 'dipplin',
     imageURL: "",
-    number: 1011,
+    number: 101,
     type: "Grass",
     type2: "Dragon",
     generationId: 9
@@ -7764,7 +7764,7 @@ export const ALL_POKEMON_PALDEA: CreatePokemon[] = [
   {
     name: 'poltchageist',
     imageURL: "",
-    number: 1012,
+    number: 102,
     type: "Ghost",
     type2: "Grass",
     generationId: 9
@@ -7772,7 +7772,7 @@ export const ALL_POKEMON_PALDEA: CreatePokemon[] = [
   {
     name: 'sinistcha',
     imageURL: "",
-    number: 1013,
+    number: 103,
     type: "Ghost",
     type2: "Grass",
     generationId: 9
@@ -7780,7 +7780,7 @@ export const ALL_POKEMON_PALDEA: CreatePokemon[] = [
   {
     name: 'okidogi',
     imageURL: "",
-    number: 1014,
+    number: 104,
     type: "Fighting",
     type2: "Grass",
     generationId: 9
@@ -7788,7 +7788,7 @@ export const ALL_POKEMON_PALDEA: CreatePokemon[] = [
   {
     name: 'munkidori',
     imageURL: "",
-    number: 1015,
+    number: 105,
     type: "Poison",
     type2: "Dark",
     generationId: 9
@@ -7796,7 +7796,7 @@ export const ALL_POKEMON_PALDEA: CreatePokemon[] = [
   {
     name: 'fezandipiti',
     imageURL: "",
-    number: 1016,
+    number: 106,
     type: "Fairy",
     type2: "Dragon",
     generationId: 9
@@ -7804,7 +7804,7 @@ export const ALL_POKEMON_PALDEA: CreatePokemon[] = [
   {
     name: 'ogerpon',
     imageURL: "",
-    number: 1017,
+    number: 107,
     type: "Grass",
     type2: "",
     generationId: 9
@@ -7812,7 +7812,7 @@ export const ALL_POKEMON_PALDEA: CreatePokemon[] = [
   {
     name: 'archaludon',
     imageURL: "",
-    number: 1018,
+    number: 108,
     type: "Dragon",
     type2: "Steel",
     generationId: 9
@@ -7820,7 +7820,7 @@ export const ALL_POKEMON_PALDEA: CreatePokemon[] = [
   {
     name: 'hydrapple',
     imageURL: "",
-    number: 1019,
+    number: 109,
     type: "Dragon",
     type2: "Grass",
     generationId: 9
@@ -7873,4 +7873,1014 @@ export const ALL_POKEMON_PALDEA: CreatePokemon[] = [
     type2: "Ghost",
     generationId: 9
   }
+];
+
+export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
+  {
+    name: 'venusaur-gmax',
+    imageURL: "",
+    number: 3.2,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'charizard-gmax',
+    imageURL: "",
+    number: 6.3,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'blastoise-gmax',
+    imageURL: "",
+    number: 9.2,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'butterfree-gmax',
+    imageURL: "",
+    number: 12.1,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'pikachu-gmax',
+    imageURL: "",
+    number: 25.9,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'eevee-gmax',
+    imageURL: "",
+    number: 133.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'kingler-gmax',
+    imageURL: "",
+    number: 99.1,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'snorlax-gmax',
+    imageURL: "",
+    number: 143.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'machamp-gmax',
+    imageURL: "",
+    number: 68.1,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'gengar-gmax',
+    imageURL: "",
+    number: 94.1,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'lapras-gmax',
+    imageURL: "",
+    number: 131.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'melmetal-gmax',
+    imageURL: "",
+    number: 809.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'rillaboom-gmax',
+    imageURL: "",
+    number: 812.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'cinderace-gmax',
+    imageURL: "",
+    number: 815.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'inteleon-gmax',
+    imageURL: "",
+    number: 818.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'urshifu-single-strike-gmax',
+    imageURL: "",
+    number: 892.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'urshifu-rapid-strike-gmax',
+    imageURL: "",
+    number: 892.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'coalossal-gmax',
+    imageURL: "",
+    number: 839.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'flapple-gmax',
+    imageURL: "",
+    number: 841.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'appletun-gmax',
+    imageURL: "",
+    number: 842.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'toxtricity-amped-gmax',
+    imageURL: "",
+    number: 849.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'toxtricity-low-key-gmax',
+    imageURL: "",
+    number: 849.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'orbeetle-gmax',
+    imageURL: "",
+    number: 826.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'sandaconda-gmax',
+    imageURL: "",
+    number: 844.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'duraludon-gmax',
+    imageURL: "",
+    number: 884.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'copperajah-gmax',
+    imageURL: "",
+    number: 879.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'grimmsnarl-gmax',
+    imageURL: "",
+    number: 861.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'hatterene-gmax',
+    imageURL: "",
+    number: 858.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'centiskorch-gmax',
+    imageURL: "",
+    number: 851.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'garbodor-gmax',
+    imageURL: "",
+    number: 569.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'alcremie-gmax',
+    imageURL: "",
+    number: 869.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'drednaw-gmax',
+    imageURL: "",
+    number: 834.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'corviknight-gmax',
+    imageURL: "",
+    number: 823.,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+];
+
+export const ALL_POKEMON_MEGA_FORMS = [
+  {
+    name: 'venusaur-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 3.1,
+    generationId: 0
+  },
+  {
+    name: 'charizard-mega-x',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 6.1,
+    generationId: 0
+  },
+  {
+    name: 'charizard-mega-y',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 6.2,
+    generationId: 0
+  },
+  {
+    name: 'blastoise-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 9.1,
+    generationId: 0
+  },
+  {
+    name: 'beedrill-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 15.,
+    generationId: 0
+  },
+  {
+    name: 'pidgeot-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 18.,
+    generationId: 0
+  },
+  {
+    name: 'alakazam-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 65.,
+    generationId: 0
+  },
+  {
+    name: 'slowbro-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 80,
+    generationId: 0
+  },
+  {
+    name: 'kangaskhan-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 115,
+    generationId: 0
+  },
+  {
+    name: 'pinsir-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 127,
+    generationId: 0
+  },
+  {
+    name: 'gyarados-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 130,
+    generationId: 0
+  },
+  {
+    name: 'aerodactyl-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 142,
+    generationId: 0
+  },
+  {
+    name: 'mewtwo-mega-x',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 150,
+    generationId: 0
+  },
+  {
+    name: 'mewtwo-mega-y',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 150,
+    generationId: 0
+  },
+  {
+    name: 'steelix-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 208,
+    generationId: 0
+  },
+  {
+    name: 'ampharos-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 181,
+    generationId: 0
+  },
+  {
+    name: 'scizor-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 212,
+    generationId: 0
+  },
+  {
+    name: 'heracross-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 214,
+    generationId: 0
+  },
+  {
+    name: 'houndoom-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 229,
+    generationId: 0
+  },
+  {
+    name: 'tyranitar-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 248,
+    generationId: 0
+  },
+  {
+    name: 'sceptile-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 254,
+    generationId: 0
+  },
+  {
+    name: 'blaziken-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 257,
+    generationId: 0
+  },
+  {
+    name: 'swampert-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 260,
+    generationId: 0
+  },
+  {
+    name: 'gardevoir-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 282,
+    generationId: 0
+  },
+  {
+    name: 'sableye-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 302,
+    generationId: 0
+  },
+  {
+    name: 'mawile-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 303,
+    generationId: 0
+  },
+  {
+    name: 'aggron-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 306,
+    generationId: 0
+  },
+  {
+    name: 'medicham-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 308,
+    generationId: 0
+  },
+  {
+    name: 'manectric-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 310,
+    generationId: 0
+  },
+  {
+    name: 'sharpedo-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 319,
+    generationId: 0
+  },
+  {
+    name: 'camerupt-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 323,
+    generationId: 0
+  },
+  {
+    name: 'altaria-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 334,
+    generationId: 0
+  },
+  {
+    name: 'banette-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 354,
+    generationId: 0
+  },
+  {
+    name: 'absol-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 359,
+    generationId: 0
+  },
+  {
+    name: 'glalie-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 362,
+    generationId: 0
+  },
+  {
+    name: 'salamence-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 373,
+    generationId: 0
+  },
+  {
+    name: 'metagross-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 376,
+    generationId: 0
+  },
+  {
+    name: 'latias-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 380,
+    generationId: 0
+  },
+  {
+    name: 'latios-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 381,
+    generationId: 0
+  },
+  {
+    name: 'groudon-primal',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 383,
+    generationId: 0
+  },
+  {
+    name: 'kyogre-primal',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 382,
+    generationId: 0
+  },
+  {
+    name: 'rayquaza-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 384,
+    generationId: 0
+  },
+  {
+    name: 'lopunny-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 428,
+    generationId: 0
+  },
+  {
+    name: 'garchomp-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 445,
+    generationId: 0
+  },
+  {
+    name: 'lucario-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 448,
+    generationId: 0
+  },
+  {
+    name: 'abomasnow-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 460,
+    generationId: 0
+  },
+  {
+    name: 'gallade-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 475,
+    generationId: 0
+  },
+  {
+    name: 'audino-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 531,
+    generationId: 0
+  },
+  {
+    name: 'diancie-mega',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 719,
+    generationId: 0
+  },
+];
+
+export const ALL_POKEMON_ALOLA_REGIONAL_FORMS = [
+  {
+    name: 'rattata-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 19.1,
+    generationId: 0
+  },
+  {
+    name: 'raticate-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 20.1,
+    generationId: 0
+  },
+  {
+    name: 'raichu-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 26.1,
+    generationId: 0
+  },
+  {
+    name: 'sandshrew-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 27.1,
+    generationId: 0
+  },
+  {
+    name: 'sandslash-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 28.1,
+    generationId: 0
+  },
+  {
+    name: 'vulpix-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 37.1,
+    generationId: 0
+  },
+  {
+    name: 'ninetales-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 38.1,
+    generationId: 0
+  },
+  {
+    name: 'diglett-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 50.1,
+    generationId: 0
+  },
+  {
+    name: 'dugtrio-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 51.1,
+    generationId: 0
+  },
+  {
+    name: 'meowth-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 52.1,
+    generationId: 0
+  },
+  {
+    name: 'persian-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 53.1,
+    generationId: 0
+  },
+  {
+    name: 'geodude-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 74.1,
+    generationId: 0
+  },
+  {
+    name: 'graveler-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 75.1,
+    generationId: 0
+  },
+  {
+    name: 'golem-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 76.1,
+    generationId: 0
+  },
+  {
+    name: 'grimer-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 88.1,
+    generationId: 0
+  },
+  {
+    name: 'muk-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 89.1,
+    generationId: 0
+  },
+  {
+    name: 'exeggutor-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 103.1,
+    generationId: 0
+  },
+  {
+    name: 'marowak-alola',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 105.1,
+    generationId: 0
+  },
+];
+
+export const ALL_POKEMON_GALAR_REGIONAL_FORMS = [
+  {
+    name: 'meowth-galar',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 52.2,
+    generationId: 0
+  },
+  {
+    name: 'ponyta-galar',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 77.1,
+    generationId: 0
+  },
+  {
+    name: 'rapidash-galar',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 78.1,
+    generationId: 0
+  },
+  {
+    name: 'slowpoke-galar',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 79.1,
+    generationId: 0
+  },
+  {
+    name: 'slowbro-galar',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 80.2,
+    generationId: 0
+  },
+  {
+    name: 'farfetchd-galar',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 83.1,
+    generationId: 0
+  },
+  {
+    name: 'weezing-galar',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 110.1,
+    generationId: 0
+  },
+  {
+    name: 'mr-mime-galar',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 122.1,
+    generationId: 0
+  },
+  {
+    name: 'articuno-galar',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 144.1,
+    generationId: 0
+  },
+  {
+    name: 'zapdos-galar',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 145.1,
+    generationId: 0
+  },
+  {
+    name: 'moltres-galar',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 146.1,
+    generationId: 0
+  },
+  {
+    name: 'slowking-galar',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 199.1,
+    generationId: 0
+  },
+  {
+    name: 'corsola-galar',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 222.1,
+    generationId: 0
+  },
+  {
+    name: 'zigzagoon-galar',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 263.1,
+    generationId: 0
+  },
+  {
+    name: 'linoone-galar',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 264.1,
+    generationId: 0
+  },
+];
+
+export const ALL_POKEMON_PALDEA_REGIONAL_FORMS = [
+  {
+    name: 'tauros-paldea-combat-breed',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 128.1,
+    generationId: 0
+  },
+  {
+    name: 'tauros-paldea-blaze-breed',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 128.2,
+    generationId: 0
+  },
+  {
+    name: 'tauros-paldea-aqua-breed',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 128.3,
+    generationId: 0
+  },
+  {
+    name: 'wooper-paldea',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 194.1,
+    generationId: 0
+  },
+];
+
+export const ALL_POKEMON_HISUI_REGIONAL_FORMS = [
+  {
+    name: 'growlithe-hisui',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 58.1,
+    generationId: 0
+  },
+  {
+    name: 'arcanine-hisui',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 59.1,
+    generationId: 0
+  },
+  {
+    name: 'voltorb-hisui',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 100.1,
+    generationId: 0
+  },
+  {
+    name: 'electrode-hisui',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 101.1,
+    generationId: 0
+  },
+  {
+    name: 'qwilfish-hisui',
+    imageURL: "",
+    type: "",
+    type2: "",
+    number: 211.1,
+    generationId: 0
+  },
 ];
