@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
-import { ALL_GMAX_POKEMON_FORMS, ALL_POKEMON, ALL_POKEMON_ALOLA_REGIONAL_FORMS, ALL_POKEMON_GALAR_REGIONAL_FORMS, ALL_POKEMON_HISUI_REGIONAL_FORMS, ALL_POKEMON_MEGA_FORMS, ALL_POKEMON_PALDEA_REGIONAL_FORMS, AllPokemon } from '../../../../../../entities/common/const.interface';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { ALL_POKEMON_ALOLA, ALL_POKEMON_GALAR, ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KALOS, ALL_POKEMON_KANTO, ALL_POKEMON_PALDEA, ALL_POKEMON_SINNOH, ALL_POKEMON_UNOVA } from '../../../../../../entities/common/poochyApiData';
+import { ALL_POKEMON_ALOLA, ALL_POKEMON_ALOLA_REGIONAL_FORMS, ALL_POKEMON_GALAR, ALL_POKEMON_GALAR_REGIONAL_FORMS, ALL_POKEMON_GIGAMAX_FORMS, ALL_POKEMON_HISUI_REGIONAL_FORMS, ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KALOS, ALL_POKEMON_KANTO, ALL_POKEMON_MEGA_FORMS, ALL_POKEMON_PALDEA, ALL_POKEMON_PALDEA_REGIONAL_FORMS, ALL_POKEMON_SINNOH, ALL_POKEMON_UNOVA } from '../../../../../../entities/common/poochyApiData';
+import { PokemonList } from '../../../../../../entities/pokemon-list.entity';
+import { AllPokemon } from '../../../../../../entities/common/const.interface';
 @Component({
   selector: 'app-list-pokemon',
   templateUrl: './list-pokemon.component.html',
@@ -26,15 +27,16 @@ import { ALL_POKEMON_ALOLA, ALL_POKEMON_GALAR, ALL_POKEMON_HOENN, ALL_POKEMON_JO
 })
 export class ListPokemonComponent implements OnInit {
 
-  allPokemon: any[] = [...ALL_POKEMON_KANTO, ...ALL_POKEMON_JOTHO,
+  allPokemon: PokemonList[] = [...ALL_POKEMON_KANTO, ...ALL_POKEMON_JOTHO,
     ...ALL_POKEMON_HOENN, ...ALL_POKEMON_SINNOH, ...ALL_POKEMON_UNOVA,
     ...ALL_POKEMON_KALOS, ...ALL_POKEMON_ALOLA, ...ALL_POKEMON_GALAR, ...ALL_POKEMON_PALDEA];
-  allAlolaFormsPokemon: AllPokemon[] = ALL_POKEMON_ALOLA_REGIONAL_FORMS;
-  allGalarFormsPokemon: AllPokemon[] = ALL_POKEMON_GALAR_REGIONAL_FORMS;
-  allPaldeaPokemon: AllPokemon[] = ALL_POKEMON_PALDEA_REGIONAL_FORMS;
-  allHisuiPokemon: AllPokemon[] = ALL_POKEMON_HISUI_REGIONAL_FORMS;
-  allGmaxPokemon: AllPokemon[] = ALL_GMAX_POKEMON_FORMS;
-  allMegaPokemon: AllPokemon[] = ALL_POKEMON_MEGA_FORMS;
+
+  allAlolaFormsPokemon: PokemonList[] = ALL_POKEMON_ALOLA_REGIONAL_FORMS;
+  allGalarFormsPokemon: PokemonList[] = ALL_POKEMON_GALAR_REGIONAL_FORMS;
+  allPaldeaPokemon: PokemonList[] = ALL_POKEMON_PALDEA_REGIONAL_FORMS;
+  allHisuiPokemon: PokemonList[] = ALL_POKEMON_HISUI_REGIONAL_FORMS;
+  allGmaxPokemon: PokemonList[] = ALL_POKEMON_GIGAMAX_FORMS;
+  allMegaPokemon: PokemonList[] = ALL_POKEMON_MEGA_FORMS;
   filteredPokemon: any[] = this.allPokemon;
   language: string;
   generations = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -110,7 +112,7 @@ export class ListPokemonComponent implements OnInit {
     );
 
     // Helper para verificar si un Pokémon está dentro de las generaciones seleccionadas
-const isWithinSelectedGenerations = (pokemon: AllPokemon) =>
+const isWithinSelectedGenerations = (pokemon: PokemonList) =>
   generations.some(gen => {
     const min = generationRanges[gen].min;
     const max = generationRanges[gen].max;

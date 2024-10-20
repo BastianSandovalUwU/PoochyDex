@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CreatePokemon, PoochyDexApiService } from '../../services/poochyDexApi.service';
+import { PoochyDexApiService } from '../../services/poochyDexApi.service';
 import { ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KANTO } from '../../../../../../entities/common/poochyApiData';
 import { Games, pokemonCrystalData, pokemonEmeraldData, pokemonFireRedLeafGreenData, pokemonGoldSiverData, pokemonRedBlueData, pokemonRubySapphireData, pokemonYellowData } from '../../../../../../entities/common/game-data';
+import { PokemonList } from '../../../../../../entities/pokemon-list.entity';
 
 @Component({
   selector: 'app-crud-api',
@@ -10,9 +11,9 @@ import { Games, pokemonCrystalData, pokemonEmeraldData, pokemonFireRedLeafGreenD
 })
 export class CrudApiComponent implements OnInit {
 
-  kantoPokemon: CreatePokemon[] = ALL_POKEMON_KANTO;
-  jothoPokemon: CreatePokemon[] = ALL_POKEMON_JOTHO;
-  hoennPokemon: CreatePokemon[] = ALL_POKEMON_HOENN;
+  kantoPokemon: PokemonList[] = ALL_POKEMON_KANTO;
+  jothoPokemon: PokemonList[] = ALL_POKEMON_JOTHO;
+  hoennPokemon: PokemonList[] = ALL_POKEMON_HOENN;
 
   firstGenerationGames: Games[] = [pokemonRedBlueData, pokemonYellowData];
   secondGenerationGames: Games[] = [pokemonGoldSiverData, pokemonCrystalData];
