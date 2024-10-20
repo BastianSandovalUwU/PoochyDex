@@ -3,6 +3,7 @@ import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { ALL_GMAX_POKEMON_FORMS, ALL_POKEMON, ALL_POKEMON_ALOLA_REGIONAL_FORMS, ALL_POKEMON_GALAR_REGIONAL_FORMS, ALL_POKEMON_HISUI_REGIONAL_FORMS, ALL_POKEMON_MEGA_FORMS, ALL_POKEMON_PALDEA_REGIONAL_FORMS, AllPokemon } from '../../../../../../entities/common/const.interface';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { ALL_POKEMON_ALOLA, ALL_POKEMON_GALAR, ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KALOS, ALL_POKEMON_KANTO, ALL_POKEMON_PALDEA, ALL_POKEMON_SINNOH, ALL_POKEMON_UNOVA } from '../../../../../../entities/common/poochyApiData';
 @Component({
   selector: 'app-list-pokemon',
   templateUrl: './list-pokemon.component.html',
@@ -25,14 +26,16 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 export class ListPokemonComponent implements OnInit {
 
-  allPokemon: AllPokemon[] = ALL_POKEMON;
+  allPokemon: any[] = [...ALL_POKEMON_KANTO, ...ALL_POKEMON_JOTHO,
+    ...ALL_POKEMON_HOENN, ...ALL_POKEMON_SINNOH, ...ALL_POKEMON_UNOVA,
+    ...ALL_POKEMON_KALOS, ...ALL_POKEMON_ALOLA, ...ALL_POKEMON_GALAR, ...ALL_POKEMON_PALDEA];
   allAlolaFormsPokemon: AllPokemon[] = ALL_POKEMON_ALOLA_REGIONAL_FORMS;
   allGalarFormsPokemon: AllPokemon[] = ALL_POKEMON_GALAR_REGIONAL_FORMS;
   allPaldeaPokemon: AllPokemon[] = ALL_POKEMON_PALDEA_REGIONAL_FORMS;
   allHisuiPokemon: AllPokemon[] = ALL_POKEMON_HISUI_REGIONAL_FORMS;
   allGmaxPokemon: AllPokemon[] = ALL_GMAX_POKEMON_FORMS;
   allMegaPokemon: AllPokemon[] = ALL_POKEMON_MEGA_FORMS;
-  filteredPokemon: AllPokemon[] = ALL_POKEMON;
+  filteredPokemon: any[] = this.allPokemon;
   language: string;
   generations = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   selectedGenerations: number[] = [];
@@ -44,6 +47,7 @@ export class ListPokemonComponent implements OnInit {
               ) { }
 
   ngOnInit() {
+    console.log(this.allPokemon);
     this.selectedGenerations = [...this.generations];
     this.getLanguage();
   }
