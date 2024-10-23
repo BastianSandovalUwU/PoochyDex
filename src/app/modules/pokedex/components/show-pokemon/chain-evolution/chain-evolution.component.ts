@@ -39,20 +39,20 @@ export class ChainEvolutionComponent implements OnInit, OnChanges {
 
   populateEvolutionChainDetails(evolution: EvolutionChain) {
     evolution.chain.pokemonName = evolution.chain.species.name;
-    const pokeImgname = this.helperService.getPokemonSpriteImg(evolution.chain.species.name);
-    evolution.chain.imageName = pokeImgname;
+    const sprite = this.helperService.getPokemonSpriteImg(evolution.chain.species.name, "home");
+    evolution.chain.imageName = sprite;
 
     if (evolution.chain.evolves_to && evolution.chain.evolves_to.length > 0) {
 
       evolution.chain.evolves_to.forEach((evolvesTo) => {
         evolution.chain.pokemonName = evolvesTo.species.name;
-        const pokeImgname = this.helperService.getPokemonSpriteImg(evolvesTo.species.name);
-        evolvesTo.imageName = pokeImgname;
+        const sprite = this.helperService.getPokemonSpriteImg(evolvesTo.species.name, "home");
+        evolvesTo.imageName = sprite;
 
         if(evolvesTo.evolves_to && evolvesTo.evolves_to.length > 0) {
             evolvesTo.evolves_to.forEach((evolvesTo2) => {
-            const pokeImgname = this.helperService.getPokemonSpriteImg(evolvesTo2.species.name);
-            evolvesTo2.imageName = pokeImgname;
+            const sprite = this.helperService.getPokemonSpriteImg(evolvesTo2.species.name, "home");
+            evolvesTo2.imageName = sprite;
           })
         };
 

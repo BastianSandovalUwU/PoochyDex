@@ -6,8 +6,17 @@ import { AbilityName, AbilityResponse, Name } from '../../../../../entities/poke
 import { DetailMove, EffectEntry } from '../../../../../entities/moves.entity';
 import { TargetTypes, AllPokemon, ALL_POKEMON,  MISC_POKEMON_FORMS } from '../../../../../entities/common/const.interface';
 import { Router } from '@angular/router';
-import { ALL_POKEMON_ALOLA, ALL_POKEMON_GALAR, ALL_POKEMON_GIGAMAX_FORMS, ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KALOS, ALL_POKEMON_KANTO, ALL_POKEMON_MEGA_FORMS, ALL_POKEMON_PALDEA, ALL_POKEMON_SINNOH, ALL_POKEMON_UNOVA } from '../../../../../entities/common/poochyApiData';
+import { ALL_POKEMON_GIGAMAX_FORMS, ALL_POKEMON_MEGA_FORMS } from '../../../../../entities/common/poochyApiData';
 import { PokemonList } from '../../../../../entities/pokemon-list.entity';
+import { ALL_POKEMON_ALOLA } from '../../../../../entities/common/alola-pokemon-data';
+import { ALL_POKEMON_GALAR } from '../../../../../entities/common/galar-pokemon-data';
+import { ALL_POKEMON_HOENN } from '../../../../../entities/common/hoenn-pokemon-data';
+import { ALL_POKEMON_JOTHO } from '../../../../../entities/common/jotho-pokemon-data';
+import { ALL_POKEMON_KALOS } from '../../../../../entities/common/kalos-pokemon-data';
+import { ALL_POKEMON_KANTO } from '../../../../../entities/common/kanto-pokemon-data';
+import { ALL_POKEMON_PALDEA } from '../../../../../entities/common/paldea-pokemon-data';
+import { ALL_POKEMON_SINNOH } from '../../../../../entities/common/sinnoh-pokemon-data';
+import { ALL_POKEMON_UNOVA } from '../../../../../entities/common/unova-pokemon-data';
 
 @Injectable({
   providedIn: 'root'
@@ -510,8 +519,7 @@ export class HelperService {
       }
   }
 
-  getPokemonSpriteImg(pokemonName: string): string {
-
+  getPokemonSpriteImg(pokemonName: string, option: "home" | "icon" | "homeShiny"): string {
     let name = this.getCorrectPokemonName(pokemonName);
     let allPokemon = this.allPokemon;
     allPokemon = allPokemon.concat(this.allPokemonGmax, this.allPokemonMega, this.allPokemonMisc);
@@ -519,7 +527,16 @@ export class HelperService {
     if(pokemon === undefined) {
       return null;
     }
-    return pokemon.number.toString();
+    switch (option) {
+      case "icon":
+        return pokemon.sprites.iconUrl != "" ? pokemon.sprites.iconUrl : "https://i.imgur.com/X83fxLz.png"; //psyduck placeholder image
+      case "home":
+        return pokemon.sprites.homeUrl != "" ? pokemon.sprites.homeUrl : "https://i.imgur.com/X83fxLz.png"; //psyduck placeholder image
+      case "homeShiny":
+        return pokemon.sprites.homeShinyUrl != "" ? pokemon.sprites.homeShinyUrl : "https://i.imgur.com/X83fxLz.png"; //psyduck placeholder image
+      default:
+        return "https://i.imgur.com/X83fxLz.png" //psyduck placeholder image
+    }
   }
 
   getCorrectPokemonName(pokemonName): string {

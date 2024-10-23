@@ -41,7 +41,7 @@ export class ShowPokedexComponent implements OnInit {
       const pokemonVarieties = [];
 
       for (let index = 0; index < pokemon.pokemon_entries.length; index++) {
-        const pokeImgname = this.helperService.getPokemonSpriteImg(pokemon.pokemon_entries[index].pokemon_species.name);
+        const pokeImgname = this.helperService.getPokemonSpriteImg(pokemon.pokemon_entries[index].pokemon_species.name, "home");
         const pokeInfo = {
           ...pokemon.pokemon_entries[index],
           name: this.helperService.getCorrectPokemonName(pokemon.pokemon_entries[index].pokemon_species.name),
