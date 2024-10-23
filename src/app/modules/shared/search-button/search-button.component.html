@@ -12,7 +12,7 @@
       <li class="cursor-pointer bg-gray-100 flex items-center"
           (click)="navigateToPokemon(item.name)"
           *ngFor="let item of limitedFilteredData">
-          <img [src]="item.imageURL" alt="" class="w-20 mr-2">
+          <img [src]="item.sprites.iconUrl" alt="" class="w-20 mr-2">
           <span>{{ item.name |replaceDash | titlecase }}</span>
       </li>
       <li *ngIf="limitedFilteredData.length === 0 && searchQuery !== ''">

@@ -2,9 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { ALL_POKEMON_ALOLA, ALL_POKEMON_ALOLA_REGIONAL_FORMS, ALL_POKEMON_GALAR, ALL_POKEMON_GALAR_REGIONAL_FORMS, ALL_POKEMON_GIGAMAX_FORMS, ALL_POKEMON_HISUI_REGIONAL_FORMS, ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KALOS, ALL_POKEMON_KANTO, ALL_POKEMON_MEGA_FORMS, ALL_POKEMON_PALDEA, ALL_POKEMON_PALDEA_REGIONAL_FORMS, ALL_POKEMON_SINNOH, ALL_POKEMON_UNOVA } from '../../../../../../entities/common/poochyApiData';
 import { PokemonList } from '../../../../../../entities/pokemon-list.entity';
 import { AllPokemon } from '../../../../../../entities/common/const.interface';
+import { ALL_POKEMON_ALOLA } from '../../../../../../entities/common/alola-pokemon-data';
+import { ALL_POKEMON_GALAR } from '../../../../../../entities/common/galar-pokemon-data';
+import { ALL_POKEMON_HOENN } from '../../../../../../entities/common/hoenn-pokemon-data';
+import { ALL_POKEMON_JOTHO } from '../../../../../../entities/common/jotho-pokemon-data';
+import { ALL_POKEMON_KALOS } from '../../../../../../entities/common/kalos-pokemon-data';
+import { ALL_POKEMON_KANTO } from '../../../../../../entities/common/kanto-pokemon-data';
+import { ALL_POKEMON_PALDEA } from '../../../../../../entities/common/paldea-pokemon-data';
+import { ALL_POKEMON_ALOLA_REGIONAL_FORMS, ALL_POKEMON_GALAR_REGIONAL_FORMS, ALL_POKEMON_PALDEA_REGIONAL_FORMS, ALL_POKEMON_HISUI_REGIONAL_FORMS, ALL_POKEMON_GIGAMAX_FORMS, ALL_POKEMON_MEGA_FORMS } from '../../../../../../entities/common/poochyApiData';
+import { ALL_POKEMON_SINNOH } from '../../../../../../entities/common/sinnoh-pokemon-data';
+import { ALL_POKEMON_UNOVA } from '../../../../../../entities/common/unova-pokemon-data';
 @Component({
   selector: 'app-list-pokemon',
   templateUrl: './list-pokemon.component.html',

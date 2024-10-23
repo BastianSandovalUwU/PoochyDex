@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PoochyDexApiService } from '../../services/poochyDexApi.service';
-import { ALL_POKEMON_HOENN, ALL_POKEMON_JOTHO, ALL_POKEMON_KANTO } from '../../../../../../entities/common/poochyApiData';
 import { Games, pokemonCrystalData, pokemonEmeraldData, pokemonFireRedLeafGreenData, pokemonGoldSiverData, pokemonRedBlueData, pokemonRubySapphireData, pokemonYellowData } from '../../../../../../entities/common/game-data';
 import { PokemonList } from '../../../../../../entities/pokemon-list.entity';
+import { ALL_POKEMON_HOENN } from '../../../../../../entities/common/hoenn-pokemon-data';
+import { ALL_POKEMON_JOTHO } from '../../../../../../entities/common/jotho-pokemon-data';
+import { ALL_POKEMON_KANTO } from '../../../../../../entities/common/kanto-pokemon-data';
 
 @Component({
   selector: 'app-crud-api',
