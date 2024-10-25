@@ -1244,7 +1244,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: ""
     },
-    number: 100,
+    number: 1001,
     type: "Dark",
     type2: "Grass",
     generationId: 9
@@ -1361,7 +1361,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: ""
     },
-    number: 100,
+    number: 1010,
     type: "Grass",
     type2: "psychic",
     generationId: 9
@@ -1374,7 +1374,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: ""
     },
-    number: 101,
+    number: 1011,
     type: "Grass",
     type2: "Dragon",
     generationId: 9
@@ -1387,7 +1387,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: ""
     },
-    number: 102,
+    number: 1012,
     type: "Ghost",
     type2: "Grass",
     generationId: 9
@@ -1400,7 +1400,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: ""
     },
-    number: 103,
+    number: 1013,
     type: "Ghost",
     type2: "Grass",
     generationId: 9
@@ -1413,7 +1413,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: ""
     },
-    number: 104,
+    number: 1014,
     type: "Fighting",
     type2: "Grass",
     generationId: 9
@@ -1426,7 +1426,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: ""
     },
-    number: 105,
+    number: 1015,
     type: "Poison",
     type2: "Dark",
     generationId: 9
@@ -1439,7 +1439,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: ""
     },
-    number: 106,
+    number: 1016,
     type: "Fairy",
     type2: "Dragon",
     generationId: 9
@@ -1452,7 +1452,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: ""
     },
-    number: 107,
+    number: 1017,
     type: "Grass",
     type2: "",
     generationId: 9
@@ -1465,7 +1465,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: ""
     },
-    number: 108,
+    number: 1018,
     type: "Dragon",
     type2: "Steel",
     generationId: 9
@@ -1478,7 +1478,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: ""
     },
-    number: 109,
+    number: 1019,
     type: "Dragon",
     type2: "Grass",
     generationId: 9

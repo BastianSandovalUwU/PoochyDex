@@ -96,7 +96,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
       iconUrl: "https://i.imgur.com/mAC0Nnc.png"
     },
     imageURL: "https://i.imgur.com/mAC0Nnc.png",
-    number: 50,
+    number: 501,
     type: "Water",
     generationId: 5
   },
@@ -1338,7 +1338,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
       iconUrl: "https://i.imgur.com/zOHN8yV.png"
     },
     imageURL: "https://i.imgur.com/zOHN8yV.png",
-    number: 60,
+    number: 601,
     type: "Steel",
     generationId: 5
   },
