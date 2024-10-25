@@ -644,7 +644,7 @@ export const ALL_POKEMON_KALOS: PokemonList[] = [
   {
     name: "hawlucha",
     imageURL: "https://i.imgur.com/J2RXMPh.png",
-    number: 70,
+    number: 701,
     sprites: {
       homeUrl: "",
       homeShinyUrl: "",

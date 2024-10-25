@@ -1192,7 +1192,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/aEi7KUB.png"
     },
-    number: 90,
+    number: 901,
     generationId: 8,
     type: "Ground",
     type2: "Normal"

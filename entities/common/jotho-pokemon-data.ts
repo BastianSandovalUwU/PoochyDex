@@ -621,7 +621,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/IEOiKsD.png"
     },
     type: "Psychic",
-    number: 20,
+    number: 201,
     generationId: 2
   },
   {

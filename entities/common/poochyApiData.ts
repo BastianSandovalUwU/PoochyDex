@@ -5,9 +5,9 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     name: 'venusaur-gmax',
     imageURL: "",
     sprites: {
-      homeUrl: "https://i.imgur.com/.png",
+      homeUrl: "https://i.imgur.com/LRiaiud.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 3.2,
     type: "",
@@ -18,9 +18,9 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     name: 'charizard-gmax',
     imageURL: "",
     sprites: {
-      homeUrl: "https://i.imgur.com/.png",
+      homeUrl: "https://i.imgur.com/KFOTDL5.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 6.3,
     type: "",
@@ -31,9 +31,9 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     name: 'blastoise-gmax',
     imageURL: "",
     sprites: {
-      homeUrl: "https://i.imgur.com/.png",
+      homeUrl: "https://i.imgur.com/gPqnfK4.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 9.2,
     type: "",
@@ -44,9 +44,9 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     name: 'butterfree-gmax',
     imageURL: "",
     sprites: {
-      homeUrl: "https://i.imgur.com/.png",
+      homeUrl: "https://i.imgur.com/9xUKS0b.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 12.1,
     type: "",
@@ -57,11 +57,24 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     name: 'pikachu-gmax',
     imageURL: "",
     sprites: {
-      homeUrl: "https://i.imgur.com/.png",
+      homeUrl: "https://i.imgur.com/KswZwll.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 25.9,
+    type: "",
+    type2: "",
+    generationId: 0,
+  },
+  {
+    name: 'meowth-gmax',
+    imageURL: "",
+    sprites: {
+      homeUrl: "https://i.imgur.com/1LGTeCC.png",
+      homeShinyUrl: "",
+      iconUrl: "https://i.imgur.com/.png"
+    },
+    number: 52,
     type: "",
     type2: "",
     generationId: 0,
@@ -70,9 +83,9 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     name: 'eevee-gmax',
     imageURL: "",
     sprites: {
-      homeUrl: "https://i.imgur.com/.png",
+      homeUrl: "https://i.imgur.com/rvZOjna.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 133.,
     type: "",
@@ -83,9 +96,9 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     name: 'kingler-gmax',
     imageURL: "",
     sprites: {
-      homeUrl: "https://i.imgur.com/.png",
+      homeUrl: "https://i.imgur.com/s0drt6l.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 99.1,
     type: "",
@@ -96,9 +109,9 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     name: 'snorlax-gmax',
     imageURL: "",
     sprites: {
-      homeUrl: "https://i.imgur.com/.png",
+      homeUrl: "https://i.imgur.com/A3DGQ1T.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 143.,
     type: "",
@@ -109,9 +122,9 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     name: 'machamp-gmax',
     imageURL: "",
     sprites: {
-      homeUrl: "https://i.imgur.com/.png",
+      homeUrl: "https://i.imgur.com/FH9x9ja.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 68.1,
     type: "",
@@ -122,9 +135,9 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     name: 'gengar-gmax',
     imageURL: "",
     sprites: {
-      homeUrl: "https://i.imgur.com/.png",
+      homeUrl: "https://i.imgur.com/ya5NJrV.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 94.1,
     type: "",
@@ -135,9 +148,9 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     name: 'lapras-gmax',
     imageURL: "",
     sprites: {
-      homeUrl: "https://i.imgur.com/.png",
+      homeUrl: "https://i.imgur.com/MKZlnmv.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 131.,
     type: "",
@@ -150,7 +163,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 809.,
     type: "",
@@ -163,7 +176,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 812.,
     type: "",
@@ -176,7 +189,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 815.,
     type: "",
@@ -189,7 +202,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 818.,
     type: "",
@@ -202,7 +215,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 892.,
     type: "",
@@ -215,7 +228,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 892.,
     type: "",
@@ -228,7 +241,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 839.,
     type: "",
@@ -241,7 +254,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 841.,
     type: "",
@@ -254,7 +267,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 842.,
     type: "",
@@ -267,7 +280,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 849.,
     type: "",
@@ -280,7 +293,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 849.,
     type: "",
@@ -293,7 +306,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 826.,
     type: "",
@@ -306,7 +319,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 844.,
     type: "",
@@ -319,7 +332,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 884.,
     type: "",
@@ -332,7 +345,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 879.,
     type: "",
@@ -345,7 +358,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 861.,
     type: "",
@@ -358,7 +371,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 858.,
     type: "",
@@ -371,7 +384,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 851.,
     type: "",
@@ -384,7 +397,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 569.,
     type: "",
@@ -397,7 +410,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 869.,
     type: "",
@@ -410,7 +423,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 834.,
     type: "",
@@ -423,7 +436,7 @@ export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     number: 823.,
     type: "",
@@ -439,11 +452,11 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/BjTXqud.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/vE7rBsr.png"
     },
     type: "Grass",
     type2: "Poison",
-    number: 3.1,
+    number: 3,
     generationId: 0
   },
   {
@@ -452,11 +465,11 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/B5a9W7l.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/YLkgY3T.png"
     },
     type: "",
     type2: "",
-    number: 6.1,
+    number: 6,
     generationId: 0
   },
   {
@@ -465,11 +478,11 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/UfX6PsU.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/Ygj2JeC.png"
     },
     type: "",
     type2: "",
-    number: 6.2,
+    number: 6,
     generationId: 0
   },
   {
@@ -478,11 +491,11 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/0sfnSRR.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/BFeTNiF.png"
     },
     type: "",
     type2: "",
-    number: 9.1,
+    number: 9,
     generationId: 0
   },
   {
@@ -491,11 +504,11 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/HLD5jul.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/96EhQyX.png"
     },
     type: "",
     type2: "",
-    number: 15.,
+    number: 15,
     generationId: 0
   },
   {
@@ -504,11 +517,11 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/2CyEBKF.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/5KHetPc.png"
     },
     type: "",
     type2: "",
-    number: 18.,
+    number: 18,
     generationId: 0
   },
   {
@@ -517,11 +530,11 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/76qFZ6u.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/G46DEsL.png"
     },
     type: "",
     type2: "",
-    number: 65.,
+    number: 65,
     generationId: 0
   },
   {
@@ -530,7 +543,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/JXBTWJd.png"
     },
     type: "",
     type2: "",
@@ -543,7 +556,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/XdmzaWo.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/HvN4PRJ.png"
     },
     number: 94,
     type: "",
@@ -556,7 +569,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/4ckkENk.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/yaY5752.png"
     },
     type: "",
     type2: "",
@@ -569,7 +582,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/VHs5MNn.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/37ygU0g.png"
     },
     type: "",
     type2: "",
@@ -582,7 +595,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/c2OxUyk.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/HzsUN8L.png"
     },
     type: "",
     type2: "",
@@ -595,7 +608,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/ogxXQ6i.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/UXVxtC2.png"
     },
     type: "",
     type2: "",
@@ -608,7 +621,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/EpEeqtB.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/kQ6WZ6k.png"
     },
     type: "",
     type2: "",
@@ -621,7 +634,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/XyyuuvQ.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/WBm4dPF.png"
     },
     type: "",
     type2: "",
@@ -634,7 +647,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/VVKDNrc.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -647,7 +660,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/p4XhksX.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -660,7 +673,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/UKzdA29.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -673,7 +686,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/OKgYMRb.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -686,7 +699,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/CPsSowk.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -699,7 +712,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/fvVtROn.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -712,7 +725,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/ZFp7ySP.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -725,7 +738,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/5V2ejXL.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -738,7 +751,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/wof3MXV.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -751,7 +764,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/bRBCjBq.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -764,7 +777,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/Wi35D1p.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -777,7 +790,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/FYwuXcF.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -790,7 +803,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/DstylDi.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -803,7 +816,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/CaPdPOi.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -816,7 +829,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/iuudzPq.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -829,7 +842,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/EfvYLgP.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -842,7 +855,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/aBxyoIl.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -855,7 +868,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/b4XW39t.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -868,7 +881,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/qKFsUGQ.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -881,7 +894,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/fNpgw4l.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -894,7 +907,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/e7sk1Dk.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -907,7 +920,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/SlXmIYW.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -920,7 +933,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/Osq7jhl.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -933,7 +946,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/Jhdnod8.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -946,7 +959,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/K1MHu2M.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -959,7 +972,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/WgEzoIL.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -972,7 +985,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/4Kruqab.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -985,7 +998,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/0bxrDJg.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -998,7 +1011,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/Y2ZUHff.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1011,7 +1024,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/qVr1eKB.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1024,7 +1037,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/N8jEZLg.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1037,7 +1050,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/gBCZEzY.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1050,7 +1063,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/i7HwKOP.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1063,7 +1076,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/BB36V6Q.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1076,7 +1089,7 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/240Lh9C.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1092,7 +1105,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1105,7 +1118,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1118,7 +1131,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1131,7 +1144,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1144,7 +1157,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1157,7 +1170,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1170,7 +1183,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1183,7 +1196,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1196,7 +1209,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1209,7 +1222,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1222,7 +1235,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1235,7 +1248,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1248,7 +1261,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1261,7 +1274,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1274,7 +1287,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1287,7 +1300,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1300,7 +1313,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1313,7 +1326,7 @@ export const ALL_POKEMON_ALOLA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1329,7 +1342,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1342,7 +1355,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1355,7 +1368,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1368,7 +1381,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1381,7 +1394,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1394,7 +1407,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1407,7 +1420,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1420,7 +1433,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1433,7 +1446,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1446,7 +1459,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1459,7 +1472,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1472,7 +1485,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1485,7 +1498,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1498,7 +1511,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1511,7 +1524,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1527,7 +1540,7 @@ export const ALL_POKEMON_PALDEA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1540,7 +1553,7 @@ export const ALL_POKEMON_PALDEA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1553,7 +1566,7 @@ export const ALL_POKEMON_PALDEA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1566,7 +1579,7 @@ export const ALL_POKEMON_PALDEA_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1582,7 +1595,7 @@ export const ALL_POKEMON_HISUI_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1595,7 +1608,7 @@ export const ALL_POKEMON_HISUI_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1608,7 +1621,7 @@ export const ALL_POKEMON_HISUI_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1621,7 +1634,7 @@ export const ALL_POKEMON_HISUI_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",
@@ -1634,7 +1647,7 @@ export const ALL_POKEMON_HISUI_REGIONAL_FORMS: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/.png",
       homeShinyUrl: "",
-      iconUrl: ""
+      iconUrl: "https://i.imgur.com/.png"
     },
     type: "",
     type2: "",

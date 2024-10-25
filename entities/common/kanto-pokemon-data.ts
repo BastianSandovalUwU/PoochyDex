@@ -1255,7 +1255,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/pTpzbKR.png"
     },
-    number: 10,
+    number: 101,
     type: "electric",
     generationId: 1
   },

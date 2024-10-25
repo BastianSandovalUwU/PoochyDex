@@ -1036,7 +1036,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
       homeUrl: "",
       iconUrl: "https://i.imgur.com/o815ubK.png"
     },
-    number: 80,
+    number: 801,
     generationId: 7,
     type: "Steel",
     type2: "Fairy"
