@@ -22,6 +22,7 @@ import { ShowPokedexComponent } from './components/show-pokedex/show-pokedex.com
 import { PokedexDescriptionComponent } from './components/show-pokedex/pokedex-description/pokedex-description.component';
 import { PokemonLocalizationComponent } from './components/show-pokemon/pokemon-localization/pokemon-localization.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { NgxLoadingModule } from 'ngx-loading';
 @NgModule({
   imports: [
     CommonModule,
@@ -30,7 +31,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     SharedModule,
     MatButtonModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    NgxLoadingModule
   ],
   declarations: [
     PokedexComponent,

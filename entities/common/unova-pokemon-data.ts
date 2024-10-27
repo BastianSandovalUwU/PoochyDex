@@ -4,7 +4,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "victini",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/9i9a0gw.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Z1ssO8J.png"
     },
@@ -17,7 +17,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "snivy",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/pma5Dp3.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Ycsner9.png"
     },
@@ -29,7 +29,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "servine",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/hw9g28d.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/XUEyCqw.png"
     },
@@ -41,7 +41,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "serperior",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/6Q3nMhX.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/6og8pfN.png"
     },
@@ -53,7 +53,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "tepig",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/U1HFQ25.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/cbCy0oR.png"
     },
@@ -66,7 +66,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "pignite",
     imageURL: "https://i.imgur.com/uZvNs7M.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/f2MhNZP.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/uZvNs7M.png"
     },
@@ -79,7 +79,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "emboar",
     imageURL: "https://i.imgur.com/E5LGj0v.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/QVcePFo.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/E5LGj0v.png"
     },
@@ -91,7 +91,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "oshawott",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/6hlb8zp.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/mAC0Nnc.png"
     },
@@ -103,7 +103,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "dewott",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/GxbEP0i.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/oZQa0Es.png"
     },
@@ -115,7 +115,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "samurott",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/tcQEpre.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/cOmorXQ.png"
     },
@@ -127,7 +127,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "patrat",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/lJelpqM.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/7aLx2JS.png"
     },
@@ -139,7 +139,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "watchog",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/Av3HBaP.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/ZE8pSuP.png"
     },
@@ -151,7 +151,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "lillipup",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/jkLBwiP.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/A9cfxvo.png"
     },
@@ -163,7 +163,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "herdier",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/hqhKs1f.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/KRZvU4Z.png"
     },
@@ -175,7 +175,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "stoutland",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/mlHVner.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Kgz0NtX.png"
     },
@@ -187,7 +187,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "purrloin",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/kZWkm0F.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/rb8B6zZ.png"
     },
@@ -199,7 +199,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "liepard",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/15xLHro.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/FyJUZhR.png"
     },
@@ -211,7 +211,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "pansage",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/mheE1AC.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/WekhdJf.png"
     },
@@ -223,7 +223,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "simisage",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/2Ca8sha.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/aaA6vpA.png"
     },
@@ -235,7 +235,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "pansear",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/HT4CyoG.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/emBDhGa.png"
     },
@@ -247,7 +247,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "simisear",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/3S0Opcx.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/t19Wxpm.png"
     },
@@ -259,7 +259,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "panpour",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/PqH5CIK.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/puIOAAt.png"
     },
@@ -271,7 +271,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "simipour",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/O6QeqvJ.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/9UBUrHz.png"
     },
@@ -283,7 +283,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "munna",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/xI8WqYp.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/CGU3Kr0.png"
     },
@@ -295,7 +295,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "musharna",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/8iEv32Z.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/7wqjrkA.png"
     },
@@ -308,7 +308,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "pidove",
     imageURL: "https://i.imgur.com/2eNawuP.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/7YA3FQe.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/2eNawuP.png"
     },
@@ -321,7 +321,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "tranquill",
     imageURL: "https://i.imgur.com/RzWcD9B.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/aTBP0wY.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/RzWcD9B.png"
     },
@@ -334,7 +334,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "unfezant",
     imageURL: "https://i.imgur.com/NBYuXFD.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/XoVUYUs.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/NBYuXFD.png"
     },
@@ -346,7 +346,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "blitzle",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/kK9lYJP.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Pr4SCNc.png"
     },
@@ -358,7 +358,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "zebstrika",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/THRMW9L.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/hQedW8Q.png"
     },
@@ -370,7 +370,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "roggenrola",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/WWANXDo.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/2hGiEhD.png"
     },
@@ -382,7 +382,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "boldore",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/hKtHrSJ.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/kElLE7V.png"
     },
@@ -394,7 +394,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "gigalith",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/ErVeQ3T.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/f39Rzyl.png"
     },
@@ -407,7 +407,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "woobat",
     imageURL: "https://i.imgur.com/2oiYaEz.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/zGDD0U0.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/2oiYaEz.png"
     },
@@ -420,7 +420,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "swoobat",
     imageURL: "https://i.imgur.com/ZkvqQ0K.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/yCiLBXS.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/ZkvqQ0K.png"
     },
@@ -432,7 +432,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "drilbur",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/QkisFJO.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Lxvszjw.png"
     },
@@ -445,7 +445,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "excadrill",
     imageURL: "https://i.imgur.com/0xriRPv.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/o9nT03Z.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/0xriRPv.png"
     },
@@ -457,7 +457,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "audino",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/2ptOCkm.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/mhEwLU2.png"
     },
@@ -469,7 +469,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "timburr",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/jb5YMV5.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/gsaTRKG.png"
     },
@@ -481,7 +481,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "gurdurr",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/YAjtEmR.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/H9P8pBv.png"
     },
@@ -493,7 +493,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "conkeldurr",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/037Pnwo.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/ZKnuZWC.png"
     },
@@ -505,7 +505,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "tympole",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/5HeAmri.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/w04y7wS.png"
     },
@@ -518,7 +518,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "palpitoad",
     imageURL: "https://i.imgur.com/Nk8ZrXG.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/YRiIRJ6.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Nk8ZrXG.png"
     },
@@ -531,7 +531,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "seismitoad",
     imageURL: "https://i.imgur.com/TEBDXbL.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/LFIMM1W.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/TEBDXbL.png"
     },
@@ -543,7 +543,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "throh",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/aMdohbL.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/vc3eMy0.png"
     },
@@ -555,7 +555,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "sawk",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/UQkjOH3.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/0CcenAH.png"
     },
@@ -568,7 +568,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "sewaddle",
     imageURL: "https://i.imgur.com/V2T71uW.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/5xdRH12.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/V2T71uW.png"
     },
@@ -581,7 +581,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "swadloon",
     imageURL: "https://i.imgur.com/aSYfLmG.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/KeNYeGU.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/aSYfLmG.png"
     },
@@ -594,7 +594,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "leavanny",
     imageURL: "https://i.imgur.com/mlvj2IY.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/In7YCqV.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/mlvj2IY.png"
     },
@@ -607,7 +607,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "venipede",
     imageURL: "https://i.imgur.com/7HmD6Mr.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/YIufo5r.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/7HmD6Mr.png"
     },
@@ -620,7 +620,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "whirlipede",
     imageURL: "https://i.imgur.com/Iuqxm4X.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/zSHMzFY.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Iuqxm4X.png"
     },
@@ -633,7 +633,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "scolipede",
     imageURL: "https://i.imgur.com/EyUmsuX.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/WVoMd50.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/EyUmsuX.png"
     },
@@ -646,7 +646,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "cottonee",
     imageURL: "https://i.imgur.com/kR5nGUP.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/aaL0f0O.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/kR5nGUP.png"
     },
@@ -659,7 +659,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "whimsicott",
     imageURL: "https://i.imgur.com/kAhVLWE.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/p7jGy37.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/kAhVLWE.png"
     },
@@ -671,7 +671,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "petilil",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/yUGpy9G.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/4Ijv1Qr.png"
     },
@@ -683,7 +683,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "lilligant",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/AdNgPGP.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/3dUv14n.png"
     },
@@ -695,7 +695,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "basculin-red-striped",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/REPR9xC.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/ttVSN3q.png"
     },
@@ -708,7 +708,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "sandile",
     imageURL: "https://i.imgur.com/k3i6rEq.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/WgFqCeH.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/k3i6rEq.png"
     },
@@ -721,7 +721,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "krokorok",
     imageURL: "https://i.imgur.com/r9tTu0u.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/O3yKYyz.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/r9tTu0u.png"
     },
@@ -734,7 +734,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "krookodile",
     imageURL: "https://i.imgur.com/aOHTFhL.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/fS40boB.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/aOHTFhL.png"
     },
@@ -746,7 +746,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "darumaka",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/YyIDlNC.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/2Eitofs.png"
     },
@@ -758,7 +758,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "darmanitan-standard",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/h5n6Ad1.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/cj6cmFR.png"
     },
@@ -770,7 +770,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "maractus",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/wdUSdVt.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/MK7x78n.png"
     },
@@ -783,7 +783,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "dwebble",
     imageURL: "https://i.imgur.com/QJDjh5P.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/NH0J6BS.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/QJDjh5P.png"
     },
@@ -796,7 +796,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "crustle",
     imageURL: "https://i.imgur.com/6ETPc6e.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/wTY0hlu.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/6ETPc6e.png"
     },
@@ -809,7 +809,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "scraggy",
     imageURL: "https://i.imgur.com/rEIvvhx.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/jTvakeV.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/rEIvvhx.png"
     },
@@ -822,7 +822,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "scrafty",
     imageURL: "https://i.imgur.com/zjwIic4.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/SPzQR6W.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/zjwIic4.png"
     },
@@ -835,7 +835,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "sigilyph",
     imageURL: "https://i.imgur.com/T7B5a79.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/mAfHybZ.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/T7B5a79.png"
     },
@@ -847,7 +847,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "yamask",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/h1wLfr9.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/aDUGIxo.png"
     },
@@ -859,7 +859,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "cofagrigus",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/dr7Zkpg.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/uZ6U4su.png"
     },
@@ -872,7 +872,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "tirtouga",
     imageURL: "https://i.imgur.com/xmjdfGv.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/mT8Lxmq.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/xmjdfGv.png"
     },
@@ -885,7 +885,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "carracosta",
     imageURL: "https://i.imgur.com/o25lmTh.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/nTso3PD.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/o25lmTh.png"
     },
@@ -898,7 +898,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "archen",
     imageURL: "https://i.imgur.com/nJrELCj.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/dc4UCaX.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/nJrELCj.png"
     },
@@ -911,7 +911,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "archeops",
     imageURL: "https://i.imgur.com/NzIvTur.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/Bltx4jR.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/NzIvTur.png"
     },
@@ -923,7 +923,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "trubbish",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/YePvBV4.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/oWswyfc.png"
     },
@@ -935,7 +935,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "garbodor",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/S0QFJS9.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/VQZocBT.png"
     },
@@ -947,7 +947,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "zorua",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/amWtLYF.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Dy1Miwz.png"
     },
@@ -959,7 +959,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "zoroark",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/KAtlekP.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/1Nh0Dqt.png"
     },
@@ -971,7 +971,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "minccino",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/Rz3PFDx.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/h8EisCB.png"
     },
@@ -983,7 +983,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "cinccino",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/NAz5G89.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/cEVgA5Z.png"
     },
@@ -995,7 +995,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "gothita",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/gXHw49o.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Q7QNteg.png"
     },
@@ -1007,7 +1007,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "gothorita",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/9T4dgTf.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/T3xMT9D.png"
     },
@@ -1019,7 +1019,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "gothitelle",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/IPEsuwA.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/xymBthb.png"
     },
@@ -1031,7 +1031,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "solosis",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/mp6kjfS.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Of8jXdf.png"
     },
@@ -1043,7 +1043,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "duosion",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/txdjNSE.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/zUkj0zM.png"
     },
@@ -1055,7 +1055,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "reuniclus",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/cuuUAYo.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/EJXAJgP.png"
     },
@@ -1068,7 +1068,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "ducklett",
     imageURL: "https://i.imgur.com/rggd2Sm.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/Y7oibQ2.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/rggd2Sm.png"
     },
@@ -1081,7 +1081,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "swanna",
     imageURL: "https://i.imgur.com/ZAqJh05.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/oqhm5HF.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/ZAqJh05.png"
     },
@@ -1093,7 +1093,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "vanillite",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/kAB6PqB.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/l8fmv03.png"
     },
@@ -1105,7 +1105,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "vanillish",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/QB6WhMx.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/jDrQJoP.png"
     },
@@ -1117,7 +1117,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "vanilluxe",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/WceTbhY.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/6s8amzo.png"
     },
@@ -1130,7 +1130,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "deerling",
     imageURL: "https://i.imgur.com/EwoPA2s.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/N0dG61V.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/EwoPA2s.png"
     },
@@ -1143,7 +1143,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "sawsbuck",
     imageURL: "https://i.imgur.com/1fsexdh.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/1XQdBQn.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/1fsexdh.png"
     },
@@ -1156,7 +1156,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "emolga",
     imageURL: "https://i.imgur.com/5XQy3IQ.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/JGMaiic.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/5XQy3IQ.png"
     },
@@ -1168,7 +1168,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "karrablast",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/LxlZ0NY.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/KpMzl9I.png"
     },
@@ -1181,7 +1181,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "escavalier",
     imageURL: "https://i.imgur.com/zX89jsM.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/Ckyyq3o.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/zX89jsM.png"
     },
@@ -1194,7 +1194,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "foongus",
     imageURL: "https://i.imgur.com/Pw1HY0s.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/dIbQScr.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Pw1HY0s.png"
     },
@@ -1207,7 +1207,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "amoonguss",
     imageURL: "https://i.imgur.com/cGiyka7.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/peO3Gwa.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/cGiyka7.png"
     },
@@ -1220,7 +1220,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "frillish",
     imageURL: "https://i.imgur.com/K3q9vyX.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/KF720FK.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/K3q9vyX.png"
     },
@@ -1233,7 +1233,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "jellicent",
     imageURL: "https://i.imgur.com/fWgoPEs.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/JNb11Fr.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/fWgoPEs.png"
     },
@@ -1245,7 +1245,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "alomomola",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/FBtA8R2.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/FrYF1y8.png"
     },
@@ -1258,7 +1258,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "joltik",
     imageURL: "https://i.imgur.com/khUKHBF.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/anH7OkH.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/khUKHBF.png"
     },
@@ -1271,7 +1271,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "galvantula",
     imageURL: "https://i.imgur.com/EjR8S3k.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/DC14Tps.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/EjR8S3k.png"
     },
@@ -1284,7 +1284,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "ferroseed",
     imageURL: "https://i.imgur.com/EIywH3N.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/3zWOxJl.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/EIywH3N.png"
     },
@@ -1297,7 +1297,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "ferrothorn",
     imageURL: "https://i.imgur.com/6ms8hE4.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/ROQtU5D.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/6ms8hE4.png"
     },
@@ -1309,7 +1309,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "klink",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/c3Uuilj.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Cn5fb2H.png"
     },
@@ -1321,7 +1321,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "klang",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/y4n97R7.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/iJSD9iP.png"
     },
@@ -1333,7 +1333,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "klinklang",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/c8nwiGC.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/zOHN8yV.png"
     },
@@ -1345,7 +1345,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "tynamo",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/fQeeCMR.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/vd8R04o.png"
     },
@@ -1357,7 +1357,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "eelektrik",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/DEtAeo1.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/5UJJ0Dk.png"
     },
@@ -1369,7 +1369,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "eelektross",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/u7RSmAh.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Ptjq0HC.png"
     },
@@ -1381,7 +1381,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "elgyem",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/2NyHve4.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/o4jCSHR.png"
     },
@@ -1393,7 +1393,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "beheeyem",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/miHgrob.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/pYfII7Y.png"
     },
@@ -1406,7 +1406,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "litwick",
     imageURL: "https://i.imgur.com/yw96O1F.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/bVVYun4.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/yw96O1F.png"
     },
@@ -1419,7 +1419,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "lampent",
     imageURL: "https://i.imgur.com/8ryYFrV.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/8UIkSmM.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/8ryYFrV.png"
     },
@@ -1432,7 +1432,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "chandelure",
     imageURL: "https://i.imgur.com/XbsQ21v.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/fJBhF6o.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/XbsQ21v.png"
     },
@@ -1444,7 +1444,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "axew",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/L2ovmSn.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/2DdJzlL.png"
     },
@@ -1456,7 +1456,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "fraxure",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/jXl5Elo.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/CwP00Je.png"
     },
@@ -1468,7 +1468,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "haxorus",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/pkPJiNT.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/jtQrk5P.png"
     },
@@ -1480,7 +1480,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "cubchoo",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/eMN4G6f.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/nuA8dRX.png"
     },
@@ -1492,7 +1492,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "beartic",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/IozNhmI.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/O2NJTrH.png"
     },
@@ -1504,7 +1504,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "cryogonal",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/TSp48Si.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/jN7naM2.png"
     },
@@ -1516,7 +1516,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "shelmet",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/Me3PZ3c.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/pJZyfOU.png"
     },
@@ -1528,7 +1528,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "accelgor",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/npmXPFj.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/wEcYEgU.png"
     },
@@ -1541,7 +1541,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "stunfisk",
     imageURL: "https://i.imgur.com/EkHg6JC.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/jEZLky0.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/EkHg6JC.png"
     },
@@ -1553,7 +1553,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "mienfoo",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/G2X5RMD.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/PhhWRfn.png"
     },
@@ -1565,7 +1565,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "mienshao",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/E9DynOw.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/SyQ7EqQ.png"
     },
@@ -1577,7 +1577,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "druddigon",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/3gOvvn9.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/W3Ghrbc.png"
     },
@@ -1590,7 +1590,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "golett",
     imageURL: "https://i.imgur.com/T2bYATj.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/8yCHIC7.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/T2bYATj.png"
     },
@@ -1603,7 +1603,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "golurk",
     imageURL: "https://i.imgur.com/54gS1FZ.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/y6U9Rga.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/54gS1FZ.png"
     },
@@ -1616,7 +1616,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "pawniard",
     imageURL: "https://i.imgur.com/mJ9fyPf.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/5ZlOwjx.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/mJ9fyPf.png"
     },
@@ -1629,7 +1629,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "bisharp",
     imageURL: "https://i.imgur.com/TBB53qg.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/UfnVCqU.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/TBB53qg.png"
     },
@@ -1641,7 +1641,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "bouffalant",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/FXS7zN7.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/l1iHqxQ.png"
     },
@@ -1654,7 +1654,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "rufflet",
     imageURL: "https://i.imgur.com/ox5BsJf.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/rkKvZC7.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/ox5BsJf.png"
     },
@@ -1667,7 +1667,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "braviary",
     imageURL: "https://i.imgur.com/bG5e6zR.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/IU3V3h6.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/bG5e6zR.png"
     },
@@ -1680,7 +1680,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "vullaby",
     imageURL: "https://i.imgur.com/Trlw4q9.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/pT66lDf.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Trlw4q9.png"
     },
@@ -1693,7 +1693,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "mandibuzz",
     imageURL: "https://i.imgur.com/yCsXZR3.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/vm4JZmp.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/yCsXZR3.png"
     },
@@ -1705,7 +1705,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "heatmor",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/LzUJqiG.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/uB0qGvE.png"
     },
@@ -1718,7 +1718,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "durant",
     imageURL: "https://i.imgur.com/zbJj3Qt.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/a7RGbYB.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/zbJj3Qt.png"
     },
@@ -1731,7 +1731,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "deino",
     imageURL: "https://i.imgur.com/KPzdFyT.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/PFhfKM6.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/KPzdFyT.png"
     },
@@ -1744,7 +1744,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "zweilous",
     imageURL: "https://i.imgur.com/RP73wdh.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/cLrSv5g.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/RP73wdh.png"
     },
@@ -1757,7 +1757,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "hydreigon",
     imageURL: "https://i.imgur.com/jzaUPBv.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/eKvlcLw.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/jzaUPBv.png"
     },
@@ -1770,7 +1770,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "larvesta",
     imageURL: "https://i.imgur.com/qowua0o.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/tMnWraE.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/qowua0o.png"
     },
@@ -1783,7 +1783,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "volcarona",
     imageURL: "https://i.imgur.com/nIemlZY.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/3JIW2Dr.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/nIemlZY.png"
     },
@@ -1796,7 +1796,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "cobalion",
     imageURL: "https://i.imgur.com/DdZuTLW.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/Cl2Tf7G.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/DdZuTLW.png"
     },
@@ -1809,7 +1809,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "terrakion",
     imageURL: "https://i.imgur.com/U6VkLh4.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/GFXY9s7.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/U6VkLh4.png"
     },
@@ -1822,7 +1822,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "virizion",
     imageURL: "https://i.imgur.com/w0Kql6z.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/uVKWkCH.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/w0Kql6z.png"
     },
@@ -1834,7 +1834,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "tornadus-incarnate",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/TpaYWBQ.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/cidVHa0.png"
     },
@@ -1847,7 +1847,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "thundurus-incarnate",
     imageURL: "https://i.imgur.com/YvKiAmI.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/VC50jAY.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/YvKiAmI.png"
     },
@@ -1860,7 +1860,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "reshiram",
     imageURL: "https://i.imgur.com/t96K1sy.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/PYEm7G6.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/t96K1sy.png"
     },
@@ -1873,7 +1873,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "zekrom",
     imageURL: "https://i.imgur.com/5yj0fj6.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/ldNA0HK.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/5yj0fj6.png"
     },
@@ -1886,7 +1886,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "landorus-incarnate",
     imageURL: "https://i.imgur.com/Si3MROh.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/tmdo7zx.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Si3MROh.png"
     },
@@ -1899,7 +1899,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "kyurem",
     imageURL: "https://i.imgur.com/LEw3H1w.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/ZmJ4ySv.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/LEw3H1w.png"
     },
@@ -1912,7 +1912,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "keldeo-ordinary",
     imageURL: "https://i.imgur.com/uG0BJr1.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/4ZeoI6E.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/uG0BJr1.png"
     },
@@ -1925,7 +1925,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "meloetta-aria",
     imageURL: "https://i.imgur.com/RuLo9e8.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/5wZ8lEH.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/RuLo9e8.png"
     },
@@ -1938,7 +1938,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     name: "genesect",
     imageURL: "https://i.imgur.com/B0Ev3hO.png",
     sprites: {
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/alQzyxm.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/B0Ev3hO.png"
     },
@@ -1948,3 +1948,4 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
     generationId: 5
   }
 ];
+
