@@ -16,6 +16,7 @@ export class ShowPokemonComponent implements OnInit {
   pokemonName: string;
   pokemon: Pokemon;
   pokemonSpecie: PokemonSpecie;
+  loading: boolean = false;
 
   constructor(private pokeApiService: PokeApiService,
               private languageService: LanguageService,
@@ -23,6 +24,7 @@ export class ShowPokemonComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.getLanguage();
     this.activatedRoute.params.subscribe(({ name }) => {
       this.pokemonName = name;
@@ -46,6 +48,7 @@ export class ShowPokemonComponent implements OnInit {
   getPokemonSpecie(name: string) {
     this.pokeApiService.getPokemonSpecieById(name).subscribe((specie) => {
       this.pokemonSpecie = specie;
+      this.loading = false;
     });
   }
 

@@ -58,7 +58,6 @@ export class ListPokemonComponent implements OnInit {
               ) { }
 
   ngOnInit() {
-    console.log(this.allPokemon);
     this.selectedGenerations = [...this.generations];
     this.getLanguage();
   }

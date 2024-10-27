@@ -6,7 +6,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/Jp5rSge.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/ZhoVUya.png",
       iconUrl: "https://i.imgur.com/Jp5rSge.png"
     },
     number: 722,
@@ -19,7 +19,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/TRqFAyB.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/MLWHczC.png",
       iconUrl: "https://i.imgur.com/TRqFAyB.png"
     },
     number: 723,
@@ -32,7 +32,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/TpDfAya.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/JQb42Gh.png",
       iconUrl: "https://i.imgur.com/TpDfAya.png"
     },
     number: 724,
@@ -45,7 +45,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/DXoGICc.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/XugnXtt.png",
       iconUrl: "https://i.imgur.com/DXoGICc.png"
     },
     number: 725,
@@ -58,7 +58,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/6ovBtZq.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/IlWSeLh.png",
       iconUrl: "https://i.imgur.com/6ovBtZq.png"
     },
     number: 726,
@@ -71,7 +71,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/PgnCcBI.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/E1GtwPy.png",
       iconUrl: "https://i.imgur.com/PgnCcBI.png"
     },
     number: 727,
@@ -84,7 +84,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/2xd95eQ.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/KPmDPvE.png",
       iconUrl: "https://i.imgur.com/2xd95eQ.png"
     },
     number: 728,
@@ -97,7 +97,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/LYJenE6.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/sbJ8Gws.png",
       iconUrl: "https://i.imgur.com/LYJenE6.png"
     },
     number: 729,
@@ -110,7 +110,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/KDPUgS3.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/4XzIP87.png",
       iconUrl: "https://i.imgur.com/KDPUgS3.png"
     },
     number: 730,
@@ -123,7 +123,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/5RKC1yo.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/ts4zXMZ.png",
       iconUrl: "https://i.imgur.com/5RKC1yo.png"
     },
     number: 731,
@@ -136,7 +136,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/PUgWJac.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/W4XJh7a.png",
       iconUrl: "https://i.imgur.com/PUgWJac.png"
     },
     number: 732,
@@ -149,7 +149,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/mRV8IMk.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/gXFLOzQ.png",
       iconUrl: "https://i.imgur.com/mRV8IMk.png"
     },
     number: 733,
@@ -162,7 +162,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/VZi3vqn.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/CGzcnq1.png",
       iconUrl: "https://i.imgur.com/VZi3vqn.png"
     },
     number: 734,
@@ -175,7 +175,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/7UChZPU.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/RbOhOrM.png",
       iconUrl: "https://i.imgur.com/7UChZPU.png"
     },
     number: 735,
@@ -188,7 +188,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/MfFx95U.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/5U8RcGN.png",
       iconUrl: "https://i.imgur.com/MfFx95U.png"
     },
     number: 736,
@@ -201,7 +201,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/jRPdiRe.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/WtA6D7u.png",
       iconUrl: "https://i.imgur.com/jRPdiRe.png"
     },
     number: 737,
@@ -214,7 +214,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/AZ0J5ru.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/Xs4nQho.png",
       iconUrl: "https://i.imgur.com/AZ0J5ru.png"
     },
     number: 738,
@@ -227,7 +227,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/EazzEnm.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/J8793Cm.png",
       iconUrl: "https://i.imgur.com/EazzEnm.png"
     },
     number: 739,
@@ -240,7 +240,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/ZGQE6xR.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/mvVhxcy.png",
       iconUrl: "https://i.imgur.com/ZGQE6xR.png"
     },
     number: 740,
@@ -253,7 +253,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/zGPYUar.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/GlwBogv.png",
       iconUrl: "https://i.imgur.com/zGPYUar.png"
     },
     number: 741,
@@ -266,7 +266,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/DWMsbvf.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/nNq88B0.png",
       iconUrl: "https://i.imgur.com/DWMsbvf.png"
     },
     number: 742,
@@ -279,7 +279,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/L6upcAZ.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/ugeR9X9.png",
       iconUrl: "https://i.imgur.com/L6upcAZ.png"
     },
     number: 743,
@@ -292,7 +292,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/qi8LH3u.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/nYhN1hw.png",
       iconUrl: "https://i.imgur.com/qi8LH3u.png"
     },
     number: 744,
@@ -305,7 +305,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/7VNblVX.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/3Hg0znT.png",
       iconUrl: "https://i.imgur.com/7VNblVX.png"
     },
     number: 745,
@@ -318,7 +318,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/0Y2i4Kb.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/Km7fJTg.png",
       iconUrl: "https://i.imgur.com/0Y2i4Kb.png"
     },
     number: 746,
@@ -331,7 +331,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/I4nZweq.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/0H5LkH1.png",
       iconUrl: "https://i.imgur.com/I4nZweq.png"
     },
     number: 747,
@@ -344,7 +344,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/ZsK7m4h.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/6F7L5gA.png",
       iconUrl: "https://i.imgur.com/ZsK7m4h.png"
     },
     number: 748,
@@ -357,7 +357,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/X5nBOrT.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/n6XQFeY.png",
       iconUrl: "https://i.imgur.com/X5nBOrT.png"
     },
     number: 749,
@@ -370,7 +370,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/UoSMKue.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/5wvZW71.png",
       iconUrl: "https://i.imgur.com/UoSMKue.png"
     },
     number: 750,
@@ -383,7 +383,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/y38W47r.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/czl8NPs.png",
       iconUrl: "https://i.imgur.com/y38W47r.png"
     },
     number: 751,
@@ -396,7 +396,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/hXJXvvN.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/gvmxQsK.png",
       iconUrl: "https://i.imgur.com/hXJXvvN.png"
     },
     number: 752,
@@ -409,7 +409,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/rGf2aaG.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/5YqmwxN.png",
       iconUrl: "https://i.imgur.com/rGf2aaG.png"
     },
     number: 753,
@@ -422,7 +422,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/9lwFnns.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/TxpqMwt.png",
       iconUrl: "https://i.imgur.com/9lwFnns.png"
     },
     number: 754,
@@ -435,7 +435,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/tonK78f.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/5Sql2fR.png",
       iconUrl: "https://i.imgur.com/tonK78f.png"
     },
     number: 755,
@@ -448,7 +448,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/XOTIPie.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/SNTmfvp.png",
       iconUrl: "https://i.imgur.com/XOTIPie.png"
     },
     number: 756,
@@ -461,7 +461,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/nhy6H60.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/IGGBZFe.png",
       iconUrl: "https://i.imgur.com/nhy6H60.png"
     },
     number: 757,
@@ -474,7 +474,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/kNvhcue.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/U2WU4d8.png",
       iconUrl: "https://i.imgur.com/kNvhcue.png"
     },
     number: 758,
@@ -487,7 +487,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/zRaJKlC.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/hHbnsZ6.png",
       iconUrl: "https://i.imgur.com/zRaJKlC.png"
     },
     number: 759,
@@ -500,7 +500,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/4aLjX5E.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/BdX0Gvh.png",
       iconUrl: "https://i.imgur.com/4aLjX5E.png"
     },
     number: 760,
@@ -513,7 +513,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/uD9thIW.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/wphthZQ.png",
       iconUrl: "https://i.imgur.com/uD9thIW.png"
     },
     number: 761,
@@ -526,7 +526,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/4L2Ff09.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/gw6uWI5.png",
       iconUrl: "https://i.imgur.com/4L2Ff09.png"
     },
     number: 762,
@@ -539,7 +539,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/mKOxdoH.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/xGQLXWN.png",
       iconUrl: "https://i.imgur.com/mKOxdoH.png"
     },
     number: 763,
@@ -552,7 +552,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/pvQO4K1.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/mJfQgxS.png",
       iconUrl: "https://i.imgur.com/pvQO4K1.png"
     },
     number: 764,
@@ -565,7 +565,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/rbG41lg.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/6NeyLwV.png",
       iconUrl: "https://i.imgur.com/rbG41lg.png"
     },
     number: 765,
@@ -578,7 +578,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/cR0pCnr.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/MvoWufC.png",
       iconUrl: "https://i.imgur.com/cR0pCnr.png"
     },
     number: 766,
@@ -591,7 +591,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/KpFQ5uT.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/HgAV1qR.png",
       iconUrl: "https://i.imgur.com/KpFQ5uT.png"
     },
     number: 767,
@@ -604,7 +604,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/O1Dc17V.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/Sbpstjn.png",
       iconUrl: "https://i.imgur.com/O1Dc17V.png"
     },
     number: 768,
@@ -617,7 +617,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/yQsPIQ0.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/koslaL7.png",
       iconUrl: "https://i.imgur.com/yQsPIQ0.png"
     },
     number: 769,
@@ -630,7 +630,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/xiYHDQV.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/o2qXWHk.png",
       iconUrl: "https://i.imgur.com/xiYHDQV.png"
     },
     number: 770,
@@ -643,7 +643,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/nXCTZE3.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/m01pux9.png",
       iconUrl: "https://i.imgur.com/nXCTZE3.png"
     },
     number: 771,
@@ -656,7 +656,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/buF5e8B.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/Bo7onl9.png",
       iconUrl: "https://i.imgur.com/buF5e8B.png"
     },
     number: 772,
@@ -669,7 +669,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/WjFPI3k.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/qCkgrbj.png",
       iconUrl: "https://i.imgur.com/WjFPI3k.png"
     },
     number: 773,
@@ -682,7 +682,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/21hHAa0.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/a4dR4j6.png",
       iconUrl: "https://i.imgur.com/21hHAa0.png"
     },
     number: 774,
@@ -695,7 +695,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/Cq7dKAt.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/NEuaUIG.png",
       iconUrl: "https://i.imgur.com/Cq7dKAt.png"
     },
     number: 775,
@@ -708,7 +708,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/joFHRqm.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/H136hqd.png",
       iconUrl: "https://i.imgur.com/joFHRqm.png"
     },
     number: 776,
@@ -721,7 +721,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/WjaL90d.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/AtBIyco.png",
       iconUrl: "https://i.imgur.com/WjaL90d.png"
     },
     number: 777,
@@ -734,7 +734,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/CwU54eT.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/n2Z39BI.png",
       iconUrl: "https://i.imgur.com/CwU54eT.png"
     },
     number: 778,
@@ -747,7 +747,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/syXFHo4.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/6H0z86o.png",
       iconUrl: "https://i.imgur.com/syXFHo4.png"
     },
     number: 779,
@@ -760,7 +760,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/q2yHhbE.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/oqVkNDw.png",
       iconUrl: "https://i.imgur.com/q2yHhbE.png"
     },
     number: 780,
@@ -773,7 +773,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/aOklAim.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/kXwrM4F.png",
       iconUrl: "https://i.imgur.com/aOklAim.png"
     },
     number: 781,
@@ -786,7 +786,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/YEkKvSk.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/rgPJOB7.png",
       iconUrl: "https://i.imgur.com/YEkKvSk.png"
     },
     number: 782,
@@ -799,7 +799,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/fxwhMuq.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/pX3F0nL.png",
       iconUrl: "https://i.imgur.com/fxwhMuq.png"
     },
     number: 783,
@@ -812,7 +812,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/XeQ6YnU.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/CJ4ww71.png",
       iconUrl: "https://i.imgur.com/XeQ6YnU.png"
     },
     number: 784,
@@ -825,7 +825,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/ZgZGecZ.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/QxNo6e9.png",
       iconUrl: "https://i.imgur.com/ZgZGecZ.png"
     },
     number: 785,
@@ -838,7 +838,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/Hk9NTl7.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/wubChnT.png",
       iconUrl: "https://i.imgur.com/Hk9NTl7.png"
     },
     number: 786,
@@ -851,7 +851,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/t4BHnii.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/ldb9lxD.png",
       iconUrl: "https://i.imgur.com/t4BHnii.png"
     },
     number: 787,
@@ -864,7 +864,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/OsTw5QP.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/INZpJsm.png",
       iconUrl: "https://i.imgur.com/OsTw5QP.png"
     },
     number: 788,
@@ -877,7 +877,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/tNg1HJi.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/cfWNovW.png",
       iconUrl: "https://i.imgur.com/tNg1HJi.png"
     },
     number: 789,
@@ -890,7 +890,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/vEqFYPL.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/jQH5HZf.png",
       iconUrl: "https://i.imgur.com/vEqFYPL.png"
     },
     number: 790,
@@ -903,7 +903,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/LWNGVsV.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/Ulf2dAn.png",
       iconUrl: "https://i.imgur.com/LWNGVsV.png"
     },
     number: 791,
@@ -916,7 +916,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/qWfnDXI.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/olqDwn0.png",
       iconUrl: "https://i.imgur.com/qWfnDXI.png"
     },
     number: 792,
@@ -929,7 +929,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/MX89cup.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/kNyXvhG.png",
       iconUrl: "https://i.imgur.com/MX89cup.png"
     },
     number: 793,
@@ -942,7 +942,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/NkJWyn7.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/K05O1Hs.png",
       iconUrl: "https://i.imgur.com/NkJWyn7.png"
     },
     number: 794,
@@ -955,7 +955,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/qj1Cuzb.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/Z3YDx1L.png",
       iconUrl: "https://i.imgur.com/qj1Cuzb.png"
     },
     number: 795,
@@ -968,7 +968,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/TNYLQ8V.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/fujU1As.png",
       iconUrl: "https://i.imgur.com/TNYLQ8V.png"
     },
     number: 796,
@@ -981,7 +981,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/WkxIvqZ.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/P8FdTxj.png",
       iconUrl: "https://i.imgur.com/WkxIvqZ.png"
     },
     number: 797,
@@ -994,7 +994,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/IguAPng.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/2OecNFl.png",
       iconUrl: "https://i.imgur.com/IguAPng.png"
     },
     number: 798,
@@ -1007,7 +1007,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/idTms7E.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/FpGVOod.png",
       iconUrl: "https://i.imgur.com/idTms7E.png"
     },
     number: 799,
@@ -1020,7 +1020,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/n99NmxZ.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/xTuYYcF.png",
       iconUrl: "https://i.imgur.com/n99NmxZ.png"
     },
     number: 800,
@@ -1033,7 +1033,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/o815ubK.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/vywhgak.png",
       iconUrl: "https://i.imgur.com/o815ubK.png"
     },
     number: 801,
@@ -1046,7 +1046,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/FjDqhnM.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/7sPi1K8.png",
       iconUrl: "https://i.imgur.com/FjDqhnM.png"
     },
     number: 802,
@@ -1059,7 +1059,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/nYGAjPg.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/cmOYQt0.png",
       iconUrl: "https://i.imgur.com/nYGAjPg.png"
     },
     number: 803,
@@ -1072,7 +1072,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/4yo251d.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/MzodLql.png",
       iconUrl: "https://i.imgur.com/4yo251d.png"
     },
     number: 804,
@@ -1085,7 +1085,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/NQeUfH5.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/TjPbjRm.png",
       iconUrl: "https://i.imgur.com/NQeUfH5.png"
     },
     number: 805,
@@ -1098,7 +1098,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/nWK2pni.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/ozwuyme.png",
       iconUrl: "https://i.imgur.com/nWK2pni.png"
     },
     number: 806,
@@ -1111,7 +1111,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/1210aFM.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/76Ncpvw.png",
       iconUrl: "https://i.imgur.com/1210aFM.png"
     },
     number: 807,
@@ -1124,7 +1124,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/QWjrU2J.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/OXQUOkD.png",
       iconUrl: "https://i.imgur.com/QWjrU2J.png"
     },
     number: 808,
@@ -1137,7 +1137,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     imageURL: "https://i.imgur.com/VN6Qd76.png",
     sprites: {
       homeShinyUrl: "",
-      homeUrl: "",
+      homeUrl: "https://i.imgur.com/asITB9D.png",
       iconUrl: "https://i.imgur.com/VN6Qd76.png"
     },
     number: 809,

@@ -3,8 +3,6 @@ import { Ability, Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { Name, PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { AbilityName } from '../../../../../../../entities/pokemon-ability.entity';
-import { ALL_POKEMON_KANTO, kantoSprites } from '../../../../../../../entities/common/kanto-pokemon-data';
-import { ALL_POKEMON_JOTHO } from '../../../../../../../entities/common/jotho-pokemon-data';
 
 @Component({
   selector: 'app-pokemon-info',
@@ -26,12 +24,12 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   pokemonSprite: string;
   pokemonSpriteShiny: string;
 
-  allSpritesKanto = kantoSprites;
-  allkanto = ALL_POKEMON_JOTHO;
+  // allSprites = sprite;
+  // allkanto = ALL_POKEMON_ALOLA;
   constructor(private helperService: HelperService,) { }
 
   ngOnInit() {
-    //this.insterSprites();
+    // this.insterSprites();
     this.pokemonSprite = this.helperService.getPokemonSpriteImg(this.pokemon.name, "home");
     this.pokemonSpriteShiny = this.helperService.getPokemonSpriteImg(this.pokemon.name, "homeShiny");
   }
@@ -39,16 +37,16 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
     this.loadInfo();
   }
 
-  insterSprites(): void {
-    const array = [];
-    let i = 0;
-    this.allkanto.forEach((poke) => {
-      poke.sprites.homeUrl = this.allSpritesKanto[i];
-      i += 1;
-      array.push(poke);
-    });
-    console.log(array);
-  }
+  // insterSprites(): void {
+  //   const array = [];
+  //   let i = 0;
+  //   this.allkanto.forEach((poke) => {
+  //     poke.sprites.homeUrl = this.allSprites[i];
+  //     i += 1;
+  //     array.push(poke);
+  //   });
+  //   console.log(array);
+  // }
 
   loadInfo() {
     this.pokemonSprite = this.helperService.getPokemonSpriteImg(this.pokemon.name, "home");
@@ -101,11 +99,11 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   }
 
   calculateGenderRateMale(genderRate: number): number {
-    return 100 - (genderRate * 12.5);
+    return genderRate != -1 ? 100 - (genderRate * 12.5) : 0;
   }
 
   calculateGenderRateFemale(genderRate: number): number {
-    return genderRate * 12.5;
+    return genderRate != -1 ? genderRate * 12.5 : 0;
 }
 
 }

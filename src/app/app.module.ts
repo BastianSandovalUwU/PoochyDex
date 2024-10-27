@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LanguageService } from './modules/shared/services/language.service';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LanguageService } from './modules/shared/services/language.service';
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxLoadingModule.forRoot({})
   ],
   providers: [LanguageService],
   bootstrap: [AppComponent]
