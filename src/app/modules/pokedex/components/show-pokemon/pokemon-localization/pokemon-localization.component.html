@@ -1,6 +1,11 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black">
-  <h1 class="font-bold text-xl">{{ language === 'es' ? 'Localización': 'Localization' }}</h1>
-  <div class="border-black border p-3 rounded-md bg-white" *ngIf="loadInfo">
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-xl">{{ language === 'es' ? 'Localización': 'Localization' }}</h1>
+    <button mat-icon-button (click)="toggleFilters()">
+      <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
+    </button>
+  </div>
+  <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'"  class="border-black border p-3 rounded-md bg-white filters-container " *ngIf="loadInfo">
     <div class="grid grid-cols-6 gap-4 border-b border-black pb-1">
       <span class="text-center font-semibold col-span-1">{{ language === 'es' ? 'Juego': 'Game' }}</span>
       <span class="font-semibold col-span-5">{{ language === 'es' ? 'Localización': 'Localization' }}</span>

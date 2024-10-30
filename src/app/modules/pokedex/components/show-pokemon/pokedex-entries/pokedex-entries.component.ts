@@ -2,11 +2,27 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Router } from '@angular/router';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-pokedex-entries',
   templateUrl: './pokedex-entries.component.html',
-  styleUrls: ['./pokedex-entries.component.scss']
+  styleUrls: ['./pokedex-entries.component.scss'],
+  animations: [
+    trigger('toggleFilters', [
+      state('visible', style({
+        height: '*',
+        opacity: 1
+      })),
+      state('hidden', style({
+        height: '0px',
+        opacity: 0
+      })),
+      transition('visible <=> hidden', [
+        animate('300ms ease-in-out')
+      ])
+    ])
+  ]
 })
 export class PokedexEntriesComponent implements OnInit, OnChanges {
   @Input() language: string;
@@ -14,6 +30,7 @@ export class PokedexEntriesComponent implements OnInit, OnChanges {
 
   flavorTextEntries: { flavor_text: string, version: string }[] = [];
   backgroundColor: string = '';
+  filtersVisible = false;
 
   constructor(private helperService: HelperService,
               private router: Router
@@ -27,6 +44,11 @@ export class PokedexEntriesComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.getPokemonColor();
     this.filterFlavorTextEntries();
+  }
+
+
+  toggleFilters() {
+    this.filtersVisible = !this.filtersVisible;
   }
 
   filterFlavorTextEntries(): void {

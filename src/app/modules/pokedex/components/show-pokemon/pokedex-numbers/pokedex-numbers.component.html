@@ -1,6 +1,11 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black">
-  <h1 class="font-bold text-xl">{{ language === 'es' ? 'Numeros de Pokédex': 'Pokédex Numbers' }}</h1>
-  <div class="grid sm:grid-cols-4">
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-xl">{{ language === 'es' ? 'Numeros de Pokédex': 'Pokédex Numbers' }}</h1>
+    <button mat-icon-button (click)="toggleFilters()">
+      <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
+    </button>
+  </div>
+  <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'"  class="grid sm:grid-cols-4 filters-container">
     <div class="col-span-1" *ngFor="let dex of pokemonSpecie.pokedex_numbers">
       <span class="font-bold">{{ language === 'es' ? 'Número': 'Number' }}: </span>
       <span [routerLink]="['/pokedex/show-pokedex', dex.pokedex.name]"

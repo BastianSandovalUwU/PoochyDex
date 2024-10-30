@@ -4,6 +4,7 @@ import { HelperService } from 'app/modules/shared/services/helper.service';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { Localization } from '../../../../../../../entities/localitzation.entity';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 interface Method {
   name: string;
@@ -47,7 +48,22 @@ interface GroupedData {
 @Component({
   selector: 'app-pokemon-localization',
   templateUrl: './pokemon-localization.component.html',
-  styleUrls: ['./pokemon-localization.component.scss']
+  styleUrls: ['./pokemon-localization.component.scss'],
+  animations: [
+    trigger('toggleFilters', [
+      state('visible', style({
+        height: '*',
+        opacity: 1
+      })),
+      state('hidden', style({
+        height: '0px',
+        opacity: 0
+      })),
+      transition('visible <=> hidden', [
+        animate('300ms ease-in-out')
+      ])
+    ])
+  ]
 })
 export class PokemonLocalizationComponent implements OnInit, OnChanges {
   @Input() language: string;
@@ -60,6 +76,7 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
   expandedMethods: { [versionName: string]: { [methodName: string]: boolean } } = {};
   minimumVisibleItems = 20;
   loadInfo: boolean;
+  filtersVisible = false;
 
   constructor(private helperService: HelperService,
               private pokeApiService: PokeApiService
@@ -73,6 +90,10 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.getPokemonColor();
     this.getPokemonLocalization();
+  }
+
+  toggleFilters() {
+    this.filtersVisible = !this.filtersVisible;
   }
 
   getPokemonLocalization(): void {
