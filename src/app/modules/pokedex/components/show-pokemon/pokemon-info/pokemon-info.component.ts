@@ -25,7 +25,7 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   pokemonSpriteShiny: string;
 
   // allSprites = sprite;
-  // allkanto = ALL_POKEMON_ALOLA;
+  // allkanto = ALL_POKEMON_PALDEA;
   constructor(private helperService: HelperService,) { }
 
   ngOnInit() {
