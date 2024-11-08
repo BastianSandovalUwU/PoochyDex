@@ -4,11 +4,27 @@ import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { EvolutionChain } from '../../../../../../../entities/evolution-chain.entity';
 import { Router } from '@angular/router';
 import { HelperService } from 'app/modules/shared/services/helper.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-chain-evolution',
   templateUrl: './chain-evolution.component.html',
-  styleUrls: ['./chain-evolution.component.scss']
+  styleUrls: ['./chain-evolution.component.scss'],
+  animations: [
+    trigger('toggleFilters', [
+      state('visible', style({
+        height: '*',
+        opacity: 1
+      })),
+      state('hidden', style({
+        height: '0px',
+        opacity: 0
+      })),
+      transition('visible <=> hidden', [
+        animate('300ms ease-in-out')
+      ])
+    ])
+  ]
 })
 export class ChainEvolutionComponent implements OnInit, OnChanges {
   @Input() language: string;
@@ -16,6 +32,7 @@ export class ChainEvolutionComponent implements OnInit, OnChanges {
 
   evolutionChain: EvolutionChain;
   backgroundColor: string = '';
+  filtersVisible = true;
 
   constructor(private pokeApiService: PokeApiService,
     private helperService: HelperService,
@@ -29,6 +46,10 @@ export class ChainEvolutionComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.getPokemonColor();
     this.getEvolutionChain();
+  }
+
+  toggleFilters() {
+    this.filtersVisible = !this.filtersVisible;
   }
 
   getEvolutionChain() {

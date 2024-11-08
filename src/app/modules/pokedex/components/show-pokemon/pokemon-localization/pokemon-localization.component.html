@@ -5,45 +5,52 @@
       <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
     </button>
   </div>
-  <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'"  class="border-black border p-3 rounded-md bg-white filters-container " *ngIf="loadInfo">
-    <div class="grid grid-cols-6 gap-4 border-b border-black pb-1">
-      <span class="text-center font-semibold col-span-1">{{ language === 'es' ? 'Juego': 'Game' }}</span>
-      <span class="font-semibold col-span-5">{{ language === 'es' ? 'Localización': 'Localization' }}</span>
-    </div>
-    <div *ngFor="let version of groupedLocations" class="grid grid-cols-4">
-      <div class="col-span-4 grid grid-cols-1 sm:grid-cols-6 gap-4 border-b border-black py-2">
-        <div [ngClass]="getGameVersionColor(version.versionName)"
-             class="relative col-span-2 sm:col-span-1 rounded-md text-white border border-black flex justify-center items-center">
-          <span class="text-center hover:text-blue-500 cursor-pointer">
-            <app-hyperlink type="game" [value]="version.versionName" [textBlue]="false"></app-hyperlink>
-          </span>
-          <img class="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 mr-2"
-               [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(version.versionName)[0] + '.png'" alt="">
-        </div>
-        <div class="col-span-3 sm:col-span-5">
-          <div *ngFor="let method of version.methods | keyvalue">
-            <p>
-              <strong>
-                {{ method.key | translateLocalizationMethod | replaceDash | titlecase }}:
-              </strong>
-              <span *ngFor="let methodValue of getVisibleMethodValues(method.value, version.versionName, method.key); let i = index">
-                <app-hyperlink type="localization" [value]="methodValue"></app-hyperlink>
-                <ng-container *ngIf="i < getVisibleMethodValues(method.value, version.versionName, method.key).length - 1">,</ng-container>
-                <ng-container *ngIf="i === getVisibleMethodValues(method.value, version.versionName, method.key).length - 1">.</ng-container>
-              </span>
-              <ng-container *ngIf="hasMoreMethodItems(method.value)">
-                <button class="text-blue-500 underline cursor-pointer"
-                        (click)="toggleMethod(version.versionName, method.key)">
-                  {{ isMethodExpanded(version.versionName, method.key) ? 'Ver menos' : 'Ver más' }}
-                </button>
-              </ng-container>
-            </p>
+  <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'"
+    class="border-black border p-3 rounded-md bg-white filters-container ">
+    <div *ngIf="loadInfo">
+      <div class="grid grid-cols-6 gap-4 border-b border-black pb-1">
+        <span class="text-center font-semibold col-span-1">{{ language === 'es' ? 'Juego': 'Game' }}</span>
+        <span class="font-semibold col-span-5">{{ language === 'es' ? 'Localización': 'Localization' }}</span>
+      </div>
+      <div *ngFor="let version of groupedLocations" class="grid grid-cols-4">
+        <div class="col-span-4 grid grid-cols-1 sm:grid-cols-6 gap-4 border-b border-black py-2">
+          <div [ngClass]="getGameVersionColor(version.versionName)"
+            class="relative col-span-2 sm:col-span-1 rounded-md text-white border border-black flex justify-center items-center">
+            <span class="text-center hover:text-blue-500 cursor-pointer">
+              <app-hyperlink type="game" [value]="version.versionName" [textBlue]="false"></app-hyperlink>
+            </span>
+            <img class="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 mr-2"
+              [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(version.versionName)[0] + '.png'" alt="">
+          </div>
+          <div class="col-span-3 sm:col-span-5">
+            <div *ngFor="let method of version.methods | keyvalue">
+              <p>
+                <strong>
+                  {{ method.key | translateLocalizationMethod | replaceDash | titlecase }}:
+                </strong>
+                <span
+                  *ngFor="let methodValue of getVisibleMethodValues(method.value, version.versionName, method.key); let i = index">
+                  <app-hyperlink type="localization" [value]="methodValue"></app-hyperlink>
+                  <ng-container
+                    *ngIf="i < getVisibleMethodValues(method.value, version.versionName, method.key).length - 1">,</ng-container>
+                  <ng-container
+                    *ngIf="i === getVisibleMethodValues(method.value, version.versionName, method.key).length - 1">.</ng-container>
+                </span>
+                <ng-container *ngIf="hasMoreMethodItems(method.value)">
+                  <button class="text-blue-500 underline cursor-pointer"
+                    (click)="toggleMethod(version.versionName, method.key)">
+                    {{ isMethodExpanded(version.versionName, method.key) ? 'Ver menos' : 'Ver más' }}
+                  </button>
+                </ng-container>
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="border-black border p-3 rounded-md bg-white" *ngIf="loadInfo === false && groupedLocations.length === 0">
-    <h1>{{ language === 'es' ? 'No se puede atrapar salvaje' : 'It can\'t be caught wild' }}</h1>
+    <div class="border-black border p-3 rounded-md bg-white"
+      *ngIf="loadInfo === false && groupedLocations.length === 0">
+      <h1>{{ language === 'es' ? 'No se puede atrapar salvaje' : 'It can\'t be caught wild' }}</h1>
+    </div>
   </div>
 </div>
