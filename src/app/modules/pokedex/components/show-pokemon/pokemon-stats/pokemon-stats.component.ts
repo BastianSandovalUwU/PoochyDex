@@ -2,11 +2,27 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-pokemon-stats',
   templateUrl: './pokemon-stats.component.html',
-  styleUrls: ['./pokemon-stats.component.scss']
+  styleUrls: ['./pokemon-stats.component.scss'],
+  animations: [
+    trigger('toggleFilters', [
+      state('visible', style({
+        height: '*',
+        opacity: 1
+      })),
+      state('hidden', style({
+        height: '0px',
+        opacity: 0
+      })),
+      transition('visible <=> hidden', [
+        animate('300ms ease-in-out')
+      ])
+    ])
+  ]
 })
 export class PokemonStatsComponent implements OnInit, OnChanges {
   @Input() language: string;
@@ -15,17 +31,24 @@ export class PokemonStatsComponent implements OnInit, OnChanges {
 
   backgroundColor: string = '';
 
+  totalStats: number = 0;
   statNames: string [];
+  filtersVisible = true;
 
   constructor(private helperService: HelperService,) { }
 
   ngOnInit() {
+    this.getTotalStat();
     this.setStatsNames();
     this.getPokemonColor();
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.setStatsNames();
     this.getPokemonColor();
+  }
+
+  toggleFilters() {
+    this.filtersVisible = !this.filtersVisible;
   }
 
   getPokemonColor() {
@@ -63,5 +86,12 @@ export class PokemonStatsComponent implements OnInit, OnChanges {
     return (stat / maxStat * 100) + '%';
   }
 
+  getTotalStat() {
+    let stats = 0;
+    this.pokemon.stats.forEach((pokemonStats) => {
+      stats = stats + pokemonStats.base_stat;
+    });
+    this.totalStats = stats
+  }
 
 }

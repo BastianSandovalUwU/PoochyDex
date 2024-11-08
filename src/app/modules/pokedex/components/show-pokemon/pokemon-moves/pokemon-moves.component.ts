@@ -7,11 +7,27 @@ import { Subject, catchError, forkJoin, of, takeUntil } from 'rxjs';
 import { ExtendedMachineDetail } from '../../../../../../../entities/machine-move.entity';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-pokemon-moves',
   templateUrl: './pokemon-moves.component.html',
-  styleUrls: ['./pokemon-moves.component.scss']
+  styleUrls: ['./pokemon-moves.component.scss'],
+  animations: [
+    trigger('toggleFilters', [
+      state('visible', style({
+        height: '*',
+        opacity: 1
+      })),
+      state('hidden', style({
+        height: '0px',
+        opacity: 0
+      })),
+      transition('visible <=> hidden', [
+        animate('300ms ease-in-out')
+      ])
+    ])
+  ]
 })
 export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   @Input() language: string = 'es';
@@ -36,6 +52,10 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   selectedTabIndexMT = 0;
   selectedTabIndexTutor = 0;
   selectedTabIndexTutorEgg = 0;
+  filtersVisibleLevel = true;
+  filtersVisibleMt = true;
+  filtersVisibleTutor = true;
+  filtersVisibleEgg = true;
 
   constructor(private pokeApiService: PokeApiService,
               private helperService: HelperService,) { }
@@ -53,6 +73,26 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+  }
+
+  toggleFilters(option: string) {
+
+    switch (option) {
+      case "lvl":
+        this.filtersVisibleLevel = !this.filtersVisibleLevel;
+        break;
+      case "mt":
+        this.filtersVisibleMt = !this.filtersVisibleMt;
+        break;
+      case "tutor":
+        this.filtersVisibleTutor = !this.filtersVisibleTutor;
+        break;
+      case "egg":
+        this.filtersVisibleEgg = !this.filtersVisibleEgg;
+        break;
+      default:
+        break;
+    }
   }
 
   getPokemonMoves(): void {

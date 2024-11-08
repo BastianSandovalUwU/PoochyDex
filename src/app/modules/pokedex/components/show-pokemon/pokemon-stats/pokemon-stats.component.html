@@ -1,12 +1,27 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black">
-  <h1 class="font-bold text-xl">{{ language === 'es' ? 'Estadísticas Pokémon' : 'Pokémon Statistics' }}</h1>
-  <div class="flex flex-col items-center bg-white p-2 rounded-md w-full">
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-xl">{{ language === 'es' ? 'Estadísticas Pokémon' : 'Pokémon Statistics' }}</h1>
+
+    <button mat-icon-button (click)="toggleFilters()">
+      <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
+    </button>
+  </div>
+  <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="flex flex-col items-center bg-white p-2 rounded-md w-full">
     <div *ngFor="let stat of pokemon.stats; let i = index" class="w-full flex items-center mb-2">
       <span class="w-1/4">{{ statNames[i] }}:</span>
       <div class="flex items-center w-full">
         <span class="w-12 text-right">{{ stat.base_stat }}</span>
         <div class="w-full bg-gray-100 rounded-full overflow-hidden ml-2">
           <div [ngStyle]="{'width': getStatWidth(stat.base_stat), 'background-color': getStatColor(stat.base_stat)}" class="h-4"></div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full flex items-center mb-2">
+      <span class="w-1/4">{{ language === 'es' ? 'Estadísticas Totales' : 'Total Stats' }}: </span>
+      <div class="flex items-center w-full">
+        <h1 class="w-12 text-right">{{totalStats}}</h1>
+        <div class="w-full bg-gray-100 rounded-full overflow-hidden ml-2">
+          <div></div>
         </div>
       </div>
     </div>
