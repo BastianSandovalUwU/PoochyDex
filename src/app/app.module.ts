@@ -11,6 +11,8 @@ import { LanguageService } from './modules/shared/services/language.service';
 import { NgxLoadingModule } from 'ngx-loading';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from 'environments/environment';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,8 +24,10 @@ import { environment } from 'environments/environment';
     SharedModule,
     BrowserAnimationsModule,
     NgxLoadingModule.forRoot({}),
+    MatSnackBarModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production
+      enabled: environment.production,
+      registrationStrategy: 'registerWithDelay:5000'
     })
   ],
   providers: [LanguageService],

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { LanguageService } from './modules/shared/services/language.service';
+import { SwUpdate } from '@angular/service-worker';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +14,18 @@ export class AppComponent {
   isMenuOpen = false;
   currentLanguage: string;
 
-  constructor(private languageService: LanguageService) { }
+  constructor(private languageService: LanguageService,
+              private updates: SwUpdate,
+              private snackBar: MatSnackBar
+  ) {
+    if (this.updates.isEnabled) {
+      this.updates.versionUpdates.subscribe(event => {
+        if (event.type === 'VERSION_READY') {
+          this.showUpdateSnackBar();
+        }
+      });
+    }
+  }
 
   ngOnInit() {
     this.languageService.currentLanguage$.subscribe(language => {
@@ -30,6 +43,18 @@ export class AppComponent {
 
   setLanguage(language: string): void {
     this.languageService.setLanguage(language);
+  }
+
+  showUpdateSnackBar() {
+    const snackBarRef = this.snackBar.open('Nueva versión disponible', 'Actualizar', {
+      duration: 6000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    });
+
+    snackBarRef.onAction().subscribe(() => {
+      window.location.reload();
+    });
   }
 
 }
