@@ -4,11 +4,27 @@ import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Router } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-pokemon-varieties',
   templateUrl: './pokemon-varieties.component.html',
-  styleUrls: ['./pokemon-varieties.component.scss']
+  styleUrls: ['./pokemon-varieties.component.scss'],
+  animations: [
+    trigger('toggleFilters', [
+      state('visible', style({
+        height: '*',
+        opacity: 1
+      })),
+      state('hidden', style({
+        height: '0px',
+        opacity: 0
+      })),
+      transition('visible <=> hidden', [
+        animate('300ms ease-in-out')
+      ])
+    ])
+  ]
 })
 export class PokemonVarietiesComponent implements OnInit, OnChanges {
   @Input() language: string = 'es';
@@ -17,6 +33,7 @@ export class PokemonVarietiesComponent implements OnInit, OnChanges {
   backgroundColor: string = '';
   pokemonVarieties: any[];
   pokemonId: string;
+  filtersVisible = true;
 
   constructor(private helperService: HelperService,
               private pokeApiService: PokeApiService,
@@ -30,6 +47,10 @@ export class PokemonVarietiesComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
       this.getVarietiesInfo();
       this.getPokemonColor();
+  }
+
+  toggleFilters() {
+    this.filtersVisible = !this.filtersVisible;
   }
 
   getVarietiesInfo() {
