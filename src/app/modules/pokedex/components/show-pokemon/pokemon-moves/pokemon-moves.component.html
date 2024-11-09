@@ -1,8 +1,8 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden">
 
   <div class="flex justify-between items-center">
-    <div>
-      <h1 class="font-bold text-xl">{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
+    <div (click)="toggleFilters('lvl')" class="cursor-pointer">
+      <h1 class="font-bold text-xl" >{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
       <h1 class="font-bold">{{ language === 'es' ? 'Subiendo de nivel': 'By Level Up' }}</h1>
     </div>
 
@@ -68,7 +68,7 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:hidden block">
 
   <div class="flex justify-between items-center">
-    <div>
+    <div (click)="toggleFilters('lvl')" class="cursor-pointer">
       <h1 class="font-bold text-xl">{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
       <h1 class="font-bold">{{ language === 'es' ? 'Subiendo de nivel': 'By Level Up' }}</h1>
     </div>
@@ -133,7 +133,10 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden">
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold">{{ language === 'es' ? 'Mediante Máquina Tecnica' : 'By Technical Machine' }}</h1>
+    <div (click)="toggleFilters('mt')" class="cursor-pointer">
+      <h1 class="font-bold text-xl">{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
+      <h1 class="font-bold">{{ language === 'es' ? 'Mediante Máquina Tecnica' : 'By Technical Machine' }}</h1>
+    </div>
 
     <button mat-icon-button (click)="toggleFilters('mt')">
       <mat-icon>{{ filtersVisibleMt ? 'expand_less' : 'expand_more' }}</mat-icon>
@@ -192,7 +195,10 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:hidden block">
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold">{{ language === 'es' ? 'Mediante Máquina Tecnica' : 'By Technical Machine' }}</h1>
+    <div (click)="toggleFilters('mt')" class="cursor-pointer">
+      <h1 class="font-bold text-xl">{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
+      <h1 class="font-bold">{{ language === 'es' ? 'Mediante Máquina Tecnica' : 'By Technical Machine' }}</h1>
+    </div>
 
     <button mat-icon-button (click)="toggleFilters('mt')">
       <mat-icon>{{ filtersVisibleMt ? 'expand_less' : 'expand_more' }}</mat-icon>
@@ -233,9 +239,7 @@
         <div class="move-detail">
           <span class="move-label">{{ language === 'es' ? 'Tipo': 'Type' }}</span>
           <span class="type text-center">
-            {{ getTypeName(pokeMove) | titlecase }}
-            <img class="w-32"
-            [src]="'./assets/icons/types/' + getTypeName(pokeMove) + '.png'">
+            <img class="w-32" [src]="'./assets/icons/types/' + getTypeName(pokeMove) + '.png'">
           </span>
         </div>
       </div>
@@ -249,7 +253,11 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden">
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold">{{ language === 'es' ? 'Mediante tutor' : 'By Tutor' }}</h1>
+
+    <div (click)="toggleFilters('tutor')" class="cursor-pointer">
+      <h1 class="font-bold text-xl">{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
+      <h1 class="font-bold">{{ language === 'es' ? 'Mediante tutor' : 'By Tutor' }}</h1>
+    </div>
 
     <button mat-icon-button (click)="toggleFilters('tutor')">
       <mat-icon>{{ filtersVisibleTutor ? 'expand_less' : 'expand_more' }}</mat-icon>
@@ -311,9 +319,9 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black tutor-container block sm:hidden">
 
   <div class="flex justify-between items-center">
-    <div>
+    <div (click)="toggleFilters('tutor')" class="cursor-pointer">
+      <h1 class="font-bold text-xl">{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
       <h1 class="font-bold">{{ language === 'es' ? 'Mediante tutor' : 'By Tutor' }}</h1>
-      <label for="versionGroup">{{ language === 'es' ? 'Seleccionar Juego': 'Select Game' }}</label>&nbsp;
     </div>
 
     <button mat-icon-button (click)="toggleFilters('tutor')">
@@ -327,7 +335,7 @@
     <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
 
   <div class="bg-white p-3 border-black border rounded-md">
-    <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2">
+    <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2 move-header">
       <span class="font-semibold">{{ language === 'es' ? 'Movimiento' : 'Move' }}</span>
       <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
       <span class="font-semibold">{{ language === 'es' ? 'Juego' : 'Game' }}</span>
@@ -372,9 +380,10 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden">
 
   <div class="flex justify-between items-center">
-    <div>
+
+    <div (click)="toggleFilters('egg')" class="cursor-pointer">
+      <h1 class="font-bold text-xl">{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
       <h1 class="font-bold">{{ language === 'es' ? 'Mediante Huevo' : 'By Egg' }}</h1>
-      <label for="versionGroup">{{ language === 'es' ? 'Seleccionar Juego': 'Select Game' }}</label> &nbsp;
     </div>
 
     <button mat-icon-button (click)="toggleFilters('egg')">
@@ -438,10 +447,11 @@
 
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black tutor-container block sm:hidden">
   <div class="flex justify-between items-center">
-    <div>
-    <h1 class="font-bold">{{ language === 'es' ? 'Mediante Huevo' : 'By Egg' }}</h1>
-    <label for="versionGroup">{{ language === 'es' ? 'Seleccionar Juego': 'Select Game' }}</label> &nbsp;
+    <div (click)="toggleFilters('egg')" class="cursor-pointer">
+      <h1 class="font-bold text-xl">{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
+      <h1 class="font-bold">{{ language === 'es' ? 'Mediante Huevo' : 'By Egg' }}</h1>
     </div>
+
     <button mat-icon-button (click)="toggleFilters('egg')">
       <mat-icon>{{ filtersVisibleEgg ? 'expand_less' : 'expand_more' }}</mat-icon>
     </button>
