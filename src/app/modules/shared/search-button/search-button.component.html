@@ -4,20 +4,36 @@
   </button>
 </div>
 
-<div *ngIf="showSearch" id="searchOverlay" (click)="toggleSearch()">
-  <div id="searchInputContainer" (click)="$event.stopPropagation()">
-    <h1 class="font-bold text-black text-xl">{{ language === 'es' ? 'Búsqueda de Pokémon' : 'Search Pokémon'}}</h1>
-    <input type="text" [(ngModel)]="searchQuery" (input)="filterData()" placeholder="Buscar..." />
+<div
+  id="searchOverlay"
+  [ngClass]="{ 'show-overlay': showSearch }"
+  (click)="toggleSearch()"
+>
+  <div
+    id="searchInputContainer"
+    [ngClass]="{ 'show-container': showSearch }"
+    (click)="$event.stopPropagation()"
+  >
+    <h1 class="font-bold text-black text-xl">
+      {{ language === 'es' ? 'Búsqueda de Pokémon' : 'Search Pokémon' }}
+    </h1>
+    <input class="w-full"
+      type="text"
+      [(ngModel)]="searchQuery"
+      (input)="filterData()"
+      [placeholder]="language === 'es' ? 'Buscar...' : 'Search...'"
+    />
     <ul>
-      <li class="cursor-pointer bg-gray-100 flex items-center"
-          (click)="navigateToPokemon(item.name)"
-          *ngFor="let item of limitedFilteredData">
-          <img [src]="item.sprites.iconUrl" alt="" class="w-20 mr-2">
-          <span>{{ item.name |replaceDash | titlecase }}</span>
+      <li
+        class="cursor-pointer bg-gray-100 flex items-center"
+        (click)="navigateToPokemon(item.name)"
+        *ngFor="let item of limitedFilteredData"
+      >
+        <img [src]="item.sprites.iconUrl" alt="" class="w-20 mr-2" />
+        <span>{{ item.name | replaceDash | titlecase }}</span>
       </li>
       <li *ngIf="limitedFilteredData.length === 0 && searchQuery !== ''">
-        {{ language === 'es' ? 'No se encontró un Pokémon con el nombre: ' + searchQuery :
-        'No Pokémon with the name ' + searchQuery + ' was found' }}
+        {{ language === 'es' ? 'No se encontró un Pokémon con el nombre: ' + searchQuery : 'No Pokémon with the name ' + searchQuery + ' was found' }}
       </li>
     </ul>
   </div>

@@ -12,6 +12,7 @@ import { ALL_POKEMON_KANTO } from '../../../../../entities/common/kanto-pokemon-
 import { ALL_POKEMON_PALDEA } from '../../../../../entities/common/paldea-pokemon-data';
 import { ALL_POKEMON_SINNOH } from '../../../../../entities/common/sinnoh-pokemon-data';
 import { ALL_POKEMON_UNOVA } from '../../../../../entities/common/unova-pokemon-data';
+import { PokemonList } from '../../../../../entities/pokemon-list.entity';
 
 @Component({
   selector: 'app-search-button',
@@ -22,11 +23,11 @@ export class SearchButtonComponent implements OnInit {
 
   showSearch = false;
   searchQuery = '';
-  data = [...ALL_POKEMON_KANTO, ...ALL_POKEMON_JOTHO,
+  data: PokemonList[] = [...ALL_POKEMON_KANTO, ...ALL_POKEMON_JOTHO,
     ...ALL_POKEMON_HOENN, ...ALL_POKEMON_SINNOH, ...ALL_POKEMON_UNOVA,
     ...ALL_POKEMON_KALOS, ...ALL_POKEMON_ALOLA, ...ALL_POKEMON_GALAR, ...ALL_POKEMON_PALDEA];
-  filteredData: any[] = [];
-  limitedFilteredData: any[] = [];
+  filteredData: PokemonList[] = [];
+  limitedFilteredData: PokemonList[] = [];
   language: string;
 
   constructor(private router: Router,
@@ -51,14 +52,17 @@ export class SearchButtonComponent implements OnInit {
 
   toggleSearch() {
     this.showSearch = !this.showSearch;
-    this.searchQuery = '';
-    this.limitedFilteredData = [];
+
+    if (!this.showSearch) {
+      this.searchQuery = ''; // Limpiar el campo de búsqueda al cerrar
+      this.limitedFilteredData = []; // Limpiar los resultados de búsqueda
+    }
   }
 
   filterData() {
     const query = this.searchQuery.toLowerCase();
     this.filteredData = this.data.filter(item => item.name.toLowerCase().includes(query));
-    this.limitedFilteredData = this.filteredData.slice(0, 6);
+    this.limitedFilteredData = this.filteredData.slice(0, 10);
   }
 
   navigateToPokemon(pokemonName: string) {

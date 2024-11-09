@@ -1,9 +1,10 @@
+/* Botón de búsqueda */
 #searchButton {
-  bottom: 47px;
-  right: 15px;
+  bottom: 40px;
+  right: 17px;
   width: 60px;
   height: 60px;
-  background: #00c020;
+  background: #0b8dd8;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,12 +12,13 @@
   border-radius: 50%;
   position: fixed;
   cursor: pointer;
-  border: 4px solid transparent;
-  transition: all 300ms ease;
-  transform: scale(0);
-  z-index: 1000; /* Asegúrate de que este valor sea mayor que el de otros elementos */
+  border: 2px solid black;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  transform: scale(1);
+  z-index: 1000;
 }
 
+/* Overlay de búsqueda */
 #searchOverlay {
   position: fixed;
   top: 0;
@@ -27,40 +29,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  visibility: hidden;
   z-index: 1000;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-/* Estilo del contenedor del input */
+/* Contenedor del input con animación */
 #searchInputContainer {
   background: white;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   width: 320px;
-  max-height: 750px; /* Limitar altura máxima */
-  overflow: auto; /* Agregar desplazamiento si excede la altura */
-  z-index: 1000; /* Asegúrate de que este valor sea mayor que el de otros elementos */
+  max-height: 750px;
+  overflow: auto;
+  transform: translateY(-30px);
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
-input {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
+/* Clase para mostrar el overlay */
+.show-overlay {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-li {
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
-}
-
-li:last-child {
-  border-bottom: none;
+/* Clase para mostrar el contenedor con animación */
+.show-container {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
 }
