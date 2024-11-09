@@ -210,13 +210,6 @@
       <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
 
     <div class="bg-white p-3 border-black border rounded-md">
-      <!-- Encabezado para pantallas grandes -->
-      <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2 move-header">
-        <span class="font-semibold">{{ language === 'es' ? 'Movimiento': 'Move' }}</span>
-        <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
-        <span class="font-semibold">{{ language === 'es' ? 'Juego': 'Game' }}</span>
-        <span class="font-semibold">{{ language === 'es' ? 'Tipo': 'Type' }}</span>
-      </div>
 
       <!-- Fila de movimientos -->
       <div *ngFor="let pokeMove of filteredMovesByMachine" class="move-row">
@@ -335,12 +328,6 @@
     <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
 
   <div class="bg-white p-3 border-black border rounded-md">
-    <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2 move-header">
-      <span class="font-semibold">{{ language === 'es' ? 'Movimiento' : 'Move' }}</span>
-      <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
-      <span class="font-semibold">{{ language === 'es' ? 'Juego' : 'Game' }}</span>
-      <span class="font-semibold">{{ language === 'es' ? 'Tipo' : 'Type' }}</span>
-    </div>
 
     <!-- Fila de movimientos mediante tutor -->
     <div *ngFor="let pokeMove of filteredMovesByTutor" >
@@ -463,12 +450,6 @@
     <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
 
   <div class="bg-white p-3 border-black border rounded-md">
-    <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2">
-      <span class="font-semibold">{{ language === 'es' ? 'Movimiento' : 'Move' }}</span>
-      <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
-      <span class="font-semibold">{{ language === 'es' ? 'Juego' : 'Game' }}</span>
-      <span class="font-semibold">{{ language === 'es' ? 'Tipo' : 'Type' }}</span>
-    </div>
 
     <!-- Fila de movimientos mediante tutor -->
     <div *ngFor="let pokeMove of filteredMovesByEgg" >
