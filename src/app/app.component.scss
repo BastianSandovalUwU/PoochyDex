@@ -14,15 +14,6 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.fixed {
-  position: fixed;
-}
-.top-4 {
-  top: 1rem;
-}
-.left-4 {
-  left: 1rem;
-}
 .p-2 {
   padding: 0.5rem;
 }
@@ -35,15 +26,12 @@
 .rounded-full {
   border-radius: 9999px;
 }
-.z-50 {
-  z-index: 50;
-}
 
 .fixed {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 50;
+  z-index: 1002;
 }
 
 /* Estilo en app-menu.component.css */
