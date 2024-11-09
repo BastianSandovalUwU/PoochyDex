@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { TranslatePokemonNamePipe } from './pipes/translate-pokemon-name.pipe';
 import { TranslateLocalizationMethodPipe } from './pipes/translate-localization-method.pipe';
 import { TranslateLocalizationNamePipe } from './pipes/translate-localization-name.pipe';
+import { UpButtonComponent } from './up-button/up-button.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { TranslateLocalizationNamePipe } from './pipes/translate-localization-na
     HyperlinkComponent,
     TranslatePokemonNamePipe,
     TranslateLocalizationMethodPipe,
-    TranslateLocalizationNamePipe
+    TranslateLocalizationNamePipe,
+    UpButtonComponent
   ],
   declarations: [
     MenuComponent,
@@ -48,7 +50,8 @@ import { TranslateLocalizationNamePipe } from './pipes/translate-localization-na
     HyperlinkComponent,
     TranslatePokemonNamePipe,
     TranslateLocalizationMethodPipe,
-    TranslateLocalizationNamePipe
+    TranslateLocalizationNamePipe,
+    UpButtonComponent
   ]
 })
 export class SharedModule { }
