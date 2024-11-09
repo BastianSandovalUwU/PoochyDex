@@ -6,30 +6,31 @@
     >
   </app-pokemon-info>
 
-  <!-- Sección de descripcion pokedex -->
-  <app-pokedex-entries [language]="language" [pokemonSpecie]="pokemonSpecie"></app-pokedex-entries>
+  <div *ngIf="!loading">
 
-  <!-- Sección de numeros de pokedex -->
-  <app-pokedex-numbers [language]="language" [pokemonSpecie]="pokemonSpecie"></app-pokedex-numbers>
+    <!-- Sección de descripcion pokedex -->
+    <app-pokedex-entries [language]="language" [pokemonSpecie]="pokemonSpecie"></app-pokedex-entries>
 
-  <!-- Sección Estadisticas pokémon -->
-  <app-pokemon-stats [language]="language" [pokemonSpecie]="pokemonSpecie" [pokemon]="pokemon"></app-pokemon-stats>
+    <!-- Sección de numeros de pokedex -->
+    <app-pokedex-numbers [language]="language" [pokemonSpecie]="pokemonSpecie"></app-pokedex-numbers>
 
-  <!-- Sección de cadena evolutiva -->
-  <app-chain-evolution [language]="language" [pokemonSpecie]="pokemonSpecie"></app-chain-evolution>
+    <!-- Sección Estadisticas pokémon -->
+    <app-pokemon-stats [language]="language" [pokemonSpecie]="pokemonSpecie" [pokemon]="pokemon"></app-pokemon-stats>
 
-  <!-- Sección de formas -->
-  <app-pokemon-varieties [language]="language" [pokemonSpecie]="pokemonSpecie" *ngIf="pokemonSpecie.varieties.length > 1"></app-pokemon-varieties>
+    <!-- Sección de cadena evolutiva -->
+    <app-chain-evolution [language]="language" [pokemonSpecie]="pokemonSpecie"></app-chain-evolution>
 
-  <!-- Sección de localización -->
-  <app-pokemon-localization [language]="language" [pokemonSpecie]="pokemonSpecie" [pokemon]="pokemon"></app-pokemon-localization>
+    <!-- Sección de formas -->
+    <app-pokemon-varieties [language]="language" [pokemonSpecie]="pokemonSpecie" *ngIf="pokemonSpecie.varieties.length > 1"></app-pokemon-varieties>
 
-  <!-- Sección de movimientos por nivel -->
-  <app-pokemon-moves [language]="language" [pokemonSpecie]="pokemonSpecie" [pokemon]="pokemon"></app-pokemon-moves>
+    <!-- Sección de localización -->
+    <app-pokemon-localization [language]="language" [pokemonSpecie]="pokemonSpecie" [pokemon]="pokemon"></app-pokemon-localization>
 
-  <!-- <div>
-    <app-pokeSprites [pokemon]="pokemon"></app-pokeSprites>
-  </div> -->
+    <!-- Sección de movimientos por nivel -->
+    <app-pokemon-moves [language]="language" [pokemonSpecie]="pokemonSpecie" [pokemon]="pokemon"></app-pokemon-moves>
+
+  </div>
+
 
 </div>
 

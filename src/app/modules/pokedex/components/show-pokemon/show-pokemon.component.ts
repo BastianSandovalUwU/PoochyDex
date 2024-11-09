@@ -24,11 +24,12 @@ export class ShowPokemonComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loading = true;
     this.getLanguage();
     this.activatedRoute.params.subscribe(({ name }) => {
-      this.pokemonName = name;
-      this.getPokemonByName(name);
+      if (name) {
+        this.pokemonName = name;
+        this.fetchPokemonData(name);
+      }
     });
   }
 
@@ -38,18 +39,36 @@ export class ShowPokemonComponent implements OnInit {
     });
   }
 
+  fetchPokemonData(name: string) {
+    this.loading = true;
+
+    this.getPokemonByName(name);
+  }
+
   getPokemonByName(name: string) {
-    this.pokeApiService.getPokemonByName(name).subscribe((pokeInfo) => {
-      this.pokemon = pokeInfo;
-      this.getPokemonSpecie(pokeInfo.species.name);
-    });
+    this.pokeApiService.getPokemonByName(name).subscribe(
+      (pokeInfo) => {
+        this.pokemon = pokeInfo;
+        this.getPokemonSpecie(pokeInfo.species.name);
+      },
+      (error) => {
+        console.error('Error al obtener el Pokémon:', error);
+        this.loading = false;
+      }
+    );
   }
 
   getPokemonSpecie(name: string) {
-    this.pokeApiService.getPokemonSpecieById(name).subscribe((specie) => {
-      this.pokemonSpecie = specie;
-      this.loading = false;
-    });
+    this.pokeApiService.getPokemonSpecieById(name).subscribe(
+      (specie) => {
+        this.pokemonSpecie = specie;
+        this.loading = false;
+      },
+      (error) => {
+        console.error('Error al obtener la especie del Pokémon:', error);
+        this.loading = false;
+      }
+    );
   }
 
 }
