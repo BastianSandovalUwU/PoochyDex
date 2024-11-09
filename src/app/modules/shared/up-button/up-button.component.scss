@@ -1,0 +1,18 @@
+#upButton,
+#downButton {
+  width: 60px;
+  height: 60px;
+  background: #11cc00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 40px; /* Ambos botones estarán en la misma posición */
+  left: 17px;
+  cursor: pointer;
+  border: 2px solid black;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 1000;
+}
