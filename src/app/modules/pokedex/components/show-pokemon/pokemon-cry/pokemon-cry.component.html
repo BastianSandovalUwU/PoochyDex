@@ -6,7 +6,7 @@
   <button *ngIf="isPlayingLatest" class="bg-red-300" mat-icon-button (click)="pauseAudio('latest')">
     <mat-icon>pause</mat-icon>
   </button>
-  <audio id="audioPlayerLatest" #audioPlayerLatest controls (ended)="audioEnded('latest')">
+  <audio id="audioPlayerLatest" #audioPlayerLatest (ended)="audioEnded('latest')">
     <source [src]="pokemon?.cries?.latest" type="audio/mpeg">
     Tu navegador no soporta el elemento de audio.
   </audio>
@@ -20,7 +20,7 @@
   <button *ngIf="isPlayingLegacy" class="bg-red-300" mat-icon-button (click)="pauseAudio('legacy')">
     <mat-icon>pause</mat-icon>
   </button>
-  <audio id="audioPlayerLegacy" #audioPlayerLegacy controls (ended)="audioEnded('legacy')">
+  <audio id="audioPlayerLegacy" #audioPlayerLegacy (ended)="audioEnded('legacy')">
     <source [src]="pokemon?.cries?.legacy" type="audio/mpeg">
     Tu navegador no soporta el elemento de audio.
   </audio>
