@@ -20,7 +20,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/ywbLr9d.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/RkK71cN.png"
+      iconUrl: "https://i.imgur.com/sjYDCHV.png"
     },
     number: 811,
     generationId: 8,
@@ -33,7 +33,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/xVR0FhE.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/sjYDCHV.png"
+      iconUrl: "https://i.imgur.com/1g1GPaP.png"
     },
     number: 812,
     generationId: 8,
@@ -46,7 +46,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/YLjFTNk.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/1g1GPaP.png"
+      iconUrl: "https://i.imgur.com/7Mn77MM.png"
     },
     number: 813,
     generationId: 8,
@@ -59,7 +59,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/mCKBaFH.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/7Mn77MM.png"
+      iconUrl: "https://i.imgur.com/BNqNbMi.png"
     },
     number: 814,
     generationId: 8,
@@ -72,7 +72,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/1JOqiS9.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/BNqNbMi.png"
+      iconUrl: "https://i.imgur.com/MYrTT6R.png"
     },
     number: 815,
     generationId: 8,
@@ -85,7 +85,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/AZylqY6.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/MYrTT6R.png"
+      iconUrl: "https://i.imgur.com/olMVTUj.png"
     },
     number: 816,
     generationId: 8,
@@ -98,7 +98,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/YTBnV1N.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/olMVTUj.png"
+      iconUrl: "https://i.imgur.com/D9Kipb9.png"
     },
     number: 817,
     generationId: 8,
@@ -111,7 +111,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/q6Qx9EI.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/D9Kipb9.png"
+      iconUrl: "https://i.imgur.com/4pZU9SL.png"
     },
     number: 818,
     generationId: 8,
@@ -124,7 +124,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/32x2nvp.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/4pZU9SL.png"
+      iconUrl: "https://i.imgur.com/RMxDSCn.png"
     },
     number: 819,
     generationId: 8,
@@ -137,7 +137,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/8f3QNxH.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/RMxDSCn.png"
+      iconUrl: "https://i.imgur.com/bkVTB3n.png"
     },
     number: 820,
     generationId: 8,
@@ -150,7 +150,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/Oc11nQ1.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/bkVTB3n.png"
+      iconUrl: "https://i.imgur.com/U95oIjA.png"
     },
     number: 821,
     generationId: 8,
@@ -163,7 +163,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/jzaBKod.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/U95oIjA.png"
+      iconUrl: "https://i.imgur.com/02BvvKU.png"
     },
     number: 822,
     generationId: 8,
@@ -176,7 +176,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/FfWuKme.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/02BvvKU.png"
+      iconUrl: "https://i.imgur.com/o8IOJyX.png"
     },
     number: 823,
     generationId: 8,
@@ -189,7 +189,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/QJGcy86.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/o8IOJyX.png"
+      iconUrl: "https://i.imgur.com/cm8Gsg7.png"
     },
     number: 824,
     generationId: 8,
@@ -202,7 +202,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/25TYV6G.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/cm8Gsg7.png"
+      iconUrl: "https://i.imgur.com/bzKHHke.png"
     },
     number: 825,
     generationId: 8,
@@ -215,7 +215,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/xjAdYEE.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/bzKHHke.png"
+      iconUrl: "https://i.imgur.com/mYDWNQ9.png"
     },
     number: 826,
     generationId: 8,
@@ -228,7 +228,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/PYCxIlf.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/mYDWNQ9.png"
+      iconUrl: "https://i.imgur.com/rttlHnp.png"
     },
     number: 827,
     generationId: 8,
@@ -241,7 +241,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/CgjjyOn.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/rttlHnp.png"
+      iconUrl: "https://i.imgur.com/c7ODqvN.png"
     },
     number: 828,
     generationId: 8,
@@ -254,7 +254,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/LlzOUsG.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/c7ODqvN.png"
+      iconUrl: "https://i.imgur.com/fHPntNd.png"
     },
     number: 829,
     generationId: 8,
@@ -267,7 +267,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/heAtZTr.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/fHPntNd.png"
+      iconUrl: "https://i.imgur.com/otyL4kJ.png"
     },
     number: 830,
     generationId: 8,
@@ -280,7 +280,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/YIEaYbu.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/otyL4kJ.png"
+      iconUrl: "https://i.imgur.com/yZaQYTu.png"
     },
     number: 831,
     generationId: 8,
@@ -293,7 +293,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/x3eL56t.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/yZaQYTu.png"
+      iconUrl: "https://i.imgur.com/w77n9Cn.png"
     },
     number: 832,
     generationId: 8,
@@ -306,7 +306,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/b8u2zOt.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/w77n9Cn.png"
+      iconUrl: "https://i.imgur.com/8DbS8Cd.png"
     },
     number: 833,
     generationId: 8,
@@ -319,7 +319,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/zgcZXzK.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/8DbS8Cd.png"
+      iconUrl: "https://i.imgur.com/3mZfdXX.png"
     },
     number: 834,
     generationId: 8,
@@ -332,7 +332,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/SYvuFjE.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/3mZfdXX.png"
+      iconUrl: "https://i.imgur.com/p9adhTr.png"
     },
     number: 835,
     generationId: 8,
@@ -345,7 +345,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/aVVpwCg.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/p9adhTr.png"
+      iconUrl: "https://i.imgur.com/yHVKHka.png"
     },
     number: 836,
     generationId: 8,
@@ -358,7 +358,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/0tBCVB9.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/yHVKHka.png"
+      iconUrl: "https://i.imgur.com/havIUOc.png"
     },
     number: 837,
     generationId: 8,
@@ -371,7 +371,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/78qaTOc.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/havIUOc.png"
+      iconUrl: "https://i.imgur.com/qxJfhvG.png"
     },
     number: 838,
     generationId: 8,
@@ -384,7 +384,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/R3NQewT.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/qxJfhvG.png"
+      iconUrl: "https://i.imgur.com/eQdzv3E.png"
     },
     number: 839,
     generationId: 8,
@@ -397,7 +397,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/2IDp4GP.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/eQdzv3E.png"
+      iconUrl: "https://i.imgur.com/j565BLd.png"
     },
     number: 840,
     generationId: 8,
@@ -410,7 +410,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/rcOUx7r.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/j565BLd.png"
+      iconUrl: "https://i.imgur.com/OkuDGU9.png"
     },
     number: 841,
     generationId: 8,
@@ -423,7 +423,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/6kwfaL6.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/OkuDGU9.png"
+      iconUrl: "https://i.imgur.com/smZdMs3.png"
     },
     number: 842,
     generationId: 8,
@@ -436,7 +436,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     sprites: {
       homeUrl: "https://i.imgur.com/ugqA6pF.png",
       homeShinyUrl: "",
-      iconUrl: "https://i.imgur.com/smZdMs3.png"
+      iconUrl: "https://i.imgur.com/RkK71cN.png"
     },
     number: 843,
     generationId: 8,
