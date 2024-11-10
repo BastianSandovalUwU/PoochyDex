@@ -17,8 +17,7 @@ export class PokemonCryComponent implements OnInit, OnChanges {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['pokemon'] && changes['pokemon'].currentValue) {
@@ -27,44 +26,55 @@ export class PokemonCryComponent implements OnInit, OnChanges {
   }
 
   updateAudioSource() {
-    if (this.audioPlayerLatest && this.audioPlayerLatest.nativeElement) {
-      this.audioPlayerLatest.nativeElement.pause();
-      this.audioPlayerLatest.nativeElement.load();
-      this.isPlayingLatest = false; // Reseteamos el estado a no reproducir
-    }
-    if (this.audioPlayerLegacy && this.audioPlayerLegacy.nativeElement) {
-      this.audioPlayerLegacy.nativeElement.pause();
-      this.audioPlayerLegacy.nativeElement.load();
-      this.isPlayingLegacy = false; // Reseteamos el estado a no reproducir
+    this.resetAudio(this.audioPlayerLatest);
+    this.resetAudio(this.audioPlayerLegacy);
+  }
+
+  private resetAudio(player: ElementRef<HTMLAudioElement>) {
+    if (player && player.nativeElement) {
+      player.nativeElement.pause();
+      player.nativeElement.currentTime = 0;
+      player.nativeElement.load();
     }
   }
 
   playAudio(player: string) {
-    if (player === 'latest' && this.audioPlayerLatest && this.audioPlayerLatest.nativeElement) {
-      this.audioPlayerLatest.nativeElement.play();
+    let audioElement: HTMLAudioElement;
+
+    if (player === 'latest' && this.audioPlayerLatest) {
+      audioElement = this.audioPlayerLatest.nativeElement;
       this.isPlayingLatest = true;
-    } else if (player === 'legacy' && this.audioPlayerLegacy && this.audioPlayerLegacy.nativeElement) {
-      this.audioPlayerLegacy.nativeElement.play();
+    } else if (player === 'legacy' && this.audioPlayerLegacy) {
+      audioElement = this.audioPlayerLegacy.nativeElement;
       this.isPlayingLegacy = true;
+    }
+
+    if (audioElement) {
+      audioElement.play().catch(() => {
+        this.resetPlayStatus(player);
+      });
     }
   }
 
   pauseAudio(player: string) {
-    if (player === 'latest' && this.audioPlayerLatest && this.audioPlayerLatest.nativeElement) {
+    if (player === 'latest' && this.audioPlayerLatest) {
       this.audioPlayerLatest.nativeElement.pause();
       this.isPlayingLatest = false;
-    } else if (player === 'legacy' && this.audioPlayerLegacy && this.audioPlayerLegacy.nativeElement) {
+    } else if (player === 'legacy' && this.audioPlayerLegacy) {
       this.audioPlayerLegacy.nativeElement.pause();
       this.isPlayingLegacy = false;
     }
   }
 
   audioEnded(player: string) {
+    this.resetPlayStatus(player);
+  }
+
+  private resetPlayStatus(player: string) {
     if (player === 'latest') {
       this.isPlayingLatest = false;
     } else if (player === 'legacy') {
       this.isPlayingLegacy = false;
     }
   }
-
 }
