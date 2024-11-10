@@ -24,7 +24,7 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   pokemonSprite: string;
   pokemonSpriteShiny: string;
 
-  // allSprites = sprite;
+  // allSprites = sprites;
   // allkanto = ALL_POKEMON_PALDEA;
   constructor(private helperService: HelperService,) { }
 
@@ -41,7 +41,7 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   //   const array = [];
   //   let i = 0;
   //   this.allkanto.forEach((poke) => {
-  //     poke.sprites.homeUrl = this.allSprites[i];
+  //     poke.sprites.iconUrl = this.allSprites[i];
   //     i += 1;
   //     array.push(poke);
   //   });
