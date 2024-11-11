@@ -387,7 +387,7 @@ export const ALL_POKEMON_KALOS: PokemonList[] = [
     generationId: 6
   },
   {
-    name: "aegislash",
+    name: "aegislash-shield",
     imageURL: "https://i.imgur.com/1MoHQgg.png",
     number: 681,
     sprites: {
@@ -756,7 +756,7 @@ export const ALL_POKEMON_KALOS: PokemonList[] = [
     generationId: 6
   },
   {
-    name: "pumpkaboo",
+    name: "pumpkaboo-average",
     imageURL: "https://i.imgur.com/B2P2MNF.png",
     number: 710,
     sprites: {
@@ -769,7 +769,7 @@ export const ALL_POKEMON_KALOS: PokemonList[] = [
     generationId: 6
   },
   {
-    name: "gourgeist",
+    name: "gourgeist-average",
     imageURL: "https://i.imgur.com/F4nVunP.png",
     number: 711,
     sprites: {

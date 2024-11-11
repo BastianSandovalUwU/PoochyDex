@@ -4,6 +4,7 @@ import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Pokemon } from '../../../../../../entities/pokemon.entity';
 import { PokemonSpecie } from '../../../../../../entities/pokemon-specie.entity';
 import { LanguageService } from 'app/modules/shared/services/language.service';
+import { HelperService } from 'app/modules/shared/services/helper.service';
 
 @Component({
   selector: 'app-show-pokemon',
@@ -17,9 +18,12 @@ export class ShowPokemonComponent implements OnInit {
   pokemon: Pokemon;
   pokemonSpecie: PokemonSpecie;
   loading: boolean = false;
+  pokemonSprite: string;
+  pokemonSpriteShiny: string;
 
   constructor(private pokeApiService: PokeApiService,
               private languageService: LanguageService,
+              private helperService: HelperService,
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -49,6 +53,8 @@ export class ShowPokemonComponent implements OnInit {
     this.pokeApiService.getPokemonByName(name).subscribe(
       (pokeInfo) => {
         this.pokemon = pokeInfo;
+        this.pokemonSprite = this.helperService.getPokemonSpriteImg(this.pokemon.name, "home");
+        this.pokemonSpriteShiny = this.helperService.getPokemonSpriteImg(this.pokemon.name, "homeShiny");
         this.getPokemonSpecie(pokeInfo.species.name);
       },
       (error) => {

@@ -132,7 +132,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
     generationId: 9
   },
   {
-    name: "oinkologne",
+    name: "oinkologne-male",
     imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/aB0lH8U.png",
@@ -249,7 +249,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
     generationId: 9
   },
   {
-    name: "maushold",
+    name: "maushold-family-of-four",
     imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/6wx1QlB.png",
@@ -327,7 +327,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
     generationId: 9
   },
   {
-    name: "squawkabilly",
+    name: "squawkabilly-green-plumage",
     imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/olCYHUU.png",
@@ -756,7 +756,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
     generationId: 9
   },
   {
-    name: "palafin",
+    name: "palafin-zero",
     imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/GmOVBVq.png",
@@ -938,7 +938,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
     generationId: 9
   },
   {
-    name: "tatsugiri",
+    name: "tatsugiri-curly",
     imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/p0AIUBR.png",
@@ -990,7 +990,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
     generationId: 9
   },
   {
-    name: "dudunsparce",
+    name: "dudunsparce-two-segment",
     imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/SVbuK1B.png",

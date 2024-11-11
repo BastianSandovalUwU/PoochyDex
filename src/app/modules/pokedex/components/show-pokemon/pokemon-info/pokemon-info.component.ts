@@ -13,6 +13,8 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   @Input() language: string;
   @Input() pokemon: Pokemon;
   @Input() pokemonSpecie: PokemonSpecie;
+  @Input() pokemonSprite: string;
+  @Input() pokemonSpriteShiny: string;
 
   backgroundColor: string = '';
   pokemontypes: { language: string, typeName: string }[][];
@@ -21,8 +23,6 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   showShiny: boolean = false;
   pokemonNameRomaji: Name;
   pokemonNameHirgana: Name;
-  pokemonSprite: string;
-  pokemonSpriteShiny: string;
 
   // allSprites = sprites;
   // allkanto = ALL_POKEMON_PALDEA;
@@ -30,8 +30,6 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     // this.insterSprites();
-    this.pokemonSprite = this.helperService.getPokemonSpriteImg(this.pokemon.name, "home");
-    this.pokemonSpriteShiny = this.helperService.getPokemonSpriteImg(this.pokemon.name, "homeShiny");
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.loadInfo();

@@ -249,7 +249,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     type2: "Ice"
   },
   {
-    name: "oricorio",
+    name: "oricorio-baile",
     imageURL: "https://i.imgur.com/zGPYUar.png",
     sprites: {
       homeShinyUrl: "",
@@ -301,7 +301,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     type2: null
   },
   {
-    name: "lycanroc",
+    name: "lycanroc-midday",
     imageURL: "https://i.imgur.com/7VNblVX.png",
     sprites: {
       homeShinyUrl: "",
@@ -314,7 +314,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     type2: null
   },
   {
-    name: "wishiwashi",
+    name: "wishiwashi-solo",
     imageURL: "https://i.imgur.com/0Y2i4Kb.png",
     sprites: {
       homeShinyUrl: "",
@@ -730,7 +730,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     type2: "Steel"
   },
   {
-    name: "mimikyu",
+    name: "mimikyu-disguised",
     imageURL: "https://i.imgur.com/CwU54eT.png",
     sprites: {
       homeShinyUrl: "",
