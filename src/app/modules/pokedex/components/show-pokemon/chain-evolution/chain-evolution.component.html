@@ -14,7 +14,7 @@
       </p>
       <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="evolutionChain.chain?.imageName"
            (click)="goToPokemonPage(evolutionChain.chain.species.name)"
-           [src]="evolutionChain.chain.imageName ">
+           [src]="evolutionChain.chain.imageName">
     </div>
     <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
       <div class="flex flex-col items-center evolution-step">
@@ -23,7 +23,7 @@
         </p>
         <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage?.imageName"
              (click)="goToPokemonPage(stage.species.name)"
-             [src]="stage.imageName">
+             [src]="pokemonSprite">
         <p *ngIf="stage.evolution_details[0]?.trigger">
           {{ stage.evolution_details[stage.evolution_details.length - 1]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
           <span *ngIf="stage.evolution_details[0]?.time_of_day">

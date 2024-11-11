@@ -525,7 +525,7 @@ export class HelperService {
     allPokemon = allPokemon.concat(this.allPokemonGmax, this.allPokemonMega, this.allPokemonMisc);
     const pokemon = allPokemon.filter(f => f.name === name)[0];
     if(pokemon === undefined) {
-      return null;
+      return "https://i.imgur.com/X83fxLz.png";
     }
     switch (option) {
       case "icon":

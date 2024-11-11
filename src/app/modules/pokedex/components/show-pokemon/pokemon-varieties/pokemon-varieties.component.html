@@ -8,7 +8,7 @@
   </div>
   <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="flex flex-wrap justify-center space-x-8 evolution-container" >
     <ng-container *ngFor="let variety of pokemonVarieties">
-      <div class="flex flex-col items-center evolution-step" *ngIf="variety.sprite">
+      <div class="flex flex-col items-center evolution-step">
         <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(variety.name)">
           {{ variety.name |translatePokemonName |replaceDash | titlecase }}
         </p>

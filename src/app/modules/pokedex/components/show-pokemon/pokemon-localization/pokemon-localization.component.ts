@@ -3,47 +3,8 @@ import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.enti
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
-import { Localization } from '../../../../../../../entities/localitzation.entity';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-
-interface Method {
-  name: string;
-  url: string;
-}
-
-interface EncounterDetail {
-  chance: number;
-  condition_values: any[];
-  max_level: number;
-  method: Method;
-  min_level: number;
-}
-
-interface LocationArea {
-  name: string;
-  url: string;
-}
-
-interface Version {
-  name: string;
-  url: string;
-}
-
-interface VersionDetail {
-  encounter_details: EncounterDetail[];
-  max_chance: number;
-  version: Version;
-}
-
-interface LocationData {
-  location_area: LocationArea;
-  version_details: VersionDetail[];
-}
-
-interface GroupedData {
-  versionName: string;
-  methods: { [methodName: string]: string[] };
-}
+import { GroupedData, LocationData } from '../../../../../../../entities/localization.entity';
 
 @Component({
   selector: 'app-pokemon-localization',
@@ -70,7 +31,6 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
   @Input() pokemonSpecie: PokemonSpecie;
   @Input() pokemon: Pokemon;
   backgroundColor: string = '';
-  data: LocationData[];
   groupedLocations: GroupedData[] = [];
   expandedVersions: { [key: string]: boolean } = {};
   expandedMethods: { [versionName: string]: { [methodName: string]: boolean } } = {};

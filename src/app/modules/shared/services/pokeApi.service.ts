@@ -8,10 +8,7 @@ import { PokemonSpecie } from '../../../../../entities/pokemon-specie.entity';
 import { MachineMove } from '../../../../../entities/machine-move.entity';
 import { DetailMove } from '../../../../../entities/moves.entity';
 import { PokemonAbility } from '../../../../../entities/pokemon-ability.entity';
-import { HelperService } from './helper.service';
 import { EvolutionChain } from '../../../../../entities/evolution-chain.entity';
-import { Localization } from '../../../../../entities/localitzation.entity';
-import { AllPokemon } from '../../../../../entities/common/const.interface';
 import { GameVersion } from '../../../../../entities/game-version.entity';
 import { GenerationInfo } from '../../../../../entities/generation.entity';
 

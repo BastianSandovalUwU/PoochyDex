@@ -65,7 +65,7 @@ export class PokemonVarietiesComponent implements OnInit, OnChanges {
       pokemonVarieties.push(pokeInfo);
     }
     this.pokemonVarieties = pokemonVarieties;
-
+    console.log(this.pokemonVarieties);
   }
 
   getPokemonColor() {

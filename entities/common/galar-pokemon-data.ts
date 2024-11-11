@@ -509,7 +509,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     type2: "Poison"
   },
   {
-    name: "toxtricity",
+    name: "toxtricity-amped",
     imageURL: "https://i.imgur.com/AUWAxkR.png",
     sprites: {
       homeUrl: "https://i.imgur.com/BZq8Klx.png",
@@ -847,7 +847,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     type2: ""
   },
   {
-    name: "eiscue",
+    name: "eiscue-ice",
     imageURL: "https://i.imgur.com/Lj2ZhJF.png",
     sprites: {
       homeUrl: "https://i.imgur.com/hITdaUK.png",
@@ -860,7 +860,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     type2: ""
   },
   {
-    name: "indeedee",
+    name: "indeedee-male",
     imageURL: "https://i.imgur.com/cEMYnvm.png",
     sprites: {
       homeUrl: "https://i.imgur.com/9yuFk4z.png",
@@ -873,7 +873,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     type2: "Normal"
   },
   {
-    name: "morpeko",
+    name: "morpeko-full-belly",
     imageURL: "https://i.imgur.com/AvrmzcL.png",
     sprites: {
       homeUrl: "https://i.imgur.com/NfcDB6N.png",
@@ -1068,7 +1068,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     type2: ""
   },
   {
-    name: "urshifu",
+    name: "urshifu-single-strike",
     imageURL: "https://i.imgur.com/Oj3rNKF.png",
     sprites: {
       homeUrl: "https://i.imgur.com/ExRsV1M.png",
@@ -1198,7 +1198,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     type2: "Normal"
   },
   {
-    name: "basculegion",
+    name: "basculegion-male",
     imageURL: "https://i.imgur.com/b6tczOv.png",
     sprites: {
       homeUrl: "https://i.imgur.com/eUDixkQ.png",
@@ -1237,7 +1237,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     type2: "Poison"
   },
   {
-    name: "enamorus",
+    name: "enamorus-incarnate",
     imageURL: "https://i.imgur.com/R9CQn7F.png",
     sprites: {
       homeUrl: "https://i.imgur.com/Hz8UHQC.png",
