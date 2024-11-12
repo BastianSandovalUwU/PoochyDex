@@ -29,8 +29,6 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class ChainEvolutionComponent implements OnInit, OnChanges {
   @Input() language: string;
   @Input() pokemonSpecie: PokemonSpecie;
-  @Input() pokemonSprite: string;
-  @Input() pokemonSpriteShiny: string;
 
   evolutionChain: EvolutionChain;
   backgroundColor: string = '';
@@ -73,24 +71,24 @@ export class ChainEvolutionComponent implements OnInit, OnChanges {
     if (evolution.chain.evolves_to && evolution.chain.evolves_to.length > 0) {
 
       evolution.chain.evolves_to.forEach((evolvesTo) => {
-        let pokemonName: string = '';
-        this.pokeApiService.getPokemonByName(evolution.chain.species.name).subscribe(
+        let pokemonName2: string = '';
+        this.pokeApiService.getPokemonByName(evolvesTo.species.name).subscribe(
           (pokeInfo) => {
-            pokemonName = pokeInfo.name;
-            evolvesTo.pokemonName = pokemonName;
-            const sprite = this.helperService.getPokemonSpriteImg(pokemonName, "home");
-            evolvesTo.imageName = sprite;
+            pokemonName2 = pokeInfo.name;
+            evolvesTo.pokemonName = pokemonName2;
+            const sprite2 = this.helperService.getPokemonSpriteImg(pokemonName2, "home");
+            evolvesTo.imageName = sprite2;
         });
 
         if(evolvesTo.evolves_to && evolvesTo.evolves_to.length > 0) {
             evolvesTo.evolves_to.forEach((evolvesTo2) => {
-            let pokemonName: string = '';
-            this.pokeApiService.getPokemonByName(evolution.chain.species.name).subscribe(
+            let pokemonName3: string = '';
+            this.pokeApiService.getPokemonByName(evolvesTo2.species.name).subscribe(
               (pokeInfo) => {
-                pokemonName = pokeInfo.name;
-                evolvesTo2.pokemonName = pokemonName;
-                const sprite = this.helperService.getPokemonSpriteImg(pokemonName, "home");
-                evolvesTo2.imageName = sprite;
+                pokemonName3 = pokeInfo.name;
+                evolvesTo2.pokemonName = pokemonName3;
+                const sprite3 = this.helperService.getPokemonSpriteImg(pokemonName3, "home");
+                evolvesTo2.imageName = sprite3;
             });
 
           })
@@ -101,10 +99,6 @@ export class ChainEvolutionComponent implements OnInit, OnChanges {
 
     let evolutionChain: EvolutionChain = evolution;
     this.evolutionChain = evolutionChain;
-  }
-
-  getPokemon(name: string) {
-
   }
 
   getPokemonColor() {
