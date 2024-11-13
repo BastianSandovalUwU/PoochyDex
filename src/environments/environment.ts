@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-
+  nodeJsApi: "https://poochy-dex-api-node-js.vercel.app",
   firebase: {
     apiKey: "AIzaSyA8guWAeGeVmq5I50LYS4Pax_oNUsgl6qY",
     authDomain: "poochy-dex.firebaseapp.com",
