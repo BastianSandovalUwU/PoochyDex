@@ -26,12 +26,10 @@ export class LoginComponent implements OnInit {
   }
 
 
-  onSubmit() {
+  login() {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
-      // Llama a tu servicio para autenticar al usuario
       this.authService.login(formData).subscribe(response => {
-        // Maneja la respuesta del login aquí
         console.log(response);
       });
     }
