@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routing';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LanguageService } from './modules/shared/services/language.service';
@@ -12,6 +12,8 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from 'environments/environment';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AuthorizationService } from './modules/shared/services/authorization.service';
+import { AuthInterceptor } from './modules/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
       registrationStrategy: 'registerWithDelay:5000'
     })
   ],
-  providers: [LanguageService],
+  providers: [LanguageService,
+    AuthorizationService,
+  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
