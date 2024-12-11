@@ -12,7 +12,7 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from 'environments/environment';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AuthorizationService } from './modules/shared/services/authorization.service';
+import { AuthService } from './modules/auth/services/auth.service';
 import { AuthInterceptor } from './modules/auth/auth.interceptor';
 
 @NgModule({
@@ -33,7 +33,7 @@ import { AuthInterceptor } from './modules/auth/auth.interceptor';
     })
   ],
   providers: [LanguageService,
-    AuthorizationService,
+    AuthService,
   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

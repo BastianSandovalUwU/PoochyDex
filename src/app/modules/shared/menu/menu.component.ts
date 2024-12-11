@@ -1,5 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { UserData } from '../../../../../entities/auth/user.entity';
 
 @Component({
   selector: 'app-menu',
@@ -9,6 +10,7 @@ import { NavigationEnd, Router } from '@angular/router';
 export class MenuComponent implements OnInit, OnChanges {
   @Input() isOpen = false;
   @Input() language: string;
+  @Input() userData: UserData | null;
   @Output() close = new EventEmitter<void>();
   url: string;
 

@@ -1,0 +1,16 @@
+<div class="m-4">
+
+  <h1 class="font-bold text-4xl text-center" *ngIf="useData">Bienvenido {{ useData.user }}</h1>
+  <h1 *ngIf="!useData">NO HAY USUARIO</h1>
+
+  <div class="flex justify-center">
+    <button mat-raised-button class="bg-blue-500 p-2 rounded-md text-white" (click)="logout()">Cerrar Sesión</button>
+  </div>
+
+</div>
+
+
+<ngx-loading
+[show]="loading"
+[config]="{ backdropBorderRadius: '3px' }"
+></ngx-loading>

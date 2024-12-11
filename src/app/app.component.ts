@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { LanguageService } from './modules/shared/services/language.service';
 import { SwUpdate } from '@angular/service-worker';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserData } from '../../entities/auth/user.entity';
+import { AuthService } from './modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +15,11 @@ export class AppComponent {
 
   isMenuOpen = false;
   currentLanguage: string;
+  currentUser: UserData | null;
 
   constructor(private languageService: LanguageService,
               private updates: SwUpdate,
+              private authService: AuthService,
               private snackBar: MatSnackBar
   ) {
     if (this.updates.isEnabled) {
@@ -30,6 +34,10 @@ export class AppComponent {
   ngOnInit() {
     this.languageService.currentLanguage$.subscribe(language => {
       this.currentLanguage = language;
+    });
+
+    this.authService.sessionData$.subscribe(user => {
+      this.currentUser = user;
     });
   }
 
