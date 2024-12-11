@@ -7,7 +7,7 @@
   </button>
 
   <!-- Menu Component -->
-  <app-menu [isOpen]="isMenuOpen" (close)="closeMenu()" [language]="currentLanguage"></app-menu>
+  <app-menu [isOpen]="isMenuOpen" (close)="closeMenu()" [language]="currentLanguage" [userData]="currentUser"></app-menu>
 
   <!-- Main Content -->
   <div class="flex-1 overflow-auto sm:pl-4" (click)="closeMenu()">
