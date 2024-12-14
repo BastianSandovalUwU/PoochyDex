@@ -24,6 +24,13 @@
         <p class="text-red-500" *ngIf="errorMessage">{{ errorMessage }}</p>
       </div>
 
+      <h1 class="text-md text-blue-500">
+        {{ language === 'es' ? "¿No tienes cuenta?" : "You don't have account?" }}
+        <span class="hover:cursor-pointer hover:text-blue-700" (click)="signUp()">
+          {{ language === 'es' ? 'Crea una aquí' : 'Create one here' }}
+          </span>
+      </h1>
+
       <div mat-dialog-actions align="end" class="mt-3">
         <button mat-raised-button class="bg-blue-500" (click)="login()">
           {{ language === 'es' ? 'Iniciar sesión' : 'Login'}}
