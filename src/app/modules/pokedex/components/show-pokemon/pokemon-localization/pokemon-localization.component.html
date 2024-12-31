@@ -1,6 +1,6 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black">
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-xl cursor-pointer" (click)="toggleFilters()">{{ language === 'es' ? 'Localización': 'Localization' }}</h1>
+    <h1 class="font-bold text-xl cursor-pointer hover:text-gray-800" (click)="toggleFilters()">{{ language === 'es' ? 'Localización': 'Localization' }}</h1>
     <button mat-icon-button (click)="toggleFilters()">
       <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
     </button>

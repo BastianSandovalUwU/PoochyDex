@@ -1,7 +1,7 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden">
 
   <div class="flex justify-between items-center">
-    <div (click)="toggleFilters('lvl')" class="cursor-pointer">
+    <div (click)="toggleFilters('lvl')" class="cursor-pointer hover:text-gray-800">
       <h1 class="font-bold text-xl" >{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
       <h1 class="font-bold">{{ language === 'es' ? 'Subiendo de nivel': 'By Level Up' }}</h1>
     </div>
@@ -133,7 +133,7 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden">
 
   <div class="flex justify-between items-center">
-    <div (click)="toggleFilters('mt')" class="cursor-pointer">
+    <div (click)="toggleFilters('mt')" class="cursor-pointer hover:text-gray-800">
       <h1 class="font-bold text-xl">{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
       <h1 class="font-bold">{{ language === 'es' ? 'Mediante Máquina Tecnica' : 'By Technical Machine' }}</h1>
     </div>
@@ -247,7 +247,7 @@
 
   <div class="flex justify-between items-center">
 
-    <div (click)="toggleFilters('tutor')" class="cursor-pointer">
+    <div (click)="toggleFilters('tutor')" class="cursor-pointer hover:text-gray-800">
       <h1 class="font-bold text-xl">{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
       <h1 class="font-bold">{{ language === 'es' ? 'Mediante tutor' : 'By Tutor' }}</h1>
     </div>
@@ -368,7 +368,7 @@
 
   <div class="flex justify-between items-center">
 
-    <div (click)="toggleFilters('egg')" class="cursor-pointer">
+    <div (click)="toggleFilters('egg')" class="cursor-pointer hover:text-gray-800">
       <h1 class="font-bold text-xl">{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
       <h1 class="font-bold">{{ language === 'es' ? 'Mediante Huevo' : 'By Egg' }}</h1>
     </div>
