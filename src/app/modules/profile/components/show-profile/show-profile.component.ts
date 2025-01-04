@@ -20,12 +20,13 @@ export class ShowProfileComponent implements OnInit {
               private languageService: LanguageService) { }
 
   ngOnInit() {
+    this.loading = true;
     this.useData = this.authService.getSessionData();
     this.getLanguage();
-    this.getUserConfigs();
     if(!this.useData) {
       console.log('no hay una sesión iniciada');
       this.router.navigate(['/auth/login']);
+      this.loading = false;
       return;
     }
   }
@@ -33,6 +34,7 @@ export class ShowProfileComponent implements OnInit {
   getLanguage() {
     this.languageService.currentLanguage$.subscribe(language => {
       this.language = language;
+      this.getUserConfigs();
     });
   }
 
@@ -40,6 +42,7 @@ export class ShowProfileComponent implements OnInit {
     this.authService.getUserConfigs().subscribe((data) => {
       this.authService.setUserConfigData(data.config);
       this.authService.setLanguage(data.config.language);
+      this.loading = false;
     });
   }
 
