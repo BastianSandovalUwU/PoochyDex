@@ -3,7 +3,6 @@ import { PokemonList } from "../pokemon-list.entity";
 export const ALL_POKEMON_PALDEA: PokemonList[] = [
   {
     name: "sprigatito",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/tAz6uv7.png",
       homeShinyUrl: "",
@@ -16,7 +15,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "floragato",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/KGh1EPg.png",
       homeShinyUrl: "",
@@ -29,7 +27,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "meowscarada",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/ndM7nS6.png",
       homeShinyUrl: "",
@@ -42,7 +39,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "fuecoco",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/sFj5IwM.png",
       homeShinyUrl: "",
@@ -55,7 +51,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "crocalor",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/HJj6fFm.png",
       homeShinyUrl: "",
@@ -68,7 +63,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "skeledirge",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/XGPiGpX.png",
       homeShinyUrl: "",
@@ -81,7 +75,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "quaxly",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/wMyeghA.png",
       homeShinyUrl: "",
@@ -94,7 +87,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "quaxwell",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/PvnqAD9.png",
       homeShinyUrl: "",
@@ -107,7 +99,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "quaquaval",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/JqDnIbb.png",
       homeShinyUrl: "",
@@ -120,7 +111,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "lechonk",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/ULnQqjJ.png",
       homeShinyUrl: "",
@@ -133,7 +123,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "oinkologne-male",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/aB0lH8U.png",
       homeShinyUrl: "",
@@ -146,7 +135,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "tarountula",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/iq3rCXA.png",
       homeShinyUrl: "",
@@ -159,7 +147,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "spidops",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/DQ3CKeZ.png",
       homeShinyUrl: "",
@@ -172,7 +159,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "nymble",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/OVERKHx.png",
       homeShinyUrl: "",
@@ -185,7 +171,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "lokix",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/H0OjORO.png",
       homeShinyUrl: "",
@@ -198,7 +183,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "pawmi",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/8hg9Bmd.png",
       homeShinyUrl: "",
@@ -211,7 +195,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "pawmo",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/TmwDJNS.png",
       homeShinyUrl: "",
@@ -224,7 +207,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "pawmot",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/Q7OyGmE.png",
       homeShinyUrl: "",
@@ -237,7 +219,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "tandemaus",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/NBWi7jc.png",
       homeShinyUrl: "",
@@ -250,7 +231,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "maushold-family-of-four",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/6wx1QlB.png",
       homeShinyUrl: "",
@@ -263,7 +243,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "fidough",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/o9QvSsi.png",
       homeShinyUrl: "",
@@ -276,7 +255,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "dachsbun",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/FCM6uUs.png",
       homeShinyUrl: "",
@@ -289,7 +267,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "smoliv",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/AXKc59W.png",
       homeShinyUrl: "",
@@ -302,7 +279,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "dolliv",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/du3doMu.png",
       homeShinyUrl: "",
@@ -315,7 +291,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "arboliva",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/6t6U5a5.png",
       homeShinyUrl: "",
@@ -328,7 +303,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "squawkabilly-green-plumage",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/olCYHUU.png",
       homeShinyUrl: "",
@@ -341,7 +315,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "nacli",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/DiLdqxK.png",
       homeShinyUrl: "",
@@ -354,7 +327,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "naclstack",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/btKgViu.png",
       homeShinyUrl: "",
@@ -367,7 +339,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "garganacl",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/v93D0WT.png",
       homeShinyUrl: "",
@@ -380,7 +351,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "charcadet",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/IAEwq6W.png",
       homeShinyUrl: "",
@@ -393,7 +363,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "armarouge",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/CW5L1zY.png",
       homeShinyUrl: "",
@@ -406,7 +375,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "ceruledge",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/Hz0NvM0.png",
       homeShinyUrl: "",
@@ -419,7 +387,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "tadbulb",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/oopTNb5.png",
       homeShinyUrl: "",
@@ -432,7 +399,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "bellibolt",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/hbhIZOR.png",
       homeShinyUrl: "",
@@ -445,7 +411,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "wattrel",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/KTW60zg.png",
       homeShinyUrl: "",
@@ -458,7 +423,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "kilowattrel",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/IEen5V0.png",
       homeShinyUrl: "",
@@ -471,7 +435,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "maschiff",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/wysG3hh.png",
       homeShinyUrl: "",
@@ -484,7 +447,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "mabosstiff",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/yyXnVrQ.png",
       homeShinyUrl: "",
@@ -497,7 +459,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "shroodle",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/eE2Qk83.png",
       homeShinyUrl: "",
@@ -510,7 +471,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "grafaiai",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/Eaddjwj.png",
       homeShinyUrl: "",
@@ -523,7 +483,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "bramblin",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/k4iLPTF.png",
       homeShinyUrl: "",
@@ -536,7 +495,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "brambleghast",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/yEybeM7.png",
       homeShinyUrl: "",
@@ -549,7 +507,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "toedscool",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/4ymNT6P.png",
       homeShinyUrl: "",
@@ -562,7 +519,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "toedscruel",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/c4fZ49m.png",
       homeShinyUrl: "",
@@ -575,7 +531,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "klawf",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/fcxW4cc.png",
       homeShinyUrl: "",
@@ -588,7 +543,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "capsakid",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/IO85l74.png",
       homeShinyUrl: "",
@@ -601,7 +555,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "scovillain",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/5yPsujE.png",
       homeShinyUrl: "",
@@ -614,7 +567,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "rellor",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/D7ullQR.png",
       homeShinyUrl: "",
@@ -627,7 +579,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "rabsca",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/dHy2YV9.png",
       homeShinyUrl: "",
@@ -640,7 +591,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "flittle",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/Y3BXZZj.png",
       homeShinyUrl: "",
@@ -653,7 +603,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "espathra",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/zspLKSi.png",
       homeShinyUrl: "",
@@ -666,7 +615,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "tinkatink",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/SVVXUTe.png",
       homeShinyUrl: "",
@@ -679,7 +627,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "tinkatuff",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/malLkiF.png",
       homeShinyUrl: "",
@@ -692,7 +639,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "tinkaton",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/b1l7CrY.png",
       homeShinyUrl: "",
@@ -705,7 +651,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "wiglett",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/3rxN6uO.png",
       homeShinyUrl: "",
@@ -718,7 +663,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "wugtrio",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/BdwoRNW.png",
       homeShinyUrl: "",
@@ -731,7 +675,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "bombirdier",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/lXiPBu9.png",
       homeShinyUrl: "",
@@ -744,7 +687,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "finizen",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/hQ9zm5Y.png",
       homeShinyUrl: "",
@@ -757,7 +699,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "palafin-zero",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/GmOVBVq.png",
       homeShinyUrl: "",
@@ -770,7 +711,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "varoom",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/kIokk3C.png",
       homeShinyUrl: "",
@@ -783,7 +723,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "revavroom",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/k9PSoIj.png",
       homeShinyUrl: "",
@@ -796,7 +735,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "cyclizar",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/TKCd35C.png",
       homeShinyUrl: "",
@@ -809,7 +747,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "orthworm",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/JWJ1ZNI.png",
       homeShinyUrl: "",
@@ -822,7 +759,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "glimmet",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/sguaKcI.png",
       homeShinyUrl: "",
@@ -835,7 +771,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "glimmora",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/rycc1M1.png",
       homeShinyUrl: "",
@@ -848,7 +783,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "greavard",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/wD1irMz.png",
       homeShinyUrl: "",
@@ -861,7 +795,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "houndstone",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/N2UJSAZ.png",
       homeShinyUrl: "",
@@ -874,7 +807,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "flamigo",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/W5NGsnM.png",
       homeShinyUrl: "",
@@ -887,7 +819,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "cetoddle",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/5hWKzwk.png",
       homeShinyUrl: "",
@@ -900,7 +831,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "cetitan",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/L8riPvS.png",
       homeShinyUrl: "",
@@ -913,7 +843,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "veluza",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/z2L3ZQj.png",
       homeShinyUrl: "",
@@ -926,7 +855,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "dondozo",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/quE3xbb.png",
       homeShinyUrl: "",
@@ -939,7 +867,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "tatsugiri-curly",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/p0AIUBR.png",
       homeShinyUrl: "",
@@ -952,7 +879,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "annihilape",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/qsw9Fmi.png",
       homeShinyUrl: "",
@@ -965,7 +891,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "clodsire",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/IMpNbRj.png",
       homeShinyUrl: "",
@@ -978,7 +903,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "farigiraf",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/7kJsA8w.png",
       homeShinyUrl: "",
@@ -991,7 +915,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "dudunsparce-two-segment",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/SVbuK1B.png",
       homeShinyUrl: "",
@@ -1004,7 +927,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "kingambit",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/7lFvNHy.png",
       homeShinyUrl: "",
@@ -1017,7 +939,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "great-tusk",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/owqZsCU.png",
       homeShinyUrl: "",
@@ -1030,7 +951,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "scream-tail",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/Q8Wx8P4.png",
       homeShinyUrl: "",
@@ -1043,7 +963,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "brute-bonnet",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/uDQ59Ro.png",
       homeShinyUrl: "",
@@ -1056,7 +975,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "flutter-mane",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/S1ZoK03.png",
       homeShinyUrl: "",
@@ -1069,7 +987,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "slither-wing",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/5exCbUz.png",
       homeShinyUrl: "",
@@ -1082,7 +999,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "sandy-shocks",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/ji27TAa.png",
       homeShinyUrl: "",
@@ -1095,7 +1011,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "iron-treads",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/P4Taavf.png",
       homeShinyUrl: "",
@@ -1108,7 +1023,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "iron-bundle",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/q1bepsu.png",
       homeShinyUrl: "",
@@ -1121,7 +1035,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "iron-hands",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/NQgqcIp.png",
       homeShinyUrl: "",
@@ -1134,7 +1047,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "iron-jugulis",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/p7P3WUw.png",
       homeShinyUrl: "",
@@ -1147,7 +1059,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "iron-moth",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/mMZAhsC.png",
       homeShinyUrl: "",
@@ -1160,7 +1071,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "iron-thorns",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/FYgwX4E.png",
       homeShinyUrl: "",
@@ -1173,7 +1083,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "frigibax",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/yz0y0Jh.png",
       homeShinyUrl: "",
@@ -1186,7 +1095,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "arctibax",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/omVM6oJ.png",
       homeShinyUrl: "",
@@ -1199,7 +1107,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "baxcalibur",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/lsD2Kpo.png",
       homeShinyUrl: "",
@@ -1212,7 +1119,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "gimmighoul",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/h9ABARS.png",
       homeShinyUrl: "",
@@ -1225,7 +1131,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "gholdengo",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/l5SlC4a.png",
       homeShinyUrl: "",
@@ -1238,7 +1143,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "wo-chien",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/I7lrwby.png",
       homeShinyUrl: "",
@@ -1251,7 +1155,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "chien-pao",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/DIeqf6N.png",
       homeShinyUrl: "",
@@ -1264,7 +1167,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "ting-lu",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/267bTh0.png",
       homeShinyUrl: "",
@@ -1277,7 +1179,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "chi-yu",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/pXhLZxb.png",
       homeShinyUrl: "",
@@ -1290,7 +1191,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "roaring-moon",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/FbL6Jqd.png",
       homeShinyUrl: "",
@@ -1303,7 +1203,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "iron-valiant",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/T6Tw530.png",
       homeShinyUrl: "",
@@ -1316,7 +1215,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "koraidon",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/H5ma6ns.png",
       homeShinyUrl: "",
@@ -1329,7 +1227,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "miraidon",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/HovTXtO.png",
       homeShinyUrl: "",
@@ -1342,7 +1239,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "walking-wake",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/MSPBssE.png",
       homeShinyUrl: "",
@@ -1355,7 +1251,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "iron-leaves",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/U22saYs.png",
       homeShinyUrl: "",
@@ -1368,7 +1263,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "dipplin",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/EUIlqJU.png",
       homeShinyUrl: "",
@@ -1381,7 +1275,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "poltchageist",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/ZvVEGE8.png",
       homeShinyUrl: "",
@@ -1394,7 +1287,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "sinistcha",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/erHGHid.png",
       homeShinyUrl: "",
@@ -1407,7 +1299,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "okidogi",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/md9kwFC.png",
       homeShinyUrl: "",
@@ -1420,7 +1311,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "munkidori",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/yNLyHKC.png",
       homeShinyUrl: "",
@@ -1433,7 +1323,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "fezandipiti",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/7OkMYfL.png",
       homeShinyUrl: "",
@@ -1446,7 +1335,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "ogerpon",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/zBqavKh.png",
       homeShinyUrl: "",
@@ -1459,7 +1347,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "archaludon",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/rzlwYRe.png",
       homeShinyUrl: "",
@@ -1472,7 +1359,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "hydrapple",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/FG39YR2.png",
       homeShinyUrl: "",
@@ -1485,7 +1371,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "gouging-fire",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/cEGbzTV.png",
       homeShinyUrl: "",
@@ -1498,7 +1383,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "raging-bolt",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/yqtUNKX.png",
       homeShinyUrl: "",
@@ -1511,7 +1395,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "iron-boulder",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/NFxKkcI.png",
       homeShinyUrl: "",
@@ -1524,7 +1407,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "iron-crown",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/bbYH7D2.png",
       homeShinyUrl: "",
@@ -1537,7 +1419,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "terapagos",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/2bFqrGw.png",
       homeShinyUrl: "",
@@ -1550,7 +1431,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
   },
   {
     name: "pecharunt",
-    imageURL: "",
     sprites: {
       homeUrl: "https://i.imgur.com/e6Rubmq.png",
       homeShinyUrl: "",

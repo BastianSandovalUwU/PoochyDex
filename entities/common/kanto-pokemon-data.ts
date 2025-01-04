@@ -3,7 +3,6 @@ import { PokemonList } from "../pokemon-list.entity";
 export const ALL_POKEMON_KANTO: PokemonList[] = [
   {
     name: "bulbasaur",
-    imageURL: "https://i.imgur.com/k5AzQ30.png",
     sprites: {
       homeUrl: "https://i.imgur.com/FrdlDNA.png",
       homeShinyUrl: "",
@@ -16,7 +15,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "ivysaur",
-    imageURL: "https://i.imgur.com/jvAy4Kq.png",
     sprites: {
       homeUrl: "https://i.imgur.com/3acqHlY.png",
       homeShinyUrl: "",
@@ -29,7 +27,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "venusaur",
-    imageURL: "https://i.imgur.com/xex1KYF.png",
     sprites: {
       homeUrl: "https://i.imgur.com/aQDH6fb.png",
       homeShinyUrl: "",
@@ -42,7 +39,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "charmander",
-    imageURL: "https://i.imgur.com/BlFwHrn.png",
     sprites: {
       homeUrl: "https://i.imgur.com/Fv7jH0f.png",
       homeShinyUrl: "",
@@ -54,7 +50,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "charmeleon",
-    imageURL: "https://i.imgur.com/f4i7yQy.png",
     sprites: {
       homeUrl: "https://i.imgur.com/mZI1wQX.png",
       homeShinyUrl: "",
@@ -66,7 +61,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "charizard",
-    imageURL: "https://i.imgur.com/OwWcj8M.png",
     sprites: {
       homeUrl: "https://i.imgur.com/RrUUT4r.png",
       homeShinyUrl: "",
@@ -79,7 +73,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "squirtle",
-    imageURL: "https://i.imgur.com/VvwhuYZ.png",
     sprites: {
       homeUrl: "https://i.imgur.com/UbGZLna.png",
       homeShinyUrl: "",
@@ -91,7 +84,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "wartortle",
-    imageURL: "https://i.imgur.com/dfW847l.png",
     sprites: {
       homeUrl: "https://i.imgur.com/nSduOlj.png",
       homeShinyUrl: "",
@@ -103,7 +95,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "blastoise",
-    imageURL: "https://i.imgur.com/4w6PdQr.png",
     sprites: {
       homeUrl: "https://i.imgur.com/X5X7EUc.png",
       homeShinyUrl: "",
@@ -115,7 +106,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "caterpie",
-    imageURL: "https://i.imgur.com/Y4bfBhJ.png",
     sprites: {
       homeUrl: "https://i.imgur.com/IJKnWpl.png",
       homeShinyUrl: "",
@@ -127,7 +117,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "metapod",
-    imageURL: "https://i.imgur.com/3uVfOiX.png",
     sprites: {
       homeUrl: "https://i.imgur.com/qN4RAlk.png",
       homeShinyUrl: "",
@@ -139,7 +128,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "butterfree",
-    imageURL: "https://i.imgur.com/Ws5EuYS.png",
     sprites: {
       homeUrl: "https://i.imgur.com/Elc2rSJ.png",
       homeShinyUrl: "",
@@ -152,7 +140,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "weedle",
-    imageURL: "https://i.imgur.com/cXgeH5E.png",
     sprites: {
       homeUrl: "https://i.imgur.com/IkooRli.png",
       homeShinyUrl: "",
@@ -165,7 +152,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "kakuna",
-    imageURL: "https://i.imgur.com/VIJyA7f.png",
     sprites: {
       homeUrl: "https://i.imgur.com/gMYezOB.png",
       homeShinyUrl: "",
@@ -178,7 +164,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "beedrill",
-    imageURL: "https://i.imgur.com/SvMxmlz.png",
     sprites: {
       homeUrl: "https://i.imgur.com/IIklnSa.png",
       homeShinyUrl: "",
@@ -191,7 +176,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "pidgey",
-    imageURL: "https://i.imgur.com/YnhKb9v.png",
     sprites: {
       homeUrl: "https://i.imgur.com/Xuc5CBI.png",
       homeShinyUrl: "",
@@ -204,7 +188,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "pidgeotto",
-    imageURL: "https://i.imgur.com/pILvbux.png",
     sprites: {
       homeUrl: "https://i.imgur.com/8XuPbdU.png",
       homeShinyUrl: "",
@@ -217,7 +200,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "pidgeot",
-    imageURL: "https://i.imgur.com/XjqODkQ.png",
     sprites: {
       homeUrl: "https://i.imgur.com/A7ic0Bt.png",
       homeShinyUrl: "",
@@ -230,7 +212,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "rattata",
-    imageURL: "https://i.imgur.com/t8aZn7E.png",
     sprites: {
       homeUrl: "https://i.imgur.com/kFKUMLM.png",
       homeShinyUrl: "",
@@ -242,7 +223,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "raticate",
-    imageURL: "https://i.imgur.com/S6fmNZG.png",
     sprites: {
       homeUrl: "https://i.imgur.com/7crSlAK.png",
       homeShinyUrl: "",
@@ -254,7 +234,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "spearow",
-    imageURL: "https://i.imgur.com/nv84RoT.png",
     sprites: {
       homeUrl: "https://i.imgur.com/weYOEuu.png",
       homeShinyUrl: "",
@@ -267,7 +246,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "fearow",
-    imageURL: "https://i.imgur.com/0ewqYRj.png",
     sprites: {
       homeUrl: "https://i.imgur.com/0aS8zYM.png",
       homeShinyUrl: "",
@@ -280,7 +258,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "ekans",
-    imageURL: "https://i.imgur.com/CP0GFL0.png",
     sprites: {
       homeUrl: "https://i.imgur.com/U79ak3m.png",
       homeShinyUrl: "",
@@ -292,7 +269,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "arbok",
-    imageURL: "https://i.imgur.com/0qFUyhC.png",
     sprites: {
       homeUrl: "https://i.imgur.com/kHAteaX.png",
       homeShinyUrl: "",
@@ -304,7 +280,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "pikachu",
-    imageURL: "https://i.imgur.com/n1I3byY.png",
     sprites: {
       homeUrl: "https://i.imgur.com/LIinyrq.png",
       homeShinyUrl: "",
@@ -316,7 +291,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "raichu",
-    imageURL: "https://i.imgur.com/HWIUqRq.png",
     sprites: {
       homeUrl: "https://i.imgur.com/L1FV9BT.png",
       homeShinyUrl: "",
@@ -328,7 +302,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "sandshrew",
-    imageURL: "https://i.imgur.com/IbeGiVR.png",
     sprites: {
       homeUrl: "https://i.imgur.com/mQDOLsc.png",
       homeShinyUrl: "",
@@ -340,7 +313,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "sandslash",
-    imageURL: "https://i.imgur.com/R1kzXvZ.png",
     sprites: {
       homeUrl: "https://i.imgur.com/1pU1L5u.png",
       homeShinyUrl: "",
@@ -352,7 +324,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "nidoran-f",
-    imageURL: "https://i.imgur.com/lIHwDWc.png",
     sprites: {
       homeUrl: "https://i.imgur.com/mkXkJ17.png",
       homeShinyUrl: "",
@@ -364,7 +335,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "nidorina",
-    imageURL: "https://i.imgur.com/zLFGnzv.png",
     sprites: {
       homeUrl: "https://i.imgur.com/toWMDrc.png",
       homeShinyUrl: "",
@@ -376,7 +346,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "nidoqueen",
-    imageURL: "https://i.imgur.com/VVAY3nQ.png",
     sprites: {
       homeUrl: "https://i.imgur.com/Enyfixb.png",
       homeShinyUrl: "",
@@ -388,7 +357,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "nidoran-m",
-    imageURL: "https://i.imgur.com/v9V9hmi.png",
     sprites: {
       homeUrl: "https://i.imgur.com/sY78HfI.png",
       homeShinyUrl: "",
@@ -401,7 +369,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "nidorino",
-    imageURL: "https://i.imgur.com/giSj8mU.png",
     sprites: {
       homeUrl: "https://i.imgur.com/3wyK6Aw.png",
       homeShinyUrl: "",
@@ -413,7 +380,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "nidoking",
-    imageURL: "https://i.imgur.com/CIJdMpX.png",
     sprites: {
       homeUrl: "https://i.imgur.com/NhRVo6x.png",
       homeShinyUrl: "",
@@ -425,7 +391,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "clefairy",
-    imageURL: "https://i.imgur.com/EU0wGr0.png",
     sprites: {
       homeUrl: "https://i.imgur.com/xkm5NKu.png",
       homeShinyUrl: "",
@@ -437,7 +402,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "clefable",
-    imageURL: "https://i.imgur.com/A9NuuUH.png",
     sprites: {
       homeUrl: "https://i.imgur.com/9xf8Mhg.png",
       homeShinyUrl: "",
@@ -449,7 +413,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "vulpix",
-    imageURL: "https://i.imgur.com/dKes538.png",
     sprites: {
       homeUrl: "https://i.imgur.com/GUgMU73.png",
       homeShinyUrl: "",
@@ -461,7 +424,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "ninetales",
-    imageURL: "https://i.imgur.com/XHrq9Ja.png",
     sprites: {
       homeUrl: "https://i.imgur.com/Yc86AUe.png",
       homeShinyUrl: "",
@@ -473,7 +435,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "jigglypuff",
-    imageURL: "https://i.imgur.com/V1gV7mS.png",
     sprites: {
       homeUrl: "https://i.imgur.com/iKRWSH8.png",
       homeShinyUrl: "",
@@ -485,7 +446,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "wigglytuff",
-    imageURL: "https://i.imgur.com/B9Djjc2.png",
     sprites: {
       homeUrl: "https://i.imgur.com/EFRSGWE.png",
       homeShinyUrl: "",
@@ -497,7 +457,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "zubat",
-    imageURL: "https://i.imgur.com/Y6u8jHD.png",
     sprites: {
       homeUrl: "https://i.imgur.com/EFqged6.png",
       homeShinyUrl: "",
@@ -510,7 +469,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "golbat",
-    imageURL: "https://i.imgur.com/WlCWmLh.png",
     sprites: {
       homeUrl: "https://i.imgur.com/hacNFpT.png",
       homeShinyUrl: "",
@@ -523,7 +481,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "oddish",
-    imageURL: "https://i.imgur.com/RALcgmw.png",
     sprites: {
       homeUrl: "https://i.imgur.com/GpbLDkL.png",
       homeShinyUrl: "",
@@ -536,7 +493,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "gloom",
-    imageURL: "https://i.imgur.com/zEvzExE.png",
     sprites: {
       homeUrl: "https://i.imgur.com/2xGjTC2.png",
       homeShinyUrl: "",
@@ -549,7 +505,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "vileplume",
-    imageURL: "https://i.imgur.com/8rLA2sz.png",
     sprites: {
       homeUrl: "https://i.imgur.com/kYAXELE.png",
       homeShinyUrl: "",
@@ -562,7 +517,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "paras",
-    imageURL: "https://i.imgur.com/RFbAZEF.png",
     sprites: {
       homeUrl: "https://i.imgur.com/ErbJgcf.png",
       homeShinyUrl: "",
@@ -575,7 +529,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "parasect",
-    imageURL: "https://i.imgur.com/oADYRJT.png",
     sprites: {
       homeUrl: "https://i.imgur.com/ABGEpqk.png",
       homeShinyUrl: "",
@@ -588,7 +541,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "venonat",
-    imageURL: "https://i.imgur.com/peBatEa.png",
     sprites: {
       homeUrl: "https://i.imgur.com/zwhGIHn.png",
       homeShinyUrl: "",
@@ -601,7 +553,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "venomoth",
-    imageURL: "https://i.imgur.com/BAawjfG.png",
     sprites: {
       homeUrl: "https://i.imgur.com/SZbfdc4.png",
       homeShinyUrl: "",
@@ -614,7 +565,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "diglett",
-    imageURL: "https://i.imgur.com/pVYUlCq.png",
     sprites: {
       homeUrl: "https://i.imgur.com/SOSB0QB.png",
       homeShinyUrl: "",
@@ -626,7 +576,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "dugtrio",
-    imageURL: "https://i.imgur.com/co2YYAO.png",
     sprites: {
       homeUrl: "https://i.imgur.com/llig8PU.png",
       homeShinyUrl: "",
@@ -638,7 +587,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "meowth",
-    imageURL: "https://i.imgur.com/B0GlTVb.png",
     sprites: {
       homeUrl: "https://i.imgur.com/rV96rDi.png",
       homeShinyUrl: "",
@@ -650,7 +598,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "persian",
-    imageURL: "https://i.imgur.com/AG61daq.png",
     sprites: {
       homeUrl: "https://i.imgur.com/6kqQlL6.png",
       homeShinyUrl: "",
@@ -662,7 +609,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "psyduck",
-    imageURL: "https://i.imgur.com/Suc0nSm.png",
     sprites: {
       homeUrl: "https://i.imgur.com/3I1rrcd.png",
       homeShinyUrl: "",
@@ -674,7 +620,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "golduck",
-    imageURL: "https://i.imgur.com/l2giWeP.png",
     sprites: {
       homeUrl: "https://i.imgur.com/Ky0ruIv.png",
       homeShinyUrl: "",
@@ -686,7 +631,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "mankey",
-    imageURL: "https://i.imgur.com/U5oUYFZ.png",
     sprites: {
       homeUrl: "https://i.imgur.com/RZHnpa9.png",
       homeShinyUrl: "",
@@ -698,7 +642,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "primeape",
-    imageURL: "https://i.imgur.com/RzUXj8G.png",
     sprites: {
       homeUrl: "https://i.imgur.com/YfarR5u.png",
       homeShinyUrl: "",
@@ -710,7 +653,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "growlithe",
-    imageURL: "https://i.imgur.com/ZVcEMNm.png",
     sprites: {
       homeUrl: "https://i.imgur.com/n3HKEBV.png",
       homeShinyUrl: "",
@@ -722,7 +664,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "arcanine",
-    imageURL: "https://i.imgur.com/RQdWmCf.png",
     sprites: {
       homeUrl: "https://i.imgur.com/r6xgwfB.png",
       homeShinyUrl: "",
@@ -734,7 +675,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "poliwag",
-    imageURL: "https://i.imgur.com/TBUdMU0.png",
     sprites: {
       homeUrl: "https://i.imgur.com/sgWRfFx.png",
       homeShinyUrl: "",
@@ -746,7 +686,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "poliwhirl",
-    imageURL: "https://i.imgur.com/J9eUoaN.png",
     sprites: {
       homeUrl: "https://i.imgur.com/ga8udh9.png",
       homeShinyUrl: "",
@@ -758,7 +697,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "poliwrath",
-    imageURL: "https://i.imgur.com/mChBxCC.png",
     sprites: {
       homeUrl: "https://i.imgur.com/rG9l7FI.png",
       homeShinyUrl: "",
@@ -771,7 +709,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "abra",
-    imageURL: "https://i.imgur.com/zdDE4qI.png",
     sprites: {
       homeUrl: "https://i.imgur.com/ibjaKYS.png",
       homeShinyUrl: "",
@@ -783,7 +720,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "kadabra",
-    imageURL: "https://i.imgur.com/QJ9oDWv.png",
     sprites: {
       homeUrl: "https://i.imgur.com/D59bZkr.png",
       homeShinyUrl: "",
@@ -795,7 +731,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "alakazam",
-    imageURL: "https://i.imgur.com/1Xgb52Y.png",
     sprites: {
       homeUrl: "https://i.imgur.com/mtbhlKz.png",
       homeShinyUrl: "",
@@ -807,7 +742,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "machop",
-    imageURL: "https://i.imgur.com/KlazZXh.png",
     sprites: {
       homeUrl: "https://i.imgur.com/7lFA4M4.png",
       homeShinyUrl: "",
@@ -819,7 +753,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "machoke",
-    imageURL: "https://i.imgur.com/mGuYgHt.png",
     sprites: {
       homeUrl: "https://i.imgur.com/TPj2wLs.png",
       homeShinyUrl: "",
@@ -831,7 +764,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "machamp",
-    imageURL: "https://i.imgur.com/q5MY8W1.png",
     sprites: {
       homeUrl: "https://i.imgur.com/ppyMVzM.png",
       homeShinyUrl: "",
@@ -843,7 +775,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "bellsprout",
-    imageURL: "https://i.imgur.com/MNjV8EL.png",
     sprites: {
       homeUrl: "https://i.imgur.com/EM48tHd.png",
       homeShinyUrl: "",
@@ -856,7 +787,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "weepinbell",
-    imageURL: "https://i.imgur.com/eaMimPh.png",
     sprites: {
       homeUrl: "https://i.imgur.com/cgmFnjx.png",
       homeShinyUrl: "",
@@ -869,7 +799,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "victreebel",
-    imageURL: "https://i.imgur.com/xngP5oA.png",
     sprites: {
       homeUrl: "https://i.imgur.com/d4CyQFX.png",
       homeShinyUrl: "",
@@ -882,7 +811,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "tentacool",
-    imageURL: "https://i.imgur.com/bNHVYVV.png",
     sprites: {
       homeUrl: "https://i.imgur.com/9Enwezj.png",
       homeShinyUrl: "",
@@ -895,7 +823,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "tentacruel",
-    imageURL: "https://i.imgur.com/liL0Z57.png",
     sprites: {
       homeUrl: "https://i.imgur.com/zB5Gtxw.png",
       homeShinyUrl: "",
@@ -908,7 +835,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "geodude",
-    imageURL: "https://i.imgur.com/fLcDxSX.png",
     sprites: {
       homeUrl: "https://i.imgur.com/J5tps8w.png",
       homeShinyUrl: "",
@@ -921,7 +847,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "graveler",
-    imageURL: "https://i.imgur.com/ViYlQqI.png",
     sprites: {
       homeUrl: "https://i.imgur.com/AkHlDn5.png",
       homeShinyUrl: "",
@@ -934,7 +859,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "golem",
-    imageURL: "https://i.imgur.com/Oa3CQ09.png",
     sprites: {
       homeUrl: "https://i.imgur.com/Yt6TFID.png",
       homeShinyUrl: "",
@@ -947,7 +871,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "ponyta",
-    imageURL: "https://i.imgur.com/K0Prm9P.png",
     sprites: {
       homeUrl: "https://i.imgur.com/vtvNh6Z.png",
       homeShinyUrl: "",
@@ -959,7 +882,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "rapidash",
-    imageURL: "https://i.imgur.com/zEy8Ft0.png",
     sprites: {
       homeUrl: "https://i.imgur.com/PCp99vb.png",
       homeShinyUrl: "",
@@ -971,7 +893,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "slowpoke",
-    imageURL: "https://i.imgur.com/P4iKca3.png",
     sprites: {
       homeUrl: "https://i.imgur.com/cFhsFyd.png",
       homeShinyUrl: "",
@@ -984,7 +905,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "slowbro",
-    imageURL: "https://i.imgur.com/eQ6ODuC.png",
     sprites: {
       homeUrl: "https://i.imgur.com/s46CzBM.png",
       homeShinyUrl: "",
@@ -997,7 +917,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "magnemite",
-    imageURL: "https://i.imgur.com/hEd3ca2.png",
     sprites: {
       homeUrl: "https://i.imgur.com/NXK3EE8.png",
       homeShinyUrl: "",
@@ -1010,7 +929,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "magneton",
-    imageURL: "https://i.imgur.com/eXyY0Uh.png",
     sprites: {
       homeUrl: "https://i.imgur.com/lADc28Q.png",
       homeShinyUrl: "",
@@ -1023,7 +941,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "farfetchd",
-    imageURL: "https://i.imgur.com/MsUWfdJ.png",
     sprites: {
       homeUrl: "https://i.imgur.com/Kh0KkTl.png",
       homeShinyUrl: "",
@@ -1036,7 +953,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "doduo",
-    imageURL: "https://i.imgur.com/zOf10Xe.png",
     sprites: {
       homeUrl: "https://i.imgur.com/fzOMxng.png",
       homeShinyUrl: "",
@@ -1049,7 +965,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "dodrio",
-    imageURL: "https://i.imgur.com/5NCQMwI.png",
     sprites: {
       homeUrl: "https://i.imgur.com/lmOMsDA.png",
       homeShinyUrl: "",
@@ -1062,7 +977,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "seel",
-    imageURL: "https://i.imgur.com/q2mqJRC.png",
     sprites: {
       homeUrl: "https://i.imgur.com/QKqDuid.png",
       homeShinyUrl: "",
@@ -1074,7 +988,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "dewgong",
-    imageURL: "https://i.imgur.com/MDjz7Kd.png",
     sprites: {
       homeUrl: "https://i.imgur.com/FV5l9Dk.png",
       homeShinyUrl: "",
@@ -1087,7 +1000,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "grimer",
-    imageURL: "https://i.imgur.com/w43428Q.png",
     sprites: {
       homeUrl: "https://i.imgur.com/Dqmz9XW.png",
       homeShinyUrl: "",
@@ -1099,7 +1011,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "muk",
-    imageURL: "https://i.imgur.com/BMLHNVR.png",
     sprites: {
       homeUrl: "https://i.imgur.com/pWzqRXN.png",
       homeShinyUrl: "",
@@ -1111,7 +1022,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "shellder",
-    imageURL: "https://i.imgur.com/a6HkAGe.png",
     sprites: {
       homeUrl: "https://i.imgur.com/XcYot8a.png",
       homeShinyUrl: "",
@@ -1124,7 +1034,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "cloyster",
-    imageURL: "https://i.imgur.com/kI4PPgk.png",
     sprites: {
       homeUrl: "https://i.imgur.com/Pnq2cpv.png",
       homeShinyUrl: "",
@@ -1137,7 +1046,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "gastly",
-    imageURL: "https://i.imgur.com/WqHYtpo.png",
     sprites: {
       homeUrl: "https://i.imgur.com/UZrlGK2.png",
       homeShinyUrl: "",
@@ -1150,7 +1058,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "haunter",
-    imageURL: "https://i.imgur.com/qNpVpgF.png",
     sprites: {
       homeUrl: "https://i.imgur.com/fMDHmrR.png",
       homeShinyUrl: "",
@@ -1163,7 +1070,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "gengar",
-    imageURL: "https://i.imgur.com/4xa5Bpi.png",
     sprites: {
       homeUrl: "https://i.imgur.com/NNSD8HK.png",
       homeShinyUrl: "",
@@ -1176,7 +1082,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "onix",
-    imageURL: "https://i.imgur.com/CepZLTu.png",
     sprites: {
       homeUrl: "https://i.imgur.com/5EF5HxP.png",
       homeShinyUrl: "",
@@ -1189,7 +1094,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "drowzee",
-    imageURL: "https://i.imgur.com/eHeO0P3.png",
     sprites: {
       homeUrl: "https://i.imgur.com/Q2QKXND.png",
       homeShinyUrl: "",
@@ -1201,7 +1105,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "hypno",
-    imageURL: "https://i.imgur.com/9JYOR97.png",
     sprites: {
       homeUrl: "https://i.imgur.com/UG9yUo7.png",
       homeShinyUrl: "",
@@ -1213,7 +1116,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "krabby",
-    imageURL: "https://i.imgur.com/4QU5SlH.png",
     sprites: {
       homeUrl: "https://i.imgur.com/SnWHtMD.png",
       homeShinyUrl: "",
@@ -1225,7 +1127,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "kingler",
-    imageURL: "https://i.imgur.com/4gBky3b.png",
     sprites: {
       homeUrl: "https://i.imgur.com/iFJqyqV.png",
       homeShinyUrl: "",
@@ -1237,7 +1138,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "voltorb",
-    imageURL: "https://i.imgur.com/ibULwX9.png",
     sprites: {
       homeUrl: "https://i.imgur.com/ezcJIfV.png",
       homeShinyUrl: "",
@@ -1249,9 +1149,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "electrode",
-    imageURL: "https://i.imgur.com/pTpzbKR.png",
     sprites: {
-      homeUrl: "https://i.imgur.com/IJKnWpl.png",
+      homeUrl: "https://i.imgur.com/dKC9LsC.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/pTpzbKR.png"
     },
@@ -1261,7 +1160,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "exeggcute",
-    imageURL: "https://i.imgur.com/a3ndwHG.png",
     sprites: {
       homeUrl: "https://i.imgur.com/cGhw48Z.png",
       homeShinyUrl: "",
@@ -1274,7 +1172,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "exeggutor",
-    imageURL: "https://i.imgur.com/So39q3D.png",
     sprites: {
       homeUrl: "https://i.imgur.com/Sb2d8ZA.png",
       homeShinyUrl: "",
@@ -1287,7 +1184,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "cubone",
-    imageURL: "https://i.imgur.com/OCdUoVz.png",
     sprites: {
       homeUrl: "https://i.imgur.com/mYlyFjc.png",
       homeShinyUrl: "",
@@ -1299,7 +1195,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "marowak",
-    imageURL: "https://i.imgur.com/ebN1NVL.png",
     sprites: {
       homeUrl: "https://i.imgur.com/JavT1OJ.png",
       homeShinyUrl: "",
@@ -1311,7 +1206,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "hitmonlee",
-    imageURL: "https://i.imgur.com/jekXp2x.png",
     sprites: {
       homeUrl: "https://i.imgur.com/rqJTg80.png",
       homeShinyUrl: "",
@@ -1323,7 +1217,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "hitmonchan",
-    imageURL: "https://i.imgur.com/4QPpfm6.png",
     sprites: {
       homeUrl: "https://i.imgur.com/VwJ67uF.png",
       homeShinyUrl: "",
@@ -1335,7 +1228,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "lickitung",
-    imageURL: "https://i.imgur.com/HvSpRiG.png",
     sprites: {
       homeUrl: "https://i.imgur.com/wRL8DpS.png",
       homeShinyUrl: "",
@@ -1347,7 +1239,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "koffing",
-    imageURL: "https://i.imgur.com/0S3tkco.png",
     sprites: {
       homeUrl: "https://i.imgur.com/iKWOTES.png",
       homeShinyUrl: "",
@@ -1359,7 +1250,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "weezing",
-    imageURL: "https://i.imgur.com/Oh87Byq.png",
     sprites: {
       homeUrl: "https://i.imgur.com/wTkZy93.png",
       homeShinyUrl: "",
@@ -1371,7 +1261,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "rhyhorn",
-    imageURL: "https://i.imgur.com/PHUhaZR.png",
     sprites: {
       homeUrl: "https://i.imgur.com/SB1bUmT.png",
       homeShinyUrl: "",
@@ -1383,7 +1272,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "rhydon",
-    imageURL: "https://i.imgur.com/fVCUgUX.png",
     sprites: {
       homeUrl: "https://i.imgur.com/RylKX1U.png",
       homeShinyUrl: "",
@@ -1395,7 +1283,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "chansey",
-    imageURL: "https://i.imgur.com/gvDrj7n.png",
     sprites: {
       homeUrl: "https://i.imgur.com/9dXCHGg.png",
       homeShinyUrl: "",
@@ -1407,7 +1294,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "tangela",
-    imageURL: "https://i.imgur.com/bKe5rct.png",
     sprites: {
       homeUrl: "https://i.imgur.com/IHgAIbb.png",
       homeShinyUrl: "",
@@ -1419,7 +1305,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "kangaskhan",
-    imageURL: "https://i.imgur.com/77JzsvI.png",
     sprites: {
       homeUrl: "https://i.imgur.com/7QBH7M2.png",
       homeShinyUrl: "",
@@ -1431,7 +1316,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "horsea",
-    imageURL: "https://i.imgur.com/5xamDHg.png",
     sprites: {
       homeUrl: "https://i.imgur.com/v2GOfYO.png",
       homeShinyUrl: "",
@@ -1443,7 +1327,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "seadra",
-    imageURL: "https://i.imgur.com/nfW19OC.png",
     sprites: {
       homeUrl: "https://i.imgur.com/NS7zXt1.png",
       homeShinyUrl: "",
@@ -1455,7 +1338,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "goldeen",
-    imageURL: "https://i.imgur.com/UvocQn1.png",
     sprites: {
       homeUrl: "https://i.imgur.com/BJNt3wV.png",
       homeShinyUrl: "",
@@ -1467,7 +1349,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "seaking",
-    imageURL: "https://i.imgur.com/ZsH4ovC.png",
     sprites: {
       homeUrl: "https://i.imgur.com/FsakIXl.png",
       homeShinyUrl: "",
@@ -1479,7 +1360,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "staryu",
-    imageURL: "https://i.imgur.com/BnEV7KJ.png",
     sprites: {
       homeUrl: "https://i.imgur.com/XJNosR9.png",
       homeShinyUrl: "",
@@ -1491,7 +1371,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "starmie",
-    imageURL: "https://i.imgur.com/ek9kZ7j.png",
     sprites: {
       homeUrl: "https://i.imgur.com/KmVlt8m.png",
       homeShinyUrl: "",
@@ -1504,7 +1383,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "mr-mime",
-    imageURL: "https://i.imgur.com/aQgnllt.png",
     sprites: {
       homeUrl: "https://i.imgur.com/Itd9her.png",
       homeShinyUrl: "",
@@ -1517,7 +1395,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "scyther",
-    imageURL: "https://i.imgur.com/2l3pBe2.png",
     sprites: {
       homeUrl: "https://i.imgur.com/cfxWbbV.png",
       homeShinyUrl: "",
@@ -1530,7 +1407,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "jynx",
-    imageURL: "https://i.imgur.com/0uopWyv.png",
     sprites: {
       homeUrl: "https://i.imgur.com/jmgnNEw.png",
       homeShinyUrl: "",
@@ -1543,7 +1419,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "electabuzz",
-    imageURL: "https://i.imgur.com/bi5XYc9.png",
     sprites: {
       homeUrl: "https://i.imgur.com/YudxQwg.png",
       homeShinyUrl: "",
@@ -1555,7 +1430,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "magmar",
-    imageURL: "https://i.imgur.com/IW0JpPL.png",
     sprites: {
       homeUrl: "https://i.imgur.com/K3C7AyP.png",
       homeShinyUrl: "",
@@ -1567,7 +1441,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "pinsir",
-    imageURL: "https://i.imgur.com/r4WjKXp.png",
     sprites: {
       homeUrl: "https://i.imgur.com/MlRThxb.png",
       homeShinyUrl: "",
@@ -1579,7 +1452,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "tauros",
-    imageURL: "https://i.imgur.com/gGOwzjq.png",
     sprites: {
       homeUrl: "https://i.imgur.com/KZLJaxQ.png",
       homeShinyUrl: "",
@@ -1591,7 +1463,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "magikarp",
-    imageURL: "https://i.imgur.com/I4nD26q.png",
     sprites: {
       homeUrl: "https://i.imgur.com/WlYhkXR.png",
       homeShinyUrl: "",
@@ -1603,7 +1474,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "gyarados",
-    imageURL: "https://i.imgur.com/PxzextX.png",
     sprites: {
       homeUrl: "https://i.imgur.com/9R0GBVl.png",
       homeShinyUrl: "",
@@ -1616,7 +1486,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "lapras",
-    imageURL: "https://i.imgur.com/xRFwQXQ.png",
     sprites: {
       homeUrl: "https://i.imgur.com/prKAgup.png",
       homeShinyUrl: "",
@@ -1629,7 +1498,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "ditto",
-    imageURL: "https://i.imgur.com/162ymEu.png",
     sprites: {
       homeUrl: "https://i.imgur.com/Gqbrk0h.png",
       homeShinyUrl: "",
@@ -1641,7 +1509,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "eevee",
-    imageURL: "https://i.imgur.com/GJwoZqm.png",
     sprites: {
       homeUrl: "https://i.imgur.com/mUVqqCn.png",
       homeShinyUrl: "",
@@ -1653,7 +1520,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "vaporeon",
-    imageURL: "https://i.imgur.com/mSdkHme.png",
     sprites: {
       homeUrl: "https://i.imgur.com/rhaLrb0.png",
       homeShinyUrl: "",
@@ -1665,7 +1531,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "jolteon",
-    imageURL: "https://i.imgur.com/Fx8WQeS.png",
     sprites: {
       homeUrl: "https://i.imgur.com/3K7yF9h.png",
       homeShinyUrl: "",
@@ -1677,7 +1542,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "flareon",
-    imageURL: "https://i.imgur.com/0qfid5a.png",
     sprites: {
       homeUrl: "https://i.imgur.com/A4Xgkyg.png",
       homeShinyUrl: "",
@@ -1689,7 +1553,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "porygon",
-    imageURL: "https://i.imgur.com/1Yo6cex.png",
     sprites: {
       homeUrl: "https://i.imgur.com/gxeT88D.png",
       homeShinyUrl: "",
@@ -1701,7 +1564,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "omanyte",
-    imageURL: "https://i.imgur.com/7KteIdr.png",
     sprites: {
       homeUrl: "https://i.imgur.com/CWwtPAa.png",
       homeShinyUrl: "",
@@ -1714,7 +1576,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "omastar",
-    imageURL: "https://i.imgur.com/vBxkfiq.png",
     sprites: {
       homeUrl: "https://i.imgur.com/FMvPf4x.png",
       homeShinyUrl: "",
@@ -1727,7 +1588,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "kabuto",
-    imageURL: "https://i.imgur.com/UYn0m0B.png",
     sprites: {
       homeUrl: "https://i.imgur.com/JzOypT4.png",
       homeShinyUrl: "",
@@ -1740,7 +1600,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "kabutops",
-    imageURL: "https://i.imgur.com/7OkOFYd.png",
     sprites: {
       homeUrl: "https://i.imgur.com/h1bOGUb.png",
       homeShinyUrl: "",
@@ -1753,7 +1612,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "aerodactyl",
-    imageURL: "https://i.imgur.com/Px1TTov.png",
     sprites: {
       homeUrl: "https://i.imgur.com/jglQRYU.png",
       homeShinyUrl: "",
@@ -1766,7 +1624,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "snorlax",
-    imageURL: "https://i.imgur.com/M8ZdxTU.png",
     sprites: {
       homeUrl: "https://i.imgur.com/LNWGkGz.png",
       homeShinyUrl: "",
@@ -1778,7 +1635,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "articuno",
-    imageURL: "https://i.imgur.com/gOqvA8R.png",
     sprites: {
       homeUrl: "https://i.imgur.com/rrBz4vC.png",
       homeShinyUrl: "",
@@ -1791,7 +1647,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "zapdos",
-    imageURL: "https://i.imgur.com/XjO0Xf3.png",
     sprites: {
       homeUrl: "https://i.imgur.com/G4Pjyqa.png",
       homeShinyUrl: "",
@@ -1804,7 +1659,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "moltres",
-    imageURL: "https://i.imgur.com/Viqizia.png",
     sprites: {
       homeUrl: "https://i.imgur.com/7jYCQtA.png",
       homeShinyUrl: "",
@@ -1817,7 +1671,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "dratini",
-    imageURL: "https://i.imgur.com/aRc2FlC.png",
     sprites: {
       homeUrl: "https://i.imgur.com/XSirNGq.png",
       homeShinyUrl: "",
@@ -1829,7 +1682,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "dragonair",
-    imageURL: "https://i.imgur.com/zJBLEhN.png",
     sprites: {
       homeUrl: "https://i.imgur.com/uGyTb6g.png",
       homeShinyUrl: "",
@@ -1841,7 +1693,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "dragonite",
-    imageURL: "https://i.imgur.com/ToWiAy7.png",
     sprites: {
       homeUrl: "https://i.imgur.com/TzLRQ6W.png",
       homeShinyUrl: "",
@@ -1854,7 +1705,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "mewtwo",
-    imageURL: "https://i.imgur.com/Ibaa0O0.png",
     sprites: {
       homeUrl: "https://i.imgur.com/9zcGv0z.png",
       homeShinyUrl: "",
@@ -1866,7 +1716,6 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
   },
   {
     name: "mew",
-    imageURL: "https://i.imgur.com/Xvwm1bG.png",
     sprites: {
       homeUrl: "https://i.imgur.com/mLJmVr1.png",
       homeShinyUrl: "",
