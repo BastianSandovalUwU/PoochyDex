@@ -1372,7 +1372,7 @@ export const ALL_POKEMON_UNOVA: PokemonList[] = [
   {
     name: "beartic",
     sprites: {
-      homeUrl: "https://i.imgur.com/IozNhmI.png",
+      homeUrl: "https://i.imgur.com/h8USXkY.png",
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/O2NJTrH.png"
     },
