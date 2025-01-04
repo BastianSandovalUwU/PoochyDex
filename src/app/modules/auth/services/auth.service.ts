@@ -30,6 +30,10 @@ export class AuthService {
     );
   }
 
+  getUserConfigs(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/api/userConfig/getUserConfig`);
+  }
+
   logout() {
     this.clearSessionData();
     this.router.navigate(['/auth/login']);
