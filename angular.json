@@ -77,10 +77,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "poochydex:build:production"
+              "buildTarget": "poochydex:build:production"
             },
             "development": {
-              "browserTarget": "poochydex:build:development"
+              "buildTarget": "poochydex:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -88,7 +88,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "poochydex:build"
+            "buildTarget": "poochydex:build"
           }
         },
         "test": {
