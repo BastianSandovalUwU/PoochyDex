@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu/menu.component';
 import { PokeSpritesComponent } from './pokeSprites/pokeSprites.component';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { FooterComponent } from './footer/footer.component';
 import { ReplaceDashPipe } from './pipes/replaceDash.pipe';
 import { SearchButtonComponent } from './search-button/search-button.component';
