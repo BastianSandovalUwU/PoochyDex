@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -12,10 +12,10 @@ export class SignUpComponent implements OnInit {
 
     errorMessage: string = '';
     language: string = 'es';
-    signUpForm: FormGroup;
+    signUpForm: UntypedFormGroup;
     loading: boolean = false;
 
-  constructor( private fb: FormBuilder,
+  constructor( private fb: UntypedFormBuilder,
       private authService: AuthService,
       private router: Router) {
 
