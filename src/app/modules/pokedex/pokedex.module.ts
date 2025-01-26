@@ -6,7 +6,7 @@ import { pokedexRoute } from './pokedex.routing';
 import { ShowPokemonComponent } from './components/show-pokemon/show-pokemon.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatIconModule } from '@angular/material/icon';
 import { PokemonInfoComponent } from './components/show-pokemon/pokemon-info/pokemon-info.component';
 import { PokedexEntriesComponent } from './components/show-pokemon/pokedex-entries/pokedex-entries.component';
@@ -21,7 +21,7 @@ import { PokedexComponent } from './pokedex.component';
 import { ShowPokedexComponent } from './components/show-pokedex/show-pokedex.component';
 import { PokedexDescriptionComponent } from './components/show-pokedex/pokedex-description/pokedex-description.component';
 import { PokemonLocalizationComponent } from './components/show-pokemon/pokemon-localization/pokemon-localization.component';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatLegacyTabsModule as MatTabsModule } from '@angular/material/legacy-tabs';
 import { NgxLoadingModule } from 'ngx-loading';
 @NgModule({
   imports: [

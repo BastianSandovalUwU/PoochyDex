@@ -6,7 +6,7 @@ import { FilteredByEgg, FilteredByMachine, FilteredByTutor, FilteredMove, Move, 
 import { Subject, catchError, forkJoin, of, takeUntil } from 'rxjs';
 import { ExtendedMachineDetail } from '../../../../../../../entities/machine-move.entity';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
-import { MatTabChangeEvent } from '@angular/material/tabs';
+import { MatLegacyTabChangeEvent as MatTabChangeEvent } from '@angular/material/legacy-tabs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({

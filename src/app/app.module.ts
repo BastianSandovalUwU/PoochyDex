@@ -11,7 +11,7 @@ import { LanguageService } from './modules/shared/services/language.service';
 import { NgxLoadingModule } from 'ngx-loading';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from 'environments/environment';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { AuthService } from './modules/auth/services/auth.service';
 import { AuthInterceptor } from './modules/auth/auth.interceptor';
 
