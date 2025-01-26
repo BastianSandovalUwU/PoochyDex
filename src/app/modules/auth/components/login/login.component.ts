@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/modules/auth/services/auth.service';
 
@@ -12,11 +12,11 @@ export class LoginComponent implements OnInit {
   password: string = '';
   errorMessage: string = '';
   language: string = 'es';
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
   loading: boolean = false;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private authService: AuthService,
     private router: Router
   ) {}
