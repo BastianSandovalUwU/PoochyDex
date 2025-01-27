@@ -47,6 +47,16 @@ export class AuthService {
     );
   }
 
+  updateUserConfig(userConfigData: UserConfigData): Observable<CreateUserConfigData> {
+    return this.http.put<CreateUserConfigData>(`${this.apiUrl}/api/userConfig/updateUserConfig`, userConfigData).pipe(
+      tap(response => {
+        localStorage.setItem('userConfigData', JSON.stringify({ language: userConfigData.language }));
+        localStorage.setItem('appLanguage', userConfigData.language);
+        this.setLanguage(userConfigData.language);
+      })
+    );
+  }
+
   logout() {
     this.clearSessionData();
     this.clearUserConfigData();
@@ -99,7 +109,13 @@ export class AuthService {
   setLanguageFromUser(language: string): void {
     if(this.isAuthenticated()) {
       try {
-        this.createUserConfig({ language: language }).subscribe();
+        const userConfigData = this.getUserConfigData();
+        userConfigData.language = language;
+        if(userConfigData) {
+          this.updateUserConfig(userConfigData).subscribe();
+        } else {
+          this.createUserConfig({ language: language }).subscribe();
+        }
       } catch (error) {
         console.error('Error setting language:', error);
       }
