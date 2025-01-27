@@ -4,6 +4,8 @@ import { SwUpdate } from '@angular/service-worker';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { UserData } from '../../entities/auth/user.entity';
 import { AuthService } from './modules/auth/services/auth.service';
+import { timer } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +21,7 @@ export class AppComponent {
 
   constructor(private languageService: LanguageService,
               private updates: SwUpdate,
+              private router: Router,
               private authService: AuthService,
               private snackBar: MatSnackBar
   ) {
@@ -39,6 +42,12 @@ export class AppComponent {
     this.authService.sessionData$.subscribe(user => {
       this.currentUser = user;
     });
+
+    // if(this.authService.isAuthenticated()) {
+    //   this.authService.userConfig$.subscribe(userConfig => {
+    //     this.currentLanguage = userConfig.language;
+    //   });
+    // }
   }
 
   toggleMenu() {
@@ -50,7 +59,7 @@ export class AppComponent {
   }
 
   setLanguage(language: string): void {
-    this.languageService.setLanguage(language);
+    this.authService.setLanguage(language);
   }
 
   showUpdateSnackBar() {
