@@ -1,28 +1,29 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { LanguageService } from './modules/shared/services/language.service';
 import { SwUpdate } from '@angular/service-worker';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { UserData } from '../../entities/auth/user.entity';
 import { AuthService } from './modules/auth/services/auth.service';
-import { timer } from 'rxjs';
-import { Router } from '@angular/router';
+import { LoadingService } from './modules/shared/services/loading.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'poochydex';
 
   isMenuOpen = false;
   currentLanguage: string;
   currentUser: UserData | null;
+  loading = false;
 
   constructor(private languageService: LanguageService,
               private updates: SwUpdate,
-              private router: Router,
+              private loadingService: LoadingService,
               private authService: AuthService,
+              private cdr: ChangeDetectorRef,
               private snackBar: MatSnackBar
   ) {
     if (this.updates.isEnabled) {
@@ -34,6 +35,10 @@ export class AppComponent {
     }
   }
 
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
+  }
+
   ngOnInit() {
     this.languageService.currentLanguage$.subscribe(language => {
       this.currentLanguage = language;
@@ -41,6 +46,16 @@ export class AppComponent {
 
     this.authService.sessionData$.subscribe(user => {
       this.currentUser = user;
+    });
+
+    this.loadingService.loading$.subscribe((loading) => {
+      this.loading = loading;
+
+        setTimeout(() => {
+          this.cdr.detectChanges();
+        }, 100);
+
+        this.cdr.detectChanges()
     });
 
     // if(this.authService.isAuthenticated()) {
