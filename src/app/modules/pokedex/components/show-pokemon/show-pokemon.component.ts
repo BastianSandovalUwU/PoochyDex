@@ -5,6 +5,7 @@ import { Pokemon } from '../../../../../../entities/pokemon.entity';
 import { PokemonSpecie } from '../../../../../../entities/pokemon-specie.entity';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
+import { LoadingService } from 'app/modules/shared/services/loading.service';
 
 @Component({
   selector: 'app-show-pokemon',
@@ -24,6 +25,7 @@ export class ShowPokemonComponent implements OnInit {
   constructor(private pokeApiService: PokeApiService,
               private languageService: LanguageService,
               private helperService: HelperService,
+              private loadingService: LoadingService,
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -44,8 +46,8 @@ export class ShowPokemonComponent implements OnInit {
   }
 
   fetchPokemonData(name: string) {
+    this.loadingService.show();
     this.loading = true;
-
     this.getPokemonByName(name);
   }
 
@@ -59,20 +61,30 @@ export class ShowPokemonComponent implements OnInit {
       },
       (error) => {
         console.error('Error al obtener el Pokémon:', error);
+        this.loadingService.hide();
         this.loading = false;
       }
     );
   }
 
   getPokemonSpecie(name: string) {
+    this.loadingService.show();
+    this.loading = true;
+
     this.pokeApiService.getPokemonSpecieById(name).subscribe(
       (specie) => {
         this.pokemonSpecie = specie;
-        this.loading = false;
+        setTimeout(() => {
+          this.loadingService.hide();
+          this.loading = false;
+        }, 3500);
       },
       (error) => {
         console.error('Error al obtener la especie del Pokémon:', error);
-        this.loading = false;
+        setTimeout(() => {
+          this.loadingService.hide();
+          this.loading = false;
+        }, 3500);
       }
     );
   }

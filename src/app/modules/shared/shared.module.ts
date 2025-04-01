@@ -16,6 +16,7 @@ import { TranslatePokemonNamePipe } from './pipes/translate-pokemon-name.pipe';
 import { TranslateLocalizationMethodPipe } from './pipes/translate-localization-method.pipe';
 import { TranslateLocalizationNamePipe } from './pipes/translate-localization-name.pipe';
 import { UpButtonComponent } from './up-button/up-button.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { UpButtonComponent } from './up-button/up-button.component';
     TranslatePokemonNamePipe,
     TranslateLocalizationMethodPipe,
     TranslateLocalizationNamePipe,
-    UpButtonComponent
+    UpButtonComponent,
+    LoadingSpinnerComponent
   ],
   declarations: [
     MenuComponent,
@@ -51,7 +53,8 @@ import { UpButtonComponent } from './up-button/up-button.component';
     TranslatePokemonNamePipe,
     TranslateLocalizationMethodPipe,
     TranslateLocalizationNamePipe,
-    UpButtonComponent
+    UpButtonComponent,
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule { }

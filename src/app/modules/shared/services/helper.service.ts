@@ -537,18 +537,19 @@ export class HelperService {
     let allPokemon = this.allPokemon;
     allPokemon = allPokemon.concat(this.allPokemonGmax, this.allPokemonMega, this.allPokemonMisc);
     const pokemon = allPokemon.filter(f => f.name === name)[0];
+    const placeholder = "https://i.imgur.com/X83fxLz.png"; //psyduck placeholder image
     if(pokemon === undefined) {
-      return "https://i.imgur.com/X83fxLz.png";
+      return placeholder;
     }
     switch (option) {
       case "icon":
-        return pokemon.sprites.iconUrl != "" ? pokemon.sprites.iconUrl : "https://i.imgur.com/X83fxLz.png"; //psyduck placeholder image
+        return pokemon.sprites.iconUrl ? pokemon.sprites.iconUrl : placeholder; //psyduck placeholder image
       case "home":
-        return pokemon.sprites.homeUrl != "" ? pokemon.sprites.homeUrl : "https://i.imgur.com/X83fxLz.png"; //psyduck placeholder image
+        return pokemon.sprites.homeUrl ? pokemon.sprites.homeUrl : placeholder; //psyduck placeholder image
       case "homeShiny":
-        return pokemon.sprites.homeShinyUrl != "" ? pokemon.sprites.homeShinyUrl : "https://i.imgur.com/X83fxLz.png"; //psyduck placeholder image
+        return pokemon.sprites.homeShinyUrl ? pokemon.sprites.homeShinyUrl : placeholder; //psyduck placeholder image
       default:
-        return "https://i.imgur.com/X83fxLz.png" //psyduck placeholder image
+        return placeholder //psyduck placeholder image
     }
   }
 
