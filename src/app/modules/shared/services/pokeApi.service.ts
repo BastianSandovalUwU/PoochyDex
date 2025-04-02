@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Pokemon } from '../../../../../entities/pokemon.entity';
+import { Pokemon, PokemonFull } from '../../../../../entities/pokemon.entity';
 import { PokemonTypes } from '../../../../../entities/types.entity';
 import { PokemonSpecie } from '../../../../../entities/pokemon-specie.entity';
 import { MachineMove } from '../../../../../entities/machine-move.entity';
-import { DetailMove } from '../../../../../entities/moves.entity';
+import { DetailMove, Move } from '../../../../../entities/moves.entity';
 import { PokemonAbility } from '../../../../../entities/pokemon-ability.entity';
 import { EvolutionChain } from '../../../../../entities/evolution-chain.entity';
 import { GameVersion } from '../../../../../entities/game-version.entity';
@@ -16,46 +16,189 @@ import { GenerationInfo } from '../../../../../entities/generation.entity';
   providedIn: 'root'
 })
 export class PokeApiService {
-  private movementsCache = new Map<string, any>();
-  private pokemonListcache = new Map<string, any>();
+  private readonly POKEMON_CACHE_KEY = 'pokemon_cache';
+  private readonly MOVES_CACHE_KEY = 'moves_cache';
+  private readonly MAX_CACHE_SIZE = 2000; // Número máximo de Pokémon en caché
+  private readonly MAX_MOVES_CACHE_SIZE = 2000; // Número máximo de movimientos en caché
 
   apiUrl = 'https://pokeapi.co/api/v2'
 
   constructor(private http: HttpClient) { }
+
+  private convertToLitePokemon(pokemon: PokemonFull): Pokemon {
+    return {
+      id: pokemon.id,
+      name: pokemon.name,
+      types: pokemon.types,
+      stats: pokemon.stats,
+      abilities: pokemon.abilities,
+      height: pokemon.height,
+      weight: pokemon.weight,
+      species: pokemon.species,
+      is_default: pokemon.is_default,
+      cries: pokemon.cries
+    };
+  }
+
+  private getPokemonFromCache(name: string): Pokemon | null {
+    try {
+      const cache = localStorage.getItem(this.POKEMON_CACHE_KEY);
+      if (cache) {
+        const pokemonCache = JSON.parse(cache) as { [key: string]: Pokemon };
+        // Buscar por nombre en los valores del caché
+        return Object.values(pokemonCache).find(pokemon =>
+          pokemon.name.toLowerCase() === name.toLowerCase()
+        ) || null;
+      }
+      return null;
+    } catch (error) {
+      console.error('Error al leer el caché de Pokémon:', error);
+      return null;
+    }
+  }
+
+  private setPokemonInCache(name: string, pokemon: PokemonFull): void {
+    try {
+      const cache = localStorage.getItem(this.POKEMON_CACHE_KEY);
+      let pokemonCache = cache ? JSON.parse(cache) : {};
+
+      // Si el caché está lleno, eliminar el Pokémon más antiguo
+      const cacheKeys = Object.keys(pokemonCache);
+      if (cacheKeys.length >= this.MAX_CACHE_SIZE) {
+        delete pokemonCache[cacheKeys[0]];
+      }
+
+      // Convertir a versión lite antes de guardar y usar el ID como clave
+      const litePokemon = this.convertToLitePokemon(pokemon);
+      pokemonCache[pokemon.id] = litePokemon;
+      localStorage.setItem(this.POKEMON_CACHE_KEY, JSON.stringify(pokemonCache));
+    } catch (error) {
+      console.error('Error al escribir en el caché de Pokémon:', error);
+      try {
+        localStorage.removeItem(this.POKEMON_CACHE_KEY);
+        const pokemonCache = { [pokemon.id]: this.convertToLitePokemon(pokemon) };
+        localStorage.setItem(this.POKEMON_CACHE_KEY, JSON.stringify(pokemonCache));
+      } catch (retryError) {
+        console.error('Error al limpiar y reescribir el caché de Pokémon:', retryError);
+      }
+    }
+  }
+
+  private getMovesFromCache(pokemonId: string): Move[] | null {
+    try {
+      const cache = localStorage.getItem(this.MOVES_CACHE_KEY);
+      if (cache) {
+        const movesCache = JSON.parse(cache);
+        return movesCache[pokemonId] || null;
+      }
+      return null;
+    } catch (error) {
+      console.error('Error al leer el caché de movimientos:', error);
+      return null;
+    }
+  }
+
+  private setMovesInCache(pokemonId: string, moves: Move[]): void {
+    try {
+      const cache = localStorage.getItem(this.MOVES_CACHE_KEY);
+      let movesCache = cache ? JSON.parse(cache) : {};
+
+      // Si el caché está lleno, eliminar los movimientos más antiguos
+      const cacheKeys = Object.keys(movesCache);
+      if (cacheKeys.length >= this.MAX_MOVES_CACHE_SIZE) {
+        // Eliminar los primeros 10 movimientos más antiguos
+        for (let i = 0; i < 10; i++) {
+          delete movesCache[cacheKeys[i]];
+        }
+      }
+
+      movesCache[pokemonId] = moves;
+      localStorage.setItem(this.MOVES_CACHE_KEY, JSON.stringify(movesCache));
+    } catch (error) {
+      console.error('Error al escribir en el caché de movimientos:', error);
+      try {
+        localStorage.removeItem(this.MOVES_CACHE_KEY);
+        const movesCache = { [pokemonId]: moves };
+        localStorage.setItem(this.MOVES_CACHE_KEY, JSON.stringify(movesCache));
+      } catch (retryError) {
+        console.error('Error al limpiar y reescribir el caché de movimientos:', retryError);
+      }
+    }
+  }
+
+  getPokemonMoves(pokemonId: string): Observable<Move[]> {
+    const cachedMoves = this.getMovesFromCache(pokemonId);
+    if (cachedMoves) {
+      return of(cachedMoves);
+    }
+
+    const url = `${this.apiUrl}/pokemon/${pokemonId}/`;
+    return this.http.get<PokemonFull>(url).pipe(
+      map(pokemon => {
+        const moves = pokemon.moves;
+        this.setMovesInCache(pokemonId, moves);
+        return moves;
+      }),
+      catchError(error => {
+        console.error('Error al obtener los movimientos del Pokémon:', error);
+        return throwError(() => error);
+      })
+    );
+  }
 
   getAllPokemon(): Observable<any> {
     const url = `${this.apiUrl}/pokemon/?limit=1302`;
     return this.http.get<any>(url).pipe(
       catchError(error => {
         console.error('Error al obtener los pokémon:', error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
 
   getPokemonByName(name: string): Observable<Pokemon> {
-    if (this.pokemonListcache.has(name)) {
-      return of(this.pokemonListcache.get(name));
+    const cachedPokemon = this.getPokemonFromCache(name);
+    if (cachedPokemon) {
+      return of(cachedPokemon);
     }
     const url = `${this.apiUrl}/pokemon/${name}/`;
-    return this.http.get<Pokemon>(url).pipe(
+    return this.http.get<PokemonFull>(url).pipe(
       catchError(error => {
         console.error('Error al obtener el pokémon:', name, error);
-        return throwError(error);
+        return throwError(() => error);
       }),
       map(response => {
-        this.pokemonListcache.set(name, response);
-        return response;
+        this.setPokemonInCache(name, response);
+        return this.convertToLitePokemon(response);
+      })
+    );
+  }
+
+  getPokemonById(id: number): Observable<Pokemon> {
+    const cachedPokemon = this.getPokemonFromCache(id.toString());
+    if (cachedPokemon) {
+      return of(cachedPokemon);
+    }
+    const url = `${this.apiUrl}/pokemon/${id}/`;
+    return this.http.get<PokemonFull>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener el pokémon:', id, error);
+        return throwError(() => error);
+      }),
+      map(response => {
+        this.setPokemonInCache(id.toString(), response);
+        return this.convertToLitePokemon(response);
       })
     );
   }
 
   getPokemonByUrl(url: string): Observable<Pokemon> {
-    return this.http.get<Pokemon>(url).pipe(
+    return this.http.get<PokemonFull>(url).pipe(
       catchError(error => {
         console.error('Error al obtener el pokémon:', error);
-        return throwError(error);
-      })
+        return throwError(() => error);
+      }),
+      map(response => this.convertToLitePokemon(response))
     );
   }
 
@@ -64,7 +207,7 @@ export class PokeApiService {
     return this.http.get<PokemonSpecie>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la especie pokémon:', id, error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -72,7 +215,7 @@ export class PokeApiService {
     return this.http.get<PokemonSpecie>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la especie pokémon:', error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -82,7 +225,7 @@ export class PokeApiService {
     return this.http.get<any>(url).pipe(
       catchError(error => {
         console.error('Error al obtener los pokémon de la generacion número:', generationNumber, error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -92,7 +235,7 @@ export class PokeApiService {
     return this.http.get<PokemonTypes>(url).pipe(
       catchError(error => {
         console.error('Error al obtener el tipo:', typeName, error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -101,42 +244,25 @@ export class PokeApiService {
     return this.http.get<any>(url).pipe(
       catchError(error => {
         console.error('Error al obtener el lenguaje:', error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
 
-  // getMoveByUrl(url: string, name: string, gameName: string): Observable<DetailMove> {
-  //   return this.http.get<DetailMove>(url).pipe(
-  //     catchError(error => {
-  //       // Devolver un objeto placeholder en lugar de lanzar un error
-  //       const placeHolderMove = this.createPlaceHolderMove(name, gameName);
-  //       return of(placeHolderMove);
-  //     })
-  //   );
-  // }
-
   getMoveByUrl(url: string, name: string, gameName: string): Observable<DetailMove> {
-    if (this.movementsCache.has(url)) {
-      return of(this.movementsCache.get(url));
-    }
     return this.http.get<DetailMove>(url).pipe(
       catchError(error => {
         const placeHolderMove = this.createPlaceHolderMove(name, gameName);
         return of(placeHolderMove);
-      }),
-      map(response => {
-        this.movementsCache.set(url, response);
-        return response;
       })
     );
   }
+
   getMoveByName(name: string, gameName: string): Observable<DetailMove> {
     const url = `${this.apiUrl}/move/${name}/`;
     return this.http.get<DetailMove>(url).pipe(
       catchError(error => {
         console.error('Error al obtener el movimiento:', error);
-        // Devolver un objeto placeholder en lugar de lanzar un error
         const placeHolderMove = this.createPlaceHolderMove(name, gameName);
         return of(placeHolderMove);
       })
@@ -144,16 +270,9 @@ export class PokeApiService {
   }
 
   getMachineMoveByUrl(url: string): Observable<MachineMove> {
-    if (this.movementsCache.has(url)) {
-      return of(this.movementsCache.get(url));
-    }
     return this.http.get<MachineMove>(url).pipe(
       catchError(error => {
         return of(null);
-      }),
-      map(response => {
-        this.movementsCache.set(url, response);
-        return response;
       })
     );
   }
@@ -163,7 +282,7 @@ export class PokeApiService {
     return this.http.get<PokemonAbility>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la habilidad:', id, error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -172,7 +291,7 @@ export class PokeApiService {
     return this.http.get<EvolutionChain>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la cadena evolutiva:', error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -181,7 +300,7 @@ export class PokeApiService {
     return this.http.get<PokemonAbility>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la habilidad:', error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -191,7 +310,7 @@ export class PokeApiService {
     return this.http.get<any>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la Pokédex:', error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -200,7 +319,7 @@ export class PokeApiService {
     return this.http.get<any>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la localización:', error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -209,7 +328,7 @@ export class PokeApiService {
     return this.http.get<any>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la generación:', error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -218,7 +337,7 @@ export class PokeApiService {
     return this.http.get<GameVersion>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la Versión:', error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -227,7 +346,7 @@ export class PokeApiService {
     return this.http.get<any>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la Versión:', error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }

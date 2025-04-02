@@ -67,18 +67,18 @@
         [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
         routerLinkActive
         class="w-26 hover:opacity-80 cursor-pointer"
-        *ngIf="pokemon.sprites.other.home.front_default"
-        [src]="pokemon.sprites.other.home.front_default"
         alt="{{ pokemon.name }}"
-      />
+        />
+        <!-- *ngIf="pokemon.sprites.other.home.front_default"
+        [src]="pokemon.sprites.other.home.front_default" -->
       <img
         [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
         routerLinkActive
         class="w-26 hover:opacity-80 cursor-pointer"
-        *ngIf="!pokemon.sprites.other.home.front_default"
-        [src]="pokemon.sprites.other['official-artwork'].front_default"
         alt="{{ pokemon.name }}"
-      />
+        />
+        <!-- *ngIf="!pokemon.sprites.other.home.front_default"
+        [src]="pokemon.sprites.other['official-artwork'].front_default" -->
     </div>
   </div>
 </div>

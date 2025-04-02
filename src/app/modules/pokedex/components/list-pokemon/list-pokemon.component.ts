@@ -3,7 +3,6 @@ import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { PokemonList } from '../../../../../../entities/pokemon-list.entity';
-import { AllPokemon } from '../../../../../../entities/common/const.interface';
 import { ALL_POKEMON_ALOLA } from '../../../../../../entities/common/alola-pokemon-data';
 import { ALL_POKEMON_GALAR } from '../../../../../../entities/common/galar-pokemon-data';
 import { ALL_POKEMON_HOENN } from '../../../../../../entities/common/hoenn-pokemon-data';
@@ -111,7 +110,6 @@ export class ListPokemonComponent implements OnInit {
       9: { min: 906, max: 1025 }
     };
 
-    // Filtrar los Pokémon por generación
     let filtered = this.allPokemon.filter(pokemon =>
       generations.some(gen =>
         pokemon.number >= generationRanges[gen].min &&
@@ -119,20 +117,16 @@ export class ListPokemonComponent implements OnInit {
       )
     );
 
-    // Helper para verificar si un Pokémon está dentro de las generaciones seleccionadas
 const isWithinSelectedGenerations = (pokemon: PokemonList) =>
   generations.some(gen => {
     const min = generationRanges[gen].min;
     const max = generationRanges[gen].max;
 
-    // Permitir un margen de decimales
-    const tolerance = 0.1; // Ajusta según sea necesario
+    const tolerance = 0.1;
 
-    // Verificar si el número del Pokémon está dentro del rango con tolerancia para decimales
     return pokemon.number >= min - tolerance && pokemon.number <= max + tolerance;
   });
 
-    // Filtrar y agregar formas adicionales si están dentro de las generaciones seleccionadas
     if (forms.includes('alola')) {
       filtered = filtered.concat(this.allAlolaFormsPokemon.filter(isWithinSelectedGenerations));
     }
@@ -152,7 +146,6 @@ const isWithinSelectedGenerations = (pokemon: PokemonList) =>
       filtered = filtered.concat(this.allMegaPokemon.filter(isWithinSelectedGenerations));
     }
 
-    // Eliminar duplicados y ordenar
     this.filteredPokemon = Array.from(new Set(filtered)).sort((a, b) => a.number - b.number);
     console.log(this.filteredPokemon);
   }

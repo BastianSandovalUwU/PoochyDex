@@ -10,7 +10,14 @@ export interface PokemonAbility {
   isMainSeries:      boolean;
   name:              string;
   names:             Name[];
-  pokemon:           { pokemon: { name: string, url: string }, pokemonDetail?: Pokemon }[];
+  pokemon:           {
+    pokemon: {
+      name: string,
+      url: string
+    },
+    pokemonDetail?: Pokemon,
+    pokemonSprite?: string
+  }[];
 }
 
 export interface EffectChange {

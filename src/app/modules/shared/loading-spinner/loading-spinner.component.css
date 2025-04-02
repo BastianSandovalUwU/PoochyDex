@@ -54,11 +54,11 @@
 }
 
 .animate-slideDown {
-  animation: slideDown 1.5s ease-in-out forwards, slideDownReverse 1.5s ease-in-out 2s forwards;
+  animation: slideDown 1.5s ease-in-out forwards;
 }
 
 .animate-slideUp {
-  animation: slideUp 1.5s ease-in-out forwards, slideUpReverse 1.5s ease-in-out 2s forwards;
+  animation: slideUp 1.5s ease-in-out forwards;
 }
 
 @keyframes spinSlow {
@@ -71,5 +71,31 @@
 }
 
 .animate-spinSlow {
+  animation: spinSlow 1s linear infinite;
+}
+
+/* Aplicar fadeOut solo cuando no estemos cargando el caché */
+:not(.is-cache-loading) .animate-slideDown {
+  animation: slideDown 1.5s ease-in-out forwards, slideDownReverse 1.5s ease-in-out 2s forwards;
+}
+
+:not(.is-cache-loading) .animate-slideUp {
+  animation: slideUp 1.5s ease-in-out forwards, slideUpReverse 1.5s ease-in-out 2s forwards;
+}
+
+:not(.is-cache-loading) .animate-spinSlow {
   animation: spinSlow 1s linear infinite, fadeOut 1.5s ease-in-out 2s forwards;
+}
+
+/* Mantener el spinner visible durante la carga del caché */
+.is-cache-loading .animate-spinSlow {
+  animation: spinSlow 1s linear infinite;
+}
+
+.is-cache-loading .animate-slideDown {
+  animation: slideDown 1.5s ease-in-out forwards;
+}
+
+.is-cache-loading .animate-slideUp {
+  animation: slideUp 1.5s ease-in-out forwards;
 }

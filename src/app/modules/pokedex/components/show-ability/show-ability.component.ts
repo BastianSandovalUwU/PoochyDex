@@ -43,22 +43,21 @@ export class ShowAbilityComponent implements OnInit {
 
   getAbilitDescriptionLanguage(): void {
     this.abilityDescription = this.ability.flavor_text_entries.filter(f => f.language.name === this.language)
-    console.log(this.abilityDescription);
   }
+
   getAbilityWithPokemonDetails(abilityName: string) {
     this.pokeApiService.getAbilityById(abilityName).pipe(
       switchMap((ability) => {
         if (ability && ability.pokemon) {
-          // Map array of Pokémon URLs/names to an array of observables
           const pokemonObservables = ability.pokemon.map(entry => {
             return this.pokeApiService.getPokemonByName(entry.pokemon.name).pipe(
               map(pokemonDetail => ({
                 ...entry,
-                pokemonDetail
+                pokemonDetail,
+                pokemonSprite: this.helperService.getPokemonSpriteImg(entry.pokemon.name, "home")
               }))
             );
           });
-          // Use forkJoin to wait for all requests to complete and combine results
           return forkJoin(pokemonObservables).pipe(
             map(detailedPokemonList => ({
               ...ability,
@@ -69,17 +68,15 @@ export class ShowAbilityComponent implements OnInit {
           return [];
         }
       })
-    ).subscribe(
-      (abilityWithDetails) => {
-        console.log('Ability with enriched Pokémon data:', abilityWithDetails);
+    ).subscribe({
+      next: (abilityWithDetails) => {
         this.ability = abilityWithDetails;
-        console.log(this.ability);
         this.getAbilitDescriptionLanguage();
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching Pokémon details:', error);
       }
-    );
+    });
   }
 
   getGenerationName(generationName: string): string {

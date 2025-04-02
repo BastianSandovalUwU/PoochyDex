@@ -12,8 +12,8 @@
   </div>
 
   <div [@toggleFilters]="filtersVisibleLevel ? 'visible' : 'hidden'" class="filters-container">
-    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="levelUpChangeGame($event)">
-      <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
+    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="levelUpChangeGame($event)" class="black-tabs">
+      <mat-tab [label]="getGameName(group) | replaceDash | titlecase" *ngFor="let group of versionGroups" class="black-tab">
         <div class="bg-white p-3 border-black border rounded-md">
           <div class="grid grid-cols-6 gap-4 border-b border-black pb-1 mb-2">
             <span class="font-semibold">{{ language === 'es' ? 'Nivel': 'Level' }}</span>
@@ -79,8 +79,8 @@
   </div>
 
   <div [@toggleFilters]="filtersVisibleLevel ? 'visible' : 'hidden'" class="filters-container">
-    <mat-tab-group [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="levelUpChangeGame($event)">
-    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group)">
+    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="levelUpChangeGame($event)">
+    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
 
   <div class="bg-white p-3 border-black border rounded-md">
     <!-- Encabezado para pantallas grandes -->
@@ -144,8 +144,8 @@
   </div>
 
   <div [@toggleFilters]="filtersVisibleMt ? 'visible' : 'hidden'" class="filters-container">
-    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexMT" (selectedTabChange)="machineChangeGame($event)">
-      <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
+    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexMT" (selectedTabChange)="machineChangeGame($event)" class="black-tabs">
+      <mat-tab [label]="getGameName(group) | replaceDash | titlecase" *ngFor="let group of versionGroups" class="black-tab">
 
         <div class="bg-white p-3 border-black border rounded-md">
           <div class="grid grid-cols-6 gap-4 border-b border-black pb-1 mb-2">
@@ -258,8 +258,8 @@
   </div>
 
   <div [@toggleFilters]="filtersVisibleTutor ? 'visible' : 'hidden'" class="filters-container">
-    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutor" (selectedTabChange)="tutorChangeGame($event)">
-    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
+    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutor" (selectedTabChange)="tutorChangeGame($event)" class="black-tabs">
+    <mat-tab [label]="getGameName(group) | replaceDash | titlecase" *ngFor="let group of versionGroups" class="black-tab">
 
       <div class="bg-white p-3 border-black border rounded-md">
         <div class="grid grid-cols-6 gap-4 border-b border-black pb-1 mb-2">
@@ -324,8 +324,8 @@
   </div>
 
   <div [@toggleFilters]="filtersVisibleTutor ? 'visible' : 'hidden'" class="filters-container">
-    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutor" (selectedTabChange)="tutorChangeGame($event)">
-    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
+    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutor" (selectedTabChange)="tutorChangeGame($event)" class="black-tabs">
+    <mat-tab [label]="getGameName(group) | replaceDash | titlecase" *ngFor="let group of versionGroups" class="black-tab">
 
   <div class="bg-white p-3 border-black border rounded-md">
 
@@ -380,8 +380,8 @@
   </div>
 
   <div [@toggleFilters]="filtersVisibleEgg ? 'visible' : 'hidden'" class="filters-container">
-    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutorEgg" (selectedTabChange)="eggChangeGame($event)">
-    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
+    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutorEgg" (selectedTabChange)="eggChangeGame($event)" class="black-tabs">
+    <mat-tab [label]="getGameName(group) | replaceDash | titlecase" *ngFor="let group of versionGroups" class="black-tab">
 
       <div class="bg-white p-3 border-black border rounded-md">
         <div class="grid grid-cols-6 gap-4 border-b border-black pb-1 mb-2">
@@ -446,8 +446,8 @@
 </div>
 
 <div [@toggleFilters]="filtersVisibleEgg ? 'visible' : 'hidden'" class="filters-container">
-  <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutorEgg" (selectedTabChange)="tutorChangeGame($event)">
-    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
+  <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndexTutorEgg" (selectedTabChange)="tutorChangeGame($event)" class="black-tabs">
+    <mat-tab [label]="getGameName(group) | replaceDash | titlecase" *ngFor="let group of versionGroups" class="black-tab">
 
   <div class="bg-white p-3 border-black border rounded-md">
 

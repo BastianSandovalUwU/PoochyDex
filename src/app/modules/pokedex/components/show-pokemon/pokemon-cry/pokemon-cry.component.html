@@ -1,9 +1,9 @@
 <h1 *ngIf="pokemon?.cries?.latest" class="font-bold">
   {{ language === 'es' ? 'Grito Actual' : 'Current Cry' }}:
-  <button *ngIf="!isPlayingLatest" class="bg-blue-300" mat-icon-button (click)="playAudio('latest')">
+  <button *ngIf="!isPlayingLatest" class="bg-blue-400 border-2 border-black rounded-full p-2" (click)="playAudio('latest')">
     <mat-icon>play_arrow</mat-icon>
   </button>
-  <button *ngIf="isPlayingLatest" class="bg-red-300" mat-icon-button (click)="pauseAudio('latest')">
+  <button *ngIf="isPlayingLatest" class="bg-red-400 border-2 border-black rounded-full p-2" (click)="pauseAudio('latest')">
     <mat-icon>pause</mat-icon>
   </button>
   <audio id="audioPlayerLatest" #audioPlayerLatest (ended)="audioEnded('latest')">
@@ -14,10 +14,10 @@
 
 <h1 *ngIf="pokemon?.cries?.legacy" class="font-bold">
   {{ language === 'es' ? 'Grito Antiguo' : 'Previous Scream' }}:
-  <button *ngIf="!isPlayingLegacy" class="bg-blue-300" mat-icon-button (click)="playAudio('legacy')">
+  <button *ngIf="!isPlayingLegacy" class="bg-blue-400 border-2 border-black rounded-full p-2" (click)="playAudio('legacy')">
     <mat-icon>play_arrow</mat-icon>
   </button>
-  <button *ngIf="isPlayingLegacy" class="bg-red-300" mat-icon-button (click)="pauseAudio('legacy')">
+  <button *ngIf="isPlayingLegacy" class="bg-red-400 border-2 border-black rounded-full p-2" (click)="pauseAudio('legacy')">
     <mat-icon>pause</mat-icon>
   </button>
   <audio id="audioPlayerLegacy" #audioPlayerLegacy (ended)="audioEnded('legacy')">

@@ -1,7 +1,8 @@
 import { Move } from "./moves.entity";
 import { Sprites } from "./sprites.entity";
 
-export type Pokemon = {
+// Versión completa del Pokémon con todos los datos de la API
+export type PokemonFull = {
   abilities:              Ability[];
   baseExperience:         number;
   cries:                  Cries;
@@ -10,7 +11,7 @@ export type Pokemon = {
   height:                 number;
   heldItems:              any[];
   id:                     number;
-  is_default:              boolean;
+  is_default:             boolean;
   locationAreaEncounters: string;
   moves:                  Move[];
   name:                   string;
@@ -22,6 +23,20 @@ export type Pokemon = {
   stats:                  Stat[];
   types:                  Type[];
   weight:                 number;
+}
+
+// Versión lite del Pokémon con solo los datos esenciales
+export type Pokemon = {
+  id:                     number;
+  name:                   string;
+  types:                  Type[];
+  stats:                  Stat[];
+  species:                Species;
+  abilities:              Ability[];
+  height:                 number;
+  weight:                 number;
+  is_default:             boolean;
+  cries:                  Cries;
 }
 
 export type Ability = {

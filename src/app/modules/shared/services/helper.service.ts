@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { PokeApiService } from './pokeApi.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { Ability, Type } from '../../../../../entities/pokemon.entity';
@@ -21,6 +22,12 @@ import { ALL_POKEMON_UNOVA } from '../../../../../entities/common/unova-pokemon-
   providedIn: 'root'
 })
 export class HelperService {
+  private cacheLoadingProgress = new BehaviorSubject<number>(0);
+  private isCacheLoading = new BehaviorSubject<boolean>(false);
+
+  cacheLoadingProgress$ = this.cacheLoadingProgress.asObservable();
+  isCacheLoading$ = this.isCacheLoading.asObservable();
+
   allPokemon: PokemonList[] = [
     ...ALL_POKEMON_KANTO,
     ...ALL_POKEMON_JOTHO,
@@ -125,6 +132,77 @@ export class HelperService {
         };
       })
     );
+  }
+
+  createAllPokemonCache() {
+    console.log('Verificando caché de Pokémon...');
+    const cache = localStorage.getItem('pokemon_cache');
+    const pokemonCache = cache ? JSON.parse(cache) : {};
+
+    const missingPokemon = this.allPokemon.filter(pokemon =>
+      !pokemonCache[pokemon.number.toString()]
+    );
+
+    if (missingPokemon.length === 0) {
+      console.log('Todos los Pokémon están en caché');
+      this.isCacheLoading.next(false);
+      this.cacheLoadingProgress.next(100);
+      return;
+    }
+
+    console.log(`Faltan ${missingPokemon.length} Pokémon por cargar`);
+    this.isCacheLoading.next(true);
+    this.cacheLoadingProgress.next(0);
+
+    let completedRequests = 0;
+    const totalMissing = missingPokemon.length;
+    const batchSize = 50; // Reducido a 3 para ser más conservador
+
+    const processBatch = (startIndex: number) => {
+      if (startIndex >= totalMissing) {
+        console.log('Caché de Pokémon completado exitosamente');
+        this.isCacheLoading.next(false);
+        this.cacheLoadingProgress.next(100);
+        return;
+      }
+
+      const batch = missingPokemon.slice(startIndex, startIndex + batchSize);
+      console.log(`Procesando lote ${Math.floor(startIndex / batchSize) + 1} de ${Math.ceil(totalMissing / batchSize)}`);
+
+      const batchRequests = batch.map(pokemon =>
+        this.pokeApiService.getPokemonById(pokemon.number).pipe(
+          map(response => {
+            completedRequests++;
+            const progress = Math.round((completedRequests / totalMissing) * 100);
+            this.cacheLoadingProgress.next(progress);
+
+            if (completedRequests % 3 === 0) {
+              console.log(`Progreso del caché: ${completedRequests}/${totalMissing} Pokémon faltantes cargados (${progress}%)`);
+            }
+            return response;
+          })
+        )
+      );
+
+      forkJoin(batchRequests).subscribe({
+        next: () => {
+          // Esperar 2 segundos antes de procesar el siguiente lote
+          setTimeout(() => {
+            processBatch(startIndex + batchSize);
+          }, 2000);
+        },
+        error: (error) => {
+          console.error('Error al crear el caché:', error);
+          // En caso de error, esperar 3 segundos antes de intentar el siguiente lote
+          setTimeout(() => {
+            processBatch(startIndex + batchSize);
+          }, 3000);
+        }
+      });
+    };
+
+    // Iniciar el procesamiento del primer lote
+    processBatch(0);
   }
 
   navigateToGame(gameName: string) {
@@ -536,20 +614,22 @@ export class HelperService {
     let name = this.getCorrectPokemonName(pokemonName);
     let allPokemon = this.allPokemon;
     allPokemon = allPokemon.concat(this.allPokemonGmax, this.allPokemonMega, this.allPokemonMisc);
-    const pokemon = allPokemon.filter(f => f.name === name)[0];
-    const placeholder = "https://i.imgur.com/X83fxLz.png"; //psyduck placeholder image
-    if(pokemon === undefined) {
+    const pokemon = allPokemon.find(f => f.name === name);
+    const placeholder = "https://i.imgur.com/uKx7iOF.png"; //missigNo placeholder image
+
+    if (!pokemon || !pokemon.sprites) {
       return placeholder;
     }
+
     switch (option) {
       case "icon":
-        return pokemon.sprites.iconUrl ? pokemon.sprites.iconUrl : placeholder; //psyduck placeholder image
+        return pokemon.sprites.iconUrl || placeholder;
       case "home":
-        return pokemon.sprites.homeUrl ? pokemon.sprites.homeUrl : placeholder; //psyduck placeholder image
+        return pokemon.sprites.homeUrl || placeholder;
       case "homeShiny":
-        return pokemon.sprites.homeShinyUrl ? pokemon.sprites.homeShinyUrl : placeholder; //psyduck placeholder image
+        return pokemon.sprites.homeShinyUrl || placeholder;
       default:
-        return placeholder //psyduck placeholder image
+        return placeholder;
     }
   }
 

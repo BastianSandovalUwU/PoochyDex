@@ -2,8 +2,8 @@ import { ExtendedMachineDetail, MachineDetail } from "./machine-move.entity";
 import { Data } from "./pokemon-specie.entity";
 
 export interface Move {
-  move:                Data;
-  detailMove?:         DetailMove;
+  move:                  Data;
+  detailMove?:           DetailMove;
   version_group_details: VersionGroupDetail[];
 }
 
