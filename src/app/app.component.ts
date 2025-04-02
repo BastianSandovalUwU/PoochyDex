@@ -1,10 +1,11 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { LanguageService } from './modules/shared/services/language.service';
 import { SwUpdate } from '@angular/service-worker';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserData } from '../../entities/auth/user.entity';
 import { AuthService } from './modules/auth/services/auth.service';
 import { LoadingService } from './modules/shared/services/loading.service';
+import { HelperService } from './modules/shared/services/helper.service';
 
 @Component({
   selector: 'app-root',
@@ -18,11 +19,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   currentLanguage: string;
   currentUser: UserData | null;
   loading = false;
+  isCacheLoading = false;
 
   constructor(private languageService: LanguageService,
               private updates: SwUpdate,
               private loadingService: LoadingService,
               private authService: AuthService,
+              private helperService: HelperService,
               private cdr: ChangeDetectorRef,
               private snackBar: MatSnackBar
   ) {
@@ -40,6 +43,14 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.helperService.isCacheLoading$.subscribe(isLoading => {
+      this.isCacheLoading = isLoading;
+      this.loading = isLoading;
+      this.cdr.detectChanges();
+    });
+
+    this.helperService.createAllPokemonCache();
+
     this.languageService.currentLanguage$.subscribe(language => {
       this.currentLanguage = language;
     });
@@ -49,13 +60,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
 
     this.loadingService.loading$.subscribe((loading) => {
-      this.loading = loading;
-
+      if (!this.isCacheLoading) {
+        this.loading = loading;
         setTimeout(() => {
           this.cdr.detectChanges();
         }, 100);
-
-        this.cdr.detectChanges()
+        this.cdr.detectChanges();
+      }
     });
 
     // if(this.authService.isAuthenticated()) {

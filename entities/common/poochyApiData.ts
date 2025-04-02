@@ -1291,7 +1291,7 @@ export const ALL_POKEMON_GALAR_REGIONAL_FORMS: PokemonList[] = [
     },
     type: "",
     type2: "",
-    number: 80.2,
+    number: 80,
     generationId: 0
   },
   {

@@ -17,8 +17,8 @@ export class PokeSpritesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.otherSprites = this.pokemon.sprites.other;
-    this.versionSprites = this.pokemon.sprites.versions;
+    // this.otherSprites = this.pokemon.sprites.other;
+    // this.versionSprites = this.pokemon.sprites.versions;
   }
 
 }

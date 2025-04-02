@@ -37,18 +37,9 @@
           [routerLink]="['/pokedex/show-pokemon', pokemon.pokemon.name]"
           routerLinkActive
           class="w-26 hover:opacity-80 cursor-pointer"
-          *ngIf="pokemon.pokemonDetail.sprites.other.home.front_default"
-          [src]="pokemon.pokemonDetail.sprites.other.home.front_default"
           alt="{{ pokemon.pokemon.name }}"
-        />
-        <img
-          [routerLink]="['/pokedex/show-pokemon', pokemon.pokemon.name]"
-          routerLinkActive
-          class="w-26 hover:opacity-80 cursor-pointer"
-          *ngIf="!pokemon.pokemonDetail.sprites.other.home.front_default"
-          [src]="pokemon.pokemonDetail.sprites.other['official-artwork'].front_default"
-          alt="{{ pokemon.pokemon.name }}"
-        />
+          [src]="pokemon.pokemonSprite"
+          />
         <div class="grid grid-cols-1 text-black w-full">
           <div *ngFor="let ability of pokemon.pokemonDetail.abilities">
             <div class="text-left sm:text-center bg-gray-200"

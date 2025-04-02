@@ -3,7 +3,6 @@ import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.enti
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Router } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
-import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
@@ -65,19 +64,18 @@ export class PokemonVarietiesComponent implements OnInit, OnChanges {
       pokemonVarieties.push(pokeInfo);
     }
     this.pokemonVarieties = pokemonVarieties;
-    console.log(this.pokemonVarieties);
   }
 
   getPokemonColor() {
     if (this.pokemonSpecie && this.pokemonSpecie.color) {
       this.backgroundColor = this.helperService.getPokemonColor(this.pokemonSpecie.color.name);
     } else {
-      this.backgroundColor = ''; // Asigna una cadena vacía si no hay color
+      this.backgroundColor = '';
     }
   }
 
   goToPokemonPage(pokemonName: string) {
-    this.router.navigate(['/pokedex/show-pokemon/', pokemonName]); // Reemplaza con la ruta deseada
+    this.router.navigate(['/pokedex/show-pokemon/', pokemonName]);
   }
 
 }

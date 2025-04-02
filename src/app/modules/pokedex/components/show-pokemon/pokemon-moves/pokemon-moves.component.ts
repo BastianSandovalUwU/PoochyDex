@@ -33,12 +33,10 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   @Input() language: string = 'es';
   @Input() pokemon: Pokemon;
   @Input() pokemonSpecie: PokemonSpecie;
+  @Input() movesWithTypes: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
   private unsubscribe$ = new Subject<void>();
 
-  moves: ShowMove[];
-  movesWithTypes: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
   versionGroups: string[] = [];
-
   levelUpSelectedVersionGroup: string = '';
   tutorSelectedVersionGroup: string = '';
   machineSelectedVersionGroup: string = '';
@@ -62,12 +60,16 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     this.getPokemonColor();
-    this.getPokemonMoves();
+    this.processMoves();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-      this.getPokemonMoves();
+    if (changes['movesWithTypes'] && !changes['movesWithTypes'].firstChange) {
+      this.processMoves();
+    }
+    if (changes['pokemonSpecie'] && !changes['pokemonSpecie'].firstChange) {
       this.getPokemonColor();
+    }
   }
 
   ngOnDestroy(): void {
@@ -76,7 +78,6 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   toggleFilters(option: string) {
-
     switch (option) {
       case "lvl":
         this.filtersVisibleLevel = !this.filtersVisibleLevel;
@@ -95,40 +96,10 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  getPokemonMoves(): void {
-    this.moves = this.pokemon.moves;
-    const observables = this.moves.map(move =>
-      this.pokeApiService.getMoveByUrl(move.move.url, move.move.name, move.version_group_details[0].version_group.name)
-    );
-
-    forkJoin(observables).subscribe(details => {
-      const movesArray = this.moves.map((move, index) => ({
-        ...move,
-        detailMove: details[index]
-      }));
-
-      this.moves = movesArray;
-
-      const typeNamesObservables = this.moves.map(move =>
-        move.detailMove.type.name !== 'unknown'
-          ? this.helperService.getMoveType(move.detailMove.type.name)
-          : of([{ language: this.language, typeName: 'No Encontrado' }])
-      );
-
-      forkJoin(typeNamesObservables).subscribe(typeNamesArray => {
-        this.movesWithTypes = typeNamesArray.map((typeNames, index) => {
-          const filteredTypeNames = typeNames.filter(f => f.language === this.language);
-          const moveName = this.moves[index].detailMove.names.find(name => name.language.name === this.language)?.name || this.moves[index].move.name;
-
-          return {
-            move: this.moves[index],
-            types: filteredTypeNames,
-            moveName
-          };
-        });
-        this.extractVersionGroups();
-      });
-    });
+  processMoves(): void {
+    if (this.movesWithTypes.length > 0) {
+      this.extractVersionGroups();
+    }
   }
 
   levelUpChangeGame(event: MatTabChangeEvent): void {
@@ -148,6 +119,7 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     this.tutorSelectedVersionGroup = selectedGroup;
     this.filterMovesByTutor();
   }
+
   eggChangeGame(event: MatTabChangeEvent): void {
     const selectedGroup = this.versionGroups[event.index];
     this.eggSelectedVersionGroup = selectedGroup;
@@ -155,7 +127,6 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   extractVersionGroups(): void {
-
     const desiredOrder = [
       "scarlet-violet",
       "brilliant-diamond-and-shining-pearl",
@@ -179,41 +150,38 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
       "red-blue",
     ];
 
-  const versionGroupsSet = new Set<string>();
+    const versionGroupsSet = new Set<string>();
 
-  this.movesWithTypes.forEach(moveWithTypes => {
-    moveWithTypes.move.version_group_details.forEach(detail => {
-      versionGroupsSet.add(detail.version_group.name);
+    this.movesWithTypes.forEach(moveWithTypes => {
+      moveWithTypes.move.version_group_details.forEach(detail => {
+        versionGroupsSet.add(detail.version_group.name);
+      });
     });
-  });
 
-  this.versionGroups = Array.from(versionGroupsSet);
+    this.versionGroups = Array.from(versionGroupsSet);
+    this.versionGroups = desiredOrder.filter(version => this.versionGroups.includes(version));
+    this.versionGroups.sort((a, b) => desiredOrder.indexOf(a) - desiredOrder.indexOf(b));
 
-  this.versionGroups = desiredOrder.filter(version => this.versionGroups.includes(version));
+    const defaultVersion = 'scarlet-violet';
 
-  this.versionGroups.sort((a, b) => desiredOrder.indexOf(a) - desiredOrder.indexOf(b));
+    if (this.versionGroups.includes(defaultVersion)) {
+      this.machineSelectedVersionGroup = defaultVersion;
+      this.levelUpSelectedVersionGroup = defaultVersion;
+      this.tutorSelectedVersionGroup = defaultVersion;
+      this.eggSelectedVersionGroup = defaultVersion;
+    } else if (this.versionGroups.length > 0) {
+      const lastVersion = this.versionGroups[this.versionGroups.length - 1];
+      this.machineSelectedVersionGroup = lastVersion;
+      this.levelUpSelectedVersionGroup = lastVersion;
+      this.tutorSelectedVersionGroup = lastVersion;
+      this.eggSelectedVersionGroup = lastVersion;
+    }
 
-  const defaultVersion = 'scarlet-violet';
-
-  if (this.versionGroups.includes(defaultVersion)) {
-    this.machineSelectedVersionGroup = defaultVersion;
-    this.levelUpSelectedVersionGroup = defaultVersion;
-    this.tutorSelectedVersionGroup = defaultVersion;
-    this.eggSelectedVersionGroup = defaultVersion;
-  } else if (this.versionGroups.length > 0) {
-    const lastVersion = this.versionGroups[this.versionGroups.length - 1];
-    this.machineSelectedVersionGroup = lastVersion;
-    this.levelUpSelectedVersionGroup = lastVersion;
-    this.tutorSelectedVersionGroup = lastVersion;
-    this.eggSelectedVersionGroup = lastVersion;
+    this.filterMovesByLevel();
+    this.filterMovesByMachine();
+    this.filterMovesByTutor();
+    this.filterMovesByEgg();
   }
-
-  this.filterMovesByLevel();
-  this.filterMovesByMachine();
-  this.filterMovesByTutor();
-  this.filterMovesByEgg();
-  }
-
 
   filterMovesByLevel(): void {
     const filteredMoves = this.movesWithTypes
@@ -255,12 +223,8 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
           level_learned_at: 0
         }));
 
-        // Si hay máquinas para el juego seleccionado, proceder
         if (machineDetails.length > 0) {
-          // Seleccionar solo la primera máquina que coincida
           const matchingMachineDetail = machineDetails[0];
-
-          // Retornar el movimiento con el detalle de la máquina correspondiente
           return {
             ...moveWithTypes,
             machineDetail: matchingMachineDetail
@@ -271,20 +235,17 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
       })
       .filter(moveWithDetails => moveWithDetails !== null) as FilteredByMachine[];
 
-    // Realizar las llamadas a la API para obtener los detalles de las máquinas
     const machineDetailObservables = machineMoves.map(move =>
       this.pokeApiService.getMachineMoveByUrl(move.machineDetail.machine.url).pipe(
         catchError(error => {
-          return of(null); // Devuelve null en caso de error
+          return of(null);
         })
       )
     );
 
-    // Realizar todas las llamadas de manera concurrente
     forkJoin(machineDetailObservables)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(machineDetails => {
-        // Asignar los detalles de las máquinas a cada movimiento
         this.filteredMovesByMachine = machineMoves.map((move, index) => {
           if (machineDetails[index]) {
             move.machineDetail.moveDetails = machineDetails[index];
@@ -316,7 +277,6 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
       })
       .filter(moveWithDetails => moveWithDetails !== null);
 
-    // Assuming you don't need additional API calls for tutor details as with machines
     this.filteredMovesByTutor = tutorMoves as FilteredByTutor[];
   }
 
@@ -329,7 +289,6 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
         );
 
         if (eggDetails.length > 0) {
-          // Crear una copia del objeto moveWithTypes y asignar los eggDetails
           return {
             ...moveWithTypes,
             move: {
@@ -344,7 +303,6 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
       .filter(moveWithDetails => moveWithDetails !== null);
 
     this.filteredMovesByEgg = filteredMoves as FilteredByEgg[];
-
   }
 
   getGameName(gameName: string): string {
@@ -367,7 +325,7 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     if (this.pokemonSpecie && this.pokemonSpecie.color) {
       this.backgroundColor = this.helperService.getPokemonColor(this.pokemonSpecie.color.name);
     } else {
-      this.backgroundColor = ''; // Asigna una cadena vacía si no hay color
+      this.backgroundColor = '';
     }
   }
 
@@ -388,5 +346,4 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   getTypeName(pokeMove): string {
     return pokeMove.types[0]?.typeName || '';
   }
-
 }

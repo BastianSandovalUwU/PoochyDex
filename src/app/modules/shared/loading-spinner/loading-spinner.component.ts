@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { HelperService } from '../services/helper.service';
 
 @Component({
   selector: 'app-loading-spinner',
@@ -7,10 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LoadingSpinnerComponent implements OnInit {
   @Input() loading: boolean = false;
+  @Input() isCacheLoading: boolean = false;
+  cacheProgress: number = 0;
 
-  constructor() { }
+  constructor(private helperService: HelperService) {}
 
   ngOnInit() {
+    this.helperService.cacheLoadingProgress$.subscribe(progress => {
+      this.cacheProgress = progress;
+    });
   }
-
 }
