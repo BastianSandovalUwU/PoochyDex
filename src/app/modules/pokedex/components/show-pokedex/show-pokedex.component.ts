@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
-
+import { ErrorMessageService } from 'app/services/error-message.service';
 @Component({
   selector: 'app-show-pokedex',
   templateUrl: './show-pokedex.component.html',
@@ -18,7 +18,8 @@ export class ShowPokedexComponent implements OnInit {
   constructor(private pokeApiService: PokeApiService,
               private languageService: LanguageService,
               private helperService: HelperService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private errorMessageService: ErrorMessageService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(({ number }) => {
@@ -36,9 +37,9 @@ export class ShowPokedexComponent implements OnInit {
   }
 
   getPokedex(num: number): void {
-    this.pokeApiService.getPokedex(num).subscribe((pokemon) => {
-      console.log('Pokedex data:', pokemon); // Debugging
-      const pokemonVarieties = [];
+    this.pokeApiService.getPokedex(num).subscribe({
+      next: (pokemon) => {
+        const pokemonVarieties = [];
 
       for (let index = 0; index < pokemon.pokemon_entries.length; index++) {
         const pokeImgname = this.helperService.getPokemonSpriteImg(pokemon.pokemon_entries[index].pokemon_species.name, "home");
@@ -49,11 +50,13 @@ export class ShowPokedexComponent implements OnInit {
         }
         pokemonVarieties.push(pokeInfo);
       }
-      console.log(pokemonVarieties);
       this.pokedex = pokemonVarieties;
-    }, error => {
-      console.error('Error fetching Pokedex:', error); // Debugging
-    });
+    },
+    error: (error) => {
+      const errorMessage = this.language === 'es' ? 'Error al cargar la Pokédex' : 'Error loading Pokedex';
+      this.errorMessageService.showError(errorMessage, error.message);
+    }
+  });
   }
 
 

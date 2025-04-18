@@ -24,27 +24,13 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   pokemonNameRomaji: Name;
   pokemonNameHirgana: Name;
 
-  // allSprites = sprites;
-  // allkanto = ALL_POKEMON_PALDEA;
   constructor(private helperService: HelperService,) { }
 
   ngOnInit() {
-    // this.insterSprites();
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.loadInfo();
   }
-
-  // insterSprites(): void {
-  //   const array = [];
-  //   let i = 0;
-  //   this.allkanto.forEach((poke) => {
-  //     poke.sprites.iconUrl = this.allSprites[i];
-  //     i += 1;
-  //     array.push(poke);
-  //   });
-  //   console.log(array);
-  // }
 
   loadInfo() {
     this.pokemonSprite = this.helperService.getPokemonSpriteImg(this.pokemon.name, "home");
@@ -63,7 +49,7 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
     if (this.pokemonSpecie && this.pokemonSpecie.color) {
       this.backgroundColor = this.helperService.getPokemonColor(this.pokemonSpecie.color.name);
     } else {
-      this.backgroundColor = ''; // Asigna una cadena vacía si no hay color
+      this.backgroundColor = '';
     }
   }
 

@@ -9,6 +9,7 @@ import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { Move, ShowMove, TypeDetail } from '../../../../../../entities/moves.entity';
 import { forkJoin, of, Subject, takeUntil } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
+import { ErrorMessageService } from 'app/services/error-message.service';
 
 @Component({
   selector: 'app-show-pokemon',
@@ -25,7 +26,6 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   pokemonSprite: string;
   pokemonSpriteShiny: string;
-  error: string = null;
   movesWithTypes: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
 
   constructor(
@@ -33,7 +33,8 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
     private languageService: LanguageService,
     private helperService: HelperService,
     private loadingService: LoadingService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private errorMessageService: ErrorMessageService
   ) {}
 
   ngOnInit() {
@@ -63,7 +64,6 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
 
   getPokemonByName(name: string) {
     this.loading = true;
-    this.error = null;
     this.loadingService.show();
 
     this.pokeApiService.getPokemonByName(name)
@@ -76,8 +76,8 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
           this.getPokemonSpecie(pokeInfo.species["name"]);
         },
         error: (error) => {
-          console.error('Error al obtener el Pokémon:', error);
-          this.error = 'Error al cargar el Pokémon';
+          const errorMessage = this.language === 'es' ? 'Error al cargar el Pokémon' : 'Error loading Pokémon';
+          this.errorMessageService.showError(errorMessage, error.message);
           this.loading = false;
           this.loadingService.hide();
         }
@@ -93,8 +93,8 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
           this.getPokemonMoves();
         },
         error: (error) => {
-          console.error('Error al obtener la especie del Pokémon:', error);
-          this.error = 'Error al cargar la información de la especie';
+          const errorMessage = this.language === 'es' ? 'Error al cargar la información de la especie' : 'Error loading species information';
+          this.errorMessageService.showError(errorMessage, error.message);
           this.loading = false;
           this.loadingService.hide();
         }
@@ -111,34 +111,50 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
 
         forkJoin(observables)
           .pipe(takeUntil(this.destroy$))
-          .subscribe(details => {
-            const movesArray = moves.map((move, index) => ({
-              ...move,
-              detailMove: details[index]
-            }));
+          .subscribe({
+            next: (details) => {
+              const movesArray = moves.map((move, index) => ({
+                ...move,
+                detailMove: details[index]
+              }));
 
-            const typeNamesObservables = movesArray.map(move =>
-              move.detailMove.type.name !== 'unknown'
-                ? this.helperService.getMoveType(move.detailMove.type.name)
-                : of([{ language: this.language, typeName: 'No Encontrado' }])
-            );
+              const typeNamesObservables = movesArray.map(move =>
+                move.detailMove.type.name !== 'unknown'
+                  ? this.helperService.getMoveType(move.detailMove.type.name)
+                  : of([{ language: this.language, typeName: 'No Encontrado' }])
+              );
 
-            forkJoin(typeNamesObservables)
-              .pipe(takeUntil(this.destroy$))
-              .subscribe(typeNamesArray => {
-                this.movesWithTypes = typeNamesArray.map((typeNames, index) => {
-                  const filteredTypeNames = typeNames.filter(f => f.language === this.language);
-                  const moveName = movesArray[index].detailMove.names.find(name => name.language.name === this.language)?.name || movesArray[index].move.name;
+              forkJoin(typeNamesObservables)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe({
+                  next: (typeNamesArray) => {
+                    this.movesWithTypes = typeNamesArray.map((typeNames, index) => {
+                      const filteredTypeNames = typeNames.filter(f => f.language === this.language);
+                      const moveName = movesArray[index].detailMove.names.find(name => name.language.name === this.language)?.name || movesArray[index].move.name;
 
-                  return {
-                    move: movesArray[index],
-                    types: filteredTypeNames,
-                    moveName
-                  };
+                      return {
+                        move: movesArray[index],
+                        types: filteredTypeNames,
+                        moveName
+                      };
+                    });
+                    this.loading = false;
+                    this.loadingService.hide();
+                  },
+                  error: (error) => {
+                    const errorMessage = this.language === 'es' ? 'Error al cargar los movimientos' : 'Error loading moves';
+                    this.errorMessageService.showError(errorMessage, error.message);
+                    this.loading = false;
+                    this.loadingService.hide();
+                  }
                 });
-                this.loading = false;
-                this.loadingService.hide();
-              });
+            },
+            error: (error) => {
+              const errorMessage = this.language === 'es' ? 'Error al cargar los movimientos' : 'Error loading moves';
+              this.errorMessageService.showError(errorMessage, error.message);
+              this.loading = false;
+              this.loadingService.hide();
+            }
           });
       });
   }

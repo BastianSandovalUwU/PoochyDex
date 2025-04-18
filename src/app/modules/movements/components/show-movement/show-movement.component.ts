@@ -5,7 +5,7 @@ import { DetailMove } from '../../../../../../entities/moves.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Pokemon } from '../../../../../../entities/pokemon.entity';
 import { LanguageService } from 'app/modules/shared/services/language.service';
-
+import { ErrorMessageService } from 'app/services/error-message.service';
 @Component({
   selector: 'app-show-movement',
   templateUrl: './show-movement.component.html',
@@ -24,7 +24,8 @@ export class ShowMovementComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               private languageService: LanguageService,
               private pokeApiService: PokeApiService,
-              private helperService: HelperService,) {
+              private helperService: HelperService,
+              private errorMessageService: ErrorMessageService) {
     this.activatedRoute.params.subscribe(({ id }) => this.pokemonMove = id);
   }
 
@@ -40,12 +41,17 @@ export class ShowMovementComponent implements OnInit {
   }
 
   getMove() {
-    this.pokeApiService.getMoveByName(this.pokemonMove, 'scarlet-violet').subscribe((movement) => {
-      console.log(movement);
-      this.move = movement;
-      this.moveName = this.getMoveNameByLanguage();
-      this.moveEffectEntry = this.getMoveEffectEntryByLanguage();
-      this.getPokemonDetails();
+    this.pokeApiService.getMoveByName(this.pokemonMove, 'scarlet-violet').subscribe({
+      next: (movement) => {
+        this.move = movement;
+        this.moveName = this.getMoveNameByLanguage();
+        this.moveEffectEntry = this.getMoveEffectEntryByLanguage();
+        this.getPokemonDetails();
+      },
+      error: (error) => {
+        const errorMessage = this.language === 'es' ? 'Error al cargar el movimiento' : 'Error loading movement';
+        this.errorMessageService.showError(errorMessage, error.message);
+      }
     });
   }
 
@@ -66,10 +72,16 @@ export class ShowMovementComponent implements OnInit {
 
       const pokemon: Pokemon[] = []
       for (let i = 0; i < this.move.learned_by_pokemon.length; i++) {
-        this.pokeApiService.getPokemonByName(this.move.learned_by_pokemon[i].name).subscribe((pokeInfo) => {
+        this.pokeApiService.getPokemonByName(this.move.learned_by_pokemon[i].name).subscribe({
+          next: (pokeInfo) => {
             if(pokeInfo.is_default === true) {
               pokemon.push(pokeInfo);
             }
+          },
+          error: (error) => {
+            const errorMessage = this.language === 'es' ? 'Error al cargar el Pokémon' : 'Error loading Pokemon';
+            this.errorMessageService.showError(errorMessage, error.message);
+          }
         });
       }
       this.pokemon = pokemon;
