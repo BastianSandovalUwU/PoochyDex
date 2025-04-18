@@ -24,7 +24,6 @@ export class GameInfoComponent implements OnInit {
 
   ngOnInit() {
     this.groupReleaseDates(this.gameInfo.releaseDates);
-    console.log(this.groupedReleaseDates);
   }
 
   groupReleaseDates(releaseDates: any) {

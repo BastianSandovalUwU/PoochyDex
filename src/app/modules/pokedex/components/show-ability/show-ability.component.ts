@@ -6,7 +6,7 @@ import { forkJoin } from 'rxjs';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { PokemonAbility } from '../../../../../../entities/pokemon-ability.entity';
 import { LanguageService } from 'app/modules/shared/services/language.service';
-
+import { ErrorMessageService } from 'app/services/error-message.service';
 @Component({
   selector: 'app-show-ability',
   templateUrl: './show-ability.component.html',
@@ -21,7 +21,8 @@ export class ShowAbilityComponent implements OnInit {
     private pokeApiService: PokeApiService,
     private activatedRoute: ActivatedRoute,
     private languageService: LanguageService,
-    private helperService: HelperService
+    private helperService: HelperService,
+    private errorMessageService: ErrorMessageService
   ) {}
 
   ngOnInit() {
@@ -30,7 +31,8 @@ export class ShowAbilityComponent implements OnInit {
       if (ability) {
         this.getAbilityWithPokemonDetails(ability);
       } else {
-        console.error('Invalid route parameter:', ability);
+        const errorMessage = this.language === 'es' ? 'Error al cargar la habilidad' : 'Error loading ability';
+        this.errorMessageService.showError(errorMessage, 'Invalid route parameter');
       }
     });
   }
@@ -74,7 +76,8 @@ export class ShowAbilityComponent implements OnInit {
         this.getAbilitDescriptionLanguage();
       },
       error: (error) => {
-        console.error('Error fetching Pokémon details:', error);
+        const errorMessage = this.language === 'es' ? 'Error al cargar la habilidad' : 'Error loading ability';
+        this.errorMessageService.showError(errorMessage, error.message);
       }
     });
   }

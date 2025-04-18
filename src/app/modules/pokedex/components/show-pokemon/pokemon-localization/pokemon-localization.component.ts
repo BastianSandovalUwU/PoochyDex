@@ -5,6 +5,7 @@ import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { GroupedData, LocationData } from '../../../../../../../entities/localization.entity';
+import { ErrorMessageService } from 'app/services/error-message.service';
 
 @Component({
   selector: 'app-pokemon-localization',
@@ -39,7 +40,8 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
   filtersVisible = false;
 
   constructor(private helperService: HelperService,
-              private pokeApiService: PokeApiService
+              private pokeApiService: PokeApiService,
+              private errorMessageService: ErrorMessageService
   ) { }
 
   ngOnInit() {
@@ -57,15 +59,20 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
   }
 
   getPokemonLocalization(): void {
-    this.pokeApiService.getPokemonLocalization(this.pokemon.id).subscribe((localizationData) => {
+    this.pokeApiService.getPokemonLocalization(this.pokemon.id).subscribe({
+      next: (localizationData) => {
         this.groupedLocations = this.groupByVersionAndMethod(localizationData);
         if(this.groupedLocations.length > 0) {
           this.loadInfo = true;
         } else {
           this.loadInfo = false;
         }
+    },
+    error: (error) => {
+        const errorMessage = this.language === 'es' ? 'Error al cargar la localización' : 'Error loading localization';
+        this.errorMessageService.showError(errorMessage, error.message);
+      }
     });
-
   }
 
   getPokemonColor() {
@@ -91,7 +98,6 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
   groupByVersionAndMethod(data: LocationData[]): GroupedData[] {
     const groupedData: { [versionName: string]: { [methodName: string]: string[] } } = {};
 
-    // Lista con el orden deseado de los juegos
     const gameOrder = [
       "red",
       "blue",
@@ -151,7 +157,6 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
       });
     });
 
-    // Ordenar las versiones usando el orden deseado
     return Object.keys(groupedData)
       .sort((a, b) => gameOrder.indexOf(a) - gameOrder.indexOf(b))
       .map(versionName => ({

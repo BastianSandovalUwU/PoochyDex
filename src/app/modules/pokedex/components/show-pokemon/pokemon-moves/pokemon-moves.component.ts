@@ -8,6 +8,7 @@ import { ExtendedMachineDetail } from '../../../../../../../entities/machine-mov
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { MatLegacyTabChangeEvent as MatTabChangeEvent } from '@angular/material/legacy-tabs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ErrorMessageService } from 'app/services/error-message.service';
 
 @Component({
   selector: 'app-pokemon-moves',
@@ -56,7 +57,8 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   filtersVisibleEgg = true;
 
   constructor(private pokeApiService: PokeApiService,
-              private helperService: HelperService,) { }
+              private helperService: HelperService,
+              private errorMessageService: ErrorMessageService) { }
 
   ngOnInit() {
     this.getPokemonColor();
@@ -245,14 +247,20 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
 
     forkJoin(machineDetailObservables)
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(machineDetails => {
-        this.filteredMovesByMachine = machineMoves.map((move, index) => {
-          if (machineDetails[index]) {
-            move.machineDetail.moveDetails = machineDetails[index];
+      .subscribe({
+        next: (machineDetails) => {
+          this.filteredMovesByMachine = machineMoves.map((move, index) => {
+            if (machineDetails[index]) {
+              move.machineDetail.moveDetails = machineDetails[index];
           }
           return move;
         });
-      });
+      },
+      error: (error) => {
+        const errorMessage = this.language === 'es' ? 'Error al cargar los movimientos' : 'Error loading moves';
+        this.errorMessageService.showError(errorMessage, error.message);
+      }
+    });
   }
 
   filterMovesByTutor(): void {
