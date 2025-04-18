@@ -27,6 +27,8 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
   pokemonSprite: string;
   pokemonSpriteShiny: string;
   movesWithTypes: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
+  movesWithTypesEn: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
+  movesWithTypesEs: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
 
   constructor(
     private pokeApiService: PokeApiService,
@@ -40,7 +42,12 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.languageService.currentLanguage$
       .pipe(takeUntil(this.destroy$))
-      .subscribe(language => this.language = language);
+      .subscribe(language => {
+        this.language = language;
+        if (this.pokemon) {
+          this.updateMovesForCurrentLanguage();
+        }
+      });
 
     this.helperService.isCacheLoading$
       .pipe(
@@ -101,6 +108,16 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
       });
   }
 
+  updateMovesForCurrentLanguage(): void {
+    if (this.language === 'es' && this.movesWithTypesEs.length > 0) {
+      this.movesWithTypes = this.movesWithTypesEs;
+    } else if (this.language === 'en' && this.movesWithTypesEn.length > 0) {
+      this.movesWithTypes = this.movesWithTypesEn;
+    } else if (this.pokemon) {
+      this.getPokemonMoves();
+    }
+  }
+
   getPokemonMoves(): void {
     this.pokeApiService.getPokemonMoves(this.pokemon.id.toString())
       .pipe(takeUntil(this.destroy$))
@@ -128,9 +145,9 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
                 .pipe(takeUntil(this.destroy$))
                 .subscribe({
                   next: (typeNamesArray) => {
-                    this.movesWithTypes = typeNamesArray.map((typeNames, index) => {
-                      const filteredTypeNames = typeNames.filter(f => f.language === this.language);
-                      const moveName = movesArray[index].detailMove.names.find(name => name.language.name === this.language)?.name || movesArray[index].move.name;
+                    this.movesWithTypesEn = typeNamesArray.map((typeNames, index) => {
+                      const filteredTypeNames = typeNames.filter(f => f.language === 'en');
+                      const moveName = movesArray[index].detailMove.names.find(name => name.language.name === 'en')?.name || movesArray[index].move.name;
 
                       return {
                         move: movesArray[index],
@@ -138,6 +155,20 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
                         moveName
                       };
                     });
+
+                    this.movesWithTypesEs = typeNamesArray.map((typeNames, index) => {
+                      const filteredTypeNames = typeNames.filter(f => f.language === 'es');
+                      const moveName = movesArray[index].detailMove.names.find(name => name.language.name === 'es')?.name || movesArray[index].move.name;
+
+                      return {
+                        move: movesArray[index],
+                        types: filteredTypeNames,
+                        moveName
+                      };
+                    });
+
+                    this.movesWithTypes = this.language === 'es' ? this.movesWithTypesEs : this.movesWithTypesEn;
+
                     this.loading = false;
                     this.loadingService.hide();
                   },
