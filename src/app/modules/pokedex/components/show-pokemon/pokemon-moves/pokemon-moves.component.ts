@@ -354,4 +354,5 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   getTypeName(pokeMove): string {
     return pokeMove.types[0]?.typeName || '';
   }
+
 }
