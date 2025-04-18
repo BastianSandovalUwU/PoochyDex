@@ -17,6 +17,7 @@ import { TranslateLocalizationMethodPipe } from './pipes/translate-localization-
 import { TranslateLocalizationNamePipe } from './pipes/translate-localization-name.pipe';
 import { UpButtonComponent } from './up-button/up-button.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { NewUpdateViewComponent } from './new-update-view/new-update-view.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     TranslateLocalizationMethodPipe,
     TranslateLocalizationNamePipe,
     UpButtonComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    NewUpdateViewComponent
   ],
   declarations: [
     MenuComponent,
@@ -59,7 +61,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     TranslateLocalizationMethodPipe,
     TranslateLocalizationNamePipe,
     UpButtonComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    NewUpdateViewComponent
   ]
 })
 export class SharedModule { }

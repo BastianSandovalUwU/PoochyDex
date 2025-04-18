@@ -1,7 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { LanguageService } from './modules/shared/services/language.service';
-import { SwUpdate } from '@angular/service-worker';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserData } from '../../entities/auth/user.entity';
 import { AuthService } from './modules/auth/services/auth.service';
 import { LoadingService } from './modules/shared/services/loading.service';
@@ -22,21 +20,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   isCacheLoading = false;
 
   constructor(private languageService: LanguageService,
-              private updates: SwUpdate,
               private loadingService: LoadingService,
               private authService: AuthService,
               private helperService: HelperService,
               private cdr: ChangeDetectorRef,
-              private snackBar: MatSnackBar
-  ) {
-    if (this.updates.isEnabled) {
-      this.updates.versionUpdates.subscribe(event => {
-        if (event.type === 'VERSION_READY') {
-          this.showUpdateSnackBar();
-        }
-      });
-    }
-  }
+  ) {}
 
   ngAfterViewInit() {
     this.cdr.detectChanges();
@@ -86,18 +74,6 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   setLanguage(language: string): void {
     this.authService.setLanguage(language);
-  }
-
-  showUpdateSnackBar() {
-    const snackBarRef = this.snackBar.open('Nueva versión disponible', 'Actualizar', {
-      duration: 6000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top'
-    });
-
-    snackBarRef.onAction().subscribe(() => {
-      window.location.reload();
-    });
   }
 
 }
