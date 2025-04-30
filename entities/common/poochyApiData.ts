@@ -1517,6 +1517,18 @@ export const ALL_POKEMON_HISUI_REGIONAL_FORMS: PokemonList[] = [
     generationId: 0
   },
   {
+    name: 'typhlosion-hisui',
+    sprites: {
+      homeUrl: "",
+      homeShinyUrl: "",
+      iconUrl: "https://i.imgur.com/bFu1fpp.png"
+    },
+    type: "",
+    type2: "",
+    number: 157,
+    generationId: 0
+  },
+  {
     name: 'qwilfish-hisui',
     sprites: {
       homeUrl: "https://i.imgur.com/FYdrkOR.png",
@@ -1526,6 +1538,162 @@ export const ALL_POKEMON_HISUI_REGIONAL_FORMS: PokemonList[] = [
     type: "",
     type2: "",
     number: 211,
+    generationId: 0
+  },
+  {
+    name: 'sneasel-hisui',
+    sprites: {
+      homeUrl: "",
+      homeShinyUrl: "",
+      iconUrl: "https://i.imgur.com/zDWz6ku.png"
+    },
+    type: "",
+    type2: "",
+    number: 215,
+    generationId: 0
+  },
+  {
+    name: 'dialga-origin',
+    sprites: {
+      homeUrl: "",
+      homeShinyUrl: "",
+      iconUrl: "https://i.imgur.com/Q5qaUQk.png"
+    },
+    type: "",
+    type2: "",
+    number: 483,
+    generationId: 0
+  },
+  {
+    name: 'palkia-origin',
+    sprites: {
+      homeUrl: "",
+      homeShinyUrl: "",
+      iconUrl: "https://i.imgur.com/sAfBnHj.png"
+    },
+    type: "",
+    type2: "",
+    number: 484,
+    generationId: 0
+  },
+  {
+    name: 'samurott-hisui',
+    sprites: {
+      homeUrl: "",
+      homeShinyUrl: "",
+      iconUrl: "https://i.imgur.com/zMC6sCJ.png"
+    },
+    type: "",
+    type2: "",
+    number: 503,
+    generationId: 0
+  },
+  {
+    name: 'lilligant-hisui',
+    sprites: {
+      homeUrl: "",
+      homeShinyUrl: "",
+      iconUrl: "https://i.imgur.com/2CqOuNr.png"
+    },
+    type: "",
+    type2: "",
+    number:549,
+    generationId: 0
+  },
+  {
+    name: 'basculin-white-striped',
+    sprites: {
+      homeUrl: "",
+      homeShinyUrl: "",
+      iconUrl: "https://i.imgur.com/xs5KcDB.png"
+    },
+    type: "",
+    type2: "",
+    number:550,
+    generationId: 0
+  },
+  {
+    name: 'zorua-hisui',
+    sprites: {
+      homeUrl: "",
+      homeShinyUrl: "",
+      iconUrl: "https://i.imgur.com/GvvQKfV.png"
+    },
+    type: "",
+    type2: "",
+    number:570,
+    generationId: 0
+  },
+  {
+    name: 'zoroark-hisui',
+    sprites: {
+      homeUrl: "",
+      homeShinyUrl: "",
+      iconUrl: "https://i.imgur.com/bDJvOte.png"
+    },
+    type: "",
+    type2: "",
+    number:571,
+    generationId: 0
+  },
+  {
+    name: 'braviary-hisui',
+    sprites: {
+      homeUrl: "",
+      homeShinyUrl: "",
+      iconUrl: "https://i.imgur.com/8P3SFHd.png"
+    },
+    type: "",
+    type2: "",
+    number:628,
+    generationId: 0
+  },
+  {
+    name: 'sliggoo-hisui',
+    sprites: {
+      homeUrl: "",
+      homeShinyUrl: "",
+      iconUrl: "https://i.imgur.com/65eW0A8.png"
+    },
+    type: "",
+    type2: "",
+    number:705,
+    generationId: 0
+  },
+  {
+    name: 'goodra-hisui',
+    sprites: {
+      homeUrl: "",
+      homeShinyUrl: "",
+      iconUrl: "https://i.imgur.com/qK0JdP1.png"
+    },
+    type: "",
+    type2: "",
+    number:706,
+    generationId: 0
+  },
+  {
+    name: 'avallug-hisui',
+    sprites: {
+      homeUrl: "",
+      homeShinyUrl: "",
+      iconUrl: "https://i.imgur.com/oelc90y.png"
+    },
+    type: "",
+    type2: "",
+    number:713,
+    generationId: 0
+  },
+  {
+    name: 'decidueye-hisui',
+    sprites: {
+      homeUrl: "",
+      homeShinyUrl: "",
+      iconUrl: "https://i.imgur.com/CkDW8vJ.png"
+    },
+    type: "",
+    type2: "",
+    number: 724,
     generationId: 0
   },
 ];
