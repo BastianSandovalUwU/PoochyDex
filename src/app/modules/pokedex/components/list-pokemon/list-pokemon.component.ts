@@ -71,25 +71,21 @@ export class ListPokemonComponent implements OnInit {
     this.filtersVisible = !this.filtersVisible;
   }
 
-  toggleGeneration(gen: number, event: any) {
-    if (event.target.checked) {
-      this.selectedGenerations.push(gen);
+  toggleGeneration(gen: number) {
+    const index = this.selectedGenerations.indexOf(gen);
+    if (index > -1) {
+      this.selectedGenerations.splice(index, 1);
     } else {
-      const index = this.selectedGenerations.indexOf(gen);
-      if (index > -1) {
-        this.selectedGenerations.splice(index, 1);
-      }
+      this.selectedGenerations.push(gen);
     }
   }
 
-  toggleForm(form: string, event: any) {
-    if (event.target.checked) {
-      this.selectedForms.push(form);
+  toggleForm(form: string) {
+    const index = this.selectedForms.indexOf(form);
+    if (index > -1) {
+      this.selectedForms.splice(index, 1);
     } else {
-      const index = this.selectedForms.indexOf(form);
-      if (index > -1) {
-        this.selectedForms.splice(index, 1);
-      }
+      this.selectedForms.push(form);
     }
   }
 
@@ -148,6 +144,21 @@ const isWithinSelectedGenerations = (pokemon: PokemonList) =>
 
     this.filteredPokemon = Array.from(new Set(filtered)).sort((a, b) => a.number - b.number);
     console.log(this.filteredPokemon);
+  }
+
+  getGameIconForGeneration(gen: number): string[] {
+    switch(gen) {
+      case 1: return ['red', 'blue'];
+      case 2: return ['gold', 'silver'];
+      case 3: return ['ruby', 'sapphire'];
+      case 4: return ['diamond', 'pearl'];
+      case 5: return ['black', 'white'];
+      case 6: return ['x', 'y'];
+      case 7: return ['sun', 'moon'];
+      case 8: return ['sword', 'shield'];
+      case 9: return ['scarlet', 'violet'];
+      default: return [];
+    }
   }
 
 }

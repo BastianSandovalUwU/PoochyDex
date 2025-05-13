@@ -10,38 +10,52 @@
         </button>
       </div>
       <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="filters-container">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
-          <div class="grid grid-cols-2">
-            <label *ngFor="let gen of generations">
-              <input type="checkbox" [value]="gen" [checked]="selectedGenerations.includes(gen)" (change)="toggleGeneration(gen, $event)" />
-              {{ language === 'es' ? 'Generación ' : 'Generation ' }} {{ gen }}
-            </label>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2 sm:mt-4 p-0 sm:p-2">
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-1">
+            <button *ngFor="let gen of generations"
+                    [class]="selectedGenerations.includes(gen) ?
+                      (gen === 1 ? 'gen-button-red-blue' :
+                       gen === 2 ? 'gen-button-gold-silver' :
+                       gen === 3 ? 'gen-button-ruby-sapphire' :
+                       gen === 4 ? 'gen-button-diamond-pearl' :
+                       gen === 5 ? 'gen-button-black-white' :
+                       gen === 6 ? 'gen-button-x-y' :
+                       gen === 7 ? 'gen-button-sun-moon' :
+                       gen === 8 ? 'gen-button-sword-shield' :
+                       'gen-button-scarlet-violet') : 'bg-gray-200 text-gray-400'"
+                    [class.text-white]="selectedGenerations.includes(gen) && (gen === 1 || gen === 5 || gen === 8)"
+                    [class.text-gray-700]="!selectedGenerations.includes(gen)"
+                    class="px-3 py-1.5 rounded-full transition-colors duration-200 hover:opacity-80 hover:scale-105 relative overflow-hidden"
+                    (click)="toggleGeneration(gen)">
+                    <div class="flex items-center justify-between w-full relative">
+                      <img class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 -translate-x-1/2 w-7 h-7 sm:w-8 sm:h-8" [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconForGeneration(gen)[0] + '.png'" alt="">
+                      <span class="text-center flex-1 mx-2">{{ language === 'es' ? 'Generación ' : 'Generation ' }} {{ gen }}</span>
+                      <img class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 translate-x-1/2 w-7 h-7 sm:w-8 sm:h-8" [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconForGeneration(gen)[1] + '.png'" alt="">
+                    </div>
+            </button>
           </div>
-          <div class="grid grid-cols-2">
-            <label>
-              <input type="checkbox" [value]="'alola'" [checked]="selectedForms.includes('alola')" (change)="toggleForm('alola', $event)" />
-              {{ language === 'es' ? 'Formas Alola' : 'Alola Forms' }}
-            </label>
-            <label>
-              <input type="checkbox" [value]="'galar'" [checked]="selectedForms.includes('galar')" (change)="toggleForm('galar', $event)" />
-              {{ language === 'es' ? 'Formas Galar' : 'Galar Forms' }}
-            </label>
-            <label>
-              <input type="checkbox" [value]="'paldea'" [checked]="selectedForms.includes('paldea')" (change)="toggleForm('paldea', $event)" />
-              {{ language === 'es' ? 'Formas Paldea' : 'Paldea Forms' }}
-            </label>
-            <label>
-              <input type="checkbox" [value]="'hisui'" [checked]="selectedForms.includes('hisui')" (change)="toggleForm('hisui', $event)" />
-              {{ language === 'es' ? 'Formas Hisui' : 'Hisui Forms' }}
-            </label>
-            <label>
-              <input type="checkbox" [value]="'gmax'" [checked]="selectedForms.includes('gmax')" (change)="toggleForm('gmax', $event)" />
-              {{ language === 'es' ? 'Formas Gigamax ' : 'Gigantamax  Forms' }}
-            </label>
-            <label>
-              <input type="checkbox" [value]="'mega'" [checked]="selectedForms.includes('mega')" (change)="toggleForm('mega', $event)" />
-              {{ language === 'es' ? 'Formas Mega' : 'Mega Forms' }}
-            </label>
+          <div class="grid grid-cols-2 gap-1">
+            <button *ngFor="let form of ['alola', 'galar', 'paldea', 'hisui', 'gmax', 'mega']"
+                    [class.bg-blue-500]="selectedForms.includes(form)"
+                    [class.text-white]="selectedForms.includes(form)"
+                    [class.bg-gray-200]="!selectedForms.includes(form)"
+                    [class.text-gray-700]="!selectedForms.includes(form)"
+                    class="px-1 py-1 rounded-full transition-colors duration-200 hover:bg-blue-600 hover:text-white"
+                    (click)="toggleForm(form)">
+              {{ language === 'es' ?
+                (form === 'alola' ? 'Formas Alola' :
+                 form === 'galar' ? 'Formas Galar' :
+                 form === 'paldea' ? 'Formas Paldea' :
+                 form === 'hisui' ? 'Formas Hisui' :
+                 form === 'gmax' ? 'Formas Gigamax' :
+                 'Formas Mega') :
+                (form === 'alola' ? 'Alola Forms' :
+                 form === 'galar' ? 'Galar Forms' :
+                 form === 'paldea' ? 'Paldea Forms' :
+                 form === 'hisui' ? 'Hisui Forms' :
+                 form === 'gmax' ? 'Gigantamax Forms' :
+                 'Mega Forms') }}
+            </button>
           </div>
         </div>
         <button (click)="applyFilters()" class="bg-blue-500 text-white rounded-md mt-4 px-4 py-2">
@@ -67,6 +81,11 @@
           routerLinkActive="router-link-active"
       >{{ pokemon.name |translatePokemonName |replaceDash | titlecase }}</h1>
     </div>
+
+  </div>
+
+  <div *ngIf="filteredPokemon.length === 0">
+    <h1 class="text-center text-2xl">{{ language === 'es' ? 'No hay Pokémon que coincidan con los filtros aplicados.' : 'No Pokémon found that match the applied filters.' }}</h1>
   </div>
 
 </div>
