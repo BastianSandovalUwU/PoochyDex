@@ -161,4 +161,20 @@ const isWithinSelectedGenerations = (pokemon: PokemonList) =>
     }
   }
 
+  getGameIconForForm(form: string): string[] {
+    switch(form) {
+      case 'alola': return ['https://i.imgur.com/uBItHSf.png', 'https://i.imgur.com/uBItHSf.png'];
+      case 'galar': return ['https://i.imgur.com/lqJ4HD7.png', 'https://i.imgur.com/lqJ4HD7.png'];
+      case 'paldea': return ['https://i.imgur.com/08V6nOU.png', 'https://i.imgur.com/08V6nOU.png'];
+      case 'hisui': return ['https://i.imgur.com/8OwCV9k.png', 'https://i.imgur.com/8OwCV9k.png'];
+      case 'gmax': return ['https://imgur.com/gXd5yaL.png', 'https://imgur.com/gXd5yaL.png'];
+      case 'mega': return ['https://i.imgur.com/YLkgY3T.png', 'https://i.imgur.com/Ygj2JeC.png'];
+      default: return [];
+    }
+  }
+
+  capitalize(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }
+
 }
