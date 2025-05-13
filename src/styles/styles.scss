@@ -181,3 +181,37 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: #552277;
   }
 }
+
+/* Single color buttons for forms */
+.form-button-alola, .form-button-galar, .form-button-paldea,
+.form-button-hisui, .form-button-gmax, .form-button-mega {
+  position: relative;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+}
+
+.form-button-alola {
+  background-color: #FF6B6B;
+}
+
+.form-button-galar {
+  background-color: #6C5CE7;
+}
+
+.form-button-paldea {
+  background-color: #FF8B94;
+}
+
+.form-button-hisui {
+  background-color: #B8E0D2;
+  color: black;
+}
+
+.form-button-gmax {
+  background-color: #FF6B6B;
+}
+
+.form-button-mega {
+  background-color: #FF6B6B;
+}

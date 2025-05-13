@@ -36,25 +36,37 @@
           </div>
           <div class="grid grid-cols-2 gap-1">
             <button *ngFor="let form of ['alola', 'galar', 'paldea', 'hisui', 'gmax', 'mega']"
-                    [class.bg-blue-500]="selectedForms.includes(form)"
-                    [class.text-white]="selectedForms.includes(form)"
-                    [class.bg-gray-200]="!selectedForms.includes(form)"
+                    [class]="selectedForms.includes(form) ?
+                      (form === 'alola' ? 'form-button-alola' :
+                       form === 'galar' ? 'form-button-galar' :
+                       form === 'paldea' ? 'form-button-paldea' :
+                       form === 'hisui' ? 'form-button-hisui' :
+                       form === 'gmax' ? 'form-button-gmax' :
+                       'form-button-mega') : 'bg-gray-200 text-gray-400'"
+                    [class.text-white]="selectedForms.includes(form) && form !== 'hisui'"
                     [class.text-gray-700]="!selectedForms.includes(form)"
-                    class="px-1 py-1 rounded-full transition-colors duration-200 hover:bg-blue-600 hover:text-white"
+                    class="px-3 py-1.5 rounded-full transition-colors duration-200 hover:opacity-80 hover:scale-105 relative overflow-hidden"
                     (click)="toggleForm(form)">
-              {{ language === 'es' ?
-                (form === 'alola' ? 'Formas Alola' :
-                 form === 'galar' ? 'Formas Galar' :
-                 form === 'paldea' ? 'Formas Paldea' :
-                 form === 'hisui' ? 'Formas Hisui' :
-                 form === 'gmax' ? 'Formas Gigamax' :
-                 'Formas Mega') :
-                (form === 'alola' ? 'Alola Forms' :
-                 form === 'galar' ? 'Galar Forms' :
-                 form === 'paldea' ? 'Paldea Forms' :
-                 form === 'hisui' ? 'Hisui Forms' :
-                 form === 'gmax' ? 'Gigantamax Forms' :
-                 'Mega Forms') }}
+                    <div class="flex items-center justify-between w-full relative">
+                      <img class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 -translate-x-1/2 w-7 h-7 sm:w-8 sm:h-8" [src]="getGameIconForForm(form)[0]" alt="">
+                      <span class="text-center flex-1 mx-2">
+                        {{ language === 'es' ?
+                        (form === 'alola' ? 'Formas Alola' :
+                         form === 'galar' ? 'Formas Galar' :
+                         form === 'paldea' ? 'Formas Paldea' :
+                         form === 'hisui' ? 'Formas Hisui' :
+                         form === 'gmax' ? 'Formas Gigamax' :
+                         'Formas Mega') :
+                        (form === 'alola' ? 'Alola Forms' :
+                         form === 'galar' ? 'Galar Forms' :
+                         form === 'paldea' ? 'Paldea Forms' :
+                         form === 'hisui' ? 'Hisui Forms' :
+                         form === 'gmax' ? 'Gigantamax Forms' :
+                         'Mega Forms') }}
+                      </span>
+                      <img class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 translate-x-1/2 w-7 h-7 sm:w-8 sm:h-8" [src]="getGameIconForForm(form)[1]" alt="">
+                    </div>
+
             </button>
           </div>
         </div>
@@ -64,14 +76,14 @@
       </div>
     </div>
 
-  <div class="grid grid-cols-3 sm:grid-cols-8 gap-2 mx-5 my-5">
+  <div class="grid grid-cols-1 sm:grid-cols-5 gap-2 sm:m-5 m-20">
     <div *ngFor="let pokemon of filteredPokemon" class="hover:opacity-80">
       <h1 class="bg-gray-200 rounded-t-lg border-t border-x border-black text-center pb-2 text-xl hover:text-blue-500 cursor-pointer">#{{ pokemon.number }}</h1>
       <div class="bg-gray-200 border-x border-black col-span-1 flex justify-center cursor-pointer">
         <img class="w-80"
              routerLinkActive="router-link-active"
              [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
-             [src]="pokemon.sprites.iconUrl" alt="" class="w-20 mr-2"
+             [src]="pokemon.sprites.iconUrl" alt="" class="w-60 sm:w-30 mr-2"
         >
       </div>
       <h1 class="bg-gray-200 rounded-b-lg border-b
@@ -80,6 +92,17 @@
           [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
           routerLinkActive="router-link-active"
       >{{ pokemon.name |translatePokemonName |replaceDash | titlecase }}</h1>
+      <div class="flex justify-between mt-2">
+        <div class="rounded-md" *ngIf="pokemon.type">
+          <img class="w-32"
+          [src]="'./assets/icons/types/' + capitalize(pokemon.type) + '.png'">
+        </div>
+        <div class="rounded-md" *ngIf="pokemon.type2">
+          <img class="w-32"
+          [src]="'./assets/icons/types/' + capitalize(pokemon.type2) + '.png'">
+        </div>
+      </div>
+
     </div>
 
   </div>
