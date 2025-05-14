@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { PokemonList } from '../../../../../../entities/pokemon-list.entity';
 import { ALL_POKEMON_ALOLA } from '../../../../../../entities/common/alola-pokemon-data';
 import { ALL_POKEMON_GALAR } from '../../../../../../entities/common/galar-pokemon-data';
@@ -16,22 +15,7 @@ import { ALL_POKEMON_UNOVA } from '../../../../../../entities/common/unova-pokem
 @Component({
   selector: 'app-list-pokemon',
   templateUrl: './list-pokemon.component.html',
-  styleUrls: ['./list-pokemon.component.scss'],
-  animations: [
-    trigger('toggleFilters', [
-      state('visible', style({
-        height: '*',
-        opacity: 1
-      })),
-      state('hidden', style({
-        height: '0px',
-        opacity: 0
-      })),
-      transition('visible <=> hidden', [
-        animate('300ms ease-in-out')
-      ])
-    ])
-  ]
+  styleUrls: ['./list-pokemon.component.scss']
 })
 export class ListPokemonComponent implements OnInit {
 
@@ -47,17 +31,15 @@ export class ListPokemonComponent implements OnInit {
   allMegaPokemon: PokemonList[] = ALL_POKEMON_MEGA_FORMS;
   filteredPokemon: any[] = this.allPokemon;
   language: string;
-  generations = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  selectedGenerations: number[] = [];
-  selectedForms: string[] = [];
   filtersVisible = false;
+  showFloatingFilter: boolean = false;
+  private scrollThreshold: number = 200; // Ajusta este valor según necesites
 
   constructor(private pokeApiService: PokeApiService,
               private languageService: LanguageService,
               ) { }
 
   ngOnInit() {
-    this.selectedGenerations = [...this.generations];
     this.getLanguage();
   }
 
@@ -67,30 +49,8 @@ export class ListPokemonComponent implements OnInit {
     });
   }
 
-  toggleFilters() {
-    this.filtersVisible = !this.filtersVisible;
-  }
-
-  toggleGeneration(gen: number) {
-    const index = this.selectedGenerations.indexOf(gen);
-    if (index > -1) {
-      this.selectedGenerations.splice(index, 1);
-    } else {
-      this.selectedGenerations.push(gen);
-    }
-  }
-
-  toggleForm(form: string) {
-    const index = this.selectedForms.indexOf(form);
-    if (index > -1) {
-      this.selectedForms.splice(index, 1);
-    } else {
-      this.selectedForms.push(form);
-    }
-  }
-
-  applyFilters() {
-    this.getPokemonByGenerationsAndForms(this.selectedGenerations, this.selectedForms);
+  applyFilters(filters: { generations: number[], forms: string[] }) {
+    this.getPokemonByGenerationsAndForms(filters.generations, filters.forms);
   }
 
   getPokemonByGenerationsAndForms(generations: number[], forms: string[]) {
@@ -143,38 +103,16 @@ const isWithinSelectedGenerations = (pokemon: PokemonList) =>
     }
 
     this.filteredPokemon = Array.from(new Set(filtered)).sort((a, b) => a.number - b.number);
-    console.log(this.filteredPokemon);
-  }
-
-  getGameIconForGeneration(gen: number): string[] {
-    switch(gen) {
-      case 1: return ['red', 'blue'];
-      case 2: return ['gold', 'silver'];
-      case 3: return ['ruby', 'sapphire'];
-      case 4: return ['diamond', 'pearl'];
-      case 5: return ['black', 'white'];
-      case 6: return ['x', 'y'];
-      case 7: return ['sun', 'moon'];
-      case 8: return ['sword', 'shield'];
-      case 9: return ['scarlet', 'violet'];
-      default: return [];
-    }
-  }
-
-  getGameIconForForm(form: string): string[] {
-    switch(form) {
-      case 'alola': return ['https://i.imgur.com/uBItHSf.png', 'https://i.imgur.com/uBItHSf.png'];
-      case 'galar': return ['https://i.imgur.com/lqJ4HD7.png', 'https://i.imgur.com/lqJ4HD7.png'];
-      case 'paldea': return ['https://i.imgur.com/08V6nOU.png', 'https://i.imgur.com/08V6nOU.png'];
-      case 'hisui': return ['https://i.imgur.com/8OwCV9k.png', 'https://i.imgur.com/8OwCV9k.png'];
-      case 'gmax': return ['https://imgur.com/gXd5yaL.png', 'https://imgur.com/gXd5yaL.png'];
-      case 'mega': return ['https://i.imgur.com/YLkgY3T.png', 'https://i.imgur.com/Ygj2JeC.png'];
-      default: return [];
-    }
   }
 
   capitalize(str: string): string {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    this.showFloatingFilter = scrollPosition > this.scrollThreshold;
   }
 
 }

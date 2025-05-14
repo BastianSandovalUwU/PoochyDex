@@ -2,79 +2,13 @@
   <h1 class="mx-5 pl-2 text-black text-2xl font-bold">{{ language === 'es' ? 'Listado de Pokémon' : 'Pokémon List'}}</h1>
   <hr class="my-2">
 
-    <div class="mt-4 mx-5 bg-gray-100 rounded-md p-4 border border-black">
-      <div class="flex justify-between items-center">
-        <span class="text-xl cursor-pointer" (click)="toggleFilters()">{{ language === 'es' ? 'Filtros de búsqueda' : 'Search Filters' }}</span>
-        <button mat-icon-button (click)="toggleFilters()">
-          <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
-        </button>
-      </div>
-      <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="filters-container">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2 sm:mt-4 p-0 sm:p-2">
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-1">
-            <button *ngFor="let gen of generations"
-                    [class]="selectedGenerations.includes(gen) ?
-                      (gen === 1 ? 'gen-button-red-blue' :
-                       gen === 2 ? 'gen-button-gold-silver' :
-                       gen === 3 ? 'gen-button-ruby-sapphire' :
-                       gen === 4 ? 'gen-button-diamond-pearl' :
-                       gen === 5 ? 'gen-button-black-white' :
-                       gen === 6 ? 'gen-button-x-y' :
-                       gen === 7 ? 'gen-button-sun-moon' :
-                       gen === 8 ? 'gen-button-sword-shield' :
-                       'gen-button-scarlet-violet') : 'bg-gray-200 text-gray-400'"
-                    [class.text-white]="selectedGenerations.includes(gen) && (gen === 1 || gen === 5 || gen === 8)"
-                    [class.text-gray-700]="!selectedGenerations.includes(gen)"
-                    class="px-3 py-1.5 rounded-full transition-colors duration-200 hover:opacity-80 hover:scale-105 relative overflow-hidden"
-                    (click)="toggleGeneration(gen)">
-                    <div class="flex items-center justify-between w-full relative">
-                      <img class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 -translate-x-1/2 w-7 h-7 sm:w-8 sm:h-8" [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconForGeneration(gen)[0] + '.png'" alt="">
-                      <span class="text-center flex-1 mx-2">{{ language === 'es' ? 'Generación ' : 'Generation ' }} {{ gen }}</span>
-                      <img class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 translate-x-1/2 w-7 h-7 sm:w-8 sm:h-8" [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconForGeneration(gen)[1] + '.png'" alt="">
-                    </div>
-            </button>
-          </div>
-          <div class="grid grid-cols-2 gap-1">
-            <button *ngFor="let form of ['alola', 'galar', 'paldea', 'hisui', 'gmax', 'mega']"
-                    [class]="selectedForms.includes(form) ?
-                      (form === 'alola' ? 'form-button-alola' :
-                       form === 'galar' ? 'form-button-galar' :
-                       form === 'paldea' ? 'form-button-paldea' :
-                       form === 'hisui' ? 'form-button-hisui' :
-                       form === 'gmax' ? 'form-button-gmax' :
-                       'form-button-mega') : 'bg-gray-200 text-gray-400'"
-                    [class.text-white]="selectedForms.includes(form) && form !== 'hisui'"
-                    [class.text-gray-700]="!selectedForms.includes(form)"
-                    class="px-3 py-1.5 rounded-full transition-colors duration-200 hover:opacity-80 hover:scale-105 relative overflow-hidden"
-                    (click)="toggleForm(form)">
-                    <div class="flex items-center justify-between w-full relative">
-                      <img class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 -translate-x-1/2 w-7 h-7 sm:w-8 sm:h-8" [src]="getGameIconForForm(form)[0]" alt="">
-                      <span class="text-center flex-1 mx-2">
-                        {{ language === 'es' ?
-                        (form === 'alola' ? 'Formas Alola' :
-                         form === 'galar' ? 'Formas Galar' :
-                         form === 'paldea' ? 'Formas Paldea' :
-                         form === 'hisui' ? 'Formas Hisui' :
-                         form === 'gmax' ? 'Formas Gigamax' :
-                         'Formas Mega') :
-                        (form === 'alola' ? 'Alola Forms' :
-                         form === 'galar' ? 'Galar Forms' :
-                         form === 'paldea' ? 'Paldea Forms' :
-                         form === 'hisui' ? 'Hisui Forms' :
-                         form === 'gmax' ? 'Gigantamax Forms' :
-                         'Mega Forms') }}
-                      </span>
-                      <img class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 translate-x-1/2 w-7 h-7 sm:w-8 sm:h-8" [src]="getGameIconForForm(form)[1]" alt="">
-                    </div>
+  <div class="mt-4 mx-5">
+    <app-filter [language]="language" (filters)="applyFilters($event)" [isShow]="showFloatingFilter"></app-filter>
+  </div>
 
-            </button>
-          </div>
-        </div>
-        <button (click)="applyFilters()" class="bg-blue-500 text-white rounded-md mt-4 px-4 py-2">
-          {{ language === 'es' ? 'Aplicar Filtros' : 'Apply Filters' }}
-        </button>
-      </div>
-    </div>
+  <div class="fixed-filter" [class.visible]="showFloatingFilter">
+    <app-filter [language]="language" (filters)="applyFilters($event)" [isShow]="showFloatingFilter"></app-filter>
+  </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-5 gap-2 sm:m-5 m-20">
     <div *ngFor="let pokemon of filteredPokemon" class="hover:opacity-80">
