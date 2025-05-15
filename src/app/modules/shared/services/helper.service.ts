@@ -740,4 +740,84 @@ export class HelperService {
     }
   }
 
+  getGameIconForGeneration(gen: number): string[] {
+    switch(gen) {
+      case 1: return ['red', 'blue'];
+      case 2: return ['gold', 'silver'];
+      case 3: return ['ruby', 'sapphire'];
+      case 4: return ['diamond', 'pearl'];
+      case 5: return ['black', 'white'];
+      case 6: return ['x', 'y'];
+      case 7: return ['sun', 'moon'];
+      case 8: return ['sword', 'shield'];
+      case 9: return ['scarlet', 'violet'];
+      default: return [];
+    }
+  }
+
+  getGameIconForForm(form: string): string[] {
+    switch(form) {
+      case 'alola': return ['https://i.imgur.com/uBItHSf.png', 'https://i.imgur.com/uBItHSf.png'];
+      case 'galar': return ['https://i.imgur.com/lqJ4HD7.png', 'https://i.imgur.com/lqJ4HD7.png'];
+      case 'paldea': return ['https://i.imgur.com/08V6nOU.png', 'https://i.imgur.com/08V6nOU.png'];
+      case 'hisui': return ['https://i.imgur.com/8OwCV9k.png', 'https://i.imgur.com/8OwCV9k.png'];
+      case 'gmax': return ['https://imgur.com/gXd5yaL.png', 'https://imgur.com/gXd5yaL.png'];
+      case 'mega': return ['https://i.imgur.com/YLkgY3T.png', 'https://i.imgur.com/Ygj2JeC.png'];
+      default: return [];
+    }
+  }
+
+  getGameIconNameForLanguage(typeName: string, language: string): string {
+    if(language === 'es') {
+      switch(typeName) {
+        case 'grass': return 'Planta';
+        case 'fire': return 'Fuego';
+        case 'water': return 'Agua';
+        case 'bug': return 'Bicho';
+        case 'normal': return 'Normal';
+        case 'poison': return 'Veneno';
+        case 'electric': return 'Eléctrico';
+        case 'ground': return 'Tierra';
+        case 'fairy': return 'Hada';
+        case 'fighting': return 'Lucha';
+        case 'psychic': return 'Psíquico';
+        case 'rock': return 'Roca';
+        case 'ghost': return 'Fantasma';
+        case 'ice': return 'Hielo';
+        case 'dragon': return 'Dragón';
+        case 'dark': return 'Siniestro';
+        case 'steel': return 'Acero';
+        case 'flying': return 'Volador';
+        default: return typeName;
+      }
+    }
+    if(language === 'en') {
+      switch(typeName) {
+        case 'grass': return 'Grass';
+        case 'fire': return 'Fire';
+        case 'water': return 'Water';
+        case 'bug': return 'Bug';
+        case 'normal': return 'Normal';
+        case 'poison': return 'Poison';
+        case 'electric': return 'Electric';
+        case 'ground': return 'Ground';
+        case 'fairy': return 'Fairy';
+        case 'fighting': return 'Fighting';
+        case 'psychic': return 'Psychic';
+        case 'rock': return 'Rock';
+        case 'ghost': return 'Ghost';
+        case 'ice': return 'Ice';
+        case 'dragon': return 'Dragon';
+        case 'dark': return 'Dark';
+        case 'steel': return 'Steel';
+        case 'flying': return 'Flying';
+      }
+    }
+    return this.capitalize(typeName);
+  }
+
+  capitalize(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }
+
 }

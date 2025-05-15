@@ -1,0 +1,35 @@
+<div class="rounded-md p-1 border border-black">
+  <div class="flex justify-between items-center cursor-pointer" (click)="toggleFilters()">
+    <span class="text-xl cursor-pointer ml-1">{{ language === 'es' ? 'Configuración de vista' : 'View Configuration' }}</span>
+    <button mat-icon-button class="cursor-default">
+      <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
+    </button>
+  </div>
+
+  <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="filters-container">
+    <div class="sticky-wrapper">
+      <div class="filter-container">
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 p-0 sm:p-2">
+          <button (click)="changeViewType('grid grid-cols-1')" class="rounded-full mt-4">
+            <mat-icon class="text-blue-500">view_list</mat-icon>
+          </button>
+          <button (click)="changeViewType('grid grid-cols-1 sm:grid-cols-3 gap-2')" class="rounded-full mt-4">
+            <mat-icon class="text-blue-500">view_module</mat-icon>
+          </button>
+          <button (click)="changeViewType('grid grid-cols-1 sm:grid-cols-10 gap-2')" class="rounded-full mt-4">
+            <mat-icon class="text-blue-500 ">view_compact</mat-icon>
+          </button>
+
+
+        </div>
+        <!-- <div class="p-2">
+          <button (click)="changeViewType()" class="bg-red-500 text-white rounded-full mt-4 px-4 py-2">
+            {{ language === 'es' ? 'Cambiar vista' : 'Change View' }}
+          </button>
+        </div> -->
+      </div>
+    </div>
+
+
+  </div>
+</div>

@@ -20,6 +20,20 @@ export class TranslatePokemonNamePipe implements PipeTransform {
     if(this.language === 'es') {
       switch (value) {
         case 'giratina-altered': return 'Giratina';
+        case 'giratina-origin': return 'Giratina';
+        case 'toxtricity-amped': return 'Toxtricity';
+        case 'urshifu-single-strike': return 'Urshifu';
+        case 'enamorus-incarnate': return 'Enamorus';
+        case 'basculegion-male': return 'Basculegion';
+        case 'squawkabilly-green-plumage': return 'Squawkabilly';
+        case 'squawkabilly-blue-plumage': return 'Squawkabilly';
+        case 'squawkabilly-yellow-plumage': return 'Squawkabilly';
+        case 'squawkabilly-white-plumage': return 'Squawkabilly';
+        case 'maushold-family-of-four': return 'Maushold';
+        case 'palafin-zero': return 'Palafin';
+        case 'dudunsparce-two-segment': return 'Dudunsparce';
+        case 'tatsugiri-curlyt': return 'Tatsugiri';
+        case 'slither-wing': return 'Reptalada';
         case 'gouging-fire': return 'Flamariete';
         case 'raging-bolt': return 'Electrofuria';
         case 'iron-boulder': return 'Ferromole';

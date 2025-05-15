@@ -12,6 +12,7 @@ import { ALL_POKEMON_PALDEA } from '../../../../../../entities/common/paldea-pok
 import { ALL_POKEMON_ALOLA_REGIONAL_FORMS, ALL_POKEMON_GALAR_REGIONAL_FORMS, ALL_POKEMON_PALDEA_REGIONAL_FORMS, ALL_POKEMON_HISUI_REGIONAL_FORMS, ALL_POKEMON_GIGAMAX_FORMS, ALL_POKEMON_MEGA_FORMS } from '../../../../../../entities/common/poochyApiData';
 import { ALL_POKEMON_SINNOH } from '../../../../../../entities/common/sinnoh-pokemon-data';
 import { ALL_POKEMON_UNOVA } from '../../../../../../entities/common/unova-pokemon-data';
+import { HelperService } from 'app/modules/shared/services/helper.service';
 @Component({
   selector: 'app-list-pokemon',
   templateUrl: './list-pokemon.component.html',
@@ -33,10 +34,13 @@ export class ListPokemonComponent implements OnInit {
   language: string;
   filtersVisible = false;
   showFloatingFilter: boolean = false;
-  private scrollThreshold: number = 200; // Ajusta este valor según necesites
+  private scrollThreshold: number = 200;
+
+  pokemonListGridClass: string = 'grid grid-cols-2 sm:grid-cols-10 gap-1';
 
   constructor(private pokeApiService: PokeApiService,
               private languageService: LanguageService,
+              private helperService: HelperService
               ) { }
 
   ngOnInit() {
@@ -105,8 +109,8 @@ const isWithinSelectedGenerations = (pokemon: PokemonList) =>
     this.filteredPokemon = Array.from(new Set(filtered)).sort((a, b) => a.number - b.number);
   }
 
-  capitalize(str: string): string {
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  getGameIconNameForLanguage(typeName: string, language: string): string {
+    return this.helperService.getGameIconNameForLanguage(typeName, language);
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -115,4 +119,11 @@ const isWithinSelectedGenerations = (pokemon: PokemonList) =>
     this.showFloatingFilter = scrollPosition > this.scrollThreshold;
   }
 
+  changeView(view: string) {
+    this.pokemonListGridClass = view;
+  }
+
+  addZerosToNumber(number: number): string {
+    return number.toString().padStart(4, '0');
+  }
 }

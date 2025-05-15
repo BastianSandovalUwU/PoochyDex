@@ -1,6 +1,6 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-
+import { HelperService } from 'app/modules/shared/services/helper.service';
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
@@ -34,7 +34,7 @@ export class FilterComponent implements OnInit, OnChanges {
   generationGridClass: string = 'grid grid-cols-2 sm:grid-cols-3 gap-1';
   formGridClass: string = 'grid grid-cols-1 gap-1';
 
-  constructor() { }
+  constructor(private helperService: HelperService) { }
 
   ngOnInit() {
     this.selectedGenerations = [...this.generations];
@@ -74,30 +74,11 @@ export class FilterComponent implements OnInit, OnChanges {
   }
 
   getGameIconForGeneration(gen: number): string[] {
-    switch(gen) {
-      case 1: return ['red', 'blue'];
-      case 2: return ['gold', 'silver'];
-      case 3: return ['ruby', 'sapphire'];
-      case 4: return ['diamond', 'pearl'];
-      case 5: return ['black', 'white'];
-      case 6: return ['x', 'y'];
-      case 7: return ['sun', 'moon'];
-      case 8: return ['sword', 'shield'];
-      case 9: return ['scarlet', 'violet'];
-      default: return [];
-    }
+    return this.helperService.getGameIconForGeneration(gen);
   }
 
   getGameIconForForm(form: string): string[] {
-    switch(form) {
-      case 'alola': return ['https://i.imgur.com/uBItHSf.png', 'https://i.imgur.com/uBItHSf.png'];
-      case 'galar': return ['https://i.imgur.com/lqJ4HD7.png', 'https://i.imgur.com/lqJ4HD7.png'];
-      case 'paldea': return ['https://i.imgur.com/08V6nOU.png', 'https://i.imgur.com/08V6nOU.png'];
-      case 'hisui': return ['https://i.imgur.com/8OwCV9k.png', 'https://i.imgur.com/8OwCV9k.png'];
-      case 'gmax': return ['https://imgur.com/gXd5yaL.png', 'https://imgur.com/gXd5yaL.png'];
-      case 'mega': return ['https://i.imgur.com/YLkgY3T.png', 'https://i.imgur.com/Ygj2JeC.png'];
-      default: return [];
-    }
+    return this.helperService.getGameIconForForm(form);
   }
 
   toggleFilters() {
