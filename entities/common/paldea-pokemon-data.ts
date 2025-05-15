@@ -346,7 +346,6 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
     },
     number: 934,
     type: "Rock",
-    type2: "Salt",
     generationId: 9
   },
   {

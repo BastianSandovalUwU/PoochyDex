@@ -454,7 +454,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 759,
     generationId: 7,
-    type: "Bear",
+    type: "Normal",
     type2: "Fighting"
   },
   {
@@ -466,7 +466,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 760,
     generationId: 7,
-    type: "Bear",
+    type: "Normal",
     type2: "Fighting"
   },
   {
