@@ -40,15 +40,15 @@ module.exports = {
         '10xl': '8rem'
     },
     screens : {
-        print: {'raw': 'print'},
-        xs   : '375px',
-        sm   : '600px',
-        md   : '960px',
-        lg   : '1280px',
-        lg2  : '1380px',
-        xl   : '1440px',
-        1450: '1450px',
-        xl2  : '2000px'
+        'print': {'raw': 'print'},
+        'xs': '320px',    // Small phones
+        'sm': '480px',    // Large phones
+        'md': '768px',    // Tablets
+        'lg': '1024px',   // Laptops
+        'xl': '1280px',   // Desktops
+        '2xl': '1536px',  // Large Desktops
+        '3xl': '1920px',  // Full HD
+        '4xl': '2560px',  // 4K Screens
     },
     extend  : {
         backgroundColor: ['active'],

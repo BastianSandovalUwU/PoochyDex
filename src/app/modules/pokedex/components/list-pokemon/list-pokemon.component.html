@@ -14,9 +14,9 @@
     <app-config-view [language]="language" (changeView)="changeView($event)"></app-config-view>
   </div> -->
 
-  <div [ngClass]="pokemonListGridClass" class="m-1 pb-15">
+  <div [ngClass]="pokemonListGridClass" class="pb-15 w-full mt-2">
     <div *ngFor="let pokemon of filteredPokemon" class="hover:opacity-80">
-      <div class="bg-white rounded-lg w-[180px] h-48 relative overflow-hidden shadow-lg">
+      <div class="bg-white rounded-lg w-full max-w-[180px] h-48 relative overflow-hidden shadow-lg mx-auto">
         <div class="absolute top-0 left-0 w-full h-1/2 bg-red-500"></div>
 
         <div class="absolute top-1/2 left-0 w-full h-2 bg-black transform -translate-y-1/2"></div>

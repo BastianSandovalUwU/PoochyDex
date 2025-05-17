@@ -36,16 +36,6 @@
   <div class="px-3 py-4">
     <ul class="space-y-2 font-medium">
       <li>
-        <a *ngIf="!userData" href="/auth/login" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:bg-gray-700 group">
-          <img class="w-8" src="/assets/icons/consoles/card-trainer.png" alt="" />
-          <span class="ms-3" >{{ language === 'es' ? 'Iniciar Sesión' : 'Login' }}</span>
-        </a>
-        <a *ngIf="userData" href="/auth/login" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:bg-gray-700 group">
-          <img class="w-8" src="/assets/icons/consoles/card-trainer.png" alt="" />
-          <span class="ms-3" *ngIf="userData">{{ userData.user }}</span>
-        </a>
-      </li>
-      <li>
         <a class="flex items-center p-2 text-gray-900 rounded-lg
         dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:bg-gray-700 group">
           <mat-icon>settings</mat-icon>
