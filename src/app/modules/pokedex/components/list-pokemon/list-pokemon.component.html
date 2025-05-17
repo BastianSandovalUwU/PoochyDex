@@ -6,7 +6,7 @@
     <app-filter [language]="language" (filters)="applyFilters($event)" [isShow]="showFloatingFilter"></app-filter>
   </div>
 
-  <div class="fixed-filter" [class.visible]="showFloatingFilter">
+  <div class="fixed-filter mt-[7px]" [class.visible]="showFloatingFilter">
     <app-filter [language]="language" (filters)="applyFilters($event)" [isShow]="showFloatingFilter"></app-filter>
   </div>
 
@@ -15,7 +15,7 @@
   </div> -->
 
   <div [ngClass]="pokemonListGridClass" class="pb-15 w-full mt-2">
-    <div *ngFor="let pokemon of filteredPokemon" class="hover:opacity-80">
+    <div *ngFor="let pokemon of filteredPokemon" class="hover:opacity-80 cursor-pointer hover:scale-105 transition-all duration-300" [routerLink]="['/pokedex/show-pokemon', pokemon.name]">
       <div class="bg-white rounded-lg w-full max-w-[180px] h-48 relative overflow-hidden shadow-lg mx-auto">
         <div class="absolute top-0 left-0 w-full h-1/2 bg-red-500"></div>
 
@@ -27,14 +27,10 @@
           <h1 class="text-white text-lg font-bold">N° #{{ addZerosToNumber(pokemon.number) }}</h1>
           <div class="cursor-pointer">
             <img class="w-24"
-                 routerLinkActive="router-link-active"
-                 [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
                  [src]="pokemon.sprites.iconUrl" alt=""
             >
           </div>
-          <h1 class="text-black text-xl cursor-pointer"
-              [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
-              routerLinkActive="router-link-active"
+          <h1 class="text-black text-xl"
           >{{ pokemon.name |translatePokemonName |replaceDash | titlecase }}</h1>
         </div>
 

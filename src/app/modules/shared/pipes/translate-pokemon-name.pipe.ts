@@ -2,15 +2,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { LanguageService } from '../services/language.service';
 
 @Pipe({
-  name: 'translatePokemonName'
+  name: 'translatePokemonName',
+  pure: false
 })
 export class TranslatePokemonNamePipe implements PipeTransform {
-  language: string;
+  private language: string;
 
   constructor(private languageService: LanguageService) {
-    this.getLanguage();
-  }
-  getLanguage() {
     this.languageService.currentLanguage$.subscribe(language => {
       this.language = language;
     });
@@ -65,6 +63,5 @@ export class TranslatePokemonNamePipe implements PipeTransform {
     } else {
       return value;
     }
-
   }
 }

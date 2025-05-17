@@ -9,8 +9,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/k5AzQ30.png"
     },
     number: 1,
-    type: "grass",
-    type2: "poison",
+    type: "Grass",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -21,8 +21,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/jvAy4Kq.png"
     },
     number: 2,
-    type: "grass",
-    type2: "poison",
+    type: "Grass",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -33,8 +33,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/xex1KYF.png"
     },
     number: 3,
-    type: "grass",
-    type2: "poison",
+    type: "Grass",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -45,7 +45,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/BlFwHrn.png"
     },
     number: 4,
-    type: "fire",
+    type: "Fire",
     generationId: 1
   },
   {
@@ -56,7 +56,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/f4i7yQy.png"
     },
     number: 5,
-    type: "fire",
+    type: "Fire",
     generationId: 1
   },
   {
@@ -67,8 +67,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/OwWcj8M.png"
     },
     number: 6,
-    type: "fire",
-    type2: "flying",
+    type: "Fire",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -79,7 +79,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/VvwhuYZ.png"
     },
     number: 7,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -90,7 +90,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/dfW847l.png"
     },
     number: 8,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -101,7 +101,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/4w6PdQr.png"
     },
     number: 9,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -112,7 +112,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/Y4bfBhJ.png"
     },
     number: 10,
-    type: "bug",
+    type: "Bug",
     generationId: 1
   },
   {
@@ -123,7 +123,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/3uVfOiX.png"
     },
     number: 11,
-    type: "bug",
+    type: "Bug",
     generationId: 1
   },
   {
@@ -134,8 +134,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/Ws5EuYS.png"
     },
     number: 12,
-    type: "bug",
-    type2: "flying",
+    type: "Bug",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -146,8 +146,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/cXgeH5E.png"
     },
     number: 13,
-    type: "bug",
-    type2: "poison",
+    type: "Bug",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -158,8 +158,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/VIJyA7f.png"
     },
     number: 14,
-    type: "bug",
-    type2: "poison",
+    type: "Bug",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -170,8 +170,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/SvMxmlz.png"
     },
     number: 15,
-    type: "bug",
-    type2: "poison",
+    type: "Bug",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -182,8 +182,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/YnhKb9v.png"
     },
     number: 16,
-    type: "normal",
-    type2: "flying",
+    type: "Normal",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -194,8 +194,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/pILvbux.png"
     },
     number: 17,
-    type: "normal",
-    type2: "flying",
+    type: "Normal",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -206,8 +206,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/XjqODkQ.png"
     },
     number: 18,
-    type: "normal",
-    type2: "flying",
+    type: "Normal",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -218,7 +218,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/t8aZn7E.png"
     },
     number: 19,
-    type: "normal",
+    type: "Normal",
     generationId: 1
   },
   {
@@ -229,7 +229,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/S6fmNZG.png"
     },
     number: 20,
-    type: "normal",
+    type: "Normal",
     generationId: 1
   },
   {
@@ -240,8 +240,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/nv84RoT.png"
     },
     number: 21,
-    type: "normal",
-    type2: "flying",
+    type: "Normal",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -252,8 +252,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/0ewqYRj.png"
     },
     number: 22,
-    type: "normal",
-    type2: "flying",
+    type: "Normal",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -264,7 +264,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/CP0GFL0.png"
     },
     number: 23,
-    type: "poison",
+    type: "Poison",
     generationId: 1
   },
   {
@@ -275,7 +275,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/0qFUyhC.png"
     },
     number: 24,
-    type: "poison",
+    type: "Poison",
     generationId: 1
   },
   {
@@ -286,7 +286,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/n1I3byY.png"
     },
     number: 25,
-    type: "electric",
+    type: "Electric",
     generationId: 1
   },
   {
@@ -297,7 +297,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/HWIUqRq.png"
     },
     number: 26,
-    type: "electric",
+    type: "Electric",
     generationId: 1
   },
   {
@@ -308,7 +308,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/IbeGiVR.png"
     },
     number: 27,
-    type: "ground",
+    type: "Ground",
     generationId: 1
   },
   {
@@ -319,7 +319,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/R1kzXvZ.png"
     },
     number: 28,
-    type: "ground",
+    type: "Ground",
     generationId: 1
   },
   {
@@ -330,7 +330,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/lIHwDWc.png"
     },
     number: 29,
-    type: "poison",
+    type: "Poison",
     generationId: 1
   },
   {
@@ -341,7 +341,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/zLFGnzv.png"
     },
     number: 30,
-    type: "poison",
+    type: "Poison",
     generationId: 1
   },
   {
@@ -352,7 +352,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/VVAY3nQ.png"
     },
     number: 31,
-    type: "poison",
+    type: "Poison",
     generationId: 1
   },
   {
@@ -363,8 +363,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/v9V9hmi.png"
     },
     number: 32,
-    type: "poison",
-    type2: "poison",
+    type: "Poison",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -375,7 +375,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/giSj8mU.png"
     },
     number: 33,
-    type: "poison",
+    type: "Poison",
     generationId: 1
   },
   {
@@ -386,7 +386,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/CIJdMpX.png"
     },
     number: 34,
-    type: "poison",
+    type: "Poison",
     generationId: 1
   },
   {
@@ -397,7 +397,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/EU0wGr0.png"
     },
     number: 35,
-    type: "fairy",
+    type: "Fairy",
     generationId: 1
   },
   {
@@ -408,7 +408,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/A9NuuUH.png"
     },
     number: 36,
-    type: "fairy",
+    type: "Fairy",
     generationId: 1
   },
   {
@@ -419,7 +419,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/dKes538.png"
     },
     number: 37,
-    type: "fire",
+    type: "Fire",
     generationId: 1
   },
   {
@@ -430,7 +430,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/XHrq9Ja.png"
     },
     number: 38,
-    type: "fire",
+    type: "Fire",
     generationId: 1
   },
   {
@@ -441,7 +441,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/V1gV7mS.png"
     },
     number: 39,
-    type: "fairy",
+    type: "Fairy",
     generationId: 1
   },
   {
@@ -452,7 +452,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/B9Djjc2.png"
     },
     number: 40,
-    type: "fairy",
+    type: "Fairy",
     generationId: 1
   },
   {
@@ -463,8 +463,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/Y6u8jHD.png"
     },
     number: 41,
-    type: "poison",
-    type2: "flying",
+    type: "Poison",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -475,8 +475,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/WlCWmLh.png"
     },
     number: 42,
-    type: "poison",
-    type2: "flying",
+    type: "Poison",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -487,8 +487,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/RALcgmw.png"
     },
     number: 43,
-    type: "grass",
-    type2: "poison",
+    type: "Grass",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -499,8 +499,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/zEvzExE.png"
     },
     number: 44,
-    type: "grass",
-    type2: "poison",
+    type: "Grass",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -511,8 +511,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/8rLA2sz.png"
     },
     number: 45,
-    type: "grass",
-    type2: "poison",
+    type: "Grass",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -523,8 +523,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/RFbAZEF.png"
     },
     number: 46,
-    type: "bug",
-    type2: "grass",
+    type: "Bug",
+    type2: "Grass",
     generationId: 1
   },
   {
@@ -535,8 +535,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/oADYRJT.png"
     },
     number: 47,
-    type: "bug",
-    type2: "grass",
+    type: "Bug",
+    type2: "Grass",
     generationId: 1
   },
   {
@@ -547,8 +547,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/peBatEa.png"
     },
     number: 48,
-    type: "bug",
-    type2: "poison",
+    type: "Bug",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -559,8 +559,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/BAawjfG.png"
     },
     number: 49,
-    type: "bug",
-    type2: "poison",
+    type: "Bug",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -571,7 +571,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/pVYUlCq.png"
     },
     number: 50,
-    type: "ground",
+    type: "Ground",
     generationId: 1
   },
   {
@@ -582,7 +582,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/co2YYAO.png"
     },
     number: 51,
-    type: "ground",
+    type: "Ground",
     generationId: 1
   },
   {
@@ -593,7 +593,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/B0GlTVb.png"
     },
     number: 52,
-    type: "normal",
+    type: "Normal",
     generationId: 1
   },
   {
@@ -604,7 +604,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/AG61daq.png"
     },
     number: 53,
-    type: "normal",
+    type: "Normal",
     generationId: 1
   },
   {
@@ -615,7 +615,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/Suc0nSm.png"
     },
     number: 54,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -626,7 +626,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/l2giWeP.png"
     },
     number: 55,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -637,7 +637,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/U5oUYFZ.png"
     },
     number: 56,
-    type: "fighting",
+    type: "Fighting",
     generationId: 1
   },
   {
@@ -648,7 +648,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/RzUXj8G.png"
     },
     number: 57,
-    type: "fighting",
+    type: "Fighting",
     generationId: 1
   },
   {
@@ -659,7 +659,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/ZVcEMNm.png"
     },
     number: 58,
-    type: "fire",
+    type: "Fire",
     generationId: 1
   },
   {
@@ -670,7 +670,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/RQdWmCf.png"
     },
     number: 59,
-    type: "fire",
+    type: "Fire",
     generationId: 1
   },
   {
@@ -681,7 +681,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/TBUdMU0.png"
     },
     number: 60,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -692,7 +692,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/J9eUoaN.png"
     },
     number: 61,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -703,8 +703,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/mChBxCC.png"
     },
     number: 62,
-    type: "water",
-    type2: "fighting",
+    type: "Water",
+    type2: "Fighting",
     generationId: 1
   },
   {
@@ -715,7 +715,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/zdDE4qI.png"
     },
     number: 63,
-    type: "psychic",
+    type: "Psychic",
     generationId: 1
   },
   {
@@ -726,7 +726,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/QJ9oDWv.png"
     },
     number: 64,
-    type: "psychic",
+    type: "Psychic",
     generationId: 1
   },
   {
@@ -737,7 +737,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/1Xgb52Y.png"
     },
     number: 65,
-    type: "psychic",
+    type: "Psychic",
     generationId: 1
   },
   {
@@ -748,7 +748,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/KlazZXh.png"
     },
     number: 66,
-    type: "fighting",
+    type: "Fighting",
     generationId: 1
   },
   {
@@ -759,7 +759,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/mGuYgHt.png"
     },
     number: 67,
-    type: "fighting",
+    type: "Fighting",
     generationId: 1
   },
   {
@@ -770,7 +770,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/q5MY8W1.png"
     },
     number: 68,
-    type: "fighting",
+    type: "Fighting",
     generationId: 1
   },
   {
@@ -781,8 +781,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/MNjV8EL.png"
     },
     number: 69,
-    type: "grass",
-    type2: "poison",
+    type: "Grass",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -793,8 +793,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/eaMimPh.png"
     },
     number: 70,
-    type: "grass",
-    type2: "poison",
+    type: "Grass",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -805,8 +805,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/xngP5oA.png"
     },
     number: 71,
-    type: "grass",
-    type2: "poison",
+    type: "Grass",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -817,8 +817,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/bNHVYVV.png"
     },
     number: 72,
-    type: "water",
-    type2: "poison",
+    type: "Water",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -829,8 +829,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/liL0Z57.png"
     },
     number: 73,
-    type: "water",
-    type2: "poison",
+    type: "Water",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -841,8 +841,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/fLcDxSX.png"
     },
     number: 74,
-    type: "rock",
-    type2: "ground",
+    type: "Rock",
+    type2: "Ground",
     generationId: 1
   },
   {
@@ -853,8 +853,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/ViYlQqI.png"
     },
     number: 75,
-    type: "rock",
-    type2: "ground",
+    type: "Rock",
+    type2: "Ground",
     generationId: 1
   },
   {
@@ -865,8 +865,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/Oa3CQ09.png"
     },
     number: 76,
-    type: "rock",
-    type2: "ground",
+    type: "Rock",
+    type2: "Ground",
     generationId: 1
   },
   {
@@ -877,7 +877,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/K0Prm9P.png"
     },
     number: 77,
-    type: "fire",
+    type: "Fire",
     generationId: 1
   },
   {
@@ -888,7 +888,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/zEy8Ft0.png"
     },
     number: 78,
-    type: "fire",
+    type: "Fire",
     generationId: 1
   },
   {
@@ -899,8 +899,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/P4iKca3.png"
     },
     number: 79,
-    type: "water",
-    type2: "psychic",
+    type: "Water",
+    type2: "Psychic",
     generationId: 1
   },
   {
@@ -911,8 +911,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/eQ6ODuC.png"
     },
     number: 80,
-    type: "water",
-    type2: "psychic",
+    type: "Water",
+    type2: "Psychic",
     generationId: 1
   },
   {
@@ -923,8 +923,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/hEd3ca2.png"
     },
     number: 81,
-    type: "electric",
-    type2: "steel",
+    type: "Electric",
+    type2: "Steel",
     generationId: 1
   },
   {
@@ -935,8 +935,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/eXyY0Uh.png"
     },
     number: 82,
-    type: "electric",
-    type2: "steel",
+    type: "Electric",
+    type2: "Steel",
     generationId: 1
   },
   {
@@ -947,8 +947,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/MsUWfdJ.png"
     },
     number: 83,
-    type: "normal",
-    type2: "flying",
+    type: "Normal",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -959,8 +959,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/zOf10Xe.png"
     },
     number: 84,
-    type: "normal",
-    type2: "flying",
+    type: "Normal",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -971,8 +971,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/5NCQMwI.png"
     },
     number: 85,
-    type: "normal",
-    type2: "flying",
+    type: "Normal",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -983,7 +983,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/q2mqJRC.png"
     },
     number: 86,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -994,8 +994,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/MDjz7Kd.png"
     },
     number: 87,
-    type: "water",
-    type2: "ice",
+    type: "Water",
+    type2: "Ice",
     generationId: 1
   },
   {
@@ -1006,7 +1006,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/w43428Q.png"
     },
     number: 88,
-    type: "poison",
+    type: "Poison",
     generationId: 1
   },
   {
@@ -1017,7 +1017,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/BMLHNVR.png"
     },
     number: 89,
-    type: "poison",
+    type: "Poison",
     generationId: 1
   },
   {
@@ -1028,8 +1028,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/a6HkAGe.png"
     },
     number: 90,
-    type: "water",
-    type2: "ice",
+    type: "Water",
+    type2: "Ice",
     generationId: 1
   },
   {
@@ -1040,8 +1040,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/kI4PPgk.png"
     },
     number: 91,
-    type: "water",
-    type2: "ice",
+    type: "Water",
+    type2: "Ice",
     generationId: 1
   },
   {
@@ -1052,8 +1052,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/WqHYtpo.png"
     },
     number: 92,
-    type: "ghost",
-    type2: "poison",
+    type: "Ghost",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -1064,8 +1064,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/qNpVpgF.png"
     },
     number: 93,
-    type: "ghost",
-    type2: "poison",
+    type: "Ghost",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -1076,8 +1076,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/4xa5Bpi.png"
     },
     number: 94,
-    type: "ghost",
-    type2: "poison",
+    type: "Ghost",
+    type2: "Poison",
     generationId: 1
   },
   {
@@ -1088,8 +1088,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/CepZLTu.png"
     },
     number: 95,
-    type: "rock",
-    type2: "ground",
+    type: "Rock",
+    type2: "Ground",
     generationId: 1
   },
   {
@@ -1100,7 +1100,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/eHeO0P3.png"
     },
     number: 96,
-    type: "psychic",
+    type: "Psychic",
     generationId: 1
   },
   {
@@ -1111,7 +1111,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/9JYOR97.png"
     },
     number: 97,
-    type: "psychic",
+    type: "Psychic",
     generationId: 1
   },
   {
@@ -1122,7 +1122,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/4QU5SlH.png"
     },
     number: 98,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -1133,7 +1133,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/4gBky3b.png"
     },
     number: 99,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -1144,7 +1144,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/ibULwX9.png"
     },
     number: 100,
-    type: "electric",
+    type: "Electric",
     generationId: 1
   },
   {
@@ -1155,7 +1155,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/pTpzbKR.png"
     },
     number: 101,
-    type: "electric",
+    type: "Electric",
     generationId: 1
   },
   {
@@ -1166,8 +1166,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/a3ndwHG.png"
     },
     number: 102,
-    type: "grass",
-    type2: "psychic",
+    type: "Grass",
+    type2: "Psychic",
     generationId: 1
   },
   {
@@ -1178,8 +1178,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/So39q3D.png"
     },
     number: 103,
-    type: "grass",
-    type2: "psychic",
+    type: "Grass",
+    type2: "Psychic",
     generationId: 1
   },
   {
@@ -1190,7 +1190,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/OCdUoVz.png"
     },
     number: 104,
-    type: "ground",
+    type: "Ground",
     generationId: 1
   },
   {
@@ -1201,7 +1201,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/ebN1NVL.png"
     },
     number: 105,
-    type: "ground",
+    type: "Ground",
     generationId: 1
   },
   {
@@ -1212,7 +1212,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/jekXp2x.png"
     },
     number: 106,
-    type: "fighting",
+    type: "Fighting",
     generationId: 1
   },
   {
@@ -1223,7 +1223,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/4QPpfm6.png"
     },
     number: 107,
-    type: "fighting",
+    type: "Fighting",
     generationId: 1
   },
   {
@@ -1234,7 +1234,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/HvSpRiG.png"
     },
     number: 108,
-    type: "normal",
+    type: "Normal",
     generationId: 1
   },
   {
@@ -1245,7 +1245,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/0S3tkco.png"
     },
     number: 109,
-    type: "poison",
+    type: "Poison",
     generationId: 1
   },
   {
@@ -1256,7 +1256,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/Oh87Byq.png"
     },
     number: 110,
-    type: "poison",
+    type: "Poison",
     generationId: 1
   },
   {
@@ -1267,7 +1267,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/PHUhaZR.png"
     },
     number: 111,
-    type: "ground",
+    type: "Ground",
     generationId: 1
   },
   {
@@ -1278,7 +1278,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/fVCUgUX.png"
     },
     number: 112,
-    type: "ground",
+    type: "Ground",
     generationId: 1
   },
   {
@@ -1289,7 +1289,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/gvDrj7n.png"
     },
     number: 113,
-    type: "normal",
+    type: "Normal",
     generationId: 1
   },
   {
@@ -1300,7 +1300,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/bKe5rct.png"
     },
     number: 114,
-    type: "grass",
+    type: "Grass",
     generationId: 1
   },
   {
@@ -1311,7 +1311,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/77JzsvI.png"
     },
     number: 115,
-    type: "normal",
+    type: "Normal",
     generationId: 1
   },
   {
@@ -1322,7 +1322,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/5xamDHg.png"
     },
     number: 116,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -1333,7 +1333,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/nfW19OC.png"
     },
     number: 117,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -1344,7 +1344,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/UvocQn1.png"
     },
     number: 118,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -1355,7 +1355,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/ZsH4ovC.png"
     },
     number: 119,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -1366,7 +1366,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/BnEV7KJ.png"
     },
     number: 120,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -1377,8 +1377,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/ek9kZ7j.png"
     },
     number: 121,
-    type: "water",
-    type2: "psychic",
+    type: "Water",
+    type2: "Psychic",
     generationId: 1
   },
   {
@@ -1389,8 +1389,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/aQgnllt.png"
     },
     number: 122,
-    type: "psychic",
-    type2: "fairy",
+    type: "Psychic",
+    type2: "Fairy",
     generationId: 1
   },
   {
@@ -1401,8 +1401,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/2l3pBe2.png"
     },
     number: 123,
-    type: "bug",
-    type2: "flying",
+    type: "Bug",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -1413,8 +1413,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/0uopWyv.png"
     },
     number: 124,
-    type: "ice",
-    type2: "psychic",
+    type: "Ice",
+    type2: "Psychic",
     generationId: 1
   },
   {
@@ -1425,7 +1425,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/bi5XYc9.png"
     },
     number: 125,
-    type: "electric",
+    type: "Electric",
     generationId: 1
   },
   {
@@ -1436,7 +1436,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/IW0JpPL.png"
     },
     number: 126,
-    type: "fire",
+    type: "Fire",
     generationId: 1
   },
   {
@@ -1447,7 +1447,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/r4WjKXp.png"
     },
     number: 127,
-    type: "bug",
+    type: "Bug",
     generationId: 1
   },
   {
@@ -1458,7 +1458,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/gGOwzjq.png"
     },
     number: 128,
-    type: "normal",
+    type: "Normal",
     generationId: 1
   },
   {
@@ -1469,7 +1469,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/I4nD26q.png"
     },
     number: 129,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -1480,8 +1480,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/PxzextX.png"
     },
     number: 130,
-    type: "water",
-    type2: "flying",
+    type: "Water",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -1492,8 +1492,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/xRFwQXQ.png"
     },
     number: 131,
-    type: "water",
-    type2: "ice",
+    type: "Water",
+    type2: "Ice",
     generationId: 1
   },
   {
@@ -1504,7 +1504,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/162ymEu.png"
     },
     number: 132,
-    type: "normal",
+    type: "Normal",
     generationId: 1
   },
   {
@@ -1515,7 +1515,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/GJwoZqm.png"
     },
     number: 133,
-    type: "normal",
+    type: "Normal",
     generationId: 1
   },
   {
@@ -1526,7 +1526,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/mSdkHme.png"
     },
     number: 134,
-    type: "water",
+    type: "Water",
     generationId: 1
   },
   {
@@ -1537,7 +1537,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/Fx8WQeS.png"
     },
     number: 135,
-    type: "electric",
+    type: "Electric",
     generationId: 1
   },
   {
@@ -1548,7 +1548,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/0qfid5a.png"
     },
     number: 136,
-    type: "fire",
+    type: "Fire",
     generationId: 1
   },
   {
@@ -1559,7 +1559,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/1Yo6cex.png"
     },
     number: 137,
-    type: "normal",
+    type: "Normal",
     generationId: 1
   },
   {
@@ -1570,8 +1570,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/7KteIdr.png"
     },
     number: 138,
-    type: "rock",
-    type2: "water",
+    type: "Rock",
+    type2: "Water",
     generationId: 1
   },
   {
@@ -1582,8 +1582,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/vBxkfiq.png"
     },
     number: 139,
-    type: "rock",
-    type2: "water",
+    type: "Rock",
+    type2: "Water",
     generationId: 1
   },
   {
@@ -1594,8 +1594,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/UYn0m0B.png"
     },
     number: 140,
-    type: "rock",
-    type2: "water",
+    type: "Rock",
+    type2: "Water",
     generationId: 1
   },
   {
@@ -1606,8 +1606,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/7OkOFYd.png"
     },
     number: 141,
-    type: "rock",
-    type2: "water",
+    type: "Rock",
+    type2: "Water",
     generationId: 1
   },
   {
@@ -1618,8 +1618,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/Px1TTov.png"
     },
     number: 142,
-    type: "rock",
-    type2: "flying",
+    type: "Rock",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -1630,7 +1630,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/M8ZdxTU.png"
     },
     number: 143,
-    type: "normal",
+    type: "Normal",
     generationId: 1
   },
   {
@@ -1641,8 +1641,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/gOqvA8R.png"
     },
     number: 144,
-    type: "ice",
-    type2: "flying",
+    type: "Ice",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -1653,8 +1653,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/XjO0Xf3.png"
     },
     number: 145,
-    type: "electric",
-    type2: "flying",
+    type: "Electric",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -1665,8 +1665,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/Viqizia.png"
     },
     number: 146,
-    type: "fire",
-    type2: "flying",
+    type: "Fire",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -1677,7 +1677,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/aRc2FlC.png"
     },
     number: 147,
-    type: "dragon",
+    type: "Dragon",
     generationId: 1
   },
   {
@@ -1688,7 +1688,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/zJBLEhN.png"
     },
     number: 148,
-    type: "dragon",
+    type: "Dragon",
     generationId: 1
   },
   {
@@ -1699,8 +1699,8 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/ToWiAy7.png"
     },
     number: 149,
-    type: "dragon",
-    type2: "flying",
+    type: "Dragon",
+    type2: "Flying",
     generationId: 1
   },
   {
@@ -1711,7 +1711,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/Ibaa0O0.png"
     },
     number: 150,
-    type: "psychic",
+    type: "Psychic",
     generationId: 1
   },
   {
@@ -1722,7 +1722,7 @@ export const ALL_POKEMON_KANTO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/Xvwm1bG.png"
     },
     number: 151,
-    type: "psychic",
+    type: "Psychic",
     generationId: 1
   }
 ];

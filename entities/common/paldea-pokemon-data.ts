@@ -1257,7 +1257,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
     },
     number: 1010,
     type: "Grass",
-    type2: "psychic",
+    type2: "Psychic",
     generationId: 9
   },
   {
@@ -1401,7 +1401,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
     },
     number: 1022,
     type: "Rock",
-    type2: "psychic",
+    type2: "Psychic",
     generationId: 9
   },
   {
@@ -1413,7 +1413,7 @@ export const ALL_POKEMON_PALDEA: PokemonList[] = [
     },
     number: 1023,
     type: "Steel",
-    type2: "psychic",
+    type2: "Psychic",
     generationId: 9
   },
   {
