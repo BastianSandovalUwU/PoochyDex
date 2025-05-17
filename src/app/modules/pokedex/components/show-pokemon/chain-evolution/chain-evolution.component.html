@@ -8,88 +8,279 @@
   </div>
 
   <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="flex flex-wrap justify-center space-x-8 evolution-container" *ngIf="evolutionChain">
-    <div class="flex flex-col items-center evolution-step">
-      <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(evolutionChain.chain.species.name)">
-        {{ evolutionChain.chain.species.name |translatePokemonName |replaceDash | titlecase }}
-      </p>
-      <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="evolutionChain.chain?.imageName"
-           (click)="goToPokemonPage(evolutionChain.chain.species.name)"
-           [src]="evolutionChain.chain.imageName">
-    </div>
-    <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
-      <div class="flex flex-col items-center evolution-step">
-        <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage.species.name)">
-          {{ stage.species.name |translatePokemonName |replaceDash | titlecase }}
-        </p>
-        <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage?.imageName"
-             (click)="goToPokemonPage(stage.species.name)"
-             [src]="stage.imageName">
-        <p *ngIf="stage.evolution_details[0]?.trigger">
-          {{ stage.evolution_details[stage.evolution_details.length - 1]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
-          <span *ngIf="stage.evolution_details[0]?.time_of_day">
-            {{ language === 'es' ? 'durante': 'in' }}
-            {{ stage.evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
-          </span>
-        </p>
-        <p class="text-md" *ngIf="stage.evolution_details[0]?.min_happiness">
-          {{ language === 'es' ? 'Con una amistad de': 'With a' }}
-          {{ stage.evolution_details[0]?.min_happiness }}
-        </p>
-        <p class="text-md" *ngIf="stage.evolution_details[0]?.known_move_type">
-          {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
-          {{ stage.evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}}
-          {{ language === 'en' ? 'type move': '' }}
-        </p>
-        <p class="text-md" *ngIf="stage.evolution_details[0]?.min_level">
-          {{ language === 'es' ? 'A nivel': 'At level' }}
-          {{ stage.evolution_details[0]?.min_level }}
-        </p>
-        <p class="hover:text-blue-500 cursor-pointer text-md" *ngIf="stage && stage.evolution_details && stage.evolution_details.length > 0">
-          {{ stage.evolution_details[stage.evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
-        </p>
-        <p class="hover:text-blue-500 cursor-pointer text-md" *ngIf="stage?.evolution_details[0]?.turn_upside_down">
-          {{ language === 'es' ? 'Con la consola al revés' : 'With the console upside down' }}
-        </p>
-        <p class="hover:text-blue-500 cursor-pointer text-md" *ngIf="stage?.evolution_details[0]?.trade_species">
-          {{ language === 'es' ? 'por': 'with' }}
-          {{ stage?.evolution_details[0]?.trade_species.name |titlecase}}
-          <!-- <img [src]="'./assets/all-home-sprites/' + stage.imageName + '.png'" alt=""> -->
-        </p>
-      </div>
-      <ng-container *ngFor="let stage2 of stage.evolves_to">
-        <div class="flex flex-col items-center evolution-step">
-          <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage2.species.name)">
-            {{ stage2.species.name |translatePokemonName |replaceDash | titlecase }}
-          </p>
-          <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage2?.imageName"
-               (click)="goToPokemonPage(stage2.species.name)"
-               [src]="stage2.imageName">
-          <p *ngIf="stage2.evolution_details[0]?.trigger">
-            {{ stage2.evolution_details[0]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
-            <span *ngIf="stage2.evolution_details[0]?.time_of_day">
-              {{ language === 'es' ? 'durante': 'in' }}
-              {{ stage2.evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
-            </span>
-          </p>
-          <p class="text-md" *ngIf="stage2.evolution_details[0]?.min_happiness">
-            {{ language === 'es' ? 'Con una amistad de': 'With a' }}
-            {{ stage2.evolution_details[0]?.min_happiness }}
-            {{ language === 'es' ? 'puntos': 'point friendship' }}
-          </p>
-          <p class="text-md" *ngIf="stage2.evolution_details[0]?.known_move_type">
-            {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
-            {{ stage2.evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}} move
-            {{ language === 'en' ? 'type move': '' }}
-          </p>
-          <p class="text-md" *ngIf="stage2.evolution_details[0]?.min_level">
-            {{ language === 'es' ? 'A nivel': 'At level' }}
-            {{ stage2.evolution_details[0]?.min_level }}
-          </p>
-          <p class="hover:text-blue-500 cursor-pointer text-md" *ngIf="stage2 && stage2.evolution_details && stage2.evolution_details.length > 0">
-            {{ stage2.evolution_details[stage.evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
+    <!-- Special case for multiple evolutions (circular layout) -->
+    <div *ngIf="evolutionChain.chain.evolves_to?.length > 1" class="relative w-full min-h-[1220px] sm:flex hidden justify-center items-center">
+      <!-- Center Pokemon -->
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+        <div class="flex flex-col items-center">
+          <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="evolutionChain.chain?.imageName"
+               (click)="goToPokemonPage(evolutionChain.chain.species.name)"
+               [src]="evolutionChain.chain.imageName">
+          <p class="cursor-pointer hover:text-blue-500 mt-2" (click)="goToPokemonPage(evolutionChain.chain.species.name)">
+            {{ evolutionChain.chain.species.name |translatePokemonName |replaceDash | titlecase }}
           </p>
         </div>
+      </div>
+
+      <!-- Evolution Pokemon around the circle -->
+      <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to; let i = index">
+        <!-- Arrow pointing to center -->
+        <div class="absolute" [style.transform]="'rotate(' + (i * (360 / evolutionChain.chain.evolves_to.length)) + 'deg) translate(200px) rotate(0deg)'">
+          <mat-icon class="text-7xl text-black" style="width: 48px; height: 48px;">arrow_forward</mat-icon>
+        </div>
+
+        <div class="absolute" [style.transform]="'rotate(' + (i * (360 / evolutionChain.chain.evolves_to.length)) + 'deg) translate(400px) rotate(' + (-i * (360 / evolutionChain.chain.evolves_to.length)) + 'deg)'">
+          <div class="flex flex-col items-center">
+            <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage?.imageName"
+                 (click)="goToPokemonPage(stage.species.name)"
+                 [src]="stage.imageName">
+            <p class="cursor-pointer hover:text-blue-500 mt-2" (click)="goToPokemonPage(stage.species.name)">
+              {{ stage.species.name |translatePokemonName |replaceDash | titlecase }}
+            </p>
+            <p *ngIf="stage.evolution_details[0]?.trigger" class="text-sm text-center mt-2">
+              {{ stage.evolution_details[stage.evolution_details.length - 1]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
+              <span *ngIf="stage.evolution_details[0]?.time_of_day">
+                {{ language === 'es' ? 'durante': 'in' }}
+                {{ stage.evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
+              </span>
+            </p>
+            <p class="text-sm text-center" *ngIf="stage.evolution_details[0]?.min_happiness">
+              {{ language === 'es' ? 'Con una amistad de': 'With a' }}
+              {{ stage.evolution_details[0]?.min_happiness }}
+            </p>
+            <p class="text-sm text-center" *ngIf="stage.evolution_details[0]?.known_move_type">
+              {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
+              {{ stage.evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}}
+              {{ language === 'en' ? 'type move': '' }}
+            </p>
+            <p class="text-sm text-center" *ngIf="stage.evolution_details[0]?.min_level">
+              {{ language === 'es' ? 'A nivel': 'At level' }}
+              {{ stage.evolution_details[0]?.min_level }}
+            </p>
+            <p class="text-sm text-center hover:text-blue-500 cursor-pointer" *ngIf="stage && stage.evolution_details && stage.evolution_details.length > 0">
+              {{ stage.evolution_details[stage.evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
+            </p>
+
+            <!-- Additional evolutions in circular pattern -->
+            <ng-container *ngIf="stage.evolves_to?.length > 0">
+              <!-- Arrow pointing to evolution -->
+              <div class="absolute" [style.transform]="'rotate(' + (i * (360 / evolutionChain.chain.evolves_to.length)) + 'deg) translate(70px) rotate(-45deg)'">
+                <mat-icon class="text-7xl text-black" style="width: 48px; height: 48px;">arrow_forward</mat-icon>
+              </div>
+
+              <!-- Evolution Pokemon -->
+              <div class="absolute" [style.transform]="'rotate(' + (i * (360 / evolutionChain.chain.evolves_to.length)) + 'deg) translate(230px) rotate(' + (-i * (360 / evolutionChain.chain.evolves_to.length)) + 'deg)'">
+                <div class="flex flex-col items-center">
+                  <img class="w-16 sm:w-32 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage.evolves_to[0]?.imageName"
+                       (click)="goToPokemonPage(stage.evolves_to[0].species.name)"
+                       [src]="stage.evolves_to[0].imageName">
+                  <p class="cursor-pointer hover:text-blue-500 mt-2" (click)="goToPokemonPage(stage.evolves_to[0].species.name)">
+                    {{ stage.evolves_to[0].species.name |translatePokemonName |replaceDash | titlecase }}
+                  </p>
+                  <p *ngIf="stage.evolves_to[0].evolution_details[0]?.trigger" class="text-sm text-center mt-2">
+                    {{ stage.evolves_to[0].evolution_details[0]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
+                    <span *ngIf="stage.evolves_to[0].evolution_details[0]?.time_of_day">
+                      {{ language === 'es' ? 'durante': 'in' }}
+                      {{ stage.evolves_to[0].evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
+                    </span>
+                  </p>
+                  <p class="text-sm text-center" *ngIf="stage.evolves_to[0].evolution_details[0]?.min_happiness">
+                    {{ language === 'es' ? 'Con una amistad de': 'With a' }}
+                    {{ stage.evolves_to[0].evolution_details[0]?.min_happiness }}
+                  </p>
+                  <p class="text-sm text-center" *ngIf="stage.evolves_to[0].evolution_details[0]?.known_move_type">
+                    {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
+                    {{ stage.evolves_to[0].evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}}
+                    {{ language === 'en' ? 'type move': '' }}
+                  </p>
+                  <p class="text-sm text-center" *ngIf="stage.evolves_to[0].evolution_details[0]?.min_level">
+                    {{ language === 'es' ? 'A nivel': 'At level' }}
+                    {{ stage.evolves_to[0].evolution_details[0]?.min_level }}
+                  </p>
+                  <p class="text-sm text-center hover:text-blue-500 cursor-pointer" *ngIf="stage.evolves_to[0] && stage.evolves_to[0].evolution_details && stage.evolves_to[0].evolution_details.length > 0">
+                    {{ stage.evolves_to[0].evolution_details[stage.evolves_to[0].evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
+                  </p>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
       </ng-container>
+    </div>
+
+    <!-- Normal case for single evolution -->
+    <ng-container *ngIf="evolutionChain.chain.evolves_to?.length === 1">
+      <div class="sm:flex hidden flex-col items-center evolution-step">
+        <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(evolutionChain.chain.species.name)">
+          {{ evolutionChain.chain.species.name |translatePokemonName |replaceDash | titlecase }}
+        </p>
+        <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="evolutionChain.chain?.imageName"
+             (click)="goToPokemonPage(evolutionChain.chain.species.name)"
+             [src]="evolutionChain.chain.imageName">
+      </div>
+      <mat-icon *ngIf="evolutionChain.chain.evolves_to?.length > 0" class="self-center">arrow_forward</mat-icon>
+      <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
+        <div class="flex flex-col items-center evolution-step">
+          <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage.species.name)">
+            {{ stage.species.name |translatePokemonName |replaceDash | titlecase }}
+          </p>
+          <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage?.imageName"
+               (click)="goToPokemonPage(stage.species.name)"
+               [src]="stage.imageName">
+          <p *ngIf="stage.evolution_details[0]?.trigger">
+            {{ stage.evolution_details[stage.evolution_details.length - 1]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
+            <span *ngIf="stage.evolution_details[0]?.time_of_day">
+              {{ language === 'es' ? 'durante': 'in' }}
+              {{ stage.evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
+            </span>
+          </p>
+          <p class="text-md" *ngIf="stage.evolution_details[0]?.min_happiness">
+            {{ language === 'es' ? 'Con una amistad de': 'With a' }}
+            {{ stage.evolution_details[0]?.min_happiness }}
+          </p>
+          <p class="text-md" *ngIf="stage.evolution_details[0]?.known_move_type">
+            {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
+            {{ stage.evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}}
+            {{ language === 'en' ? 'type move': '' }}
+          </p>
+          <p class="text-md" *ngIf="stage.evolution_details[0]?.min_level">
+            {{ language === 'es' ? 'A nivel': 'At level' }}
+            {{ stage.evolution_details[0]?.min_level }}
+          </p>
+          <p class="hover:text-blue-500 cursor-pointer text-md" *ngIf="stage && stage.evolution_details && stage.evolution_details.length > 0">
+            {{ stage.evolution_details[stage.evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
+          </p>
+          <p class="hover:text-blue-500 cursor-pointer text-md" *ngIf="stage?.evolution_details[0]?.turn_upside_down">
+            {{ language === 'es' ? 'Con la consola al revés' : 'With the console upside down' }}
+          </p>
+          <p class="hover:text-blue-500 cursor-pointer text-md" *ngIf="stage?.evolution_details[0]?.trade_species">
+            {{ language === 'es' ? 'por': 'with' }}
+            {{ stage?.evolution_details[0]?.trade_species.name |titlecase}}
+          </p>
+        </div>
+        <mat-icon *ngIf="stage.evolves_to?.length > 0" class="self-center">arrow_forward</mat-icon>
+        <ng-container *ngFor="let stage2 of stage.evolves_to">
+          <div class="flex flex-col items-center evolution-step">
+            <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage2.species.name)">
+              {{ stage2.species.name |translatePokemonName |replaceDash | titlecase }}
+            </p>
+            <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage2?.imageName"
+                 (click)="goToPokemonPage(stage2.species.name)"
+                 [src]="stage2.imageName">
+            <p *ngIf="stage2.evolution_details[0]?.trigger">
+              {{ stage2.evolution_details[0]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
+              <span *ngIf="stage2.evolution_details[0]?.time_of_day">
+                {{ language === 'es' ? 'durante': 'in' }}
+                {{ stage2.evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
+              </span>
+            </p>
+            <p class="text-md" *ngIf="stage2.evolution_details[0]?.min_happiness">
+              {{ language === 'es' ? 'Con una amistad de': 'With a' }}
+              {{ stage2.evolution_details[0]?.min_happiness }}
+              {{ language === 'es' ? 'puntos': 'point friendship' }}
+            </p>
+            <p class="text-md" *ngIf="stage2.evolution_details[0]?.known_move_type">
+              {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
+              {{ stage2.evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}} move
+              {{ language === 'en' ? 'type move': '' }}
+            </p>
+            <p class="text-md" *ngIf="stage2.evolution_details[0]?.min_level">
+              {{ language === 'es' ? 'A nivel': 'At level' }}
+              {{ stage2.evolution_details[0]?.min_level }}
+            </p>
+            <p class="hover:text-blue-500 cursor-pointer text-md" *ngIf="stage2 && stage2.evolution_details && stage2.evolution_details.length > 0">
+              {{ stage2.evolution_details[stage.evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
+            </p>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="evolutionChain.chain.evolves_to?.length > 1">
+      <div class="sm:hidden flex flex-col items-center evolution-step">
+        <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="evolutionChain.chain?.imageName"
+             (click)="goToPokemonPage(evolutionChain.chain.species.name)"
+             [src]="evolutionChain.chain.imageName">
+        <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(evolutionChain.chain.species.name)">
+          {{ evolutionChain.chain.species.name |translatePokemonName |replaceDash | titlecase }}
+        </p>
+      <mat-icon class="self-center">arrow_downward</mat-icon>
+
+      <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
+        <div class="flex flex-col items-center evolution-step">
+          <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage?.imageName"
+               (click)="goToPokemonPage(stage.species.name)"
+               [src]="stage.imageName">
+          <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage.species.name)">
+            {{ stage.species.name |translatePokemonName |replaceDash | titlecase }}
+          </p>
+          <p *ngIf="stage.evolution_details[0]?.trigger">
+            {{ stage.evolution_details[stage.evolution_details.length - 1]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
+            <span *ngIf="stage.evolution_details[0]?.time_of_day">
+              {{ language === 'es' ? 'durante': 'in' }}
+              {{ stage.evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
+            </span>
+          </p>
+          <p class="text-md" *ngIf="stage.evolution_details[0]?.min_happiness">
+            {{ language === 'es' ? 'Con una amistad de': 'With a' }}
+            {{ stage.evolution_details[0]?.min_happiness }}
+          </p>
+          <p class="text-md" *ngIf="stage.evolution_details[0]?.known_move_type">
+            {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
+            {{ stage.evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}}
+            {{ language === 'en' ? 'type move': '' }}
+          </p>
+          <p class="text-md" *ngIf="stage.evolution_details[0]?.min_level">
+            {{ language === 'es' ? 'A nivel': 'At level' }}
+            {{ stage.evolution_details[0]?.min_level }}
+          </p>
+          <p class="hover:text-blue-500 cursor-pointer text-md" *ngIf="stage && stage.evolution_details && stage.evolution_details.length > 0">
+            {{ stage.evolution_details[stage.evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
+          </p>
+          <p class="hover:text-blue-500 cursor-pointer text-md" *ngIf="stage?.evolution_details[0]?.turn_upside_down">
+            {{ language === 'es' ? 'Con la consola al revés' : 'With the console upside down' }}
+          </p>
+          <p class="hover:text-blue-500 cursor-pointer text-md" *ngIf="stage?.evolution_details[0]?.trade_species">
+            {{ language === 'es' ? 'por': 'with' }}
+            {{ stage?.evolution_details[0]?.trade_species.name |titlecase}}
+          </p>
+        </div>
+        <ng-container *ngFor="let stage2 of stage.evolves_to">
+          <div class="flex flex-col items-center evolution-step">
+            <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage2?.imageName"
+                 (click)="goToPokemonPage(stage2.species.name)"
+                 [src]="stage2.imageName">
+            <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage2.species.name)">
+              {{ stage2.species.name |translatePokemonName |replaceDash | titlecase }}
+            </p>
+            <p *ngIf="stage2.evolution_details[0]?.trigger">
+              {{ stage2.evolution_details[0]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
+              <span *ngIf="stage2.evolution_details[0]?.time_of_day">
+                {{ language === 'es' ? 'durante': 'in' }}
+                {{ stage2.evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
+              </span>
+            </p>
+            <p class="text-md" *ngIf="stage2.evolution_details[0]?.min_happiness">
+              {{ language === 'es' ? 'Con una amistad de': 'With a' }}
+              {{ stage2.evolution_details[0]?.min_happiness }}
+              {{ language === 'es' ? 'puntos': 'point friendship' }}
+            </p>
+            <p class="text-md" *ngIf="stage2.evolution_details[0]?.known_move_type">
+              {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
+              {{ stage2.evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}} move
+              {{ language === 'en' ? 'type move': '' }}
+            </p>
+            <p class="text-md" *ngIf="stage2.evolution_details[0]?.min_level">
+              {{ language === 'es' ? 'A nivel': 'At level' }}
+              {{ stage2.evolution_details[0]?.min_level }}
+            </p>
+            <p class="hover:text-blue-500 cursor-pointer text-md" *ngIf="stage2 && stage2.evolution_details && stage2.evolution_details.length > 0">
+              {{ stage2.evolution_details[stage.evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
+            </p>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
     </ng-container>
   </div>
 </div>
