@@ -770,50 +770,28 @@ export class HelperService {
   getGameIconNameForLanguage(typeName: string, language: string): string {
     if(language === 'es') {
       switch(typeName) {
-        case 'grass': return 'Planta';
-        case 'fire': return 'Fuego';
-        case 'water': return 'Agua';
-        case 'bug': return 'Bicho';
-        case 'normal': return 'Normal';
-        case 'poison': return 'Veneno';
-        case 'electric': return 'Eléctrico';
-        case 'ground': return 'Tierra';
-        case 'fairy': return 'Hada';
-        case 'fighting': return 'Lucha';
-        case 'psychic': return 'Psíquico';
-        case 'rock': return 'Roca';
-        case 'ghost': return 'Fantasma';
-        case 'ice': return 'Hielo';
-        case 'dragon': return 'Dragón';
-        case 'dark': return 'Siniestro';
-        case 'steel': return 'Acero';
-        case 'flying': return 'Volador';
+        case 'Grass': return 'Planta';
+        case 'Fire': return 'Fuego';
+        case 'Water': return 'Agua';
+        case 'Bug': return 'Bicho';
+        case 'Normal': return 'Normal';
+        case 'Poison': return 'Veneno';
+        case 'Electric': return 'Eléctrico';
+        case 'Ground': return 'Tierra';
+        case 'Fairy': return 'Hada';
+        case 'Fighting': return 'Lucha';
+        case 'Psychic': return 'Psíquico';
+        case 'Rock': return 'Roca';
+        case 'Ghost': return 'Fantasma';
+        case 'Ice': return 'Hielo';
+        case 'Dragon': return 'Dragón';
+        case 'Dark': return 'Siniestro';
+        case 'Steel': return 'Acero';
+        case 'Flying': return 'Volador';
         default: return typeName;
       }
     }
-    if(language === 'en') {
-      switch(typeName) {
-        case 'grass': return 'Grass';
-        case 'fire': return 'Fire';
-        case 'water': return 'Water';
-        case 'bug': return 'Bug';
-        case 'normal': return 'Normal';
-        case 'poison': return 'Poison';
-        case 'electric': return 'Electric';
-        case 'ground': return 'Ground';
-        case 'fairy': return 'Fairy';
-        case 'fighting': return 'Fighting';
-        case 'psychic': return 'Psychic';
-        case 'rock': return 'Rock';
-        case 'ghost': return 'Ghost';
-        case 'ice': return 'Ice';
-        case 'dragon': return 'Dragon';
-        case 'dark': return 'Dark';
-        case 'steel': return 'Steel';
-        case 'flying': return 'Flying';
-      }
-    }
-    return this.capitalize(typeName);
+    return typeName;
   }
 
   capitalize(str: string): string {

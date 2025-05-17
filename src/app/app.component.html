@@ -1,28 +1,40 @@
 <div class="flex flex-col min-h-screen">
-  <!-- Botón para abrir el menú -->
-  <button *ngIf="!loading && !isMenuOpen" (click)="toggleMenu()" class="fixed p-2 bg-blue-600 text-white rounded-md sm:relative">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-    </svg>
-  </button>
+  <!-- Header with menu button -->
+  <header class="sticky top-0 z-30 bg-white dark:bg-gray-900 shadow-sm">
+    <div class="flex items-center justify-between px-4 py-2">
+      <button (click)="toggleMenu()"
+              class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              [attr.aria-label]="isMenuOpen ? 'Close menu' : 'Open menu'">
+        <mat-icon class="text-gray-600 dark:text-gray-300">
+          {{ isMenuOpen ? 'menu_open' : 'menu' }}
+        </mat-icon>
+      </button>
+
+      <a class="flex items-center justify-center flex-grow">
+        <img src="/assets/icons/rotom-dex/RotomDex.png" class="h-8 sm:h-10" alt="PoochyDex Logo"/>
+        <span class="ml-2 text-2xl font-bold text-gray-800 dark:text-white">PoochyDex</span>
+      </a>
+
+      <div class="w-10"></div> <!-- This empty div balances the layout -->
+    </div>
+  </header>
 
   <!-- Menu Component -->
-  <app-menu [isOpen]="isMenuOpen" (close)="closeMenu()" [language]="currentLanguage" [userData]="currentUser"></app-menu>
+  <app-menu [isOpen]="isMenuOpen"
+            (close)="closeMenu()"
+            [language]="currentLanguage"
+            [userData]="currentUser">
+  </app-menu>
 
   <!-- Main Content -->
-  <div class="flex-1 overflow-auto sm:pl-4" (click)="closeMenu()">
+  <main class="flex-1 overflow-auto" (click)="closeMenu()">
     <router-outlet></router-outlet>
-  </div>
+  </main>
+
+  <app-up-button *ngIf="!loading"></app-up-button>
+  <app-search-button *ngIf="!loading"></app-search-button>
+  <app-footer></app-footer>
+  <app-loading-spinner [loading]="loading" [isCacheLoading]="isCacheLoading"></app-loading-spinner>
+  <app-new-update-view></app-new-update-view>
+  <app-error-message-view></app-error-message-view>
 </div>
-
-<app-up-button *ngIf="!loading"></app-up-button>
-
-<app-search-button *ngIf="!loading"></app-search-button>
-
-<app-footer></app-footer>
-
-<app-loading-spinner [loading]="loading" [isCacheLoading]="isCacheLoading"></app-loading-spinner>
-
-<app-new-update-view></app-new-update-view>
-
-<app-error-message-view></app-error-message-view>

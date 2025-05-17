@@ -1,47 +1,53 @@
-
-<aside [ngClass]="{'translate-x-0': isOpen, 'sm:-translate-x-60': !isOpen, '-translate-x-full': !isOpen}" class="menu fixed top-0 left-0 w-64 h-screen bg-gray-50 dark:bg-gray-800 transition-transform duration-300 z-40 flex flex-col">
-  <div class="h-full px-3 py-4 overflow-y-auto flex-grow">
-    <!-- Botón para cerrar el menú -->
-    <!-- <button *ngIf="isOpen" (click)="closeMenu()" class="absolute top-4 right-4 p-2 bg-red-600 text-white rounded-full">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
-    </button> -->
-    <a href="" class="flex items-center ps-2.5 h-13">
-      <img src="/assets/icons/rotom-dex/RotomDex.png" class="h-6 me-1 sm:h-10"/>
-      <span class="self-center text-3xl font-semibold whitespace-nowrap dark:text-white w-full">PoochyDex</span>
+<aside [ngClass]="{
+  'translate-x-0 opacity-100': isOpen,
+  '-translate-x-full opacity-0': !isOpen
+}"
+      class="menu fixed top-0 left-0 w-64 h-screen bg-gray-50 dark:bg-gray-800 transition-all duration-300 z-40 flex flex-col shadow-xl invisible sm:visible">
+  <!-- Header with logo and close button -->
+  <div class="flex items-center justify-between p-4 border-b dark:border-gray-700">
+    <a class="flex items-center">
+      <img src="/assets/icons/rotom-dex/RotomDex.png" class="h-8 sm:h-10" alt="PoochyDex Logo"/>
+      <span class="ml-2 text-2xl font-bold text-gray-800 dark:text-white">PoochyDex</span>
     </a>
+    <button (click)="closeMenu()" class="rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+      <mat-icon class="text-gray-600 dark:text-gray-300">close</mat-icon>
+    </button>
+  </div>
 
-    <hr class="my-4 dark:bg-gray-700 rounded-md">
-
-    <ul class="space-y-2 font-medium">
+  <!-- Main Navigation -->
+  <div class="flex-1 px-3 py-4 overflow-y-auto">
+    <ul class="space-y-2">
       <li>
-        <a href="/pokedex/list" class="flex items-center p-2 text-gray-900 rounded-lg
-          dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:bg-gray-700 group">
-          <img class="w-10" src="/assets/icons/roza-pokedex/icon-72x45.png" alt="">
-          <span class="ms-3">{{ language === 'es' ? 'Pokédex Nacional' : 'National Dex'}}</span>
+        <a href="/pokedex/list"
+           class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
+          <img class="w-8 h-8 object-contain" src="/assets/icons/roza-pokedex/icon-72x45.png" alt="Pokédex Icon">
+          <span class="ml-3 font-medium">{{ language === 'es' ? 'Pokédex Nacional' : 'National Dex'}}</span>
+          <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">chevron_right</mat-icon>
         </a>
       </li>
       <li>
-        <a href="/game/list-games" class="flex items-center p-2 text-gray-900 rounded-lg
-        dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:bg-gray-700 group">
-          <img class="w-8" src="/assets/icons/consoles/nintendo-ds.png" alt="">
-          <span class="ms-3">{{ language === 'es' ? 'Lista de Juegos' : 'Game List'}}</span>
+        <a href="/game/list-games"
+           class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
+          <img class="w-8 h-8 object-contain" src="/assets/icons/consoles/nintendo-ds.png" alt="Games Icon">
+          <span class="ml-3 font-medium">{{ language === 'es' ? 'Lista de Juegos' : 'Game List'}}</span>
+          <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">chevron_right</mat-icon>
         </a>
       </li>
-      <!-- Más opciones aquí -->
     </ul>
   </div>
-  <!-- Configuración al final -->
-  <div class="px-3 py-4">
-    <ul class="space-y-2 font-medium">
-      <li>
-        <a class="flex items-center p-2 text-gray-900 rounded-lg
-        dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:bg-gray-700 group">
-          <mat-icon>settings</mat-icon>
-          <span class="ms-3">{{ language === 'es' ? 'Configuraciones' : 'Settings'}}</span>
-        </a>
-      </li>
-    </ul>
+
+  <!-- Footer with Settings -->
+  <div class="p-4 border-t dark:border-gray-700">
+    <button class="flex items-center w-full p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
+      <mat-icon class="text-gray-500 dark:text-gray-400">settings</mat-icon>
+      <span class="ml-3 font-medium">{{ language === 'es' ? 'Configuraciones' : 'Settings'}}</span>
+      <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">chevron_right</mat-icon>
+    </button>
   </div>
 </aside>
+
+<!-- Overlay for mobile -->
+<div *ngIf="isOpen"
+     class="fixed inset-0 bg-black bg-opacity-50 z-30 sm:hidden transition-opacity duration-300"
+     (click)="closeMenu()">
+</div>
