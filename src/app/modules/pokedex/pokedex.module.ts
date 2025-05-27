@@ -24,7 +24,6 @@ import { PokemonLocalizationComponent } from './components/show-pokemon/pokemon-
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgxLoadingModule } from 'ngx-loading';
 import { FilterComponent } from './components/list-pokemon/filter/filter.component';
-import { ConfigViewComponent } from './components/list-pokemon/config-view/config-view.component';
 
 @NgModule({
   imports: [
@@ -54,7 +53,6 @@ import { ConfigViewComponent } from './components/list-pokemon/config-view/confi
     PokedexDescriptionComponent,
     PokemonLocalizationComponent,
     FilterComponent,
-    ConfigViewComponent
   ],
 })
 export class PokedexModule { }
