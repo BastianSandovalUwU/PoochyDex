@@ -3,6 +3,19 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+html {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 table {
   width: 100%;
 }
@@ -94,9 +107,6 @@ table {
 .bg-pokemon-violet { background-color: #552277; } /* Purpura */
 .bg-pokemon-brilliant-diamond { background-color: #B9F2FF; } /* Diamante Brillante */
 .bg-pokemon-shining-pearl { background-color: #FEE7F0; } /* Perla Reluciente */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* Split color buttons for generations */
 .gen-button-red-blue, .gen-button-gold-silver, .gen-button-ruby-sapphire,

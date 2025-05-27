@@ -8,6 +8,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class UpButtonComponent implements OnInit {
   upButton: HTMLElement;
   downButton: HTMLElement;
+  private isScrolling = false;
 
   constructor() {}
 
@@ -37,16 +38,65 @@ export class UpButtonComponent implements OnInit {
   }
 
   scrollUp(): void {
-    window.scroll({
-      top: 0,
-      behavior: 'smooth'
-    });
+    if (this.isScrolling) return;
+    this.isScrolling = true;
+
+    const duration = 800; // duración en milisegundos
+    const start = window.pageYOffset;
+    const startTime = performance.now();
+
+    const easeInOutCubic = (t: number) => {
+      return t < 0.5
+        ? 4 * t * t * t
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    };
+
+    const animateScroll = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeProgress = easeInOutCubic(progress);
+
+      window.scrollTo(0, start * (1 - easeProgress));
+
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
+      } else {
+        this.isScrolling = false;
+      }
+    };
+
+    requestAnimationFrame(animateScroll);
   }
 
   scrollToBottom(): void {
-    window.scroll({
-      top: document.documentElement.scrollHeight,
-      behavior: 'smooth'
-    });
+    if (this.isScrolling) return;
+    this.isScrolling = true;
+
+    const duration = 800; // duración en milisegundos
+    const start = window.pageYOffset;
+    const end = document.documentElement.scrollHeight - window.innerHeight;
+    const startTime = performance.now();
+
+    const easeInOutCubic = (t: number) => {
+      return t < 0.5
+        ? 4 * t * t * t
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    };
+
+    const animateScroll = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeProgress = easeInOutCubic(progress);
+
+      window.scrollTo(0, start + (end - start) * easeProgress);
+
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
+      } else {
+        this.isScrolling = false;
+      }
+    };
+
+    requestAnimationFrame(animateScroll);
   }
 }
