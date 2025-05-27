@@ -798,4 +798,7 @@ export class HelperService {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
 
+  addZerosToNumber(number: number): string {
+    return number.toString().padStart(4, '0');
+  }
 }

@@ -36,8 +36,6 @@ export class ListPokemonComponent implements OnInit {
   showFloatingFilter: boolean = false;
   private scrollThreshold: number = 200;
 
-  pokemonListGridClass: string = 'grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 2xl:grid-cols-11 gap-1';
-
   constructor(private pokeApiService: PokeApiService,
               private languageService: LanguageService,
               private helperService: HelperService
@@ -119,23 +117,7 @@ const isWithinSelectedGenerations = (pokemon: PokemonList) =>
     this.showFloatingFilter = scrollPosition > this.scrollThreshold;
   }
 
-  changeView(view: string) {
-    switch(view) {
-      case 'compact':
-        this.pokemonListGridClass = 'grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 2xl:grid-cols-12 gap-2';
-        break;
-      case 'comfortable':
-        this.pokemonListGridClass = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 gap-3';
-        break;
-      case 'spacious':
-        this.pokemonListGridClass = 'grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-4';
-        break;
-      default:
-        this.pokemonListGridClass = 'grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 2xl:grid-cols-12 gap-2';
-    }
-  }
-
   addZerosToNumber(number: number): string {
-    return number.toString().padStart(4, '0');
+    return this.helperService.addZerosToNumber(number);
   }
 }
