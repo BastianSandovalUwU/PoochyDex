@@ -10,11 +10,7 @@
     <app-filter [language]="language" (filters)="applyFilters($event)" [isShow]="showFloatingFilter"></app-filter>
   </div>
 
-  <!-- <div class="mt-4 mx-5">
-    <app-config-view [language]="language" (changeView)="changeView($event)"></app-config-view>
-  </div> -->
-
-  <div [ngClass]="pokemonListGridClass" class="pb-15 w-full mt-2">
+  <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 2xl:grid-cols-11 gap-1 pb-15 w-full mt-2">
     <div *ngFor="let pokemon of filteredPokemon" class="hover:opacity-80 cursor-pointer hover:scale-105 transition-all duration-300" [routerLink]="['/pokedex/show-pokemon', pokemon.name]">
       <div class="bg-white rounded-lg w-full max-w-[180px] h-48 relative overflow-hidden shadow-lg mx-auto">
         <div class="absolute top-0 left-0 w-full h-1/2 bg-red-500"></div>
