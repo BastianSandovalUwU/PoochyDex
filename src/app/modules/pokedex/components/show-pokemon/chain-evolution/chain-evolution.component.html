@@ -204,7 +204,6 @@
         <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(evolutionChain.chain.species.name)">
           {{ evolutionChain.chain.species.name |translatePokemonName |replaceDash | titlecase }}
         </p>
-      <mat-icon class="self-center">arrow_downward</mat-icon>
 
       <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
         <div class="flex flex-col items-center evolution-step">

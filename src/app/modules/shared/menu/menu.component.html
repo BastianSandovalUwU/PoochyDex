@@ -26,10 +26,9 @@
         </a>
       </li>
       <li>
-        <a href="/game/list-games"
-           class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
-          <img class="w-8 h-8 object-contain" src="/assets/icons/consoles/nintendo-ds.png" alt="Games Icon">
-          <span class="ml-3 font-medium">{{ language === 'es' ? 'Lista de Juegos' : 'Game List'}}</span>
+        <a
+           class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group hover:cursor-not-allowed">
+          <span class="ml-3 font-medium">{{ language === 'es' ? 'Proximamente' : 'Coming soon'}}</span>
           <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">chevron_right</mat-icon>
         </a>
       </li>
@@ -38,11 +37,7 @@
 
   <!-- Footer with Settings -->
   <div class="p-4 border-t dark:border-gray-700">
-    <button class="flex items-center w-full p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
-      <mat-icon class="text-gray-500 dark:text-gray-400">settings</mat-icon>
-      <span class="ml-3 font-medium">{{ language === 'es' ? 'Configuraciones' : 'Settings'}}</span>
-      <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">chevron_right</mat-icon>
-    </button>
+    <p class="text-gray-200 text-secondary">PoochyDex 1.0.0</p>
   </div>
 </aside>
 
