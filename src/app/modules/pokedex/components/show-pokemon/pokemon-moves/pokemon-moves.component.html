@@ -1,4 +1,4 @@
-<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden">
+<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden dark:border-gray-600 dark:bg-gray-800">
 
   <div class="flex justify-between items-center">
     <div (click)="toggleFilters('lvl')" class="cursor-pointer hover:text-gray-800">
@@ -15,7 +15,7 @@
     <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="levelUpChangeGame($event)" class="black-tabs">
       <mat-tab [label]="getGameName(group) | replaceDash | titlecase" *ngFor="let group of versionGroups" class="black-tab">
         <div class="bg-white p-3 border-black border rounded-md">
-          <div class="grid grid-cols-6 gap-4 border-b border-black pb-1 mb-2">
+          <div class="grid grid-cols-6 gap-4 border-b border-black pb-1 mb-2 dark:border-gray-600 dark:bg-gray-800">
             <span class="font-semibold">{{ language === 'es' ? 'Nivel': 'Level' }}</span>
             <span class="font-semibold">{{ language === 'es' ? 'Movimiento': 'Move' }}</span>
             <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
@@ -24,7 +24,7 @@
           </div>
           <div *ngFor="let pokeMove of filteredMoves">
             <div *ngFor="let detail of pokeMove.move.version_group_details">
-              <div class="grid grid-cols-6 gap-2 mb-1" *ngIf="detail.version_group.name === group">
+              <div class="grid grid-cols-6 gap-2 mb-1 dark:border-gray-600 dark:bg-gray-800" *ngIf="detail.version_group.name === group">
                 <div class="col-span-1">
                   {{ detail.level_learned_at }}
                 </div>
@@ -48,7 +48,7 @@
                   </div>
                 </div>
                 <div *ngFor="let type of pokeMove.types">
-                  <div class="grid grid-cols-2">
+                  <div class="grid grid-cols-2 dark:border-gray-600 dark:bg-gray-800">
                     <div class="text-center">
                       <img class="w-32"
                       [src]="'./assets/icons/types/' + type.typeName + '.png'">
@@ -65,7 +65,7 @@
 
 </div>
 
-<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:hidden block">
+<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:hidden block dark:border-gray-600 dark:bg-gray-800">
 
   <div class="flex justify-between items-center">
     <div (click)="toggleFilters('lvl')" class="cursor-pointer">
@@ -84,7 +84,7 @@
 
   <div class="bg-white p-3 border-black border rounded-md">
     <!-- Encabezado para pantallas grandes -->
-    <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2 move-header">
+    <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2 move-header dark:border-gray-600 dark:bg-gray-800">
       <span class="font-semibold">{{ language === 'es' ? 'Nivel': 'Level' }}</span>
       <span class="font-semibold">{{ language === 'es' ? 'Movimiento': 'Move' }}</span>
       <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
@@ -93,7 +93,7 @@
     </div>
 
     <!-- Fila de movimientos -->
-    <div *ngFor="let pokeMove of filteredMoves" class="move-row">
+    <div *ngFor="let pokeMove of filteredMoves" class="move-row dark:border-gray-600 dark:bg-gray-800">
       <div class="move-detail">
         <span class="move-label">{{ language === 'es' ? 'Nivel': 'Level' }}</span>
         <span class="move-value">{{ getLevelLearnedAt(pokeMove) }}</span>
@@ -130,7 +130,7 @@
 </div>
 
 <!-- Sección de movimientos por máquina -->
-<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden">
+<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden dark:border-gray-600 dark:bg-gray-800">
 
   <div class="flex justify-between items-center">
     <div (click)="toggleFilters('mt')" class="cursor-pointer hover:text-gray-800">
@@ -148,7 +148,7 @@
       <mat-tab [label]="getGameName(group) | replaceDash | titlecase" *ngFor="let group of versionGroups" class="black-tab">
 
         <div class="bg-white p-3 border-black border rounded-md">
-          <div class="grid grid-cols-6 gap-4 border-b border-black pb-1 mb-2">
+          <div class="grid grid-cols-6 gap-4 border-b border-black pb-1 mb-2 dark:border-gray-600 dark:bg-gray-800">
             <span class="font-semibold">{{ language === 'es' ? 'Movimiento' : 'Move' }}</span>
             <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
             <span class="font-semibold col-span-2">{{ language === 'es' ? 'Juego' : 'Game' }}</span>
@@ -156,7 +156,7 @@
           </div>
 
           <div *ngFor="let pokeMove of filteredMovesByMachine">
-            <div class="grid grid-cols-6 gap-2 mb-1">
+            <div class="grid grid-cols-6 gap-2 mb-1 dark:border-gray-600 dark:bg-gray-800">
               <div class="col-span-1">
                 <span class="cursor-pointer hover:text-blue-500" [routerLink]="['/movement/show-movement', pokeMove.move.move.name]">{{ pokeMove.moveName }}</span>
               </div>
@@ -192,7 +192,7 @@
   </div>
 </div>
 
-<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:hidden block">
+<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:hidden block dark:border-gray-600 dark:bg-gray-800">
 
   <div class="flex justify-between items-center">
     <div (click)="toggleFilters('mt')" class="cursor-pointer">
@@ -212,7 +212,7 @@
     <div class="bg-white p-3 border-black border rounded-md">
 
       <!-- Fila de movimientos -->
-      <div *ngFor="let pokeMove of filteredMovesByMachine" class="move-row">
+      <div *ngFor="let pokeMove of filteredMovesByMachine" class="move-row dark:border-gray-600 dark:bg-gray-800">
         <div class="move-detail">
           <span class="move-label">{{ language === 'es' ? 'Movimiento': 'Move' }}</span>
           <span class="move-value hover:text-blue-500" [routerLink]="['/movement/show-movement', pokeMove.move.move.name]">{{ pokeMove.moveName }}</span>
@@ -243,7 +243,7 @@
 </div>
 
 <!-- Sección de movimientos por tutor -->
-<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden">
+<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden dark:border-gray-600 dark:bg-gray-800">
 
   <div class="flex justify-between items-center">
 
@@ -262,7 +262,7 @@
     <mat-tab [label]="getGameName(group) | replaceDash | titlecase" *ngFor="let group of versionGroups" class="black-tab">
 
       <div class="bg-white p-3 border-black border rounded-md">
-        <div class="grid grid-cols-6 gap-4 border-b border-black pb-1 mb-2">
+        <div class="grid grid-cols-6 gap-4 border-b border-black pb-1 mb-2 dark:border-gray-600 dark:bg-gray-800">
           <span class="font-semibold">{{ language === 'es' ? 'Movimiento' : 'Move' }}</span>
           <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
           <span class="font-semibold col-span-2">{{ language === 'es' ? 'Juego' : 'Game' }}</span>
@@ -271,7 +271,7 @@
 
         <div *ngFor="let pokeMove of filteredMovesByTutor">
           <div *ngFor="let detail of pokeMove.move.version_group_details">
-            <div class="grid grid-cols-6 gap-2 mb-1" *ngIf="detail.version_group.name === group">
+            <div class="grid grid-cols-6 gap-2 mb-1 dark:border-gray-600 dark:bg-gray-800" *ngIf="detail.version_group.name === group">
               <div class="col-span-1">
                 <span class="cursor-pointer hover:text-blue-500" [routerLink]="['/movement/show-movement', pokeMove.move.move.name]">{{ pokeMove.moveName }}</span>
               </div>
@@ -292,7 +292,7 @@
                 </div>
               </div>
               <div *ngFor="let type of pokeMove.types">
-                <div class="grid grid-cols-2">
+                <div class="grid grid-cols-2 dark:border-gray-600 dark:bg-gray-800">
                   <div class="text-center">
                     <img class="w-32" [src]="'./assets/icons/types/' + type.typeName + '.png'">
                   </div>
@@ -309,7 +309,7 @@
 </div>
 
 
-<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black tutor-container block sm:hidden">
+<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black tutor-container block sm:hidden dark:border-gray-600 dark:bg-gray-800">
 
   <div class="flex justify-between items-center">
     <div (click)="toggleFilters('tutor')" class="cursor-pointer">
@@ -331,7 +331,7 @@
 
     <!-- Fila de movimientos mediante tutor -->
     <div *ngFor="let pokeMove of filteredMovesByTutor" >
-      <div *ngFor="let detail of pokeMove.move.version_group_details" class="move-row">
+      <div *ngFor="let detail of pokeMove.move.version_group_details" class="move-row dark:border-gray-600 dark:bg-gray-800">
         <div class="move-detail">
           <span class="move-label">{{ language === 'es' ? 'Movimiento' : 'Move' }}</span>
           <span class="move-value hover:text-blue-500" [routerLink]="['/movement/show-movement', pokeMove.move.move.name]">{{ pokeMove.moveName }}</span>
@@ -364,7 +364,7 @@
 </div>
 
 <!-- Sección de movimientos por huevo -->
-<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden">
+<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden dark:border-gray-600 dark:bg-gray-800">
 
   <div class="flex justify-between items-center">
 
@@ -384,7 +384,7 @@
     <mat-tab [label]="getGameName(group) | replaceDash | titlecase" *ngFor="let group of versionGroups" class="black-tab">
 
       <div class="bg-white p-3 border-black border rounded-md">
-        <div class="grid grid-cols-6 gap-4 border-b border-black pb-1 mb-2">
+        <div class="grid grid-cols-6 gap-4 border-b border-black pb-1 mb-2 dark:border-gray-600 dark:bg-gray-800">
           <span class="font-semibold">{{ language === 'es' ? 'Movimiento' : 'Move' }}</span>
           <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
           <span class="font-semibold col-span-2">{{ language === 'es' ? 'Juego' : 'Game' }}</span>
@@ -393,7 +393,7 @@
 
         <div *ngFor="let pokeMove of filteredMovesByEgg">
           <div *ngFor="let detail of pokeMove.move.version_group_details">
-            <div class="grid grid-cols-6 gap-2 mb-1" *ngIf="detail.version_group.name === group">
+            <div class="grid grid-cols-6 gap-2 mb-1 dark:border-gray-600 dark:bg-gray-800" *ngIf="detail.version_group.name === group">
               <div class="col-span-1">
                 <span class="cursor-pointer hover:text-blue-500" [routerLink]="['/movement/show-movement', pokeMove.move.move.name]">{{ pokeMove.moveName }}</span>
               </div>
@@ -414,7 +414,7 @@
                 </div>
               </div>
               <div *ngFor="let type of pokeMove.types">
-                <div class="grid grid-cols-2">
+                <div class="grid grid-cols-2 dark:border-gray-600 dark:bg-gray-800">
                   <div class="text-center">
                     <img class="w-32" [src]="'./assets/icons/types/' + type.typeName + '.png'">
                   </div>
@@ -432,7 +432,7 @@
 </div>
 
 
-<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black tutor-container block sm:hidden">
+<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black tutor-container block sm:hidden dark:border-gray-600 dark:bg-gray-800">
   <div class="flex justify-between items-center">
     <div (click)="toggleFilters('egg')" class="cursor-pointer">
       <h1 class="font-bold text-xl">{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
@@ -453,7 +453,7 @@
 
     <!-- Fila de movimientos mediante tutor -->
     <div *ngFor="let pokeMove of filteredMovesByEgg" >
-      <div *ngFor="let detail of pokeMove.move.version_group_details" class="move-row">
+      <div *ngFor="let detail of pokeMove.move.version_group_details" class="move-row dark:border-gray-600 dark:bg-gray-800">
         <div class="move-detail">
           <span class="move-label">{{ language === 'es' ? 'Movimiento' : 'Move' }}</span>
           <span class="move-value hover:text-blue-500" [routerLink]="['/movement/show-movement', pokeMove.move.move.name]">{{ pokeMove.moveName }}</span>

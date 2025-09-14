@@ -1,6 +1,5 @@
 <div class="mt-4">
-  <h1 class="mx-5 pl-2 text-black text-2xl font-bold">{{ language === 'es' ? 'Listado de Pokémon' : 'Pokémon List'}}</h1>
-  <hr class="my-2">
+  <h1 class="mx-5 pl-2 text-black text-2xl  font-bold dark:text-white">{{ language === 'es' ? 'Listado de Pokémon' : 'Pokémon List'}}</h1>
 
   <div class="mt-4 mx-1">
     <app-filter [language]="language" (filters)="applyFilters($event)" [isShow]="showFloatingFilter"></app-filter>
@@ -12,7 +11,7 @@
 
   <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 2xl:grid-cols-11 gap-1 pb-15 w-full mt-2">
     <div *ngFor="let pokemon of filteredPokemon" class="hover:opacity-80 cursor-pointer hover:scale-105 transition-all duration-300" [routerLink]="['/pokedex/show-pokemon', pokemon.name]">
-      <div class="bg-white rounded-lg w-full max-w-[180px] h-48 relative overflow-hidden shadow-lg mx-auto">
+      <div class="pokemon-card bg-white rounded-lg w-full max-w-[180px] h-48 relative overflow-hidden shadow-lg mx-auto">
         <div class="absolute top-0 left-0 w-full h-1/2 bg-red-500"></div>
 
         <div class="absolute top-1/2 left-0 w-full h-2 bg-black transform -translate-y-1/2"></div>
@@ -51,7 +50,7 @@
   </div>
 
   <div *ngIf="filteredPokemon.length === 0">
-    <h1 class="text-center text-2xl">{{ language === 'es' ? 'No hay Pokémon que coincidan con los filtros aplicados.' : 'No Pokémon found that match the applied filters.' }}</h1>
+    <h1 class="text-center text-2xl text-gray-800 dark:text-gray-200">{{ language === 'es' ? 'No hay Pokémon que coincidan con los filtros aplicados.' : 'No Pokémon found that match the applied filters.' }}</h1>
   </div>
 
 </div>

@@ -1,4 +1,4 @@
-<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black">
+<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black dark:border-gray-600 dark:bg-gray-800">
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-xl cursor-pointer hover:text-gray-800" (click)="toggleFilters()">{{ language === 'es' ? 'Estadísticas Pokémon' : 'Pokémon Statistics' }}</h1>
 
@@ -11,7 +11,7 @@
       <span class="w-1/4">{{ statNames[i] }}:</span>
       <div class="flex items-center w-full">
         <span class="w-12 text-right">{{ stat.base_stat }}</span>
-        <div class="w-full bg-gray-100 rounded-full overflow-hidden ml-2">
+        <div class="w-full dark:bg-gray-200 bg-gray-100 rounded-full overflow-hidden ml-2">
           <div [ngStyle]="{'width': getStatWidth(stat.base_stat), 'background-color': getStatColor(stat.base_stat)}" class="h-4"></div>
         </div>
       </div>

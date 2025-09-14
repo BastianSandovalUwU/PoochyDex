@@ -14,6 +14,15 @@ body {
   overflow-x: hidden;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #ffffff;
+  color: #1f2937;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark theme styles */
+.dark body {
+  background-color: #111827;
+  color: #f9fafb;
 }
 
 table {
@@ -224,4 +233,92 @@ table {
 
 .form-button-mega {
   background-color: #FF6B6B;
+}
+
+/* Dark theme specific styles */
+.dark {
+  /* Card backgrounds */
+  .bg-white {
+    background-color: #1f2937 !important;
+  }
+
+  /* Text colors */
+  .text-gray-800 {
+    color: #f9fafb !important;
+  }
+
+  .text-gray-600 {
+    color: #d1d5db !important;
+  }
+
+  .text-gray-700 {
+    color: #e5e7eb !important;
+  }
+
+  /* Border colors */
+  .border-gray-200 {
+    border-color: #374151 !important;
+  }
+
+  .border-gray-300 {
+    border-color: #4b5563 !important;
+  }
+
+  /* Hover states */
+  .hover\:bg-gray-50:hover {
+    background-color: #374151 !important;
+  }
+
+  .hover\:bg-gray-100:hover {
+    background-color: #4b5563 !important;
+  }
+
+  /* Evolution chain specific dark theme */
+  .evolution-container {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+
+  /* Pokemon cards */
+  .pokemon-card {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+
+  /* Search and input fields */
+  input[type="text"],
+  input[type="search"],
+  textarea,
+  select {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: #f9fafb;
+  }
+
+  input[type="text"]:focus,
+  input[type="search"]:focus,
+  textarea:focus,
+  select:focus {
+    background-color: #4b5563;
+    border-color: #6b7280;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    background-color: #3b82f6;
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background-color: #2563eb;
+  }
+
+  .btn-secondary {
+    background-color: #6b7280;
+    color: #ffffff;
+  }
+
+  .btn-secondary:hover {
+    background-color: #4b5563;
+  }
 }

@@ -1,5 +1,5 @@
-<div class="footer-container">
-  <span class="footer-header sm:ml-4 cursor-pointer hover:text-blue-500">
+<div class="footer-container bg-gray-100 dark:bg-gray-800 border-t border-gray-300 dark:border-gray-600">
+  <span class="footer-header sm:ml-4 cursor-pointer text-gray-800 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400">
     Poochy&copy; {{currentYear}}
   </span>
   <div class="language-flags">
@@ -7,13 +7,13 @@
       src="./assets/icons/flags/usa_flag.png"
       alt="Inglés"
       (click)="setLanguage('en')"
-      class="language-flag"
+      class="language-flag dark:opacity-80 hover:opacity-100"
       title="Cambiar a Inglés">
     <img
       src="./assets/icons/flags/spain_flag.png"
       alt="Español"
       (click)="setLanguage('es')"
-      class="language-flag"
+      class="language-flag dark:opacity-80 hover:opacity-100"
       title="Cambiar a Español">
   </div>
 </div>

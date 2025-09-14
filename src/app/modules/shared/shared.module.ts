@@ -19,6 +19,7 @@ import { UpButtonComponent } from './up-button/up-button.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { NewUpdateViewComponent } from './new-update-view/new-update-view.component';
 import { ErrorMessageViewComponent } from './error-message-view/error-message-view.component';
+import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { ErrorMessageViewComponent } from './error-message-view/error-message-vi
     UpButtonComponent,
     LoadingSpinnerComponent,
     NewUpdateViewComponent,
-    ErrorMessageViewComponent
+    ErrorMessageViewComponent,
+    ThemeToggleComponent
   ],
   declarations: [
     MenuComponent,
@@ -65,7 +67,8 @@ import { ErrorMessageViewComponent } from './error-message-view/error-message-vi
     UpButtonComponent,
     LoadingSpinnerComponent,
     NewUpdateViewComponent,
-    ErrorMessageViewComponent
+    ErrorMessageViewComponent,
+    ThemeToggleComponent
   ]
 })
 export class SharedModule { }

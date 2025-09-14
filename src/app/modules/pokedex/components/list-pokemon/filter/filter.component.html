@@ -1,4 +1,4 @@
-<div class="rounded-md p-1 border border-black bg-transparent">
+<div class="rounded-md p-1 border border-black bg-transparent dark:border-gray-600 dark:bg-gray-800">
   <div class="flex justify-between items-center cursor-pointer" (click)="toggleFilters()">
     <span class="text-xl cursor-pointer ml-1">{{ language === 'es' ? 'Filtros de búsqueda' : 'Search Filters' }}</span>
     <button mat-icon-button class="cursor-default">
@@ -20,7 +20,7 @@
                          gen === 6 ? 'gen-button-x-y' :
                          gen === 7 ? 'gen-button-sun-moon' :
                          gen === 8 ? 'gen-button-sword-shield' :
-                         'gen-button-scarlet-violet') : 'bg-gray-200 text-gray-400'"
+                         'gen-button-scarlet-violet') : 'bg-gray-200 text-gray-400 dark:bg-gray-700 dark:text-gray-200'"
                       [class.text-white]="selectedGenerations.includes(gen) && (gen === 1 || gen === 5 || gen === 8)"
                       [class.text-gray-700]="!selectedGenerations.includes(gen)"
                       class="px-3 py-1.5 rounded-full transition-colors duration-200 hover:opacity-80 hover:scale-105 relative overflow-hidden"
@@ -40,7 +40,7 @@
                          form === 'paldea' ? 'form-button-paldea' :
                          form === 'hisui' ? 'form-button-hisui' :
                          form === 'gmax' ? 'form-button-gmax' :
-                         'form-button-mega') : 'bg-gray-200 text-gray-400'"
+                         'form-button-mega') : 'bg-gray-200 text-gray-400 dark:bg-gray-700 dark:text-gray-200'"
                       [class.text-white]="selectedForms.includes(form) && form !== 'hisui'"
                       [class.text-gray-700]="!selectedForms.includes(form)"
                       class="px-3 py-1.5 rounded-full transition-colors duration-200 hover:opacity-80 hover:scale-105 relative overflow-hidden"
@@ -72,7 +72,7 @@
             </div>
           </div>
           <div class="p-2">
-            <button (click)="applyFilters()" class="bg-red-500 text-white rounded-full mt-4 px-4 py-2">
+            <button (click)="applyFilters()" class="bg-red-500 text-white rounded-full mt-4 px-4 py-2 dark:bg-red-500 dark:text-white">
               {{ language === 'es' ? 'Aplicar Filtros' : 'Apply Filters' }}
             </button>
           </div>

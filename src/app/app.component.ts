@@ -4,6 +4,7 @@ import { UserData } from '../../entities/auth/user.entity';
 import { AuthService } from './modules/auth/services/auth.service';
 import { LoadingService } from './modules/shared/services/loading.service';
 import { HelperService } from './modules/shared/services/helper.service';
+import { ThemeService } from './modules/shared/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit, AfterViewInit {
               private loadingService: LoadingService,
               private authService: AuthService,
               private helperService: HelperService,
+              private themeService: ThemeService,
               private cdr: ChangeDetectorRef,
   ) {}
 
@@ -31,6 +33,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.themeService.isDarkMode$.subscribe();
     this.helperService.isCacheLoading$.subscribe(isLoading => {
       this.isCacheLoading = isLoading;
       this.loading = isLoading;

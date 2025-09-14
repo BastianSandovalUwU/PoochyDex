@@ -1,4 +1,4 @@
-<div [ngClass]="backgroundColor" class=" p-4 rounded-md col-span-1 border border-black">
+<div [ngClass]="backgroundColor" class=" p-4 rounded-md col-span-1 border border-black dark:border-gray-600 dark:bg-gray-800">
   <h1 class="font-bold text-4xl text-center">{{pokemon.name |translatePokemonName |replaceDash | titlecase}}</h1>
   <h1 class="font-bold text-lg text-center">
     <span class="cursor-pointer" *ngIf="pokemonNameHirgana">{{pokemonNameHirgana.name | titlecase}}</span>
@@ -28,7 +28,7 @@
   </div>
 
   <div class="flex justify-center mt-1">
-    <div class="bg-white rounded-md border border-black p-3">
+    <div class="bg-white rounded-md border border-black p-3 dark:bg-gray-800 dark:border-gray-600">
       <div class="max-w-screen-sm">
         <div *ngFor="let abilityGroup of filteredAbilityNames">
           <div>

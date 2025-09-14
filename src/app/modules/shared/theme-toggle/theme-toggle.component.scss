@@ -1,0 +1,17 @@
+/* Theme toggle button styles */
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+mat-icon {
+  transition: transform 0.3s ease;
+}
+
+button:hover mat-icon {
+  transform: rotate(15deg);
+}

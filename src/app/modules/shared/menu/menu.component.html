@@ -37,7 +37,11 @@
 
   <!-- Footer with Settings -->
   <div class="p-4 border-t dark:border-gray-700">
-    <p class="text-gray-200 text-secondary">PoochyDex 1.0.0</p>
+    <div class="flex items-center justify-between mb-2">
+      <span class="text-gray-600 dark:text-gray-400 text-sm font-medium">{{ language === 'es' ? 'Tema' : 'Theme' }}</span>
+      <app-theme-toggle></app-theme-toggle>
+    </div>
+    <p class="text-gray-500 dark:text-gray-400 text-md">PoochyDex 1.0.0</p>
   </div>
 </aside>
 

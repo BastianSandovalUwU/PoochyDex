@@ -1,4 +1,4 @@
-<div [ngClass]="backgroundColor" class=" p-4 rounded-md mt-2 col-span-1 border border-black" *ngIf="pokemonVarieties">
+<div [ngClass]="backgroundColor" class=" p-4 rounded-md mt-2 col-span-1 border border-black dark:border-gray-600 dark:bg-gray-800" *ngIf="pokemonVarieties">
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-xl cursor-pointer hover:text-gray-800" (click)="toggleFilters()">{{ language === 'es' ? 'Formas': 'Varieties' }}</h1>
 
@@ -9,7 +9,7 @@
   <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="flex flex-wrap justify-center space-x-8 evolution-container" >
     <ng-container *ngFor="let variety of pokemonVarieties">
       <div class="flex flex-col items-center evolution-step">
-        <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(variety.name)">
+        <p class="cursor-pointer hover:text-blue-500 dark:text-white" (click)="goToPokemonPage(variety.name)">
           {{ variety.name |translatePokemonName |replaceDash | titlecase }}
         </p>
         <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image"
