@@ -82,7 +82,7 @@
     <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="levelUpChangeGame($event)">
     <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
 
-  <div class="bg-white p-3 border-black border rounded-md">
+  <div class="bg-white dark:bg-gray-800 dark:border-gray-600 p-3 border-black border rounded-md">
     <!-- Encabezado para pantallas grandes -->
     <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2 move-header dark:border-gray-600 dark:bg-gray-800">
       <span class="font-semibold">{{ language === 'es' ? 'Nivel': 'Level' }}</span>
