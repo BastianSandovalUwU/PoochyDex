@@ -80,7 +80,11 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
           this.pokemon = pokeInfo;
           this.pokemonSprite = this.helperService.getPokemonSpriteImg(this.pokemon["name"], "home");
           this.pokemonSpriteShiny = this.helperService.getPokemonSpriteImg(this.pokemon["name"], "homeShiny");
-          this.getPokemonSpecie(pokeInfo.species["name"]);
+
+          const speciesName = this.checkForm(pokeInfo.name) ?
+            this.getBasePokemonNameFromForm(pokeInfo.name) :
+            pokeInfo.species["name"];
+          this.getPokemonSpecie(speciesName);
         },
         error: (error) => {
           const errorMessage = this.language === 'es' ? 'Error al cargar el Pokémon' : 'Error loading Pokémon';
@@ -119,7 +123,11 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
   }
 
   getPokemonMoves(): void {
-    this.pokeApiService.getPokemonMoves(this.pokemon.id.toString())
+    const pokemonId = this.checkForm(this.pokemon.name) ?
+      (this.pokemon.id - 10000).toString() :
+      this.pokemon.id.toString();
+
+    this.pokeApiService.getPokemonMoves(pokemonId)
       .pipe(takeUntil(this.destroy$))
       .subscribe(moves => {
         const observables = moves.map(move =>
@@ -168,7 +176,6 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
                     });
 
                     this.movesWithTypes = this.language === 'es' ? this.movesWithTypesEs : this.movesWithTypesEn;
-
                     this.loading = false;
                     this.loadingService.hide();
                   },
@@ -188,5 +195,13 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
             }
           });
       });
+  }
+
+  checkForm(name: string): boolean {
+    return this.pokeApiService.checkPokemonForm(name);
+  }
+
+  getBasePokemonNameFromForm(name: string): string {
+    return this.pokeApiService.getBasePokemonNameFromForm(name);
   }
 }

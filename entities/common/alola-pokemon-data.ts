@@ -1,4 +1,5 @@
 import { PokemonList } from "../pokemon-list.entity";
+import { POKEMON_TYPES } from "./const.interface";
 
 export const ALL_POKEMON_ALOLA: PokemonList[] = [
   {
@@ -10,8 +11,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 722,
     generationId: 7,
-    type: "Grass",
-    type2: "Flying"
+    type: POKEMON_TYPES.Grass,
+    type2: POKEMON_TYPES.Flying
   },
   {
     name: "dartrix",
@@ -22,8 +23,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 723,
     generationId: 7,
-    type: "Grass",
-    type2: "Flying"
+    type: POKEMON_TYPES.Grass,
+    type2: POKEMON_TYPES.Flying
   },
   {
     name: "decidueye",
@@ -34,8 +35,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 724,
     generationId: 7,
-    type: "Grass",
-    type2: "Ghost"
+    type: POKEMON_TYPES.Grass,
+    type2: POKEMON_TYPES.Ghost
   },
   {
     name: "litten",
@@ -46,7 +47,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 725,
     generationId: 7,
-    type: "Fire",
+    type: POKEMON_TYPES.Fire,
     type2: null
   },
   {
@@ -58,7 +59,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 726,
     generationId: 7,
-    type: "Fire",
+    type: POKEMON_TYPES.Fire,
     type2: null
   },
   {
@@ -70,8 +71,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 727,
     generationId: 7,
-    type: "Fire",
-    type2: "Dark"
+    type: POKEMON_TYPES.Fire,
+    type2: POKEMON_TYPES.Dark
   },
   {
     name: "popplio",
@@ -82,7 +83,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 728,
     generationId: 7,
-    type: "Water",
+    type: POKEMON_TYPES.Water,
     type2: null
   },
   {
@@ -94,7 +95,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 729,
     generationId: 7,
-    type: "Water",
+    type: POKEMON_TYPES.Water,
     type2: null
   },
   {
@@ -106,8 +107,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 730,
     generationId: 7,
-    type: "Water",
-    type2: "Fairy"
+    type: POKEMON_TYPES.Water,
+    type2: POKEMON_TYPES.Fairy
   },
   {
     name: "pikipek",
@@ -118,8 +119,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 731,
     generationId: 7,
-    type: "Normal",
-    type2: "Flying"
+    type: POKEMON_TYPES.Normal,
+    type2: POKEMON_TYPES.Flying
   },
   {
     name: "trumbeak",
@@ -130,8 +131,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 732,
     generationId: 7,
-    type: "Normal",
-    type2: "Flying"
+    type: POKEMON_TYPES.Normal,
+    type2: POKEMON_TYPES.Flying
   },
   {
     name: "toucannon",
@@ -142,8 +143,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 733,
     generationId: 7,
-    type: "Normal",
-    type2: "Flying"
+    type: POKEMON_TYPES.Normal,
+    type2: POKEMON_TYPES.Flying
   },
   {
     name: "yungoos",
@@ -154,7 +155,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 734,
     generationId: 7,
-    type: "Normal",
+    type: POKEMON_TYPES.Normal,
     type2: null
   },
   {
@@ -166,7 +167,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 735,
     generationId: 7,
-    type: "Normal",
+    type: POKEMON_TYPES.Normal,
     type2: null
   },
   {
@@ -178,7 +179,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 736,
     generationId: 7,
-    type: "Bug",
+    type: POKEMON_TYPES.Bug,
     type2: null
   },
   {
@@ -190,8 +191,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 737,
     generationId: 7,
-    type: "Bug",
-    type2: "Electric"
+    type: POKEMON_TYPES.Bug,
+    type2: POKEMON_TYPES.Electric
   },
   {
     name: "vikavolt",
@@ -202,8 +203,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 738,
     generationId: 7,
-    type: "Bug",
-    type2: "Electric"
+    type: POKEMON_TYPES.Bug,
+    type2: POKEMON_TYPES.Electric
   },
   {
     name: "crabrawler",
@@ -214,7 +215,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 739,
     generationId: 7,
-    type: "Fighting",
+    type: POKEMON_TYPES.Fighting,
     type2: null
   },
   {
@@ -226,8 +227,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 740,
     generationId: 7,
-    type: "Fighting",
-    type2: "Ice"
+    type: POKEMON_TYPES.Fighting,
+    type2: POKEMON_TYPES.Ice
   },
   {
     name: "oricorio-baile",
@@ -238,8 +239,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 741,
     generationId: 7,
-    type: "Bug",
-    type2: "Flying"
+    type: POKEMON_TYPES.Bug,
+    type2: POKEMON_TYPES.Flying
   },
   {
     name: "cutiefly",
@@ -250,8 +251,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 742,
     generationId: 7,
-    type: "Bug",
-    type2: "Fairy"
+    type: POKEMON_TYPES.Bug,
+    type2: POKEMON_TYPES.Fairy
   },
   {
     name: "ribombee",
@@ -262,8 +263,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 743,
     generationId: 7,
-    type: "Bug",
-    type2: "Fairy"
+    type: POKEMON_TYPES.Bug,
+    type2: POKEMON_TYPES.Fairy
   },
   {
     name: "rockruff",
@@ -274,7 +275,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 744,
     generationId: 7,
-    type: "Rock",
+    type: POKEMON_TYPES.Rock,
     type2: null
   },
   {
@@ -286,7 +287,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 745,
     generationId: 7,
-    type: "Rock",
+    type: POKEMON_TYPES.Rock,
     type2: null
   },
   {
@@ -298,7 +299,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 746,
     generationId: 7,
-    type: "Water",
+    type: POKEMON_TYPES.Water,
     type2: null
   },
   {
@@ -310,8 +311,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 747,
     generationId: 7,
-    type: "Water",
-    type2: "Poison"
+    type: POKEMON_TYPES.Water,
+    type2: POKEMON_TYPES.Poison
   },
   {
     name: "toxapex",
@@ -322,8 +323,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 748,
     generationId: 7,
-    type: "Water",
-    type2: "Poison"
+    type: POKEMON_TYPES.Water,
+    type2: POKEMON_TYPES.Poison
   },
   {
     name: "mudbray",
@@ -334,7 +335,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 749,
     generationId: 7,
-    type: "Ground",
+    type: POKEMON_TYPES.Ground,
     type2: null
   },
   {
@@ -346,7 +347,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 750,
     generationId: 7,
-    type: "Ground",
+    type: POKEMON_TYPES.Ground,
     type2: null
   },
   {
@@ -358,8 +359,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 751,
     generationId: 7,
-    type: "Bug",
-    type2: "Water"
+    type: POKEMON_TYPES.Bug,
+    type2: POKEMON_TYPES.Water
   },
   {
     name: "araquanid",
@@ -370,8 +371,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 752,
     generationId: 7,
-    type: "Bug",
-    type2: "Water"
+    type: POKEMON_TYPES.Bug,
+    type2: POKEMON_TYPES.Water
   },
   {
     name: "fomantis",
@@ -382,7 +383,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 753,
     generationId: 7,
-    type: "Grass",
+    type: POKEMON_TYPES.Grass,
     type2: null
   },
   {
@@ -394,7 +395,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 754,
     generationId: 7,
-    type: "Grass",
+    type: POKEMON_TYPES.Grass,
     type2: null
   },
   {
@@ -406,8 +407,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 755,
     generationId: 7,
-    type: "Grass",
-    type2: "Fairy"
+    type: POKEMON_TYPES.Grass,
+    type2: POKEMON_TYPES.Fairy
   },
   {
     name: "shiinotic",
@@ -418,8 +419,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 756,
     generationId: 7,
-    type: "Grass",
-    type2: "Fairy"
+    type: POKEMON_TYPES.Grass,
+    type2: POKEMON_TYPES.Fairy
   },
   {
     name: "salandit",
@@ -430,8 +431,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 757,
     generationId: 7,
-    type: "Fire",
-    type2: "Poison"
+    type: POKEMON_TYPES.Fire,
+    type2: POKEMON_TYPES.Poison
   },
   {
     name: "salazzle",
@@ -442,8 +443,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 758,
     generationId: 7,
-    type: "Fire",
-    type2: "Poison"
+    type: POKEMON_TYPES.Fire,
+    type2: POKEMON_TYPES.Poison
   },
   {
     name: "stufful",
@@ -454,8 +455,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 759,
     generationId: 7,
-    type: "Normal",
-    type2: "Fighting"
+    type: POKEMON_TYPES.Normal,
+    type2: POKEMON_TYPES.Fighting
   },
   {
     name: "bewear",
@@ -466,8 +467,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 760,
     generationId: 7,
-    type: "Normal",
-    type2: "Fighting"
+    type: POKEMON_TYPES.Normal,
+    type2: POKEMON_TYPES.Fighting
   },
   {
     name: "bounsweet",
@@ -478,7 +479,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 761,
     generationId: 7,
-    type: "Grass",
+    type: POKEMON_TYPES.Grass,
     type2: null
   },
   {
@@ -490,7 +491,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 762,
     generationId: 7,
-    type: "Grass",
+    type: POKEMON_TYPES.Grass,
     type2: null
   },
   {
@@ -502,7 +503,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 763,
     generationId: 7,
-    type: "Grass",
+    type: POKEMON_TYPES.Grass,
     type2: null
   },
   {
@@ -514,7 +515,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 764,
     generationId: 7,
-    type: "Fairy",
+    type: POKEMON_TYPES.Fairy,
     type2: null
   },
   {
@@ -526,8 +527,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 765,
     generationId: 7,
-    type: "Normal",
-    type2: "Psychic"
+    type: POKEMON_TYPES.Normal,
+    type2: POKEMON_TYPES.Psychic
   },
   {
     name: "passimian",
@@ -538,7 +539,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 766,
     generationId: 7,
-    type: "Fighting",
+    type: POKEMON_TYPES.Fighting,
     type2: null
   },
   {
@@ -550,8 +551,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 767,
     generationId: 7,
-    type: "Bug",
-    type2: "Water"
+    type: POKEMON_TYPES.Bug,
+    type2: POKEMON_TYPES.Water
   },
   {
     name: "golisopod",
@@ -562,8 +563,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 768,
     generationId: 7,
-    type: "Bug",
-    type2: "Water"
+    type: POKEMON_TYPES.Bug,
+    type2: POKEMON_TYPES.Water
   },
   {
     name: "sandygast",
@@ -574,8 +575,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 769,
     generationId: 7,
-    type: "Ghost",
-    type2: "Ground"
+    type: POKEMON_TYPES.Ghost,
+    type2: POKEMON_TYPES.Ground
   },
   {
     name: "palossand",
@@ -586,8 +587,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 770,
     generationId: 7,
-    type: "Ghost",
-    type2: "Ground"
+    type: POKEMON_TYPES.Ghost,
+    type2: POKEMON_TYPES.Ground
   },
   {
     name: "pyukumuku",
@@ -598,7 +599,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 771,
     generationId: 7,
-    type: "Water",
+    type: POKEMON_TYPES.Water,
     type2: null
   },
   {
@@ -610,7 +611,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 772,
     generationId: 7,
-    type: "Normal",
+    type: POKEMON_TYPES.Normal,
     type2: null
   },
   {
@@ -622,7 +623,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 773,
     generationId: 7,
-    type: "Normal",
+    type: POKEMON_TYPES.Normal,
     type2: null
   },
   {
@@ -634,8 +635,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 774,
     generationId: 7,
-    type: "Rock",
-    type2: "Flying"
+    type: POKEMON_TYPES.Rock,
+    type2: POKEMON_TYPES.Flying
   },
   {
     name: "komala",
@@ -646,7 +647,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 775,
     generationId: 7,
-    type: "Normal",
+    type: POKEMON_TYPES.Normal,
     type2: null
   },
   {
@@ -658,8 +659,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 776,
     generationId: 7,
-    type: "Fire",
-    type2: "Dragon"
+    type: POKEMON_TYPES.Fire,
+    type2: POKEMON_TYPES.Dragon
   },
   {
     name: "togedemaru",
@@ -670,8 +671,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 777,
     generationId: 7,
-    type: "Electric",
-    type2: "Steel"
+    type: POKEMON_TYPES.Electric,
+    type2: POKEMON_TYPES.Steel
   },
   {
     name: "mimikyu-disguised",
@@ -682,8 +683,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 778,
     generationId: 7,
-    type: "Ghost",
-    type2: "Fairy"
+    type: POKEMON_TYPES.Ghost,
+    type2: POKEMON_TYPES.Fairy
   },
   {
     name: "bruxish",
@@ -694,8 +695,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 779,
     generationId: 7,
-    type: "Water",
-    type2: "Psychic"
+    type: POKEMON_TYPES.Water,
+    type2: POKEMON_TYPES.Psychic
   },
   {
     name: "drampa",
@@ -706,7 +707,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 780,
     generationId: 7,
-    type: "Dragon",
+    type: POKEMON_TYPES.Dragon,
     type2: "Normal"
   },
   {
@@ -718,7 +719,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 781,
     generationId: 7,
-    type: "Ghost",
+    type: POKEMON_TYPES.Ghost,
     type2: "Grass"
   },
   {
@@ -730,7 +731,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 782,
     generationId: 7,
-    type: "Dragon",
+    type: POKEMON_TYPES.Dragon,
     type2: null
   },
   {
@@ -742,8 +743,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 783,
     generationId: 7,
-    type: "Dragon",
-    type2: "Fighting"
+    type: POKEMON_TYPES.Dragon,
+    type2: POKEMON_TYPES.Fighting
   },
   {
     name: "kommo-o",
@@ -754,8 +755,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 784,
     generationId: 7,
-    type: "Dragon",
-    type2: "Fighting"
+    type: POKEMON_TYPES.Dragon,
+    type2: POKEMON_TYPES.Fighting
   },
   {
     name: "tapu-koko",
@@ -766,8 +767,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 785,
     generationId: 7,
-    type: "Electric",
-    type2: "Fairy"
+    type: POKEMON_TYPES.Electric,
+    type2: POKEMON_TYPES.Fairy
   },
   {
     name: "tapu-lele",
@@ -778,8 +779,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 786,
     generationId: 7,
-    type: "Psychic",
-    type2: "Fairy"
+    type: POKEMON_TYPES.Psychic,
+    type2: POKEMON_TYPES.Fairy
   },
   {
     name: "tapu-bulu",
@@ -790,8 +791,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 787,
     generationId: 7,
-    type: "Grass",
-    type2: "Fairy"
+    type: POKEMON_TYPES.Grass,
+    type2: POKEMON_TYPES.Fairy
   },
   {
     name: "tapu-fini",
@@ -802,8 +803,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 788,
     generationId: 7,
-    type: "Water",
-    type2: "Fairy"
+    type: POKEMON_TYPES.Water,
+    type2: POKEMON_TYPES.Fairy
   },
   {
     name: "cosmog",
@@ -814,7 +815,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 789,
     generationId: 7,
-    type: "Psychic",
+    type: POKEMON_TYPES.Psychic,
     type2: null
   },
   {
@@ -826,7 +827,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 790,
     generationId: 7,
-    type: "Psychic",
+    type: POKEMON_TYPES.Psychic,
     type2: null
   },
   {
@@ -838,8 +839,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 791,
     generationId: 7,
-    type: "Psychic",
-    type2: "Steel"
+    type: POKEMON_TYPES.Psychic,
+    type2: POKEMON_TYPES.Steel
   },
   {
     name: "lunala",
@@ -850,8 +851,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 792,
     generationId: 7,
-    type: "Psychic",
-    type2: "Ghost"
+    type: POKEMON_TYPES.Psychic,
+    type2: POKEMON_TYPES.Ghost
   },
   {
     name: "nihilego",
@@ -862,8 +863,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 793,
     generationId: 7,
-    type: "Rock",
-    type2: "Poison"
+    type: POKEMON_TYPES.Rock,
+    type2: POKEMON_TYPES.Poison
   },
   {
     name: "buzzwole",
@@ -874,8 +875,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 794,
     generationId: 7,
-    type: "Bug",
-    type2: "Fighting"
+    type: POKEMON_TYPES.Bug,
+    type2: POKEMON_TYPES.Fighting
   },
   {
     name: "pheromosa",
@@ -886,8 +887,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 795,
     generationId: 7,
-    type: "Bug",
-    type2: "Flying"
+    type: POKEMON_TYPES.Bug,
+    type2: POKEMON_TYPES.Flying
   },
   {
     name: "xurkitree",
@@ -898,7 +899,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 796,
     generationId: 7,
-    type: "Electric",
+    type: POKEMON_TYPES.Electric,
     type2: null
   },
   {
@@ -910,8 +911,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 797,
     generationId: 7,
-    type: "Steel",
-    type2: "Flying"
+    type: POKEMON_TYPES.Steel,
+    type2: POKEMON_TYPES.Flying
   },
   {
     name: "kartana",
@@ -922,8 +923,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 798,
     generationId: 7,
-    type: "Grass",
-    type2: "Steel"
+    type: POKEMON_TYPES.Grass,
+    type2: POKEMON_TYPES.Steel
   },
   {
     name: "guzzlord",
@@ -934,8 +935,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 799,
     generationId: 7,
-    type: "Dark",
-    type2: "Dragon"
+    type: POKEMON_TYPES.Dark,
+    type2: POKEMON_TYPES.Dragon
   },
   {
     name: "necrozma",
@@ -946,7 +947,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 800,
     generationId: 7,
-    type: "Psychic",
+    type: POKEMON_TYPES.Psychic,
     type2: null
   },
   {
@@ -958,8 +959,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 801,
     generationId: 7,
-    type: "Steel",
-    type2: "Fairy"
+    type: POKEMON_TYPES.Steel,
+    type2: POKEMON_TYPES.Fairy
   },
   {
     name: "marshadow",
@@ -970,8 +971,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 802,
     generationId: 7,
-    type: "Fighting",
-    type2: "Ghost"
+    type: POKEMON_TYPES.Fighting,
+    type2: POKEMON_TYPES.Ghost
   },
   {
     name: "poipole",
@@ -982,7 +983,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 803,
     generationId: 7,
-    type: "Poison",
+    type: POKEMON_TYPES.Poison,
     type2: null
   },
   {
@@ -994,8 +995,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 804,
     generationId: 7,
-    type: "Poison",
-    type2: "Dragon"
+    type: POKEMON_TYPES.Poison,
+    type2: POKEMON_TYPES.Dragon
   },
   {
     name: "stakataka",
@@ -1006,8 +1007,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 805,
     generationId: 7,
-    type: "Rock",
-    type2: "Steel"
+    type: POKEMON_TYPES.Rock,
+    type2: POKEMON_TYPES.Steel
   },
   {
     name: "blacephalon",
@@ -1018,8 +1019,8 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 806,
     generationId: 7,
-    type: "Fire",
-    type2: "Ghost"
+    type: POKEMON_TYPES.Fire,
+    type2: POKEMON_TYPES.Ghost
   },
   {
     name: "zeraora",
@@ -1030,7 +1031,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 807,
     generationId: 7,
-    type: "Electric",
+    type: POKEMON_TYPES.Electric,
     type2: null
   },
   {
@@ -1042,7 +1043,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 808,
     generationId: 7,
-    type: "Steel",
+    type: POKEMON_TYPES.Steel,
     type2: null
   },
   {
@@ -1054,7 +1055,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     },
     number: 809,
     generationId: 7,
-    type: "Steel",
+    type: POKEMON_TYPES.Steel,
     type2: null
   }
 ];

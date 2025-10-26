@@ -1,4 +1,5 @@
 import { PokemonList } from "../pokemon-list.entity";
+import { POKEMON_TYPES } from "./const.interface";
 
 export const ALL_POKEMON_GIGAMAX_FORMS: PokemonList[] = [
   {
@@ -590,6 +591,18 @@ export const ALL_POKEMON_MEGA_FORMS: PokemonList[] = [
     type: "",
     type2: "",
     number: 150,
+    generationId: 0
+  },
+  {
+    name: 'feraligatr-mega',
+    sprites: {
+      homeUrl: "",
+      homeShinyUrl: "",
+      iconUrl: ""
+    },
+    type: POKEMON_TYPES.Water,
+    type2: POKEMON_TYPES.Dragon,
+    number: 160,
     generationId: 0
   },
   {

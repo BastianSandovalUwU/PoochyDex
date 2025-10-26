@@ -18,8 +18,8 @@ import { GenerationInfo } from '../../../../../entities/generation.entity';
 export class PokeApiService {
   private readonly POKEMON_CACHE_KEY = 'pokemon_cache';
   private readonly MOVES_CACHE_KEY = 'moves_cache';
-  private readonly MAX_CACHE_SIZE = 2000; // Número máximo de Pokémon en caché
-  private readonly MAX_MOVES_CACHE_SIZE = 2000; // Número máximo de movimientos en caché
+  private readonly MAX_CACHE_SIZE = 2000;
+  private readonly MAX_MOVES_CACHE_SIZE = 2000;
 
   apiUrl = 'https://pokeapi.co/api/v2'
 
@@ -45,14 +45,12 @@ export class PokeApiService {
       const cache = localStorage.getItem(this.POKEMON_CACHE_KEY);
       if (cache) {
         const pokemonCache = JSON.parse(cache) as { [key: string]: Pokemon };
-        // Buscar por nombre en los valores del caché
         return Object.values(pokemonCache).find(pokemon =>
           pokemon.name.toLowerCase() === name.toLowerCase()
         ) || null;
       }
       return null;
     } catch (error) {
-      console.error('Error al leer el caché de Pokémon:', error);
       return null;
     }
   }
@@ -62,13 +60,11 @@ export class PokeApiService {
       const cache = localStorage.getItem(this.POKEMON_CACHE_KEY);
       let pokemonCache = cache ? JSON.parse(cache) : {};
 
-      // Si el caché está lleno, eliminar el Pokémon más antiguo
       const cacheKeys = Object.keys(pokemonCache);
       if (cacheKeys.length >= this.MAX_CACHE_SIZE) {
         delete pokemonCache[cacheKeys[0]];
       }
 
-      // Convertir a versión lite antes de guardar y usar el ID como clave
       const litePokemon = this.convertToLitePokemon(pokemon);
       pokemonCache[pokemon.id] = litePokemon;
       localStorage.setItem(this.POKEMON_CACHE_KEY, JSON.stringify(pokemonCache));
@@ -103,10 +99,8 @@ export class PokeApiService {
       const cache = localStorage.getItem(this.MOVES_CACHE_KEY);
       let movesCache = cache ? JSON.parse(cache) : {};
 
-      // Si el caché está lleno, eliminar los movimientos más antiguos
       const cacheKeys = Object.keys(movesCache);
       if (cacheKeys.length >= this.MAX_MOVES_CACHE_SIZE) {
-        // Eliminar los primeros 10 movimientos más antiguos
         for (let i = 0; i < 10; i++) {
           delete movesCache[cacheKeys[i]];
         }
@@ -161,6 +155,11 @@ export class PokeApiService {
     if (cachedPokemon) {
       return of(cachedPokemon);
     }
+
+    if (this.checkPokemonForm(name)) {
+      return this.getMegaFormPokemon(name);
+    }
+
     const url = `${this.apiUrl}/pokemon/${name}/`;
     return this.http.get<PokemonFull>(url).pipe(
       catchError(error => {
@@ -392,5 +391,39 @@ export class PokeApiService {
       type: { name: 'unknown', url: '' }
     };
     return placeHolderMove;
+  }
+
+  checkPokemonForm(name: string): boolean {
+    return name.includes('-mega') || name.includes('-gmax') || name.includes('-primal');
+  }
+
+  getBasePokemonNameFromForm(name: string): string {
+    return name.replace(/-mega.*$/, '').replace(/-gmax$/, '').replace(/-primal$/, '');
+  }
+
+  private getMegaFormPokemon(name: string): Observable<Pokemon> {
+
+    const baseName = this.getBasePokemonNameFromForm(name);
+    return this.http.get<PokemonFull>(`${this.apiUrl}/pokemon/${baseName}/`).pipe(
+      map(basePokemon => {
+        const megaPokemon: Pokemon = {
+          ...this.convertToLitePokemon(basePokemon),
+          name: name,
+          id: basePokemon.id + 10000
+        };
+
+        const fullMegaPokemon: PokemonFull = {
+          ...basePokemon,
+          name: name,
+          id: basePokemon.id + 10000
+        };
+        this.setPokemonInCache(name, fullMegaPokemon);
+
+        return megaPokemon;
+      }),
+      catchError(error => {
+        return throwError(() => error);
+      })
+    );
   }
 }
