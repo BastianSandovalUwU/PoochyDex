@@ -23,7 +23,8 @@
   <app-menu [isOpen]="isMenuOpen"
             (close)="closeMenu()"
             [language]="currentLanguage"
-            [userData]="currentUser">
+            [userData]="currentUser"
+            (refreshCacheRequested)="onRefreshCacheRequested()">
   </app-menu>
 
   <!-- Main Content -->

@@ -17,9 +17,7 @@ import { GenerationInfo } from '../../../../../entities/generation.entity';
 })
 export class PokeApiService {
   private readonly POKEMON_CACHE_KEY = 'pokemon_cache';
-  private readonly MOVES_CACHE_KEY = 'moves_cache';
   private readonly MAX_CACHE_SIZE = 2000;
-  private readonly MAX_MOVES_CACHE_SIZE = 2000;
 
   apiUrl = 'https://pokeapi.co/api/v2'
 
@@ -40,8 +38,6 @@ export class PokeApiService {
       species: pokemon.species,
       is_default: pokemon.is_default,
       cries: pokemon.cries,
-      location_area_encounters: pokemon.location_area_encounters,
-      moves: pokemon.moves,
     };
   }
 
@@ -85,58 +81,14 @@ export class PokeApiService {
     }
   }
 
-  private getMovesFromCache(pokemonId: string): Move[] | null {
-    try {
-      const cache = localStorage.getItem(this.MOVES_CACHE_KEY);
-      if (cache) {
-        const movesCache = JSON.parse(cache);
-        return movesCache[pokemonId] || null;
-      }
-      return null;
-    } catch (error) {
-      console.error('Error al leer el caché de movimientos:', error);
-      return null;
-    }
-  }
-
-  private setMovesInCache(pokemonId: string, moves: Move[]): void {
-    try {
-      const cache = localStorage.getItem(this.MOVES_CACHE_KEY);
-      let movesCache = cache ? JSON.parse(cache) : {};
-
-      const cacheKeys = Object.keys(movesCache);
-      if (cacheKeys.length >= this.MAX_MOVES_CACHE_SIZE) {
-        for (let i = 0; i < 10; i++) {
-          delete movesCache[cacheKeys[i]];
-        }
-      }
-
-      movesCache[pokemonId] = moves;
-      localStorage.setItem(this.MOVES_CACHE_KEY, JSON.stringify(movesCache));
-    } catch (error) {
-      console.error('Error al escribir en el caché de movimientos:', error);
-      try {
-        localStorage.removeItem(this.MOVES_CACHE_KEY);
-        const movesCache = { [pokemonId]: moves };
-        localStorage.setItem(this.MOVES_CACHE_KEY, JSON.stringify(movesCache));
-      } catch (retryError) {
-        console.error('Error al limpiar y reescribir el caché de movimientos:', retryError);
-      }
-    }
-  }
+  // Métodos de cache de movimientos eliminados - no se guardan movimientos en cache
 
   getPokemonMoves(pokemonId: string): Observable<Move[]> {
-    const cachedMoves = this.getMovesFromCache(pokemonId);
-    if (cachedMoves) {
-      return of(cachedMoves);
-    }
-
+    // No usar cache de movimientos para reducir el uso de localStorage
     const url = `${this.apiUrl}/pokemon/${pokemonId}/`;
     return this.http.get<PokemonFull>(url).pipe(
       map(pokemon => {
-        const moves = pokemon.moves;
-        this.setMovesInCache(pokemonId, moves);
-        return moves;
+        return pokemon.moves;
       }),
       catchError(error => {
         console.error('Error al obtener los movimientos del Pokémon:', error);
@@ -156,14 +108,14 @@ export class PokeApiService {
   }
 
   getPokemonByName(name: string): Observable<Pokemon> {
-    //const cachedPokemon = this.getPokemonFromCache(name);
-    //if (cachedPokemon) {
-    //  return of(cachedPokemon);
-    //}
+    const cachedPokemon = this.getPokemonFromCache(name);
+    if (cachedPokemon) {
+      return of(cachedPokemon);
+    }
 
-    //if (this.checkPokemonForm(name)) {
-    //  return this.getMegaFormPokemon(name);
-    //}
+    if (this.checkPokemonForm(name)) {
+      return this.getMegaFormPokemon(name);
+    }
 
     const url = `${this.apiUrl}/pokemon/${name}/`;
     return this.http.get<PokemonFull>(url).pipe(
@@ -435,25 +387,21 @@ export class PokeApiService {
   clearCache(): void {
     try {
       localStorage.removeItem(this.POKEMON_CACHE_KEY);
-      localStorage.removeItem(this.MOVES_CACHE_KEY);
       console.log('Cache de Pokémon limpiado exitosamente');
     } catch (error) {
       console.error('Error al limpiar el cache:', error);
     }
   }
 
-  getCacheSize(): { pokemon: number, moves: number } {
+  getCacheSize(): { pokemon: number } {
     try {
       const pokemonCache = localStorage.getItem(this.POKEMON_CACHE_KEY);
-      const movesCache = localStorage.getItem(this.MOVES_CACHE_KEY);
-
       const pokemonCount = pokemonCache ? Object.keys(JSON.parse(pokemonCache)).length : 0;
-      const movesCount = movesCache ? Object.keys(JSON.parse(movesCache)).length : 0;
 
-      return { pokemon: pokemonCount, moves: movesCount };
+      return { pokemon: pokemonCount };
     } catch (error) {
       console.error('Error al obtener el tamaño del cache:', error);
-      return { pokemon: 0, moves: 0 };
+      return { pokemon: 0 };
     }
   }
 }

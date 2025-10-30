@@ -20,6 +20,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { NewUpdateViewComponent } from './new-update-view/new-update-view.component';
 import { ErrorMessageViewComponent } from './error-message-view/error-message-view.component';
 import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
     LoadingSpinnerComponent,
     NewUpdateViewComponent,
     ErrorMessageViewComponent,
-    ThemeToggleComponent
+    ThemeToggleComponent,
+    ConfirmationModalComponent
   ],
   declarations: [
     MenuComponent,
@@ -68,7 +70,8 @@ import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
     LoadingSpinnerComponent,
     NewUpdateViewComponent,
     ErrorMessageViewComponent,
-    ThemeToggleComponent
+    ThemeToggleComponent,
+    ConfirmationModalComponent
   ]
 })
 export class SharedModule { }

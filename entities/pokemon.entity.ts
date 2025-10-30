@@ -26,7 +26,7 @@ export type PokemonFull = {
 }
 
 // Versión lite del Pokémon con solo los datos esenciales
-export type Pokemon = Omit<PokemonFull, 'order' | 'held_items' | 'past_abilities' | 'past_types'>;
+export type Pokemon = Omit<PokemonFull, 'order' | 'held_items' | 'past_abilities' | 'past_types' | 'location_area_encounters' | 'moves'>;
 
 export type PastAbility = {
   ability: AbilityDetail;

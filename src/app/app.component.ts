@@ -79,4 +79,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.authService.setLanguage(language);
   }
 
+  onRefreshCacheRequested() {
+    this.helperService.createAllPokemonCache();
+  }
+
 }
