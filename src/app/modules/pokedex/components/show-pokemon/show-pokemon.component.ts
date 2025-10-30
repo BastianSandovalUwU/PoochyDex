@@ -72,7 +72,6 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
   getPokemonByName(name: string) {
     this.loading = true;
     this.loadingService.show();
-
     this.pokeApiService.getPokemonByName(name)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
@@ -80,11 +79,7 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
           this.pokemon = pokeInfo;
           this.pokemonSprite = this.helperService.getPokemonSpriteImg(this.pokemon["name"], "home");
           this.pokemonSpriteShiny = this.helperService.getPokemonSpriteImg(this.pokemon["name"], "homeShiny");
-
-          const speciesName = this.checkForm(pokeInfo.name) ?
-            this.getBasePokemonNameFromForm(pokeInfo.name) :
-            pokeInfo.species["name"];
-          this.getPokemonSpecie(speciesName);
+          this.getPokemonSpecie(this.pokemon.species.name);
         },
         error: (error) => {
           const errorMessage = this.language === 'es' ? 'Error al cargar el Pokémon' : 'Error loading Pokémon';

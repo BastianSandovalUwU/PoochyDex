@@ -4,7 +4,7 @@ export type PokemonSpecie = {
   color:                  Data;
   egg_groups:             Data[];
   evolution_chain:        EvolutionChain;
-  evolves_from_species:   null;
+  evolves_from_species:   Data;
   flavor_text_entries:    FlavorTextEntry[];
   form_descriptions:      any[];
   forms_switchable:       boolean;

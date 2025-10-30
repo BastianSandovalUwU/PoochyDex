@@ -41,6 +41,19 @@
       <span class="text-gray-600 dark:text-gray-400 text-sm font-medium">{{ language === 'es' ? 'Tema' : 'Theme' }}</span>
       <app-theme-toggle></app-theme-toggle>
     </div>
+
+    <div class="flex items-center justify-between mb-3 mt-3">
+      <span class="text-gray-600 dark:text-gray-400 text-sm font-medium">{{ language === 'es' ? 'Cache' : 'Cache' }}</span>
+      <button class="px-3 py-1 text-sm bg-red-500 hover:bg-red-600 text-white rounded transition-colors">
+        {{ language === 'es' ? 'Limpiar' : 'Clear' }}
+      </button>
+    </div>
+
+    <p class="text-gray-500 dark:text-gray-400 text-xs mb-1">
+      {{ language === 'es' ? 'Pokémon: ' : 'Pokémon: ' }}{{ 0}} |
+      {{ language === 'es' ? 'Movimientos: ' : 'Moves: ' }}{{ 0 }}
+    </p>
+
     <p class="text-gray-500 dark:text-gray-400 text-md">PoochyDex 1.0.0</p>
   </div>
 </aside>

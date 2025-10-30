@@ -59,6 +59,9 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
   }
 
   getPokemonLocalization(): void {
+    if(this.pokemon.id > 10000) {
+      return;
+    }
     this.pokeApiService.getPokemonLocalization(this.pokemon.id).subscribe({
       next: (localizationData) => {
         this.groupedLocations = this.groupByVersionAndMethod(localizationData);

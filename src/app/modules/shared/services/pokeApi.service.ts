@@ -34,9 +34,14 @@ export class PokeApiService {
       abilities: pokemon.abilities,
       height: pokemon.height,
       weight: pokemon.weight,
+      baseExperience: pokemon.baseExperience,
+      forms: pokemon.forms,
+      game_indices: pokemon.game_indices,
       species: pokemon.species,
       is_default: pokemon.is_default,
-      cries: pokemon.cries
+      cries: pokemon.cries,
+      location_area_encounters: pokemon.location_area_encounters,
+      moves: pokemon.moves,
     };
   }
 
@@ -151,14 +156,14 @@ export class PokeApiService {
   }
 
   getPokemonByName(name: string): Observable<Pokemon> {
-    const cachedPokemon = this.getPokemonFromCache(name);
-    if (cachedPokemon) {
-      return of(cachedPokemon);
-    }
+    //const cachedPokemon = this.getPokemonFromCache(name);
+    //if (cachedPokemon) {
+    //  return of(cachedPokemon);
+    //}
 
-    if (this.checkPokemonForm(name)) {
-      return this.getMegaFormPokemon(name);
-    }
+    //if (this.checkPokemonForm(name)) {
+    //  return this.getMegaFormPokemon(name);
+    //}
 
     const url = `${this.apiUrl}/pokemon/${name}/`;
     return this.http.get<PokemonFull>(url).pipe(
@@ -425,5 +430,30 @@ export class PokeApiService {
         return throwError(() => error);
       })
     );
+  }
+
+  clearCache(): void {
+    try {
+      localStorage.removeItem(this.POKEMON_CACHE_KEY);
+      localStorage.removeItem(this.MOVES_CACHE_KEY);
+      console.log('Cache de Pokémon limpiado exitosamente');
+    } catch (error) {
+      console.error('Error al limpiar el cache:', error);
+    }
+  }
+
+  getCacheSize(): { pokemon: number, moves: number } {
+    try {
+      const pokemonCache = localStorage.getItem(this.POKEMON_CACHE_KEY);
+      const movesCache = localStorage.getItem(this.MOVES_CACHE_KEY);
+
+      const pokemonCount = pokemonCache ? Object.keys(JSON.parse(pokemonCache)).length : 0;
+      const movesCount = movesCache ? Object.keys(JSON.parse(movesCache)).length : 0;
+
+      return { pokemon: pokemonCount, moves: movesCount };
+    } catch (error) {
+      console.error('Error al obtener el tamaño del cache:', error);
+      return { pokemon: 0, moves: 0 };
+    }
   }
 }
