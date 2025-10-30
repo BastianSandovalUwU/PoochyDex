@@ -5,6 +5,9 @@ import { AuthService } from './modules/auth/services/auth.service';
 import { LoadingService } from './modules/shared/services/loading.service';
 import { HelperService } from './modules/shared/services/helper.service';
 import { ThemeService } from './modules/shared/services/theme.service';
+import { NetworkService } from './modules/shared/services/network.service';
+import { PokeApiService } from './modules/shared/services/pokeApi.service';
+import { PwaInstallService } from './modules/shared/services/pwa-install.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +22,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   currentUser: UserData | null;
   loading = false;
   isCacheLoading = false;
+  isOnline = true;
+  lastDataSource: 'network' | 'cache' = 'network';
+  canInstallPwa = false;
 
   constructor(private languageService: LanguageService,
               private loadingService: LoadingService,
@@ -26,6 +32,9 @@ export class AppComponent implements OnInit, AfterViewInit {
               private helperService: HelperService,
               private themeService: ThemeService,
               private cdr: ChangeDetectorRef,
+              private networkService: NetworkService,
+              private pokeApiService: PokeApiService,
+              private pwaInstallService: PwaInstallService,
   ) {}
 
   ngAfterViewInit() {
@@ -60,6 +69,21 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     });
 
+    this.networkService.isOnline$.subscribe(isOnline => {
+      this.isOnline = isOnline;
+      this.cdr.detectChanges();
+    });
+
+    this.pokeApiService.lastDataSource$.subscribe(source => {
+      this.lastDataSource = source;
+      this.cdr.detectChanges();
+    });
+
+    this.pwaInstallService.canInstall$.subscribe(can => {
+      this.canInstallPwa = can;
+      this.cdr.detectChanges();
+    });
+
     // if(this.authService.isAuthenticated()) {
     //   this.authService.userConfig$.subscribe(userConfig => {
     //     this.currentLanguage = userConfig.language;
@@ -81,6 +105,10 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   onRefreshCacheRequested() {
     this.helperService.createAllPokemonCache();
+  }
+
+  async installPwa() {
+    await this.pwaInstallService.promptInstall();
   }
 
 }

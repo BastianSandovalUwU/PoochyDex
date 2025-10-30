@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { UserData } from '../../../../../entities/auth/user.entity';
 import { PokeApiService } from '../services/pokeApi.service';
 import { HelperService } from '../services/helper.service';
+import { NetworkService } from '../services/network.service';
 import { VERSION_NUMBER } from '../../../../../entities/common/const.interface';
 
 @Component({
@@ -21,18 +22,23 @@ export class MenuComponent implements OnInit, OnChanges {
   showConfirmDialog = false;
   title: string;
   description: string;
+  isOnline = true;
+  lastDataSource: 'network' | 'cache' = 'network';
   versionNumber: string = VERSION_NUMBER;
 
   constructor(
     private router: Router,
     private pokeApiService: PokeApiService,
-    private helperService: HelperService
+    private helperService: HelperService,
+    private networkService: NetworkService
   ) {
   }
 
   ngOnInit() {
     this.updateCacheSize();
     this.setTitleAndDescription();
+    this.networkService.isOnline$.subscribe(v => this.isOnline = v);
+    this.pokeApiService.lastDataSource$.subscribe(src => this.lastDataSource = src);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

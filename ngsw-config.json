@@ -24,5 +24,35 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "pokeapi-data",
+      "urls": [
+        "https://pokeapi.co/api/v2/pokemon/**",
+        "https://pokeapi.co/api/v2/pokemon-species/**",
+        "https://pokeapi.co/api/v2/type/**",
+        "https://pokeapi.co/api/v2/generation/**",
+        "https://pokeapi.co/api/v2/version/**",
+        "https://pokeapi.co/api/v2/version-group/**"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 400,
+        "maxAge": "7d",
+        "timeout": "3s"
+      }
+    },
+    {
+      "name": "sprites",
+      "urls": [
+        "/assets/**"
+      ],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxSize": 2000,
+        "maxAge": "30d"
+      }
+    }
   ]
 }

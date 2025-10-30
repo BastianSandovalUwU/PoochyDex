@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
+import { catchError, map, timeout, tap } from 'rxjs/operators';
 import { Pokemon, PokemonFull } from '../../../../../entities/pokemon.entity';
 import { PokemonTypes } from '../../../../../entities/types.entity';
 import { PokemonSpecie } from '../../../../../entities/pokemon-specie.entity';
 import { MachineMove } from '../../../../../entities/machine-move.entity';
 import { DetailMove, Move } from '../../../../../entities/moves.entity';
 import { PokemonAbility } from '../../../../../entities/pokemon-ability.entity';
+import { NetworkService } from './network.service';
 import { EvolutionChain } from '../../../../../entities/evolution-chain.entity';
 import { GameVersion } from '../../../../../entities/game-version.entity';
 import { GenerationInfo } from '../../../../../entities/generation.entity';
@@ -21,7 +22,16 @@ export class PokeApiService {
 
   apiUrl = 'https://pokeapi.co/api/v2'
 
-  constructor(private http: HttpClient) { }
+  // 'network' | 'cache'
+  private lastDataSourceSubject = new BehaviorSubject<'network' | 'cache'>('network');
+  lastDataSource$ = this.lastDataSourceSubject.asObservable();
+
+  private isOnline = true;
+
+  constructor(private http: HttpClient,
+              private networkService: NetworkService) {
+    this.networkService.isOnline$.subscribe(v => this.isOnline = v);
+  }
 
   private convertToLitePokemon(pokemon: PokemonFull): Pokemon {
     return {
@@ -109,7 +119,8 @@ export class PokeApiService {
 
   getPokemonByName(name: string): Observable<Pokemon> {
     const cachedPokemon = this.getPokemonFromCache(name);
-    if (cachedPokemon) {
+    if (!this.isOnline && cachedPokemon) {
+      this.lastDataSourceSubject.next('cache');
       return of(cachedPokemon);
     }
 
@@ -119,31 +130,46 @@ export class PokeApiService {
 
     const url = `${this.apiUrl}/pokemon/${name}/`;
     return this.http.get<PokemonFull>(url).pipe(
+      timeout(3000),
+      tap(response => {
+        this.lastDataSourceSubject.next(navigator.onLine ? 'network' : 'cache');
+        this.setPokemonInCache(name, response);
+      }),
+      map(response => this.convertToLitePokemon(response)),
       catchError(error => {
         console.error('Error al obtener el pokémon:', name, error);
+        const cached = this.getPokemonFromCache(name);
+        if (cached) {
+          this.lastDataSourceSubject.next('cache');
+          return of(cached);
+        }
         return throwError(() => error);
-      }),
-      map(response => {
-        this.setPokemonInCache(name, response);
-        return this.convertToLitePokemon(response);
       })
     );
   }
 
   getPokemonById(id: number): Observable<Pokemon> {
     const cachedPokemon = this.getPokemonFromCache(id.toString());
-    if (cachedPokemon) {
+    if (!this.isOnline && cachedPokemon) {
+      this.lastDataSourceSubject.next('cache');
       return of(cachedPokemon);
     }
     const url = `${this.apiUrl}/pokemon/${id}/`;
     return this.http.get<PokemonFull>(url).pipe(
+      timeout(3000),
+      tap(response => {
+        this.lastDataSourceSubject.next(navigator.onLine ? 'network' : 'cache');
+        this.setPokemonInCache(id.toString(), response);
+      }),
+      map(response => this.convertToLitePokemon(response)),
       catchError(error => {
         console.error('Error al obtener el pokémon:', id, error);
+        const cached = this.getPokemonFromCache(id.toString());
+        if (cached) {
+          this.lastDataSourceSubject.next('cache');
+          return of(cached);
+        }
         return throwError(() => error);
-      }),
-      map(response => {
-        this.setPokemonInCache(id.toString(), response);
-        return this.convertToLitePokemon(response);
       })
     );
   }

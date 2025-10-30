@@ -84,3 +84,57 @@ body {
 .min-h-screen {
   min-height: 100vh;
 }
+
+/* PWA Install diagonal button */
+.btn-diagonal {
+  position: relative;
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #111827; /* slate-900 for contrast on white half */
+  overflow: hidden;
+  /* two-layer background: thin diagonal divider + half red/half white */
+  background-image:
+    linear-gradient(135deg, transparent 49.5%, rgba(0,0,0,0.22) 50%, transparent 50.5%),
+    linear-gradient(135deg, #ef4444 0%, #ef4444 50%, #ffffff 50%, #ffffff 100%);
+  background-size: 100% 100%, 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.btn-diagonal > * {
+  position: relative;
+  z-index: 1; /* ensure content stays above decorative elements */
+}
+
+.btn-diagonal span {
+  /* Crisp outline for readability on both halves */
+  -webkit-text-stroke: 0.6px rgba(0,0,0,0.65);
+  text-shadow: none;
+}
+
+.btn-diagonal mat-icon {
+  color: #111827;
+  -webkit-text-stroke: 0.6px rgba(0,0,0,0.45);
+}
+
+.btn-diagonal:hover {
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+.btn-diagonal:active {
+  transform: translateY(0.5px) scale(0.98);
+}
+
+.dark .btn-diagonal {
+  border-color: rgba(255,255,255,0.14);
+  color: #e5e7eb; /* gray-200 for dark mode */
+  background-image:
+    linear-gradient(135deg, transparent 49.5%, rgba(255,255,255,0.32) 50%, transparent 50.5%),
+    linear-gradient(135deg, #b91c1c 0%, #b91c1c 50%, #111827 50%, #111827 100%);
+}
+
+.dark .btn-diagonal mat-icon {
+  color: #e5e7eb;
+  -webkit-text-stroke: 0.6px rgba(0,0,0,0.6);
+}
+
+/* Poké Ball-like center circle on the diagonal */
+/* Circles removed as requested */
