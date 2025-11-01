@@ -708,7 +708,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     number: 780,
     generationId: 7,
     type: POKEMON_TYPES.Dragon,
-    type2: "Normal"
+    type2: POKEMON_TYPES.Normal
   },
   {
     name: "dhelmise",
@@ -720,7 +720,7 @@ export const ALL_POKEMON_ALOLA: PokemonList[] = [
     number: 781,
     generationId: 7,
     type: POKEMON_TYPES.Ghost,
-    type2: "Grass"
+    type2: POKEMON_TYPES.Grass
   },
   {
     name: "jangmo-o",
