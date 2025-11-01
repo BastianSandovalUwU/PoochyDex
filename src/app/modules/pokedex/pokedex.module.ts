@@ -24,6 +24,7 @@ import { PokemonLocalizationComponent } from './components/show-pokemon/pokemon-
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgxLoadingModule } from 'ngx-loading';
 import { FilterComponent } from './components/list-pokemon/filter/filter.component';
+import { PokemonHuntComponent } from './components/pokemon-hunt/pokemon-hunt.component';
 
 @NgModule({
   imports: [
@@ -53,6 +54,7 @@ import { FilterComponent } from './components/list-pokemon/filter/filter.compone
     PokedexDescriptionComponent,
     PokemonLocalizationComponent,
     FilterComponent,
+    PokemonHuntComponent
   ],
 })
 export class PokedexModule { }

@@ -51,6 +51,7 @@ export class TranslatePokedexNamePipe implements PipeTransform {
           case "paldea" : return 'Paldea';
           case "kitakami" : return 'Kitakami';
           case "blueberry" : return 'Arandano';
+          case "lumiose-city" : return 'Ciudad Luminalia';
         default: return value;
       }
     } else {

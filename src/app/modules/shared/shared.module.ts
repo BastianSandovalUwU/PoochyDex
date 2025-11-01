@@ -21,6 +21,7 @@ import { NewUpdateViewComponent } from './new-update-view/new-update-view.compon
 import { ErrorMessageViewComponent } from './error-message-view/error-message-view.component';
 import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
+import { PokemonHuntListComponent } from './pokemon-hunt-list/pokemon-hunt-list.component';
 
 @NgModule({
   imports: [
@@ -52,7 +53,8 @@ import { ConfirmationModalComponent } from './confirmation-modal/confirmation-mo
     NewUpdateViewComponent,
     ErrorMessageViewComponent,
     ThemeToggleComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    PokemonHuntListComponent
   ],
   declarations: [
     MenuComponent,
@@ -71,7 +73,8 @@ import { ConfirmationModalComponent } from './confirmation-modal/confirmation-mo
     NewUpdateViewComponent,
     ErrorMessageViewComponent,
     ThemeToggleComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    PokemonHuntListComponent
   ]
 })
 export class SharedModule { }

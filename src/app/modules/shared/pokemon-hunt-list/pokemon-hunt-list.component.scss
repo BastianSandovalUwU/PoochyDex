@@ -1,0 +1,10 @@
+/* Force white background for Pokemon cards in both themes */
+.pokemon-card {
+  background-color: white !important;
+}
+
+/* Dark theme specific overrides */
+.dark .pokemon-card {
+  background-color: white !important;
+}
+

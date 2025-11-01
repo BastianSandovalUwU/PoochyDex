@@ -4,6 +4,7 @@ import { ShowPokemonComponent } from "./components/show-pokemon/show-pokemon.com
 import { ShowAbilityComponent } from "./components/show-ability/show-ability.component";
 import { PokedexComponent } from "./pokedex.component";
 import { ShowPokedexComponent } from "./components/show-pokedex/show-pokedex.component";
+import { PokemonHuntComponent } from "./components/pokemon-hunt/pokemon-hunt.component";
 
 export const pokedexRoute: Route[] = [
   {
@@ -13,6 +14,10 @@ export const pokedexRoute: Route[] = [
   {
     path: 'list',
     component: ListPokemonComponent
+  },
+  {
+    path: 'hunt',
+    component: PokemonHuntComponent
   },
   {
     path: 'show-pokemon/:name',

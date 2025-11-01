@@ -736,6 +736,7 @@ export class HelperService {
       case "paldea" : return 31;
       case "kitakami" : return 32;
       case "blueberry" : return 33;
+      case "lumiose-city" : return 34;
     default: return 0;
     }
   }
