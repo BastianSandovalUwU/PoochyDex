@@ -1,37 +1,56 @@
 const fs = require('fs');
 const path = require('path');
 
+// Intentar cargar dotenv solo si no hay variables de entorno
 if (!process.env.NODE_JS_API) {
-  dotenv.config({ path: '.env' });
+  try {
+    const dotenv = require('dotenv');
+    dotenv.config({ path: '.env' });
+  } catch (error) {
+    console.log('⚠️  dotenv no encontrado, usando variables de sistema');
+  }
 }
 
-const devEnv = {
-  NODE_JS_API: process.env.NODE_JS_API,
-  ENVIRONMENT: process.env.ENVIRONMENT,
-};
+const NODE_JS_API = process.env.NODE_JS_API;
 
 const envDir = path.join(__dirname, 'src/environments');
 if (!fs.existsSync(envDir)) {
   fs.mkdirSync(envDir, { recursive: true });
 }
 
-if(devEnv.ENVIRONMENT === 'development') {
-  const devFile = `export const environment = {
-    production: false,
-    nodeJsApi: '${devEnv.NODE_JS_API || ''}',
-  };`;
+// SIEMPRE generar AMBOS archivos para que Angular pueda hacer el ile replacement
+const devFile = `// This file can be replaced during build by using the fileReplacements array.
+// ng build replaces environment.ts with environment.prod.ts.
+// The list of file replacements can be found in angular.json.
 
-  fs.writeFileSync(path.join(envDir, 'environment.ts'), devFile);
-  console.log('✅ environment.ts generado');
-} else {
-  const prodFile = `export const environment = {
-    production: true,
-    nodeJsApi: '${devEnv.NODE_JS_API || ''}',
-  };`;
+export const environment = {
+  production: false,
+  nodeJsApi: '${NODE_JS_API}',
+};
 
-  fs.writeFileSync(path.join(envDir, 'environment.prod.ts'), prodFile);
-  console.log('✅ environment.prod.ts generado');
-}
+/*
+ * For easier debugging in development mode, you can import the following file
+ * to ignore zone related error stack frames such as zone.run, zoneDelegate.invokeTask.
+ *
+ * This import should be commented out in production mode because it will have a negative impact
+ * on performance if an error is thrown.
+ */
+// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+`;
+
+const prodFile = `export const environment = {
+  production: true,
+  nodeJsApi: '${NODE_JS_API}',
+};
+`;
+
+// Escribir AMBOS archivos siempre
+fs.writeFileSync(path.join(envDir, 'environment.ts'), devFile);
+fs.writeFileSync(path.join(envDir, 'environment.prod.ts'), prodFile);
+
+console.log('✅ environment.ts generado');
+console.log('✅ environment.prod.ts generado');
+console.log(`📍 NODE_JS_API: ${NODE_JS_API}`);
 
 
 
