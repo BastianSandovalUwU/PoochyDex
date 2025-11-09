@@ -23,8 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
           catchError((error) => {
             if (error.status === 401) {
               console.error('❌ Unauthorized (401) - Token may be invalid or expired');
-              // Opcional: descomentar para cerrar sesión automáticamente en 401
-              // this.authService.logout();
+              this.authService.logout();
             }
             return throwError(() => error);
           })

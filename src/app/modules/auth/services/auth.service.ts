@@ -59,7 +59,6 @@ export class AuthService {
   logout() {
     this.clearSessionData();
     this.clearUserConfigData();
-    this.router.navigate(['/auth/login']);
   }
 
   async createUserData(loginResponse: LoginResponse, username: string): Promise<UserData> {

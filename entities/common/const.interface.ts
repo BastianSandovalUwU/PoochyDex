@@ -1,3 +1,5 @@
+import { PokedexOption } from "../pokemon-hunt.entity";
+
 export const VERSION_NUMBER = '1.0.2';
 
 const LANGUAGES = [
@@ -76,6 +78,34 @@ export enum POKEMON_TYPES {
   Steel = 'Steel',
   Fairy = 'Fairy'
 }
+
+export const ALL_POKEDEX_OPTIONS: PokedexOption[] = [
+    { id: 2, name: 'Kanto', nameEs: 'Kanto', images: ['https://i.imgur.com/pyl4mwd.jpeg', 'https://i.imgur.com/ZtA1AOr.jpeg'] },
+    { id: 3, name: 'Johto', nameEs: 'Johto', images: ['https://i.imgur.com/CzRfrUv.jpeg', 'https://i.imgur.com/JwYShZh.jpeg'] },
+    { id: 4, name: 'Hoenn', nameEs: 'Hoenn', images: ['https://i.imgur.com/bOWkEja.jpeg', 'https://i.imgur.com/tu6Whp8.jpeg'] },
+    { id: 5, name: 'Original Sinnoh', nameEs: 'Sinnoh', images: ['https://i.imgur.com/TIrMOdh.jpeg', 'https://i.imgur.com/nGjrqPz.jpeg'] },
+    { id: 7, name: 'Updated Johto', nameEs: 'Johto Remakes', images: ['https://i.imgur.com/UcIHqtJ.jpeg', 'https://i.imgur.com/4Kz67Xy.jpeg'] },
+    { id: 8, name: 'Original Unova', nameEs: 'Unova Original', images: ['https://i.imgur.com/lFhMI1D.jpeg', 'https://i.imgur.com/ee2LF77.jpeg'] },
+    { id: 12, name: 'Kalos Central', nameEs: 'Kalos Central', images: [] },
+    { id: 13, name: 'Kalos Coastal', nameEs: 'Kalos Costera', images: [] },
+    { id: 14, name: 'Kalos Mountain', nameEs: 'Kalos Montaña', images: [] },
+    { id: 15, name: 'Updated Hoenn', nameEs: 'Hoenn Remakes', images: ['https://i.imgur.com/33yBC43.jpeg', 'https://i.imgur.com/m2nFZOx.jpeg'] },
+    { id: 16, name: 'Original Alola', nameEs: 'Alola Original', images: ['https://i.imgur.com/KbMIR0P.jpeg', 'https://i.imgur.com/8bBDcWe.jpeg'] },
+    { id: 21, name: 'Updated Alola', nameEs: 'Alola Ultra', images: ['https://i.imgur.com/ZijpQ07.jpeg', 'https://i.imgur.com/eWLCDj3.jpeg'] },
+    { id: 22, name: 'Melemele', nameEs: 'Melemele', images: [] },
+    { id: 23, name: 'Akala', nameEs: 'Akala', images: [] },
+    { id: 24, name: 'Ula\'ula', nameEs: 'Ula\'ula', images: [] },
+    { id: 25, name: 'Poni', nameEs: 'Poni', images: [] },
+    { id: 26, name: 'Let\'s Go Kanto', nameEs: 'Let\'s Go Kanto', images: ['https://i.imgur.com/X05XgF7.png', 'https://i.imgur.com/6HWUfOI.png'] },
+    { id: 27, name: 'Galar', nameEs: 'Galar', images: ['https://i.imgur.com/GNYEAry.jpeg', 'https://i.imgur.com/FTAW5ym.jpeg'] },
+    { id: 28, name: 'Isle of Armor', nameEs: 'Isla de la Armadura', images: ['https://i.imgur.com/iEeaMDP.jpeg', 'https://i.imgur.com/zVrOekM.jpeg'] },
+    { id: 29, name: 'Crown Tundra', nameEs: 'Las Nieves de la Corona', images: ['https://i.imgur.com/1alwaBB.jpeg', 'https://i.imgur.com/OrCEGQ7.jpeg'] },
+    { id: 30, name: 'Hisui', nameEs: 'Hisui', images: ['https://i.imgur.com/nDOUW4n.png', 'https://i.imgur.com/h2vsFAy.png'] },
+    { id: 31, name: 'Paldea', nameEs: 'Paldea', images: ['https://i.imgur.com/PsLaI7r.jpeg', 'https://i.imgur.com/6GEnh4f.jpeg'] },
+    { id: 32, name: 'Kitakami', nameEs: 'Noroteo', images: ['https://i.imgur.com/jv0P01F.png', 'https://i.imgur.com/N2dhHJW.png'] },
+    { id: 33, name: 'Blueberry', nameEs: 'Academia Arándano', images: ['https://i.imgur.com/YxMXhdB.jpeg', 'https://i.imgur.com/UUJEL8O.png'] },
+    { id: 34, name: 'Lumiose City', nameEs: 'Ciudad Lumiose', images: ['https://i.imgur.com/CJP3FnR.jpeg', 'https://i.imgur.com/JHRUGeb.jpeg'] }
+  ] as const;
 
 export const ALL_POKEMON = [
   { name: 'bulbasaur', imageName: '1' , number: 1 },

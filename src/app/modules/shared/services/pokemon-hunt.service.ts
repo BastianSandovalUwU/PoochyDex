@@ -31,8 +31,6 @@ export class PokemonHuntService {
     return this.http.get<PokemonHuntResponse>(`${this.apiUrl}/api/pokemon-hunt/get`).pipe(
       map(response => {
         if (response.success && response.data) {
-          // Guardar en localStorage como backup
-          this.saveToLocalStorage(response.data.registeredPokemon);
           this.setLastSync();
           return response.data.registeredPokemon;
         }

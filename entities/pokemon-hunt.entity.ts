@@ -23,3 +23,10 @@ export interface PokemonHuntSyncStatus {
   hasPendingChanges: boolean;
 }
 
+export interface PokedexOption {
+  id: number;
+  name: string;
+  nameEs: string;
+  images: string[];
+}
+
