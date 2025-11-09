@@ -355,4 +355,34 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     return pokeMove.types[0]?.typeName || '';
   }
 
+  // Wrapper methods para pasar al componente hijo
+  getGameNameWrapper = (gameName: string): string => {
+    return this.getGameName(gameName);
+  }
+
+  getGameIconGameWrapper = (gameName: string): string[] => {
+    return this.getGameIconGame(gameName);
+  }
+
+  getGameVersionColorWrapper = (gameVersion: string): string => {
+    return this.getGameVersionColor(gameVersion);
+  }
+
+  getTypeNameWrapper = (pokeMove: any): string => {
+    return this.getTypeName(pokeMove);
+  }
+
+  // Métodos para manejar eventos del componente hijo
+  toggleFiltersMachine(): void {
+    this.toggleFilters('mt');
+  }
+
+  toggleFiltersTutor(): void {
+    this.toggleFilters('tutor');
+  }
+
+  toggleFiltersEgg(): void {
+    this.toggleFilters('egg');
+  }
+
 }

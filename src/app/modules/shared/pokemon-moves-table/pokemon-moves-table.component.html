@@ -1,0 +1,162 @@
+<!-- Desktop version -->
+<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:block hidden dark:border-gray-600 dark:bg-gray-800">
+  <div class="flex justify-between items-center">
+    <div (click)="onToggleFilters()" class="cursor-pointer hover:text-gray-800">
+      <h1 class="font-bold text-xl">{{ language === 'es' ? titleEs : titleEn }}</h1>
+      <h1 class="font-bold">{{ language === 'es' ? subtitleEs : subtitleEn }}</h1>
+    </div>
+
+    <button mat-icon-button (click)="onToggleFilters()">
+      <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
+    </button>
+  </div>
+
+  <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="filters-container">
+    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="onTabChange($event)" class="black-tabs">
+      <mat-tab [label]="getGameName(group) | replaceDash | titlecase" *ngFor="let group of versionGroups" class="black-tab">
+        <div class="bg-white p-3 border-black border rounded-md">
+          <div class="grid grid-cols-7 gap-4 border-b border-black pb-1 mb-2 dark:border-gray-600 dark:bg-gray-800">
+            <span class="font-semibold">{{ language === 'es' ? 'Movimiento' : 'Move' }}</span>
+            <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
+            <span class="font-semibold col-span-3">{{ language === 'es' ? 'Juego' : 'Game' }}</span>
+            <span class="font-semibold col-span-2">{{ language === 'es' ? 'Tipo' : 'Type' }}</span>
+          </div>
+
+          <ng-container *ngFor="let pokeMove of filteredMoves">
+            <ng-container *ngIf="moveType === 'machine'; else detailLoop">
+              <div class="grid grid-cols-7 gap-2 mb-1 dark:border-gray-600 dark:bg-gray-800">
+                <ng-container *ngTemplateOutlet="moveRow; context: {
+                  $implicit: pokeMove,
+                  versionGroup: pokeMove['machineDetail']?.version_group.name
+                }"></ng-container>
+              </div>
+            </ng-container>
+
+            <ng-template #detailLoop>
+              <div *ngFor="let detail of pokeMove.move.version_group_details">
+                <div class="grid grid-cols-7 gap-2 mb-1 dark:border-gray-600 dark:bg-gray-800" *ngIf="detail.version_group.name === group">
+                  <ng-container *ngTemplateOutlet="moveRow; context: {
+                    $implicit: pokeMove,
+                    versionGroup: detail.version_group.name
+                  }"></ng-container>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+
+<!-- Mobile version -->
+<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black sm:hidden block dark:border-gray-600 dark:bg-gray-800">
+  <div class="flex justify-between items-center">
+    <div (click)="onToggleFilters()" class="cursor-pointer">
+      <h1 class="font-bold text-xl">{{ language === 'es' ? titleEs : titleEn }}</h1>
+      <h1 class="font-bold">{{ language === 'es' ? subtitleEs : subtitleEn }}</h1>
+    </div>
+
+    <button mat-icon-button (click)="onToggleFilters()">
+      <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
+    </button>
+  </div>
+
+  <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="filters-container">
+    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="onTabChange($event)">
+      <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
+        <div class="bg-white dark:bg-gray-800 dark:border-gray-600 p-3 border-black border rounded-md">
+
+          <!-- Encabezado para pantallas grandes -->
+          <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2 move-header dark:border-gray-600 dark:bg-gray-800">
+            <span class="font-semibold">{{ language === 'es' ? 'Movimiento': 'Move' }}</span>
+            <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
+            <span class="font-semibold">{{ language === 'es' ? 'Juego': 'Game' }}</span>
+            <span class="font-semibold">{{ language === 'es' ? 'Tipo': 'Type' }}</span>
+          </div>
+
+          <ng-container *ngFor="let pokeMove of filteredMoves">
+            <ng-container *ngIf="moveType === 'machine'; else mobileDetailLoop">
+              <div class="move-row dark:border-gray-600 dark:bg-gray-800">
+                <ng-container *ngTemplateOutlet="mobileRow; context: {
+                  $implicit: pokeMove,
+                  versionGroup: pokeMove['machineDetail']?.version_group.name
+                }"></ng-container>
+              </div>
+            </ng-container>
+
+            <ng-template #mobileDetailLoop>
+              <ng-container *ngFor="let detail of pokeMove.move.version_group_details">
+                <div class="move-row dark:border-gray-600 dark:bg-gray-800" *ngIf="detail.version_group.name === group">
+                  <ng-container *ngTemplateOutlet="mobileRow; context: {
+                    $implicit: pokeMove,
+                    versionGroup: detail.version_group.name
+                  }"></ng-container>
+                </div>
+              </ng-container>
+            </ng-template>
+          </ng-container>
+
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+
+<!-- Template para filas de movimientos (Desktop) -->
+<ng-template #moveRow let-pokeMove let-versionGroup="versionGroup">
+  <div class="col-span-1">
+    <span class="cursor-pointer hover:text-blue-500" [routerLink]="['/movement/show-movement', pokeMove.move.move.name]">{{ pokeMove.moveName }}</span>
+  </div>
+  <div class="col-span-1">
+    <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'physical'" src="./assets/icons/movement_category/physical_category_6_7_gen.png">
+    <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'special'" src="./assets/icons/movement_category/special_category_6_7_gen.png">
+    <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'status'" src="./assets/icons/movement_category/status_category_6_7_gen.png">
+  </div>
+  <div class="grid grid-cols-3 col-span-3">
+    <div class="relative col-span-2 rounded-md px-2 text-white text-center border border-black flex justify-center items-center" [ngClass]="getGameVersionColor(versionGroup)">
+      <img class="absolute left-0 top-1/2 transform -translate-y-1/2 w-8 ml-2"
+           [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(versionGroup)[0] + '.png'" alt="Game Icon">
+      <span class="hover:text-blue-500 cursor-pointer">
+        {{ getGameName(versionGroup) | replaceDash | titlecase }}
+      </span>
+      <img *ngIf="getGameIconGame(versionGroup)[1]" class="absolute right-0 top-1/2 transform -translate-y-1/2 w-8 mr-2"
+           [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(versionGroup)[1] + '.png'" alt="Game Icon">
+    </div>
+  </div>
+  <div *ngFor="let type of pokeMove.types" class="col-span-2">
+    <div class="grid grid-cols-2">
+      <div class="text-center">
+        <img class="w-32" [src]="'./assets/icons/types/' + type.typeName + '.png'">
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Template para filas de movimientos (Mobile) -->
+<ng-template #mobileRow let-pokeMove let-versionGroup="versionGroup">
+  <div class="move-detail">
+    <span class="move-label">{{ language === 'es' ? 'Movimiento': 'Move' }}</span>
+    <span class="move-value hover:text-blue-500" [routerLink]="['/movement/show-movement', pokeMove.move.move.name]">{{ pokeMove.moveName }}</span>
+  </div>
+  <div class="move-detail">
+    <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
+    <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'physical'" src="./assets/icons/movement_category/physical_category_6_7_gen.png">
+    <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'special'" src="./assets/icons/movement_category/special_category_6_7_gen.png">
+    <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'status'" src="./assets/icons/movement_category/status_category_6_7_gen.png">
+  </div>
+  <div class="move-detail">
+    <span class="move-label">{{ language === 'es' ? 'Juego': 'Game' }}</span>
+    <span class="game-version rounded-md px-2 text-white text-center border border-black" [ngClass]="getGameVersionColor(versionGroup)">
+      {{ getGameName(versionGroup) | replaceDash | titlecase }}
+    </span>
+  </div>
+  <div class="move-detail">
+    <span class="move-label">{{ language === 'es' ? 'Tipo': 'Type' }}</span>
+    <span class="type text-center">
+      <img class="w-32" [src]="'./assets/icons/types/' + getTypeName(pokeMove) + '.png'">
+    </span>
+  </div>
+</ng-template>
+

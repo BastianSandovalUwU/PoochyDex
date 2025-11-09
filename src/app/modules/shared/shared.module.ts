@@ -22,6 +22,8 @@ import { ErrorMessageViewComponent } from './error-message-view/error-message-vi
 import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import { PokemonHuntListComponent } from './pokemon-hunt-list/pokemon-hunt-list.component';
+import { PokemonMovesTableComponent } from './pokemon-moves-table/pokemon-moves-table.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   imports: [
@@ -29,7 +31,8 @@ import { PokemonHuntListComponent } from './pokemon-hunt-list/pokemon-hunt-list.
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    MatTabsModule
   ],
   exports: [
     CommonModule,
@@ -54,7 +57,8 @@ import { PokemonHuntListComponent } from './pokemon-hunt-list/pokemon-hunt-list.
     ErrorMessageViewComponent,
     ThemeToggleComponent,
     ConfirmationModalComponent,
-    PokemonHuntListComponent
+    PokemonHuntListComponent,
+    PokemonMovesTableComponent
   ],
   declarations: [
     MenuComponent,
@@ -74,7 +78,8 @@ import { PokemonHuntListComponent } from './pokemon-hunt-list/pokemon-hunt-list.
     ErrorMessageViewComponent,
     ThemeToggleComponent,
     ConfirmationModalComponent,
-    PokemonHuntListComponent
+    PokemonHuntListComponent,
+    PokemonMovesTableComponent
   ]
 })
 export class SharedModule { }

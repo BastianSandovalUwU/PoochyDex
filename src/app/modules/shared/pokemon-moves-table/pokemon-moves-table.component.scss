@@ -1,0 +1,53 @@
+/* Estilos responsivos */
+@media (max-width: 640px) {
+  .move-header {
+    display: none;
+  }
+
+  .move-row {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #000;
+    border-radius: 0.5rem;
+  }
+
+  .move-detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+  }
+
+  .move-label {
+    font-weight: bold;
+    flex: 1;
+  }
+
+  .move-value {
+    flex: 2;
+    text-align: right;
+  }
+
+  .game-version {
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+.filters-container {
+  overflow: hidden;
+}
+
+.type {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.type img {
+  margin-left: auto;
+  max-width: 100%;
+  height: auto;
+}
+
