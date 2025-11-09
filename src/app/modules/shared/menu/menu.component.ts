@@ -5,6 +5,7 @@ import { PokeApiService } from '../services/pokeApi.service';
 import { HelperService } from '../services/helper.service';
 import { NetworkService } from '../services/network.service';
 import { VERSION_NUMBER } from '../../../../../entities/common/const.interface';
+import { AuthService } from 'app/modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -30,7 +31,8 @@ export class MenuComponent implements OnInit, OnChanges {
     private router: Router,
     private pokeApiService: PokeApiService,
     private helperService: HelperService,
-    private networkService: NetworkService
+    private networkService: NetworkService,
+    private authService: AuthService
   ) {
   }
 
@@ -80,6 +82,11 @@ export class MenuComponent implements OnInit, OnChanges {
 
   private updateCacheSize() {
     this.cacheSize = this.pokeApiService.getCacheSize();
+  }
+
+  logout() {
+    this.authService.logout();
+    this.closeMenu();
   }
 
 }

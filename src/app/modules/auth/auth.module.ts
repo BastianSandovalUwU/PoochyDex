@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { authRoute } from './auth.routing';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { NgxLoadingModule } from 'ngx-loading';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { NgxLoadingModule } from 'ngx-loading';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    NgxLoadingModule
+    NgxLoadingModule,
+    MatIconModule
   ],
   declarations: [
     LoginComponent,

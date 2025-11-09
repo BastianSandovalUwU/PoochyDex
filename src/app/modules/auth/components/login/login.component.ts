@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   language: string = 'es';
   loginForm: UntypedFormGroup;
   loading: boolean = false;
+  showPassword: boolean = false;
 
   constructor(
     private fb: UntypedFormBuilder,
@@ -41,7 +42,8 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
       this.authService.login(formData).subscribe(response => {
-        // this.loading = false;
+        this.router.navigate(['/profile/show']);
+        this.loading = false;
       });
     } else {
       this.loading = false;
@@ -50,7 +52,10 @@ export class LoginComponent implements OnInit {
 
   signUp() {
     this.router.navigate(['/auth/sign-up']);
+  }
 
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
 }

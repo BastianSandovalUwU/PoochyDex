@@ -34,7 +34,8 @@ export class ShowProfileComponent implements OnInit {
   getLanguage() {
     this.languageService.currentLanguage$.subscribe(language => {
       this.language = language;
-      this.getUserConfigs();
+      // this.getUserConfigs();
+      this.loading = false;
     });
   }
 

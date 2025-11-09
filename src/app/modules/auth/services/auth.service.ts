@@ -28,7 +28,6 @@ export class AuthService {
     return this.http.post<LoginResponse>(`${this.apiUrl}/api/auth/login`, credentials).pipe(
       tap(response => {
         this.createUserData(response, credentials.username);
-        this.router.navigate(['/profile/show']);
       })
     );
   }

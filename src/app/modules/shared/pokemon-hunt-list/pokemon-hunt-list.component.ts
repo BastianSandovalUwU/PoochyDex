@@ -14,13 +14,9 @@ import { ALL_POKEMON_SINNOH } from '../../../../../entities/common/sinnoh-pokemo
 import { ALL_POKEMON_UNOVA } from '../../../../../entities/common/unova-pokemon-data';
 import { HelperService } from '../services/helper.service';
 import { ErrorMessageService } from 'app/services/error-message.service';
-
-interface RegisteredPokemon {
-  number: number;
-  name: string;
-  registered: boolean;
-  pokedexId: number;
-}
+import { PokemonHuntService } from '../services/pokemon-hunt.service';
+import { RegisteredPokemon } from '../../../../../entities/pokemon-hunt.entity';
+import { AuthService } from 'app/modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-pokemon-hunt-list',
@@ -50,15 +46,18 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
 
   filteredPokemon: PokemonList[] = [];
   language: string;
-  private localStorageKey = 'pokemon-hunt-registered';
   registeredPokemonMap: Map<string, boolean> = new Map();
   isLoading: boolean = false;
+  isSyncing: boolean = false;
+  lastSync: Date | null = null;
 
   constructor(
     private pokeApiService: PokeApiService,
     private languageService: LanguageService,
     private helperService: HelperService,
-    private errorMessageService: ErrorMessageService
+    private errorMessageService: ErrorMessageService,
+    private pokemonHuntService: PokemonHuntService,
+    private authService: AuthService
   ) {
     this.allPokemonData.forEach(pokemon => {
       this.pokemonDataMap.set(pokemon.name.toLowerCase(), pokemon);
@@ -70,6 +69,16 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     this.loadRegisteredPokemon();
     if (this.pokedexNumber) {
       this.getPokedex(this.pokedexNumber);
+    }
+
+    // Solo sincronizar con el servidor si el usuario está autenticado
+    if (this.isUserAuthenticated() && this.pokemonHuntService.needsSync()) {
+      this.syncWithServer();
+    }
+
+    // Actualizar la última sincronización solo si está autenticado
+    if (this.isUserAuthenticated()) {
+      this.lastSync = this.pokemonHuntService.getLastSync();
     }
   }
 
@@ -142,7 +151,33 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
   }
 
   loadRegisteredPokemon() {
-    const stored = localStorage.getItem(this.localStorageKey);
+    if (!this.isUserAuthenticated()) {
+      this.loadFromLocalStorage();
+      return;
+    }
+
+    this.pokemonHuntService.getRegisteredPokemon().subscribe({
+      next: (registeredList) => {
+        this.registeredPokemonMap = new Map(
+          registeredList
+            .filter(p => p.registered === true)
+            .map(p => [`${p.pokedexId}-${p.number}-${p.name}`, true])
+        );
+        this.lastSync = this.pokemonHuntService.getLastSync();
+      },
+      error: (error) => {
+        console.error('Error loading registered pokemon:', error);
+        this.loadFromLocalStorage();
+      }
+    });
+  }
+
+  /**
+   * Carga los pokemon registrados directamente desde localStorage
+   * Se usa cuando el usuario no está autenticado
+   */
+  private loadFromLocalStorage() {
+    const stored = localStorage.getItem('pokemon-hunt-registered');
     if (stored) {
       try {
         const registeredList: RegisteredPokemon[] = JSON.parse(stored);
@@ -152,7 +187,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
             .map(p => [`${p.pokedexId}-${p.number}-${p.name}`, true])
         );
       } catch (error) {
-        console.error('Error loading registered pokemon:', error);
+        console.error('Error loading from localStorage:', error);
         this.registeredPokemonMap = new Map();
       }
     }
@@ -195,7 +230,108 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
       }
     });
 
-    localStorage.setItem(this.localStorageKey, JSON.stringify(registeredList));
+    // Si no está autenticado, guardar solo en localStorage
+    if (!this.isUserAuthenticated()) {
+      this.saveToLocalStorage(registeredList);
+      return;
+    }
+
+    // Si está autenticado, guardar en el servidor (el servicio también guarda en localStorage como backup)
+    this.pokemonHuntService.saveRegisteredPokemon(registeredList).subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.lastSync = this.pokemonHuntService.getLastSync();
+        }
+      },
+      error: (error) => {
+        console.error('Error saving registered pokemon to server:', error);
+        // Si falla el servidor, asegurarse de que esté guardado en localStorage
+        this.saveToLocalStorage(registeredList);
+        const errorMessage = this.language === 'es'
+          ? 'Error al sincronizar con el servidor, datos guardados localmente'
+          : 'Error syncing with server, data saved locally';
+        this.errorMessageService.showError(errorMessage, error.message);
+      }
+    });
+  }
+
+  /**
+   * Guarda directamente en localStorage
+   */
+  private saveToLocalStorage(registeredList: RegisteredPokemon[]) {
+    try {
+      localStorage.setItem('pokemon-hunt-registered', JSON.stringify(registeredList));
+    } catch (error) {
+      console.error('Error saving to localStorage:', error);
+    }
+  }
+
+  /**
+   * Verifica si el usuario está autenticado
+   */
+  private isUserAuthenticated(): boolean {
+    return this.authService.isAuthenticated();
+  }
+
+  /**
+   * Sincroniza los datos con el servidor
+   * Solo funciona si el usuario está autenticado
+   */
+  syncWithServer() {
+    if (!this.isUserAuthenticated()) {
+      console.warn('Cannot sync: user not authenticated');
+      return;
+    }
+
+    this.isSyncing = true;
+    this.pokemonHuntService.syncWithServer().subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.loadRegisteredPokemon();
+        }
+        this.isSyncing = false;
+      },
+      error: (error) => {
+        console.error('Error syncing with server:', error);
+        this.isSyncing = false;
+        const errorMessage = this.language === 'es'
+          ? 'Error al sincronizar con el servidor'
+          : 'Error syncing with server';
+        this.errorMessageService.showError(errorMessage, error.message);
+      }
+    });
+  }
+
+  /**
+   * Limpia todos los pokémon registrados
+   */
+  clearAllRegisteredPokemon() {
+    // Si no está autenticado, limpiar solo localStorage
+    if (!this.isUserAuthenticated()) {
+      this.registeredPokemonMap.clear();
+      localStorage.removeItem('pokemon-hunt-registered');
+      return;
+    }
+
+    // Si está autenticado, limpiar del servidor también
+    this.pokemonHuntService.clearRegisteredPokemon().subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.registeredPokemonMap.clear();
+          this.lastSync = this.pokemonHuntService.getLastSync();
+        }
+      },
+      error: (error) => {
+        console.error('Error clearing registered pokemon from server:', error);
+        // Aunque falle el servidor, limpiar localmente
+        this.registeredPokemonMap.clear();
+        localStorage.removeItem('pokemon-hunt-registered');
+        const errorMessage = this.language === 'es'
+          ? 'Error al limpiar del servidor, datos locales eliminados'
+          : 'Error clearing from server, local data cleared';
+        this.errorMessageService.showError(errorMessage, error.message);
+      }
+    });
   }
 
   getRegisteredCount(): number {

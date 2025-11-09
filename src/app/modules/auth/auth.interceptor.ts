@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { AuthService } from './services/auth.service';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  private targetApiUrl = 'https://poochy-dex-api-node-js.vercel.app';
+  private targetApiUrl = environment.nodeJsApi;
 
   constructor(private authService: AuthService) {}
 
@@ -18,14 +19,25 @@ export class AuthInterceptor implements HttpInterceptor {
             Authorization: `Bearer ${sessionData.token}`
           }
         });
-        return next.handle(authReq);
+        return next.handle(authReq).pipe(
+          catchError((error) => {
+            if (error.status === 401) {
+              console.error('❌ Unauthorized (401) - Token may be invalid or expired');
+              // Opcional: descomentar para cerrar sesión automáticamente en 401
+              // this.authService.logout();
+            }
+            return throwError(() => error);
+          })
+        );
+      } else {
+        console.log('⚠️ No session data found for:', req.url);
       }
     }
 
     return next.handle(req).pipe(
       catchError((error) => {
         if (error.status === 401) {
-          // this.authService.logout();
+          console.error('❌ Unauthorized (401)');
         }
         return throwError(() => error);
       })

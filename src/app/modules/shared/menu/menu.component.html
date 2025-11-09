@@ -45,6 +45,40 @@
 
   <!-- Footer with Settings -->
   <div class="p-4 border-t dark:border-gray-700">
+    <!-- User Authentication Section -->
+    <div class="mb-4 pb-4 border-b dark:border-gray-700">
+      <div *ngIf="!userData" class="space-y-1.5">
+        <a href="/auth/login"
+           class="flex items-center justify-center px-3 py-2 text-sm text-white bg-blue-500 hover:bg-blue-600 rounded-md transition-colors group">
+          <mat-icon class="mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">login</mat-icon>
+          <span class="font-medium">{{ language === 'es' ? 'Iniciar Sesión' : 'Login'}}</span>
+        </a>
+        <a href="/auth/sign-up"
+           class="flex items-center justify-center px-3 py-2 text-sm text-blue-500 border border-blue-500 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-md transition-colors">
+          <mat-icon class="mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">person_add</mat-icon>
+          <span class="font-medium">{{ language === 'es' ? 'Registrarse' : 'Sign Up'}}</span>
+        </a>
+      </div>
+
+      <div *ngIf="userData" class="space-y-1.5">
+        <div class="flex items-center px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded-md">
+          <mat-icon class="text-gray-600 dark:text-gray-300 mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">account_circle</mat-icon>
+          <span class="text-sm text-gray-700 dark:text-gray-200 font-medium truncate">{{ userData.user }}</span>
+        </div>
+        <a href="/profile/show"
+           class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
+          <mat-icon class="mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">person</mat-icon>
+          <span class="font-medium">{{ language === 'es' ? 'Mi Perfil' : 'My Profile'}}</span>
+          <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300" style="font-size: 18px; width: 18px; height: 18px;">chevron_right</mat-icon>
+        </a>
+        <button (click)="logout()"
+           class="w-full flex items-center justify-center px-3 py-2 text-sm text-white bg-red-500 hover:bg-red-600 rounded-md transition-colors">
+          <mat-icon class="mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">logout</mat-icon>
+          <span class="font-medium">{{ language === 'es' ? 'Cerrar Sesión' : 'Logout'}}</span>
+        </button>
+      </div>
+    </div>
+
     <div class="flex items-center justify-between mb-2">
       <span class="text-gray-600 dark:text-gray-400 text-sm font-medium">{{ language === 'es' ? 'Tema' : 'Theme' }}</span>
       <app-theme-toggle></app-theme-toggle>
