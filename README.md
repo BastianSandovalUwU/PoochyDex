@@ -9,7 +9,6 @@
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.4.5-blue.svg)](https://www.typescriptlang.org/)
   [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.3-38B2AC.svg)](https://tailwindcss.com/)
   [![Capacitor](https://img.shields.io/badge/Capacitor-7.0.1-119EFF.svg)](https://capacitorjs.com/)
-  [![Firebase](https://img.shields.io/badge/Firebase-10.12.2-FFCA28.svg)](https://firebase.google.com/)
 </div>
 
 ## 📖 Descripción
@@ -59,7 +58,7 @@ PoochyDex es una aplicación web moderna y responsive que funciona como una Pok�
 
 1. **Clona el repositorio**
    ```bash
-   git clone https://github.com/tu-usuario/PoochyDex.git
+   git clone https://github.com/BastianSandovalUwU/PoochyDex.git
    cd PoochyDex
    ```
 
@@ -75,9 +74,6 @@ PoochyDex es una aplicación web moderna y responsive que funciona como una Pok�
    export const environment = {
      production: false,
      nodeJsApi: "tu-api-url",
-     firebase: {
-       // Tu configuración de Firebase
-     }
    };
    ```
 
@@ -197,18 +193,6 @@ npm run build
 # Los archivos se generan en dist/poochydex/
 ```
 
-### Firebase Hosting
-```bash
-# Instalar Firebase CLI
-npm install -g firebase-tools
-
-# Login
-firebase login
-
-# Desplegar
-firebase deploy
-```
-
 ### Vercel
 ```bash
 # Instalar Vercel CLI
@@ -235,7 +219,6 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 - [PokéAPI](https://pokeapi.co/) - Por proporcionar la API gratuita de Pokémon
 - [Angular Team](https://angular.io/) - Por el excelente framework
 - [Tailwind CSS](https://tailwindcss.com/) - Por el sistema de diseño
-- [Firebase](https://firebase.google.com/) - Por los servicios backend
 
 ## 📞 Contacto
 
