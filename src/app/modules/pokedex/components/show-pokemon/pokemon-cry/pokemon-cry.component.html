@@ -1,9 +1,15 @@
-<h1 *ngIf="pokemon?.cries?.latest" class="font-bold">
-  {{ language === 'es' ? 'Grito Actual' : 'Current Cry' }}:
-  <button *ngIf="!isPlayingLatest" class="bg-blue-400 border-2 border-black rounded-full p-2" (click)="playAudio('latest')">
+<h1 *ngIf="pokemon?.cries?.latest" class="font-bold flex items-center gap-3 mb-4">
+  <span>{{ language === 'es' ? 'Grito Actual' : 'Current Cry' }}:</span>
+  <button *ngIf="!isPlayingLatest"
+          class="play-button"
+          (click)="playAudio('latest')"
+          [attr.aria-label]="language === 'es' ? 'Reproducir grito actual' : 'Play current cry'">
     <mat-icon>play_arrow</mat-icon>
   </button>
-  <button *ngIf="isPlayingLatest" class="bg-red-400 border-2 border-black rounded-full p-2" (click)="pauseAudio('latest')">
+  <button *ngIf="isPlayingLatest"
+          class="pause-button"
+          (click)="pauseAudio('latest')"
+          [attr.aria-label]="language === 'es' ? 'Pausar grito actual' : 'Pause current cry'">
     <mat-icon>pause</mat-icon>
   </button>
   <audio id="audioPlayerLatest" #audioPlayerLatest (ended)="audioEnded('latest')">
@@ -12,12 +18,18 @@
   </audio>
 </h1>
 
-<h1 *ngIf="pokemon?.cries?.legacy" class="font-bold">
-  {{ language === 'es' ? 'Grito Antiguo' : 'Previous Scream' }}:
-  <button *ngIf="!isPlayingLegacy" class="bg-blue-400 border-2 border-black rounded-full p-2" (click)="playAudio('legacy')">
+<h1 *ngIf="pokemon?.cries?.legacy" class="font-bold flex items-center gap-3">
+  <span>{{ language === 'es' ? 'Grito Antiguo' : 'Previous Scream' }}:</span>
+  <button *ngIf="!isPlayingLegacy"
+          class="play-button"
+          (click)="playAudio('legacy')"
+          [attr.aria-label]="language === 'es' ? 'Reproducir grito antiguo' : 'Play previous scream'">
     <mat-icon>play_arrow</mat-icon>
   </button>
-  <button *ngIf="isPlayingLegacy" class="bg-red-400 border-2 border-black rounded-full p-2" (click)="pauseAudio('legacy')">
+  <button *ngIf="isPlayingLegacy"
+          class="pause-button"
+          (click)="pauseAudio('legacy')"
+          [attr.aria-label]="language === 'es' ? 'Pausar grito antiguo' : 'Pause previous scream'">
     <mat-icon>pause</mat-icon>
   </button>
   <audio id="audioPlayerLegacy" #audioPlayerLegacy (ended)="audioEnded('legacy')">

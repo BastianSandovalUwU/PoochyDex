@@ -5,7 +5,7 @@
       <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
     </button>
   </div>
-  <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'"  class="grid sm:grid-cols-4 filters-container">
+  <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'"  class="grid sm:grid-cols-4 filters-container bg-white p-1 rounded-md border border-black dark:border-gray-600 dark:bg-gray-800">
     <div class="col-span-1" *ngFor="let dex of pokemonSpecie.pokedex_numbers">
       <span class="font-bold">{{ language === 'es' ? 'Número': 'Number' }}: </span>
       <span [routerLink]="['/pokedex/show-pokedex', dex.pokedex.name]"
