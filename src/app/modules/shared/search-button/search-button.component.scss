@@ -1,62 +1,50 @@
-/* Botón de búsqueda */
-#searchButton {
-  bottom: 40px;
-  right: 17px;
-  width: 60px;
-  height: 60px;
-  background: #0b8dd8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  border-radius: 50%;
-  position: fixed;
-  cursor: pointer;
-  border: 2px solid black;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  transform: scale(1);
-  z-index: 1000;
+/* Efecto ripple para el botón de búsqueda */
+.search-button-ripple {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  &:active::before {
+    width: 200px;
+    height: 200px;
+  }
 }
 
-/* Overlay de búsqueda */
-#searchOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 1000;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+/* Scrollbar personalizado para los resultados */
+.search-results-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.3);
+    }
+  }
 }
 
-/* Contenedor del input con animación */
-#searchInputContainer {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  width: 320px;
-  max-height: 750px;
-  overflow: auto;
-  transform: translateY(-30px);
-  opacity: 0;
-  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-}
+.dark .search-results-scrollbar {
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
 
-/* Clase para mostrar el overlay */
-.show-overlay {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* Clase para mostrar el contenedor con animación */
-.show-container {
-  transform: translateY(0) !important;
-  opacity: 1 !important;
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
 }

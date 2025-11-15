@@ -70,4 +70,8 @@ export class SearchButtonComponent implements OnInit {
     this.toggleSearch();
   }
 
+  trackByPokemonName(index: number, item: PokemonList): string {
+    return item.name;
+  }
+
 }

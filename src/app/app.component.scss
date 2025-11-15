@@ -138,3 +138,20 @@ body {
 
 /* Poké Ball-like center circle on the diagonal */
 /* Circles removed as requested */
+
+/* Header with backdrop blur effect */
+header {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Asegurar que el contenido interno no tenga blur */
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.dark header {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
