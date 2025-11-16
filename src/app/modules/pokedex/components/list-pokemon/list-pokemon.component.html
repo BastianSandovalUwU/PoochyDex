@@ -1,11 +1,11 @@
-<div class="mt-4">
+<div class="mt-4" *ngIf="!loading">
   <h1 class="mx-5 pl-2 text-black text-2xl  font-bold dark:text-white">{{ language === 'es' ? 'Listado de Pokémon' : 'Pokémon List'}}</h1>
 
   <div class="mt-4 mx-1">
     <app-filter [language]="language" (filters)="applyFilters($event)" [isShow]="showFloatingFilter"></app-filter>
   </div>
 
-  <div class="fixed-filter mt-[7px]" [class.visible]="showFloatingFilter">
+  <div class="fixed-filter mt-[10px]" [class.visible]="showFloatingFilter">
     <app-filter [language]="language" (filters)="applyFilters($event)" [isShow]="showFloatingFilter"></app-filter>
   </div>
 

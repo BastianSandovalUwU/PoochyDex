@@ -666,6 +666,29 @@ export class HelperService {
     }
   }
 
+  /**
+   * Devuelve las ilustraciones alternativas del Pokémon (si existen)
+   * como Sugimori Art o Global Link Art.
+   */
+  getPokemonArtwork(pokemonName: string): { sugimoriArt?: string; globalLinkArt?: string } {
+    const name = this.getCorrectPokemonName(pokemonName);
+    let allPokemon: (Pokemon | PokemonForm)[] = this.allPokemon;
+    allPokemon = allPokemon.concat(this.allPokemonForms);
+
+    const pokemon = allPokemon.find(f => f.name === name);
+
+    if (!pokemon || !pokemon.sprites) {
+      return {};
+    }
+
+    const { sugimoriArt, globalLinkArt } = pokemon.sprites;
+
+    return {
+      ...(sugimoriArt ? { sugimoriArt } : {}),
+      ...(globalLinkArt ? { globalLinkArt } : {})
+    };
+  }
+
   getCorrectPokemonName(pokemonName): string {
     switch (pokemonName) {
       case 'deoxys':

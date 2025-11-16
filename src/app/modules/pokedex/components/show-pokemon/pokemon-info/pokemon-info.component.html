@@ -5,10 +5,65 @@
     <span *ngIf="pokemonNameRomaji">({{pokemonNameRomaji.name | titlecase}})</span>
   </h1>
   <div class="grid grid-cols-3 gap-1">
+    <!-- Selector de tipo de imagen (solo si hay artes alternativos) -->
+    <div class="col-span-3 flex justify-center" *ngIf="hasSugimoriArt || hasGlobalLinkArt">
+      <div class="inline-flex rounded-md shadow-sm border border-gray-300 bg-white dark:bg-gray-800 dark:border-gray-600" role="group">
+        <button
+          type="button"
+          class="px-3 py-1 text-sm font-medium rounded-l-md"
+          [ngClass]="selectedImageType === 'home' ? 'bg-blue-600 text-white' : 'text-gray-900 bg-transparent dark:text-gray-200'"
+          (click)="selectedImageType = 'home'; showShiny = false"
+        >
+          {{ language === 'es' ? 'Modelo Home' : 'Home Model' }}
+        </button>
+        <button
+          *ngIf="hasSugimoriArt"
+          type="button"
+          class="px-3 py-1 text-sm font-medium"
+          [ngClass]="selectedImageType === 'sugimoriArt' ? 'bg-blue-600 text-white' : 'text-gray-900 bg-transparent dark:text-gray-200'"
+          (click)="selectedImageType = 'sugimoriArt'; showShiny = false"
+        >
+          Sugimori
+        </button>
+        <button
+          *ngIf="hasGlobalLinkArt"
+          type="button"
+          class="px-3 py-1 text-sm font-medium rounded-r-md"
+          [ngClass]="selectedImageType === 'globalLinkArt' ? 'bg-blue-600 text-white' : 'text-gray-900 bg-transparent dark:text-gray-200'"
+          (click)="selectedImageType = 'globalLinkArt'; showShiny = false"
+        >
+          Global Link
+        </button>
+      </div>
+    </div>
+
     <div class="col-span-3 flex justify-center">
-      <img [src]="pokemonSprite" style="display: none;">
-      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = true" *ngIf="!showShiny" [src]="pokemonSprite">
-      <img class="w-80 hover:opacity-80 cursor-pointer" (click)="showShiny = false" *ngIf="showShiny" [src]="pokemonSpriteShiny">
+      <!-- precarga -->
+      <img [src]="getMainSprite()" style="display: none;">
+
+      <!-- Modelo Home con toggle shiny -->
+      <ng-container *ngIf="selectedImageType === 'home'; else altArtTemplate">
+        <img
+          class="w-80 hover:opacity-80 cursor-pointer"
+          (click)="showShiny = true"
+          *ngIf="!showShiny"
+          [src]="pokemonSprite"
+        >
+        <img
+          class="w-80 hover:opacity-80 cursor-pointer"
+          (click)="showShiny = false"
+          *ngIf="showShiny"
+          [src]="pokemonSpriteShiny"
+        >
+      </ng-container>
+
+      <!-- Artes alternativos (sin shiny) -->
+      <ng-template #altArtTemplate>
+        <img
+          class="w-80 hover:opacity-80 cursor-pointer"
+          [src]="getMainSprite()"
+        >
+      </ng-template>
     </div>
   </div>
 

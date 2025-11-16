@@ -3,6 +3,8 @@ import { LanguageService } from 'app/modules/shared/services/language.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Pokemon, PokemonForm } from '../../../../../../entities/poochydex-api/pokemon.type';
 import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
+import { LoadingService } from 'app/modules/shared/services/loading.service';
+import { timer } from 'rxjs';
 @Component({
   selector: 'app-list-pokemon',
   templateUrl: './list-pokemon.component.html',
@@ -17,11 +19,13 @@ export class ListPokemonComponent implements OnInit {
   filtersVisible = false;
   showFloatingFilter: boolean = false;
   private scrollThreshold: number = 200;
+  loading = false;
 
   constructor(
               private languageService: LanguageService,
               private helperService: HelperService,
-              private poochyDexApiService: PoochyDexApiService
+              private poochyDexApiService: PoochyDexApiService,
+              private loadingService: LoadingService
               ) { }
 
   ngOnInit() {
@@ -31,13 +35,19 @@ export class ListPokemonComponent implements OnInit {
   }
 
   getPokemon() {
+    this.loading = true;
+    this.loadingService.show();
     this.poochyDexApiService.getAllPokemon().subscribe({
       next: (response) => {
         this.allPokemon = response.data;
         this.filteredPokemon = this.allPokemon;
+        this.loadingService.hide();
+        this.loading = false;
       },
       error: (error) => {
         console.error('Error al obtener los Pokémon:', error);
+        this.loadingService.hide();
+        this.loading = false;
       }
     });
   }
@@ -49,7 +59,7 @@ export class ListPokemonComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error al obtener las formas de Pokémon:', error);
-      }
+      },
     });
   }
 

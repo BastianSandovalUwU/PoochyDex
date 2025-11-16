@@ -24,6 +24,13 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   pokemonNameRomaji: Name;
   pokemonNameHirgana: Name;
 
+  // Selector de imagen / arte
+  selectedImageType: 'home' | 'sugimoriArt' | 'globalLinkArt' = 'home';
+  sugimoriArtUrl?: string;
+  globalLinkArtUrl?: string;
+  hasSugimoriArt: boolean = false;
+  hasGlobalLinkArt: boolean = false;
+
   constructor(private helperService: HelperService,) { }
 
   ngOnInit() {
@@ -35,14 +42,37 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   loadInfo() {
     this.pokemonSprite = this.helperService.getPokemonSpriteImg(this.pokemon.name, "home");
     this.pokemonSpriteShiny = this.helperService.getPokemonSpriteImg(this.pokemon.name, "homeShiny");
-    this.getPokemonColor();
+
+    const artwork = this.helperService.getPokemonArtwork(this.pokemon.name);
+    this.sugimoriArtUrl = artwork.sugimoriArt;
+    this.globalLinkArtUrl = artwork.globalLinkArt;
+    this.hasSugimoriArt = !!artwork.sugimoriArt;
+    this.hasGlobalLinkArt = !!artwork.globalLinkArt;
+    this.selectedImageType = 'home';
     this.showShiny = false;
+
+    this.getPokemonColor();
     this.getPokemonAbility();
     this.helperService.getPokemonTypes(this.pokemon.types).subscribe((types) => {
       this.pokemontypes = types;
     });
     this.pokemonNameRomaji = this.pokemonSpecie.names.filter(f => f.language.name === 'roomaji')[0];
     this.pokemonNameHirgana = this.pokemonSpecie.names.filter(f => f.language.name === 'ja-Hrkt')[0];
+  }
+
+  /**
+   * Devuelve la imagen principal según el tipo seleccionado.
+   * Para "home" se usa la lógica existente, para el resto se prioriza el art disponible.
+   */
+  getMainSprite(): string {
+    switch (this.selectedImageType) {
+      case 'sugimoriArt':
+        return this.sugimoriArtUrl || this.pokemonSprite;
+      case 'globalLinkArt':
+        return this.globalLinkArtUrl || this.pokemonSprite;
+      default:
+        return this.pokemonSprite;
+    }
   }
 
   getPokemonColor() {
