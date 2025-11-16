@@ -11,4 +11,6 @@ export type Sprites = {
   homeUrl: string;
   homeShinyUrl: string;
   iconUrl: string;
+  sugimoriArt?: string;
+  globalLinkArt?: string;
 }

@@ -1,6 +1,7 @@
 export type UserData = {
   user: string;
   token: string;
+  role: string;
 }
 
 export type UserConfigResponse = {

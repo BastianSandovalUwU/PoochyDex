@@ -17,6 +17,8 @@ import { ALL_POKEMON_KANTO } from '../../../../../entities/common/kanto-pokemon-
 import { ALL_POKEMON_PALDEA } from '../../../../../entities/common/paldea-pokemon-data';
 import { ALL_POKEMON_SINNOH } from '../../../../../entities/common/sinnoh-pokemon-data';
 import { ALL_POKEMON_UNOVA } from '../../../../../entities/common/unova-pokemon-data';
+import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
+import { Pokemon, PokemonForm } from '../../../../../entities/poochydex-api/pokemon.type';
 
 @Injectable({
   providedIn: 'root'
@@ -28,29 +30,40 @@ export class HelperService {
   cacheLoadingProgress$ = this.cacheLoadingProgress.asObservable();
   isCacheLoading$ = this.isCacheLoading.asObservable();
 
-  allPokemon: PokemonList[] = [
-    ...ALL_POKEMON_KANTO,
-    ...ALL_POKEMON_JOTHO,
-    ...ALL_POKEMON_HOENN,
-    ...ALL_POKEMON_SINNOH,
-    ...ALL_POKEMON_UNOVA,
-    ...ALL_POKEMON_KALOS,
-    ...ALL_POKEMON_ALOLA,
-    ...ALL_POKEMON_GALAR,
-    ...ALL_POKEMON_PALDEA,
-    ...ALL_POKEMON_HISUI_REGIONAL_FORMS,
-    ...ALL_POKEMON_GIGAMAX_FORMS,
-    ...ALL_POKEMON_MEGA_FORMS,
-    ...ALL_POKEMON_ALOLA_REGIONAL_FORMS,
-    ...ALL_POKEMON_GALAR_REGIONAL_FORMS,
-    ...ALL_POKEMON_PALDEA_REGIONAL_FORMS
-  ];
-  allPokemonGmax: PokemonList[] = ALL_POKEMON_GIGAMAX_FORMS;
-  allPokemonMega: PokemonList[] = ALL_POKEMON_MEGA_FORMS;
-  allPokemonMisc: any[] = MISC_POKEMON_FORMS;
+  allPokemon: Pokemon[] = [];
+  allPokemonForms: PokemonForm[] = [];
+
+  // allPokemon: PokemonList[] = [
+  //   ...ALL_POKEMON_KANTO,
+  //   ...ALL_POKEMON_JOTHO,
+  //   ...ALL_POKEMON_HOENN,
+  //   ...ALL_POKEMON_SINNOH,
+  //   ...ALL_POKEMON_UNOVA,
+  //   ...ALL_POKEMON_KALOS,
+  //   ...ALL_POKEMON_ALOLA,
+  //   ...ALL_POKEMON_GALAR,
+  //   ...ALL_POKEMON_PALDEA,
+  //   ...ALL_POKEMON_HISUI_REGIONAL_FORMS,
+  //   ...ALL_POKEMON_GIGAMAX_FORMS,
+  //   ...ALL_POKEMON_MEGA_FORMS,
+  //   ...ALL_POKEMON_ALOLA_REGIONAL_FORMS,
+  //   ...ALL_POKEMON_GALAR_REGIONAL_FORMS,
+  //   ...ALL_POKEMON_PALDEA_REGIONAL_FORMS
+  // ];
+  // allPokemonGmax: PokemonList[] = ALL_POKEMON_GIGAMAX_FORMS;
+  // allPokemonMega: PokemonList[] = ALL_POKEMON_MEGA_FORMS;
+  // allPokemonMisc: any[] = MISC_POKEMON_FORMS;
 
   constructor(private pokeApiService: PokeApiService,
-  ) { }
+              private poochyDexApiService: PoochyDexApiService
+  ) {
+    this.poochyDexApiService.getAllPokemon().subscribe((response) => {
+      this.allPokemon = response.data;
+    });
+    this.poochyDexApiService.getAllPokemonForms().subscribe((response) => {
+      this.allPokemonForms = response.data;
+    });
+  }
 
   getPokemonTypes(types: Type[]): Observable<{ language: string, typeName: string }[][]> {
     const observables = types.map(type => this.pokeApiService.getPokemonTypeByName(type.type.name));
@@ -136,10 +149,30 @@ export class HelperService {
 
   createAllPokemonCache() {
     console.log('Verificando caché de Pokémon...');
+
+    // Asegurar que la lista de Pokémon de la API propia esté cargada
+    if (!this.allPokemon || this.allPokemon.length === 0) {
+      console.log('allPokemon aún no está cargado desde la API Node, cargando antes de crear el caché...');
+      this.poochyDexApiService.getAllPokemon().subscribe({
+        next: (response) => {
+          this.allPokemon = response.data || [];
+          console.log(`allPokemon cargado (${this.allPokemon.length} registros), reintentando crear caché...`);
+          this.createAllPokemonCache();
+        },
+        error: (error) => {
+          console.error('Error al cargar allPokemon para el caché:', error);
+        }
+      });
+      return;
+    }
+
     const cache = localStorage.getItem('pokemon_cache');
     const pokemonCache = cache ? JSON.parse(cache) : {};
 
-    const missingPokemon = this.allPokemon.filter(pokemon =>
+    // Solo consideramos Pokémon con número de Pokédex válido (entero) para el caché de PokeAPI
+    const candidates = this.allPokemon.filter(p => Number.isInteger(p.number));
+
+    const missingPokemon = candidates.filter(pokemon =>
       !pokemonCache[pokemon.number.toString()]
     );
 
@@ -613,7 +646,7 @@ export class HelperService {
   getPokemonSpriteImg(pokemonName: string, option: "home" | "icon" | "homeShiny"): string {
     let name = this.getCorrectPokemonName(pokemonName);
     let allPokemon = this.allPokemon;
-    allPokemon = allPokemon.concat(this.allPokemonGmax, this.allPokemonMega, this.allPokemonMisc);
+    allPokemon = allPokemon.concat(this.allPokemonForms);
     const pokemon = allPokemon.find(f => f.name === name);
     const placeholder = "https://i.imgur.com/uKx7iOF.png"; //missigNo placeholder image
 

@@ -44,6 +44,9 @@ export class LoginComponent implements OnInit {
       this.authService.login(formData).subscribe(response => {
         this.router.navigate(['/profile/show']);
         this.loading = false;
+      }, error => {
+        this.loading = false;
+        this.errorMessage = error.error?.message || (this.language === 'es' ? 'Error al iniciar sesión' : 'Error logging in');
       });
     } else {
       this.loading = false;

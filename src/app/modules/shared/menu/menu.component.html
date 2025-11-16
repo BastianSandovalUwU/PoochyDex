@@ -34,11 +34,16 @@
           <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">chevron_right</mat-icon>
         </a>
       </li>
-      <li>
-        <a
-           class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group hover:cursor-not-allowed">
-          <span class="ml-3 font-medium">{{ language === 'es' ? 'Proximamente' : 'Coming soon'}}</span>
-          <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">chevron_right</mat-icon>
+      <li *ngIf="userData?.role === 'ADMIN'">
+        <a href="/apiDex"
+           class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
+          <mat-icon class="text-gray-600 dark:text-gray-300 mr-2">storage</mat-icon>
+          <span class="ml-1 font-medium">
+            {{ language === 'es' ? 'Admin Pokémon (API)' : 'Pokemon Admin (API)'}}
+          </span>
+          <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">
+            chevron_right
+          </mat-icon>
         </a>
       </li>
     </ul>

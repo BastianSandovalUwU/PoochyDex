@@ -86,6 +86,9 @@ export class MenuComponent implements OnInit, OnChanges {
 
   logout() {
     this.authService.logout();
+    if(this.router.url.includes('/apiDex')) {
+      this.router.navigate(['/']);
+    }
     this.closeMenu();
   }
 

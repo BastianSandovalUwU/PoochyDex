@@ -27,7 +27,7 @@ export class AuthService {
   login(credentials: { username: string; password: string }): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.apiUrl}/api/auth/login`, credentials).pipe(
       tap(response => {
-        this.createUserData(response, credentials.username);
+        this.createUserData(response);
       })
     );
   }
@@ -61,9 +61,10 @@ export class AuthService {
     this.clearUserConfigData();
   }
 
-  async createUserData(loginResponse: LoginResponse, username: string): Promise<UserData> {
+  async createUserData(loginResponse: LoginResponse): Promise<UserData> {
     const userData: UserData = {
-      user: username,
+      user: loginResponse.username,
+      role: loginResponse.role,
       token: loginResponse.token,
     };
     this.setSessionData(userData);

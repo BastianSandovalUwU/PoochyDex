@@ -1,18 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
-import { PokemonList } from '../../../../../../entities/pokemon-list.entity';
-import { ALL_POKEMON_ALOLA } from '../../../../../../entities/common/alola-pokemon-data';
-import { ALL_POKEMON_GALAR } from '../../../../../../entities/common/galar-pokemon-data';
-import { ALL_POKEMON_HOENN } from '../../../../../../entities/common/hoenn-pokemon-data';
-import { ALL_POKEMON_JOTHO } from '../../../../../../entities/common/jotho-pokemon-data';
-import { ALL_POKEMON_KALOS } from '../../../../../../entities/common/kalos-pokemon-data';
-import { ALL_POKEMON_KANTO } from '../../../../../../entities/common/kanto-pokemon-data';
-import { ALL_POKEMON_PALDEA } from '../../../../../../entities/common/paldea-pokemon-data';
-import { ALL_POKEMON_ALOLA_REGIONAL_FORMS, ALL_POKEMON_GALAR_REGIONAL_FORMS, ALL_POKEMON_PALDEA_REGIONAL_FORMS, ALL_POKEMON_HISUI_REGIONAL_FORMS, ALL_POKEMON_GIGAMAX_FORMS, ALL_POKEMON_MEGA_FORMS } from '../../../../../../entities/common/poochyApiData';
-import { ALL_POKEMON_SINNOH } from '../../../../../../entities/common/sinnoh-pokemon-data';
-import { ALL_POKEMON_UNOVA } from '../../../../../../entities/common/unova-pokemon-data';
 import { HelperService } from 'app/modules/shared/services/helper.service';
+import { Pokemon, PokemonForm } from '../../../../../../entities/poochydex-api/pokemon.type';
+import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
 @Component({
   selector: 'app-list-pokemon',
   templateUrl: './list-pokemon.component.html',
@@ -20,29 +10,47 @@ import { HelperService } from 'app/modules/shared/services/helper.service';
 })
 export class ListPokemonComponent implements OnInit {
 
-  allPokemon: PokemonList[] = [...ALL_POKEMON_KANTO, ...ALL_POKEMON_JOTHO,
-    ...ALL_POKEMON_HOENN, ...ALL_POKEMON_SINNOH, ...ALL_POKEMON_UNOVA,
-    ...ALL_POKEMON_KALOS, ...ALL_POKEMON_ALOLA, ...ALL_POKEMON_GALAR, ...ALL_POKEMON_PALDEA];
-
-  allAlolaFormsPokemon: PokemonList[] = ALL_POKEMON_ALOLA_REGIONAL_FORMS;
-  allGalarFormsPokemon: PokemonList[] = ALL_POKEMON_GALAR_REGIONAL_FORMS;
-  allPaldeaPokemon: PokemonList[] = ALL_POKEMON_PALDEA_REGIONAL_FORMS;
-  allHisuiPokemon: PokemonList[] = ALL_POKEMON_HISUI_REGIONAL_FORMS;
-  allGmaxPokemon: PokemonList[] = ALL_POKEMON_GIGAMAX_FORMS;
-  allMegaPokemon: PokemonList[] = ALL_POKEMON_MEGA_FORMS;
-  filteredPokemon: any[] = this.allPokemon;
+  allPokemon: Pokemon[] = [];
+  allPokemonForms: PokemonForm[] = [];
+  filteredPokemon: Pokemon[] = [];
   language: string;
   filtersVisible = false;
   showFloatingFilter: boolean = false;
   private scrollThreshold: number = 200;
 
-  constructor(private pokeApiService: PokeApiService,
+  constructor(
               private languageService: LanguageService,
-              private helperService: HelperService
+              private helperService: HelperService,
+              private poochyDexApiService: PoochyDexApiService
               ) { }
 
   ngOnInit() {
     this.getLanguage();
+    this.getPokemon();
+    this.getPokemonForms();
+  }
+
+  getPokemon() {
+    this.poochyDexApiService.getAllPokemon().subscribe({
+      next: (response) => {
+        this.allPokemon = response.data;
+        this.filteredPokemon = this.allPokemon;
+      },
+      error: (error) => {
+        console.error('Error al obtener los Pokémon:', error);
+      }
+    });
+  }
+
+  getPokemonForms() {
+    this.poochyDexApiService.getAllPokemonForms().subscribe({
+      next: (response) => {
+        this.allPokemonForms = response.data;
+      },
+      error: (error) => {
+        console.error('Error al obtener las formas de Pokémon:', error);
+      }
+    });
   }
 
   getLanguage() {
@@ -56,55 +64,55 @@ export class ListPokemonComponent implements OnInit {
   }
 
   getPokemonByGenerationsAndForms(generations: number[], forms: string[]) {
-    const generationRanges = {
-      1: { min: 1, max: 151 },
-      2: { min: 152, max: 251 },
-      3: { min: 252, max: 386.3 },
-      4: { min: 387, max: 493 },
-      5: { min: 494, max: 649 },
-      6: { min: 650, max: 721 },
-      7: { min: 722, max: 809 },
-      8: { min: 810, max: 905 },
-      9: { min: 906, max: 1025 }
-    };
+    const gensToUse = generations.length > 0
+      ? generations
+      : Array.from(new Set(this.allPokemon.map(p => p.generationId)));
 
-    let filtered = this.allPokemon.filter(pokemon =>
-      generations.some(gen =>
-        pokemon.number >= generationRanges[gen].min &&
-        pokemon.number <= generationRanges[gen].max
-      )
+    const baseByNumber = new Map<number, Pokemon>(
+      this.allPokemon.map(p => [p.number, p])
     );
 
-const isWithinSelectedGenerations = (pokemon: PokemonList) =>
-  generations.some(gen => {
-    const min = generationRanges[gen].min;
-    const max = generationRanges[gen].max;
+    const isBaseInSelectedGenerations = (pokemon: Pokemon) =>
+      gensToUse.includes(pokemon.generationId);
 
-    const tolerance = 0.1;
+    const isFormInSelectedGenerations = (form: PokemonForm) => {
+      const base = baseByNumber.get(form.number);
+      return !!base && gensToUse.includes(base.generationId);
+    };
 
-    return pokemon.number >= min - tolerance && pokemon.number <= max + tolerance;
-  });
+    const formFilters: { [key: string]: (f: PokemonForm) => boolean } = {
+      alola: (f) => f.name.includes('-alola'),
+      galar: (f) => f.name.includes('-galar'),
+      paldea: (f) => f.name.includes('-paldea'),
+      hisui: (f) => f.name.includes('-hisui'),
+      gmax: (f) => f.name.includes('-gmax'),
+      mega: (f) => f.name.includes('-mega'),
+    };
 
-    if (forms.includes('alola')) {
-      filtered = filtered.concat(this.allAlolaFormsPokemon.filter(isWithinSelectedGenerations));
-    }
-    if (forms.includes('galar')) {
-      filtered = filtered.concat(this.allGalarFormsPokemon.filter(isWithinSelectedGenerations));
-    }
-    if (forms.includes('paldea')) {
-      filtered = filtered.concat(this.allPaldeaPokemon.filter(isWithinSelectedGenerations));
-    }
-    if (forms.includes('hisui')) {
-      filtered = filtered.concat(this.allHisuiPokemon.filter(isWithinSelectedGenerations));
-    }
-    if (forms.includes('gmax')) {
-      filtered = filtered.concat(this.allGmaxPokemon.filter(isWithinSelectedGenerations));
-    }
-    if (forms.includes('mega')) {
-      filtered = filtered.concat(this.allMegaPokemon.filter(isWithinSelectedGenerations));
+    let result: (Pokemon | PokemonForm)[] = this.allPokemon.filter(isBaseInSelectedGenerations);
+
+    if (forms.length > 0) {
+      forms.forEach(formKey => {
+        const predicate = formFilters[formKey];
+        if (!predicate) {
+          return;
+        }
+        const formsForKey = this.allPokemonForms
+          .filter(predicate)
+          .filter(isFormInSelectedGenerations);
+        result = result.concat(formsForKey);
+      });
     }
 
-    this.filteredPokemon = Array.from(new Set(filtered)).sort((a, b) => a.number - b.number);
+    const uniqueMap = new Map<string, Pokemon>();
+    for (const p of result) {
+      const key = `${p.number}-${p.name}`;
+      if (!uniqueMap.has(key)) {
+        uniqueMap.set(key, p as Pokemon);
+      }
+    }
+
+    this.filteredPokemon = Array.from(uniqueMap.values()).sort((a, b) => a.number - b.number);
   }
 
   getGameIconNameForLanguage(typeName: string, language: string): string {

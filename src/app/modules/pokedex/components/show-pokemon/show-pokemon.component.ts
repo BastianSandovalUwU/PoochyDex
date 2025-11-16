@@ -7,7 +7,7 @@ import { LanguageService } from 'app/modules/shared/services/language.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { Move, ShowMove, TypeDetail } from '../../../../../../entities/moves.entity';
-import { forkJoin, of, Subject, takeUntil } from 'rxjs';
+import { forkJoin, of, Subject, takeUntil, timer } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { ErrorMessageService } from 'app/services/error-message.service';
 
@@ -172,7 +172,9 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
 
                     this.movesWithTypes = this.language === 'es' ? this.movesWithTypesEs : this.movesWithTypesEn;
                     this.loading = false;
-                    this.loadingService.hide();
+                    timer(2000).subscribe(() => {
+                      this.loadingService.hide();
+                    });
                   },
                   error: (error) => {
                     const errorMessage = this.language === 'es' ? 'Error al cargar los movimientos' : 'Error loading moves';

@@ -171,7 +171,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
         homeShinyUrl: "",
         iconUrl: "https://i.imgur.com/FjLubag.png"
       },
-      number: 40,
+      number: 401,
       generationId: 4,
       type: POKEMON_TYPES.Bug
     },
