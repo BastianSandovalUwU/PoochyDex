@@ -24,6 +24,7 @@ export class CrudApiComponent implements OnInit {
   // Formulario simple para crear/editar
   isEditMode = false;
   editingPokemonId: number | null = null;
+  showModal = false;
 
   // Modo de trabajo: false = Pokémon base, true = formas alternativas
   isFormMode = false;
@@ -112,6 +113,12 @@ export class CrudApiComponent implements OnInit {
 
   startCreate(): void {
     this.resetForm();
+    this.showModal = true;
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+    this.resetForm();
   }
 
   startEdit(pokemon: Pokemon): void {
@@ -131,6 +138,7 @@ export class CrudApiComponent implements OnInit {
         globalLinkArt: pokemon.sprites.globalLinkArt
       }
     };
+    this.showModal = true;
   }
 
   savePokemon(): void {
@@ -159,6 +167,7 @@ export class CrudApiComponent implements OnInit {
     request$.subscribe({
       next: () => {
         this.loading = false;
+        this.showModal = false;
         this.resetForm();
         this.loadPokemon();
       },
