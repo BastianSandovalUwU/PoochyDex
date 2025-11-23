@@ -44,13 +44,13 @@
       <!-- Modelo Home con toggle shiny -->
       <ng-container *ngIf="selectedImageType === 'home'; else altArtTemplate">
         <img
-          class="w-80 hover:opacity-80 cursor-pointer"
+          class="w-80 cursor-pointer"
           (click)="showShiny = true"
           *ngIf="!showShiny"
           [src]="pokemonSprite"
         >
         <img
-          class="w-80 hover:opacity-80 cursor-pointer"
+          class="w-80 cursor-pointer"
           (click)="showShiny = false"
           *ngIf="showShiny"
           [src]="pokemonSpriteShiny"
@@ -60,7 +60,7 @@
       <!-- Artes alternativos (sin shiny) -->
       <ng-template #altArtTemplate>
         <img
-          class="w-80 hover:opacity-80 cursor-pointer"
+          class="w-80"
           [src]="getMainSprite()"
         >
       </ng-template>

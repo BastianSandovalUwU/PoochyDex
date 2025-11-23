@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { MatLegacyTabChangeEvent as MatTabChangeEvent } from '@angular/material/legacy-tabs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { FilteredByEgg, FilteredByMachine, FilteredByTutor } from '../../../../../entities/moves.entity';
+import { TabItem } from '../custom-tabs/custom-tabs.component';
 
 @Component({
   selector: 'app-pokemon-moves-table',
@@ -23,7 +24,7 @@ import { FilteredByEgg, FilteredByMachine, FilteredByTutor } from '../../../../.
     ])
   ]
 })
-export class PokemonMovesTableComponent {
+export class PokemonMovesTableComponent implements OnChanges {
   @Input() language: string = 'es';
   @Input() titleEs: string = '';
   @Input() titleEn: string = '';
@@ -37,7 +38,7 @@ export class PokemonMovesTableComponent {
   @Input() moveType: 'machine' | 'tutor' | 'egg' = 'machine';
 
   @Output() toggleFiltersEvent = new EventEmitter<void>();
-  @Output() tabChangeEvent = new EventEmitter<MatTabChangeEvent>();
+  @Output() tabChangeEvent = new EventEmitter<MatTabChangeEvent | { index: number; value: any }>();
 
   // Métodos auxiliares que se pasan desde el componente padre
   @Input() getGameName: (gameName: string) => string;
@@ -45,11 +46,38 @@ export class PokemonMovesTableComponent {
   @Input() getGameVersionColor: (gameVersion: string) => string;
   @Input() getTypeName: (pokeMove: any) => string;
 
+  selectedVersionGroup: string = '';
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['selectedTabIndex'] && this.versionGroups.length > 0) {
+      const index = changes['selectedTabIndex'].currentValue;
+      if (index >= 0 && index < this.versionGroups.length) {
+        this.selectedVersionGroup = this.versionGroups[index];
+      }
+    }
+    if (changes['versionGroups'] && this.versionGroups.length > 0 && !this.selectedVersionGroup) {
+      const index = this.selectedTabIndex >= 0 && this.selectedTabIndex < this.versionGroups.length
+        ? this.selectedTabIndex
+        : 0;
+      this.selectedVersionGroup = this.versionGroups[index];
+    }
+  }
+
+  getTabs(): TabItem[] {
+    return this.versionGroups.map(group => ({
+      label: this.getGameName(group),
+      value: group
+    }));
+  }
+
   onToggleFilters(): void {
     this.toggleFiltersEvent.emit();
   }
 
-  onTabChange(event: MatTabChangeEvent): void {
+  onTabChange(event: MatTabChangeEvent | { index: number; value: any }): void {
+    const index = (event as any).index !== undefined ? (event as any).index : (event as MatTabChangeEvent).index;
+    this.selectedVersionGroup = this.versionGroups[index];
+    this.selectedTabIndex = index;
     this.tabChangeEvent.emit(event);
   }
 }

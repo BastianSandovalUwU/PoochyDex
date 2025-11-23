@@ -1,0 +1,51 @@
+<div class="custom-tabs-wrapper">
+  <div class="flex items-center">
+    <!-- Left Arrow -->
+    <button
+      *ngIf="showArrows && scrollable"
+      (click)="scrollLeft()"
+      class="custom-tabs-arrow left-arrow flex-shrink-0 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-l-md transition-colors"
+      type="button"
+      aria-label="Scroll left">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+
+    <!-- Tabs Container -->
+    <div
+      #tabsContainer
+      class="custom-tabs-container flex overflow-x-auto scrollbar-hide"
+      [class.with-arrows]="showArrows && scrollable"
+      [class.without-arrows]="!showArrows || !scrollable">
+      <button
+        *ngFor="let tab of tabs; let i = index"
+        (click)="selectTab(i)"
+        [class]="[
+          'custom-tab',
+          i === selectedIndex ? activeTabColor : inactiveTabColor,
+          i === selectedIndex ? activeTabUnderline : '',
+          'px-4 py-2 font-medium transition-all duration-200 whitespace-nowrap border-b-2',
+          i === selectedIndex ? 'border-b-2 font-semibold' : 'border-transparent hover:border-gray-300'
+        ].join(' ')"
+        type="button"
+        [attr.aria-selected]="i === selectedIndex"
+        role="tab">
+        {{ tab.label }}
+      </button>
+    </div>
+
+    <!-- Right Arrow -->
+    <button
+      *ngIf="showArrows && scrollable"
+      (click)="scrollRight()"
+      class="custom-tabs-arrow right-arrow flex-shrink-0 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-r-md transition-colors"
+      type="button"
+      aria-label="Scroll right">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+

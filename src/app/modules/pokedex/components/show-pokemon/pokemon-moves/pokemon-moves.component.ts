@@ -7,6 +7,7 @@ import { Subject, catchError, forkJoin, of, takeUntil } from 'rxjs';
 import { ExtendedMachineDetail } from '../../../../../../../entities/machine-move.entity';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { MatLegacyTabChangeEvent as MatTabChangeEvent } from '@angular/material/legacy-tabs';
+import { TabItem } from 'app/modules/shared/custom-tabs/custom-tabs.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ErrorMessageService } from 'app/services/error-message.service';
 
@@ -104,27 +105,42 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  levelUpChangeGame(event: MatTabChangeEvent): void {
-    const selectedGroup = this.versionGroups[event.index];
+  levelUpChangeGame(event: MatTabChangeEvent | { index: number; value: any }): void {
+    const index = (event as any).index !== undefined ? (event as any).index : (event as MatTabChangeEvent).index;
+    const selectedGroup = this.versionGroups[index];
     this.levelUpSelectedVersionGroup = selectedGroup;
+    this.selectedTabIndex = index;
     this.filterMovesByLevel();
   }
 
-  machineChangeGame(event: MatTabChangeEvent): void {
-    const selectedGroup = this.versionGroups[event.index];
+  getLevelUpTabs(): TabItem[] {
+    return this.versionGroups.map(group => ({
+      label: this.getGameName(group),
+      value: group
+    }));
+  }
+
+  machineChangeGame(event: MatTabChangeEvent | { index: number; value: any }): void {
+    const index = (event as any).index !== undefined ? (event as any).index : (event as MatTabChangeEvent).index;
+    const selectedGroup = this.versionGroups[index];
     this.machineSelectedVersionGroup = selectedGroup;
+    this.selectedTabIndexMT = index;
     this.filterMovesByMachine();
   }
 
-  tutorChangeGame(event: MatTabChangeEvent): void {
-    const selectedGroup = this.versionGroups[event.index];
+  tutorChangeGame(event: MatTabChangeEvent | { index: number; value: any }): void {
+    const index = (event as any).index !== undefined ? (event as any).index : (event as MatTabChangeEvent).index;
+    const selectedGroup = this.versionGroups[index];
     this.tutorSelectedVersionGroup = selectedGroup;
+    this.selectedTabIndexTutor = index;
     this.filterMovesByTutor();
   }
 
-  eggChangeGame(event: MatTabChangeEvent): void {
-    const selectedGroup = this.versionGroups[event.index];
+  eggChangeGame(event: MatTabChangeEvent | { index: number; value: any }): void {
+    const index = (event as any).index !== undefined ? (event as any).index : (event as MatTabChangeEvent).index;
+    const selectedGroup = this.versionGroups[index];
     this.eggSelectedVersionGroup = selectedGroup;
+    this.selectedTabIndexTutorEgg = index;
     this.filterMovesByEgg();
   }
 

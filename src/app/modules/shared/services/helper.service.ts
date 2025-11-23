@@ -573,7 +573,7 @@ export class HelperService {
         case 'lets-go-pikachu-lets-go-eevee': return "Let's Go, Pikachu! - Let's Go, Eevee!";
         case 'sword-shield': return 'Espada - Escudo';
         case 'scarlet-violet': return 'Escarlata - Purpura';
-        case 'brilliant-diamond-and-shining-pearl': return 'Diamante Brillante - Perla Reluciente';
+        case 'brilliant-diamond-and-shining-pearl': return 'Diamante B. - Perla R.';
         case 'legends-arceus': return 'Legendas Arceus';
         default: return '';
       }

@@ -1,130 +1,143 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-gray-200 sm:block hidden dark:border-gray-600 dark:bg-gray-800">
 
-  <div class="flex justify-between items-center">
-    <div (click)="toggleFilters('lvl')" class="cursor-pointer hover:text-gray-800">
+  <div class="flex justify-between items-center cursor-pointer" (click)="toggleFilters('lvl')">
+    <div class="hover:text-gray-800">
       <h1 class="font-bold text-xl" >{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
       <h1 class="font-bold">{{ language === 'es' ? 'Subiendo de nivel': 'By Level Up' }}</h1>
     </div>
 
-    <button mat-icon-button (click)="toggleFilters('lvl')">
+    <button mat-icon-button (click)="toggleFilters('lvl'); $event.stopPropagation()">
       <mat-icon>{{ filtersVisibleLevel ? 'expand_less' : 'expand_more' }}</mat-icon>
     </button>
   </div>
 
   <div [@toggleFilters]="filtersVisibleLevel ? 'visible' : 'hidden'" class="filters-container">
-    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="levelUpChangeGame($event)" class="black-tabs">
-      <mat-tab [label]="getGameName(group) | replaceDash | titlecase" *ngFor="let group of versionGroups" class="black-tab">
-        <div class="bg-white p-3 border-black border rounded-md">
-          <div class="grid grid-cols-9 gap-4 border-b border-black pb-1 mb-2 dark:border-gray-600 dark:bg-gray-800">
-            <span class="font-semibold">{{ language === 'es' ? 'Nivel': 'Level' }}</span>
-            <span class="font-semibold col-span-2">{{ language === 'es' ? 'Movimiento': 'Move' }}</span>
-            <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
-            <span class="font-semibold col-span-3">{{ language === 'es' ? 'Juego': 'Game' }}</span>
-            <span class="font-semibold col-span-2">{{ language === 'es' ? 'Tipo': 'Type' }}</span>
-          </div>
-          <div *ngFor="let pokeMove of filteredMoves">
-            <div *ngFor="let detail of pokeMove.move.version_group_details">
-              <div class="grid grid-cols-9 gap-2 mb-1 dark:border-gray-600 dark:bg-gray-800" *ngIf="detail.version_group.name === group">
-                <div class="col-span-1">
-                  {{ detail.level_learned_at }}
-                </div>
-                <div class="col-span-2">
-                  <span class="cursor-pointer hover:text-blue-500" [routerLink]="['/movement/show-movement', pokeMove.move.move.name]">{{ pokeMove.moveName }}</span>
-                </div>
-                <div class="col-span-1">
-                  <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'physical'" src="./assets/icons/movement_category/physical_category_6_7_gen.png">
-                  <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'special'" src="./assets/icons/movement_category/special_category_6_7_gen.png">
-                  <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'status'" src="./assets/icons/movement_category/status_category_6_7_gen.png">
-                </div>
-                <div class="grid grid-cols-3 col-span-3">
-                  <div class="relative col-span-2 rounded-md px-2 text-white text-center border border-black flex justify-center items-center" [ngClass]="getGameVersionColor(detail.version_group.name)">
-                    <img class="absolute left-0 top-1/2 transform -translate-y-1/2 w-8 ml-2"
-                         [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(detail.version_group.name)[0] + '.png'" alt="Game Icon">
-                    <span class="hover:text-blue-500 cursor-pointer text-md">
-                      {{ getGameName(detail.version_group.name) |replaceDash |titlecase }}
-                    </span>
-                    <img *ngIf="getGameIconGame(detail.version_group.name)[1]" class="absolute right-0 top-1/2 transform -translate-y-1/2 w-8 mr-2"
-                         [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(detail.version_group.name)[1] + '.png'" alt="Game Icon">
-                  </div>
-                </div>
-                <div class="col-span-2" *ngFor="let type of pokeMove.types">
-                  <div class="grid grid-cols-2 dark:border-gray-600 dark:bg-gray-800">
-                    <div class="text-center">
-                      <img class="w-32"
-                      [src]="'./assets/icons/types/' + type.typeName + '.png'">
-                    </div>
-                  </div>
+    <app-custom-tabs
+      [tabs]="getLevelUpTabs()"
+      [(selectedIndex)]="selectedTabIndex"
+      (tabChange)="levelUpChangeGame($event)"
+      activeTabColor="text-purple-600 dark:text-purple-400"
+      inactiveTabColor="text-gray-500 dark:text-gray-400"
+      activeTabUnderline="border-purple-600 dark:border-purple-400"
+      [showArrows]="true"
+      [scrollable]="true">
+    </app-custom-tabs>
+
+    <div class="bg-white p-3 border-black border rounded-md mt-2 dark:bg-gray-800 dark:border-gray-600">
+      <div class="grid grid-cols-9 gap-4 border-b border-black pb-1 mb-2 dark:border-gray-600">
+        <span class="font-semibold">{{ language === 'es' ? 'Nivel': 'Level' }}</span>
+        <span class="font-semibold col-span-2">{{ language === 'es' ? 'Movimiento': 'Move' }}</span>
+        <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
+        <span class="font-semibold col-span-3">{{ language === 'es' ? 'Juego': 'Game' }}</span>
+        <span class="font-semibold col-span-2">{{ language === 'es' ? 'Tipo': 'Type' }}</span>
+      </div>
+      <div *ngFor="let pokeMove of filteredMoves">
+        <div *ngFor="let detail of pokeMove.move.version_group_details">
+          <div class="grid grid-cols-9 gap-2 mb-1 dark:border-gray-600" *ngIf="detail.version_group.name === levelUpSelectedVersionGroup">
+            <div class="col-span-1">
+              {{ detail.level_learned_at }}
+            </div>
+            <div class="col-span-2">
+              <span class="cursor-pointer hover:text-blue-500" [routerLink]="['/movement/show-movement', pokeMove.move.move.name]">{{ pokeMove.moveName }}</span>
+            </div>
+            <div class="col-span-1">
+              <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'physical'" src="./assets/icons/movement_category/physical_category_6_7_gen.png">
+              <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'special'" src="./assets/icons/movement_category/special_category_6_7_gen.png">
+              <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'status'" src="./assets/icons/movement_category/status_category_6_7_gen.png">
+            </div>
+            <div class="grid grid-cols-3 col-span-3">
+              <div class="relative col-span-2 rounded-md px-2 text-white text-center border border-black flex justify-center items-center" [ngClass]="getGameVersionColor(detail.version_group.name)">
+                <img class="absolute left-0 top-1/2 transform -translate-y-1/2 w-8 ml-2"
+                     [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(detail.version_group.name)[0] + '.png'" alt="Game Icon">
+                <span class="hover:text-blue-500 cursor-pointer text-md">
+                  {{ getGameName(detail.version_group.name) |replaceDash |titlecase }}
+                </span>
+                <img *ngIf="getGameIconGame(detail.version_group.name)[1]" class="absolute right-0 top-1/2 transform -translate-y-1/2 w-8 mr-2"
+                     [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(detail.version_group.name)[1] + '.png'" alt="Game Icon">
+              </div>
+            </div>
+            <div class="col-span-2" *ngFor="let type of pokeMove.types">
+              <div class="grid grid-cols-2 dark:border-gray-600">
+                <div class="text-center">
+                  <img class="w-32"
+                  [src]="'./assets/icons/types/' + type.typeName + '.png'">
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </mat-tab>
-    </mat-tab-group>
+      </div>
+    </div>
   </div>
 
 </div>
 
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-gray-200 sm:hidden block dark:border-gray-600 dark:bg-gray-800">
 
-  <div class="flex justify-between items-center">
-    <div (click)="toggleFilters('lvl')" class="cursor-pointer">
+  <div class="flex justify-between items-center cursor-pointer" (click)="toggleFilters('lvl')">
+    <div>
       <h1 class="font-bold text-xl">{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
       <h1 class="font-bold">{{ language === 'es' ? 'Subiendo de nivel': 'By Level Up' }}</h1>
     </div>
 
-    <button mat-icon-button (click)="toggleFilters('lvl')">
+    <button mat-icon-button (click)="toggleFilters('lvl'); $event.stopPropagation()">
       <mat-icon>{{ filtersVisibleLevel ? 'expand_less' : 'expand_more' }}</mat-icon>
     </button>
   </div>
 
   <div [@toggleFilters]="filtersVisibleLevel ? 'visible' : 'hidden'" class="filters-container">
-    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="levelUpChangeGame($event)">
-    <mat-tab labelClass="text-black font-bold" *ngFor="let group of versionGroups" [label]="getGameName(group) | replaceDash | titlecase">
+    <app-custom-tabs
+      [tabs]="getLevelUpTabs()"
+      [(selectedIndex)]="selectedTabIndex"
+      (tabChange)="levelUpChangeGame($event)"
+      activeTabColor="text-purple-600 dark:text-purple-400"
+      inactiveTabColor="text-gray-500 dark:text-gray-400"
+      activeTabUnderline="border-purple-600 dark:border-purple-400"
+      [showArrows]="true"
+      [scrollable]="true">
+    </app-custom-tabs>
 
-  <div class="bg-white dark:bg-gray-800 dark:border-gray-600 p-3 border-black border rounded-md">
-    <!-- Encabezado para pantallas grandes -->
-    <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2 move-header dark:border-gray-600 dark:bg-gray-800">
-      <span class="font-semibold">{{ language === 'es' ? 'Nivel': 'Level' }}</span>
-      <span class="font-semibold">{{ language === 'es' ? 'Movimiento': 'Move' }}</span>
-      <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
-      <span class="font-semibold">{{ language === 'es' ? 'Juego': 'Game' }}</span>
-      <span class="font-semibold">{{ language === 'es' ? 'Tipo': 'Type' }}</span>
-    </div>
-
-    <!-- Fila de movimientos -->
-    <div *ngFor="let pokeMove of filteredMoves" class="move-row dark:border-gray-600 dark:bg-gray-800">
-      <div class="move-detail">
-        <span class="move-label">{{ language === 'es' ? 'Nivel': 'Level' }}</span>
-        <span class="move-value">{{ getLevelLearnedAt(pokeMove) }}</span>
-      </div>
-      <div class="move-detail">
-        <span class="move-label">{{ language === 'es' ? 'Movimiento': 'Move' }}</span>
-        <span class="move-value hover:text-blue-500" [routerLink]="['/movement/show-movement', pokeMove.move.move.name]">{{ pokeMove.moveName }}</span>
-      </div>
-      <div class="move-detail">
+    <div class="bg-white dark:bg-gray-800 dark:border-gray-600 p-3 border-black border rounded-md mt-2">
+      <!-- Encabezado para pantallas grandes -->
+      <div class="grid grid-cols-4 gap-4 border-b border-black pb-1 mb-2 move-header dark:border-gray-600 dark:bg-gray-800">
+        <span class="font-semibold">{{ language === 'es' ? 'Nivel': 'Level' }}</span>
+        <span class="font-semibold">{{ language === 'es' ? 'Movimiento': 'Move' }}</span>
         <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
-        <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'physical'" src="./assets/icons/movement_category/physical_category_6_7_gen.png">
-        <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'special'" src="./assets/icons/movement_category/special_category_6_7_gen.png">
-        <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'status'" src="./assets/icons/movement_category/status_category_6_7_gen.png">
+        <span class="font-semibold">{{ language === 'es' ? 'Juego': 'Game' }}</span>
+        <span class="font-semibold">{{ language === 'es' ? 'Tipo': 'Type' }}</span>
       </div>
-      <div class="move-detail">
-        <span class="move-label">{{ language === 'es' ? 'Juego': 'Game' }}</span>
-        <span class="game-version rounded-md px-2 text-white text-center border border-black" [ngClass]="getGameVersionColor(getVersionGroupName(pokeMove))">
-          {{ getGameName(getVersionGroupName(pokeMove)) | replaceDash | titlecase}}
-        </span>
-      </div>
-      <div class="move-detail">
-        <span class="move-label">{{ language === 'es' ? 'Tipo': 'Type' }}</span>
-        <span class="type text-center">
-          <img class="w-32"
-          [src]="'./assets/icons/types/' + getTypeName(pokeMove) + '.png'">
-        </span>
+
+      <!-- Fila de movimientos -->
+      <div *ngFor="let pokeMove of filteredMoves" class="move-row dark:border-gray-600 dark:bg-gray-800">
+        <div class="move-detail">
+          <span class="move-label">{{ language === 'es' ? 'Nivel': 'Level' }}</span>
+          <span class="move-value">{{ getLevelLearnedAt(pokeMove) }}</span>
+        </div>
+        <div class="move-detail">
+          <span class="move-label">{{ language === 'es' ? 'Movimiento': 'Move' }}</span>
+          <span class="move-value hover:text-blue-500" [routerLink]="['/movement/show-movement', pokeMove.move.move.name]">{{ pokeMove.moveName }}</span>
+        </div>
+        <div class="move-detail">
+          <span class="font-semibold">{{ language === 'es' ? 'Tipo Daño': 'Damage Type' }}</span>
+          <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'physical'" src="./assets/icons/movement_category/physical_category_6_7_gen.png">
+          <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'special'" src="./assets/icons/movement_category/special_category_6_7_gen.png">
+          <img *ngIf="pokeMove.move.detailMove.damage_class.name === 'status'" src="./assets/icons/movement_category/status_category_6_7_gen.png">
+        </div>
+        <div class="move-detail">
+          <span class="move-label">{{ language === 'es' ? 'Juego': 'Game' }}</span>
+          <span class="game-version rounded-md px-2 text-white text-center border border-black" [ngClass]="getGameVersionColor(getVersionGroupName(pokeMove))">
+            {{ getGameName(getVersionGroupName(pokeMove)) | replaceDash | titlecase}}
+          </span>
+        </div>
+        <div class="move-detail">
+          <span class="move-label">{{ language === 'es' ? 'Tipo': 'Type' }}</span>
+          <span class="type text-center">
+            <img class="w-32"
+            [src]="'./assets/icons/types/' + getTypeName(pokeMove) + '.png'">
+          </span>
+        </div>
       </div>
     </div>
-  </div>
-  </mat-tab>
-    </mat-tab-group>
   </div>
 
 </div>
