@@ -106,21 +106,21 @@ export class AuthService {
   }
 
   setLanguageFromUser(language: string): void {
-    if(this.isAuthenticated()) {
-      try {
-        const userConfigData = this.getUserConfigData();
-        userConfigData.language = language;
-        if(userConfigData) {
-          this.updateUserConfig(userConfigData).subscribe();
-        } else {
-          this.createUserConfig({ language: language }).subscribe();
-        }
-      } catch (error) {
-        console.error('Error setting language:', error);
-      }
-    } else {
+    // if(this.isAuthenticated()) {
+    //   try {
+    //     const userConfigData = this.getUserConfigData();
+    //     if(userConfigData) {
+    //       userConfigData.language = language;
+    //       this.updateUserConfig(userConfigData).subscribe();
+    //     } else {
+    //       this.createUserConfig({ id: userConfigData?.id || 0, language: language }).subscribe();
+    //     }
+    //   } catch (error) {
+    //     console.error('Error setting language:', error);
+    //   }
+    // } else {
       this.setLanguage(language);
-    }
+    // }
   }
 
   setLanguage(language: string): void {

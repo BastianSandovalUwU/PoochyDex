@@ -16,5 +16,6 @@ export type UserConfigData = {
 }
 
 export type CreateUserConfigData = {
+  id: number;
   language: string;
 }

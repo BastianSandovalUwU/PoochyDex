@@ -1,4 +1,4 @@
-<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-black dark:border-gray-600 dark:bg-gray-800" *ngIf="groupedLocations.length > 0">
+<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-gray-200border-black dark:border-gray-600 dark:bg-gray-800" *ngIf="groupedLocations.length > 0">
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-xl cursor-pointer hover:text-gray-800" (click)="toggleFilters()">{{ language === 'es' ? 'Localización': 'Localization' }}</h1>
     <button mat-icon-button (click)="toggleFilters()">
