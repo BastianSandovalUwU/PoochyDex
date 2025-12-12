@@ -70,13 +70,9 @@
   <div class="grid grid-cols-3 sm:grid-cols-5 gap-0 mt-2">
     <div class="col-span-3 sm:col-span-5 flex justify-center">
       <div [ngClass]="'gap-1 grid grid-cols-' + pokemon.types.length">
-        <div *ngFor="let languageTypes of pokemontypes">
-          <div *ngFor="let type of languageTypes">
-            <div *ngIf="type.language === language" class="rounded-md text-center">
-              <img class="w-32"
-              [src]="'./assets/icons/types/' + type.typeName + '.png'">
-            </div>
-          </div>
+        <div *ngFor="let type of pokemontypes" class="rounded-md text-center">
+          <img class="w-32"
+          [src]="'./assets/icons/types/' + type.typeName + '.png'">
         </div>
       </div>
     </div>

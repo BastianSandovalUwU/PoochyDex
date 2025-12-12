@@ -36,7 +36,7 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
     private helperService: HelperService,
     private loadingService: LoadingService,
     private activatedRoute: ActivatedRoute,
-    private errorMessageService: ErrorMessageService
+    private errorMessageService: ErrorMessageService,
   ) {}
 
   ngOnInit() {
@@ -59,7 +59,7 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
       .subscribe(params => {
         if (params?.["name"]) {
           this.pokemonName = params["name"];
-          this.getPokemonByName(params["name"]);
+          this.getPokemonByName(this.pokemonName);
         }
       });
   }
@@ -118,79 +118,69 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
   }
 
   getPokemonMoves(): void {
-    const pokemonId = this.checkForm(this.pokemon.name) ?
-      (this.pokemon.id - 10000).toString() :
-      this.pokemon.id.toString();
+    // Usar directamente los moves del pokemon que ya tenemos
+    const moves = this.pokemon.moves;
 
-    this.pokeApiService.getPokemonMoves(pokemonId)
+    if (!moves || moves.length === 0) {
+      this.loading = false;
+      this.loadingService.hide();
+      return;
+    }
+
+    const observables = moves.map(move =>
+      this.pokeApiService.getMoveByUrl(move.move.url, move.move.name, move.version_group_details[0].version_group.name)
+    );
+
+    forkJoin(observables)
       .pipe(takeUntil(this.destroy$))
-      .subscribe(moves => {
-        const observables = moves.map(move =>
-          this.pokeApiService.getMoveByUrl(move.move.url, move.move.name, move.version_group_details[0].version_group.name)
-        );
+      .subscribe({
+        next: (details) => {
+          const movesArray = moves.map((move, index) => ({
+            ...move,
+            detailMove: details[index]
+          }));
 
-        forkJoin(observables)
-          .pipe(takeUntil(this.destroy$))
-          .subscribe({
-            next: (details) => {
-              const movesArray = moves.map((move, index) => ({
-                ...move,
-                detailMove: details[index]
-              }));
+          // Usar getTypeNameByLanguage directamente (es síncrono)
+          this.movesWithTypesEn = movesArray.map((move) => {
+            const typeNameEn = this.helperService.getTypeNameByLanguage(move.detailMove.type.name, 'en');
+            const moveName = move.detailMove.names.find(name => name.language.name === 'en')?.name || move.move.name;
 
-              const typeNamesObservables = movesArray.map(move =>
-                move.detailMove.type.name !== 'unknown'
-                  ? this.helperService.getMoveType(move.detailMove.type.name)
-                  : of([{ language: this.language, typeName: 'No Encontrado' }])
-              );
-
-              forkJoin(typeNamesObservables)
-                .pipe(takeUntil(this.destroy$))
-                .subscribe({
-                  next: (typeNamesArray) => {
-                    this.movesWithTypesEn = typeNamesArray.map((typeNames, index) => {
-                      const filteredTypeNames = typeNames.filter(f => f.language === 'en');
-                      const moveName = movesArray[index].detailMove.names.find(name => name.language.name === 'en')?.name || movesArray[index].move.name;
-
-                      return {
-                        move: movesArray[index],
-                        types: filteredTypeNames,
-                        moveName
-                      };
-                    });
-
-                    this.movesWithTypesEs = typeNamesArray.map((typeNames, index) => {
-                      const filteredTypeNames = typeNames.filter(f => f.language === 'es');
-                      const moveName = movesArray[index].detailMove.names.find(name => name.language.name === 'es')?.name || movesArray[index].move.name;
-
-                      return {
-                        move: movesArray[index],
-                        types: filteredTypeNames,
-                        moveName
-                      };
-                    });
-
-                    this.movesWithTypes = this.language === 'es' ? this.movesWithTypesEs : this.movesWithTypesEn;
-                    this.loading = false;
-                    timer(2000).subscribe(() => {
-                      this.loadingService.hide();
-                    });
-                  },
-                  error: (error) => {
-                    const errorMessage = this.language === 'es' ? 'Error al cargar los movimientos' : 'Error loading moves';
-                    this.errorMessageService.showError(errorMessage, error.message);
-                    this.loading = false;
-                    this.loadingService.hide();
-                  }
-                });
-            },
-            error: (error) => {
-              const errorMessage = this.language === 'es' ? 'Error al cargar los movimientos' : 'Error loading moves';
-              this.errorMessageService.showError(errorMessage, error.message);
-              this.loading = false;
-              this.loadingService.hide();
-            }
+            return {
+              move: move,
+              types: [{
+                language: 'en',
+                typeName: typeNameEn
+              }],
+              moveName
+            };
           });
+
+          this.movesWithTypesEs = movesArray.map((move) => {
+            const typeNameEs = this.helperService.getTypeNameByLanguage(move.detailMove.type.name, 'es');
+            const moveName = move.detailMove.names.find(name => name.language.name === 'es')?.name || move.move.name;
+
+            return {
+              move: move,
+              types: [{
+                language: 'es',
+                typeName: typeNameEs
+              }],
+              moveName
+            };
+          });
+
+          this.movesWithTypes = this.language === 'es' ? this.movesWithTypesEs : this.movesWithTypesEn;
+          this.loading = false;
+          timer(2000).subscribe(() => {
+            this.loadingService.hide();
+          });
+        },
+        error: (error) => {
+          const errorMessage = this.language === 'es' ? 'Error al cargar los movimientos' : 'Error loading moves';
+          this.errorMessageService.showError(errorMessage, error.message);
+          this.loading = false;
+          this.loadingService.hide();
+        }
       });
   }
 

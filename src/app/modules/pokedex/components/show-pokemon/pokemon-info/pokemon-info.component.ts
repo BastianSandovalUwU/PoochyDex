@@ -17,7 +17,7 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   @Input() pokemonSpriteShiny: string;
 
   backgroundColor: string = '';
-  pokemontypes: { language: string, typeName: string }[][];
+  pokemontypes: { language: string, typeName: string }[] = [];
   filteredAbilityNames: { ability: Ability, name: string }[] = [];
   abilityNames: { ability: Ability, names: AbilityName[] }[];
   showShiny: boolean = false;
@@ -53,8 +53,11 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
 
     this.getPokemonColor();
     this.getPokemonAbility();
-    this.helperService.getPokemonTypes(this.pokemon.types).subscribe((types) => {
-      this.pokemontypes = types;
+    this.pokemontypes = this.pokemon.types.map(type => {
+      return {
+        language: this.language,
+        typeName: this.helperService.getTypeNameByLanguage(type.type.name, this.language)
+      }
     });
     this.pokemonNameRomaji = this.pokemonSpecie.names.filter(f => f.language.name === 'roomaji')[0];
     this.pokemonNameHirgana = this.pokemonSpecie.names.filter(f => f.language.name === 'ja-Hrkt')[0];

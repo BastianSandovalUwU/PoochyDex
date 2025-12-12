@@ -65,21 +65,6 @@ export class HelperService {
     });
   }
 
-  getPokemonTypes(types: Type[]): Observable<{ language: string, typeName: string }[][]> {
-    const observables = types.map(type => this.pokeApiService.getPokemonTypeByName(type.type.name));
-
-    return forkJoin(observables).pipe(
-      map((results: any[]) => {
-        return results.map(type => {
-          return type.names.map(nameInfo => ({
-            language: nameInfo.language.name,
-            typeName: nameInfo.name
-          }));
-        });
-      })
-    );
-  }
-
   getAbilityNames(abilities: Ability[]): Observable<{ ability: Ability, names: AbilityName[] }[]> {
     const observables = abilities.map(ability =>
       this.pokeApiService.getAbilityById(ability.ability.name)
@@ -98,20 +83,33 @@ export class HelperService {
     );
   }
 
-  getMoveType(typeName: string): Observable<{ language: string, typeName: string }[]> {
-    return this.pokeApiService.getPokemonTypeByName(typeName).pipe(
-      map((type: any) => {
-        return type.names.map(nameInfo => ({
-          language: nameInfo.language.name,
-          typeName: nameInfo.name
-        }));
-      }),
-      catchError(error => {
-        console.error(`Error al obtener el tipo del movimiento ${typeName}:`, error);
-        // Return an empty array or a default value in case of error
-        return of([]);
-      })
-    );
+  getTypeNameByLanguage(typeName: string, language: string): string {
+    if(language === 'en') {
+      return typeName.charAt(0).toUpperCase() + typeName.slice(1);
+    } else {
+      switch (typeName.toLowerCase()) {
+        case 'grass': return 'Planta';
+        case 'fire': return 'Fuego';
+        case 'water': return 'Agua';
+        case 'bug': return 'Bicho';
+        case 'normal': return 'Normal';
+        case 'poison': return 'Veneno';
+        case 'electric': return 'Eléctrico';
+        case 'ground': return 'Tierra';
+        case 'fairy': return 'Hada';
+        case 'fighting': return 'Lucha';
+        case 'psychic': return 'Psíquico';
+        case 'rock': return 'Roca';
+        case 'ghost': return 'Fantasma';
+        case 'ice': return 'Hielo';
+        case 'dragon': return 'Dragón';
+        case 'dark': return 'Siniestro';
+        case 'steel': return 'Acero';
+        case 'flying': return 'Volador';
+      default:
+        return typeName;
+      }
+    }
   }
 
   getMoveNameByLanguage(move: DetailMove, language: string): Observable<{ language: string, moveName: string }> {

@@ -48,6 +48,7 @@ export class PokeApiService {
       species: pokemon.species,
       is_default: pokemon.is_default,
       cries: pokemon.cries,
+      moves: pokemon.moves,
     };
   }
 
@@ -118,15 +119,15 @@ export class PokeApiService {
   }
 
   getPokemonByName(name: string): Observable<Pokemon> {
-    const cachedPokemon = this.getPokemonFromCache(name);
-    if (!this.isOnline && cachedPokemon) {
-      this.lastDataSourceSubject.next('cache');
-      return of(cachedPokemon);
-    }
+    // const cachedPokemon = this.getPokemonFromCache(name);
+    // if (!this.isOnline && cachedPokemon) {
+    //   this.lastDataSourceSubject.next('cache');
+    //   return of(cachedPokemon);
+    // }
 
-    if (this.checkPokemonForm(name)) {
-      return this.getMegaFormPokemon(name);
-    }
+    // if (this.checkPokemonForm(name)) {
+    //   return this.getMegaFormPokemon(name);
+    // }
 
     const url = `${this.apiUrl}/pokemon/${name}/`;
     return this.http.get<PokemonFull>(url).pipe(
@@ -207,16 +208,6 @@ export class PokeApiService {
     return this.http.get<any>(url).pipe(
       catchError(error => {
         console.error('Error al obtener los pokémon de la generacion número:', generationNumber, error);
-        return throwError(() => error);
-      })
-    );
-  }
-
-  getPokemonTypeByName(typeName: string): Observable<PokemonTypes> {
-    const url = `${this.apiUrl}/type/${typeName}/`;
-    return this.http.get<PokemonTypes>(url).pipe(
-      catchError(error => {
-        console.error('Error al obtener el tipo:', typeName, error);
         return throwError(() => error);
       })
     );
