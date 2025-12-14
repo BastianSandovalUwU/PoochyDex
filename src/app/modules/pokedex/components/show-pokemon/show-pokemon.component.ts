@@ -77,8 +77,12 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (pokeInfo) => {
           this.pokemon = pokeInfo;
-          this.pokemonSprite = this.helperService.getPokemonSpriteImg(this.pokemon["name"], "home");
-          this.pokemonSpriteShiny = this.helperService.getPokemonSpriteImg(this.pokemon["name"], "homeShiny");
+          this.helperService.getPokemonSpriteImg(this.pokemon["name"], "home")
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(sprite => this.pokemonSprite = sprite);
+          this.helperService.getPokemonSpriteImg(this.pokemon["name"], "homeShiny")
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(sprite => this.pokemonSpriteShiny = sprite);
           this.getPokemonSpecie(this.pokemon.species.name);
         },
         error: (error) => {

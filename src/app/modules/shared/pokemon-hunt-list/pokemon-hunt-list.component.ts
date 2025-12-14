@@ -41,7 +41,6 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     ...ALL_POKEMON_PALDEA_REGIONAL_FORMS,
     ...ALL_POKEMON_HISUI_REGIONAL_FORMS
   ];
-
   private pokemonDataMap: Map<string, PokemonList> = new Map();
 
   filteredPokemon: PokemonList[] = [];
@@ -115,19 +114,25 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
               number: entryNumber
             });
           } else {
-            const pokeImgname = this.helperService.getPokemonSpriteImg(entry.pokemon_species.name, "home");
-            pokemonList.push({
+            const pokemonEntry = {
               name: pokemonName,
               number: entryNumber,
               sprites: {
-                homeUrl: pokeImgname,
-                homeShinyUrl: pokeImgname,
-                iconUrl: pokeImgname
+                homeUrl: '',
+                homeShinyUrl: '',
+                iconUrl: ''
               },
               type: 'normal',
               type2: undefined,
               generationId: 1
-            });
+            };
+            pokemonList.push(pokemonEntry);
+            this.helperService.getPokemonSpriteImg(entry.pokemon_species.name, "icon")
+              .subscribe(pokeImgname => {
+                pokemonEntry.sprites.homeUrl = pokeImgname;
+                pokemonEntry.sprites.homeShinyUrl = pokeImgname;
+                pokemonEntry.sprites.iconUrl = pokeImgname;
+              });
           }
         }
 

@@ -104,7 +104,8 @@ export const ALL_POKEDEX_OPTIONS: PokedexOption[] = [
     { id: 31, name: 'Paldea', nameEs: 'Paldea', images: ['https://i.imgur.com/PsLaI7r.jpeg', 'https://i.imgur.com/6GEnh4f.jpeg'] },
     { id: 32, name: 'Kitakami', nameEs: 'Noroteo', images: ['https://i.imgur.com/jv0P01F.png', 'https://i.imgur.com/N2dhHJW.png'] },
     { id: 33, name: 'Blueberry', nameEs: 'Academia Arándano', images: ['https://i.imgur.com/YxMXhdB.jpeg', 'https://i.imgur.com/UUJEL8O.png'] },
-    { id: 34, name: 'Lumiose City', nameEs: 'Ciudad Lumiose', images: ['https://i.imgur.com/CJP3FnR.jpeg', 'https://i.imgur.com/JHRUGeb.jpeg'] }
+    { id: 34, name: 'Lumiose City', nameEs: 'Ciudad Lumiose', images: ['https://i.imgur.com/CJP3FnR.jpeg', 'https://i.imgur.com/JHRUGeb.jpeg'] },
+    { id: 35, name: 'Hyper Space', nameEs: 'Hiper Espacio', images: ['https://i.imgur.com/CJP3FnR.jpeg', 'https://i.imgur.com/JHRUGeb.jpeg'] }
   ] as const;
 
 export const ALL_POKEMON = [

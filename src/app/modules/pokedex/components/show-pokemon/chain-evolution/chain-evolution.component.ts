@@ -67,53 +67,18 @@ export class ChainEvolutionComponent implements OnInit, OnChanges {
   }
 
   populateEvolutionChainDetails(evolution: EvolutionChain) {
-    let pokemonName: string = '';
-    this.pokeApiService.getPokemonByName(evolution.chain.species.name).subscribe({
-      next: (pokeInfo) => {
-        pokemonName = pokeInfo.name;
-        evolution.chain.pokemonName = pokemonName;
-        const sprite = this.helperService.getPokemonSpriteImg(evolution.chain.species.name, "home");
-        evolution.chain.imageName = sprite;
-      },
-      error: (error) => {
-        const errorMessage = this.language === 'es' ? 'Error al cargar el Pokémon' : 'Error loading Pokémon';
-        this.errorMessageService.showError(errorMessage, error.message);
-      }
-    });
+    this.helperService.getPokemonSpriteImg(evolution.chain.species.name, "home")
+      .subscribe(sprite => evolution.chain.imageName = sprite);
 
-    if (evolution.chain.evolves_to && evolution.chain.evolves_to.length > 0) {
-
+    if(evolution.chain.evolves_to && evolution.chain.evolves_to.length > 0) {
       evolution.chain.evolves_to.forEach((evolvesTo) => {
-        let pokemonName2: string = '';
-        this.pokeApiService.getPokemonByName(evolvesTo.species.name).subscribe({
-          next: (pokeInfo) => {
-            pokemonName2 = pokeInfo.name;
-            evolvesTo.pokemonName = pokemonName2;
-            const sprite2 = this.helperService.getPokemonSpriteImg(pokemonName2, "home");
-            evolvesTo.imageName = sprite2;
-          },
-          error: (error) => {
-            const errorMessage = this.language === 'es' ? 'Error al cargar el Pokémon' : 'Error loading Pokémon';
-            this.errorMessageService.showError(errorMessage, error.message);
-          }
-        });
+        this.helperService.getPokemonSpriteImg(evolvesTo.species.name, "home")
+          .subscribe(sprite2 => evolvesTo.imageName = sprite2);
 
         if(evolvesTo.evolves_to && evolvesTo.evolves_to.length > 0) {
             evolvesTo.evolves_to.forEach((evolvesTo2) => {
-            let pokemonName3: string = '';
-            this.pokeApiService.getPokemonByName(evolvesTo2.species.name).subscribe({
-              next: (pokeInfo) => {
-                pokemonName3 = pokeInfo.name;
-                evolvesTo2.pokemonName = pokemonName3;
-                const sprite3 = this.helperService.getPokemonSpriteImg(pokemonName3, "home");
-                evolvesTo2.imageName = sprite3;
-              },
-              error: (error) => {
-                const errorMessage = this.language === 'es' ? 'Error al cargar el Pokémon' : 'Error loading Pokémon';
-                this.errorMessageService.showError(errorMessage, error.message);
-              }
-            });
-
+              this.helperService.getPokemonSpriteImg(evolvesTo2.species.name, "home")
+                .subscribe(sprite3 => evolvesTo2.imageName = sprite3);
           })
         };
 

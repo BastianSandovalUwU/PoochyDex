@@ -40,8 +40,8 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   }
 
   loadInfo() {
-    this.pokemonSprite = this.helperService.getPokemonSpriteImg(this.pokemon.name, "home");
-    this.pokemonSpriteShiny = this.helperService.getPokemonSpriteImg(this.pokemon.name, "homeShiny");
+    this.helperService.getPokemonSpriteImg(this.pokemon.name, "home").subscribe(sprite => this.pokemonSprite = sprite);
+    this.helperService.getPokemonSpriteImg(this.pokemon.name, "homeShiny").subscribe(sprite => this.pokemonSpriteShiny = sprite);
 
     const artwork = this.helperService.getPokemonArtwork(this.pokemon.name);
     this.sugimoriArtUrl = artwork.sugimoriArt;

@@ -139,11 +139,11 @@ export class PokeApiService {
       map(response => this.convertToLitePokemon(response)),
       catchError(error => {
         console.error('Error al obtener el pokémon:', name, error);
-        const cached = this.getPokemonFromCache(name);
-        if (cached) {
-          this.lastDataSourceSubject.next('cache');
-          return of(cached);
-        }
+        // const cached = this.getPokemonFromCache(name);
+        // if (cached) {
+        //   this.lastDataSourceSubject.next('cache');
+        //   return of(cached);
+        // }
         return throwError(() => error);
       })
     );

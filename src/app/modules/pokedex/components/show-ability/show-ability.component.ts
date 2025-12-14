@@ -53,11 +53,15 @@ export class ShowAbilityComponent implements OnInit {
         if (ability && ability.pokemon) {
           const pokemonObservables = ability.pokemon.map(entry => {
             return this.pokeApiService.getPokemonByName(entry.pokemon.name).pipe(
-              map(pokemonDetail => ({
-                ...entry,
-                pokemonDetail,
-                pokemonSprite: this.helperService.getPokemonSpriteImg(entry.pokemon.name, "home")
-              }))
+              switchMap(pokemonDetail =>
+                this.helperService.getPokemonSpriteImg(entry.pokemon.name, "home").pipe(
+                  map(pokemonSprite => ({
+                    ...entry,
+                    pokemonDetail,
+                    pokemonSprite
+                  }))
+                )
+              )
             );
           });
           return forkJoin(pokemonObservables).pipe(

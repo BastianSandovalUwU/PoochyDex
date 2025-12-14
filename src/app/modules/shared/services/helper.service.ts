@@ -641,27 +641,33 @@ export class HelperService {
       }
   }
 
-  getPokemonSpriteImg(pokemonName: string, option: "home" | "icon" | "homeShiny"): string {
-    let name = this.getCorrectPokemonName(pokemonName);
-    let allPokemon = this.allPokemon;
-    allPokemon = allPokemon.concat(this.allPokemonForms);
-    const pokemon = allPokemon.find(f => f.name === name);
+  getPokemonSpriteImg(pokemonName: string, option: "home" | "icon" | "homeShiny" | "globalLinkArt"): Observable<string> {
+    const name = this.getCorrectPokemonName(pokemonName);
+    console.log(name);
     const placeholder = "https://i.imgur.com/uKx7iOF.png"; //missigNo placeholder image
 
-    if (!pokemon || !pokemon.sprites) {
-      return placeholder;
-    }
+    return this.poochyDexApiService.getPokemonByName(name).pipe(
+      map((response) => {
+        const pokemon = response.data;
+        if (!pokemon || !pokemon.sprites) {
+          return placeholder;
+        }
 
-    switch (option) {
-      case "icon":
-        return pokemon.sprites.iconUrl || placeholder;
-      case "home":
-        return pokemon.sprites.homeUrl || placeholder;
-      case "homeShiny":
-        return pokemon.sprites.homeShinyUrl || placeholder;
-      default:
-        return placeholder;
-    }
+        switch (option) {
+          case "icon":
+            return pokemon.sprites.iconUrl || placeholder;
+          case "home":
+            return pokemon.sprites.homeUrl || placeholder;
+          case "homeShiny":
+            return pokemon.sprites.homeShinyUrl || placeholder;
+          case "globalLinkArt":
+            return pokemon.sprites.globalLinkArt || placeholder;
+          default:
+            return placeholder;
+        }
+      }),
+      catchError(() => of(placeholder))
+    );
   }
 
   /**
@@ -743,6 +749,10 @@ export class HelperService {
         return 'toxtricity-amped'
       case 'eiscue':
         return 'eiscue-ice'
+      case 'squawkabilly':
+        return 'squawkabilly-green-plumage'
+      case 'tatsugiri':
+        return 'tatsugiri-curly'
       default:
         return pokemonName;
     }

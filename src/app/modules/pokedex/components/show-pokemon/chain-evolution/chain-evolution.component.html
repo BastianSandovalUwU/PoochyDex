@@ -111,11 +111,11 @@
     <!-- Normal case for single evolution -->
     <ng-container *ngIf="evolutionChain.chain.evolves_to?.length === 1">
       <div class="hidden sm:flex flex-col items-center evolution-step">
-        <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(evolutionChain.chain.pokemonName)">
-          {{ evolutionChain.chain.pokemonName |translatePokemonName |replaceDash | titlecase }}
+        <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(evolutionChain.chain.species.name)">
+          {{ evolutionChain.chain.species.name |translatePokemonName |replaceDash | titlecase }}
         </p>
         <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="evolutionChain.chain?.imageName"
-             (click)="goToPokemonPage(evolutionChain.chain.pokemonName)"
+             (click)="goToPokemonPage(evolutionChain.chain.species.name)"
              [src]="evolutionChain.chain.imageName">
       </div>
       <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
@@ -198,10 +198,10 @@
     <ng-container *ngIf="evolutionChain.chain.evolves_to?.length === 1">
       <div class="sm:hidden flex flex-col items-center evolution-step">
         <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="evolutionChain.chain?.imageName"
-             (click)="goToPokemonPage(evolutionChain.chain.pokemonName)"
+             (click)="goToPokemonPage(evolutionChain.chain.species.name)"
              [src]="evolutionChain.chain.imageName">
-        <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(evolutionChain.chain.pokemonName)">
-          {{ evolutionChain.chain.pokemonName |translatePokemonName |replaceDash | titlecase }}
+        <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(evolutionChain.chain.species.name)">
+          {{ evolutionChain.chain.species.name |translatePokemonName |replaceDash | titlecase }}
         </p>
       </div>
       <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
@@ -283,10 +283,10 @@
     <ng-container *ngIf="evolutionChain.chain.evolves_to?.length > 1">
       <div class="sm:hidden flex flex-col items-center evolution-step">
         <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="evolutionChain.chain?.imageName"
-             (click)="goToPokemonPage(evolutionChain.chain.pokemonName)"
+             (click)="goToPokemonPage(evolutionChain.chain.species.name)"
              [src]="evolutionChain.chain.imageName">
-        <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(evolutionChain.chain.pokemonName)">
-          {{ evolutionChain.chain.pokemonName |translatePokemonName |replaceDash | titlecase }}
+        <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(evolutionChain.chain.species.name)">
+          {{ evolutionChain.chain.species.name |translatePokemonName |replaceDash | titlecase }}
         </p>
 
       <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">

@@ -49,7 +49,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.cdr.detectChanges();
     });
 
-    this.helperService.createAllPokemonCache();
+    // this.helperService.createAllPokemonCache();
 
     this.languageService.currentLanguage$.subscribe(language => {
       this.currentLanguage = language;
