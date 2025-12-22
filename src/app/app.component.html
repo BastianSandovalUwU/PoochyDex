@@ -32,8 +32,7 @@
   <app-menu [isOpen]="isMenuOpen"
             (close)="closeMenu()"
             [language]="currentLanguage"
-            [userData]="currentUser"
-            (refreshCacheRequested)="onRefreshCacheRequested()">
+            [userData]="currentUser">
   </app-menu>
 
   <!-- Main Content -->
@@ -44,7 +43,7 @@
   <app-up-button *ngIf="!loading"></app-up-button>
   <app-search-button *ngIf="!loading"></app-search-button>
   <app-footer></app-footer>
-  <app-loading-spinner [loading]="loading" [isCacheLoading]="isCacheLoading"></app-loading-spinner>
+  <app-loading-spinner [loading]="loading"></app-loading-spinner>
   <app-new-update-view></app-new-update-view>
   <app-error-message-view></app-error-message-view>
 </div>

@@ -49,13 +49,9 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.helperService.isCacheLoading$
-      .pipe(
-        takeUntil(this.destroy$),
-        switchMap(isLoading =>
-          isLoading ? of(null) : this.activatedRoute.params
-        )
-      )
+    // Cargar el Pokémon directamente sin esperar el caché
+    this.activatedRoute.params
+      .pipe(takeUntil(this.destroy$))
       .subscribe(params => {
         if (params?.["name"]) {
           this.pokemonName = params["name"];

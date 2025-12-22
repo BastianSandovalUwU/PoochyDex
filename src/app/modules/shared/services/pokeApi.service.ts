@@ -119,57 +119,22 @@ export class PokeApiService {
   }
 
   getPokemonByName(name: string): Observable<Pokemon> {
-    // const cachedPokemon = this.getPokemonFromCache(name);
-    // if (!this.isOnline && cachedPokemon) {
-    //   this.lastDataSourceSubject.next('cache');
-    //   return of(cachedPokemon);
-    // }
-
-    // if (this.checkPokemonForm(name)) {
-    //   return this.getMegaFormPokemon(name);
-    // }
-
     const url = `${this.apiUrl}/pokemon/${name}/`;
     return this.http.get<PokemonFull>(url).pipe(
-      timeout(3000),
-      tap(response => {
-        this.lastDataSourceSubject.next(navigator.onLine ? 'network' : 'cache');
-        this.setPokemonInCache(name, response);
-      }),
       map(response => this.convertToLitePokemon(response)),
       catchError(error => {
         console.error('Error al obtener el pokémon:', name, error);
-        // const cached = this.getPokemonFromCache(name);
-        // if (cached) {
-        //   this.lastDataSourceSubject.next('cache');
-        //   return of(cached);
-        // }
         return throwError(() => error);
       })
     );
   }
 
   getPokemonById(id: number): Observable<Pokemon> {
-    const cachedPokemon = this.getPokemonFromCache(id.toString());
-    if (!this.isOnline && cachedPokemon) {
-      this.lastDataSourceSubject.next('cache');
-      return of(cachedPokemon);
-    }
     const url = `${this.apiUrl}/pokemon/${id}/`;
     return this.http.get<PokemonFull>(url).pipe(
-      timeout(3000),
-      tap(response => {
-        this.lastDataSourceSubject.next(navigator.onLine ? 'network' : 'cache');
-        this.setPokemonInCache(id.toString(), response);
-      }),
       map(response => this.convertToLitePokemon(response)),
       catchError(error => {
         console.error('Error al obtener el pokémon:', id, error);
-        const cached = this.getPokemonFromCache(id.toString());
-        if (cached) {
-          this.lastDataSourceSubject.next('cache');
-          return of(cached);
-        }
         return throwError(() => error);
       })
     );

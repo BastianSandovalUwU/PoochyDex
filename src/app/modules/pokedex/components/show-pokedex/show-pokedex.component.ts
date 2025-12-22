@@ -44,19 +44,28 @@ export class ShowPokedexComponent implements OnInit {
       for (let index = 0; index < pokemon.pokemon_entries.length; index++) {
         const pokeInfo = {
           ...pokemon.pokemon_entries[index],
-          name: this.helperService.getCorrectPokemonName(pokemon.pokemon_entries[index].pokemon_species.name),
         }
         pokemonVarieties.push(pokeInfo);
-        this.helperService.getPokemonSpriteImg(pokemon.pokemon_entries[index].pokemon_species.name, "home")
+        this.helperService.getPokemonSpriteImg(pokemon.pokemon_entries[index].pokemon_species.name, "icon")
           .subscribe(pokeImgname => pokeInfo.imageName = pokeImgname);
       }
       this.pokedex = pokemonVarieties;
+      console.log(this.pokedex);
     },
     error: (error) => {
       const errorMessage = this.language === 'es' ? 'Error al cargar la Pokédex' : 'Error loading Pokedex';
       this.errorMessageService.showError(errorMessage, error.message);
     }
   });
+  }
+
+
+  addZerosToNumber(number: number): string {
+    return this.helperService.addZerosToNumber(number);
+  }
+
+  getGameIconNameForLanguage(typeName: string, language: string): string {
+    return this.helperService.getGameIconNameForLanguage(typeName, language);
   }
 
 

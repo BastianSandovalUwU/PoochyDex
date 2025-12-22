@@ -1,94 +1,93 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LanguageService } from './modules/shared/services/language.service';
 import { UserData } from '../../entities/auth/user.entity';
 import { AuthService } from './modules/auth/services/auth.service';
 import { LoadingService } from './modules/shared/services/loading.service';
-import { HelperService } from './modules/shared/services/helper.service';
 import { ThemeService } from './modules/shared/services/theme.service';
 import { NetworkService } from './modules/shared/services/network.service';
 import { PokeApiService } from './modules/shared/services/pokeApi.service';
 import { PwaInstallService } from './modules/shared/services/pwa-install.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'poochydex';
 
   isMenuOpen = false;
   currentLanguage: string;
   currentUser: UserData | null;
   loading = false;
-  isCacheLoading = false;
   isOnline = true;
   lastDataSource: 'network' | 'cache' = 'network';
   canInstallPwa = false;
 
+  private destroy$ = new Subject<void>();
+
   constructor(private languageService: LanguageService,
               private loadingService: LoadingService,
               private authService: AuthService,
-              private helperService: HelperService,
               private themeService: ThemeService,
-              private cdr: ChangeDetectorRef,
               private networkService: NetworkService,
               private pokeApiService: PokeApiService,
               private pwaInstallService: PwaInstallService,
   ) {}
 
-  ngAfterViewInit() {
-    this.cdr.detectChanges();
+  ngOnInit() {
+    // Suscripción al tema (solo para activar el observable)
+    this.themeService.isDarkMode$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe();
+
+    // Suscripción al idioma
+    this.languageService.currentLanguage$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(language => {
+        this.currentLanguage = language;
+      });
+
+    // Suscripción a los datos de sesión
+    this.authService.sessionData$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(user => {
+        this.currentUser = user;
+      });
+
+    // Suscripción al estado de carga
+    this.loadingService.loading$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((loading) => {
+        this.loading = loading;
+      });
+
+    // Suscripción al estado de red
+    this.networkService.isOnline$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(isOnline => {
+        this.isOnline = isOnline;
+      });
+
+    // Suscripción a la fuente de datos
+    this.pokeApiService.lastDataSource$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(source => {
+        this.lastDataSource = source;
+      });
+
+    // Suscripción a la disponibilidad de PWA
+    this.pwaInstallService.canInstall$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(can => {
+        this.canInstallPwa = can;
+      });
   }
 
-  ngOnInit() {
-    this.themeService.isDarkMode$.subscribe();
-    this.helperService.isCacheLoading$.subscribe(isLoading => {
-      this.isCacheLoading = isLoading;
-      this.loading = isLoading;
-      this.cdr.detectChanges();
-    });
-
-    // this.helperService.createAllPokemonCache();
-
-    this.languageService.currentLanguage$.subscribe(language => {
-      this.currentLanguage = language;
-    });
-
-    this.authService.sessionData$.subscribe(user => {
-      this.currentUser = user;
-    });
-
-    this.loadingService.loading$.subscribe((loading) => {
-      if (!this.isCacheLoading) {
-        this.loading = loading;
-        setTimeout(() => {
-          this.cdr.detectChanges();
-        }, 100);
-        this.cdr.detectChanges();
-      }
-    });
-
-    this.networkService.isOnline$.subscribe(isOnline => {
-      this.isOnline = isOnline;
-      this.cdr.detectChanges();
-    });
-
-    this.pokeApiService.lastDataSource$.subscribe(source => {
-      this.lastDataSource = source;
-      this.cdr.detectChanges();
-    });
-
-    this.pwaInstallService.canInstall$.subscribe(can => {
-      this.canInstallPwa = can;
-      this.cdr.detectChanges();
-    });
-
-    // if(this.authService.isAuthenticated()) {
-    //   this.authService.userConfig$.subscribe(userConfig => {
-    //     this.currentLanguage = userConfig.language;
-    //   });
-    // }
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   toggleMenu() {
@@ -101,10 +100,6 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   setLanguage(language: string): void {
     this.authService.setLanguage(language);
-  }
-
-  onRefreshCacheRequested() {
-    this.helperService.createAllPokemonCache();
   }
 
   async installPwa() {

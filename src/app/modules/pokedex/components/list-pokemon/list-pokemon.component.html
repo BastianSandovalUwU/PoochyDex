@@ -9,44 +9,12 @@
     <app-filter [language]="language" (filters)="applyFilters($event)" [isShow]="showFloatingFilter"></app-filter>
   </div>
 
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-11 gap-2 pb-15 w-full mt-2">
-    <div *ngFor="let pokemon of filteredPokemon" class="sm:hover:opacity-80 cursor-pointer sm:hover:scale-105 transition-all duration-300" [routerLink]="['/pokedex/show-pokemon', pokemon.name]">
-      <div class="pokemon-card bg-white rounded-lg w-full max-w-[180px] h-48 relative overflow-hidden shadow-lg mx-auto">
-        <div class="absolute top-0 left-0 w-full h-1/2 bg-red-500"></div>
-
-        <div class="absolute top-1/2 left-0 w-full h-2 bg-black transform -translate-y-1/2"></div>
-
-        <div class="absolute top-1/2 left-1/2 w-6 h-6 bg-white border-2 border-black rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
-
-        <div class="absolute inset-0 flex flex-col items-center justify-center">
-          <h1 class="text-white text-lg font-bold">N° #{{ addZerosToNumber(pokemon.number) }}</h1>
-          <div class="cursor-pointer">
-            <img class="w-24"
-                 [src]="pokemon.sprites.iconUrl" alt=""
-            >
-          </div>
-          <h1 class="text-black text-xl"
-          >{{ pokemon.name |translatePokemonName |replaceDash | titlecase }}</h1>
-        </div>
-
-        <div class="absolute bottom-1 left-0 w-full flex justify-center gap-1 p-1">
-          <div class="rounded-md w-3/4" *ngIf="pokemon.type">
-            <img class="w-full"
-            [src]="'./assets/icons/types/' + getGameIconNameForLanguage(pokemon.type, language) + '.png'">
-          </div>
-          <div class="rounded-md w-3/4" *ngIf="!pokemon.type">
-            <div class="w-full"></div>
-          </div>
-          <div class="rounded-md w-3/4" *ngIf="pokemon.type2">
-            <img class="w-full"
-            [src]="'./assets/icons/types/' + getGameIconNameForLanguage(pokemon.type2, language) + '.png'">
-          </div>
-          <div class="rounded-md w-3/4" *ngIf="!pokemon.type2">
-            <div class="w-full"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-8 gap-2 pb-15 w-full mt-2">
+    <app-pokemon-card
+      *ngFor="let pokemon of filteredPokemon"
+      [pokemon]="pokemon"
+      [language]="language">
+    </app-pokemon-card>
   </div>
 
   <div *ngIf="filteredPokemon.length === 0">

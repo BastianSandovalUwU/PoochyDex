@@ -90,34 +90,9 @@
       <app-theme-toggle></app-theme-toggle>
     </div>
 
-    <div class="flex items-center justify-between mt-3">
-      <span class="text-gray-600 dark:text-gray-400 text-sm font-medium">{{ language === 'es' ? 'Datos Pokémon' : 'Pokemon data' }}</span>
-      <button (click)="clearCache()" class="px-3 py-1 text-sm bg-red-500 hover:bg-red-600 text-white rounded transition-colors">
-        {{ language === 'es' ? 'Actualizar' : 'Update' }}
-      </button>
-    </div>
-
-    <div class="flex items-center justify-between text-gray-500 dark:text-gray-400 text-xs mb-2 mt-2">
-      <span>
-        {{ language === 'es' ? 'Pokémon: ' : 'Pokémon: ' }}{{ cacheSize.pokemon }}
-      </span>
-      <span class="inline-flex items-center gap-2">
-        <span class="px-2 py-0.5 rounded text-[10px]"
-              [ngClass]="isOnline ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'">
-          {{ isOnline ? (language === 'es' ? 'Online' : 'Online') : (language === 'es' ? 'Offline' : 'Offline') }}
-        </span>
-        <span class="px-2 py-0.5 rounded text-[10px] bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
-          {{ language === 'es' ? 'Fuente' : 'Source' }}: {{ lastDataSource === 'cache' ? (language === 'es' ? 'Caché' : 'Cache') : (language === 'es' ? 'Red' : 'Network') }}
-        </span>
-      </span>
-    </div>
-
     <p class="text-gray-500 dark:text-gray-400 text-md">PoochyDex {{ versionNumber }}</p>
   </div>
 </aside>
-
-<!-- Confirmation Modal -->
-<app-confirmation-modal [language]="language" [showConfirmDialog]="showConfirmDialog" [title]="title" [description]="description" (confirmClearCacheRequested)="confirmClearCache()"></app-confirmation-modal>
 
 <!-- Overlay for mobile -->
 <div *ngIf="isOpen"

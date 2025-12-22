@@ -8,14 +8,9 @@ import { HelperService } from '../services/helper.service';
 })
 export class LoadingSpinnerComponent implements OnInit {
   @Input() loading: boolean = false;
-  @Input() isCacheLoading: boolean = false;
-  cacheProgress: number = 0;
 
-  constructor(private helperService: HelperService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.helperService.cacheLoadingProgress$.subscribe(progress => {
-      this.cacheProgress = progress;
-    });
   }
 }
