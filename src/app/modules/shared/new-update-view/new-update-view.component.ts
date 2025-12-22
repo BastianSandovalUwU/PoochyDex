@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
-
+import { isDevMode } from '@angular/core';
 @Component({
   selector: 'app-new-update-view',
   templateUrl: './new-update-view.component.html',
@@ -13,7 +13,7 @@ export class NewUpdateViewComponent {
   constructor(
     private updates: SwUpdate,
   ) {
-    if (this.updates.isEnabled) {
+    if (!isDevMode() && this.updates.isEnabled) {
       this.updates.versionUpdates.subscribe(event => {
         if (event.type === 'VERSION_READY') {
           this.showMessage = true;

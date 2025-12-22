@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { MatLegacyTabChangeEvent as MatTabChangeEvent } from '@angular/material/legacy-tabs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { FilteredByEgg, FilteredByMachine, FilteredByTutor } from '../../../../../entities/moves.entity';
 import { TabItem } from '../custom-tabs/custom-tabs.component';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-pokemon-moves-table',

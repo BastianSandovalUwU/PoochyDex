@@ -6,10 +6,10 @@ import { FilteredByEgg, FilteredByMachine, FilteredByTutor, FilteredMove, Move, 
 import { Subject, catchError, forkJoin, of, takeUntil } from 'rxjs';
 import { ExtendedMachineDetail } from '../../../../../../../entities/machine-move.entity';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
-import { MatLegacyTabChangeEvent as MatTabChangeEvent } from '@angular/material/legacy-tabs';
 import { TabItem } from 'app/modules/shared/custom-tabs/custom-tabs.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ErrorMessageService } from 'app/services/error-message.service';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-pokemon-moves',
