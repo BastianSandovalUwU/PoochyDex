@@ -1,0 +1,29 @@
+<div class="mt-4 max-w-6xl mx-auto" *ngIf="!loading">
+  <h1 class="mx-5 pl-2 text-black text-2xl font-bold dark:text-white">
+    {{ language === 'es' ? 'Listado de Pokédex' : 'Pokédex List'}}
+  </h1>
+
+  <div class="mt-4 mx-3 sm:mx-0">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-15 w-full mt-2">
+      <div
+        *ngFor="let pokedex of pokedexList"
+        (click)="navigateToPokedex(pokedex.name)"
+        class="pokedex-card cursor-pointer bg-white dark:bg-gray-800 rounded-lg p-4 border-2 border-gray-300 dark:border-gray-600 hover:border-red-500 dark:hover:border-red-500 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+        <div class="flex flex-col items-center text-center">
+          <h2 class="text-xl font-bold text-black dark:text-white mb-2">
+            {{ pokedex.name | translatePokedexName | replaceDash | titlecase }}
+          </h2>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            {{ language === 'es' ? 'ID' : 'ID' }}: #{{ pokedex.id }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="pokedexList.length === 0 && !loading" class="mt-8">
+    <h1 class="text-center text-2xl text-gray-800 dark:text-gray-200">
+      {{ language === 'es' ? 'No se encontraron Pokédex.' : 'No Pokédex found.' }}
+    </h1>
+  </div>
+</div>

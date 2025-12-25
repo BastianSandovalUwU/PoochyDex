@@ -12,6 +12,7 @@ import { NetworkService } from './network.service';
 import { EvolutionChain } from '../../../../../entities/evolution-chain.entity';
 import { GameVersion } from '../../../../../entities/game-version.entity';
 import { GenerationInfo } from '../../../../../entities/generation.entity';
+import { Pokedex, PokedexList } from '../../../../../entities/poke-api.entity';
 
 @Injectable({
   providedIn: 'root'
@@ -243,17 +244,28 @@ export class PokeApiService {
     );
   }
 
-  getPokedex(pokdexNumber: number): Observable<any> {
-    const url = `${this.apiUrl}/pokedex/${pokdexNumber}/`;
-    return this.http.get<any>(url).pipe(
+  getPokedex(pokedexNumber: number): Observable<Pokedex> {
+    const url = `${this.apiUrl}/pokedex/${pokedexNumber}/`;
+    return this.http.get<Pokedex>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la Pokédex:', error);
         return throwError(() => error);
       })
     );
   }
-  getPokemonLocalization(pokdexNumber: number): Observable<any> {
-    const url = `${this.apiUrl}/pokemon/${pokdexNumber}/encounters/`;
+
+  getAllPokedex(): Observable<PokedexList> {
+    const url = `${this.apiUrl}/pokedex?offset=0&limit=50`;
+    return this.http.get<PokedexList>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener la Pokédex:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  getPokemonLocalization(pokedexNumber: number): Observable<any> {
+    const url = `${this.apiUrl}/pokemon/${pokedexNumber}/encounters/`;
     return this.http.get<any>(url).pipe(
       catchError(error => {
         console.error('Error al obtener la localización:', error);

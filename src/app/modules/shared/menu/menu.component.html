@@ -7,7 +7,7 @@
   <!-- Header with logo and close button -->
   <div class="flex items-center justify-between p-4 border-b dark:border-gray-700">
     <a class="flex items-center">
-      <img src="/assets/icons/rotom-dex/RotomDex.png" class="h-8 sm:h-10" alt="PoochyDex Logo"/>
+      <img src="/assets/icons/icon-512x512.png" class="h-8 sm:h-10" alt="PoochyDex Logo"/>
       <span class="ml-2 text-2xl font-bold text-gray-800 dark:text-white">PoochyDex</span>
     </a>
     <button (click)="closeMenu()" class="rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
@@ -17,35 +17,58 @@
 
   <!-- Main Navigation -->
   <div class="flex-1 px-3 py-4 overflow-y-auto">
-    <ul class="space-y-2">
-      <li>
-        <a href="/pokedex/list"
-           class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
-          <img class="w-8 h-8 object-contain" src="/assets/icons/roza-pokedex/icon-72x45.png" alt="Pokédex Icon">
-          <span class="ml-3 font-medium">{{ language === 'es' ? 'Pokédex Nacional' : 'National Dex'}}</span>
-          <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">chevron_right</mat-icon>
-        </a>
-      </li>
-      <li>
-        <a href="/pokedex/hunt"
-           class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
-          <img class="w-8 h-8 object-contain" src="/assets/icons/roza-pokedex/icon-72x45.png" alt="Pokédex Icon">
-          <span class="ml-3 font-medium">{{ language === 'es' ? 'Caza Pokémon' : 'Pokémon Hunt'}}</span>
-          <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">chevron_right</mat-icon>
-        </a>
-      </li>
-      <li *ngIf="userData?.role === 'ADMIN'">
-        <a href="/apiDex"
-           class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
-          <mat-icon class="text-gray-600 dark:text-gray-300 mr-2">storage</mat-icon>
-          <span class="ml-1 font-medium">
-            {{ language === 'es' ? 'Admin Pokémon (API)' : 'Pokemon Admin (API)'}}
-          </span>
-          <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">
-            chevron_right
-          </mat-icon>
-        </a>
-      </li>
+    <ul class="space-y-1">
+      <ng-container *ngFor="let option of filteredMenuOptions">
+        <!-- Opción con hijos (menú expandible) -->
+        <li *ngIf="option.children && option.children.length > 0">
+          <div class="">
+            <div (click)="toggleExpanded(option)"
+                 class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer group">
+              <img *ngIf="option.imageIcon" class="w-8 h-8 object-contain" [src]="option.imageIcon" [alt]="getLabel(option)">
+              <mat-icon *ngIf="!option.imageIcon" class="text-gray-600 dark:text-gray-300 mr-2">{{ option.icon }}</mat-icon>
+              <span class="ml-3 font-medium flex-1">{{ getLabel(option) }}</span>
+              <mat-icon class="text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-transform duration-200"
+                        [class.rotate-90]="isExpanded(option)">
+                chevron_right
+              </mat-icon>
+            </div>
+            <ul *ngIf="isExpanded(option)" class="mt-1 ml-4 space-y-1 animate-fade-in">
+              <li *ngFor="let child of option.children">
+                <a [href]="child.route"
+                   [class.bg-red-100]="isRouteActive(child.route)"
+                   [class.dark:bg-red-900]="isRouteActive(child.route)"
+                   [class.border-red-500]="isRouteActive(child.route)"
+                   [class.border-2]="isRouteActive(child.route)"
+                   [class.text-red-700]="isRouteActive(child.route)"
+                   [class.dark:text-red-300]="isRouteActive(child.route)"
+                   class="flex items-center p-2 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
+                  <img *ngIf="child.imageIcon" class="w-6 h-6 object-contain" [src]="child.imageIcon" [alt]="getLabel(child)">
+                  <mat-icon *ngIf="!child.imageIcon" class="text-gray-600 dark:text-gray-300 mr-2" style="font-size: 20px; width: 20px; height: 20px;">{{ child.icon }}</mat-icon>
+                  <span class="ml-2 font-medium text-sm">{{ getLabel(child) }}</span>
+                  <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300" style="font-size: 18px; width: 18px; height: 18px;">chevron_right</mat-icon>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Opción simple sin hijos -->
+        <li *ngIf="!option.children || option.children.length === 0">
+          <a [href]="option.route"
+             [class.bg-red-100]="isRouteActive(option.route)"
+             [class.dark:bg-red-900]="isRouteActive(option.route)"
+             [class.border-red-500]="isRouteActive(option.route)"
+             [class.border-2]="isRouteActive(option.route)"
+             [class.text-red-700]="isRouteActive(option.route)"
+             [class.dark:text-red-300]="isRouteActive(option.route)"
+             class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
+            <img *ngIf="option.imageIcon" class="w-8 h-8 object-contain" [src]="option.imageIcon" [alt]="getLabel(option)">
+            <mat-icon *ngIf="!option.imageIcon" class="text-gray-600 dark:text-gray-300 mr-2">{{ option.icon }}</mat-icon>
+            <span class="ml-3 font-medium">{{ getLabel(option) }}</span>
+            <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">chevron_right</mat-icon>
+          </a>
+        </li>
+      </ng-container>
     </ul>
   </div>
 
