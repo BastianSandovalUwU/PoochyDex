@@ -1,63 +1,37 @@
 <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 2xl:grid-cols-11 gap-1 pb-15 w-full mt-2">
   <div *ngFor="let pokemon of filteredPokemon" class="relative">
-    <div class="hover:opacity-80 cursor-pointer hover:scale-105 transition-all duration-300" [routerLink]="['/pokedex/show-pokemon', pokemon.name]">
-      <div class="pokemon-card bg-white rounded-lg w-full max-w-[180px] h-48 relative overflow-hidden shadow-lg mx-auto"
-           [class.opacity-50]="!isPokemonRegistered(pokemon)">
-        <div class="absolute top-0 left-0 w-full h-1/2 bg-red-500"></div>
-
-        <div class="absolute top-1/2 left-0 w-full h-2 bg-black transform -translate-y-1/2"></div>
-
-        <div class="absolute top-1/2 left-1/2 w-6 h-6 bg-white border-2 border-black rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
-
-        <div class="absolute inset-0 flex flex-col items-center justify-center">
-          <h1 class="text-white text-lg font-bold">N° #{{ addZerosToNumber(pokemon.number) }}</h1>
-          <div class="cursor-pointer">
-            <img class="w-24"
-                 [src]="pokemon.sprites.iconUrl" alt=""
-            >
-          </div>
-          <h1 class="text-black text-xl"
-          >{{ pokemon.name |translatePokemonName |replaceDash | titlecase }}</h1>
-        </div>
-
-        <div class="absolute bottom-1 left-0 w-full flex justify-center gap-1 p-1">
-          <div class="rounded-md w-3/4" *ngIf="pokemon.type">
-            <img class="w-full"
-            [src]="'./assets/icons/types/' + getGameIconNameForLanguage(pokemon.type, language) + '.png'">
-          </div>
-          <div class="rounded-md w-3/4" *ngIf="!pokemon.type">
-            <div class="w-full"></div>
-          </div>
-          <div class="rounded-md w-3/4" *ngIf="pokemon.type2">
-            <img class="w-full"
-            [src]="'./assets/icons/types/' + getGameIconNameForLanguage(pokemon.type2, language) + '.png'">
-          </div>
-          <div class="rounded-md w-3/4" *ngIf="!pokemon.type2">
-            <div class="w-full"></div>
-          </div>
-        </div>
-      </div>
+    <div [class.opacity-50]="!isPokemonRegistered(pokemon)">
+      <app-pokemon-card
+        [pokemon]="pokemon"
+        [language]="language"
+        [routerLinkPath]="['/pokedex/show-pokemon']">
+      </app-pokemon-card>
     </div>
 
-    <!-- Checkbox para registrar el Pokémon -->
-    <div class="absolute top-1 right-1 z-10">
-      <input
-        type="checkbox"
-        [checked]="isPokemonRegistered(pokemon)"
-        (change)="togglePokemonRegistration(pokemon, $event)"
-        (click)="$event.stopPropagation()"
-        class="w-5 h-5 cursor-pointer accent-green-600 rounded"
-        [attr.aria-label]="language === 'es' ? 'Registrar ' + pokemon.name : 'Register ' + pokemon.name"
-      >
-    </div>
+    <!-- Botón para registrar el Pokémon -->
+    <button
+      type="button"
+      (click)="togglePokemonRegistration(pokemon, $event)"
+      [attr.aria-label]="(isPokemonRegistered(pokemon) ? (language === 'es' ? 'Desregistrar ' : 'Unregister ') : (language === 'es' ? 'Registrar ' : 'Register ')) + pokemon.name"
+      [attr.aria-pressed]="isPokemonRegistered(pokemon)"
+      class="absolute top-2 right-2 z-20 w-10 h-10 sm:w-9 sm:h-9 flex items-center justify-center rounded-full shadow-lg border-2 transition-all duration-200 touch-manipulation active:scale-95
+        [&.registered]:bg-green-500 [&.registered]:border-green-600 [&.registered]:text-white
+        [&.not-registered]:bg-white/95 [&.not-registered]:dark:bg-gray-800/95 [&.not-registered]:border-gray-300 [&.not-registered]:dark:border-gray-600 [&.not-registered]:text-gray-600 [&.not-registered]:dark:text-gray-400
+        hover:scale-110 hover:shadow-xl"
+      [class.registered]="isPokemonRegistered(pokemon)"
+      [class.not-registered]="!isPokemonRegistered(pokemon)">
+      <mat-icon class="!m-0 !p-0" style="font-size: 24px; width: 24px; height: 24px; line-height: 24px;">
+        {{ isPokemonRegistered(pokemon) ? 'check_circle' : 'add_circle_outline' }}
+      </mat-icon>
+    </button>
   </div>
-</div>
-
-<div *ngIf="filteredPokemon.length === 0 && !isLoading">
-  <h1 class="text-center text-2xl text-gray-800 dark:text-gray-200">{{ language === 'es' ? 'No hay Pokémon en esta Pokédex.' : 'No Pokémon in this Pokédex.' }}</h1>
 </div>
 
 <div *ngIf="isLoading">
   <h1 class="text-center text-2xl text-gray-800 dark:text-gray-200">{{ language === 'es' ? 'Cargando Pokémon de la Pokédex...' : 'Loading Pokémon from Pokédex...' }}</h1>
+</div>
+
+<div *ngIf="!isLoading && filteredPokemon.length === 0 && pokemonLoaded">
+  <h1 class="text-center text-2xl text-gray-800 dark:text-gray-200">{{ language === 'es' ? 'No hay Pokémon en esta Pokédex.' : 'No Pokémon in this Pokédex.' }}</h1>
 </div>
 

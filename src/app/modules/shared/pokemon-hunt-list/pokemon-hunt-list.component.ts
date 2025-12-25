@@ -1,22 +1,14 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { PokeApiService } from '../services/pokeApi.service';
 import { LanguageService } from '../services/language.service';
-import { PokemonList } from '../../../../../entities/pokemon-list.entity';
-import { ALL_POKEMON_ALOLA } from '../../../../../entities/common/alola-pokemon-data';
-import { ALL_POKEMON_GALAR } from '../../../../../entities/common/galar-pokemon-data';
-import { ALL_POKEMON_HOENN } from '../../../../../entities/common/hoenn-pokemon-data';
-import { ALL_POKEMON_JOTHO } from '../../../../../entities/common/jotho-pokemon-data';
-import { ALL_POKEMON_KALOS } from '../../../../../entities/common/kalos-pokemon-data';
-import { ALL_POKEMON_KANTO } from '../../../../../entities/common/kanto-pokemon-data';
-import { ALL_POKEMON_PALDEA } from '../../../../../entities/common/paldea-pokemon-data';
-import { ALL_POKEMON_ALOLA_REGIONAL_FORMS, ALL_POKEMON_GALAR_REGIONAL_FORMS, ALL_POKEMON_PALDEA_REGIONAL_FORMS, ALL_POKEMON_HISUI_REGIONAL_FORMS } from '../../../../../entities/common/poochyApiData';
-import { ALL_POKEMON_SINNOH } from '../../../../../entities/common/sinnoh-pokemon-data';
-import { ALL_POKEMON_UNOVA } from '../../../../../entities/common/unova-pokemon-data';
 import { HelperService } from '../services/helper.service';
 import { ErrorMessageService } from 'app/services/error-message.service';
 import { PokemonHuntService } from '../services/pokemon-hunt.service';
 import { RegisteredPokemon } from '../../../../../entities/pokemon-hunt.entity';
 import { AuthService } from 'app/modules/auth/services/auth.service';
+import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
+import { Pokemon } from '../../../../../entities/poochydex-api/pokemon.type';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-pokemon-hunt-list',
@@ -26,24 +18,11 @@ import { AuthService } from 'app/modules/auth/services/auth.service';
 export class PokemonHuntListComponent implements OnInit, OnChanges {
   @Input() pokedexNumber: number = 34;
 
-  private allPokemonData: PokemonList[] = [
-    ...ALL_POKEMON_KANTO,
-    ...ALL_POKEMON_JOTHO,
-    ...ALL_POKEMON_HOENN,
-    ...ALL_POKEMON_SINNOH,
-    ...ALL_POKEMON_UNOVA,
-    ...ALL_POKEMON_KALOS,
-    ...ALL_POKEMON_ALOLA,
-    ...ALL_POKEMON_GALAR,
-    ...ALL_POKEMON_PALDEA,
-    ...ALL_POKEMON_ALOLA_REGIONAL_FORMS,
-    ...ALL_POKEMON_GALAR_REGIONAL_FORMS,
-    ...ALL_POKEMON_PALDEA_REGIONAL_FORMS,
-    ...ALL_POKEMON_HISUI_REGIONAL_FORMS
-  ];
-  private pokemonDataMap: Map<string, PokemonList> = new Map();
+  private allPokemon: Pokemon[] = [];
+  private pokemonDataMap: Map<string, Pokemon> = new Map();
+  pokemonLoaded: boolean = false;
 
-  filteredPokemon: PokemonList[] = [];
+  filteredPokemon: Pokemon[] = [];
   language: string;
   registeredPokemonMap: Map<string, boolean> = new Map();
   isLoading: boolean = false;
@@ -56,19 +35,15 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     private helperService: HelperService,
     private errorMessageService: ErrorMessageService,
     private pokemonHuntService: PokemonHuntService,
-    private authService: AuthService
-  ) {
-    this.allPokemonData.forEach(pokemon => {
-      this.pokemonDataMap.set(pokemon.name.toLowerCase(), pokemon);
-    });
-  }
+    private authService: AuthService,
+    private poochyDexApiService: PoochyDexApiService,
+    private loadingService: LoadingService,
+  ) {}
 
   ngOnInit() {
     this.getLanguage();
     this.loadRegisteredPokemon();
-    if (this.pokedexNumber) {
-      this.getPokedex(this.pokedexNumber);
-    }
+    this.loadAllPokemon();
 
     // Solo sincronizar con el servidor si el usuario está autenticado
     if (this.isUserAuthenticated() && this.pokemonHuntService.needsSync()) {
@@ -81,9 +56,38 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     }
   }
 
+  loadAllPokemon() {
+    this.loadingService.show();
+    this.poochyDexApiService.getAllPokemon().subscribe({
+      next: (response) => {
+        this.allPokemon = response.data;
+        // Crear mapa de pokemon por nombre para búsqueda rápida
+        this.allPokemon.forEach(pokemon => {
+          this.pokemonDataMap.set(pokemon.name.toLowerCase(), pokemon);
+        });
+
+        this.pokemonLoaded = true;
+
+        // Una vez cargados todos los pokemon, obtener la pokedex
+        if (this.pokedexNumber) {
+          this.getPokedex(this.pokedexNumber);
+        }
+      },
+      error: (error) => {
+        console.error('Error al obtener los Pokémon:', error);
+        const errorMessage = this.language === 'es' ? 'Error al cargar los Pokémon' : 'Error loading Pokémon';
+        this.errorMessageService.showError(errorMessage, error.message);
+        this.loadingService.hide();
+      }
+    });
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['pokedexNumber'] && !changes['pokedexNumber'].firstChange) {
-      this.getPokedex(this.pokedexNumber);
+      // Solo obtener la pokedex si los pokemon ya están cargados
+      if (this.pokemonLoaded) {
+        this.getPokedex(this.pokedexNumber);
+      }
     }
   }
 
@@ -94,12 +98,18 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
   }
 
   getPokedex(num: number): void {
+    // Si aún no se han cargado todos los pokemon, esperar
+    if (!this.pokemonLoaded || this.allPokemon.length === 0) {
+      return;
+    }
+
     this.isLoading = true;
+    // Limpiar después de establecer isLoading para evitar mostrar "No hay pokemon"
     this.filteredPokemon = [];
 
     this.pokeApiService.getPokedex(num).subscribe({
       next: (pokedexData) => {
-        const pokemonList: PokemonList[] = [];
+        const pokemonList: Pokemon[] = [];
 
         for (let index = 0; index < pokedexData.pokemon_entries.length; index++) {
           const entry = pokedexData.pokemon_entries[index];
@@ -109,30 +119,11 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
           const pokemonData = this.pokemonDataMap.get(pokemonName.toLowerCase());
 
           if (pokemonData) {
+            // Usar el pokemon directamente y actualizar el número de entrada
             pokemonList.push({
               ...pokemonData,
               number: entryNumber
             });
-          } else {
-            const pokemonEntry = {
-              name: pokemonName,
-              number: entryNumber,
-              sprites: {
-                homeUrl: '',
-                homeShinyUrl: '',
-                iconUrl: ''
-              },
-              type: 'normal',
-              type2: undefined,
-              generationId: 1
-            };
-            pokemonList.push(pokemonEntry);
-            this.helperService.getPokemonSpriteImg(entry.pokemon_species.name, "icon")
-              .subscribe(pokeImgname => {
-                pokemonEntry.sprites.homeUrl = pokeImgname;
-                pokemonEntry.sprites.homeShinyUrl = pokeImgname;
-                pokemonEntry.sprites.iconUrl = pokeImgname;
-              });
           }
         }
 
@@ -147,17 +138,12 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     });
   }
 
-  getGameIconNameForLanguage(typeName: string, language: string): string {
-    return this.helperService.getGameIconNameForLanguage(typeName, language);
-  }
-
-  addZerosToNumber(number: number): string {
-    return this.helperService.addZerosToNumber(number);
-  }
 
   loadRegisteredPokemon() {
+    this.loadingService.show();
     if (!this.isUserAuthenticated()) {
       this.loadFromLocalStorage();
+      this.loadingService.hide();
       return;
     }
 
@@ -169,10 +155,12 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
             .map(p => [`${p.pokedexId}-${p.number}-${p.name}`, true])
         );
         this.lastSync = this.pokemonHuntService.getLastSync();
+        this.loadingService.hide();
       },
       error: (error) => {
         console.error('Error loading registered pokemon:', error);
         this.loadFromLocalStorage();
+        this.loadingService.hide();
       }
     });
   }
@@ -198,12 +186,12 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     }
   }
 
-  isPokemonRegistered(pokemon: PokemonList): boolean {
+  isPokemonRegistered(pokemon: Pokemon): boolean {
     const key = `${this.pokedexNumber}-${pokemon.number}-${pokemon.name}`;
     return this.registeredPokemonMap.get(key) || false;
   }
 
-  togglePokemonRegistration(pokemon: PokemonList, event: Event) {
+  togglePokemonRegistration(pokemon: Pokemon, event: Event) {
     event.stopPropagation();
     event.preventDefault();
 
@@ -220,6 +208,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
   }
 
   saveRegisteredPokemon() {
+    this.loadingService.show();
     const registeredList: RegisteredPokemon[] = [];
 
     this.registeredPokemonMap.forEach((registered, key) => {
@@ -238,6 +227,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     // Si no está autenticado, guardar solo en localStorage
     if (!this.isUserAuthenticated()) {
       this.saveToLocalStorage(registeredList);
+      this.loadingService.hide();
       return;
     }
 
@@ -247,6 +237,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
         if (response.success) {
           this.lastSync = this.pokemonHuntService.getLastSync();
         }
+        this.loadingService.hide();
       },
       error: (error) => {
         console.error('Error saving registered pokemon to server:', error);
@@ -256,6 +247,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
           ? 'Error al sincronizar con el servidor, datos guardados localmente'
           : 'Error syncing with server, data saved locally';
         this.errorMessageService.showError(errorMessage, error.message);
+        this.loadingService.hide();
       }
     });
   }
