@@ -129,7 +129,7 @@ export class ListPokemonComponent implements OnInit {
     return this.helperService.getGameIconNameForLanguage(typeName, language);
   }
 
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:scroll')
   onScroll() {
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     this.showFloatingFilter = scrollPosition > this.scrollThreshold;

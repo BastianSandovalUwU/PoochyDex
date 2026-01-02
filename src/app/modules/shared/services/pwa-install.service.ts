@@ -1,5 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 type BeforeInstallPromptEvent = Event & {
   prompt: () => Promise<void>;
@@ -13,20 +14,22 @@ export class PwaInstallService {
   canInstall$ = this.canInstallSubject.asObservable();
 
   constructor(private zone: NgZone) {
-    window.addEventListener('beforeinstallprompt', (e: Event) => {
-      e.preventDefault();
-      this.zone.run(() => {
-        this.deferredPrompt = e as BeforeInstallPromptEvent;
-        this.canInstallSubject.next(true);
+    if (environment.production) {
+      window.addEventListener('beforeinstallprompt', (e: Event) => {
+        e.preventDefault();
+        this.zone.run(() => {
+          this.deferredPrompt = e as BeforeInstallPromptEvent;
+          this.canInstallSubject.next(true);
+        });
       });
-    });
 
-    window.addEventListener('appinstalled', () => {
-      this.zone.run(() => {
-        this.deferredPrompt = null;
-        this.canInstallSubject.next(false);
+      window.addEventListener('appinstalled', () => {
+        this.zone.run(() => {
+          this.deferredPrompt = null;
+          this.canInstallSubject.next(false);
+        });
       });
-    });
+    }
   }
 
   async promptInstall(): Promise<'accepted' | 'dismissed' | 'unavailable'> {

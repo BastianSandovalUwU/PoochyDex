@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { environment } from '../environments/environment';
 import { LanguageService } from './modules/shared/services/language.service';
 import { UserData } from '../../entities/auth/user.entity';
 import { AuthService } from './modules/auth/services/auth.service';
@@ -77,12 +78,17 @@ export class AppComponent implements OnInit, OnDestroy {
         this.lastDataSource = source;
       });
 
-    // Suscripción a la disponibilidad de PWA
-    this.pwaInstallService.canInstall$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(can => {
-        this.canInstallPwa = can;
-      });
+    // Suscripción a la disponibilidad de PWA (solo en producción)
+    if (environment.production) {
+      this.pwaInstallService.canInstall$
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(can => {
+          this.canInstallPwa = can;
+        });
+    } else {
+      // En desarrollo, asegurarse de que siempre sea false
+      this.canInstallPwa = false;
+    }
   }
 
   ngOnDestroy() {

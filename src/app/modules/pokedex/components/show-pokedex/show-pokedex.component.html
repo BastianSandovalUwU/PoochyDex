@@ -1,5 +1,5 @@
-<div class="mt-4 max-w-6xl mx-auto">
-  <h1 class="mx-5 pl-2 text-black text-2xl font-bold dark:text-white">
+<div class="mt-4 max-w-6xl mx-auto" *ngIf="filteredPokemon.length > 0">
+  <h1 class="mx-5 text-black text-2xl font-bold dark:text-white">
     {{ language === 'es' ? 'Lista de Pokémon según la Pokédex de' : ''}} {{ pokedexName |translatePokedexName }} {{
     language === 'es' ? '' : 'Dex'}}
   </h1>
@@ -8,10 +8,6 @@
   <div class="bg-gray-100 rounded-md border border-black my-2 dark:bg-gray-800 dark:border-gray-600">
     <app-pokedex-description [pokedexName]="pokedexName"></app-pokedex-description>
   </div>
-
-  <h1 class="mx-5 pl-2 text-black text-2xl font-bold dark:text-white">
-    {{ language === 'es' ? 'Lista de Pokémon' : 'Pokémon List'}}
-  </h1>
 
   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-8 gap-2 pb-15 w-full mt-2">
     <app-pokemon-card

@@ -1,84 +1,127 @@
+<div class="max-w-7xl mx-auto p-4 sm:p-6" *ngIf="move">
 
-   <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 p-4"  *ngIf="move">
-
-    <div class="sm:col-span-4 rounded-md sm:p-4 p-2 max-w-md border border-black" [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')">
-
-      <div class="text-center mb-4">
-        <h2 class="font-bold text-3xl">{{ moveName | titlecase }}</h2>
-      </div>
-
-      <div class="grid grid-cols-4 rounded-md" [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')">
-        <div class="col-span-2 border-l border-t border-b border-black text-lg font-bold rounded-tl-md rounded-bl-md bg-white">
-          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Tipo' : 'Type' }}:</div>
-          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Generación' : 'Generation'}}:</div>
-          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Clase' : 'Class'}}:</div>
-          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Potencia' : 'Power' }}:</div>
-          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Precisión' : 'Accuaracy'}}:</div>
-          <div class="px-2 border-b border-black text-right">PP:</div>
-          <div class="px-2 border-b border-black text-right">{{ language === 'es' ? 'Prioridad' : 'Priority'}}:</div>
-          <div class="px-2 text-right">{{ language === 'es' ? 'Blanco' : 'Target'}}:</div>
+  <!-- Grid principal con información y efecto -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+    <!-- Panel de información del movimiento -->
+    <div class="lg:col-span-4">
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+        <!-- Header del panel con tipo -->
+        <div class="p-4 flex flex-col items-center justify-center gap-3" [ngClass]="getColorClassByLanguageAndType(moveType)">
+          <h2 class="text-2xl sm:text-3xl font-bold">{{ moveName | titlecase }}</h2>
+          <div class="flex items-center justify-center">
+            <img class="w-32"
+                 [src]="'./assets/icons/types/' + moveType + '.png'"
+                 [alt]="moveType">
+          </div>
         </div>
 
-        <div class="col-span-2 border-r border-l border-t border-b border-black text-lg rounded-tr-md rounded-br-md bg-white">
-          <div class="px-2 mb-0.5 border-b border-black">
-            <div [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')"
-                 class="border border-black rounded-md px-2 text-lg text-white text-center w-20">
-              {{ getTranslateTypeName(move.type.name) | titlecase }}
+        <!-- Tabla de información -->
+        <div class="p-4">
+          <div class="space-y-2">
+            <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
+              <span class="font-semibold text-gray-700 dark:text-gray-300">{{ language === 'es' ? 'Generación' : 'Generation' }}:</span>
+              <span class="text-gray-900 dark:text-white font-medium">{{ getGenerationName(move.generation.name) }}</span>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
+              <span class="font-semibold text-gray-700 dark:text-gray-300">{{ language === 'es' ? 'Clase' : 'Class' }}:</span>
+              <div class="flex items-center">
+                <img *ngIf="move.damage_class.name === 'physical'"
+                     src="./assets/icons/movement_category/physical_category_6_7_gen.png"
+                     alt="Physical"
+                     class="h-6 w-auto">
+                <img *ngIf="move.damage_class.name === 'special'"
+                     src="./assets/icons/movement_category/special_category_6_7_gen.png"
+                     alt="Special"
+                     class="h-6 w-auto">
+                <img *ngIf="move.damage_class.name === 'status'"
+                     src="./assets/icons/movement_category/status_category_6_7_gen.png"
+                     alt="Status"
+                     class="h-6 w-auto">
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
+              <span class="font-semibold text-gray-700 dark:text-gray-300">{{ language === 'es' ? 'Potencia' : 'Power' }}:</span>
+              <span class="text-gray-900 dark:text-white font-medium">{{ move.power !== null ? move.power : '-' }}</span>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
+              <span class="font-semibold text-gray-700 dark:text-gray-300">{{ language === 'es' ? 'Precisión' : 'Accuracy' }}:</span>
+              <span class="text-gray-900 dark:text-white font-medium">{{ move.accuracy !== null ? move.accuracy + '%' : '-' }}</span>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
+              <span class="font-semibold text-gray-700 dark:text-gray-300">PP:</span>
+              <span class="text-gray-900 dark:text-white font-medium">{{ move.pp }}</span>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
+              <span class="font-semibold text-gray-700 dark:text-gray-300">{{ language === 'es' ? 'Prioridad' : 'Priority' }}:</span>
+              <span class="text-gray-900 dark:text-white font-medium">{{ move.priority }}</span>
+            </div>
+
+            <div class="flex justify-between items-center">
+              <span class="font-semibold text-gray-700 dark:text-gray-300">{{ language === 'es' ? 'Blanco' : 'Target' }}:</span>
+              <span class="text-gray-900 dark:text-white font-medium text-right">{{ getTargetTypeName(move.target.name) | titlecase }}</span>
             </div>
           </div>
-          <div class="px-2 border-b border-black">{{ getGenerationName(move.generation.name) }}</div>
-          <div class="py-1 px-2 border-b border-black">
-            <img *ngIf="move.damage_class.name === 'physical'"
-                 src="./assets/icons/movement_category/physical_category_6_7_gen.png" alt="Physical">
-            <img *ngIf="move.damage_class.name === 'special'"
-                 src="./assets/icons/movement_category/special_category_6_7_gen.png" alt="Special">
-            <img *ngIf="move.damage_class.name === 'status'"
-                 src="./assets/icons/movement_category/status_category_6_7_gen.png" alt="Status">
-          </div>
-          <div class="px-2 border-b border-black">{{ move.power !== null ? move.power : '-' }}</div>
-          <div class="px-2 border-b border-black">{{ move.accuracy !== null ? move.accuracy : '-' }}</div>
-          <div class="px-2 border-b border-black">{{ move.pp }}</div>
-          <div class="px-2 border-b border-black">{{ move.priority }}</div>
-          <div class="px-2">{{ getTargetTypeName(move.target.name, language) |titlecase}}</div>
         </div>
       </div>
     </div>
 
-    <div class="sm:col-span-8">
-
-      <div class="rounded-md p-4 h-full border border-black" [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')">
-        <h3 class="font-bold text-xl">{{ language === 'es' ? 'Efecto del Movimiento' : 'Move Effect' }}</h3>
-        {{ moveEffectEntry.effect }}
+    <div class="lg:col-span-8 space-y-6">
+      <div [ngClass]="getColorClassByLanguageAndType(moveType)" class="p-4 rounded-md border border-gray-200 dark:border-gray-600 dark:bg-gray-800" *ngIf="getFlavorTextsByGame().length > 0">
+        <h1 class="font-bold text-xl hover:text-gray-800">{{ language === 'es' ? 'Descripciones por Juego' : 'Descriptions by Game' }}</h1>
+        <div class="border-black border p-1 rounded-md bg-white filters-container">
+          <div class="sm:grid grid-cols-6 gap-4 border-b border-black pb-1 dark:border-gray-600 dark:bg-gray-800 hidden">
+            <span class="text-center font-semibold col-span-2">{{ language === 'es' ? 'Juego' : 'Game' }}</span>
+            <span class="font-semibold col-span-4">{{ language === 'es' ? 'Descripción' : 'Description' }}</span>
+          </div>
+          <div class="grid grid-cols-6">
+            <div *ngFor="let entry of getFlavorTextsByGame()" class="col-span-6 grid grid-cols-1 sm:grid-cols-6 gap-4 border-b border-black py-2">
+              <div [ngClass]="getGameVersionColor(entry.version)" class="relative col-span-2 rounded-md text-white border border-black flex justify-center items-center">
+                <span class="text-center hover:text-blue-500 cursor-pointer">
+                  <app-hyperlink type="game" [value]="entry.version" [textBlue]="false"></app-hyperlink>
+                </span>
+                <img class="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 mr-2"
+                     [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(entry.version)[0] + '.png'"
+                     alt=""
+                     *ngIf="getGameIconGame(entry.version).length > 0">
+              </div>
+              <div class="col-span-4">
+                <p>{{ entry.flavor_text }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
     </div>
   </div>
 
-<div class="p-4 m-4 rounded-md shadow-md" [ngClass]="getColorClassByLanguageAndType(move.type.name, 'en')" *ngIf="pokemon && move">
-  <h1 class="font-bold text-xl">Pokemon que aprenden {{ moveName| titlecase }}</h1>
-  <div class="grid grid-cols-3 sm:grid-cols-5 justify-center items-center border border-black mt-1 bg-white">
-    <div *ngFor="let pokemon of pokemon" class="flex flex-col items-center justify-center border border-black">
-      <div class="text-center bg-gray-900 text-white w-full hover:text-blue-400 cursor-pointer"
-      [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
-      routerLinkActive>
-        {{ pokemon.name |translatePokemonName |replaceDash | titlecase }}
+  <!-- Sección de Pokémon que aprenden el movimiento -->
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg border-2 border-gray-200 dark:border-gray-700 p-6" *ngIf="pokemon && pokemon.length > 0 && move">
+    <div class="mb-4 pb-3 border-b-2 border-gray-200 dark:border-gray-700">
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+        {{ language === 'es' ? 'Pokémon que aprenden' : 'Pokémon that learn' }} {{ moveName | titlecase }}
+      </h2>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+      <div *ngFor="let pokemon of pokemon"
+           class="group flex flex-col items-center justify-center p-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-200 cursor-pointer bg-gray-50 dark:bg-gray-900"
+           [routerLink]="['/pokedex/show-pokemon', pokemon.name]">
+        <div class="text-center mb-2 w-full">
+          <span class="text-sm font-semibold text-gray-800 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            {{ pokemon.name | translatePokemonName | replaceDash | titlecase }}
+          </span>
+        </div>
+        <div class="w-20 h-20 flex items-center justify-center">
+          <img [src]="getPokemonSprite(pokemon.name)"
+               [alt]="pokemon.name"
+               class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-200"
+               (error)="getPokemonSprite(pokemon.name)">
+        </div>
       </div>
-      <img
-        [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
-        routerLinkActive
-        class="w-26 hover:opacity-80 cursor-pointer"
-        alt="{{ pokemon.name }}"
-        />
-        <!-- *ngIf="pokemon.sprites.other.home.front_default"
-        [src]="pokemon.sprites.other.home.front_default" -->
-      <img
-        [routerLink]="['/pokedex/show-pokemon', pokemon.name]"
-        routerLinkActive
-        class="w-26 hover:opacity-80 cursor-pointer"
-        alt="{{ pokemon.name }}"
-        />
-        <!-- *ngIf="!pokemon.sprites.other.home.front_default"
-        [src]="pokemon.sprites.other['official-artwork'].front_default" -->
     </div>
   </div>
 </div>

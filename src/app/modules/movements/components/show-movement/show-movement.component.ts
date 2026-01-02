@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
-import { DetailMove } from '../../../../../../entities/moves.entity';
+import { DetailMove, FlavorTextEntry } from '../../../../../../entities/moves.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
-import { Pokemon } from '../../../../../../entities/pokemon.entity';
+import { Pokemon } from '../../../../../../entities/poochydex-api/pokemon.type';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { ErrorMessageService } from 'app/services/error-message.service';
+import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
+import { LoadingService } from 'app/modules/shared/services/loading.service';
+import { getGameName } from '../../../../../../entities/common/enum';
 @Component({
   selector: 'app-show-movement',
   templateUrl: './show-movement.component.html',
@@ -19,13 +22,19 @@ export class ShowMovementComponent implements OnInit {
   moveName: string = '';
   move: DetailMove;
   pokemon: Pokemon[] = [];
+  allPokemon: Pokemon[] = [];
+  pokemonDataMap: Map<string, Pokemon> = new Map();
   moveEffectEntry: any;
+  flavorTextsByGame: Map<string, FlavorTextEntry[]> = new Map();
+  moveType: string = '';
 
   constructor(private activatedRoute: ActivatedRoute,
               private languageService: LanguageService,
               private pokeApiService: PokeApiService,
               private helperService: HelperService,
-              private errorMessageService: ErrorMessageService) {
+              private loadingService: LoadingService,
+              private errorMessageService: ErrorMessageService,
+              private poochyDexApiService: PoochyDexApiService) {
     this.activatedRoute.params.subscribe(({ id }) => this.pokemonMove = id);
   }
 
@@ -41,16 +50,94 @@ export class ShowMovementComponent implements OnInit {
   }
 
   getMove() {
+    this.loadingService.show();
     this.pokeApiService.getMoveByName(this.pokemonMove, 'scarlet-violet').subscribe({
       next: (movement) => {
+        this.moveType = this.helperService.getTypeNameByLanguage(movement.type.name, this.language);
         this.move = movement;
         this.moveName = this.getMoveNameByLanguage();
         this.moveEffectEntry = this.getMoveEffectEntryByLanguage();
-        this.getPokemonDetails();
+        this.processFlavorTexts();
+        this.loadingService.hide();
+        this.loadAllPokemon();
       },
       error: (error) => {
         const errorMessage = this.language === 'es' ? 'Error al cargar el movimiento' : 'Error loading movement';
         this.errorMessageService.showError(errorMessage, error.message);
+        this.loadingService.hide();
+      }
+    });
+  }
+
+  processFlavorTexts() {
+    if (!this.move || !this.move.flavor_text_entries) {
+      return;
+    }
+
+    // Filtrar por idioma (es o en)
+    const targetLanguage = this.language === 'es' ? 'es' : 'en';
+    const filteredEntries = this.move.flavor_text_entries.filter(
+      entry => entry.language.name === targetLanguage
+    );
+
+    // Agrupar por version_group
+    this.flavorTextsByGame.clear();
+    filteredEntries.forEach(entry => {
+      const versionGroupName = entry.version_group.name;
+      if (!this.flavorTextsByGame.has(versionGroupName)) {
+        this.flavorTextsByGame.set(versionGroupName, []);
+      }
+      this.flavorTextsByGame.get(versionGroupName)!.push(entry);
+    });
+  }
+
+  getFlavorTextsByGame(): Array<{ flavor_text: string; version: string }> {
+    const result: Array<{ flavor_text: string; version: string }> = [];
+
+    this.flavorTextsByGame.forEach((entries, versionGroup) => {
+      entries.forEach(entry => {
+        result.push({
+          flavor_text: this.getFlavorText(entry),
+          version: versionGroup
+        });
+      });
+    });
+
+    // Ordenar por version_group para mostrar los más recientes primero
+    return result.sort((a, b) => {
+      return b.version.localeCompare(a.version);
+    });
+  }
+
+  getGameVersionColor(gameVersion: string): string {
+    return this.helperService.getGameVersionColor(gameVersion);
+  }
+
+  getGameIconGame(gameName: string): string[] {
+    return this.helperService.getGameIconGame(gameName);
+  }
+
+  getFlavorText(entry: FlavorTextEntry): string {
+    // Limpiar el texto de saltos de línea y espacios extra
+    return entry.flavor_text.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+  loadAllPokemon() {
+    this.loadingService.show();
+    this.poochyDexApiService.getAllPokemon().subscribe({
+      next: (response) => {
+        this.allPokemon = response.data;
+        // Crear un Map para búsqueda rápida por nombre
+        this.allPokemon.forEach(pokemon => {
+          this.pokemonDataMap.set(pokemon.name.toLowerCase(), pokemon);
+        });
+        // Ahora obtener los detalles de los Pokémon que aprenden el movimiento
+        this.getPokemonDetails();
+      },
+      error: (error) => {
+        const errorMessage = this.language === 'es' ? 'Error al cargar los Pokémon' : 'Error loading Pokemon';
+        this.errorMessageService.showError(errorMessage, error.message);
+        this.loadingService.hide();
       }
     });
   }
@@ -68,30 +155,39 @@ export class ShowMovementComponent implements OnInit {
     });
     return effectEntry;
   }
+
   getPokemonDetails() {
+    this.loadingService.show();
+    if (!this.move || !this.move.learned_by_pokemon || this.pokemonDataMap.size === 0) {
+      return;
+    }
 
-      const pokemon: Pokemon[] = []
-      for (let i = 0; i < this.move.learned_by_pokemon.length; i++) {
-        this.pokeApiService.getPokemonByName(this.move.learned_by_pokemon[i].name).subscribe({
-          next: (pokeInfo) => {
-            if(pokeInfo.is_default === true) {
-              pokemon.push(pokeInfo);
-            }
-          },
-          error: (error) => {
-            const errorMessage = this.language === 'es' ? 'Error al cargar el Pokémon' : 'Error loading Pokemon';
-            this.errorMessageService.showError(errorMessage, error.message);
-          }
-        });
+    const pokemonList: Pokemon[] = [];
+
+    for (const learnedByPokemon of this.move.learned_by_pokemon) {
+      // Normalizar el nombre del Pokémon usando el helper service
+      const correctedName = this.helperService.getCorrectPokemonName(learnedByPokemon.name);
+      const pokemonData = this.pokemonDataMap.get(correctedName.toLowerCase());
+
+      if (pokemonData) {
+        pokemonList.push(pokemonData);
       }
-      this.pokemon = pokemon;
+    }
+
+    this.pokemon = pokemonList;
+    this.loadingService.hide();
   }
 
-  getColorClassByLanguageAndType(typeName: string, language: string): string {
-    return this.helperService.getTypeColorClass(typeName, language);
+  getPokemonSprite(pokemonName: string): string {
+    const pokemon = this.pokemonDataMap.get(pokemonName.toLowerCase());
+    return pokemon?.sprites?.iconUrl || 'https://i.imgur.com/uKx7iOF.png';
   }
-  getTargetTypeName(targetName: string, language: string): string {
-    return this.helperService.getTargetTypeName(targetName, language);
+
+  getColorClassByLanguageAndType(typeName: string): string {
+    return this.helperService.getTypeColorClass(typeName, this.language);
+  }
+  getTargetTypeName(targetName: string): string {
+    return this.helperService.getTargetTypeName(targetName, this.language);
   }
   getTranslateTypeName(targetName: string): string {
     return this.helperService.getTranslateTypeName(targetName, this.language);

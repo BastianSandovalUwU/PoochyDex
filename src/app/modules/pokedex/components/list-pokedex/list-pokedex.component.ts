@@ -50,7 +50,6 @@ export class ListPokedexComponent implements OnInit {
     this.loadingService.show();
     this.pokeApiService.getAllPokedex().subscribe({
       next: (response: PokedexListResponse) => {
-        // Extraer el ID de la URL (ejemplo: "https://pokeapi.co/api/v2/pokedex/1/" -> 1)
         this.pokedexList = response.results.map(pokedex => {
           const urlParts = pokedex.url.split('/');
           const id = parseInt(urlParts[urlParts.length - 2] || '0', 10);
