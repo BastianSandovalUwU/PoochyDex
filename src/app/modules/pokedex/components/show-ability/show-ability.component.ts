@@ -19,9 +19,10 @@ const FALLBACK_SPRITE = 'https://i.imgur.com/uKx7iOF.png';
 export class ShowAbilityComponent implements OnInit {
   language: string = 'es';
   ability: PokemonAbility;
-  abilityDescription: any;
+  abilityDescription: FlavorTextEntry[];
   flavorTextsByGame: Map<string, FlavorTextEntry[]> = new Map();
   pokemonDataMap: Map<string, Pokemon> = new Map();
+  abilityPokemonNames: string[] = [];
 
   constructor(
     private pokeApiService: PokeApiService,
@@ -60,6 +61,7 @@ export class ShowAbilityComponent implements OnInit {
     this.pokeApiService.getAbilityById(abilityName).subscribe({
       next: (ability) => {
         this.ability = ability;
+        this.abilityPokemonNames = ability.pokemon.map(p => p.pokemon.name);
         this.getAbilitDescriptionLanguage();
         this.processFlavorTexts();
         this.loadAllPokemon();
@@ -77,7 +79,9 @@ export class ShowAbilityComponent implements OnInit {
       next: (response) => {
         this.pokemonDataMap.clear();
         response.data.forEach(pokemon => {
-          this.pokemonDataMap.set(pokemon.name.toLowerCase(), pokemon);
+          if (this.abilityPokemonNames.includes(pokemon.name)) {
+            this.pokemonDataMap.set(pokemon.name.toLowerCase(), pokemon);
+          }
         });
         this.loadingService.hide();
       },

@@ -67,21 +67,11 @@
       </h2>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
-      <div *ngFor="let item of ability.pokemon"
-           class="group flex flex-col items-center justify-center p-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-indigo-500 dark:hover:border-indigo-400 hover:shadow-lg transition-all duration-200 cursor-pointer bg-gray-50 dark:bg-gray-900"
-           [routerLink]="['/pokedex/show-pokemon', item.pokemon.name]">
-        <div class="text-center mb-2 w-full">
-          <span class="text-sm font-semibold text-gray-800 dark:text-gray-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-            {{ item.pokemon.name | translatePokemonName | replaceDash | titlecase }}
-          </span>
-        </div>
-        <div class="w-20 h-20 flex items-center justify-center">
-          <img [src]="getPokemonSprite(item.pokemon.name)"
-               [alt]="item.pokemon.name"
-               class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-200"
-               (error)="getPokemonSprite(item.pokemon.name)">
-        </div>
-      </div>
+      <app-pokemon-card
+        *ngFor="let pokemon of pokemonDataMap.values()"
+        [pokemon]="pokemon"
+        [language]="language">
+      </app-pokemon-card>
     </div>
   </div>
 </div>
