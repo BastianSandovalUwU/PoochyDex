@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
-import { map, switchMap } from 'rxjs/operators';
-import { forkJoin } from 'rxjs';
 import { HelperService } from 'app/modules/shared/services/helper.service';
-import { PokemonAbility } from '../../../../../../entities/pokemon-ability.entity';
+import { PokemonAbility, FlavorTextEntry } from '../../../../../../entities/pokemon-ability.entity';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { ErrorMessageService } from 'app/services/error-message.service';
+import { LoadingService } from 'app/modules/shared/services/loading.service';
+import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
+import { Pokemon } from '../../../../../../entities/poochydex-api/pokemon.type';
+
+const FALLBACK_SPRITE = 'https://i.imgur.com/uKx7iOF.png';
+
 @Component({
   selector: 'app-show-ability',
   templateUrl: './show-ability.component.html',
@@ -16,13 +20,17 @@ export class ShowAbilityComponent implements OnInit {
   language: string = 'es';
   ability: PokemonAbility;
   abilityDescription: any;
+  flavorTextsByGame: Map<string, FlavorTextEntry[]> = new Map();
+  pokemonDataMap: Map<string, Pokemon> = new Map();
 
   constructor(
     private pokeApiService: PokeApiService,
     private activatedRoute: ActivatedRoute,
     private languageService: LanguageService,
     private helperService: HelperService,
-    private errorMessageService: ErrorMessageService
+    private errorMessageService: ErrorMessageService,
+    private loadingService: LoadingService,
+    private poochyDexApiService: PoochyDexApiService
   ) {}
 
   ngOnInit() {
@@ -44,46 +52,96 @@ export class ShowAbilityComponent implements OnInit {
   }
 
   getAbilitDescriptionLanguage(): void {
-    this.abilityDescription = this.ability.flavor_text_entries.filter(f => f.language.name === this.language)
+    this.abilityDescription = this.ability.flavor_text_entries.filter(f => f.language.name === this.language);
   }
 
   getAbilityWithPokemonDetails(abilityName: string) {
-    this.pokeApiService.getAbilityById(abilityName).pipe(
-      switchMap((ability) => {
-        if (ability && ability.pokemon) {
-          const pokemonObservables = ability.pokemon.map(entry => {
-            return this.pokeApiService.getPokemonByName(entry.pokemon.name).pipe(
-              switchMap(pokemonDetail =>
-                this.helperService.getPokemonSpriteImg(entry.pokemon.name, "home").pipe(
-                  map(pokemonSprite => ({
-                    ...entry,
-                    pokemonDetail,
-                    pokemonSprite
-                  }))
-                )
-              )
-            );
-          });
-          return forkJoin(pokemonObservables).pipe(
-            map(detailedPokemonList => ({
-              ...ability,
-              pokemon: detailedPokemonList
-            }))
-          );
-        } else {
-          return [];
-        }
-      })
-    ).subscribe({
-      next: (abilityWithDetails) => {
-        this.ability = abilityWithDetails;
+    this.loadingService.show();
+    this.pokeApiService.getAbilityById(abilityName).subscribe({
+      next: (ability) => {
+        this.ability = ability;
         this.getAbilitDescriptionLanguage();
+        this.processFlavorTexts();
+        this.loadAllPokemon();
       },
       error: (error) => {
         const errorMessage = this.language === 'es' ? 'Error al cargar la habilidad' : 'Error loading ability';
         this.errorMessageService.showError(errorMessage, error.message);
+        this.loadingService.hide();
       }
     });
+  }
+
+  loadAllPokemon(): void {
+    this.poochyDexApiService.getAllPokemon().subscribe({
+      next: (response) => {
+        this.pokemonDataMap.clear();
+        response.data.forEach(pokemon => {
+          this.pokemonDataMap.set(pokemon.name.toLowerCase(), pokemon);
+        });
+        this.loadingService.hide();
+      },
+      error: (error) => {
+        const errorMessage = this.language === 'es' ? 'Error al cargar los Pokémon' : 'Error loading Pokemon';
+        this.errorMessageService.showError(errorMessage, error.message);
+        this.loadingService.hide();
+      }
+    });
+  }
+
+  getPokemonSprite(pokemonName: string): string {
+    const correctedName = this.helperService.getCorrectPokemonName(pokemonName);
+    const pokemon = this.pokemonDataMap.get(correctedName.toLowerCase());
+    return pokemon?.sprites?.iconUrl || FALLBACK_SPRITE;
+  }
+
+
+  processFlavorTexts(): void {
+    if (!this.ability?.flavor_text_entries) {
+      return;
+    }
+    const targetLanguage = this.language === 'es' ? 'es' : 'en';
+    const filteredEntries = this.ability.flavor_text_entries.filter(
+      entry => entry.language?.name === targetLanguage
+    );
+    this.flavorTextsByGame.clear();
+    filteredEntries.forEach(entry => {
+      const versionGroupName = entry.version_group?.name ?? 'unknown';
+      if (!this.flavorTextsByGame.has(versionGroupName)) {
+        this.flavorTextsByGame.set(versionGroupName, []);
+      }
+      this.flavorTextsByGame.get(versionGroupName)!.push(entry);
+    });
+  }
+
+  getFlavorTextsByGame(): Array<{ flavor_text: string; version: string }> {
+    const result: Array<{ flavor_text: string; version: string }> = [];
+    this.flavorTextsByGame.forEach((entries, versionGroup) => {
+      entries.forEach(entry => {
+        result.push({
+          flavor_text: this.getFlavorText(entry),
+          version: versionGroup
+        });
+      });
+    });
+    return result.sort((a, b) => b.version.localeCompare(a.version));
+  }
+
+  getFlavorText(entry: FlavorTextEntry): string {
+    return (entry.flavor_text || '').replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+  getGameVersionColor(gameVersion: string): string {
+    return this.helperService.getGameVersionColor(gameVersion);
+  }
+
+  getGameIconGame(gameName: string): string[] {
+    return this.helperService.getGameIconGame(gameName);
+  }
+
+  getAbilityName(): string {
+    const nameEntry = this.ability?.names?.find(n => n.language?.name === this.language);
+    return nameEntry?.name ?? this.ability?.name ?? '';
   }
 
   getGenerationName(generationName: string): string {

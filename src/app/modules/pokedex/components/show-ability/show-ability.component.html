@@ -1,71 +1,85 @@
-<div class="m-4" *ngIf="ability">
-  <div class="bg-gray-100 p-4 rounded-md col-span-1 border border-black">
-    <div *ngFor="let abilityName of ability.names">
-        <div *ngIf="abilityName.language.name === language" class="font-bold text-4xl text-center">
-          {{ abilityName.name | titlecase }}
+<div class="max-w-7xl mx-auto p-4 sm:p-6" *ngIf="ability">
+
+  <!-- Grid principal con información y descripciones -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+    <!-- Panel de información de la habilidad -->
+    <div class="lg:col-span-4">
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+        <!-- Header del panel -->
+        <div class="p-4 flex flex-col items-center justify-center gap-3 bg-indigo-600 dark:bg-indigo-700 text-white">
+          <h2 class="text-2xl sm:text-3xl font-bold">{{ getAbilityName() | titlecase }}</h2>
         </div>
+
+        <!-- Tabla de información -->
+        <div class="p-4">
+          <div class="space-y-2">
+            <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
+              <span class="font-semibold text-gray-700 dark:text-gray-300">{{ language === 'es' ? 'Generación' : 'Generation' }}:</span>
+              <span class="text-gray-900 dark:text-white font-medium">{{ getGenerationName(ability.generation.name) }}</span>
+            </div>
+
+            <div class="flex justify-between items-center pt-2">
+              <span class="font-semibold text-gray-700 dark:text-gray-300">{{ language === 'es' ? 'Efecto' : 'Effect' }}:</span>
+            </div>
+            <div class="text-gray-900 dark:text-white text-sm border-b border-gray-200 dark:border-gray-700 pb-2">
+              {{ abilityDescription?.[abilityDescription.length - 1]?.flavor_text }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div>
-      <p>Es una habilidad introducida en la {{ getGenerationName(ability.generation.name) }} </p>
-    </div>
-
-  </div>
-
-  <div class="bg-gray-100 p-4 rounded-md col-span-1 border border-black mt-2">
-    <h1 class="font-bold">{{ language === 'es' ? 'Efecto' : 'Efect'}}</h1>
-    <div>
-      <h1 class="font-bold">{{ language === 'es' ? 'En combate' : 'In combat'}}</h1>
-      <div>
-        {{ abilityDescription[abilityDescription.length - 1]?.flavor_text}}
+    <!-- Descripciones por juego -->
+    <div class="lg:col-span-8 space-y-6">
+      <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-800" *ngIf="getFlavorTextsByGame().length > 0">
+        <h1 class="font-bold text-xl text-gray-900 dark:text-white mb-3">{{ language === 'es' ? 'Descripciones por Juego' : 'Descriptions by Game' }}</h1>
+        <div class="border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 overflow-hidden">
+          <div class="sm:grid grid-cols-6 gap-4 border-b border-gray-200 dark:border-gray-600 p-2 dark:bg-gray-800 hidden">
+            <span class="text-center font-semibold col-span-2 text-gray-700 dark:text-gray-300">{{ language === 'es' ? 'Juego' : 'Game' }}</span>
+            <span class="font-semibold col-span-4 text-gray-700 dark:text-gray-300">{{ language === 'es' ? 'Descripción' : 'Description' }}</span>
+          </div>
+          <div class="grid grid-cols-6">
+            <div *ngFor="let entry of getFlavorTextsByGame()" class="col-span-6 grid grid-cols-1 sm:grid-cols-6 gap-4 border-b border-gray-200 dark:border-gray-600 p-3 last:border-b-0">
+              <div [ngClass]="getGameVersionColor(entry.version)" class="relative col-span-2 rounded-md text-white border border-gray-300 dark:border-gray-600 flex justify-center items-center py-2">
+                <span class="text-center hover:text-blue-200 cursor-pointer">
+                  <app-hyperlink type="game" [value]="entry.version" [textBlue]="false"></app-hyperlink>
+                </span>
+                <img class="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 object-contain mr-2"
+                     [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(entry.version)[0] + '.png'"
+                     alt=""
+                     *ngIf="getGameIconGame(entry.version).length > 0">
+              </div>
+              <div class="col-span-4 text-gray-900 dark:text-gray-200">
+                <p>{{ entry.flavor_text }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="bg-gray-100 p-4 rounded-md col-span-1 border border-black mt-2">
-    <h1 class="font-bold text-xl">
-      {{ language === 'es' ? 'Pokémon con esta habilidad' : 'Pokémon with this ability'}}
-    </h1>
-    <div class="grid grid-cols-2 sm:grid-cols-5 justify-center items-center border border-black mt-1">
-      <div *ngFor="let pokemon of ability.pokemon" class="flex flex-col items-center justify-center border border-black">
-        <div class="text-center bg-gray-900 text-white w-full hover:text-blue-400 cursor-pointer"
-        [routerLink]="['/pokedex/show-pokemon', pokemon.pokemon.name]"
-        routerLinkActive>
-          {{ pokemon.pokemon.name |translatePokemonName |replaceDash | titlecase }}
+  <!-- Sección de Pokémon con esta habilidad -->
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg border-2 border-gray-200 dark:border-gray-700 p-6" *ngIf="ability.pokemon && ability.pokemon.length > 0">
+    <div class="mb-4 pb-3 border-b-2 border-gray-200 dark:border-gray-700">
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+        {{ language === 'es' ? 'Pokémon con esta habilidad' : 'Pokémon with this ability' }}
+      </h2>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+      <div *ngFor="let item of ability.pokemon"
+           class="group flex flex-col items-center justify-center p-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-indigo-500 dark:hover:border-indigo-400 hover:shadow-lg transition-all duration-200 cursor-pointer bg-gray-50 dark:bg-gray-900"
+           [routerLink]="['/pokedex/show-pokemon', item.pokemon.name]">
+        <div class="text-center mb-2 w-full">
+          <span class="text-sm font-semibold text-gray-800 dark:text-gray-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+            {{ item.pokemon.name | translatePokemonName | replaceDash | titlecase }}
+          </span>
         </div>
-        <img
-          [routerLink]="['/pokedex/show-pokemon', pokemon.pokemon.name]"
-          routerLinkActive
-          class="w-26 hover:opacity-80 cursor-pointer"
-          alt="{{ pokemon.pokemon.name }}"
-          [src]="pokemon.pokemonSprite"
-          />
-        <div class="grid grid-cols-1 text-black w-full">
-          <div *ngFor="let ability of pokemon.pokemonDetail.abilities">
-            <div class="text-left sm:text-center bg-gray-200"
-            [routerLink]="['/pokedex/show-ability', ability.ability.name]"
-            routerLinkActive>
-              <span class="font-bold">
-                {{ language === 'es' ? 'Habilidad' : ability.is_hidden === true ? 'Hidden' : 'Ability' }}
-                {{ ability.is_hidden === true ? language === 'es' ? 'Oculta': 'Ability' : ability.slot }}:
-              </span>
-              <span class="hover:text-blue-400 cursor-pointer">
-                {{ ability.ability.name | titlecase }}
-              </span>
-            </div>
-          </div>
-          <div *ngIf="pokemon.pokemonDetail.abilities.length < 2">
-            <div class="text-center bg-gray-200"
-            routerLinkActive>
-            &nbsp;
-            </div>
-          </div>
-          <div *ngIf="pokemon.pokemonDetail.abilities.length < 3">
-            <div class="text-center bg-gray-200"
-            routerLinkActive>
-            &nbsp;
-            </div>
-          </div>
+        <div class="w-20 h-20 flex items-center justify-center">
+          <img [src]="getPokemonSprite(item.pokemon.name)"
+               [alt]="item.pokemon.name"
+               class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-200"
+               (error)="getPokemonSprite(item.pokemon.name)">
         </div>
       </div>
     </div>
