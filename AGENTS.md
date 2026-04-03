@@ -59,6 +59,7 @@ Las **reglas por módulo** están en **`.cursor/rules/module-*.mdc`**: Cursor la
 - Reutilizar `SharedModule` y servicios ya expuestos antes de duplicar lógica.
 - **Idioma en código:** identificadores y comentarios en **inglés**. **Texto de UI:** español e inglés según el idioma activo (`language` / `currentLanguage` en `'es'` | `'en'`, vía `LanguageService` y pipes o ramas existentes).
 - Cambios de UI: coherencia con Material + estilos globales en `src/styles/`.
+- **Botones:** usar **`app-ui-button`** (`SharedModule`, `shared/ui-button/`); si hace falta un estilo nuevo, ampliar **`UiButtonComponent`** en shared, no duplicar clases en cada vista (véase **`.cursor/rules/ui-button.mdc`**).
 - **Seguridad:** no commitear secretos; cuidado con HTML dinámico y enlaces externos; la autorización real es en el backend (ver **`.cursor/rules/security.mdc`**).
 
 ## Commits (Git)
@@ -92,6 +93,7 @@ En **`.cursor/rules/`**:
 | **`commits.mdc`** | Siempre: formato de mensajes de commit (emoji + inglés). |
 | **`english-code-i18n-ui.mdc`** | Siempre: código en inglés; UI bilingüe con `language` / `LanguageService`. |
 | **`security.mdc`** | Siempre: secretos, XSS, almacenamiento, APIs, dependencias. |
+| **`ui-button.mdc`** | Siempre: usar `app-ui-button`; personalizar en `shared/ui-button/`. |
 | **`module-pokedex.mdc`** … **`module-shared.mdc`** | Al trabajar en `src/app/modules/<módulo>/**` (rutas y dependencias de ese feature). |
 | **`angular-templates.mdc`** | Archivos `*.html`. |
 

@@ -1,0 +1,16 @@
+---
+description: Botones UI — usar siempre app-ui-button (SharedModule); personalizar en el componente
+alwaysApply: true
+---
+
+# Botones de interfaz (`app-ui-button`)
+
+- **Regla:** para **acciones de interfaz** (clics que disparan comportamiento, envío de formularios, iconos pulsables que no son enlaces `<a>`), usa **`app-ui-button`** (`UiButtonComponent` en `src/app/modules/shared/ui-button/`), importando **`SharedModule`** donde haga falta.
+- **No** añadas botones “sueltos” con `<button class="...">` largos, `mat-raised-button` / `mat-stroked-button` directos en features **salvo** excepciones abajo.
+- **Personalización:** si necesitas un **nuevo aspecto** (variante, tamaño, estado, accesibilidad), **cámbialo o amplíalo en `ui-button.component.ts` / `.html` / `.scss`**, no en cada pantalla. Usa `@Input()` (`variant`, `extraClasses`, etc.) de forma que el resto del proyecto se beneficie.
+- **Excepciones (no sustituir por `app-ui-button` sin valor claro):**
+  - Enlaces de navegación semánticos: **`<a routerLink>`** o **`HyperlinkComponent`** cuando corresponda.
+  - Controles nativos que no son “botones de UI” (p. ej. `<input type="file">`), o librerías de terceros que inyectan su propio botón.
+  - **Toggle de solo icono** en cabeceras: ya está cubierto por **`variant="icon"`**; preferir `app-ui-button` antes que `mat-icon-button` aislado.
+
+**Referencia rápida:** variantes actuales en `UiButtonComponent` (`primary`, `secondary`, `outline`, `ghost`, `icon`, `cry-play`, `cry-pause`); salida **`buttonClick`** para el handler.

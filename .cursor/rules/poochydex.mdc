@@ -13,4 +13,4 @@ Contexto narrativo y comandos: **`AGENTS.md`**. Detalle por feature: reglas **`m
 - **`npm run build`** ejecuta `generate-env.js` antes: define `NODE_JS_API` (env o `.env`) para generar `src/environments/environment.ts` y `environment.prod.ts`.
 - Features en `src/app/modules/<feature>/`. Reutilizable: **`SharedModule`** en `src/app/modules/shared/`.
 - Datos Pokémon: **PokéAPI**. API propia y auth HTTP: **`environment.nodeJsApi`**, **`AuthService`**, **`AuthInterceptor`** en `app.module.ts`.
-- UI: alinear con **Material** y componentes ya usados en `shared`; no duplicar lógica de servicios compartidos.
+- UI: alinear con **Material** y componentes ya usados en `shared`; botones de acción con **`app-ui-button`** (regla **`ui-button.mdc`**); no duplicar lógica de servicios compartidos.
