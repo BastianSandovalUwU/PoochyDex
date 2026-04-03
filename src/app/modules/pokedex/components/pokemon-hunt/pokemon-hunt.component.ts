@@ -43,6 +43,12 @@ export class PokemonHuntComponent implements OnInit {
     }
   }
 
+  /** Return to Pokédex selection so the user can pick another regional dex. */
+  backToPokedexSelection(): void {
+    this.selectedPokedexNumber = null;
+    this.isExpanded = true;
+  }
+
   getPokedexName(pokedex: PokedexOption): string {
     return this.language === 'es' ? pokedex.nameEs : pokedex.name;
   }
