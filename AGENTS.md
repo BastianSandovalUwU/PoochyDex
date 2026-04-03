@@ -25,6 +25,7 @@ PoochyDex es una Pokédex web que consume [PokéAPI](https://pokeapi.co/) y, cua
 - `npm run build` — ejecuta antes `prebuild`: `node generate-env.js` (lee `NODE_JS_API` desde entorno o `.env` vía `dotenv` si existe) y genera `src/environments/environment*.ts`.
 - `npm test` — Karma + Jasmine.
 - `npm run build:tailwind` — regenera `src/tailwind.css` desde `src/styles/styles.scss` / configuración Tailwind.
+- `npm run lint` — **ESLint** (`ng lint`) con `@angular-eslint`; configuración en `.eslintrc.json` (reglas estrictas relajadas para el código existente; muchos avisos, 0 errores si pasa el comando).
 
 ## Estructura de código (`src/app`)
 

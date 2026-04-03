@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
-import { ErrorMessageService } from 'app/services/error-message.service';
 import { Pokemon } from '../../../../../../entities/poochydex-api/pokemon.type';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
@@ -26,7 +25,6 @@ export class ShowPokedexComponent implements OnInit {
               private languageService: LanguageService,
               private helperService: HelperService,
               private activatedRoute: ActivatedRoute,
-              private errorMessageService: ErrorMessageService,
               private loadingService: LoadingService,
               private poochyDexApiService: PoochyDexApiService) { }
 

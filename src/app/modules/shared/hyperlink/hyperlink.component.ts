@@ -35,7 +35,7 @@ export class HyperlinkComponent implements OnInit {
         url = '/pokedex/show-pokemon/' + this.value.toLowerCase();
         this.routerTo(url);
         break;
-      case 'game':
+      case 'game': {
         const name = this.navigateToGame(this.value);
         if(name === '') {
           console.error('juego no agregado')
@@ -43,7 +43,8 @@ export class HyperlinkComponent implements OnInit {
         }
         url = '/game/show-game/' + name;
         this.routerTo(url);
-        break
+        break;
+      }
       default:
         break;
     }

@@ -196,6 +196,7 @@ export class HelperService {
       'diamond': 'diamond-pearl',
       'pearl': 'diamond-pearl',
       'platinum': 'platinum',
+      /* Optional slug pairs for navigateToGame — enable when linking those game keys from UI */
       // 'heartgold': 'heartgold-soulsilver',
       // 'soulsilver': 'heartgold-soulsilver',
       // 'black': 'black-white',

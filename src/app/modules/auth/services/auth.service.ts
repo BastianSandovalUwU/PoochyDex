@@ -106,21 +106,9 @@ export class AuthService {
   }
 
   setLanguageFromUser(language: string): void {
-    // if(this.isAuthenticated()) {
-    //   try {
-    //     const userConfigData = this.getUserConfigData();
-    //     if(userConfigData) {
-    //       userConfigData.language = language;
-    //       this.updateUserConfig(userConfigData).subscribe();
-    //     } else {
-    //       this.createUserConfig({ id: userConfigData?.id || 0, language: language }).subscribe();
-    //     }
-    //   } catch (error) {
-    //     console.error('Error setting language:', error);
-    //   }
-    // } else {
-      this.setLanguage(language);
-    // }
+    // Future: when authenticated, persist language via updateUserConfig / createUserConfig
+    // (see API routes under /api/userConfig) instead of only localStorage.
+    this.setLanguage(language);
   }
 
   setLanguage(language: string): void {

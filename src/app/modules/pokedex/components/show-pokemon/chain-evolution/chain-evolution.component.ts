@@ -80,7 +80,7 @@ export class ChainEvolutionComponent implements OnInit, OnChanges {
               this.helperService.getPokemonSpriteImg(evolvesTo2.species.name, "home")
                 .subscribe(sprite3 => evolvesTo2.imageName = sprite3);
           })
-        };
+        }
 
       });
     }

@@ -350,31 +350,11 @@ export class PokeApiService {
     return name.replace(/-mega.*$/, '').replace(/-gmax$/, '').replace(/-primal$/, '');
   }
 
-  private getMegaFormPokemon(name: string): Observable<Pokemon> {
-
-    const baseName = this.getBasePokemonNameFromForm(name);
-    return this.http.get<PokemonFull>(`${this.apiUrl}/pokemon/${baseName}/`).pipe(
-      map(basePokemon => {
-        const megaPokemon: Pokemon = {
-          ...this.convertToLitePokemon(basePokemon),
-          name: name,
-          id: basePokemon.id + 10000
-        };
-
-        const fullMegaPokemon: PokemonFull = {
-          ...basePokemon,
-          name: name,
-          id: basePokemon.id + 10000
-        };
-        this.setPokemonInCache(name, fullMegaPokemon);
-
-        return megaPokemon;
-      }),
-      catchError(error => {
-        return throwError(() => error);
-      })
-    );
-  }
+  /**
+   * Future: when loading mega / gmax / primal forms by composite name, fetch the base species
+   * from PokéAPI, clone IDs/sprites under the form name, and cache (similar to old private helper).
+   * Not used yet — `checkPokemonForm` / `getBasePokemonNameFromForm` already support detection.
+   */
 
   clearCache(): void {
     try {
