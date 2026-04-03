@@ -14,7 +14,7 @@ alwaysApply: false
 
 **Pipes exportados:** `ReplaceDashPipe`, `TranslateEvoMethodPipe`, `TranslatePokedexNamePipe`, `TranslatePokemonNamePipe`, `TranslateLocalizationMethodPipe`, `TranslateLocalizationNamePipe`.
 
-**Servicios** (`services/`): entre otros `PokeApiService`, `LanguageService`, `ThemeService`, `HelperService`, `LoadingService`, `NetworkService`, `ErrorMessageService`, `PwaInstallService`, `PokemonHuntService` — revisar cada `.ts` para contratos.
+**Servicios** (`services/`): entre otros `PokeApiService`, `LanguageService`, `ThemeService`, `LoadingService`, `NetworkService`, `ErrorMessageService`, `PwaInstallService`, `PokemonHuntService`. La lógica que antes vivía en `HelperService` está repartida en `PokemonDisplayService` (UI/enum), `CustomPokemonCatalogService` (API Node), `PokemonCacheService` (caché PokéAPI) y `PokemonMoveAbilityService` (movimientos/habilidades HTTP); `HelperService` sigue como **fachada** que delega en esos cuatro para no romper inyecciones existentes — revisar cada `.ts` para contratos.
 
 **Reexporta:** `CommonModule`, `FormsModule`, `RouterModule`, `MatButtonModule`, `MatIconModule`, `MatTabsModule`.
 
