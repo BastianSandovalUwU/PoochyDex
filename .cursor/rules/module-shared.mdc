@@ -10,11 +10,11 @@ alwaysApply: false
 
 **Import en otros módulos:** `import { SharedModule } from '.../shared/shared.module'` (ruta relativa según carpeta).
 
-**Componentes exportados (ejemplos):** navegación — `MenuComponent`, `FooterComponent`, `UpButtonComponent`; Pokémon — `PokeSpritesComponent`, `PokemonCardComponent`, `PokemonMovesTableComponent`, `PokemonHuntListComponent`, `CustomTabsComponent`; UX — `LoadingSpinnerComponent`, `SearchButtonComponent`, `ThemeToggleComponent`, `ErrorMessageViewComponent`, `NewUpdateViewComponent`, `ConfirmationModalComponent`, `HyperlinkComponent`.
+**Componentes exportados (ejemplos):** navegación — `MenuComponent`, `FooterComponent`, `UpButtonComponent`; Pokémon — `PokeSpritesComponent`, `PokemonCardComponent`, `PokemonMovesTableComponent`, `PokemonHuntListComponent`, `CustomTabsComponent`; UX — `LoadingSpinnerComponent`, `SearchButtonComponent`, `ThemeToggleComponent`, `MusicPlayerComponent` (reproductor offline flotante + `[fixedLayout]="false"` para incrustar), `ErrorMessageViewComponent`, `NewUpdateViewComponent`, `ConfirmationModalComponent`, `HyperlinkComponent`.
 
 **Pipes exportados:** `ReplaceDashPipe`, `TranslateEvoMethodPipe`, `TranslatePokedexNamePipe`, `TranslatePokemonNamePipe`, `TranslateLocalizationMethodPipe`, `TranslateLocalizationNamePipe`.
 
-**Servicios** (`services/`): entre otros `PokeApiService`, `LanguageService`, `ThemeService`, `LoadingService`, `NetworkService`, `ErrorMessageService`, `PwaInstallService`, `PokemonHuntService`. La lógica que antes vivía en `HelperService` está repartida en `PokemonDisplayService` (UI/enum), `CustomPokemonCatalogService` (API Node), `PokemonCacheService` (caché PokéAPI) y `PokemonMoveAbilityService` (movimientos/habilidades HTTP); `HelperService` sigue como **fachada** que delega en esos cuatro para no romper inyecciones existentes — revisar cada `.ts` para contratos.
+**Servicios** (`services/`): entre otros `PokeApiService`, `LanguageService`, `ThemeService`, `MusicPlayerService` (audio local vía `HTMLAudioElement`, playlist en `music-player/offline-music-playlist.ts`), `LoadingService`, `NetworkService`, `ErrorMessageService`, `PwaInstallService`, `PokemonHuntService`. La lógica que antes vivía en `HelperService` está repartida en `PokemonDisplayService` (UI/enum), `CustomPokemonCatalogService` (API Node), `PokemonCacheService` (caché PokéAPI) y `PokemonMoveAbilityService` (movimientos/habilidades HTTP); `HelperService` sigue como **fachada** que delega en esos cuatro para no romper inyecciones existentes — revisar cada `.ts` para contratos.
 
 **Reexporta:** `CommonModule`, `FormsModule`, `RouterModule`, `MatButtonModule`, `MatIconModule`, `MatTabsModule`.
 
