@@ -19,6 +19,8 @@ alwaysApply: false
 
 **Servicio:** `services/auth.service.ts` (`providedIn: 'root'`) — sesión en almacenamiento local, `BehaviorSubject` de usuario/config, integración con **`LanguageService`** tras login.
 
+**Sign-up (`sign-up.component`):** formulario reactivo con validación (usuario sin espacios, longitudes), barra de fortaleza de contraseña, errores HTTP legibles, **`LanguageService`** para ES/EN; tras registro exitoso → **`/auth/login?registered=1`**. **Login** muestra banner verde si `registered` está presente y limpia el query.
+
 **Módulo:** `ReactiveFormsModule`, `MatButton`, `MatIcon`.
 
 **Relacionado:** `auth.interceptor.ts` (import global en `AppModule`, no solo esta carpeta).
