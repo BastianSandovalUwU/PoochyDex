@@ -1,0 +1,23 @@
+---
+description: Módulo API propia — CRUD contra backend Node
+globs: src/app/modules/poochyDexApi/**
+alwaysApply: false
+---
+
+# Módulo `poochyDexApi` (`PoochyDexApiModule`)
+
+**Rol:** **CRUD** sobre la **API Node** (`environment.nodeJsApi`): Pokémon personalizados en backend. **No** importa `SharedModule`; usa `CrudApiComponent` + **`PoochyDexApiService`**.
+
+**Prefijo URL:** `/apiDex`.
+
+**Rutas** (`poochyDexApi.routing.ts`):
+
+| Path | Componente |
+|------|------------|
+| `''` | `CrudApiComponent` |
+
+**Servicio:** `services/poochyDexApi.service.ts` (HTTP a la API propia).
+
+**Cruzado con:** `AuthService` (sesión), `LanguageService`, `HelperService` (shared). Tipos en `entities/poochydex-api/`. Tipos de Pokémon: `POKEMON_TYPES` en `entities/common/const.interface`.
+
+**Build:** `NODE_JS_API` debe estar definido (`generate-env.js`) para que la API responda.

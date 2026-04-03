@@ -1,0 +1,24 @@
+---
+description: Módulo auth — login y registro vía API
+globs: src/app/modules/auth/**
+alwaysApply: false
+---
+
+# Módulo `auth` (`AuthModule`)
+
+**Rol:** **login y registro** contra `environment.nodeJsApi`. **`AuthService`** usa `HttpClient` (`/api/auth/register`, `/api/auth/login`, `/api/userConfig/...`). **`AuthInterceptor`** en `app.module.ts` añade credenciales a peticiones autenticadas.
+
+**Prefijo URL:** `/auth`.
+
+**Rutas** (`auth.routing.ts`):
+
+| Path | Componente | URL completa |
+|------|------------|----------------|
+| `login` | `LoginComponent` | `/auth/login` |
+| `sign-up` | `SignUpComponent` | `/auth/sign-up` |
+
+**Servicio:** `services/auth.service.ts` (`providedIn: 'root'`) — sesión en almacenamiento local, `BehaviorSubject` de usuario/config, integración con **`LanguageService`** tras login.
+
+**Módulo:** `ReactiveFormsModule`, `MatButton`, `MatIcon`.
+
+**Relacionado:** `auth.interceptor.ts` (import global en `AppModule`, no solo esta carpeta).

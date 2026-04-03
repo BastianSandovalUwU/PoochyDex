@@ -1,0 +1,21 @@
+---
+description: Módulo perfil — datos de sesión del usuario
+globs: src/app/modules/profile/**
+alwaysApply: false
+---
+
+# Módulo `profile` (`ProfileModule`)
+
+**Rol:** vista de **perfil** con datos de **`AuthService`**. Sin sesión → navegación a **`/auth/login`**.
+
+**Prefijo URL:** `/profile`.
+
+**Rutas** (`profile.routing.ts`):
+
+| Path | Componente | URL típica |
+|------|------------|------------|
+| `show` | `ShowProfileComponent` | `/profile/show` |
+
+**Dependencias:** `AuthService` (`getSessionData()`), `LanguageService`. **No** declara `SharedModule` en el módulo. **`NgxLoadingModule`** para carga.
+
+**Código:** `components/show-profile/`.

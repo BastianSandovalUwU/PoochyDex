@@ -1,0 +1,21 @@
+---
+description: Módulo ajustes — configuración de la app
+globs: src/app/modules/settings/**
+alwaysApply: false
+---
+
+# Módulo `settings` (`SettingsModule`)
+
+**Rol:** pantalla de **ajustes** (contenedor + subvistas como ajustes visuales).
+
+**Prefijo URL:** `/settings`.
+
+**Rutas** (`settings.routing.ts`):
+
+| Path | Componente | URL |
+|------|------------|-----|
+| `''` | `SettingsComponent` | `/settings` |
+
+**Dependencias:** `SharedModule`, `MatButton`, `MatIcon`.
+
+**Código:** `settings.component.*`, `components/visual-settings/`.

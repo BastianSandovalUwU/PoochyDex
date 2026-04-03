@@ -1,0 +1,21 @@
+---
+description: SharedModule — componentes, pipes y servicios compartidos
+globs: src/app/modules/shared/**
+alwaysApply: false
+---
+
+# Módulo `shared` (`SharedModule`)
+
+**Rol:** biblioteca interna: **componentes**, **pipes** y **servicios** reutilizables. **Sin rutas.** Cambios aquí afectan a pokedex, movements, settings, etc.
+
+**Import en otros módulos:** `import { SharedModule } from '.../shared/shared.module'` (ruta relativa según carpeta).
+
+**Componentes exportados (ejemplos):** navegación — `MenuComponent`, `FooterComponent`, `UpButtonComponent`; Pokémon — `PokeSpritesComponent`, `PokemonCardComponent`, `PokemonMovesTableComponent`, `PokemonHuntListComponent`, `CustomTabsComponent`; UX — `LoadingSpinnerComponent`, `SearchButtonComponent`, `ThemeToggleComponent`, `ErrorMessageViewComponent`, `NewUpdateViewComponent`, `ConfirmationModalComponent`, `HyperlinkComponent`.
+
+**Pipes exportados:** `ReplaceDashPipe`, `TranslateEvoMethodPipe`, `TranslatePokedexNamePipe`, `TranslatePokemonNamePipe`, `TranslateLocalizationMethodPipe`, `TranslateLocalizationNamePipe`.
+
+**Servicios** (`services/`): entre otros `PokeApiService`, `LanguageService`, `ThemeService`, `HelperService`, `LoadingService`, `NetworkService`, `ErrorMessageService`, `PwaInstallService`, `PokemonHuntService` — revisar cada `.ts` para contratos.
+
+**Reexporta:** `CommonModule`, `FormsModule`, `RouterModule`, `MatButtonModule`, `MatIconModule`, `MatTabsModule`.
+
+**Convención:** nuevos elementos compartidos entre features → declarar en `SharedModule` y **exportar** si se usan fuera.

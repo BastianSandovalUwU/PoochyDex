@@ -1,0 +1,29 @@
+---
+description: Módulo Pokédex — rutas, componentes y dependencias
+globs: src/app/modules/pokedex/**
+alwaysApply: false
+---
+
+# Módulo `pokedex` (`PokedexModule`)
+
+**Rol:** experiencia principal de la Pokédex: listados, ficha de Pokémon, habilidades, Pokédex regionales y caza. Datos vía **PokéAPI** y servicios en **`shared`** (p. ej. `PokeApiService`).
+
+**Prefijo URL:** `/pokedex` (lazy desde `app.routing.ts`).
+
+**Rutas** (`pokedex.routing.ts` → combinar con `app.routing.ts`):
+
+| Path | Componente | Notas |
+|------|------------|--------|
+| `''` | `PokedexComponent` | Redirige a Pokémon aleatorio → `show-pokemon/:name` |
+| `list` | `ListPokemonComponent` | Filtros en `filter/` |
+| `hunt` | `PokemonHuntComponent` | Caza |
+| `show-pokemon/:name` | `ShowPokemonComponent` | Ficha (tabs: info, entradas, stats, movimientos, variedades, localización…) |
+| `show-ability/:ability` | `ShowAbilityComponent` | Habilidad |
+| `list-pokedex` | `ListPokedexComponent` | Listado Pokédex |
+| `show-pokedex/:number` | `ShowPokedexComponent` | Pokédex regional |
+
+**Dependencias del módulo:** `SharedModule`, `MatButton`/`MatIcon`/`MatTabs`, `FormsModule`, `NgxLoadingModule`.
+
+**Carpetas:** `components/list-pokemon/` (+ `filter/`), `components/show-pokemon/` (subcomponentes de ficha), `components/show-pokedex/`, `components/show-ability/`, `components/pokemon-hunt/`, `components/list-pokedex/`.
+
+**Constantes:** listas globales (p. ej. `ALL_POKEMON`) desde `entities/common/const.interface`.

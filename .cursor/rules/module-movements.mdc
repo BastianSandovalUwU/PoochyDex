@@ -1,0 +1,23 @@
+---
+description: Módulo movimientos — detalle de un movimiento
+globs: src/app/modules/movements/**
+alwaysApply: false
+---
+
+# Módulo `movements` (`MovementModule`)
+
+**Rol:** pantalla de detalle de un **movimiento** de Pokémon (PokéAPI + lógica en `shared`).
+
+**Prefijo URL:** `/movement`.
+
+**Rutas** (`movement.routing.ts`):
+
+| Path | Componente |
+|------|------------|
+| `show-movement/:id` | `ShowMovementComponent` |
+
+El parámetro **`id`** es el identificador del movimiento en la API.
+
+**Dependencias:** `SharedModule`, `FormsModule`, `CommonModule`.
+
+**Código:** `components/show-movement/` (única pantalla del feature).

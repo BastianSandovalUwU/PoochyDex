@@ -1,0 +1,34 @@
+---
+description: Seguridad en frontend Angular — secretos, XSS, auth, datos sensibles
+alwaysApply: true
+---
+
+# Security (frontend)
+
+## Secrets and configuration
+
+- **Never** commit API keys, tokens, or production credentials in the repo. Use `NODE_JS_API` / environment generation (`generate-env.js`); do not hardcode secrets in `environment*.ts` or components.
+- Do not paste real tokens, passwords, or JWTs into code, tests, or commit messages.
+
+## Authentication and data
+
+- Treat **localStorage** / **sessionStorage** as readable by any script on the origin: store only what the existing `AuthService` pattern already stores; do not add new sensitive payloads without team review.
+- **Authorization** for real protection belongs on the **server**. The UI only hides or shows routes; assume API validates every request.
+
+## XSS and HTML
+
+- Prefer Angular bindings (`{{ }}`, `[attr.*]`). Avoid **`innerHTML`**, **`DomSanitizer.bypassSecurityTrust*`** unless strictly necessary; if used, sanitize and document why.
+- External links: use **`rel="noopener noreferrer"`** with `target="_blank"`.
+
+## Network and errors
+
+- Call APIs over **HTTPS** in production. Do not downgrade mixed content.
+- Do not **log** tokens, passwords, full credit-card data, or personal identifiers to the console in production code.
+
+## Dependencies
+
+- Prefer known packages; after adding dependencies, be aware of supply-chain risk. Run **`npm audit`** periodically and address high/critical issues.
+
+## Client-side validation
+
+- Validate input in the UI for UX only; **repeat validation on the backend**. Never trust client-only checks for security boundaries.

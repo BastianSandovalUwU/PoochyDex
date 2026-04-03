@@ -1,0 +1,13 @@
+---
+description: Convenciones Angular en templates y módulos PoochyDex
+globs: "**/*.html"
+alwaysApply: false
+---
+
+# Plantillas HTML
+
+- Reutilizar pipes del shared: `translatePokemonName`, `translatePokedexName`, `translateEvoMethod`, `translateLocalizationName`, `translateLocalizationMethod`, `replaceDash`, etc., según el caso.
+- Rutas: usar `routerLink` / `RouterModule` como en el resto del proyecto; rutas lazy coinciden con `app.routing.ts`.
+- No introducir librerías de UI nuevas si el mismo patrón ya se resuelve con **Angular Material** o componentes de `shared`.
+- Accesibilidad: mantener etiquetas y estructura coherentes con vistas existentes (menú, cards, tablas).
+- Texto visible al usuario: **español e inglés** según `language` / `currentLanguage` (`'es'` | `'en'`) y `LanguageService`; ver **`english-code-i18n-ui.mdc`**.

@@ -1,0 +1,45 @@
+---
+description: Git commit messages — emoji prefix + English description
+alwaysApply: true
+---
+
+# Commit messages
+
+Every commit message must:
+
+1. **Start with one emoji** that reflects the kind of change (see table below).
+2. Use a **short description in English**, imperative mood (e.g. “Add…”, “Fix…”, “Update…”).
+3. Optional: add a blank line and a longer body in English if needed.
+
+**Format (single line):**
+
+```text
+<emoji> <English description>
+```
+
+**Examples:**
+
+```text
+✨ Add shiny toggle to Pokemon card
+🐛 Fix hunt list not updating on language change
+♻️ Refactor PokeApiService cache keys
+🌐 Add missing ES labels for settings screen
+📝 Update AGENTS.md with commit conventions
+```
+
+**Emoji guide (pick one that best matches the change):**
+
+| Emoji | Use for |
+|-------|---------|
+| ✨ | New feature |
+| 🐛 | Bug fix |
+| ♻️ | Refactor (no user-visible change) |
+| 🎨 | UI / styling only |
+| 🌐 | Internationalization / translations |
+| ⚡️ | Performance |
+| ✅ | Tests |
+| 📝 | Documentation only |
+| 🔧 | Config, tooling, chores |
+| 🔒 | Security |
+
+Do **not** write the main description in Spanish; English only for the commit line and body.
