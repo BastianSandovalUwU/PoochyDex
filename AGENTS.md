@@ -27,6 +27,11 @@ PoochyDex es una Pokédex web que consume [PokéAPI](https://pokeapi.co/) y, cua
 - `npm run build:tailwind` — regenera `src/tailwind.css` desde `src/styles/styles.scss` / configuración Tailwind.
 - `npm run lint` — **ESLint** (`ng lint`) con `@angular-eslint`; configuración en `.eslintrc.json` (reglas estrictas relajadas para el código existente; muchos avisos, 0 errores si pasa el comando).
 
+## Entidades compartidas (`entities/common`)
+
+- **`enum.ts`** — reexporta módulos bajo **`display/`** (enums de juego, mapas Tailwind, helpers de etiquetas) para no mezclar miles de líneas en un solo archivo.
+- **`i18n/`** — `lookup.ts` (resolución por idioma) y **`ui-string-maps.ts`** (mapas ES solo para pipes / slugs de PokéAPI), separados de la lógica de dominio.
+
 ## Estructura de código (`src/app`)
 
 - **`app.routing.ts`** — Rutas raíz; la mayoría de features son **lazy loading** (`loadChildren`).

@@ -1,5 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { LanguageService } from '../services/language.service';
+import { translateWithEsMap } from '../../../../../entities/common/i18n/lookup';
+import { LOCALIZATION_METHOD_ES } from '../../../../../entities/common/i18n/ui-string-maps';
 
 @Pipe({
   name: 'translateLocalizationMethod'
@@ -17,25 +19,7 @@ export class TranslateLocalizationMethodPipe implements PipeTransform {
   }
 
   transform(value: string): string {
-    if(this.language === 'es') {
-      switch (value) {
-        case 'surf': return 'Salvaje, haciendo Surf';
-        case 'walk': return 'Salvaje';
-        case 'dark-grass': return 'Hierba Oscura';
-        case 'gift': return 'Regalo';
-        case 'sos-encounter': return 'Encuentro SOS';
-        case 'island-scan': return 'Escáner Insular';
-        case 'only-one': return 'Solo uno';
-        case 'gift-egg': return 'Regalado en Huevo';
-        case 'old-rod': return 'Caña Vieja';
-        case 'good-rod': return 'Caña Buena';
-        case 'super-rod': return 'Super Caña';
-        default: return value;
-      }
-    } else {
-      return value;
-    }
-
+    return translateWithEsMap(this.language, value, LOCALIZATION_METHOD_ES);
   }
 
 }
