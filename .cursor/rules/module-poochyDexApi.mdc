@@ -16,7 +16,7 @@ alwaysApply: false
 |------|------------|
 | `''` | `CrudApiComponent` |
 
-**Servicio:** `services/poochyDexApi.service.ts` (HTTP a la API propia).
+**Servicio:** `services/poochyDexApi.service.ts` (HTTP a la API propia). **Endpoints:** `docs/api-services.md` (sección `PoochyDexApiService`).
 
 **Cruzado con:** `AuthService` (sesión), `LanguageService`, `HelperService` (shared). Tipos en `entities/poochydex-api/`. Tipos de Pokémon: `POKEMON_TYPES` en `entities/common/const.interface`.
 

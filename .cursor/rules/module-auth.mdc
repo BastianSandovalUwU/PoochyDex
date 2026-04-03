@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Módulo `auth` (`AuthModule`)
 
-**Rol:** **login y registro** contra `environment.nodeJsApi`. **`AuthService`** usa `HttpClient` (`/api/auth/register`, `/api/auth/login`, `/api/userConfig/...`). **`AuthInterceptor`** en `app.module.ts` añade credenciales a peticiones autenticadas.
+**Rol:** **login y registro** contra `environment.nodeJsApi`. **`AuthService`** usa `HttpClient` (`/api/auth/register`, `/api/auth/login`, `/api/userConfig/...`). **`AuthInterceptor`** en `app.module.ts` añade credenciales a peticiones autenticadas. **Tabla de rutas HTTP:** `docs/api-services.md` (sección `AuthService`).
 
 **Prefijo URL:** `/auth`.
 

@@ -65,6 +65,7 @@ Las **reglas por módulo** están en **`.cursor/rules/module-*.mdc`**: Cursor la
 
 | Necesidad | Sitio típico |
 |-----------|----------------|
+| **Clientes HTTP y endpoints** (PokéAPI + API Node) | [docs/api-services.md](docs/api-services.md) |
 | Rutas de un feature | `*.routing.ts` dentro del módulo |
 | Llamadas a PokéAPI / caché | `shared/services/pokeApi.service.ts` y relacionados |
 | Tema claro/oscuro | `ThemeService`, `theme-toggle` |
