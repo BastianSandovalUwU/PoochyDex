@@ -14,8 +14,9 @@ alwaysApply: false
 
 | Path | Componente | URL típica |
 |------|------------|------------|
+| `''` | redirect → `show` | `/profile` → `/profile/show` |
 | `show` | `ShowProfileComponent` | `/profile/show` |
 
-**Dependencias:** `AuthService` (`getSessionData()`), `LanguageService`. **No** declara `SharedModule` en el módulo. **`NgxLoadingModule`** para carga.
+**Dependencias:** `AuthService` (sesión + `userConfig$`), `LanguageService`, **`SharedModule`**, `MatButton`, `MatIcon`, **`NgxLoadingModule`**.
 
-**Código:** `components/show-profile/`.
+**Código:** `components/show-profile/` — tarjeta de perfil (usuario, rol, idioma guardado), enlaces a **Settings** y **Pokédex**, cierre de sesión → `/pokedex`.
