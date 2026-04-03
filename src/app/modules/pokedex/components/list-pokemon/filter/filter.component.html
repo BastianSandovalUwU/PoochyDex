@@ -1,9 +1,13 @@
 <div class="rounded-md p-1 border border-gray-200 bg-white/70 dark:border-gray-600 dark:bg-gray-800">
   <div class="flex justify-between items-center cursor-pointer" (click)="toggleFilters()">
     <span class="text-xl cursor-pointer ml-1">{{ language === 'es' ? 'Filtros de búsqueda' : 'Search Filters' }}</span>
-    <button mat-icon-button class="cursor-default">
+    <app-ui-button
+      variant="icon"
+      type="button"
+      extraClasses="cursor-default pointer-events-none"
+      [ariaLabel]="language === 'es' ? 'Expandir o contraer filtros' : 'Expand or collapse filters'">
       <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
-    </button>
+    </app-ui-button>
   </div>
   <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="filters-container">
     <div class="sticky-wrapper">
@@ -72,9 +76,9 @@
             </div>
           </div>
           <div class="p-2">
-            <button (click)="applyFilters()" class="bg-red-500 text-white rounded-full mt-4 px-4 py-2 dark:bg-red-500 dark:text-white">
+            <app-ui-button variant="primary" type="button" extraClasses="mt-4" (buttonClick)="applyFilters()">
               {{ language === 'es' ? 'Aplicar Filtros' : 'Apply Filters' }}
-            </button>
+            </app-ui-button>
           </div>
       </div>
     </div>

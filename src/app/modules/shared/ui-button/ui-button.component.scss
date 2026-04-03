@@ -1,0 +1,117 @@
+// Circular cry controls (gradients + dark mode) — moved from pokemon-cry for reuse
+.ui-button--cry {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+
+  ::ng-deep mat-icon {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+    color: white;
+    transition: transform 0.2s ease;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition:
+      width 0.6s,
+      height 0.6s;
+  }
+
+  &:active::before {
+    width: 200px;
+    height: 200px;
+  }
+
+  &:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.2),
+      0 4px 8px rgba(0, 0, 0, 0.15);
+
+    ::ng-deep mat-icon {
+      transform: scale(1.1);
+    }
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow:
+      0 2px 4px -1px rgba(0, 0, 0, 0.1),
+      0 1px 2px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(59, 130, 246, 0.5);
+    outline-offset: 2px;
+  }
+}
+
+.ui-button--cry-play {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+
+  &:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.ui-button--cry-pause {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+
+  &:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+:host-context(.dark) {
+  .ui-button--cry-play {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.3),
+      0 2px 4px -1px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.4),
+        0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .ui-button--cry-pause {
+    background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.3),
+      0 2px 4px -1px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.4),
+        0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    }
+  }
+}

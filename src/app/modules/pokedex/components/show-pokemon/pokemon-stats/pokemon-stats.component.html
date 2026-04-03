@@ -2,9 +2,9 @@
   <div class="flex justify-between items-center cursor-pointer" (click)="toggleFilters()">
     <h1 class="font-bold text-xl hover:text-gray-800 dark:text-white dark:hover:text-gray-300">{{ language === 'es' ? 'Estadísticas Pokémon' : 'Pokémon Statistics' }}</h1>
 
-    <button mat-icon-button (click)="toggleFilters(); $event.stopPropagation()">
+    <app-ui-button variant="icon" type="button" (buttonClick)="toggleFilters(); $event.stopPropagation()">
       <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
-    </button>
+    </app-ui-button>
   </div>
   <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="flex flex-col items-center bg-white p-2 rounded-md w-full">
     <div *ngFor="let stat of pokemon.stats; let i = index" class="w-full flex items-center mb-2">

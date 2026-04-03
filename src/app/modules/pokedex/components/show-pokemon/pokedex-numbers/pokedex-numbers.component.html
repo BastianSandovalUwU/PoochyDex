@@ -1,9 +1,9 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-800">
   <div class="flex justify-between items-center cursor-pointer" (click)="toggleFilters()">
     <h1 class="font-bold text-xl hover:text-gray-800 dark:text-white dark:hover:text-gray-300">{{ language === 'es' ? 'Numeros de Pokédex': 'Pokédex Numbers' }}</h1>
-    <button mat-icon-button (click)="toggleFilters(); $event.stopPropagation()">
+    <app-ui-button variant="icon" type="button" (buttonClick)="toggleFilters(); $event.stopPropagation()">
       <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
-    </button>
+    </app-ui-button>
   </div>
   <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'"  class="grid sm:grid-cols-4 filters-container bg-white p-1 rounded-md border border-black dark:border-gray-600 dark:bg-gray-800">
     <div class="col-span-1" *ngFor="let dex of pokemonSpecie.pokedex_numbers">

@@ -2,9 +2,9 @@
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-xl cursor-pointer hover:text-gray-800 dark:text-white dark:hover:text-gray-300" (click)="toggleFilters()">{{ language === 'es' ? 'Formas': 'Varieties' }}</h1>
 
-    <button mat-icon-button (click)="toggleFilters()">
+    <app-ui-button variant="icon" type="button" (buttonClick)="toggleFilters()">
       <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
-    </button>
+    </app-ui-button>
   </div>
   <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="flex flex-wrap justify-center space-x-8 evolution-container" >
     <ng-container *ngFor="let variety of pokemonVarieties">

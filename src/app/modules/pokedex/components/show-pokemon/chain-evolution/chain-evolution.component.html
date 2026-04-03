@@ -2,9 +2,9 @@
   <div class="flex justify-between items-center cursor-pointer" (click)="toggleFilters()">
     <h1 class="font-bold text-xl hover:text-gray-800 dark:text-white dark:hover:text-gray-300">{{ language === 'es' ? 'Cadena Evolutiva' : 'Evolution Chain' }}</h1>
 
-    <button mat-icon-button (click)="toggleFilters(); $event.stopPropagation()">
+    <app-ui-button variant="icon" type="button" (buttonClick)="toggleFilters(); $event.stopPropagation()">
       <mat-icon class="text-gray-600 dark:text-gray-300">{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
-    </button>
+    </app-ui-button>
   </div>
 
   <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="flex flex-wrap justify-center space-x-8 evolution-container" *ngIf="evolutionChain">
