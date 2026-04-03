@@ -2,24 +2,38 @@
 #downButton {
   width: 60px;
   height: 60px;
-  background: #11cc00;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
-  border-radius: 50%;
+  border-radius: 9999px;
   position: fixed;
   bottom: 40px; /* Ambos botones estarán en la misma posición */
   left: 17px;
   cursor: pointer;
-  border: 2px solid black;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background-color: rgba(16, 185, 129, 0.9); /* verde semi-transparente, menos transparente */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   z-index: 1000;
 
   &:hover {
-    transform: scale(1.1);
-    background: #11be01;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: scale(1.08) translateY(-2px);
+    background-color: rgba(16, 185, 129, 1);
+    border-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
   }
+}
 
+:host-context(.dark) #upButton,
+:host-context(.dark) #downButton {
+  background-color: rgba(22, 163, 74, 0.85); /* menos transparente en oscuro */
+  border-color: rgba(15, 23, 42, 0.8);
+
+  &:hover {
+    background-color: rgba(22, 163, 74, 1);
+    border-color: rgba(15, 23, 42, 1);
+  }
 }
