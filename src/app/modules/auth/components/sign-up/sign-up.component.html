@@ -1,59 +1,46 @@
-<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-md w-full space-y-8">
-    <!-- Logo and Title Section -->
     <div class="text-center">
       <div class="flex justify-center mb-4">
         <img src="/assets/icons/rotom-dex/RotomDex.png" class="h-20 w-20 sm:h-24 sm:w-24" alt="PoochyDex Logo"/>
       </div>
       <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white">
-        {{ language === 'es' ? 'Crear Cuenta' : 'Create Account' }}
+        {{ language === 'es' ? 'Crear cuenta' : 'Create account' }}
       </h2>
       <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
         {{ language === 'es' ? 'Únete a la comunidad de PoochyDex' : 'Join the PoochyDex community' }}
       </p>
     </div>
 
-    <!-- Sign Up Form Card -->
     <div class="bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8 space-y-6">
-      <!-- Error Message -->
       <div *ngIf="errorMessage" class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 rounded">
-        <div class="flex items-center">
-          <mat-icon class="text-red-500 mr-2">error</mat-icon>
+        <div class="flex items-start gap-2">
+          <mat-icon class="text-red-500 shrink-0">error</mat-icon>
           <p class="text-sm text-red-700 dark:text-red-400">{{ errorMessage }}</p>
         </div>
       </div>
 
-      <!-- Success indicators for validation -->
-      <div *ngIf="signUpForm.valid && !errorMessage" class="bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 p-4 rounded">
-        <div class="flex items-center">
-          <mat-icon class="text-green-500 mr-2">check_circle</mat-icon>
-          <p class="text-sm text-green-700 dark:text-green-400">
-            {{ language === 'es' ? '¡Todo listo! Puedes crear tu cuenta' : 'All set! You can create your account' }}
-          </p>
-        </div>
-      </div>
-
-      <!-- Form -->
-      <form [formGroup]="signUpForm" class="space-y-5">
-        <!-- Username Field -->
+      <form [formGroup]="signUpForm" (ngSubmit)="signUp()" class="space-y-5" novalidate>
         <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            {{ language === 'es' ? 'Nombre de Usuario' : 'Username' }}
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="su-username">
+            {{ language === 'es' ? 'Nombre de usuario' : 'Username' }}
           </label>
           <div class="relative">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <mat-icon class="text-gray-400">person</mat-icon>
             </div>
             <input
+              id="su-username"
               type="text"
               formControlName="username"
+              autocomplete="username"
               class="block w-full pl-12 pr-3 py-3 border rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all"
               [ngClass]="{
                 'border-gray-300 dark:border-gray-600 focus:ring-blue-500 focus:border-transparent': !signUpForm.get('username')?.invalid || !signUpForm.get('username')?.touched,
                 'border-red-500 focus:ring-red-500': signUpForm.get('username')?.invalid && signUpForm.get('username')?.touched,
                 'border-green-500 focus:ring-green-500': signUpForm.get('username')?.valid && signUpForm.get('username')?.touched
               }"
-              [placeholder]="language === 'es' ? 'Mínimo 3 caracteres' : 'Minimum 3 characters'"
+              [placeholder]="language === 'es' ? '3–64 caracteres, sin espacios' : '3–64 characters, no spaces'"
             />
             <div *ngIf="signUpForm.get('username')?.valid && signUpForm.get('username')?.touched"
                  class="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -61,20 +48,29 @@
             </div>
           </div>
           <p *ngIf="signUpForm.get('username')?.hasError('required') && signUpForm.get('username')?.touched"
-             class="mt-1 text-xs text-red-500 flex items-center">
-            <mat-icon class="text-xs mr-1" style="font-size: 14px; width: 14px; height: 14px;">info</mat-icon>
-            {{ language === 'es' ? 'El nombre de usuario es requerido' : 'Username is required' }}
+             class="mt-1 text-xs text-red-500 flex items-center gap-1">
+            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
+            {{ language === 'es' ? 'El nombre de usuario es obligatorio' : 'Username is required' }}
           </p>
           <p *ngIf="signUpForm.get('username')?.hasError('minlength') && signUpForm.get('username')?.touched"
-             class="mt-1 text-xs text-red-500 flex items-center">
-            <mat-icon class="text-xs mr-1" style="font-size: 14px; width: 14px; height: 14px;">info</mat-icon>
+             class="mt-1 text-xs text-red-500 flex items-center gap-1">
+            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
             {{ language === 'es' ? 'Mínimo 3 caracteres' : 'Minimum 3 characters' }}
+          </p>
+          <p *ngIf="signUpForm.get('username')?.hasError('maxlength') && signUpForm.get('username')?.touched"
+             class="mt-1 text-xs text-red-500 flex items-center gap-1">
+            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
+            {{ language === 'es' ? 'Máximo 64 caracteres' : 'Maximum 64 characters' }}
+          </p>
+          <p *ngIf="signUpForm.get('username')?.hasError('pattern') && signUpForm.get('username')?.touched"
+             class="mt-1 text-xs text-red-500 flex items-center gap-1">
+            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
+            {{ language === 'es' ? 'Sin espacios en blanco' : 'No whitespace allowed' }}
           </p>
         </div>
 
-        <!-- Password Field -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="su-password">
             {{ language === 'es' ? 'Contraseña' : 'Password' }}
           </label>
           <div class="relative">
@@ -82,8 +78,10 @@
               <mat-icon class="text-gray-400">lock</mat-icon>
             </div>
             <input
+              id="su-password"
               [type]="showPassword ? 'text' : 'password'"
               formControlName="password"
+              autocomplete="new-password"
               class="block w-full pl-12 pr-12 py-3 border rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all"
               [ngClass]="{
                 'border-gray-300 dark:border-gray-600 focus:ring-blue-500 focus:border-transparent': !signUpForm.get('password')?.invalid || !signUpForm.get('password')?.touched,
@@ -95,34 +93,51 @@
             <button
               type="button"
               (click)="togglePasswordVisibility()"
-              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              [attr.aria-label]="language === 'es' ? 'Mostrar u ocultar contraseña' : 'Show or hide password'">
               <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
             </button>
           </div>
+
+          <div class="mt-2 space-y-1" *ngIf="signUpForm.get('password')?.value">
+            <div class="flex gap-1" role="status" [attr.aria-label]="getStrengthLabel()">
+              <span *ngFor="let _ of [0,1,2,3]; let i = index" class="h-1.5 flex-1 rounded-full transition-colors duration-200"
+                    [ngClass]="strengthSegmentClass(i)"></span>
+            </div>
+            <p class="text-xs text-gray-600 dark:text-gray-400">
+              {{ getStrengthLabel() }}
+              <span class="text-gray-400 dark:text-gray-500"> · </span>
+              {{ language === 'es'
+                ? 'Combina mayúsculas, números y símbolos para más seguridad.'
+                : 'Mix upper and lower case, numbers, and symbols for better security.' }}
+            </p>
+          </div>
+
           <p *ngIf="signUpForm.get('password')?.hasError('required') && signUpForm.get('password')?.touched"
-             class="mt-1 text-xs text-red-500 flex items-center">
-            <mat-icon class="text-xs mr-1" style="font-size: 14px; width: 14px; height: 14px;">info</mat-icon>
-            {{ language === 'es' ? 'La contraseña es requerida' : 'Password is required' }}
+             class="mt-1 text-xs text-red-500 flex items-center gap-1">
+            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
+            {{ language === 'es' ? 'La contraseña es obligatoria' : 'Password is required' }}
           </p>
           <p *ngIf="signUpForm.get('password')?.hasError('minlength') && signUpForm.get('password')?.touched"
-             class="mt-1 text-xs text-red-500 flex items-center">
-            <mat-icon class="text-xs mr-1" style="font-size: 14px; width: 14px; height: 14px;">info</mat-icon>
+             class="mt-1 text-xs text-red-500 flex items-center gap-1">
+            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
             {{ language === 'es' ? 'Mínimo 6 caracteres' : 'Minimum 6 characters' }}
           </p>
         </div>
 
-        <!-- Confirm Password Field -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            {{ language === 'es' ? 'Confirmar Contraseña' : 'Confirm Password' }}
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="su-confirm">
+            {{ language === 'es' ? 'Confirmar contraseña' : 'Confirm password' }}
           </label>
           <div class="relative">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <mat-icon class="text-gray-400">lock_outline</mat-icon>
             </div>
             <input
+              id="su-confirm"
               [type]="showConfirmPassword ? 'text' : 'password'"
               formControlName="confirmPassword"
+              autocomplete="new-password"
               class="block w-full pl-12 pr-12 py-3 border rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all"
               [ngClass]="{
                 'border-gray-300 dark:border-gray-600 focus:ring-blue-500 focus:border-transparent': !signUpForm.hasError('passwordMismatch') || !signUpForm.get('confirmPassword')?.touched,
@@ -130,45 +145,42 @@
                 'border-green-500 focus:ring-green-500': !signUpForm.hasError('passwordMismatch') && signUpForm.get('confirmPassword')?.valid && signUpForm.get('confirmPassword')?.touched
               }"
               [placeholder]="language === 'es' ? 'Repite tu contraseña' : 'Repeat your password'"
-              (keyup.enter)="signUp()"
             />
             <button
               type="button"
               (click)="toggleConfirmPasswordVisibility()"
-              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              [attr.aria-label]="language === 'es' ? 'Mostrar u ocultar confirmación' : 'Show or hide confirmation'">
               <mat-icon>{{ showConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
             </button>
           </div>
           <p *ngIf="signUpForm.get('confirmPassword')?.hasError('required') && signUpForm.get('confirmPassword')?.touched"
-             class="mt-1 text-xs text-red-500 flex items-center">
-            <mat-icon class="text-xs mr-1" style="font-size: 14px; width: 14px; height: 14px;">info</mat-icon>
+             class="mt-1 text-xs text-red-500 flex items-center gap-1">
+            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
             {{ language === 'es' ? 'Confirma tu contraseña' : 'Confirm your password' }}
           </p>
           <p *ngIf="signUpForm.hasError('passwordMismatch') && signUpForm.get('confirmPassword')?.touched"
-             class="mt-1 text-xs text-red-500 flex items-center">
-            <mat-icon class="text-xs mr-1" style="font-size: 14px; width: 14px; height: 14px;">info</mat-icon>
+             class="mt-1 text-xs text-red-500 flex items-center gap-1">
+            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
             {{ language === 'es' ? 'Las contraseñas no coinciden' : 'Passwords do not match' }}
           </p>
           <p *ngIf="!signUpForm.hasError('passwordMismatch') && signUpForm.get('confirmPassword')?.valid && signUpForm.get('confirmPassword')?.touched"
-             class="mt-1 text-xs text-green-500 flex items-center">
-            <mat-icon class="text-xs mr-1" style="font-size: 14px; width: 14px; height: 14px;">check_circle</mat-icon>
+             class="mt-1 text-xs text-green-600 dark:text-green-400 flex items-center gap-1">
+            <mat-icon class="!w-3.5 !h-3.5">check_circle</mat-icon>
             {{ language === 'es' ? 'Las contraseñas coinciden' : 'Passwords match' }}
           </p>
         </div>
 
-        <!-- Sign Up Button -->
         <button
-          type="button"
-          (click)="signUp()"
+          type="submit"
           [disabled]="signUpForm.invalid || loading"
           class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]">
           <mat-icon *ngIf="!loading" class="mr-2">person_add</mat-icon>
           <mat-icon *ngIf="loading" class="mr-2 animate-spin">refresh</mat-icon>
-          {{ loading ? (language === 'es' ? 'Creando cuenta...' : 'Creating account...') : (language === 'es' ? 'Crear Cuenta' : 'Create Account') }}
+          {{ loading ? (language === 'es' ? 'Creando cuenta…' : 'Creating account…') : (language === 'es' ? 'Crear cuenta' : 'Create account') }}
         </button>
       </form>
 
-      <!-- Divider -->
       <div class="relative my-6">
         <div class="absolute inset-0 flex items-center">
           <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
@@ -180,25 +192,23 @@
         </div>
       </div>
 
-      <!-- Login Link -->
       <div class="text-center">
         <p class="text-sm text-gray-600 dark:text-gray-400">
-          {{ language === 'es' ? "¿Ya tienes una cuenta?" : "Already have an account?" }}
+          {{ language === 'es' ? '¿Ya tienes una cuenta?' : 'Already have an account?' }}
         </p>
         <button
           type="button"
           (click)="goToLogin()"
           class="mt-2 inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors">
-          {{ language === 'es' ? 'Inicia sesión aquí' : 'Sign in here' }}
-          <mat-icon class="ml-1" style="font-size: 18px; width: 18px; height: 18px;">arrow_forward</mat-icon>
+          {{ language === 'es' ? 'Inicia sesión' : 'Sign in' }}
+          <mat-icon class="ml-1 !w-[18px] !h-[18px]">arrow_forward</mat-icon>
         </button>
       </div>
     </div>
 
-    <!-- Footer -->
     <div class="text-center">
       <p class="text-xs text-gray-500 dark:text-gray-400">
-        {{ language === 'es' ? '© 2024 PoochyDex. Todos los derechos reservados.' : '© 2024 PoochyDex. All rights reserved.' }}
+        {{ language === 'es' ? '© 2026 PoochyDex. Todos los derechos reservados.' : '© 2026 PoochyDex. All rights reserved.' }}
       </p>
     </div>
   </div>
