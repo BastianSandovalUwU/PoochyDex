@@ -43,3 +43,16 @@ Every commit message must:
 | 🔒 | Security |
 
 Do **not** write the main description in Spanish; English only for the commit line and body.
+
+---
+
+## When the user asked for a new feature or new development
+
+If the request was to build a **new feature** or **non-trivial new work** (not a one-line fix), when the implementation is **finished**:
+
+1. Use a **feature branch** when appropriate (e.g. `feature/short-name`).
+2. Create the **commit(s)** following the rules above.
+3. **Push** and **open a Pull Request** to `master` when the environment allows credentials.
+4. Fill the **PR body** using **`.github/pull_request_template.md`**: Summary, main changes, how to verify, notes — **enough detail** for a proper human review.
+
+If push or PR creation fails (e.g. GitHub auth), output the **commit message**, the **full PR description** ready to paste, and the **compare URL** (`.../compare/master...branch`) so the user can finish locally.

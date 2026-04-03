@@ -13,4 +13,10 @@ alwaysApply: true
 
 4. **Rutas:** validar con `src/app/app.routing.ts` + el `*routing.ts` del módulo; no inventar paths.
 
-Al cambiar rutas o responsabilidades de un módulo, **actualiza la regla `module-*.mdc` correspondiente** en `.cursor/rules/`.
+5. **Desarrollo nuevo y contexto del módulo (obligatorio en cambios sustantivos):** cualquier trabajo que añada o modifique comportamiento en `src/app/modules/<nombre>/` (rutas, componentes, servicios del feature, flujos, integraciones) debe **actualizar el contexto** en el mismo esfuerzo (idealmente el mismo PR):
+   - edita **`.cursor/rules/module-<nombre>.mdc`** con lo que haya cambiado: URLs, piezas clave, dependencias con otros módulos, decisiones que un asistente deba conocer;
+   - si el cambio es transversal (varios módulos, `app.*`, arquitectura global), actualiza también **`AGENTS.md`** cuando aplique.
+
+La regla **`module-*.mdc` correspondiente al módulo tocado** es la fuente de verdad por feature; no dejarla desactualizada tras un desarrollo nuevo.
+
+6. **Feature o desarrollo nuevo pedido explícitamente:** si el usuario pide implementar un **feature nuevo** o un **desarrollo nuevo** (no solo un arreglo mínimo), al **terminar** el asistente debe: usar una **rama dedicada** si aplica; crear el **commit** (formato **`commits.mdc`**); **empujar** e **intentar abrir un PR** hacia `master` con descripción **completa** según **`.github/pull_request_template.md`** (resumen, cambios, cómo verificar, notas) para que el usuario pueda revisar bien. Si `git push` o la API no permiten abrir el PR, entregar en la respuesta el **mensaje de commit** y el **texto del PR** listos para copiar, más el enlace `compare/master...rama` si aplica.

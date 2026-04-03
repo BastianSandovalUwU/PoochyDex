@@ -49,6 +49,7 @@ Las **reglas por módulo** están en **`.cursor/rules/module-*.mdc`**: Cursor la
 
 ## Convenciones al cambiar código
 
+- **Contexto del módulo:** en cada desarrollo sustantivo dentro de `src/app/modules/<módulo>/`, actualiza **`.cursor/rules/module-<módulo>.mdc`** para reflejar rutas, dependencias y notas útiles (misma PR o commit). Si el cambio afecta la app al completo o varios features, revisa también **`AGENTS.md`**.
 - Mantener el estilo existente: mismos patrones de módulos, nombres de archivos (`*.component.ts|html|scss`) y pipes bajo `shared/pipes/`.
 - Reutilizar `SharedModule` y servicios ya expuestos antes de duplicar lógica.
 - **Idioma en código:** identificadores y comentarios en **inglés**. **Texto de UI:** español e inglés según el idioma activo (`language` / `currentLanguage` en `'es'` | `'en'`, vía `LanguageService` y pipes o ramas existentes).
@@ -71,6 +72,8 @@ Las **reglas por módulo** están en **`.cursor/rules/module-*.mdc`**: Cursor la
 
 ## Reglas para el asistente (Cursor)
 
+Tras un **feature nuevo** o **desarrollo nuevo** pedido por el usuario, al cerrar el trabajo: **commit** (véase `commits.mdc`), **push + PR** hacia `master` con descripción detallada (plantilla en `.github/pull_request_template.md`) para revisión; si no hay acceso a GitHub, el asistente debe dejar **mensaje de commit y cuerpo del PR** listos para pegar (véase `context-sources.mdc`).
+
 En **`.cursor/rules/`**:
 
 | Archivo | Cuándo aplica |
@@ -83,7 +86,7 @@ En **`.cursor/rules/`**:
 | **`module-pokedex.mdc`** … **`module-shared.mdc`** | Al trabajar en `src/app/modules/<módulo>/**` (rutas y dependencias de ese feature). |
 | **`angular-templates.mdc`** | Archivos `*.html`. |
 
-Si cambian rutas o responsabilidades de un módulo, actualiza el **`module-*.mdc`** correspondiente.
+Si cambian rutas o responsabilidades de un módulo, actualiza el **`module-*.mdc`** correspondiente. Con cada **desarrollo nuevo** relevante en un módulo, mantén ese **`module-*.mdc`** al día (ver convenciones arriba).
 
 ---
 
