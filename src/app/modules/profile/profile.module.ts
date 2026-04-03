@@ -4,12 +4,18 @@ import { ShowProfileComponent } from './components/show-profile/show-profile.com
 import { RouterModule } from '@angular/router';
 import { profileRoute } from './profile.routing';
 import { NgxLoadingModule } from 'ngx-loading';
+import { SharedModule } from '../shared/shared.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(profileRoute),
-    NgxLoadingModule
+    NgxLoadingModule,
+    SharedModule,
+    MatButtonModule,
+    MatIconModule
   ],
   declarations: [
     ShowProfileComponent

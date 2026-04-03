@@ -1,16 +1,79 @@
-<div class="m-4" *ngIf="!loading">
+<div class="profile-wrap px-4 py-6 sm:py-10 max-w-lg mx-auto" *ngIf="!loading && userData">
 
-  <h1 class="font-bold text-4xl text-center" *ngIf="useData">{{ language === 'es' ? 'Bienvenido' : 'Welcome' }} {{ useData.user }}</h1>
-  <h1 *ngIf="!useData">{{ language === 'es' ? 'NO HAY USUARIO' : 'NO USER' }}</h1>
+  <h1 class="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-6">
+    {{ language === 'es' ? 'Tu perfil' : 'Your profile' }}
+  </h1>
 
-  <div class="flex justify-center">
-    <button mat-raised-button class="bg-blue-500 p-2 rounded-md text-white" (click)="logout()">{{ language === 'es' ? 'Cerrar Sesión' : 'Logout' }}</button>
+  <div
+    class="profile-card rounded-2xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800/90 shadow-lg overflow-hidden">
+
+    <div class="profile-card__header px-6 py-8 bg-gradient-to-br from-purple-600/90 to-green-700/85 text-white">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-5">
+        <div
+          class="profile-avatar flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-white/20 ring-2 ring-white/40">
+          <mat-icon class="!w-12 !h-12 !text-[48px] leading-none text-white">person</mat-icon>
+        </div>
+        <div class="min-w-0 flex-1">
+          <p class="text-sm uppercase tracking-wide text-white/80">
+            {{ language === 'es' ? 'Sesión iniciada como' : 'Signed in as' }}
+          </p>
+          <p class="text-2xl font-bold truncate" [attr.title]="userData.user">{{ userData.user }}</p>
+          <span
+            class="inline-flex mt-2 items-center rounded-full px-3 py-0.5 text-sm font-medium bg-white/20 text-white">
+            {{ getRoleLabel() }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="px-6 py-5 space-y-4 border-b border-gray-100 dark:border-gray-700">
+      <h2 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+        {{ language === 'es' ? 'Preferencias' : 'Preferences' }}
+      </h2>
+      <div class="flex items-center justify-between gap-3 text-gray-800 dark:text-gray-200">
+        <span class="flex items-center gap-2">
+          <mat-icon class="text-gray-500 dark:text-gray-400 !w-5 !h-5">language</mat-icon>
+          {{ language === 'es' ? 'Idioma de la app' : 'App language' }}
+        </span>
+        <span class="font-medium tabular-nums">{{ getLanguagePreferenceLabel() }}</span>
+      </div>
+      <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+        {{ language === 'es'
+          ? 'Puedes cambiar el idioma en Configuración cuando la API lo permita; el valor mostrado refleja tu configuración guardada.'
+          : 'You can change the language in Settings when the API supports it; the value shown reflects your saved config.' }}
+      </p>
+    </div>
+
+    <div class="px-6 py-5 flex flex-col sm:flex-row gap-3">
+      <a mat-stroked-button
+         color="primary"
+         disabled
+         class="!flex !items-center !justify-center !gap-2 flex-1">
+        <mat-icon>tune</mat-icon>
+        {{ language === 'es' ? 'Configuración' : 'Settings' }}
+      </a>
+      <a mat-stroked-button
+         routerLink="/pokedex"
+         class="!flex !items-center !justify-center !gap-2 flex-1 border-gray-300 dark:border-gray-500">
+        <mat-icon>catching_pokemon</mat-icon>
+        {{ language === 'es' ? 'Pokédex' : 'Pokédex' }}
+      </a>
+    </div>
+
+    <div class="px-6 pb-6">
+      <button mat-raised-button
+              color="warn"
+              type="button"
+              class="w-full !py-2"
+              (click)="logout()">
+        <mat-icon class="mr-1 align-middle">logout</mat-icon>
+        {{ language === 'es' ? 'Cerrar sesión' : 'Log out' }}
+      </button>
+    </div>
   </div>
-
 </div>
 
-
 <ngx-loading
-[show]="loading"
-[config]="{ backdropBorderRadius: '3px' }"
+  [show]="loading"
+  [config]="{ backdropBorderRadius: '3px' }"
 ></ngx-loading>
