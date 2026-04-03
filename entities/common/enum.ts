@@ -246,7 +246,7 @@ export const POKEMON_TYPE_COLOR_CLASSES: Record<PokemonType, string> = {
   [PokemonType.FLYING]: 'bg-flying'
 };
 
-// Mapeo inverso: traducción en español -> tipo en inglés
+// Inverse map: Spanish type name -> English enum
 const SPANISH_TO_ENGLISH_TYPE: Record<string, PokemonType> = {
   'planta': PokemonType.GRASS,
   'fuego': PokemonType.FIRE,
@@ -273,10 +273,10 @@ export function getTypeColorClass(typeName: string, language: string): string {
   let pokemonType: PokemonType | undefined;
 
   if (language === 'en') {
-    // En inglés, el nombre ya coincide con el enum
+    // English names already match the enum values
     pokemonType = normalizedName as PokemonType;
   } else if (language === 'es') {
-    // En español, necesitamos convertir a inglés primero
+    // Spanish names must be mapped to the English enum first
     pokemonType = SPANISH_TO_ENGLISH_TYPE[normalizedName];
   }
 
@@ -355,12 +355,12 @@ export function getGameVersionColor(gameVersion: string): string {
   const normalizedVersion = gameVersion.toLowerCase();
   const gameName = normalizedVersion as GameName;
 
-  // Primero intentar con el enum
+  // Try enum key first
   if (GAME_VERSION_COLOR_CLASSES[gameName]) {
     return GAME_VERSION_COLOR_CLASSES[gameName];
   }
 
-  // Si no está en el enum, buscar directamente (para casos como 'brilliant-diamond', 'shining-pearl')
+  // Fallback: slug keys (e.g. 'brilliant-diamond', 'shining-pearl')
   if (GAME_VERSION_COLOR_CLASSES[normalizedVersion]) {
     return GAME_VERSION_COLOR_CLASSES[normalizedVersion];
   }
@@ -419,7 +419,7 @@ export function getGenerationName(generationName: string, language: string): str
   return '';
 }
 
-// Mapeo de nombres en minúsculas a valores del enum
+// Lowercase API names -> enum values
 const LOWERCASE_TO_POKEMON_TYPE: Record<string, PokemonType> = {
   'grass': PokemonType.GRASS,
   'fire': PokemonType.FIRE,
@@ -446,13 +446,13 @@ export function getTypeNameByLanguage(typeName: string, language: string): strin
   const pokemonType = LOWERCASE_TO_POKEMON_TYPE[normalizedName];
 
   if (language === 'en') {
-    // En inglés, capitalizar la primera letra (el enum ya tiene el formato correcto)
+    // English: capitalize (enum casing is already correct)
     if (pokemonType) {
       return pokemonType.charAt(0) + pokemonType.slice(1).toLowerCase();
     }
     return typeName.charAt(0).toUpperCase() + typeName.slice(1);
   } else {
-    // En español, usar las traducciones
+    // Spanish: use translation table
     if (pokemonType) {
       return POKEMON_TYPE_TRANSLATIONS[pokemonType];
     }
@@ -504,7 +504,7 @@ export function getTargetTypeName(targetType: string, language: string): string 
   if (language === 'es') {
     return TARGET_TYPE_TRANSLATIONS_ES[normalizedType] || '';
   } else if (language === 'en') {
-    // En inglés, reemplazar guiones con espacios
+    // English: turn kebab-case into words
     return targetType.replace(/-/g, ' ');
   } else {
     return targetType;

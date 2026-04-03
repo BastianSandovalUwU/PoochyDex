@@ -1,4 +1,4 @@
-/* Ocultar y mostrar el menú lateral */
+/* Side menu visibility */
 @media (max-width: 640px) { /* Tailwind's sm breakpoint */
   .menu-hidden {
     display: none;
@@ -9,7 +9,7 @@
   }
 }
 
-/* Transiciones */
+/* Transitions */
 .transition-transform {
   transition: transform 0.3s ease-in-out;
 }
@@ -34,7 +34,7 @@
   z-index: 1002;
 }
 
-/* Estilo en app-menu.component.css */
+/* Mirrors app-menu visibility utilities */
 .hidden {
   display: none;
 }
@@ -47,7 +47,7 @@
   position: absolute;
 }
 
-/* Estilo para ajustar el botón de cerrar en pantallas grandes */
+/* Close button alignment on large screens */
 .sm\\:relative {
   position: relative;
 }
@@ -145,7 +145,7 @@ header {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
-  /* Asegurar que el contenido interno no tenga blur */
+  /* Inner content stays sharp (no blur on text) */
   > * {
     position: relative;
     z-index: 1;

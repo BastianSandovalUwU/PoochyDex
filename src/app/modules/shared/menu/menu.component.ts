@@ -58,7 +58,7 @@ export class MenuComponent implements OnInit, OnChanges, OnDestroy {
 
   updateCurrentRoute() {
     this.currentRoute = this.router.url;
-    // Auto-expandir secciones si algún hijo está activo
+    // Expand sections when a child route is active
     this.autoExpandActiveSections();
   }
 
@@ -103,16 +103,16 @@ export class MenuComponent implements OnInit, OnChanges, OnDestroy {
 
   filterMenuOptions() {
     this.filteredMenuOptions = MENU_OPTIONS.filter(option => {
-      // Filtrar por rol si está definido
+      // Optional role gate on root items
       if (option.role && this.userData?.role !== option.role) {
         return false;
       }
       return true;
     }).map(option => {
-      // Crear una copia de la opción para no mutar la constante
+      // Clone so MENU_OPTIONS is never mutated
       const filteredOption = { ...option };
 
-      // Filtrar hijos por rol si existen
+      // Same role filter for nested items
       if (filteredOption.children) {
         filteredOption.children = filteredOption.children.filter(child => {
           if (child.role && this.userData?.role !== child.role) {
@@ -144,26 +144,23 @@ export class MenuComponent implements OnInit, OnChanges, OnDestroy {
 
     const current = this.currentRoute;
 
-    // Caso 1: Coincidencia exacta (con o sin barra final)
+    // Case 1: exact match (with or without trailing slash)
     if (current === route || current === route + '/' || current + '/' === route) {
       return true;
     }
 
-    // Caso 2: Rutas con parámetros dinámicos
-    // Si la ruta del menú termina con "/", significa que acepta parámetros
-    // Ejemplo: "/pokedex/show-pokedex/" debe activarse para "/pokedex/show-pokedex/kanto"
+    // Case 2: routes that accept path segments (menu entry ends with "/")
+    // e.g. "/pokedex/show-pokedex/" matches "/pokedex/show-pokedex/kanto"
     if (route.endsWith('/')) {
-      const routeBase = route.slice(0, -1); // Quitar la barra final
+      const routeBase = route.slice(0, -1);
       if (current.startsWith(route)) {
         return true;
       }
-      // También verificar sin la barra final
       if (current === routeBase || current.startsWith(routeBase + '/')) {
         return true;
       }
     } else {
-      // Si la ruta no termina con "/", solo coincidencias exactas o con parámetros después de una barra
-      // Esto previene que /pokedex/list active /pokedex/list-pokedex
+      // No trailing slash: prefix match only (avoid /pokedex/list matching /pokedex/list-pokedex)
       if (current.startsWith(route + '/')) {
         return true;
       }

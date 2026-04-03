@@ -62,7 +62,7 @@ export class ListPokedexComponent implements OnInit {
         this.loading = false;
       },
       error: (error) => {
-        console.error('Error al obtener las Pokédex:', error);
+        console.error('Error fetching Pokédex list:', error);
         this.loadingService.hide();
         this.loading = false;
       }

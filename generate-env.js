@@ -1,13 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-// Intentar cargar dotenv solo si no hay variables de entorno
+// Try loading dotenv only when NODE_JS_API is not already set
 if (!process.env.NODE_JS_API) {
   try {
     const dotenv = require('dotenv');
     dotenv.config({ path: '.env' });
   } catch (error) {
-    console.log('⚠️  dotenv no encontrado, usando variables de sistema');
+    console.log('⚠️  dotenv not found, using environment variables');
   }
 }
 
@@ -18,7 +18,7 @@ if (!fs.existsSync(envDir)) {
   fs.mkdirSync(envDir, { recursive: true });
 }
 
-// SIEMPRE generar AMBOS archivos para que Angular pueda hacer el ile replacement
+// Always generate BOTH files so Angular fileReplacements works on build
 const devFile = `// This file can be replaced during build by using the fileReplacements array.
 // ng build replaces environment.ts with environment.prod.ts.
 // The list of file replacements can be found in angular.json.
@@ -44,12 +44,12 @@ const prodFile = `export const environment = {
 };
 `;
 
-// Escribir AMBOS archivos siempre
+// Write both environment files
 fs.writeFileSync(path.join(envDir, 'environment.ts'), devFile);
 fs.writeFileSync(path.join(envDir, 'environment.prod.ts'), prodFile);
 
-console.log('✅ environment.ts generado');
-console.log('✅ environment.prod.ts generado');
+console.log('✅ environment.ts written');
+console.log('✅ environment.prod.ts written');
 console.log(`📍 NODE_JS_API: ${NODE_JS_API}`);
 
 

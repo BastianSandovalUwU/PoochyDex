@@ -24,7 +24,7 @@ export class ShowProfileComponent implements OnInit {
     this.useData = this.authService.getSessionData();
     this.getLanguage();
     if(!this.useData) {
-      console.log('no hay una sesión iniciada');
+      console.log('No active session');
       this.router.navigate(['/auth/login']);
       this.loading = false;
       return;

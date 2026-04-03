@@ -49,7 +49,7 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
         }
       });
 
-    // Cargar el Pokémon directamente sin esperar el caché
+    // Load Pokémon immediately (no cache gate)
     this.activatedRoute.params
       .pipe(takeUntil(this.destroy$))
       .subscribe(params => {
@@ -118,7 +118,7 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
   }
 
   getPokemonMoves(): void {
-    // Usar directamente los moves del pokemon que ya tenemos
+    // Use moves already present on the Pokémon payload
     const moves = this.pokemon.moves;
 
     if (!moves || moves.length === 0) {
@@ -140,7 +140,7 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
             detailMove: details[index]
           }));
 
-          // Usar getTypeNameByLanguage directamente (es síncrono)
+          // getTypeNameByLanguage is synchronous
           this.movesWithTypesEn = movesArray.map((move) => {
             const typeNameEn = this.helperService.getTypeNameByLanguage(move.detailMove.type.name, 'en');
             const moveName = move.detailMove.names.find(name => name.language.name === 'en')?.name || move.move.name;

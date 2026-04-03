@@ -19,7 +19,7 @@ export interface MachineDetail {
 }
 
 export interface ExtendedMachineDetail extends VersionGroupDetail {
-  moveDetails?: any;  // Puedes definir un tipo más específico si conoces la estructura de los detalles del movimiento
+  moveDetails?: any; // TODO: narrow type when move detail shape is fixed
   machine: {
     url: string;
   };

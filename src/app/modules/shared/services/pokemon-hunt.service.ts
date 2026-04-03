@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'environments/environment';
 import { AuthService } from 'app/modules/auth/services/auth.service';
@@ -20,8 +20,8 @@ export class PokemonHuntService {
   ) {}
 
   /**
-   * Obtiene los pokemon registrados del backend
-   * Si el usuario no está autenticado, devuelve los datos del localStorage
+   * Fetches registered Pokémon from the backend.
+   * If the user is not authenticated, returns data from localStorage.
    */
   getRegisteredPokemon(): Observable<RegisteredPokemon[]> {
     if (!this.authService.isAuthenticated()) {
@@ -38,18 +38,18 @@ export class PokemonHuntService {
       }),
       catchError(error => {
         console.error('Error loading pokemon hunt data from server:', error);
-        // Si falla, devolver datos locales
+        // On failure, fall back to local data
         return of(this.getLocalRegisteredPokemon());
       })
     );
   }
 
   /**
-   * Guarda los pokemon registrados en el backend
-   * Si el usuario no está autenticado, solo guarda en localStorage
+   * Saves registered Pokémon to the backend.
+   * If the user is not authenticated, only persists to localStorage.
    */
   saveRegisteredPokemon(registeredPokemon: RegisteredPokemon[]): Observable<PokemonHuntResponse> {
-    // Siempre guardar en localStorage como backup
+    // Always mirror to localStorage as backup
     this.saveToLocalStorage(registeredPokemon);
 
     if (!this.authService.isAuthenticated()) {
@@ -72,7 +72,7 @@ export class PokemonHuntService {
       }),
       catchError(error => {
         console.error('Error saving pokemon hunt data to server:', error);
-        // Aunque falle el servidor, los datos ya están en localStorage
+        // Data is already in localStorage even if the server fails
         return of({
           success: false,
           message: 'Saved locally but failed to sync with server'
@@ -82,11 +82,11 @@ export class PokemonHuntService {
   }
 
   /**
-   * Actualiza los pokemon registrados (parcialmente)
-   * Útil para actualizaciones incrementales
+   * Updates registered Pokémon (partial updates supported).
+   * Useful for incremental updates.
    */
   updateRegisteredPokemon(registeredPokemon: RegisteredPokemon[]): Observable<PokemonHuntResponse> {
-    // Siempre actualizar localStorage
+    // Always update localStorage
     this.saveToLocalStorage(registeredPokemon);
 
     if (!this.authService.isAuthenticated()) {
@@ -118,10 +118,9 @@ export class PokemonHuntService {
   }
 
   /**
-   * Elimina todos los pokemon registrados
+   * Clears all registered Pokémon.
    */
   clearRegisteredPokemon(): Observable<PokemonHuntResponse> {
-    // Limpiar localStorage
     localStorage.removeItem(this.localStorageKey);
     localStorage.removeItem(this.lastSyncKey);
 
@@ -149,8 +148,7 @@ export class PokemonHuntService {
   }
 
   /**
-   * Sincroniza los datos locales con el servidor
-   * Útil después de iniciar sesión
+   * Syncs local data with the server (e.g. after login).
    */
   syncWithServer(): Observable<PokemonHuntResponse> {
     if (!this.authService.isAuthenticated()) {
@@ -162,12 +160,10 @@ export class PokemonHuntService {
 
     const localData = this.getLocalRegisteredPokemon();
 
-    // Si hay datos locales, intentar subirlos al servidor
     if (localData.length > 0) {
       return this.saveRegisteredPokemon(localData);
     }
 
-    // Si no hay datos locales, intentar obtener del servidor
     return this.getRegisteredPokemon().pipe(
       map(serverData => ({
         success: true,
@@ -187,7 +183,7 @@ export class PokemonHuntService {
   }
 
   /**
-   * Obtiene los pokemon registrados del localStorage
+   * Reads registered Pokémon from localStorage.
    */
   private getLocalRegisteredPokemon(): RegisteredPokemon[] {
     const stored = localStorage.getItem(this.localStorageKey);
@@ -203,7 +199,7 @@ export class PokemonHuntService {
   }
 
   /**
-   * Guarda los pokemon registrados en el localStorage
+   * Persists registered Pokémon to localStorage.
    */
   private saveToLocalStorage(registeredPokemon: RegisteredPokemon[]): void {
     try {
@@ -213,15 +209,12 @@ export class PokemonHuntService {
     }
   }
 
-  /**
-   * Marca la última sincronización
-   */
   private setLastSync(): void {
     localStorage.setItem(this.lastSyncKey, new Date().toISOString());
   }
 
   /**
-   * Obtiene la fecha de la última sincronización
+   * Returns the timestamp of the last successful sync, if any.
    */
   getLastSync(): Date | null {
     const lastSync = localStorage.getItem(this.lastSyncKey);
@@ -229,15 +222,13 @@ export class PokemonHuntService {
   }
 
   /**
-   * Verifica si los datos necesitan sincronización
+   * Returns whether data should be synced again (stale after 5 minutes).
    */
   needsSync(): boolean {
     const lastSync = this.getLastSync();
     if (!lastSync) return true;
 
-    // Considerar que necesita sync si pasaron más de 5 minutos
     const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
     return lastSync < fiveMinutesAgo;
   }
 }
-

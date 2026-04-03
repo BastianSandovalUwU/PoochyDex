@@ -40,7 +40,7 @@ export class PokemonMovesTableComponent implements OnChanges {
   @Output() toggleFiltersEvent = new EventEmitter<void>();
   @Output() tabChangeEvent = new EventEmitter<MatTabChangeEvent | { index: number; value: any }>();
 
-  // Métodos auxiliares que se pasan desde el componente padre
+  // Handlers wired from the parent component
   @Input() getGameName: (gameName: string) => string;
   @Input() getGameIconGame: (gameName: string) => string[];
   @Input() getGameVersionColor: (gameVersion: string) => string;

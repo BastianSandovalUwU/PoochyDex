@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
     if(this.authService.getSessionData()) {
-      console.log('ya hay una sesión iniciada');
+      console.log('Session already active');
       this.router.navigate(['/profile/show']);
       return;
     }

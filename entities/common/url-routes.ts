@@ -31,8 +31,8 @@ export interface MenuOption {
   icon: string;
   route?: string;
   children?: MenuOption[];
-  role?: string; // Rol requerido para ver esta opción (ej: 'ADMIN')
-  imageIcon?: string; // Ruta a imagen personalizada (opcional)
+  role?: string; // Required role to show this item (e.g. 'ADMIN')
+  imageIcon?: string; // Optional custom image path
 }
 
 export const MENU_OPTIONS: MenuOption[] = [

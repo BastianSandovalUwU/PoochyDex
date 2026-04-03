@@ -22,14 +22,14 @@ export class PoochyDexApiService {
   constructor(private http: HttpClient) { }
 
   // =========================
-  // Pokémon base
+  // Base Pokémon CRUD
   // =========================
 
   getAllPokemon(): Observable<PokemonAllResponse> {
     const url = `${this.apiUrlCore}/api/pokemon`;
     return this.http.get<PokemonAllResponse>(url).pipe(
       catchError(error => {
-        console.error('Error al obtener los Pokémon:', error);
+        console.error('Error fetching Pokémon list:', error);
         return throwError(error);
       })
     );
@@ -39,7 +39,7 @@ export class PoochyDexApiService {
     const url = `${this.apiUrlCore}/api/pokemon/${id}`;
     return this.http.get<PokemonResponse>(url).pipe(
       catchError(error => {
-        console.error('Error al obtener el Pokémon por ID:', error);
+        console.error('Error fetching Pokémon by id:', error);
         return throwError(error);
       })
     );
@@ -50,7 +50,7 @@ export class PoochyDexApiService {
     const url = `${this.apiUrlCore}/api/pokemon/number/${number}`;
     return this.http.get<PokemonResponse>(url).pipe(
       catchError(error => {
-        console.error('Error al obtener el Pokémon por número:', error);
+        console.error('Error fetching Pokémon by number:', error);
         return throwError(error);
       })
     );
@@ -60,7 +60,7 @@ export class PoochyDexApiService {
     const url = `${this.apiUrlCore}/api/pokemon/name/${name}`;
     return this.http.get<PokemonResponse>(url).pipe(
       catchError(error => {
-        console.error('Error al obtener el Pokémon por nombre:', error);
+        console.error('Error fetching Pokémon by name:', error);
         return throwError(error);
       })
     );
@@ -70,7 +70,7 @@ export class PoochyDexApiService {
     const url = `${this.apiUrlCore}/api/pokemon`;
     return this.http.post<PokemonResponse>(url, pokemonObjet).pipe(
       catchError(error => {
-        console.error('Error al crear el Pokémon:', error);
+        console.error('Error creating Pokémon:', error);
         return throwError(error);
       })
     );
@@ -80,7 +80,7 @@ export class PoochyDexApiService {
     const url = `${this.apiUrlCore}/api/pokemon/${id}`;
     return this.http.put<PokemonResponse>(url, pokemonObjet).pipe(
       catchError(error => {
-        console.error('Error al actualizar el Pokémon:', error);
+        console.error('Error updating Pokémon:', error);
         return throwError(error);
       })
     );
@@ -90,21 +90,21 @@ export class PoochyDexApiService {
     const url = `${this.apiUrlCore}/api/pokemon/${id}`;
     return this.http.delete<PokemonResponse>(url).pipe(
       catchError(error => {
-        console.error('Error al eliminar el Pokémon:', error);
+        console.error('Error deleting Pokémon:', error);
         return throwError(error);
       })
     );
   }
 
   // =========================
-  // Formas alternativas
+  // Alternate forms
   // =========================
 
   getAllPokemonForms(): Observable<PokemonFormAllResponse> {
     const url = `${this.apiUrlCore}/api/pokemon-forms`;
     return this.http.get<PokemonFormAllResponse>(url).pipe(
       catchError(error => {
-        console.error('Error al obtener las formas de Pokémon:', error);
+        console.error('Error fetching Pokémon forms:', error);
         return throwError(error);
       })
     );
@@ -114,7 +114,7 @@ export class PoochyDexApiService {
     const url = `${this.apiUrlCore}/api/pokemon-forms/${id}`;
     return this.http.get<PokemonFormResponse>(url).pipe(
       catchError(error => {
-        console.error('Error al obtener la forma de Pokémon por ID:', error);
+        console.error('Error fetching Pokémon form by id:', error);
         return throwError(error);
       })
     );
@@ -124,7 +124,7 @@ export class PoochyDexApiService {
     const url = `${this.apiUrlCore}/api/pokemon-forms/number/${number}`;
     return this.http.get<PokemonFormAllResponse>(url).pipe(
       catchError(error => {
-        console.error('Error al obtener las formas por número:', error);
+        console.error('Error fetching forms by number:', error);
         return throwError(error);
       })
     );
@@ -134,7 +134,7 @@ export class PoochyDexApiService {
     const url = `${this.apiUrlCore}/api/pokemon-forms/name/${name}`;
     return this.http.get<PokemonFormResponse>(url).pipe(
       catchError(error => {
-        console.error('Error al obtener la forma de Pokémon por nombre:', error);
+        console.error('Error fetching Pokémon form by name:', error);
         return throwError(error);
       })
     );
@@ -144,7 +144,7 @@ export class PoochyDexApiService {
     const url = `${this.apiUrlCore}/api/pokemon-forms`;
     return this.http.post<PokemonFormResponse>(url, pokemonObjet).pipe(
       catchError(error => {
-        console.error('Error al crear la forma de Pokémon:', error);
+        console.error('Error creating Pokémon form:', error);
         return throwError(error);
       })
     );
@@ -154,7 +154,7 @@ export class PoochyDexApiService {
     const url = `${this.apiUrlCore}/api/pokemon-forms/${id}`;
     return this.http.put<PokemonFormResponse>(url, pokemonObjet).pipe(
       catchError(error => {
-        console.error('Error al actualizar la forma de Pokémon:', error);
+        console.error('Error updating Pokémon form:', error);
         return throwError(error);
       })
     );
@@ -164,7 +164,7 @@ export class PoochyDexApiService {
     const url = `${this.apiUrlCore}/api/pokemon-forms/${id}`;
     return this.http.delete<PokemonFormResponse>(url).pipe(
       catchError(error => {
-        console.error('Error al eliminar la forma de Pokémon:', error);
+        console.error('Error deleting Pokémon form:', error);
         return throwError(error);
       })
     );

@@ -54,8 +54,8 @@ export class SearchButtonComponent implements OnInit {
     this.showSearch = !this.showSearch;
 
     if (!this.showSearch) {
-      this.searchQuery = ''; // Limpiar el campo de búsqueda al cerrar
-      this.limitedFilteredData = []; // Limpiar los resultados de búsqueda
+      this.searchQuery = '';
+      this.limitedFilteredData = [];
     }
   }
 

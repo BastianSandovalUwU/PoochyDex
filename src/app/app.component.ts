@@ -38,47 +38,47 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    // Suscripción al tema (solo para activar el observable)
+    // Theme observable (side-effect subscription)
     this.themeService.isDarkMode$
       .pipe(takeUntil(this.destroy$))
       .subscribe();
 
-    // Suscripción al idioma
+    // Current language
     this.languageService.currentLanguage$
       .pipe(takeUntil(this.destroy$))
       .subscribe(language => {
         this.currentLanguage = language;
       });
 
-    // Suscripción a los datos de sesión
+    // Session / user
     this.authService.sessionData$
       .pipe(takeUntil(this.destroy$))
       .subscribe(user => {
         this.currentUser = user;
       });
 
-    // Suscripción al estado de carga
+    // Loading flag
     this.loadingService.loading$
       .pipe(takeUntil(this.destroy$))
       .subscribe((loading) => {
         this.loading = loading;
       });
 
-    // Suscripción al estado de red
+    // Online / offline
     this.networkService.isOnline$
       .pipe(takeUntil(this.destroy$))
       .subscribe(isOnline => {
         this.isOnline = isOnline;
       });
 
-    // Suscripción a la fuente de datos
+    // Last PokéAPI data source (network vs cache)
     this.pokeApiService.lastDataSource$
       .pipe(takeUntil(this.destroy$))
       .subscribe(source => {
         this.lastDataSource = source;
       });
 
-    // Suscripción a la disponibilidad de PWA (solo en producción)
+    // PWA install prompt (production only)
     if (environment.production) {
       this.pwaInstallService.canInstall$
         .pipe(takeUntil(this.destroy$))
@@ -86,7 +86,7 @@ export class AppComponent implements OnInit, OnDestroy {
           this.canInstallPwa = can;
         });
     } else {
-      // En desarrollo, asegurarse de que siempre sea false
+      // Dev: never show install prompt
       this.canInstallPwa = false;
     }
   }

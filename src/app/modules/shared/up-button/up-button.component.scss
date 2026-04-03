@@ -8,11 +8,11 @@
   color: white;
   border-radius: 9999px;
   position: fixed;
-  bottom: 40px; /* Ambos botones estarán en la misma posición */
+  bottom: 40px; /* align with theme toggle */
   left: 17px;
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.8);
-  background-color: rgba(16, 185, 129, 0.9); /* verde semi-transparente, menos transparente */
+  background-color: rgba(16, 185, 129, 0.9);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
@@ -29,7 +29,7 @@
 
 :host-context(.dark) #upButton,
 :host-context(.dark) #downButton {
-  background-color: rgba(22, 163, 74, 0.85); /* menos transparente en oscuro */
+  background-color: rgba(22, 163, 74, 0.85);
   border-color: rgba(15, 23, 42, 0.8);
 
   &:hover {

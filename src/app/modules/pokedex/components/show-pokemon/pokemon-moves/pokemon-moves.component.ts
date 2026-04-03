@@ -371,7 +371,7 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     return pokeMove.types[0]?.typeName || '';
   }
 
-  // Wrapper methods para pasar al componente hijo
+  // Wrappers passed to the child table component
   getGameNameWrapper = (gameName: string): string => {
     return this.getGameName(gameName);
   }
@@ -388,7 +388,7 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     return this.getTypeName(pokeMove);
   }
 
-  // Métodos para manejar eventos del componente hijo
+  // Child component filter toggles
   toggleFiltersMachine(): void {
     this.toggleFilters('mt');
   }

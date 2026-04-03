@@ -1,4 +1,4 @@
-/* Efecto ripple para el botón de búsqueda */
+/* Search button ripple */
 .search-button-ripple {
   &::before {
     content: '';
@@ -19,7 +19,7 @@
   }
 }
 
-/* Scrollbar personalizado para los resultados */
+/* Custom scrollbar for results panel */
 .search-results-scrollbar {
   &::-webkit-scrollbar {
     width: 8px;

@@ -52,7 +52,7 @@ export class ShowPokedexComponent implements OnInit {
         this.getPokemon();
       },
       error: (error) => {
-        console.error('Error al obtener los Pokémon:', error);
+        console.error('Error fetching Pokédex:', error);
         this.loadingService.hide();
         this.loading = false;
       }
@@ -70,7 +70,7 @@ export class ShowPokedexComponent implements OnInit {
         this.loading = false;
       },
       error: (error) => {
-        console.error('Error al obtener los Pokémon:', error);
+        console.error('Error fetching Pokémon from custom API:', error);
         this.loadingService.hide();
         this.loading = false;
       }

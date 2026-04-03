@@ -103,7 +103,7 @@ export class ShowMovementComponent implements OnInit {
       });
     });
 
-    // Ordenar por version_group para mostrar los más recientes primero
+    // Sort by version_group (newest first)
     return result.sort((a, b) => {
       return b.version.localeCompare(a.version);
     });
@@ -118,7 +118,7 @@ export class ShowMovementComponent implements OnInit {
   }
 
   getFlavorText(entry: FlavorTextEntry): string {
-    // Limpiar el texto de saltos de línea y espacios extra
+    // Normalize flavor text (newlines / extra spaces)
     return entry.flavor_text.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
   }
 
@@ -127,11 +127,11 @@ export class ShowMovementComponent implements OnInit {
     this.poochyDexApiService.getAllPokemon().subscribe({
       next: (response) => {
         this.allPokemon = response.data;
-        // Crear un Map para búsqueda rápida por nombre
+        // Name -> Pokémon map for lookups
         this.allPokemon.forEach(pokemon => {
           this.pokemonDataMap.set(pokemon.name.toLowerCase(), pokemon);
         });
-        // Ahora obtener los detalles de los Pokémon que aprenden el movimiento
+        // Resolve learners from custom API data
         this.getPokemonDetails();
       },
       error: (error) => {
@@ -165,7 +165,7 @@ export class ShowMovementComponent implements OnInit {
     const pokemonList: Pokemon[] = [];
 
     for (const learnedByPokemon of this.move.learned_by_pokemon) {
-      // Normalizar el nombre del Pokémon usando el helper service
+      // Canonical name via helper (aliases / forms)
       const correctedName = this.helperService.getCorrectPokemonName(learnedByPokemon.name);
       const pokemonData = this.pokemonDataMap.get(correctedName.toLowerCase());
 

@@ -41,7 +41,7 @@ export class UpButtonComponent implements OnInit {
     if (this.isScrolling) return;
     this.isScrolling = true;
 
-    const duration = 800; // duración en milisegundos
+    const duration = 800; // ms
     const start = window.pageYOffset;
     const startTime = performance.now();
 
@@ -72,7 +72,7 @@ export class UpButtonComponent implements OnInit {
     if (this.isScrolling) return;
     this.isScrolling = true;
 
-    const duration = 800; // duración en milisegundos
+    const duration = 800; // ms
     const start = window.pageYOffset;
     const end = document.documentElement.scrollHeight - window.innerHeight;
     const startTime = performance.now();

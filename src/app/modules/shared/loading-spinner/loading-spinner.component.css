@@ -74,7 +74,7 @@
   animation: spinSlow 1s linear infinite;
 }
 
-/* Aplicar fadeOut solo cuando no estemos cargando el caché */
+/* Fade out animations when not in cache-loading mode */
 :not(.is-cache-loading) .animate-slideDown {
   animation: slideDown 1.5s ease-in-out forwards, slideDownReverse 1.5s ease-in-out 2s forwards;
 }
@@ -87,7 +87,7 @@
   animation: spinSlow 1s linear infinite, fadeOut 1.5s ease-in-out 2s forwards;
 }
 
-/* Mantener el spinner visible durante la carga del caché */
+/* Keep spinner while Pokémon cache is building */
 .is-cache-loading .animate-spinSlow {
   animation: spinSlow 1s linear infinite;
 }

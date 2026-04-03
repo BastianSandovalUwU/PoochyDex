@@ -45,7 +45,7 @@ export class ListPokemonComponent implements OnInit {
         this.loading = false;
       },
       error: (error) => {
-        console.error('Error al obtener los Pokémon:', error);
+        console.error('Error fetching Pokémon from custom API:', error);
         this.loadingService.hide();
         this.loading = false;
       }
@@ -58,7 +58,7 @@ export class ListPokemonComponent implements OnInit {
         this.allPokemonForms = response.data;
       },
       error: (error) => {
-        console.error('Error al obtener las formas de Pokémon:', error);
+        console.error('Error fetching Pokémon forms:', error);
       },
     });
   }

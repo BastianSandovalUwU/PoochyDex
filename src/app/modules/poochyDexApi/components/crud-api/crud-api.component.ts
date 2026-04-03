@@ -21,12 +21,12 @@ export class CrudApiComponent implements OnInit {
   pokemonTypes: string[] = Object.values(POKEMON_TYPES);
   language: string = 'es';
 
-  // Formulario simple para crear/editar
+  // Simple create/edit form state
   isEditMode = false;
   editingPokemonId: number | null = null;
   showModal = false;
 
-  // Modo de trabajo: false = Pokémon base, true = formas alternativas
+  // false = base species, true = alternate forms
   isFormMode = false;
 
   formData: CreatePokemonRequest = {

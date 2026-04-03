@@ -45,12 +45,12 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     this.loadRegisteredPokemon();
     this.loadAllPokemon();
 
-    // Solo sincronizar con el servidor si el usuario está autenticado
+    // Sync with server only when authenticated
     if (this.isUserAuthenticated() && this.pokemonHuntService.needsSync()) {
       this.syncWithServer();
     }
 
-    // Actualizar la última sincronización solo si está autenticado
+    // Last sync time only when authenticated
     if (this.isUserAuthenticated()) {
       this.lastSync = this.pokemonHuntService.getLastSync();
     }
@@ -61,20 +61,20 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     this.poochyDexApiService.getAllPokemon().subscribe({
       next: (response) => {
         this.allPokemon = response.data;
-        // Crear mapa de pokemon por nombre para búsqueda rápida
+        // Name -> Pokémon map for fast lookup
         this.allPokemon.forEach(pokemon => {
           this.pokemonDataMap.set(pokemon.name.toLowerCase(), pokemon);
         });
 
         this.pokemonLoaded = true;
 
-        // Una vez cargados todos los pokemon, obtener la pokedex
+        // After list load, fetch regional dex entries
         if (this.pokedexNumber) {
           this.getPokedex(this.pokedexNumber);
         }
       },
       error: (error) => {
-        console.error('Error al obtener los Pokémon:', error);
+        console.error('Error fetching Pokémon:', error);
         const errorMessage = this.language === 'es' ? 'Error al cargar los Pokémon' : 'Error loading Pokémon';
         this.errorMessageService.showError(errorMessage, error.message);
         this.loadingService.hide();
@@ -84,7 +84,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['pokedexNumber'] && !changes['pokedexNumber'].firstChange) {
-      // Solo obtener la pokedex si los pokemon ya están cargados
+      // Load regional dex only after the master list is ready
       if (this.pokemonLoaded) {
         this.getPokedex(this.pokedexNumber);
       }
@@ -98,13 +98,13 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
   }
 
   getPokedex(num: number): void {
-    // Si aún no se han cargado todos los pokemon, esperar
+    // Wait until the master list is available
     if (!this.pokemonLoaded || this.allPokemon.length === 0) {
       return;
     }
 
     this.isLoading = true;
-    // Limpiar después de establecer isLoading para evitar mostrar "No hay pokemon"
+    // Clear list after isLoading to avoid flashing an empty state
     this.filteredPokemon = [];
 
     this.pokeApiService.getPokedex(num).subscribe({
@@ -119,7 +119,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
           const pokemonData = this.pokemonDataMap.get(pokemonName.toLowerCase());
 
           if (pokemonData) {
-            // Usar el pokemon directamente y actualizar el número de entrada
+            // Merge API row with regional dex entry number
             pokemonList.push({
               ...pokemonData,
               number: entryNumber
@@ -166,8 +166,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Carga los pokemon registrados directamente desde localStorage
-   * Se usa cuando el usuario no está autenticado
+   * Loads registered Pokémon from localStorage (guest users).
    */
   private loadFromLocalStorage() {
     const stored = localStorage.getItem('pokemon-hunt-registered');
@@ -224,14 +223,14 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
       }
     });
 
-    // Si no está autenticado, guardar solo en localStorage
+    // Guest: persist locally only
     if (!this.isUserAuthenticated()) {
       this.saveToLocalStorage(registeredList);
       this.loadingService.hide();
       return;
     }
 
-    // Si está autenticado, guardar en el servidor (el servicio también guarda en localStorage como backup)
+    // Authenticated: save via API (service also mirrors to localStorage)
     this.pokemonHuntService.saveRegisteredPokemon(registeredList).subscribe({
       next: (response) => {
         if (response.success) {
@@ -241,7 +240,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
       },
       error: (error) => {
         console.error('Error saving registered pokemon to server:', error);
-        // Si falla el servidor, asegurarse de que esté guardado en localStorage
+        // On API failure, still persist locally
         this.saveToLocalStorage(registeredList);
         const errorMessage = this.language === 'es'
           ? 'Error al sincronizar con el servidor, datos guardados localmente'
@@ -252,9 +251,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     });
   }
 
-  /**
-   * Guarda directamente en localStorage
-   */
+  /** Persists to localStorage. */
   private saveToLocalStorage(registeredList: RegisteredPokemon[]) {
     try {
       localStorage.setItem('pokemon-hunt-registered', JSON.stringify(registeredList));
@@ -263,17 +260,12 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     }
   }
 
-  /**
-   * Verifica si el usuario está autenticado
-   */
+  /** Returns whether the user is logged in. */
   private isUserAuthenticated(): boolean {
     return this.authService.isAuthenticated();
   }
 
-  /**
-   * Sincroniza los datos con el servidor
-   * Solo funciona si el usuario está autenticado
-   */
+  /** Pushes local hunt data to the server (authenticated only). */
   syncWithServer() {
     if (!this.isUserAuthenticated()) {
       console.warn('Cannot sync: user not authenticated');
@@ -299,18 +291,16 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     });
   }
 
-  /**
-   * Limpia todos los pokémon registrados
-   */
+  /** Clears all registered hunt entries. */
   clearAllRegisteredPokemon() {
-    // Si no está autenticado, limpiar solo localStorage
+    // Guest: drop localStorage only
     if (!this.isUserAuthenticated()) {
       this.registeredPokemonMap.clear();
       localStorage.removeItem('pokemon-hunt-registered');
       return;
     }
 
-    // Si está autenticado, limpiar del servidor también
+    // Authenticated: clear remote + local
     this.pokemonHuntService.clearRegisteredPokemon().subscribe({
       next: (response) => {
         if (response.success) {
@@ -320,7 +310,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
       },
       error: (error) => {
         console.error('Error clearing registered pokemon from server:', error);
-        // Aunque falle el servidor, limpiar localmente
+        // Clear local state even if the API fails
         this.registeredPokemonMap.clear();
         localStorage.removeItem('pokemon-hunt-registered');
         const errorMessage = this.language === 'es'

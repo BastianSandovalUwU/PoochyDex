@@ -1,11 +1,11 @@
 #audioPlayerLatest {
-  display: none; /* Oculta el reproductor */
+  display: none;
 }
 #audioPlayerLegacy {
-  display: none; /* Oculta el reproductor */
+  display: none;
 }
 
-// Estilos para los botones de reproducción
+// Play / pause buttons
 .play-button,
 .pause-button {
   display: inline-flex;
@@ -29,7 +29,7 @@
     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
   }
 
-  // Efecto de ripple al hacer click
+  // Ripple on press
   &::before {
     content: '';
     position: absolute;
@@ -64,14 +64,14 @@
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
   }
 
-  // Focus state para accesibilidad
+  // Focus ring (a11y)
   &:focus {
     outline: 2px solid rgba(59, 130, 246, 0.5);
     outline-offset: 2px;
   }
 }
 
-// Estilo específico para el botón de play
+// Play button
 .play-button {
   background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   border: 2px solid rgba(255, 255, 255, 0.2);
@@ -82,7 +82,7 @@
   }
 }
 
-// Estilo específico para el botón de pause
+// Pause button
 .pause-button {
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   border: 2px solid rgba(255, 255, 255, 0.2);

@@ -2,7 +2,7 @@ import { Move } from "./moves.entity";
 import { Data } from "./pokemon-specie.entity";
 import { Sprites } from "./sprites.entity";
 
-// Versión completa del Pokémon con todos los datos de la API
+// Full Pokémon payload from the API
 export type PokemonFull = {
   abilities:              Ability[];
   baseExperience:         number;
@@ -25,7 +25,7 @@ export type PokemonFull = {
   weight:                 number;
 }
 
-// Versión lite del Pokémon con solo los datos esenciales
+// Slim Pokémon type with essential fields only
 export type Pokemon = Omit<PokemonFull, 'order' | 'held_items' | 'past_abilities' | 'past_types' | 'location_area_encounters'>;
 
 export type PastAbility = {

@@ -90,19 +90,19 @@ export class HelperService {
   }
 
   createAllPokemonCache() {
-    console.log('Verificando caché de Pokémon...');
+    console.log('Checking Pokémon cache...');
 
-    // Asegurar que la lista de Pokémon de la API propia esté cargada
+    // Ensure custom API Pokémon list is loaded first
     if (!this.allPokemon || this.allPokemon.length === 0) {
-      console.log('allPokemon aún no está cargado desde la API Node, cargando antes de crear el caché...');
+      console.log('allPokemon not loaded from Node API yet; loading before building cache...');
       this.poochyDexApiService.getAllPokemon().subscribe({
         next: (response) => {
           this.allPokemon = response.data || [];
-          console.log(`allPokemon cargado (${this.allPokemon.length} registros), reintentando crear caché...`);
+          console.log(`allPokemon loaded (${this.allPokemon.length} rows), retrying cache build...`);
           this.createAllPokemonCache();
         },
         error: (error) => {
-          console.error('Error al cargar allPokemon para el caché:', error);
+          console.error('Error loading allPokemon for cache:', error);
         }
       });
       return;
@@ -111,7 +111,7 @@ export class HelperService {
     const cache = localStorage.getItem('pokemon_cache');
     const pokemonCache = cache ? JSON.parse(cache) : {};
 
-    // Solo consideramos Pokémon con número de Pokédex válido (entero) para el caché de PokeAPI
+    // Only Pokémon with a valid integer National Dex number are cached from PokéAPI
     const candidates = this.allPokemon.filter(p => Number.isInteger(p.number));
 
     const missingPokemon = candidates.filter(pokemon =>
@@ -119,30 +119,30 @@ export class HelperService {
     );
 
     if (missingPokemon.length === 0) {
-      console.log('Todos los Pokémon están en caché');
+      console.log('All Pokémon are cached');
       this.isCacheLoading.next(false);
       this.cacheLoadingProgress.next(100);
       return;
     }
 
-    console.log(`Faltan ${missingPokemon.length} Pokémon por cargar`);
+    console.log(`${missingPokemon.length} Pokémon left to load`);
     this.isCacheLoading.next(true);
     this.cacheLoadingProgress.next(0);
 
     let completedRequests = 0;
     const totalMissing = missingPokemon.length;
-    const batchSize = 50; // Reducido a 3 para ser más conservador
+    const batchSize = 50;
 
     const processBatch = (startIndex: number) => {
       if (startIndex >= totalMissing) {
-        console.log('Caché de Pokémon completado exitosamente');
+        console.log('Pokémon cache build completed');
         this.isCacheLoading.next(false);
         this.cacheLoadingProgress.next(100);
         return;
       }
 
       const batch = missingPokemon.slice(startIndex, startIndex + batchSize);
-      console.log(`Procesando lote ${Math.floor(startIndex / batchSize) + 1} de ${Math.ceil(totalMissing / batchSize)}`);
+      console.log(`Processing batch ${Math.floor(startIndex / batchSize) + 1} of ${Math.ceil(totalMissing / batchSize)}`);
 
       const batchRequests = batch.map(pokemon =>
         this.pokeApiService.getPokemonById(pokemon.number).pipe(
@@ -152,7 +152,7 @@ export class HelperService {
             this.cacheLoadingProgress.next(progress);
 
             if (completedRequests % 3 === 0) {
-              console.log(`Progreso del caché: ${completedRequests}/${totalMissing} Pokémon faltantes cargados (${progress}%)`);
+              console.log(`Cache progress: ${completedRequests}/${totalMissing} missing Pokémon loaded (${progress}%)`);
             }
             return response;
           })
@@ -161,14 +161,14 @@ export class HelperService {
 
       forkJoin(batchRequests).subscribe({
         next: () => {
-          // Esperar 2 segundos antes de procesar el siguiente lote
+          // Wait 2s before the next batch
           setTimeout(() => {
             processBatch(startIndex + batchSize);
           }, 2000);
         },
         error: (error) => {
-          console.error('Error al crear el caché:', error);
-          // En caso de error, esperar 3 segundos antes de intentar el siguiente lote
+          console.error('Error building cache:', error);
+          // On error, wait 3s before retrying the next batch
           setTimeout(() => {
             processBatch(startIndex + batchSize);
           }, 3000);
@@ -176,7 +176,7 @@ export class HelperService {
       });
     };
 
-    // Iniciar el procesamiento del primer lote
+    // Start first batch
     processBatch(0);
   }
 
@@ -276,7 +276,7 @@ export class HelperService {
 
   getPokemonSpriteImg(pokemonName: string, option: "home" | "icon" | "homeShiny" | "globalLinkArt"): Observable<string> {
     const name = this.getCorrectPokemonName(pokemonName);
-    const placeholder = "https://i.imgur.com/uKx7iOF.png"; //missigNo placeholder image
+    const placeholder = "https://i.imgur.com/uKx7iOF.png"; // MissingNo placeholder
 
     return this.poochyDexApiService.getPokemonByName(name).pipe(
       map((response) => {

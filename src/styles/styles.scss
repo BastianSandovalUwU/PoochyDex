@@ -79,7 +79,7 @@ table {
 .bg-flying { background-color: #90cdf4; }
 .bg-default { background-color: #a0aec0; } /* Default color */
 
-/* Clases de fondo personalizadas para colores de Pokémon */
+/* Custom Pokémon game background colors */
 .bg-pokemon-color-red { background-color: #ffc3c3; }
 .bg-pokemon-color-blue { background-color: #83aefd; }
 .bg-pokemon-color-yellow { background-color: #fafa9b; }
@@ -91,43 +91,43 @@ table {
 .bg-pokemon-color-black { background-color: #969696; }
 .bg-pokemon-color-white { background-color: #FFFFFF; }
 
-/* Colores de fondo para cada juego de Pokémon */
-.bg-pokemon-red { background-color: #FF0000; } /* Rojo */
-.bg-pokemon-blue { background-color: #0000FF; } /* Azul */
-.bg-pokemon-yellow { background-color: #FFFF00; } /* Amarillo */
-.bg-pokemon-gold { background-color: #FFD700; } /* Oro */
-.bg-pokemon-silver { background-color: #C0C0C0; } /* Plata */
-.bg-pokemon-crystal { background-color: #00BFFF; } /* Cristal */
-.bg-pokemon-ruby { background-color: #E0115F; } /* Rubí */
-.bg-pokemon-sapphire { background-color: #0000FF; } /* Zafiro */
-.bg-pokemon-emerald { background-color: #50C878; } /* Esmeralda */
-.bg-pokemon-fire-red { background-color: #FF4500; } /* Rojo Fuego */
-.bg-pokemon-leaf-green { background-color: #32CD32; } /* Verde Hoja */
-.bg-pokemon-diamond { background-color: #B9F2FF; } /* Diamante */
-.bg-pokemon-pearl { background-color: #FEE7F0; } /* Perla */
-.bg-pokemon-platinum { background-color: #E5E4E2; } /* Platino */
-.bg-pokemon-heartgold { background-color: #FFD700; } /* Oro HeartGold */
-.bg-pokemon-soulsilver { background-color: #C0C0C0; } /* Plata SoulSilver */
-.bg-pokemon-black { background-color: #000000; } /* Negro */
-.bg-pokemon-white { background-color: #FFFFFF; } /* Blanco */
-.bg-pokemon-black-2 { background-color: #333333; } /* Negro 2 */
-.bg-pokemon-white-2 { background-color: #F8F8FF; } /* Blanco 2 */
-.bg-pokemon-x { background-color: #00BFFF; } /* X */
-.bg-pokemon-y { background-color: #FF1493; } /* Y */
-.bg-pokemon-omega-ruby { background-color: #FF4500; } /* Rubí Omega */
-.bg-pokemon-alpha-sapphire { background-color: #0000CD; } /* Zafiro Alfa */
-.bg-pokemon-sun { background-color: #FFA500; } /* Sol */
-.bg-pokemon-moon { background-color: #9370DB; } /* Luna */
-.bg-pokemon-ultra-sun { background-color: #FF8C00; } /* Ultra Sol */
-.bg-pokemon-ultra-moon { background-color: #6A5ACD; } /* Ultra Luna */
-.bg-pokemon-letsGo-pikachu { background-color: #fff836; } /* let's Go Pikachu */
-.bg-pokemon-letsGo-eevee { background-color: #DFC879; } /* let's Go Eevee */
-.bg-pokemon-sword { background-color: #4169E1; } /* Espada */
-.bg-pokemon-shield { background-color: #FF6347; } /* Escudo */
-.bg-pokemon-scarlet { background-color: #9E2A22; } /* Escarlata */
-.bg-pokemon-violet { background-color: #552277; } /* Purpura */
-.bg-pokemon-brilliant-diamond { background-color: #B9F2FF; } /* Diamante Brillante */
-.bg-pokemon-shining-pearl { background-color: #FEE7F0; } /* Perla Reluciente */
+/* Per-game palette */
+.bg-pokemon-red { background-color: #FF0000; }
+.bg-pokemon-blue { background-color: #0000FF; }
+.bg-pokemon-yellow { background-color: #FFFF00; }
+.bg-pokemon-gold { background-color: #FFD700; }
+.bg-pokemon-silver { background-color: #C0C0C0; }
+.bg-pokemon-crystal { background-color: #00BFFF; }
+.bg-pokemon-ruby { background-color: #E0115F; }
+.bg-pokemon-sapphire { background-color: #0000FF; }
+.bg-pokemon-emerald { background-color: #50C878; }
+.bg-pokemon-fire-red { background-color: #FF4500; }
+.bg-pokemon-leaf-green { background-color: #32CD32; }
+.bg-pokemon-diamond { background-color: #B9F2FF; }
+.bg-pokemon-pearl { background-color: #FEE7F0; }
+.bg-pokemon-platinum { background-color: #E5E4E2; }
+.bg-pokemon-heartgold { background-color: #FFD700; }
+.bg-pokemon-soulsilver { background-color: #C0C0C0; }
+.bg-pokemon-black { background-color: #000000; }
+.bg-pokemon-white { background-color: #FFFFFF; }
+.bg-pokemon-black-2 { background-color: #333333; }
+.bg-pokemon-white-2 { background-color: #F8F8FF; }
+.bg-pokemon-x { background-color: #00BFFF; }
+.bg-pokemon-y { background-color: #FF1493; }
+.bg-pokemon-omega-ruby { background-color: #FF4500; }
+.bg-pokemon-alpha-sapphire { background-color: #0000CD; }
+.bg-pokemon-sun { background-color: #FFA500; }
+.bg-pokemon-moon { background-color: #9370DB; }
+.bg-pokemon-ultra-sun { background-color: #FF8C00; }
+.bg-pokemon-ultra-moon { background-color: #6A5ACD; }
+.bg-pokemon-letsGo-pikachu { background-color: #fff836; }
+.bg-pokemon-letsGo-eevee { background-color: #DFC879; }
+.bg-pokemon-sword { background-color: #4169E1; }
+.bg-pokemon-shield { background-color: #FF6347; }
+.bg-pokemon-scarlet { background-color: #9E2A22; }
+.bg-pokemon-violet { background-color: #552277; }
+.bg-pokemon-brilliant-diamond { background-color: #B9F2FF; }
+.bg-pokemon-shining-pearl { background-color: #FEE7F0; }
 
 /* Split color buttons for generations */
 .gen-button-red-blue, .gen-button-gold-silver, .gen-button-ruby-sapphire,
