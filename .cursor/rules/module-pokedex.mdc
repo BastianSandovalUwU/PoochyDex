@@ -22,7 +22,7 @@ alwaysApply: false
 | `list-pokedex` | `ListPokedexComponent` | Listado Pokédex |
 | `show-pokedex/:number` | `ShowPokedexComponent` | Pokédex regional |
 
-**Dependencias del módulo:** `SharedModule`, `MatButton`/`MatIcon`/`MatTabs`, `FormsModule`, `NgxLoadingModule`.
+**Dependencias del módulo:** `SharedModule` (incluye **`app-ui-button`** para filtros, caza y gritos), `MatButton`/`MatIcon`/`MatTabs`, `FormsModule`, `NgxLoadingModule`.
 
 **Carpetas:** `components/list-pokemon/` (+ `filter/`), `components/show-pokemon/` (subcomponentes de ficha), `components/show-pokedex/`, `components/show-ability/`, `components/pokemon-hunt/`, `components/list-pokedex/`.
 

@@ -75,6 +75,7 @@ Las **reglas por módulo** están en **`.cursor/rules/module-*.mdc`**: Cursor la
 | Perfil de usuario (sesión, rol, idioma guardado) | `modules/profile/` (`/profile` → `show`) |
 | Login y registro | `modules/auth/` (`/auth/login`, `/auth/sign-up`) |
 | Llamadas a PokéAPI / caché | `shared/services/pokeApi.service.ts` y relacionados |
+| Botones reutilizables (variantes compartidas) | `shared/ui-button/` (`app-ui-button`) |
 | Tema claro/oscuro | `ThemeService`, `theme-toggle` |
 | Errores HTTP / mensajes | `ErrorMessageService`, vistas en `shared` |
 
