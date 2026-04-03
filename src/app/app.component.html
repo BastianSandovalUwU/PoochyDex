@@ -30,7 +30,7 @@
 
   <!-- Menu Component -->
   <app-menu [isOpen]="isMenuOpen"
-            (close)="closeMenu()"
+            (menuClosed)="closeMenu()"
             [language]="currentLanguage"
             [userData]="currentUser">
   </app-menu>

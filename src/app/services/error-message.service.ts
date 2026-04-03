@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-export interface ErrorMessage {
+interface ErrorMessage {
   message: string;
   systemErrorMessage: string;
   show: boolean;

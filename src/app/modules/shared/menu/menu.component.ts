@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit, OnChanges, OnDestroy {
   @Input() isOpen = false;
   @Input() language: string = 'es';
   @Input() userData: UserData | null;
-  @Output() close = new EventEmitter<void>();
+  @Output() menuClosed = new EventEmitter<void>();
   url: string;
   isOnline = true;
   lastDataSource: 'network' | 'cache' = 'network';
@@ -173,7 +173,7 @@ export class MenuComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   closeMenu() {
-    this.close.emit();
+    this.menuClosed.emit();
   }
 
   logout() {

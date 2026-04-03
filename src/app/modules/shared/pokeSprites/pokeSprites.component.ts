@@ -4,7 +4,7 @@ import { Other } from '../../../../../entities/sprites.entity';
 import { Versions } from '../../../../../entities/versions.entity';
 
 @Component({
-  selector: 'app-pokeSprites',
+  selector: 'app-poke-sprites',
   templateUrl: './pokeSprites.component.html',
   styleUrls: ['./pokeSprites.component.scss']
 })

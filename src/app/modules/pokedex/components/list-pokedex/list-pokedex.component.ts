@@ -70,7 +70,6 @@ export class ListPokedexComponent implements OnInit {
   }
 
   navigateToPokedex(pokedexName: string) {
-    console.log(pokedexName);
     if(pokedexName === 'national') {
       this.router.navigate(['/pokedex/list']);
     } else {
