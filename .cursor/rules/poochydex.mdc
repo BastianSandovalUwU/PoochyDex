@@ -8,7 +8,7 @@ alwaysApply: true
 Contexto narrativo y comandos: **`AGENTS.md`**. Detalle por feature: reglas **`module-*.mdc`** en `.cursor/rules/` (se aplican al editar archivos dentro de cada carpeta `src/app/modules/<módulo>/`).
 
 - **Angular 17** con **NgModules** (no asumir standalone). Prefijo de selectores: **`app`**.
-- Rutas en `src/app/app.routing.ts`: lazy `loadChildren` hacia `pokedex`, `movement`, `poochyDexApi`, `auth`, `profile`, `settings`.
+- Rutas en `src/app/app.routing.ts`: lazy `loadChildren` hacia `pokedex`, `movement`, `poochyDexApi`, `auth`, `profile` (incluye `/profile/settings`); `/settings` redirige a `/profile/settings`.
 - Estilos: **SCSS** por componente; Tailwind vía `src/tailwind.css` y `npm run build:tailwind`. Material: tema `purple-green` en build.
 - **`npm run build`** ejecuta `generate-env.js` antes: define `NODE_JS_API` (env o `.env`) para generar `src/environments/environment.ts` y `environment.prod.ts`.
 - Features en `src/app/modules/<feature>/`. Reutilizable: **`SharedModule`** en `src/app/modules/shared/`.

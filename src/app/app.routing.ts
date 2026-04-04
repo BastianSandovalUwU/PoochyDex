@@ -11,7 +11,6 @@ export const appRoutes: Route[] = [
         { path: 'apiDex', loadChildren: () => import('./modules/poochyDexApi/poochyDexApi.module').then(m => m.PoochyDexApiModule) },
         { path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },
         { path: 'profile', loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule) },
-        { path: 'settings', loadChildren: () => import('./modules/settings/settings.module').then(m => m.SettingsModule) },
 
     ]
 },

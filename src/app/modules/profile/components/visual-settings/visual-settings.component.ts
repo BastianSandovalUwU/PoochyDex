@@ -10,9 +10,7 @@ export class VisualSettingsComponent implements OnInit {
   seletectedView: string;
   mainViewsOptions: string[] = ['Pokemon List', 'Random Pokemon'];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit(): void {}
 }

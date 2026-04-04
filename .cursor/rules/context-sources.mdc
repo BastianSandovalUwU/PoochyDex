@@ -7,7 +7,7 @@ alwaysApply: true
 
 1. **`AGENTS.md`** (raíz): visión global, stack, comandos, entornos, convenciones. Úsalo en tareas que crucen varios módulos o todo el repo.
 
-2. **Reglas por módulo** en **`.cursor/rules/`** (`module-*.mdc`): Cursor las aplica cuando trabajas en archivos bajo `src/app/modules/<nombre>/`. Ahí están rutas URL, componentes y dependencias de cada feature. Archivos: `module-pokedex.mdc`, `module-movements.mdc`, `module-poochyDexApi.mdc`, `module-auth.mdc`, `module-profile.mdc`, `module-settings.mdc`, `module-shared.mdc`.
+2. **Reglas por módulo** en **`.cursor/rules/`** (`module-*.mdc`): Cursor las aplica cuando trabajas en archivos bajo `src/app/modules/<nombre>/`. Ahí están rutas URL, componentes y dependencias de cada feature. Archivos: `module-pokedex.mdc`, `module-movements.mdc`, `module-poochyDexApi.mdc`, `module-auth.mdc`, `module-profile.mdc`, `module-shared.mdc`.
 
 3. **Siempre activas además:** `poochydex.mdc` (stack Angular/build), `commits.mdc`, `english-code-i18n-ui.mdc`, **`security.mdc`** (secretos, XSS, auth, datos sensibles), **`ui-button.mdc`** (botones con `app-ui-button`), y esta regla. Las plantillas `*.html` disparan `angular-templates.mdc`.
 

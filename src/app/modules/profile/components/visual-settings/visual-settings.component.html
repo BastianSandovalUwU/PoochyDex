@@ -8,7 +8,7 @@
     <div class="pl-3">
       <p>Seleccionar la pantalla inicial cada vez que entres a la aplicación.</p>
       <select>
-        <option *ngFor="let view of mainViewsOptions" [value]="view" (clicl)="seletectedView = view">{{ view }}</option>
+        <option *ngFor="let view of mainViewsOptions" [value]="view" (click)="seletectedView = view">{{ view }}</option>
       </select>
     </div>
   </div>
@@ -18,7 +18,7 @@
     <div class="pl-3">
       <p>Solamente si el pokémon posee ese sprite, sino existe tal sprite se mostrara el sprite de Home.</p>
       <select>
-        <option *ngFor="let view of mainViewsOptions" [value]="view" (clicl)="seletectedView = view">{{ view }}</option>
+        <option *ngFor="let view of mainViewsOptions" [value]="view" (click)="seletectedView = view">{{ view }}</option>
       </select>
     </div>
   </div>

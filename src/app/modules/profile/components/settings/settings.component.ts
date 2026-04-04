@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LanguageService } from '../shared/services/language.service';
+import { LanguageService } from '../../../shared/services/language.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,18 +7,13 @@ import { LanguageService } from '../shared/services/language.service';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-
   language: string;
-  showVisualSettings: boolean = false;
+  showVisualSettings = false;
 
-  constructor(private languageService: LanguageService,) { }
+  constructor(private languageService: LanguageService) {}
 
-  ngOnInit() {
-    this.getLanguage();
-  }
-
-  getLanguage() {
-    this.languageService.currentLanguage$.subscribe(language => {
+  ngOnInit(): void {
+    this.languageService.currentLanguage$.subscribe((language) => {
       this.language = language;
     });
   }

@@ -19,10 +19,7 @@ export const URL_ROUTES = {
   },
   PROFILE: {
     SHOW: '/profile/show',
-  },
-  SETTINGS: {
-    SETTINGS: '/settings',
-  },
+  }
 };
 
 export interface MenuOption {

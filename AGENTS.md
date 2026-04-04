@@ -40,7 +40,7 @@ PoochyDex es una Pokédex web que consume [PokéAPI](https://pokeapi.co/) y, cua
 - **`modules/movements/`** — Movimientos (`/movement`).
 - **`modules/poochyDexApi/`** — Integración con la API propia (`/apiDex`).
 - **`modules/auth/`** — Autenticación (`/auth`).
-- **`modules/profile/`**, **`modules/settings/`** — Perfil y ajustes.
+- **`modules/profile/`** — Perfil (`/profile/show`) y configuración Pokédex (`/profile/settings`; `/settings` redirige ahí).
 - **`modules/shared/`** — `SharedModule`: componentes reutilizables (menú, cards, tablas, pipes de traducción, tema, etc.) y **servicios compartidos** (`modules/shared/services/`), p. ej. `PokeApiService`, `LanguageService`, `ThemeService`. La lógica de Pokémon/UI que antes concentraba `HelperService` está en `PokemonDisplayService`, `CustomPokemonCatalogService`, `PokemonCacheService` y `PokemonMoveAbilityService`; `HelperService` delega en ellos como fachada retrocompatible.
 
 Las **reglas por módulo** están en **`.cursor/rules/module-*.mdc`**: Cursor las asocia al editar archivos bajo `src/app/modules/<módulo>/`.

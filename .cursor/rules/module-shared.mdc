@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Módulo `shared` (`SharedModule`)
 
-**Rol:** biblioteca interna: **componentes**, **pipes** y **servicios** reutilizables. **Sin rutas.** Cambios aquí afectan a pokedex, movements, settings, etc.
+**Rol:** biblioteca interna: **componentes**, **pipes** y **servicios** reutilizables. **Sin rutas.** Cambios aquí afectan a pokedex, movements, profile, etc.
 
 **Import en otros módulos:** `import { SharedModule } from '.../shared/shared.module'` (ruta relativa según carpeta).
 
