@@ -34,7 +34,8 @@
             </div>
             <ul *ngIf="isExpanded(option)" class="mt-1 ml-4 space-y-1 animate-fade-in">
               <li *ngFor="let child of option.children">
-                <a [href]="child.route"
+                <a [routerLink]="child.route"
+                   (click)="closeMenu()"
                    [class.bg-red-100]="isRouteActive(child.route)"
                    [class.dark:bg-red-900]="isRouteActive(child.route)"
                    [class.border-red-500]="isRouteActive(child.route)"
@@ -54,7 +55,8 @@
 
         <!-- Opción simple sin hijos -->
         <li *ngIf="!option.children || option.children.length === 0">
-          <a [href]="option.route"
+          <a [routerLink]="option.route"
+             (click)="closeMenu()"
              [class.bg-red-100]="isRouteActive(option.route)"
              [class.dark:bg-red-900]="isRouteActive(option.route)"
              [class.border-red-500]="isRouteActive(option.route)"
@@ -77,12 +79,14 @@
     <!-- User Authentication Section -->
     <div class="mb-4 pb-4 border-b dark:border-gray-700">
       <div *ngIf="!userData" class="space-y-1.5">
-        <a href="/auth/login"
+        <a routerLink="/auth/login"
+           (click)="closeMenu()"
            class="flex items-center justify-center px-3 py-2 text-sm text-white bg-blue-500 hover:bg-blue-600 rounded-md transition-colors group">
           <mat-icon class="mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">login</mat-icon>
           <span class="font-medium">{{ language === 'es' ? 'Iniciar Sesión' : 'Login'}}</span>
         </a>
-        <a href="/auth/sign-up"
+        <a routerLink="/auth/sign-up"
+           (click)="closeMenu()"
            class="flex items-center justify-center px-3 py-2 text-sm text-blue-500 border border-blue-500 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-md transition-colors">
           <mat-icon class="mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">person_add</mat-icon>
           <span class="font-medium">{{ language === 'es' ? 'Registrarse' : 'Sign Up'}}</span>
@@ -94,7 +98,8 @@
           <mat-icon class="text-gray-600 dark:text-gray-300 mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">account_circle</mat-icon>
           <span class="text-sm text-gray-700 dark:text-gray-200 font-medium truncate">{{ userData.user }}</span>
         </div>
-        <a href="/profile/show"
+        <a routerLink="/profile/show"
+           (click)="closeMenu()"
            class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
           <mat-icon class="mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">person</mat-icon>
           <span class="font-medium">{{ language === 'es' ? 'Mi Perfil' : 'My Profile'}}</span>
