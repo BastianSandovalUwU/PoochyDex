@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ErrorMessageService } from 'app/services/error-message.service';
+import { PokemonSpriteOption } from '../../../../../../../entities/poochydex-api/pokemon-sprite-option';
 
 @Component({
   selector: 'app-chain-evolution',
@@ -67,17 +68,17 @@ export class ChainEvolutionComponent implements OnInit, OnChanges {
   }
 
   populateEvolutionChainDetails(evolution: EvolutionChain) {
-    this.helperService.getPokemonSpriteImg(evolution.chain.species.name, "home")
+    this.helperService.getPokemonSpriteImg(evolution.chain.species.name, PokemonSpriteOption.Home)
       .subscribe(sprite => evolution.chain.imageName = sprite);
 
     if(evolution.chain.evolves_to && evolution.chain.evolves_to.length > 0) {
       evolution.chain.evolves_to.forEach((evolvesTo) => {
-        this.helperService.getPokemonSpriteImg(evolvesTo.species.name, "home")
+        this.helperService.getPokemonSpriteImg(evolvesTo.species.name, PokemonSpriteOption.Home)
           .subscribe(sprite2 => evolvesTo.imageName = sprite2);
 
         if(evolvesTo.evolves_to && evolvesTo.evolves_to.length > 0) {
             evolvesTo.evolves_to.forEach((evolvesTo2) => {
-              this.helperService.getPokemonSpriteImg(evolvesTo2.species.name, "home")
+              this.helperService.getPokemonSpriteImg(evolvesTo2.species.name, PokemonSpriteOption.Home)
                 .subscribe(sprite3 => evolvesTo2.imageName = sprite3);
           })
         }

@@ -3,6 +3,7 @@ import { Ability, Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { Name, PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { AbilityName } from '../../../../../../../entities/pokemon-ability.entity';
+import { PokemonSpriteOption } from '../../../../../../../entities/poochydex-api/pokemon-sprite-option';
 
 @Component({
   selector: 'app-pokemon-info',
@@ -10,6 +11,9 @@ import { AbilityName } from '../../../../../../../entities/pokemon-ability.entit
   styleUrls: ['./pokemon-info.component.scss']
 })
 export class PokemonInfoComponent implements OnInit, OnChanges {
+  /** Exposed for template bindings (Angular templates cannot reference imported enums). */
+  readonly PokemonSpriteOption = PokemonSpriteOption;
+
   @Input() language: string;
   @Input() pokemon: Pokemon;
   @Input() pokemonSpecie: PokemonSpecie;
@@ -25,7 +29,7 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   pokemonNameHirgana: Name;
 
   // Selector de imagen / arte
-  selectedImageType: 'home' | 'sugimoriArt' | 'globalLinkArt' = 'home';
+  selectedImageType: PokemonSpriteOption = PokemonSpriteOption.Home;
   sugimoriArtUrl?: string;
   globalLinkArtUrl?: string;
   hasSugimoriArt: boolean = false;
@@ -40,15 +44,15 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   }
 
   loadInfo() {
-    this.helperService.getPokemonSpriteImg(this.pokemon.name, "home").subscribe(sprite => this.pokemonSprite = sprite);
-    this.helperService.getPokemonSpriteImg(this.pokemon.name, "homeShiny").subscribe(sprite => this.pokemonSpriteShiny = sprite);
+    this.helperService.getPokemonSpriteImg(this.pokemon.name, PokemonSpriteOption.Home).subscribe(sprite => this.pokemonSprite = sprite);
+    this.helperService.getPokemonSpriteImg(this.pokemon.name, PokemonSpriteOption.HomeShiny).subscribe(sprite => this.pokemonSpriteShiny = sprite);
 
     const artwork = this.helperService.getPokemonArtwork(this.pokemon.name);
     this.sugimoriArtUrl = artwork.sugimoriArt;
     this.globalLinkArtUrl = artwork.globalLinkArt;
     this.hasSugimoriArt = !!artwork.sugimoriArt;
     this.hasGlobalLinkArt = !!artwork.globalLinkArt;
-    this.selectedImageType = 'home';
+    this.selectedImageType = PokemonSpriteOption.Home;
     this.showShiny = false;
 
     this.getPokemonColor();
@@ -69,9 +73,9 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
    */
   getMainSprite(): string {
     switch (this.selectedImageType) {
-      case 'sugimoriArt':
+      case PokemonSpriteOption.SugimoriArt:
         return this.sugimoriArtUrl || this.pokemonSprite;
-      case 'globalLinkArt':
+      case PokemonSpriteOption.GlobalLinkArt:
         return this.globalLinkArtUrl || this.pokemonSprite;
       default:
         return this.pokemonSprite;
@@ -124,14 +128,14 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   }
 
   /** Segmented control for artwork type (`app-ui-button`). */
-  imageTypeSegmentClass(type: 'home' | 'sugimoriArt' | 'globalLinkArt'): string {
+  imageTypeSegmentClass(type: PokemonSpriteOption): string {
     const base = 'px-3 py-1 text-sm font-medium !shadow-none';
     const active = this.selectedImageType === type;
     const on = active ? 'bg-blue-600 text-white' : 'text-gray-900 bg-transparent dark:text-gray-200';
-    if (type === 'home') {
+    if (type === PokemonSpriteOption.Home) {
       return `${base} rounded-l-md ${on}`;
     }
-    if (type === 'globalLinkArt') {
+    if (type === PokemonSpriteOption.GlobalLinkArt) {
       return `${base} rounded-r-md ${on}`;
     }
     return `${base} ${on}`;

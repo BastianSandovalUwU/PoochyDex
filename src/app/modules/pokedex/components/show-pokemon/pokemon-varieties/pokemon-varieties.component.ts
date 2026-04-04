@@ -3,6 +3,7 @@ import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.enti
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Router } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
+import { PokemonSpriteOption } from '../../../../../../../entities/poochydex-api/pokemon-sprite-option';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
@@ -61,7 +62,7 @@ export class PokemonVarietiesComponent implements OnInit, OnChanges {
         name: this.pokemonSpecie.varieties[i].pokemon.name
       }
       pokemonVarieties.push(pokeInfo);
-      this.helperService.getPokemonSpriteImg(this.pokemonSpecie.varieties[i].pokemon.name, "home")
+      this.helperService.getPokemonSpriteImg(this.pokemonSpecie.varieties[i].pokemon.name, PokemonSpriteOption.Home)
         .subscribe(sprite => pokeInfo.sprite = sprite);
     }
     this.pokemonVarieties = pokemonVarieties;

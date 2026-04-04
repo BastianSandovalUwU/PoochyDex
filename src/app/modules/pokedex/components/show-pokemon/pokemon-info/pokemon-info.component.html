@@ -12,8 +12,8 @@
           type="button"
           variant="ghost"
           role="radio"
-          [extraClasses]="imageTypeSegmentClass('home')"
-          (buttonClick)="selectedImageType = 'home'; showShiny = false"
+          [extraClasses]="imageTypeSegmentClass(PokemonSpriteOption.Home)"
+          (buttonClick)="selectedImageType = PokemonSpriteOption.Home; showShiny = false"
         >
           {{ language === 'es' ? 'Modelo Home' : 'Home Model' }}
         </app-ui-button>
@@ -22,8 +22,8 @@
           type="button"
           variant="ghost"
           role="radio"
-          [extraClasses]="imageTypeSegmentClass('sugimoriArt')"
-          (buttonClick)="selectedImageType = 'sugimoriArt'; showShiny = false"
+          [extraClasses]="imageTypeSegmentClass(PokemonSpriteOption.SugimoriArt)"
+          (buttonClick)="selectedImageType = PokemonSpriteOption.SugimoriArt; showShiny = false"
         >
           Sugimori
         </app-ui-button>
@@ -32,8 +32,8 @@
           type="button"
           variant="ghost"
           role="radio"
-          [extraClasses]="imageTypeSegmentClass('globalLinkArt')"
-          (buttonClick)="selectedImageType = 'globalLinkArt'; showShiny = false"
+          [extraClasses]="imageTypeSegmentClass(PokemonSpriteOption.GlobalLinkArt)"
+          (buttonClick)="selectedImageType = PokemonSpriteOption.GlobalLinkArt; showShiny = false"
         >
           Global Link
         </app-ui-button>
@@ -45,7 +45,7 @@
       <img [src]="getMainSprite()" style="display: none;">
 
       <!-- Modelo Home con toggle shiny -->
-      <ng-container *ngIf="selectedImageType === 'home'; else altArtTemplate">
+      <ng-container *ngIf="selectedImageType === PokemonSpriteOption.Home; else altArtTemplate">
         <img
           class="w-80 cursor-pointer"
           (click)="showShiny = true"

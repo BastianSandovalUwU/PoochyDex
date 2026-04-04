@@ -10,6 +10,7 @@ import { Move, ShowMove, TypeDetail } from '../../../../../../entities/moves.ent
 import { forkJoin, of, Subject, takeUntil, timer } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { ErrorMessageService } from 'app/services/error-message.service';
+import { PokemonSpriteOption } from '../../../../../../entities/poochydex-api/pokemon-sprite-option';
 
 @Component({
   selector: 'app-show-pokemon',
@@ -73,10 +74,10 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (pokeInfo) => {
           this.pokemon = pokeInfo;
-          this.helperService.getPokemonSpriteImg(this.pokemon["name"], "home")
+          this.helperService.getPokemonSpriteImg(this.pokemon["name"], PokemonSpriteOption.Home)
             .pipe(takeUntil(this.destroy$))
             .subscribe(sprite => this.pokemonSprite = sprite);
-          this.helperService.getPokemonSpriteImg(this.pokemon["name"], "homeShiny")
+          this.helperService.getPokemonSpriteImg(this.pokemon["name"], PokemonSpriteOption.HomeShiny)
             .pipe(takeUntil(this.destroy$))
             .subscribe(sprite => this.pokemonSpriteShiny = sprite);
           this.getPokemonSpecie(this.pokemon.species.name);

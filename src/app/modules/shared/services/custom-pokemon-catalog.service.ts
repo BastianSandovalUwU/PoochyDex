@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
 import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
 import { Pokemon, PokemonForm } from '../../../../../entities/poochydex-api/pokemon.type';
+import { PokemonSpriteOption } from '../../../../../entities/poochydex-api/pokemon-sprite-option';
 import { getCorrectPokemonName } from '../../../../../entities/common/enum';
 
 /**
@@ -24,7 +25,7 @@ export class CustomPokemonCatalogService {
     });
   }
 
-  getPokemonSpriteImg(pokemonName: string, option: 'home' | 'icon' | 'homeShiny' | 'globalLinkArt'): Observable<string> {
+  getPokemonSpriteImg(pokemonName: string, option: PokemonSpriteOption): Observable<string> {
     const name = getCorrectPokemonName(pokemonName);
     const placeholder = 'https://i.imgur.com/uKx7iOF.png';
 
@@ -36,13 +37,15 @@ export class CustomPokemonCatalogService {
         }
 
         switch (option) {
-          case 'icon':
+          case PokemonSpriteOption.Icon:
             return pokemon.sprites.iconUrl || placeholder;
-          case 'home':
+          case PokemonSpriteOption.Home:
             return pokemon.sprites.homeUrl || placeholder;
-          case 'homeShiny':
+          case PokemonSpriteOption.HomeShiny:
             return pokemon.sprites.homeShinyUrl || placeholder;
-          case 'globalLinkArt':
+          case PokemonSpriteOption.SugimoriArt:
+            return pokemon.sprites.sugimoriArt || placeholder;
+          case PokemonSpriteOption.GlobalLinkArt:
             return pokemon.sprites.globalLinkArt || placeholder;
           default:
             return placeholder;

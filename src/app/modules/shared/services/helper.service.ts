@@ -5,6 +5,7 @@ import { AbilityName } from '../../../../../entities/pokemon-ability.entity';
 import { DetailMove } from '../../../../../entities/moves.entity';
 import { TargetTypes } from '../../../../../entities/common/const.interface';
 import { Pokemon, PokemonForm } from '../../../../../entities/poochydex-api/pokemon.type';
+import { PokemonSpriteOption } from '../../../../../entities/poochydex-api/pokemon-sprite-option';
 import { PokemonCacheService } from './pokemon-cache.service';
 import { CustomPokemonCatalogService } from './custom-pokemon-catalog.service';
 import { PokemonDisplayService } from './pokemon-display.service';
@@ -111,7 +112,7 @@ export class HelperService {
     return this.pokemonDisplay.getGameIconGame(gameName);
   }
 
-  getPokemonSpriteImg(pokemonName: string, option: 'home' | 'icon' | 'homeShiny' | 'globalLinkArt'): Observable<string> {
+  getPokemonSpriteImg(pokemonName: string, option: PokemonSpriteOption): Observable<string> {
     return this.customPokemonCatalog.getPokemonSpriteImg(pokemonName, option);
   }
 
