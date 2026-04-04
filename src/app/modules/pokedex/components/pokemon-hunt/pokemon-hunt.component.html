@@ -9,7 +9,11 @@
   <div *ngIf="!isExpanded && !selectedPokedexNumber" class="mt-3 flex flex-col items-center">
     <div class="w-full max-w-2xl px-4">
       <div
+        role="button"
+        tabindex="0"
         (click)="toggleExpanded()"
+        (keydown.enter)="toggleExpanded()"
+        (keydown.space)="$event.preventDefault(); toggleExpanded()"
         class="cursor-pointer rounded-lg p-3 border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 transition-all duration-300 hover:scale-105 hover:border-red-400 dark:hover:border-red-500 hover:shadow-md">
         <div class="flex items-center justify-center gap-3">
           <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,7 +54,11 @@
     <div class="w-full max-w-2xl px-4 space-y-2 mb-4">
       <div
         *ngFor="let pokedex of pokedexOptions"
+        role="button"
+        tabindex="0"
         (click)="selectPokedex(pokedex.id)"
+        (keydown.enter)="selectPokedex(pokedex.id)"
+        (keydown.space)="$event.preventDefault(); selectPokedex(pokedex.id)"
         class="pokedex-card cursor-pointer rounded-lg p-3 border-2 transition-all duration-300 hover:scale-105"
         [class.bg-white]="!isSelected(pokedex.id)"
         [class.dark:bg-gray-800]="!isSelected(pokedex.id)"

@@ -102,5 +102,12 @@ export class ChainEvolutionComponent implements OnInit, OnChanges {
     this.router.navigate(['/pokedex/show-pokemon/', pokemonName]);
   }
 
+  onNavigateKeydown(event: KeyboardEvent, pokemonName: string): void {
+    if (event.key !== 'Enter' && event.code !== 'Space') {
+      return;
+    }
+    event.preventDefault();
+    this.goToPokemonPage(pokemonName);
+  }
 
 }

@@ -48,13 +48,21 @@
       <ng-container *ngIf="selectedImageType === PokemonSpriteOption.Home; else altArtTemplate">
         <img
           class="w-80 cursor-pointer"
+          tabindex="0"
+          role="button"
           (click)="showShiny = true"
+          (keydown.enter)="showShiny = true"
+          (keydown.space)="$event.preventDefault(); showShiny = true"
           *ngIf="!showShiny"
           [src]="pokemonSprite"
         >
         <img
           class="w-80 cursor-pointer"
+          tabindex="0"
+          role="button"
           (click)="showShiny = false"
+          (keydown.enter)="showShiny = false"
+          (keydown.space)="$event.preventDefault(); showShiny = false"
           *ngIf="showShiny"
           [src]="pokemonSpriteShiny"
         >

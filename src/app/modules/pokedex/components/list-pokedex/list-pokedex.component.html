@@ -7,8 +7,12 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-15 w-full mt-2">
       <div
         *ngFor="let pokedex of pokedexList"
+        role="button"
+        tabindex="0"
         (click)="navigateToPokedex(pokedex.name)"
-        class="pokedex-card cursor-pointer bg-white dark:bg-gray-800 rounded-lg p-4 border-2 border-gray-300 dark:border-gray-600 hover:border-red-500 dark:hover:border-red-500 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+        (keydown.enter)="navigateToPokedex(pokedex.name)"
+        (keydown.space)="$event.preventDefault(); navigateToPokedex(pokedex.name)"
+        class="pokedex-card cursor-pointer bg-white dark:bg-gray-800 rounded-lg p-4 border-2 border-gray-300 dark:border-gray-600 hover:border-red-500 dark:hover:border-red-500 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900">
         <div class="flex flex-col items-center text-center">
           <h2 class="text-xl font-bold text-black dark:text-white mb-2">
             {{ pokedex.name | translatePokedexName | replaceDash | titlecase }}

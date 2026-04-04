@@ -14,7 +14,9 @@
 <!-- Search Overlay -->
 <div
   [ngClass]="{ 'opacity-100 visible': showSearch, 'opacity-0 invisible': !showSearch }"
+  tabindex="-1"
   (click)="toggleSearch()"
+  (keydown.escape)="toggleSearch()"
   [attr.aria-hidden]="!showSearch"
   role="dialog"
   [attr.aria-modal]="showSearch"
@@ -25,6 +27,7 @@
   <div
     [ngClass]="{ 'translate-y-0 scale-100 opacity-100': showSearch, '-translate-y-5 scale-95 opacity-0': !showSearch }"
     (click)="$event.stopPropagation()"
+    (keydown)="$event.stopPropagation()"
     role="dialog"
     class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-2xl shadow-2xl w-[90%] max-w-2xl max-h-[85vh] overflow-hidden flex flex-col transition-all duration-300 ease-out sm:w-[95%] sm:rounded-xl">
 
@@ -73,6 +76,7 @@
         <li
           (click)="navigateToPokemon(item.name)"
           (keydown.enter)="navigateToPokemon(item.name)"
+          (keydown.space)="$event.preventDefault(); navigateToPokemon(item.name)"
           *ngFor="let item of limitedFilteredData; trackBy: trackByPokemonName"
           tabindex="0"
           role="button"

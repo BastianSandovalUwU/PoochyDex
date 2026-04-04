@@ -1,5 +1,11 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-800">
-  <div class="flex justify-between items-center cursor-pointer" (click)="toggleFilters()">
+  <div
+    class="flex justify-between items-center cursor-pointer"
+    role="button"
+    tabindex="0"
+    (click)="toggleFilters()"
+    (keydown.enter)="toggleFilters()"
+    (keydown.space)="$event.preventDefault(); toggleFilters()">
     <h1 class="font-bold text-xl hover:text-gray-800 dark:text-white dark:hover:text-gray-300">{{ language === 'es' ? 'Cadena Evolutiva' : 'Evolution Chain' }}</h1>
 
     <app-ui-button variant="icon" type="button" (buttonClick)="toggleFilters(); $event.stopPropagation()">
@@ -14,9 +20,9 @@
       <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
         <div class="flex flex-col items-center">
           <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="evolutionChain.chain?.imageName"
-               (click)="goToPokemonPage(evolutionChain.chain.species.name)"
+               tabindex="0" role="link" (click)="goToPokemonPage(evolutionChain.chain.species.name)" (keydown)="onNavigateKeydown($event, evolutionChain.chain.species.name)"
                [src]="evolutionChain.chain.imageName">
-          <p class="cursor-pointer hover:text-blue-500 mt-2" (click)="goToPokemonPage(evolutionChain.chain.species.name)">
+          <p class="cursor-pointer hover:text-blue-500 mt-2" tabindex="0" role="link" (click)="goToPokemonPage(evolutionChain.chain.species.name)" (keydown)="onNavigateKeydown($event, evolutionChain.chain.species.name)">
             {{ evolutionChain.chain.species.name |translatePokemonName |replaceDash | titlecase }}
           </p>
         </div>
@@ -32,9 +38,9 @@
         <div class="absolute" [style.transform]="'rotate(' + (i * (360 / evolutionChain.chain.evolves_to.length)) + 'deg) translate(400px) rotate(' + (-i * (360 / evolutionChain.chain.evolves_to.length)) + 'deg)'">
           <div class="flex flex-col items-center">
             <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage?.imageName"
-                 (click)="goToPokemonPage(stage.species.name)"
+                 tabindex="0" role="link" (click)="goToPokemonPage(stage.species.name)" (keydown)="onNavigateKeydown($event, stage.species.name)"
                  [src]="stage.imageName">
-            <p class="cursor-pointer hover:text-blue-500 mt-2" (click)="goToPokemonPage(stage.species.name)">
+            <p class="cursor-pointer hover:text-blue-500 mt-2" tabindex="0" role="link" (click)="goToPokemonPage(stage.species.name)" (keydown)="onNavigateKeydown($event, stage.species.name)">
               {{ stage.species.name |translatePokemonName |replaceDash | titlecase }}
             </p>
             <p *ngIf="stage.evolution_details[0]?.trigger" class="text-sm text-center mt-2">
@@ -72,9 +78,9 @@
               <div class="absolute" [style.transform]="'rotate(' + (i * (360 / evolutionChain.chain.evolves_to.length)) + 'deg) translate(230px) rotate(' + (-i * (360 / evolutionChain.chain.evolves_to.length)) + 'deg)'">
                 <div class="flex flex-col items-center">
                   <img class="w-16 sm:w-32 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage.evolves_to[0]?.imageName"
-                       (click)="goToPokemonPage(stage.evolves_to[0].species.name)"
+                       tabindex="0" role="link" (click)="goToPokemonPage(stage.evolves_to[0].species.name)" (keydown)="onNavigateKeydown($event, stage.evolves_to[0].species.name)"
                        [src]="stage.evolves_to[0].imageName">
-                  <p class="cursor-pointer hover:text-blue-500 mt-2" (click)="goToPokemonPage(stage.evolves_to[0].species.name)">
+                  <p class="cursor-pointer hover:text-blue-500 mt-2" tabindex="0" role="link" (click)="goToPokemonPage(stage.evolves_to[0].species.name)" (keydown)="onNavigateKeydown($event, stage.evolves_to[0].species.name)">
                     {{ stage.evolves_to[0].species.name |translatePokemonName |replaceDash | titlecase }}
                   </p>
                   <p *ngIf="stage.evolves_to[0].evolution_details[0]?.trigger" class="text-sm text-center mt-2">
@@ -111,20 +117,20 @@
     <!-- Normal case for single evolution -->
     <ng-container *ngIf="evolutionChain.chain.evolves_to?.length === 1">
       <div class="hidden sm:flex flex-col items-center evolution-step">
-        <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(evolutionChain.chain.species.name)">
+        <p class="cursor-pointer hover:text-blue-500" tabindex="0" role="link" (click)="goToPokemonPage(evolutionChain.chain.species.name)" (keydown)="onNavigateKeydown($event, evolutionChain.chain.species.name)">
           {{ evolutionChain.chain.species.name |translatePokemonName |replaceDash | titlecase }}
         </p>
         <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="evolutionChain.chain?.imageName"
-             (click)="goToPokemonPage(evolutionChain.chain.species.name)"
+             tabindex="0" role="link" (click)="goToPokemonPage(evolutionChain.chain.species.name)" (keydown)="onNavigateKeydown($event, evolutionChain.chain.species.name)"
              [src]="evolutionChain.chain.imageName">
       </div>
       <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
         <div class="hidden sm:flex flex-col items-center evolution-step">
-          <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage.species.name)">
+          <p class="cursor-pointer hover:text-blue-500" tabindex="0" role="link" (click)="goToPokemonPage(stage.species.name)" (keydown)="onNavigateKeydown($event, stage.species.name)">
             {{ stage.species.name |translatePokemonName |replaceDash | titlecase }}
           </p>
           <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage?.imageName"
-               (click)="goToPokemonPage(stage.species.name)"
+               tabindex="0" role="link" (click)="goToPokemonPage(stage.species.name)" (keydown)="onNavigateKeydown($event, stage.species.name)"
                [src]="stage.imageName">
           <p *ngIf="stage.evolution_details[0]?.trigger">
             {{ stage.evolution_details[stage.evolution_details.length - 1]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
@@ -159,11 +165,11 @@
         </div>
         <ng-container *ngFor="let stage2 of stage.evolves_to">
           <div class="hidden sm:flex flex-col items-center evolution-step">
-            <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage2.species.name)">
+            <p class="cursor-pointer hover:text-blue-500" tabindex="0" role="link" (click)="goToPokemonPage(stage2.species.name)" (keydown)="onNavigateKeydown($event, stage2.species.name)">
               {{ stage2.species.name |translatePokemonName |replaceDash | titlecase }}
             </p>
             <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage2?.imageName"
-                 (click)="goToPokemonPage(stage2.species.name)"
+                 tabindex="0" role="link" (click)="goToPokemonPage(stage2.species.name)" (keydown)="onNavigateKeydown($event, stage2.species.name)"
                  [src]="stage2.imageName">
             <p *ngIf="stage2.evolution_details[0]?.trigger">
               {{ stage2.evolution_details[0]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
@@ -198,18 +204,18 @@
     <ng-container *ngIf="evolutionChain.chain.evolves_to?.length === 1">
       <div class="sm:hidden flex flex-col items-center evolution-step">
         <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="evolutionChain.chain?.imageName"
-             (click)="goToPokemonPage(evolutionChain.chain.species.name)"
+             tabindex="0" role="link" (click)="goToPokemonPage(evolutionChain.chain.species.name)" (keydown)="onNavigateKeydown($event, evolutionChain.chain.species.name)"
              [src]="evolutionChain.chain.imageName">
-        <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(evolutionChain.chain.species.name)">
+        <p class="cursor-pointer hover:text-blue-500" tabindex="0" role="link" (click)="goToPokemonPage(evolutionChain.chain.species.name)" (keydown)="onNavigateKeydown($event, evolutionChain.chain.species.name)">
           {{ evolutionChain.chain.species.name |translatePokemonName |replaceDash | titlecase }}
         </p>
       </div>
       <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
         <div class="sm:hidden flex flex-col items-center evolution-step">
           <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage?.imageName"
-               (click)="goToPokemonPage(stage.species.name)"
+               tabindex="0" role="link" (click)="goToPokemonPage(stage.species.name)" (keydown)="onNavigateKeydown($event, stage.species.name)"
                [src]="stage.imageName">
-          <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage.species.name)">
+          <p class="cursor-pointer hover:text-blue-500" tabindex="0" role="link" (click)="goToPokemonPage(stage.species.name)" (keydown)="onNavigateKeydown($event, stage.species.name)">
             {{ stage.species.name |translatePokemonName |replaceDash | titlecase }}
           </p>
           <p *ngIf="stage.evolution_details[0]?.trigger">
@@ -246,9 +252,9 @@
         <ng-container *ngFor="let stage2 of stage.evolves_to">
           <div class="sm:hidden flex flex-col items-center evolution-step">
             <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage2?.imageName"
-                 (click)="goToPokemonPage(stage2.species.name)"
+                 tabindex="0" role="link" (click)="goToPokemonPage(stage2.species.name)" (keydown)="onNavigateKeydown($event, stage2.species.name)"
                  [src]="stage2.imageName">
-            <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage2.species.name)">
+            <p class="cursor-pointer hover:text-blue-500" tabindex="0" role="link" (click)="goToPokemonPage(stage2.species.name)" (keydown)="onNavigateKeydown($event, stage2.species.name)">
               {{ stage2.species.name |translatePokemonName |replaceDash | titlecase }}
             </p>
             <p *ngIf="stage2.evolution_details[0]?.trigger">
@@ -283,18 +289,18 @@
     <ng-container *ngIf="evolutionChain.chain.evolves_to?.length > 1">
       <div class="sm:hidden flex flex-col items-center evolution-step">
         <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="evolutionChain.chain?.imageName"
-             (click)="goToPokemonPage(evolutionChain.chain.species.name)"
+             tabindex="0" role="link" (click)="goToPokemonPage(evolutionChain.chain.species.name)" (keydown)="onNavigateKeydown($event, evolutionChain.chain.species.name)"
              [src]="evolutionChain.chain.imageName">
-        <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(evolutionChain.chain.species.name)">
+        <p class="cursor-pointer hover:text-blue-500" tabindex="0" role="link" (click)="goToPokemonPage(evolutionChain.chain.species.name)" (keydown)="onNavigateKeydown($event, evolutionChain.chain.species.name)">
           {{ evolutionChain.chain.species.name |translatePokemonName |replaceDash | titlecase }}
         </p>
 
       <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
         <div class="flex flex-col items-center evolution-step">
           <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage?.imageName"
-               (click)="goToPokemonPage(stage.species.name)"
+               tabindex="0" role="link" (click)="goToPokemonPage(stage.species.name)" (keydown)="onNavigateKeydown($event, stage.species.name)"
                [src]="stage.imageName">
-          <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage.species.name)">
+          <p class="cursor-pointer hover:text-blue-500" tabindex="0" role="link" (click)="goToPokemonPage(stage.species.name)" (keydown)="onNavigateKeydown($event, stage.species.name)">
             {{ stage.species.name |translatePokemonName |replaceDash | titlecase }}
           </p>
           <p *ngIf="stage.evolution_details[0]?.trigger">
@@ -331,9 +337,9 @@
         <ng-container *ngFor="let stage2 of stage.evolves_to">
           <div class="flex flex-col items-center evolution-step">
             <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image" *ngIf="stage2?.imageName"
-                 (click)="goToPokemonPage(stage2.species.name)"
+                 tabindex="0" role="link" (click)="goToPokemonPage(stage2.species.name)" (keydown)="onNavigateKeydown($event, stage2.species.name)"
                  [src]="stage2.imageName">
-            <p class="cursor-pointer hover:text-blue-500" (click)="goToPokemonPage(stage2.species.name)">
+            <p class="cursor-pointer hover:text-blue-500" tabindex="0" role="link" (click)="goToPokemonPage(stage2.species.name)" (keydown)="onNavigateKeydown($event, stage2.species.name)">
               {{ stage2.species.name |translatePokemonName |replaceDash | titlecase }}
             </p>
             <p *ngIf="stage2.evolution_details[0]?.trigger">

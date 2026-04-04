@@ -42,7 +42,11 @@
   </app-menu>
 
   <!-- Main Content -->
-  <main class="flex-1 overflow-auto" (click)="closeMenu()">
+  <main
+    class="flex-1 overflow-auto"
+    tabindex="-1"
+    (click)="closeMenu()"
+    (keydown.escape)="closeMenu()">
     <router-outlet></router-outlet>
   </main>
 

@@ -81,7 +81,9 @@
       <div
         #progressBar
         class="h-2 rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer overflow-hidden sm:h-1.5"
+        tabindex="0"
         (click)="onProgressClick($event, progressBar)"
+        (keydown)="onProgressBarKeydown($event, progressBar)"
         role="slider"
         [attr.aria-valuenow]="progressPercent()"
         aria-valuemin="0"
@@ -179,7 +181,9 @@
     <div
       #progressBarInline
       class="h-1.5 rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer overflow-hidden"
+      tabindex="0"
       (click)="onProgressClick($event, progressBarInline)"
+      (keydown)="onProgressBarKeydown($event, progressBarInline)"
       role="slider"
       [attr.aria-valuenow]="progressPercent()"
       aria-valuemin="0"

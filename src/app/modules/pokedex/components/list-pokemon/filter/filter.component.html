@@ -1,5 +1,11 @@
 <div class="rounded-md p-1 border border-gray-200 bg-white/70 dark:border-gray-600 dark:bg-gray-800">
-  <div class="flex justify-between items-center cursor-pointer" (click)="toggleFilters()">
+  <div
+    class="flex justify-between items-center cursor-pointer"
+    role="button"
+    tabindex="0"
+    (click)="toggleFilters()"
+    (keydown.enter)="toggleFilters()"
+    (keydown.space)="$event.preventDefault(); toggleFilters()">
     <span class="text-xl cursor-pointer ml-1">{{ language === 'es' ? 'Filtros de búsqueda' : 'Search Filters' }}</span>
     <app-ui-button
       variant="icon"

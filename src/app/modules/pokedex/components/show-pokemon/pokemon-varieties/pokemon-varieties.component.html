@@ -1,6 +1,12 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 col-span-1 border border-gray-200 dark:border-gray-600 dark:bg-gray-800" *ngIf="pokemonVarieties">
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-xl cursor-pointer hover:text-gray-800 dark:text-white dark:hover:text-gray-300" (click)="toggleFilters()">{{ language === 'es' ? 'Formas': 'Varieties' }}</h1>
+    <h1
+      class="font-bold text-xl cursor-pointer hover:text-gray-800 dark:text-white dark:hover:text-gray-300"
+      role="button"
+      tabindex="0"
+      (click)="toggleFilters()"
+      (keydown.enter)="toggleFilters()"
+      (keydown.space)="$event.preventDefault(); toggleFilters()">{{ language === 'es' ? 'Formas': 'Varieties' }}</h1>
 
     <app-ui-button variant="icon" type="button" (buttonClick)="toggleFilters()">
       <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
@@ -9,12 +15,21 @@
   <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="flex flex-wrap justify-center space-x-8 evolution-container" >
     <ng-container *ngFor="let variety of pokemonVarieties">
       <div class="flex flex-col items-center evolution-step">
-        <p class="cursor-pointer hover:text-blue-500 dark:text-white" (click)="goToPokemonPage(variety.name)">
+        <p
+          class="cursor-pointer hover:text-blue-500 dark:text-white"
+          tabindex="0"
+          role="link"
+          (click)="goToPokemonPage(variety.name)"
+          (keydown)="onVarietyLinkKeydown($event, variety.name)">
           {{ variety.name |translatePokemonName |replaceDash | titlecase }}
         </p>
-        <img class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image"
-             (click)="goToPokemonPage(variety.name)"
-             [src]="variety.sprite">
+        <img
+          class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image"
+          tabindex="0"
+          role="link"
+          (click)="goToPokemonPage(variety.name)"
+          (keydown)="onVarietyLinkKeydown($event, variety.name)"
+          [src]="variety.sprite">
       </div>
     </ng-container>
   </div>

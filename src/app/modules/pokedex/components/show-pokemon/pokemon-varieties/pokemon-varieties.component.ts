@@ -80,4 +80,12 @@ export class PokemonVarietiesComponent implements OnInit, OnChanges {
     this.router.navigate(['/pokedex/show-pokemon/', pokemonName]);
   }
 
+  onVarietyLinkKeydown(event: KeyboardEvent, pokemonName: string): void {
+    if (event.key !== 'Enter' && event.code !== 'Space') {
+      return;
+    }
+    event.preventDefault();
+    this.goToPokemonPage(pokemonName);
+  }
+
 }

@@ -138,6 +138,22 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
     this.music.seekRatio(ratio);
   }
 
+  /** Keyboard seek for progress bar (same element as click; satisfies a11y lint). */
+  onProgressBarKeydown(event: KeyboardEvent, _bar: HTMLElement): void {
+    if (!this.duration || this.duration <= 0) {
+      return;
+    }
+    const step = 0.05;
+    const ratio = this.currentTime / this.duration;
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') {
+      event.preventDefault();
+      this.music.seekRatio(Math.max(0, ratio - step));
+    } else if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      this.music.seekRatio(Math.min(1, ratio + step));
+    }
+  }
+
   onVolumeInputEvent(event: Event): void {
     const v = parseFloat((event.target as HTMLInputElement).value);
     if (!Number.isNaN(v)) {

@@ -3,17 +3,21 @@
     Poochy&copy; {{currentYear}}
   </span>
   <div class="language-flags">
-    <img
-      src="./assets/icons/flags/usa_flag.png"
-      alt="Inglés"
+    <button
+      type="button"
+      class="language-flag p-0 border-0 bg-transparent cursor-pointer dark:opacity-80 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
       (click)="setLanguage('en')"
-      class="language-flag dark:opacity-80 hover:opacity-100"
-      title="Cambiar a Inglés">
-    <img
-      src="./assets/icons/flags/spain_flag.png"
-      alt="Español"
+      [attr.title]="currentLanguage === 'es' ? 'Cambiar a Inglés' : 'Switch to English'"
+      [attr.aria-label]="currentLanguage === 'es' ? 'Cambiar a Inglés' : 'Switch to English'">
+      <img src="./assets/icons/flags/usa_flag.png" alt="" class="block pointer-events-none">
+    </button>
+    <button
+      type="button"
+      class="language-flag p-0 border-0 bg-transparent cursor-pointer dark:opacity-80 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
       (click)="setLanguage('es')"
-      class="language-flag dark:opacity-80 hover:opacity-100"
-      title="Cambiar a Español">
+      [attr.title]="currentLanguage === 'es' ? 'Cambiar a Español' : 'Switch to Spanish'"
+      [attr.aria-label]="currentLanguage === 'es' ? 'Cambiar a Español' : 'Switch to Spanish'">
+      <img src="./assets/icons/flags/spain_flag.png" alt="" class="block pointer-events-none">
+    </button>
   </div>
 </div>

@@ -27,7 +27,12 @@
         <!-- Opción con hijos (menú expandible) -->
         <li *ngIf="option.children && option.children.length > 0">
           <div class="">
-            <div (click)="toggleExpanded(option)"
+            <div
+                 role="button"
+                 tabindex="0"
+                 (click)="toggleExpanded(option)"
+                 (keydown.enter)="toggleExpanded(option)"
+                 (keydown.space)="$event.preventDefault(); toggleExpanded(option)"
                  class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer group">
               <img *ngIf="option.imageIcon" class="w-8 h-8 object-contain" [src]="option.imageIcon" [alt]="getLabel(option)">
               <mat-icon *ngIf="!option.imageIcon" class="text-gray-600 dark:text-gray-300 mr-2">{{ option.icon }}</mat-icon>
@@ -132,7 +137,13 @@
 </aside>
 
 <!-- Overlay for mobile -->
-<div *ngIf="isOpen"
+<div
+     *ngIf="isOpen"
+     role="button"
+     tabindex="0"
      class="fixed inset-0 bg-black bg-opacity-50 z-30 sm:hidden transition-opacity duration-300"
-     (click)="closeMenu()">
+     (click)="closeMenu()"
+     (keydown.enter)="closeMenu()"
+     (keydown.space)="$event.preventDefault(); closeMenu()"
+     (keydown.escape)="closeMenu()">
 </div>

@@ -1,6 +1,12 @@
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-gray-200 sm:block hidden dark:border-gray-600 dark:bg-gray-800">
 
-  <div class="flex justify-between items-center cursor-pointer" (click)="toggleFilters('lvl')">
+  <div
+    class="flex justify-between items-center cursor-pointer"
+    role="button"
+    tabindex="0"
+    (click)="toggleFilters('lvl')"
+    (keydown.enter)="toggleFilters('lvl')"
+    (keydown.space)="$event.preventDefault(); toggleFilters('lvl')">
     <div class="hover:text-gray-800 dark:text-white dark:hover:text-gray-300">
       <h1 class="font-bold text-xl" >{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
       <h1 class="font-bold">{{ language === 'es' ? 'Subiendo de nivel': 'By Level Up' }}</h1>
@@ -74,7 +80,13 @@
 
 <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-gray-200 sm:hidden block dark:border-gray-600 dark:bg-gray-800">
 
-  <div class="flex justify-between items-center cursor-pointer" (click)="toggleFilters('lvl')">
+  <div
+    class="flex justify-between items-center cursor-pointer"
+    role="button"
+    tabindex="0"
+    (click)="toggleFilters('lvl')"
+    (keydown.enter)="toggleFilters('lvl')"
+    (keydown.space)="$event.preventDefault(); toggleFilters('lvl')">
     <div class="hover:text-gray-800 dark:text-white dark:hover:text-gray-300">
       <h1 class="font-bold text-xl">{{ language === 'es' ? 'Movimientos Pokémon': 'Pokémon Moves' }}</h1>
       <h1 class="font-bold">{{ language === 'es' ? 'Subiendo de nivel': 'By Level Up' }}</h1>
