@@ -1,6 +1,6 @@
 import { Route } from "@angular/router";
 import { ShowProfileComponent } from "./components/show-profile/show-profile.component";
-import { SettingsComponent } from "./components/settings/settings.component";
+import { VisualSettingsComponent } from "./components/visual-settings/visual-settings.component";
 
 export const profileRoute: Route[] = [
   { path: '', pathMatch: 'full', redirectTo: 'show' },
@@ -10,6 +10,6 @@ export const profileRoute: Route[] = [
   },
   {
     path: 'settings',
-    component: SettingsComponent
+    component: VisualSettingsComponent
   }
 ];

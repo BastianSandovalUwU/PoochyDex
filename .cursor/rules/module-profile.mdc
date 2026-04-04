@@ -16,8 +16,8 @@ alwaysApply: false
 |------|------------|------------|
 | `''` | redirect → `show` | `/profile` → `/profile/show` |
 | `show` | `ShowProfileComponent` | `/profile/show` |
-| `settings` | `SettingsComponent` | `/profile/settings` (ajustes visuales / cuenta vía `VisualSettingsComponent`) |
+| `settings` | `VisualSettingsComponent` | `/profile/settings` |
 
 **Dependencias:** `AuthService` (sesión + `userConfig$`), `LanguageService`, **`SharedModule`**, `MatButton`, `MatIcon`, **`NgxLoadingModule`**.
 
-**Código:** `components/show-profile/` — tarjeta de perfil; `components/settings/` + `components/visual-settings/` — pantalla de configuración; enlaces a **Pokédex**, cierre de sesión → `/pokedex`. La ruta antigua **`/settings`** redirige a **`/profile/settings`** (`app.routing.ts`).
+**Código:** `components/show-profile/` — tarjeta de perfil; `components/visual-settings/` — ajustes visuales (pantalla de inicio, sprites, formas); enlaces a **Pokédex**, cierre de sesión → `/pokedex`. La ruta antigua **`/settings`** redirige a **`/profile/settings`** (`app.routing.ts`).

@@ -1,37 +1,66 @@
-<div>
-  <h1 class="text-black text-2xl font-bold">{{ language === 'es' ? 'Ajustes Visuales' : 'Visual Settings'}}</h1>
+<div class="mt-4 px-4 sm:px-6 max-w-3xl mx-auto pb-8">
+  <h1 class="text-black dark:text-white text-2xl font-bold">
+    {{ language === 'es' ? 'Ajustes visuales' : 'Visual settings' }}
+  </h1>
 
-  <hr class="my-2">
+  <hr class="my-2 border-gray-200 dark:border-gray-600" />
 
   <div class="mt-3">
-    <p class="font-bold text-xl">Elegir pantalla de inicio</p>
-    <div class="pl-3">
-      <p>Seleccionar la pantalla inicial cada vez que entres a la aplicación.</p>
-      <select>
+    <p class="font-bold text-xl text-gray-900 dark:text-gray-100">
+      {{ language === 'es' ? 'Elegir pantalla de inicio' : 'Choose home screen' }}
+    </p>
+    <div class="pl-3 text-gray-700 dark:text-gray-300">
+      <p class="text-sm sm:text-base">
+        {{
+          language === 'es'
+            ? 'Selecciona la pantalla inicial cada vez que entres a la aplicación.'
+            : 'Choose the screen shown when you open the app.'
+        }}
+      </p>
+      <select class="mt-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
         <option *ngFor="let view of mainViewsOptions" [value]="view" (click)="seletectedView = view">{{ view }}</option>
       </select>
     </div>
   </div>
 
   <div class="mt-3">
-    <p class="font-bold text-xl">Elegir Sprites preferidos</p>
-    <div class="pl-3">
-      <p>Solamente si el pokémon posee ese sprite, sino existe tal sprite se mostrara el sprite de Home.</p>
-      <select>
+    <p class="font-bold text-xl text-gray-900 dark:text-gray-100">
+      {{ language === 'es' ? 'Sprites preferidos' : 'Preferred sprites' }}
+    </p>
+    <div class="pl-3 text-gray-700 dark:text-gray-300">
+      <p class="text-sm sm:text-base">
+        {{
+          language === 'es'
+            ? 'Solo si el Pokémon tiene ese sprite; si no existe, se mostrará el sprite Home.'
+            : 'Only if the Pokémon has that sprite; otherwise the Home sprite is shown.'
+        }}
+      </p>
+      <select class="mt-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
         <option *ngFor="let view of mainViewsOptions" [value]="view" (click)="seletectedView = view">{{ view }}</option>
       </select>
     </div>
   </div>
 
   <div class="mt-3">
-    <p class="font-bold text-xl">¿Incluir formas extras en el listado de pokémon?</p>
-    <div class="pl-3">
-      <p>Se agregaran por defecto a la carga inicial del listado todas las formas extras.</p>
-      <select>
-        <option value="Si">Si</option>
-        <option value="No">No</option>
+    <p class="font-bold text-xl text-gray-900 dark:text-gray-100">
+      {{
+        language === 'es'
+          ? '¿Incluir formas extra en el listado?'
+          : 'Include extra forms in the list?'
+      }}
+    </p>
+    <div class="pl-3 text-gray-700 dark:text-gray-300">
+      <p class="text-sm sm:text-base">
+        {{
+          language === 'es'
+            ? 'Se añadirán por defecto todas las formas extra en la carga inicial del listado.'
+            : 'All extra forms will be included by default on the initial list load.'
+        }}
+      </p>
+      <select class="mt-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+        <option value="yes">{{ language === 'es' ? 'Sí' : 'Yes' }}</option>
+        <option value="no">{{ language === 'es' ? 'No' : 'No' }}</option>
       </select>
     </div>
   </div>
-
 </div>

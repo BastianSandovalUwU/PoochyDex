@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShowProfileComponent } from './components/show-profile/show-profile.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { VisualSettingsComponent } from './components/visual-settings/visual-settings.component';
 import { RouterModule } from '@angular/router';
 import { profileRoute } from './profile.routing';
@@ -21,7 +20,6 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   declarations: [
     ShowProfileComponent,
-    SettingsComponent,
     VisualSettingsComponent
   ]
 })
