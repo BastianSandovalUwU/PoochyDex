@@ -190,6 +190,14 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     return this.registeredPokemonMap.get(key) || false;
   }
 
+  /** Styles for hunt register FAB (`app-ui-button`). */
+  huntToggleExtraClasses(pokemon: Pokemon): string {
+    const base = `absolute top-2 right-2 z-20 !w-10 !h-10 sm:!w-9 sm:!h-9 !min-w-[40px] !min-h-[40px] flex items-center justify-center rounded-full shadow-lg border-2 transition-all duration-200 touch-manipulation active:scale-95 hover:scale-110 hover:shadow-xl
+      [&.registered]:bg-green-500 [&.registered]:border-green-600 [&.registered]:text-white
+      [&.not-registered]:bg-white/95 [&.not-registered]:dark:bg-gray-800/95 [&.not-registered]:border-gray-300 [&.not-registered]:dark:border-gray-600 [&.not-registered]:text-gray-600 [&.not-registered]:dark:text-gray-400`;
+    return `${base} ${this.isPokemonRegistered(pokemon) ? 'registered' : 'not-registered'}`;
+  }
+
   togglePokemonRegistration(pokemon: Pokemon, event: Event) {
     event.stopPropagation();
     event.preventDefault();

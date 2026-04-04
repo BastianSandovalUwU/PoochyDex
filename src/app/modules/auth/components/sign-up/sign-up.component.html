@@ -90,13 +90,14 @@
               }"
               [placeholder]="language === 'es' ? 'Mínimo 6 caracteres' : 'Minimum 6 characters'"
             />
-            <button
+            <app-ui-button
               type="button"
-              (click)="togglePasswordVisibility()"
-              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-              [attr.aria-label]="language === 'es' ? 'Mostrar u ocultar contraseña' : 'Show or hide password'">
+              variant="ghost"
+              [ariaLabel]="language === 'es' ? 'Mostrar u ocultar contraseña' : 'Show or hide password'"
+              extraClasses="absolute inset-y-0 right-0 pr-3 !min-h-0 !h-auto !w-auto !rounded-none !p-0 !shadow-none text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              (buttonClick)="togglePasswordVisibility()">
               <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-            </button>
+            </app-ui-button>
           </div>
 
           <div class="mt-2 space-y-1" *ngIf="signUpForm.get('password')?.value">
@@ -146,13 +147,14 @@
               }"
               [placeholder]="language === 'es' ? 'Repite tu contraseña' : 'Repeat your password'"
             />
-            <button
+            <app-ui-button
               type="button"
-              (click)="toggleConfirmPasswordVisibility()"
-              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-              [attr.aria-label]="language === 'es' ? 'Mostrar u ocultar confirmación' : 'Show or hide confirmation'">
+              variant="ghost"
+              [ariaLabel]="language === 'es' ? 'Mostrar u ocultar confirmación' : 'Show or hide confirmation'"
+              extraClasses="absolute inset-y-0 right-0 pr-3 !min-h-0 !h-auto !w-auto !rounded-none !p-0 !shadow-none text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              (buttonClick)="toggleConfirmPasswordVisibility()">
               <mat-icon>{{ showConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-            </button>
+            </app-ui-button>
           </div>
           <p *ngIf="signUpForm.get('confirmPassword')?.hasError('required') && signUpForm.get('confirmPassword')?.touched"
              class="mt-1 text-xs text-red-500 flex items-center gap-1">
@@ -171,14 +173,16 @@
           </p>
         </div>
 
-        <button
+        <app-ui-button
           type="submit"
+          variant="primary"
+          [fullWidth]="true"
           [disabled]="signUpForm.invalid || loading"
-          class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]">
+          extraClasses="!bg-indigo-600 hover:!bg-indigo-700 !text-white !rounded-lg flex justify-center items-center py-3 px-4 text-sm font-medium !border-0 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]">
           <mat-icon *ngIf="!loading" class="mr-2">person_add</mat-icon>
           <mat-icon *ngIf="loading" class="mr-2 animate-spin">refresh</mat-icon>
           {{ loading ? (language === 'es' ? 'Creando cuenta…' : 'Creating account…') : (language === 'es' ? 'Crear cuenta' : 'Create account') }}
-        </button>
+        </app-ui-button>
       </form>
 
       <div class="relative my-6">
@@ -196,13 +200,14 @@
         <p class="text-sm text-gray-600 dark:text-gray-400">
           {{ language === 'es' ? '¿Ya tienes una cuenta?' : 'Already have an account?' }}
         </p>
-        <button
+        <app-ui-button
           type="button"
-          (click)="goToLogin()"
-          class="mt-2 inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors">
+          variant="ghost"
+          extraClasses="mt-2 inline-flex items-center text-sm font-medium !text-indigo-600 hover:!text-indigo-700 dark:!text-indigo-400 dark:hover:!text-indigo-300 transition-colors !shadow-none"
+          (buttonClick)="goToLogin()">
           {{ language === 'es' ? 'Inicia sesión' : 'Sign in' }}
           <mat-icon class="ml-1 !w-[18px] !h-[18px]">arrow_forward</mat-icon>
-        </button>
+        </app-ui-button>
       </div>
     </div>
 

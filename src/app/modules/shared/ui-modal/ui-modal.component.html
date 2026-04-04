@@ -17,14 +17,14 @@
         {{ title }}
       </h2>
       <span *ngIf="!title" class="sr-only" [id]="titleId">{{ closeAriaLabel }}</span>
-      <button
+      <app-ui-button
+        variant="ghost"
         type="button"
-        class="shrink-0 rounded-lg p-2 text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
-        [class.ml-auto]="!title"
-        (click)="close()"
-        [attr.aria-label]="closeAriaLabel">
+        [ariaLabel]="closeAriaLabel"
+        [extraClasses]="'shrink-0 rounded-lg p-2 text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500' + (!title ? ' ml-auto' : '')"
+        (buttonClick)="close()">
         <mat-icon class="!w-6 !h-6 !text-[24px]">close</mat-icon>
-      </button>
+      </app-ui-button>
     </header>
     <div class="ui-modal__body overflow-y-auto flex-1 min-h-0 px-4 py-4 text-gray-800 dark:text-gray-200">
       <ng-content></ng-content>

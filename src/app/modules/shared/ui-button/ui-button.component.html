@@ -2,6 +2,10 @@
   [type]="type"
   [disabled]="disabled"
   [attr.aria-label]="ariaLabel ?? null"
+  [attr.role]="role ?? null"
+  [attr.aria-expanded]="ariaExpanded === undefined || ariaExpanded === null ? null : ariaExpanded"
+  [attr.aria-selected]="ariaSelected === undefined || ariaSelected === null ? null : ariaSelected"
+  [attr.aria-pressed]="ariaPressed === undefined || ariaPressed === null ? null : ariaPressed"
   [ngClass]="hostClasses"
   (click)="onClick($event)">
   <ng-content></ng-content>

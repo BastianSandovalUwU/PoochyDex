@@ -46,5 +46,19 @@ export class CustomTabsComponent {
       this.tabsContainer.nativeElement.scrollBy({ left: this.scrollStep, behavior: 'smooth' });
     }
   }
+
+  /** Classes for tab triggers (used with `app-ui-button`). */
+  tabButtonClasses(index: number): string {
+    const isActive = index === this.selectedIndex;
+    return [
+      'custom-tab',
+      isActive ? this.activeTabColor : this.inactiveTabColor,
+      isActive ? this.activeTabUnderline : '',
+      'px-4 py-2 font-medium transition-all duration-200 whitespace-nowrap border-b-2',
+      isActive ? 'border-b-2 font-semibold' : 'border-transparent hover:border-gray-300'
+    ]
+      .filter(Boolean)
+      .join(' ');
+  }
 }
 

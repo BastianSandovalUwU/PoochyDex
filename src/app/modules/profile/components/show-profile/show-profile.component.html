@@ -52,14 +52,14 @@
     </div>
 
     <div class="px-6 py-5 flex flex-col sm:flex-row gap-3">
-      <button mat-stroked-button
-              type="button"
-              color="primary"
-              (click)="settingsModalOpen = true"
-              class="!flex !items-center !justify-center !gap-2 flex-1">
+      <app-ui-button
+        variant="outline"
+        type="button"
+        extraClasses="flex-1 !flex !items-center !justify-center !gap-2 !border-purple-600 !text-purple-700 dark:!border-purple-400 dark:!text-purple-300"
+        (buttonClick)="settingsModalOpen = true">
         <mat-icon>tune</mat-icon>
         {{ language === 'es' ? 'Configuración' : 'Settings' }}
-      </button>
+      </app-ui-button>
       <a mat-stroked-button
          routerLink="/pokedex"
          class="!flex !items-center !justify-center !gap-2 flex-1 border-gray-300 dark:border-gray-500">
@@ -69,14 +69,15 @@
     </div>
 
     <div class="px-6 pb-6">
-      <button mat-raised-button
-              color="warn"
-              type="button"
-              class="w-full !py-2"
-              (click)="logout()">
+      <app-ui-button
+        variant="primary"
+        type="button"
+        [fullWidth]="true"
+        extraClasses="!py-2 !bg-red-600 hover:!bg-red-700 dark:!bg-red-700"
+        (buttonClick)="logout()">
         <mat-icon class="mr-1 align-middle">logout</mat-icon>
         {{ language === 'es' ? 'Cerrar sesión' : 'Log out' }}
-      </button>
+      </app-ui-button>
     </div>
   </div>
 </div>

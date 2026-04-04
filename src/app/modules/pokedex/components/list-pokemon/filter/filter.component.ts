@@ -93,4 +93,59 @@ export class FilterComponent implements OnInit, OnChanges {
       this.selectedGenerations.push(gen);
     }
   }
+
+  /** Merged classes for generation chips (`app-ui-button`). */
+  generationButtonExtraClasses(gen: number): string {
+    const base =
+      '!min-h-0 !h-auto w-full px-3 py-1.5 rounded-full transition-colors duration-200 hover:opacity-80 hover:scale-105 relative overflow-hidden !shadow-none';
+    const sel = this.selectedGenerations.includes(gen);
+    const palette = sel
+      ? gen === 1
+        ? 'gen-button-red-blue'
+        : gen === 2
+          ? 'gen-button-gold-silver'
+          : gen === 3
+            ? 'gen-button-ruby-sapphire'
+            : gen === 4
+              ? 'gen-button-diamond-pearl'
+              : gen === 5
+                ? 'gen-button-black-white'
+                : gen === 6
+                  ? 'gen-button-x-y'
+                  : gen === 7
+                    ? 'gen-button-sun-moon'
+                    : gen === 8
+                      ? 'gen-button-sword-shield'
+                      : 'gen-button-scarlet-violet'
+      : 'bg-gray-200 text-gray-400 dark:bg-gray-700 dark:text-gray-200';
+    const text =
+      sel && (gen === 1 || gen === 5 || gen === 8)
+        ? 'text-white'
+        : !sel
+          ? 'text-gray-700'
+          : '';
+    return [base, palette, text].filter(Boolean).join(' ');
+  }
+
+  /** Merged classes for regional form chips (`app-ui-button`). */
+  formButtonExtraClasses(form: string): string {
+    const base =
+      '!min-h-0 !h-auto w-full px-3 py-1.5 rounded-full transition-colors duration-200 hover:opacity-80 hover:scale-105 relative overflow-hidden !shadow-none';
+    const sel = this.selectedForms.includes(form);
+    const palette = sel
+      ? form === 'alola'
+        ? 'form-button-alola'
+        : form === 'galar'
+          ? 'form-button-galar'
+          : form === 'paldea'
+            ? 'form-button-paldea'
+            : form === 'hisui'
+              ? 'form-button-hisui'
+              : form === 'gmax'
+                ? 'form-button-gmax'
+                : 'form-button-mega'
+      : 'bg-gray-200 text-gray-400 dark:bg-gray-700 dark:text-gray-200';
+    const text = sel && form !== 'hisui' ? 'text-white' : !sel ? 'text-gray-700' : '';
+    return [base, palette, text].filter(Boolean).join(' ');
+  }
 }

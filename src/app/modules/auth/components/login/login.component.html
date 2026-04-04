@@ -76,12 +76,14 @@
               class="block w-full pl-12 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               [placeholder]="language === 'es' ? 'Ingresa tu contraseña' : 'Enter your password'"
             />
-            <button
+            <app-ui-button
               type="button"
-              (click)="togglePasswordVisibility()"
-              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+              variant="ghost"
+              [ariaLabel]="language === 'es' ? 'Mostrar u ocultar contraseña' : 'Show or hide password'"
+              extraClasses="absolute inset-y-0 right-0 pr-3 !min-h-0 !h-auto !w-auto !rounded-none !p-0 !shadow-none text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              (buttonClick)="togglePasswordVisibility()">
               <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-            </button>
+            </app-ui-button>
           </div>
           <p *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
              class="mt-1 text-xs text-red-500 flex items-center">
@@ -90,15 +92,16 @@
           </p>
         </div>
 
-        <!-- Login Button -->
-        <button
+        <app-ui-button
           type="submit"
+          variant="primary"
+          [fullWidth]="true"
           [disabled]="loginForm.invalid || loading"
-          class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]">
+          extraClasses="!bg-blue-600 hover:!bg-blue-700 !text-white !rounded-lg shadow-sm !border-0 flex justify-center items-center py-3 px-4 text-sm font-medium focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]">
           <mat-icon *ngIf="!loading" class="mr-2">login</mat-icon>
           <mat-icon *ngIf="loading" class="mr-2 animate-spin">refresh</mat-icon>
           {{ loading ? (language === 'es' ? 'Iniciando...' : 'Signing in...') : (language === 'es' ? 'Iniciar Sesión' : 'Sign In') }}
-        </button>
+        </app-ui-button>
       </form>
 
       <!-- Divider -->
@@ -118,13 +121,14 @@
         <p class="text-sm text-gray-600 dark:text-gray-400">
           {{ language === 'es' ? "¿No tienes una cuenta?" : "Don't have an account?" }}
         </p>
-        <button
+        <app-ui-button
           type="button"
-          (click)="signUp()"
-          class="mt-2 inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
+          variant="ghost"
+          extraClasses="mt-2 inline-flex items-center text-sm font-medium !text-blue-600 hover:!text-blue-700 dark:!text-blue-400 dark:hover:!text-blue-300 transition-colors !shadow-none"
+          (buttonClick)="signUp()">
           {{ language === 'es' ? 'Regístrate aquí' : 'Sign up here' }}
           <mat-icon class="ml-1" style="font-size: 18px; width: 18px; height: 18px;">arrow_forward</mat-icon>
-        </button>
+        </app-ui-button>
       </div>
     </div>
 

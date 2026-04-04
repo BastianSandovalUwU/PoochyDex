@@ -37,10 +37,13 @@
                     *ngIf="i === getVisibleMethodValues(method.value, version.versionName, method.key).length - 1">.</ng-container>
                 </span>
                 <ng-container *ngIf="hasMoreMethodItems(method.value)">
-                  <button class="text-blue-500 underline cursor-pointer"
-                    (click)="toggleMethod(version.versionName, method.key)">
+                  <app-ui-button
+                    variant="ghost"
+                    type="button"
+                    extraClasses="!inline !p-0 !h-auto !min-h-0 !shadow-none !bg-transparent text-blue-500 underline cursor-pointer"
+                    (buttonClick)="toggleMethod(version.versionName, method.key)">
                     {{ isMethodExpanded(version.versionName, method.key) ? 'Ver menos' : 'Ver más' }}
-                  </button>
+                  </app-ui-button>
                 </ng-container>
               </p>
             </div>

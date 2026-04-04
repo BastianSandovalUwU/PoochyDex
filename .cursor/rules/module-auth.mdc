@@ -21,6 +21,6 @@ alwaysApply: false
 
 **Sign-up (`sign-up.component`):** formulario reactivo con validación (usuario sin espacios, longitudes), barra de fortaleza de contraseña, errores HTTP legibles, **`LanguageService`** para ES/EN; tras registro exitoso → **`/auth/login?registered=1`**. **Login** muestra banner verde si `registered` está presente y limpia el query.
 
-**Módulo:** `ReactiveFormsModule`, `MatButton`, `MatIcon`.
+**Módulo:** `ReactiveFormsModule`, **`SharedModule`** (`app-ui-button`), `MatButton`, `MatIcon`.
 
 **Relacionado:** `auth.interceptor.ts` (import global en `AppModule`, no solo esta carpeta).

@@ -2,13 +2,16 @@
   <!-- Header with menu button -->
   <header class="sticky top-2 z-30 bg-white/70 dark:bg-gray-800/70 backdrop-blur-md shadow-lg mx-2 mt-2 rounded-lg">
     <div class="flex items-center justify-between px-4 py-2">
-      <button (click)="toggleMenu()"
-              class="p-2 mt-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              [attr.aria-label]="isMenuOpen ? 'Close menu' : 'Open menu'">
+      <app-ui-button
+        variant="ghost"
+        type="button"
+        [ariaLabel]="isMenuOpen ? 'Close menu' : 'Open menu'"
+        extraClasses="p-2 mt-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        (buttonClick)="toggleMenu()">
         <mat-icon class="text-gray-600 dark:text-gray-300">
           {{ isMenuOpen ? 'menu_open' : 'menu' }}
         </mat-icon>
-      </button>
+      </app-ui-button>
 
       <a class="flex items-center justify-center flex-grow">
         <img src="/assets/icons/icon-512x512.png" class="h-8 sm:h-10" alt="PoochyDex Logo"/>
@@ -16,12 +19,15 @@
       </a>
 
       <div class="flex items-center gap-2">
-        <button *ngIf="canInstallPwa"
-                (click)="installPwa()"
-                class="btn-diagonal inline-flex items-center gap-2 px-3 py-1.5 text-md font-medium rounded-full border focus:outline-none focus:ring-2 focus:ring-blue-400/60 active:scale-[.98] transition">
+        <app-ui-button
+          *ngIf="canInstallPwa"
+          variant="outline"
+          type="button"
+          extraClasses="btn-diagonal inline-flex items-center gap-2 px-3 py-1.5 text-md font-medium rounded-full border focus:outline-none focus:ring-2 focus:ring-blue-400/60 active:scale-[.98] transition"
+          (buttonClick)="installPwa()">
           <mat-icon class="!leading-none">download</mat-icon>
           <span>{{ currentLanguage === 'es' ? 'Instalar App' : 'Install App' }}</span>
-        </button>
+        </app-ui-button>
         <app-theme-toggle></app-theme-toggle>
       </div>
 

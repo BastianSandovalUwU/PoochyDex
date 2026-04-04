@@ -8,22 +8,17 @@
       </app-pokemon-card>
     </div>
 
-    <!-- Botón para registrar el Pokémon -->
-    <button
+    <app-ui-button
       type="button"
-      (click)="togglePokemonRegistration(pokemon, $event)"
-      [attr.aria-label]="(isPokemonRegistered(pokemon) ? (language === 'es' ? 'Desregistrar ' : 'Unregister ') : (language === 'es' ? 'Registrar ' : 'Register ')) + pokemon.name"
-      [attr.aria-pressed]="isPokemonRegistered(pokemon)"
-      class="absolute top-2 right-2 z-20 w-10 h-10 sm:w-9 sm:h-9 flex items-center justify-center rounded-full shadow-lg border-2 transition-all duration-200 touch-manipulation active:scale-95
-        [&.registered]:bg-green-500 [&.registered]:border-green-600 [&.registered]:text-white
-        [&.not-registered]:bg-white/95 [&.not-registered]:dark:bg-gray-800/95 [&.not-registered]:border-gray-300 [&.not-registered]:dark:border-gray-600 [&.not-registered]:text-gray-600 [&.not-registered]:dark:text-gray-400
-        hover:scale-110 hover:shadow-xl"
-      [class.registered]="isPokemonRegistered(pokemon)"
-      [class.not-registered]="!isPokemonRegistered(pokemon)">
+      variant="icon"
+      [extraClasses]="huntToggleExtraClasses(pokemon)"
+      [ariaLabel]="(isPokemonRegistered(pokemon) ? (language === 'es' ? 'Desregistrar ' : 'Unregister ') : (language === 'es' ? 'Registrar ' : 'Register ')) + pokemon.name"
+      [ariaPressed]="isPokemonRegistered(pokemon)"
+      (buttonClick)="togglePokemonRegistration(pokemon, $event)">
       <mat-icon class="!m-0 !p-0" style="font-size: 24px; width: 24px; height: 24px; line-height: 24px;">
         {{ isPokemonRegistered(pokemon) ? 'check_circle' : 'add_circle_outline' }}
       </mat-icon>
-    </button>
+    </app-ui-button>
   </div>
 </div>
 
@@ -34,4 +29,3 @@
 <div *ngIf="!isLoading && filteredPokemon.length === 0 && pokemonLoaded">
   <h1 class="text-center text-2xl text-gray-800 dark:text-gray-200">{{ language === 'es' ? 'No hay Pokémon en esta Pokédex.' : 'No Pokémon in this Pokédex.' }}</h1>
 </div>
-

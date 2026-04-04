@@ -4,18 +4,22 @@
   </h1>
 
   <div class="mb-4 flex items-center gap-3 flex-wrap">
-    <button
-      class="px-4 py-2 rounded-md bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 disabled:opacity-60"
-      (click)="startCreate()">
+    <app-ui-button
+      variant="primary"
+      type="button"
+      extraClasses="!bg-blue-600 hover:!bg-blue-700 !text-white !rounded-md px-4 py-2 text-sm font-medium"
+      (buttonClick)="startCreate()">
       {{ isFormMode ? 'Nueva forma' : 'Nuevo Pokémon' }}
-    </button>
+    </app-ui-button>
 
-    <button
-      class="px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-700 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-60"
-      (click)="loadPokemon()"
-      [disabled]="loading">
+    <app-ui-button
+      variant="secondary"
+      type="button"
+      [disabled]="loading"
+      extraClasses="px-4 py-2 text-sm !rounded-md"
+      (buttonClick)="loadPokemon()">
       {{ isFormMode ? 'Recargar formas' : 'Recargar Pokémon' }}
-    </button>
+    </app-ui-button>
 
     <span *ngIf="loading" class="text-sm text-gray-500">
       Cargando...
@@ -25,16 +29,13 @@
       <span class="text-xs text-gray-600 dark:text-gray-300">
         {{ isFormMode ? 'Modo: Formas alternativas' : 'Modo: Pokémon base' }}
       </span>
-      <button
+      <app-ui-button
+        variant="outline"
         type="button"
-        class="px-3 py-1 rounded-full border text-xs font-medium
-               border-gray-300 dark:border-gray-600
-               bg-white dark:bg-gray-800
-               text-gray-700 dark:text-gray-200
-               hover:bg-gray-100 dark:hover:bg-gray-700"
-        (click)="isFormMode = !isFormMode; loadPokemon()">
+        extraClasses="px-3 py-1 !rounded-full text-xs font-medium border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+        (buttonClick)="isFormMode = !isFormMode; loadPokemon()">
         {{ isFormMode ? 'Ver Pokémon base' : 'Ver formas' }}
-      </button>
+      </app-ui-button>
     </div>
   </div>
 
@@ -51,12 +52,14 @@
               ? (isEditMode ? 'Editar forma alternativa' : 'Crear forma alternativa')
               : (isEditMode ? 'Editar Pokémon' : 'Crear Pokémon') }}
         </h2>
-        <button
+        <app-ui-button
+          variant="ghost"
           type="button"
-          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-2xl font-bold"
-          (click)="closeModal()">
+          ariaLabel="Close"
+          extraClasses="!text-gray-500 dark:!text-gray-400 hover:!text-gray-700 dark:hover:!text-gray-200 !text-2xl !font-bold !min-w-0 !px-2"
+          (buttonClick)="closeModal()">
           ×
-        </button>
+        </app-ui-button>
       </div>
 
       <form (ngSubmit)="savePokemon()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -198,26 +201,29 @@
         </div>
 
         <div class="md:col-span-2 flex items-center gap-3 mt-2">
-          <button
+          <app-ui-button
             type="submit"
-            class="px-4 py-2 rounded-md bg-green-600 text-white text-sm font-medium hover:bg-green-700 disabled:opacity-60"
-            [disabled]="loading">
+            variant="primary"
+            [disabled]="loading"
+            extraClasses="!bg-green-600 hover:!bg-green-700 !text-white !rounded-md px-4 py-2 text-sm font-medium">
             {{ isEditMode ? 'Guardar cambios' : 'Crear Pokémon' }}
-          </button>
+          </app-ui-button>
 
-          <button
+          <app-ui-button
             type="button"
-            class="px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-700 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600"
-            (click)="resetForm()">
+            variant="secondary"
+            extraClasses="px-4 py-2 text-sm !rounded-md"
+            (buttonClick)="resetForm()">
             Limpiar formulario
-          </button>
+          </app-ui-button>
 
-          <button
+          <app-ui-button
             type="button"
-            class="px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-700 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 ml-auto"
-            (click)="closeModal()">
+            variant="secondary"
+            extraClasses="px-4 py-2 text-sm !rounded-md ml-auto"
+            (buttonClick)="closeModal()">
             Cancelar
-          </button>
+          </app-ui-button>
         </div>
       </form>
     </div>
@@ -259,16 +265,20 @@
             />
           </td>
           <td class="px-3 py-2 text-right">
-            <button
-              class="px-3 py-1 rounded-md bg-blue-500 text-white text-xs font-medium hover:bg-blue-600 mr-2"
-              (click)="startEdit(pokemon)">
+            <app-ui-button
+              variant="primary"
+              type="button"
+              extraClasses="!bg-blue-500 hover:!bg-blue-600 !text-white text-xs font-medium px-3 py-1 !rounded-md mr-2"
+              (buttonClick)="startEdit(pokemon)">
               Editar
-            </button>
-            <button
-              class="px-3 py-1 rounded-md bg-red-500 text-white text-xs font-medium hover:bg-red-600"
-              (click)="deletePokemon(pokemon)">
+            </app-ui-button>
+            <app-ui-button
+              variant="primary"
+              type="button"
+              extraClasses="!bg-red-500 hover:!bg-red-600 !text-white text-xs font-medium px-3 py-1 !rounded-md"
+              (buttonClick)="deletePokemon(pokemon)">
               Eliminar
-            </button>
+            </app-ui-button>
           </td>
         </tr>
 

@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Módulo `poochyDexApi` (`PoochyDexApiModule`)
 
-**Rol:** **CRUD** sobre la **API Node** (`environment.nodeJsApi`): Pokémon personalizados en backend. **No** importa `SharedModule`; usa `CrudApiComponent` + **`PoochyDexApiService`**.
+**Rol:** **CRUD** sobre la **API Node** (`environment.nodeJsApi`): Pokémon personalizados en backend. Importa **`SharedModule`** para **`app-ui-button`**. **`PoochyDexApiService`** en `services/`.
 
 **Prefijo URL:** `/apiDex`.
 

@@ -29,6 +29,12 @@ export class UiButtonComponent {
 
   @Input() ariaLabel?: string;
 
+  /** Optional ARIA / semantics forwarded to the native `button` (modals, tabs, toggles). */
+  @Input() role?: string | null;
+  @Input() ariaExpanded?: boolean | string | null;
+  @Input() ariaSelected?: boolean | string | null;
+  @Input() ariaPressed?: boolean | string | null;
+
   /** Extra Tailwind / utility classes merged onto the native `button`. */
   @Input() extraClasses = '';
 

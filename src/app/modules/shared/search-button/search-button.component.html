@@ -1,12 +1,14 @@
 <!-- Floating Search Button -->
 <div class="fixed bottom-10 right-[17px] w-16 h-16 z-[1000] transition-transform duration-300 ease-out hover:scale-110 active:scale-95">
-  <button
-    (click)="toggleSearch()"
-    [attr.aria-label]="language === 'es' ? 'Abrir búsqueda' : 'Open search'"
-    [attr.aria-expanded]="showSearch"
-    class="w-full h-full bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500 border-2 border-white/20 dark:border-white/15 rounded-full flex justify-center items-center cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 hover:from-blue-600 hover:to-blue-700 dark:hover:from-blue-500 dark:hover:to-blue-600 transition-all duration-300 ease-out relative overflow-hidden focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 dark:focus-visible:outline-blue-400 active:scale-[0.98] search-button-ripple">
+  <app-ui-button
+    variant="icon"
+    type="button"
+    [ariaLabel]="language === 'es' ? 'Abrir búsqueda' : 'Open search'"
+    [ariaExpanded]="showSearch"
+    extraClasses="w-full h-full !w-16 !h-16 !min-w-[64px] !min-h-[64px] bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500 border-2 border-white/20 dark:border-white/15 rounded-full flex justify-center items-center cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 hover:from-blue-600 hover:to-blue-700 dark:hover:from-blue-500 dark:hover:to-blue-600 transition-all duration-300 ease-out relative overflow-hidden focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 dark:focus-visible:outline-blue-400 active:scale-[0.98] search-button-ripple"
+    (buttonClick)="toggleSearch()">
     <mat-icon class="text-white text-[28px] w-7 h-7 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)] relative z-10">search</mat-icon>
-  </button>
+  </app-ui-button>
 </div>
 
 <!-- Search Overlay -->
@@ -31,12 +33,14 @@
       <h1 id="search-title" class="text-2xl font-bold text-gray-900 dark:text-gray-50 tracking-tight m-0 sm:text-xl">
         {{ language === 'es' ? 'Búsqueda de Pokémon' : 'Search Pokémon' }}
       </h1>
-      <button
-        (click)="toggleSearch()"
-        [attr.aria-label]="language === 'es' ? 'Cerrar búsqueda' : 'Close search'"
-        class="w-9 h-9 flex items-center justify-center rounded-lg border-none bg-transparent text-gray-500 dark:text-gray-400 cursor-pointer transition-all duration-200 hover:bg-black/5 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-gray-50 active:scale-95 focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 dark:focus-visible:outline-blue-400">
+      <app-ui-button
+        variant="ghost"
+        type="button"
+        [ariaLabel]="language === 'es' ? 'Cerrar búsqueda' : 'Close search'"
+        extraClasses="!w-9 !h-9 !min-w-[36px] !min-h-[36px] flex items-center justify-center rounded-lg border-none bg-transparent text-gray-500 dark:text-gray-400 cursor-pointer transition-all duration-200 hover:bg-black/5 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-gray-50 active:scale-95 focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 dark:focus-visible:outline-blue-400"
+        (buttonClick)="toggleSearch()">
         <mat-icon class="text-xl w-5 h-5">close</mat-icon>
-      </button>
+      </app-ui-button>
     </div>
 
     <!-- Search Input Wrapper -->
@@ -52,13 +56,15 @@
         [attr.aria-label]="language === 'es' ? 'Campo de búsqueda' : 'Search field'"
         class="w-full pl-12 pr-10 py-3 text-base border-2 border-black/10 dark:border-white/15 rounded-xl bg-gray-50 dark:bg-gray-900/60 text-gray-900 dark:text-gray-50 transition-all duration-200 outline-none placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-blue-500 dark:focus:border-blue-400 focus:bg-white dark:focus:bg-gray-900/80 focus:ring-4 focus:ring-blue-500/10 dark:focus:ring-blue-400/20"
       />
-      <button
+      <app-ui-button
         *ngIf="searchQuery"
-        (click)="searchQuery = ''; filterData()"
-        [attr.aria-label]="language === 'es' ? 'Limpiar búsqueda' : 'Clear search'"
-        class="absolute right-9 w-7 h-7 flex items-center justify-center rounded-md border-none bg-black/5 dark:bg-white/10 text-gray-500 dark:text-gray-400 cursor-pointer transition-all duration-200 hover:bg-black/10 dark:hover:bg-white/15 hover:text-gray-900 dark:hover:text-gray-50 focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 dark:focus-visible:outline-blue-400 sm:right-8">
+        variant="ghost"
+        type="button"
+        [ariaLabel]="language === 'es' ? 'Limpiar búsqueda' : 'Clear search'"
+        extraClasses="absolute right-9 w-7 h-7 !min-w-[28px] !min-h-[28px] flex items-center justify-center rounded-md border-none bg-black/5 dark:bg-white/10 text-gray-500 dark:text-gray-400 cursor-pointer transition-all duration-200 hover:bg-black/10 dark:hover:bg-white/15 hover:text-gray-900 dark:hover:text-gray-50 focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 dark:focus-visible:outline-blue-400 sm:right-8"
+        (buttonClick)="searchQuery = ''; filterData()">
         <mat-icon class="text-base w-4 h-4">close</mat-icon>
-      </button>
+      </app-ui-button>
     </div>
 
     <!-- Results -->

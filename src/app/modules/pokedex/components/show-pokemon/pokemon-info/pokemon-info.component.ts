@@ -121,6 +121,19 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
 
   calculateGenderRateFemale(genderRate: number): number {
     return genderRate != -1 ? genderRate * 12.5 : 0;
-}
+  }
 
+  /** Segmented control for artwork type (`app-ui-button`). */
+  imageTypeSegmentClass(type: 'home' | 'sugimoriArt' | 'globalLinkArt'): string {
+    const base = 'px-3 py-1 text-sm font-medium !shadow-none';
+    const active = this.selectedImageType === type;
+    const on = active ? 'bg-blue-600 text-white' : 'text-gray-900 bg-transparent dark:text-gray-200';
+    if (type === 'home') {
+      return `${base} rounded-l-md ${on}`;
+    }
+    if (type === 'globalLinkArt') {
+      return `${base} rounded-r-md ${on}`;
+    }
+    return `${base} ${on}`;
+  }
 }

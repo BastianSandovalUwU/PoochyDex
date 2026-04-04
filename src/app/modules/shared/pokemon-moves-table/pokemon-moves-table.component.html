@@ -6,9 +6,13 @@
       <h1 class="font-bold">{{ language === 'es' ? subtitleEs : subtitleEn }}</h1>
     </div>
 
-    <button mat-icon-button (click)="onToggleFilters(); $event.stopPropagation()">
+    <app-ui-button
+      variant="icon"
+      type="button"
+      extraClasses="!text-gray-700 dark:!text-gray-200"
+      (buttonClick)="onToggleFilters(); $event.stopPropagation()">
       <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
-    </button>
+    </app-ui-button>
   </div>
 
   <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="filters-container">
@@ -64,9 +68,13 @@
       <h1 class="font-bold">{{ language === 'es' ? subtitleEs : subtitleEn }}</h1>
     </div>
 
-    <button mat-icon-button (click)="onToggleFilters(); $event.stopPropagation()">
+    <app-ui-button
+      variant="icon"
+      type="button"
+      extraClasses="!text-gray-700 dark:!text-gray-200"
+      (buttonClick)="onToggleFilters(); $event.stopPropagation()">
       <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
-    </button>
+    </app-ui-button>
   </div>
 
   <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="filters-container">

@@ -7,12 +7,14 @@ import { authRoute } from './auth.routing';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(authRoute),
     ReactiveFormsModule,
+    SharedModule,
     MatButtonModule,
     MatIconModule
   ],
