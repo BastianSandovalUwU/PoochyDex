@@ -127,17 +127,23 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
     return genderRate != -1 ? genderRate * 12.5 : 0;
   }
 
-  /** Segmented control for artwork type (`app-ui-button`). */
+  /** Segmented control for artwork type (`app-ui-button`). Ghost base styles are overridden with `!` so active/inactive read clearly. */
   imageTypeSegmentClass(type: PokemonSpriteOption): string {
-    const base = 'px-3 py-1 text-sm font-medium !shadow-none';
-    const active = this.selectedImageType === type;
-    const on = active ? 'bg-blue-600 text-white' : 'text-gray-900 bg-transparent dark:text-gray-200';
+    const base =
+      '!px-3 !py-1.5 !text-sm !font-medium !shadow-none !ring-offset-0';
+    const active =
+      '!bg-blue-600 !text-white hover:!bg-blue-700 dark:!bg-blue-600 dark:!text-white ' +
+      'dark:hover:!bg-blue-500 focus-visible:!ring-2 focus-visible:!ring-blue-300';
+    const inactive =
+      '!text-slate-800 !bg-slate-100 hover:!bg-slate-200 dark:!text-gray-100 dark:!bg-gray-700/70 ' +
+      'dark:hover:!bg-gray-600';
+    const state = this.selectedImageType === type ? active : inactive;
     if (type === PokemonSpriteOption.Home) {
-      return `${base} rounded-l-md ${on}`;
+      return `${base} !rounded-l-md !rounded-r-none ${state}`;
     }
     if (type === PokemonSpriteOption.GlobalLinkArt) {
-      return `${base} rounded-r-md ${on}`;
+      return `${base} !rounded-r-md !rounded-l-none ${state}`;
     }
-    return `${base} ${on}`;
+    return `${base} !rounded-none ${state}`;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, TemplateRef, ContentChild, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 export interface TabItem {
   label: string;
@@ -54,7 +54,7 @@ export class CustomTabsComponent {
       'custom-tab',
       isActive ? this.activeTabColor : this.inactiveTabColor,
       isActive ? this.activeTabUnderline : '',
-      'px-4 py-2 font-medium transition-all duration-200 whitespace-nowrap border-b-2',
+      'px-4 py-2 font-medium transition-all duration-200 !whitespace-nowrap shrink-0 border-b-2',
       isActive ? 'border-b-2 font-semibold' : 'border-transparent hover:border-gray-300'
     ]
       .filter(Boolean)
