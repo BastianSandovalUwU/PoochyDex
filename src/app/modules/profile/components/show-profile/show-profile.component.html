@@ -1,3 +1,10 @@
+<app-ui-modal
+  [(open)]="settingsModalOpen"
+  [title]="language === 'es' ? 'Configuración' : 'Settings'"
+  [closeAriaLabel]="language === 'es' ? 'Cerrar' : 'Close'">
+  <app-settings></app-settings>
+</app-ui-modal>
+
 <div class="profile-wrap px-4 py-6 sm:py-10 max-w-lg mx-auto" *ngIf="!loading && userData">
 
   <h1 class="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-6">
@@ -45,13 +52,14 @@
     </div>
 
     <div class="px-6 py-5 flex flex-col sm:flex-row gap-3">
-      <a mat-stroked-button
-         color="primary"
-         routerLink="/profile/settings"
-         class="!flex !items-center !justify-center !gap-2 flex-1">
+      <button mat-stroked-button
+              type="button"
+              color="primary"
+              (click)="settingsModalOpen = true"
+              class="!flex !items-center !justify-center !gap-2 flex-1">
         <mat-icon>tune</mat-icon>
         {{ language === 'es' ? 'Configuración' : 'Settings' }}
-      </a>
+      </button>
       <a mat-stroked-button
          routerLink="/pokedex"
          class="!flex !items-center !justify-center !gap-2 flex-1 border-gray-300 dark:border-gray-500">

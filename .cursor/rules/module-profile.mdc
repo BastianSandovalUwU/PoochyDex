@@ -16,8 +16,7 @@ alwaysApply: false
 |------|------------|------------|
 | `''` | redirect → `show` | `/profile` → `/profile/show` |
 | `show` | `ShowProfileComponent` | `/profile/show` |
-| `settings` | `VisualSettingsComponent` | `/profile/settings` |
 
-**Dependencias:** `AuthService` (sesión + `userConfig$`), `LanguageService`, **`SharedModule`**, `MatButton`, `MatIcon`, **`NgxLoadingModule`**.
+**Dependencias:** `AuthService` (sesión + `userConfig$`), `LanguageService`, **`SharedModule`** (`app-ui-modal`), `MatButton`, `MatIcon`, **`NgxLoadingModule`**.
 
-**Código:** `components/show-profile/` — tarjeta de perfil; `components/visual-settings/` — ajustes visuales (pantalla de inicio, sprites, formas); enlaces a **Pokédex**, cierre de sesión → `/pokedex`. La ruta antigua **`/settings`** redirige a **`/profile/settings`** (`app.routing.ts`).
+**Código:** `components/show-profile/` — tarjeta de perfil; botón **Configuración** abre **`app-ui-modal`** con **`SettingsComponent`** (`app-settings`, `components/settings/` — pantalla de inicio, sprites, formas). Sin ruta dedicada: todo en `/profile/show`. Enlaces a **Pokédex**, cierre de sesión → `/pokedex`.

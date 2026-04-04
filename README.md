@@ -140,7 +140,7 @@ src/
 │   │   ├── movements/      # Movimientos de Pokémon
 │   │   ├── pokedex/        # Módulo principal de Pokédex
 │   │   ├── poochyDexApi/   # API personalizada
-│   │   ├── profile/        # Perfil de usuario y configuración (/profile/settings)
+│   │   ├── profile/        # Perfil de usuario (ajustes en modal desde la vista perfil)
 │   │   └── shared/         # Componentes compartidos
 │   ├── services/           # Servicios globales
 │   └── app.component.*     # Componente raíz

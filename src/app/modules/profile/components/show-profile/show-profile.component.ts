@@ -16,6 +16,8 @@ export class ShowProfileComponent implements OnInit, OnDestroy {
   userConfig: UserConfigData | null = null;
   loading = true;
   language = 'es';
+  /** Settings modal (shared `app-ui-modal` + `app-settings`). */
+  settingsModalOpen = false;
 
   private readonly subs = new Subscription();
 

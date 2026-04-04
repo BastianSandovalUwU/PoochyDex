@@ -3,11 +3,11 @@ import { LanguageService } from '../../../shared/services/language.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-visual-settings',
-  templateUrl: './visual-settings.component.html',
-  styleUrls: ['./visual-settings.component.scss']
+  selector: 'app-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss']
 })
-export class VisualSettingsComponent implements OnInit, OnDestroy {
+export class SettingsComponent implements OnInit, OnDestroy {
   language = 'es';
   seletectedView: string;
   mainViewsOptions: string[] = ['Pokemon List', 'Random Pokemon'];

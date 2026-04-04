@@ -28,6 +28,7 @@ import { CustomTabsComponent } from './custom-tabs/custom-tabs.component';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { MusicPlayerComponent } from './music-player/music-player.component';
 import { UiButtonComponent } from './ui-button/ui-button.component';
+import { UiModalComponent } from './ui-modal/ui-modal.component';
 
 @NgModule({
   imports: [
@@ -66,7 +67,8 @@ import { UiButtonComponent } from './ui-button/ui-button.component';
     CustomTabsComponent,
     PokemonCardComponent,
     MusicPlayerComponent,
-    UiButtonComponent
+    UiButtonComponent,
+    UiModalComponent
   ],
   declarations: [
     MenuComponent,
@@ -91,7 +93,8 @@ import { UiButtonComponent } from './ui-button/ui-button.component';
     CustomTabsComponent,
     PokemonCardComponent,
     MusicPlayerComponent,
-    UiButtonComponent
+    UiButtonComponent,
+    UiModalComponent
   ]
 })
 export class SharedModule { }
