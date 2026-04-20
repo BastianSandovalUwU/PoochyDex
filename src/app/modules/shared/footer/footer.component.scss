@@ -27,17 +27,25 @@
 
 .language-flags {
   display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
-.language-flag {
-  height: 24px;
-  margin-left: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+@media (min-width: 640px) {
+  .language-flags {
+    gap: 0.35rem;
+  }
 }
 
-.language-flag:hover {
-  transform: scale(1.1);
+.language-emoji {
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+@media (min-width: 640px) {
+  .language-emoji {
+    font-size: 1.25rem;
+  }
 }
 
 /* Dark theme styles are now handled by Tailwind classes in HTML */

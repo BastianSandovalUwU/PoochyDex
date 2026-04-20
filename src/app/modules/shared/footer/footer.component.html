@@ -2,22 +2,24 @@
   <span class="footer-header sm:ml-4 cursor-pointer text-gray-800 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400">
     Poochy&copy; {{currentYear}}
   </span>
-  <div class="language-flags">
-    <button
+  <div class="language-flags" role="group" [attr.aria-label]="currentLanguage === 'es' ? 'Idioma' : 'Language'">
+    <app-ui-button
+      variant="ghost"
       type="button"
-      class="language-flag p-0 border-0 bg-transparent cursor-pointer dark:opacity-80 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
-      (click)="setLanguage('en')"
+      [extraClasses]="languageToggleExtraClasses('en')"
+      [ariaLabel]="currentLanguage === 'es' ? 'Cambiar a Inglés' : 'Switch to English'"
       [attr.title]="currentLanguage === 'es' ? 'Cambiar a Inglés' : 'Switch to English'"
-      [attr.aria-label]="currentLanguage === 'es' ? 'Cambiar a Inglés' : 'Switch to English'">
-      <img src="./assets/icons/flags/usa_flag.png" alt="" class="block pointer-events-none">
-    </button>
-    <button
+      (buttonClick)="setLanguage('en')">
+      <span class="language-emoji select-none leading-none" aria-hidden="true">🇺🇸</span>
+    </app-ui-button>
+    <app-ui-button
+      variant="ghost"
       type="button"
-      class="language-flag p-0 border-0 bg-transparent cursor-pointer dark:opacity-80 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
-      (click)="setLanguage('es')"
+      [extraClasses]="languageToggleExtraClasses('es')"
+      [ariaLabel]="currentLanguage === 'es' ? 'Cambiar a Español' : 'Switch to Spanish'"
       [attr.title]="currentLanguage === 'es' ? 'Cambiar a Español' : 'Switch to Spanish'"
-      [attr.aria-label]="currentLanguage === 'es' ? 'Cambiar a Español' : 'Switch to Spanish'">
-      <img src="./assets/icons/flags/spain_flag.png" alt="" class="block pointer-events-none">
-    </button>
+      (buttonClick)="setLanguage('es')">
+      <span class="language-emoji select-none leading-none" aria-hidden="true">🇪🇸</span>
+    </app-ui-button>
   </div>
 </div>
