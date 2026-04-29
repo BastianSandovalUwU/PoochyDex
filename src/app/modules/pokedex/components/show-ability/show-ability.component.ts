@@ -8,13 +8,15 @@ import { ErrorMessageService } from 'app/services/error-message.service';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
 import { Pokemon } from '../../../../../../entities/poochydex-api/pokemon.type';
+import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 
 const FALLBACK_SPRITE = 'https://i.imgur.com/uKx7iOF.png';
 
 @Component({
   selector: 'app-show-ability',
   templateUrl: './show-ability.component.html',
-  styleUrls: ['./show-ability.component.scss']
+  styleUrls: ['./show-ability.component.scss'],
+  animations: detailFadeInAnimations
 })
 export class ShowAbilityComponent implements OnInit {
   language: string = 'es';

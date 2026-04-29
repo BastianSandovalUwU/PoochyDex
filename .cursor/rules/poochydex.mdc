@@ -14,3 +14,4 @@ Contexto narrativo y comandos: **`AGENTS.md`**. Detalle por feature: reglas **`m
 - Features en `src/app/modules/<feature>/`. Reutilizable: **`SharedModule`** en `src/app/modules/shared/`.
 - Datos Pokémon: **PokéAPI**. API propia y auth HTTP: **`environment.nodeJsApi`**, **`AuthService`**, **`AuthInterceptor`** en `app.module.ts`.
 - UI: alinear con **Material** y componentes ya usados en `shared`; botones de acción con **`app-ui-button`** (regla **`ui-button.mdc`**); no duplicar lógica de servicios compartidos.
+- Entrada de pantallas y bloques principales bajo `*ngIf`: usar **`detailFadeInAnimations`** + `[@detailFadeIn]` (regla **`detail-fade-in.mdc`**, `shared/animations/detail-fade-in.animation.ts`).

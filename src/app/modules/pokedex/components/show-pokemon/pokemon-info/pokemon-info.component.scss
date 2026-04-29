@@ -1,0 +1,6 @@
+.pokemon-info__sprite-frame {
+  /* Fixed viewport; image uses object-contain so aspect is stable */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

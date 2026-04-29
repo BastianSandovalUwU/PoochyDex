@@ -1,16 +1,29 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  afterNextRender,
+  Component,
+  ElementRef,
+  Injector,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges
+} from '@angular/core';
+import { forkJoin, Subscription } from 'rxjs';
 import { Ability, Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { Name, PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { AbilityName } from '../../../../../../../entities/pokemon-ability.entity';
 import { PokemonSpriteOption } from '../../../../../../../entities/poochydex-api/pokemon-sprite-option';
+import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 
 @Component({
   selector: 'app-pokemon-info',
   templateUrl: './pokemon-info.component.html',
-  styleUrls: ['./pokemon-info.component.scss']
+  styleUrls: ['./pokemon-info.component.scss'],
+  animations: detailFadeInAnimations
 })
-export class PokemonInfoComponent implements OnInit, OnChanges {
+export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
   /** Exposed for template bindings (Angular templates cannot reference imported enums). */
   readonly PokemonSpriteOption = PokemonSpriteOption;
 
@@ -19,33 +32,66 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
   @Input() pokemonSpecie: PokemonSpecie;
   @Input() pokemonSprite: string;
   @Input() pokemonSpriteShiny: string;
+  @Input() filteredAbilityNames: { ability: Ability, name: string }[];
 
   backgroundColor: string = '';
   pokemontypes: { language: string, typeName: string }[] = [];
-  filteredAbilityNames: { ability: Ability, name: string }[] = [];
-  abilityNames: { ability: Ability, names: AbilityName[] }[];
   showShiny: boolean = false;
   pokemonNameRomaji: Name;
   pokemonNameHirgana: Name;
 
-  // Selector de imagen / arte
   selectedImageType: PokemonSpriteOption = PokemonSpriteOption.Home;
   sugimoriArtUrl?: string;
   globalLinkArtUrl?: string;
   hasSugimoriArt: boolean = false;
   hasGlobalLinkArt: boolean = false;
 
-  constructor(private helperService: HelperService,) { }
+  displayedImageLoaded = false;
+
+  private spriteLoadSub?: Subscription;
+
+  constructor(
+    private helperService: HelperService,
+    private hostEl: ElementRef<HTMLElement>,
+    private injector: Injector
+  ) {}
 
   ngOnInit() {
   }
-  ngOnChanges(changes: SimpleChanges): void {
+
+  ngOnDestroy(): void {
+    this.spriteLoadSub?.unsubscribe();
+  }
+
+  ngOnChanges(_changes: SimpleChanges): void {
     this.loadInfo();
   }
 
   loadInfo() {
-    this.helperService.getPokemonSpriteImg(this.pokemon.name, PokemonSpriteOption.Home).subscribe(sprite => this.pokemonSprite = sprite);
-    this.helperService.getPokemonSpriteImg(this.pokemon.name, PokemonSpriteOption.HomeShiny).subscribe(sprite => this.pokemonSpriteShiny = sprite);
+    if (!this.pokemon?.name || !this.pokemonSpecie) {
+      return;
+    }
+
+    this.displayedImageLoaded = false;
+    this.spriteLoadSub?.unsubscribe();
+
+    this.spriteLoadSub = forkJoin({
+      home: this.helperService.getPokemonSpriteImg(this.pokemon.name, PokemonSpriteOption.Home),
+      shiny: this.helperService.getPokemonSpriteImg(this.pokemon.name, PokemonSpriteOption.HomeShiny)
+    }).subscribe({
+      next: ({ home, shiny }) => {
+        this.pokemonSprite = home;
+        this.pokemonSpriteShiny = shiny;
+        if (!home) {
+          this.displayedImageLoaded = true;
+        } else {
+          this.scheduleSpriteDecodeSync();
+        }
+      },
+      error: () => {
+        this.displayedImageLoaded = true;
+      }
+    });
 
     const artwork = this.helperService.getPokemonArtwork(this.pokemon.name);
     this.sugimoriArtUrl = artwork.sugimoriArt;
@@ -56,7 +102,6 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
     this.showShiny = false;
 
     this.getPokemonColor();
-    this.getPokemonAbility();
     this.pokemontypes = this.pokemon.types.map(type => {
       return {
         language: this.language,
@@ -90,23 +135,6 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
     }
   }
 
-  getPokemonAbility() {
-    this.helperService.getAbilityNames(this.pokemon.abilities).subscribe((abilities) => {
-      this.abilityNames = abilities;
-      this.filterAbilityNamesByLanguage();
-    });
-  }
-
-  filterAbilityNamesByLanguage(): void {
-    this.filteredAbilityNames = this.abilityNames.map(abilityGroup => {
-      const nameEntry = abilityGroup.names.find(n => n.language === this.language);
-      return {
-        ability: abilityGroup.ability,
-        name: nameEntry ? nameEntry.abilityName : abilityGroup.ability.ability.name
-      };
-    });
-  }
-
   getGenerationName(generationName: string): string {
     return this.helperService.getGenerationName(generationName, this.language);
   }
@@ -127,7 +155,58 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
     return genderRate != -1 ? genderRate * 12.5 : 0;
   }
 
-  /** Segmented control for artwork type (`app-ui-button`). Ghost base styles are overridden with `!` so active/inactive read clearly. */
+  /** Order of sprite tabs shown in the UI (Home always; others if artwork exists). */
+  visibleSpriteOptions(): PokemonSpriteOption[] {
+    const options: PokemonSpriteOption[] = [PokemonSpriteOption.Home];
+    if (this.hasSugimoriArt) {
+      options.push(PokemonSpriteOption.SugimoriArt);
+    }
+    if (this.hasGlobalLinkArt) {
+      options.push(PokemonSpriteOption.GlobalLinkArt);
+    }
+    return options;
+  }
+
+  selectImageType(type: PokemonSpriteOption): void {
+    this.selectedImageType = type;
+    this.showShiny = false;
+    this.displayedImageLoaded = false;
+    this.scheduleSpriteDecodeSync();
+  }
+
+  setShowShiny(value: boolean): void {
+    this.showShiny = value;
+    this.displayedImageLoaded = false;
+    this.scheduleSpriteDecodeSync();
+  }
+
+  private scheduleSpriteDecodeSync(): void {
+    afterNextRender(
+      () => {
+        this.syncDisplayedSpriteIfAlreadyDecoded();
+        requestAnimationFrame(() => this.syncDisplayedSpriteIfAlreadyDecoded());
+      },
+      { injector: this.injector }
+    );
+  }
+
+  private syncDisplayedSpriteIfAlreadyDecoded(): void {
+    const img = this.hostEl.nativeElement.querySelector(
+      '.pokemon-info__sprite-frame img'
+    );
+    if (img instanceof HTMLImageElement && img.complete && img.naturalWidth > 0) {
+      this.onMainSpriteLoad();
+    }
+  }
+
+  onMainSpriteLoad(): void {
+    this.displayedImageLoaded = true;
+  }
+
+  onMainSpriteError(): void {
+    this.displayedImageLoaded = true;
+  }
+
   imageTypeSegmentClass(type: PokemonSpriteOption): string {
     const base =
       '!px-3 !py-1.5 !text-sm !font-medium !shadow-none !ring-offset-0';
@@ -138,12 +217,20 @@ export class PokemonInfoComponent implements OnInit, OnChanges {
       '!text-slate-800 !bg-slate-100 hover:!bg-slate-200 dark:!text-gray-100 dark:!bg-gray-700/70 ' +
       'dark:hover:!bg-gray-600';
     const state = this.selectedImageType === type ? active : inactive;
-    if (type === PokemonSpriteOption.Home) {
-      return `${base} !rounded-l-md !rounded-r-none ${state}`;
+
+    const visible = this.visibleSpriteOptions();
+    const idx = visible.indexOf(type);
+    const isFirst = idx === 0;
+    const isLast = idx === visible.length - 1;
+    let rounding = '!rounded-none';
+    if (isFirst && isLast) {
+      rounding = '!rounded-md';
+    } else if (isFirst) {
+      rounding = '!rounded-l-md !rounded-r-none';
+    } else if (isLast) {
+      rounding = '!rounded-r-md !rounded-l-none';
     }
-    if (type === PokemonSpriteOption.GlobalLinkArt) {
-      return `${base} !rounded-r-md !rounded-l-none ${state}`;
-    }
-    return `${base} !rounded-none ${state}`;
+
+    return `${base} ${rounding} ${state}`;
   }
 }

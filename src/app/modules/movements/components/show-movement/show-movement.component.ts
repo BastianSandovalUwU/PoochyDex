@@ -8,11 +8,13 @@ import { LanguageService } from 'app/modules/shared/services/language.service';
 import { ErrorMessageService } from 'app/services/error-message.service';
 import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
-import { getGameName } from '../../../../../../entities/common/enum';
+import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
+
 @Component({
   selector: 'app-show-movement',
   templateUrl: './show-movement.component.html',
-  styleUrls: ['./show-movement.component.scss']
+  styleUrls: ['./show-movement.component.scss'],
+  animations: detailFadeInAnimations
 })
 export class ShowMovementComponent implements OnInit {
 

@@ -1,21 +1,23 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
-import { Pokemon } from '../../../../../../entities/pokemon.entity';
+import { Ability, Pokemon } from '../../../../../../entities/pokemon.entity';
 import { PokemonSpecie } from '../../../../../../entities/pokemon-specie.entity';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
-import { Move, ShowMove, TypeDetail } from '../../../../../../entities/moves.entity';
-import { forkJoin, of, Subject, takeUntil, timer } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { Move, TypeDetail } from '../../../../../../entities/moves.entity';
+import { forkJoin, Subject, takeUntil, timer } from 'rxjs';
 import { ErrorMessageService } from 'app/services/error-message.service';
 import { PokemonSpriteOption } from '../../../../../../entities/poochydex-api/pokemon-sprite-option';
+import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
+import { AbilityName } from '../../../../../../entities/pokemon-ability.entity';
 
 @Component({
   selector: 'app-show-pokemon',
   templateUrl: './show-pokemon.component.html',
-  styleUrls: ['./show-pokemon.component.scss']
+  styleUrls: ['./show-pokemon.component.scss'],
+  animations: detailFadeInAnimations
 })
 export class ShowPokemonComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
@@ -30,7 +32,9 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
   movesWithTypes: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
   movesWithTypesEn: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
   movesWithTypesEs: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
-
+  filteredAbilityNames: { ability: Ability, name: string }[] = [];
+  abilityNames: { ability: Ability, names: AbilityName[] }[];
+  
   constructor(
     private pokeApiService: PokeApiService,
     private languageService: LanguageService,
@@ -97,7 +101,7 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (specie) => {
           this.pokemonSpecie = specie;
-          this.getPokemonMoves();
+          this.getPokemonAbility();
         },
         error: (error) => {
           const errorMessage = this.language === 'es' ? 'Error al cargar la información de la especie' : 'Error loading species information';
@@ -184,6 +188,25 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
         }
       });
   }
+
+  getPokemonAbility() {
+    this.helperService.getAbilityNames(this.pokemon.abilities).subscribe((abilities) => {
+      this.abilityNames = abilities;
+      this.filterAbilityNamesByLanguage();
+    });
+  }
+
+  filterAbilityNamesByLanguage(): void {
+    this.filteredAbilityNames = this.abilityNames.map(abilityGroup => {
+      const nameEntry = abilityGroup.names.find(n => n.language === this.language);
+      return {
+        ability: abilityGroup.ability,
+        name: nameEntry ? nameEntry.abilityName : abilityGroup.ability.ability.name
+      };
+    });
+    this.getPokemonMoves();
+  }
+
 
   checkForm(name: string): boolean {
     return this.pokeApiService.checkPokemonForm(name);

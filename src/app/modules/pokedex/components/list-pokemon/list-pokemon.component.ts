@@ -4,11 +4,12 @@ import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Pokemon, PokemonForm } from '../../../../../../entities/poochydex-api/pokemon.type';
 import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
-import { timer } from 'rxjs';
+import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 @Component({
   selector: 'app-list-pokemon',
   templateUrl: './list-pokemon.component.html',
-  styleUrls: ['./list-pokemon.component.scss']
+  styleUrls: ['./list-pokemon.component.scss'],
+  animations: detailFadeInAnimations
 })
 export class ListPokemonComponent implements OnInit {
 

@@ -5,15 +5,14 @@
     <span *ngIf="pokemonNameRomaji">({{pokemonNameRomaji.name | titlecase}})</span>
   </h1>
   <div class="grid grid-cols-3 gap-1">
-    <!-- Selector de tipo de imagen (solo si hay artes alternativos) -->
-    <div class="col-span-3 flex justify-center" *ngIf="hasSugimoriArt || hasGlobalLinkArt">
-      <div class="inline-flex rounded-md shadow-sm border border-gray-300 bg-white dark:bg-gray-800 dark:border-gray-600" role="group">
+    <div class="col-span-3 flex min-h-[3rem] items-center justify-center">
+      <div class="inline-flex rounded-lg shadow-sm border border-gray-300 bg-white dark:bg-gray-800 dark:border-gray-600" role="group">
         <app-ui-button
           type="button"
           variant="ghost"
           role="radio"
           [extraClasses]="imageTypeSegmentClass(PokemonSpriteOption.Home)"
-          (buttonClick)="selectedImageType = PokemonSpriteOption.Home; showShiny = false"
+          (buttonClick)="selectImageType(PokemonSpriteOption.Home)"
         >
           {{ language === 'es' ? 'Modelo Home' : 'Home Model' }}
         </app-ui-button>
@@ -23,7 +22,7 @@
           variant="ghost"
           role="radio"
           [extraClasses]="imageTypeSegmentClass(PokemonSpriteOption.SugimoriArt)"
-          (buttonClick)="selectedImageType = PokemonSpriteOption.SugimoriArt; showShiny = false"
+          (buttonClick)="selectImageType(PokemonSpriteOption.SugimoriArt)"
         >
           Sugimori
         </app-ui-button>
@@ -33,7 +32,7 @@
           variant="ghost"
           role="radio"
           [extraClasses]="imageTypeSegmentClass(PokemonSpriteOption.GlobalLinkArt)"
-          (buttonClick)="selectedImageType = PokemonSpriteOption.GlobalLinkArt; showShiny = false"
+          (buttonClick)="selectImageType(PokemonSpriteOption.GlobalLinkArt)"
         >
           Global Link
         </app-ui-button>
@@ -41,40 +40,58 @@
     </div>
 
     <div class="col-span-3 flex justify-center">
-      <!-- precarga -->
-      <img [src]="getMainSprite()" style="display: none;">
+      <div
+        class="pokemon-info__sprite-frame relative h-80 w-80 max-w-full shrink-0 overflow-hidden rounded-xl"
+        [attr.aria-busy]="displayedImageLoaded ? null : 'true'"
+      >
+        <app-ui-skeleton [loading]="!displayedImageLoaded"></app-ui-skeleton>
 
-      <!-- Modelo Home con toggle shiny -->
-      <ng-container *ngIf="selectedImageType === PokemonSpriteOption.Home; else altArtTemplate">
-        <img
-          class="w-80 cursor-pointer"
-          tabindex="0"
-          role="button"
-          (click)="showShiny = true"
-          (keydown.enter)="showShiny = true"
-          (keydown.space)="$event.preventDefault(); showShiny = true"
-          *ngIf="!showShiny"
-          [src]="pokemonSprite"
-        >
-        <img
-          class="w-80 cursor-pointer"
-          tabindex="0"
-          role="button"
-          (click)="showShiny = false"
-          (keydown.enter)="showShiny = false"
-          (keydown.space)="$event.preventDefault(); showShiny = false"
-          *ngIf="showShiny"
-          [src]="pokemonSpriteShiny"
-        >
-      </ng-container>
+        <ng-container *ngIf="selectedImageType === PokemonSpriteOption.Home; else altArtTemplate">
+          <img
+            *ngIf="!showShiny"
+            class="relative z-10 mx-auto h-full w-full max-h-full max-w-full cursor-pointer object-contain transition-opacity duration-300"
+            [class.opacity-0]="!displayedImageLoaded"
+            [class.opacity-100]="displayedImageLoaded"
+            tabindex="0"
+            role="img"
+            alt=""
+            (load)="onMainSpriteLoad()"
+            (error)="onMainSpriteError()"
+            (click)="setShowShiny(true)"
+            (keydown.enter)="setShowShiny(true)"
+            (keydown.space)="$event.preventDefault(); setShowShiny(true)"
+            [src]="pokemonSprite"
+          >
+          <img
+            *ngIf="showShiny"
+            class="relative z-10 mx-auto h-full w-full max-h-full max-w-full cursor-pointer object-contain transition-opacity duration-300"
+            [class.opacity-0]="!displayedImageLoaded"
+            [class.opacity-100]="displayedImageLoaded"
+            tabindex="0"
+            role="img"
+            alt=""
+            (load)="onMainSpriteLoad()"
+            (error)="onMainSpriteError()"
+            (click)="setShowShiny(false)"
+            (keydown.enter)="setShowShiny(false)"
+            (keydown.space)="$event.preventDefault(); setShowShiny(false)"
+            [src]="pokemonSpriteShiny"
+          >
+        </ng-container>
 
-      <!-- Artes alternativos (sin shiny) -->
-      <ng-template #altArtTemplate>
-        <img
-          class="w-80"
-          [src]="getMainSprite()"
-        >
-      </ng-template>
+        <ng-template #altArtTemplate>
+          <img
+            class="relative z-10 mx-auto h-full w-full max-h-full max-w-full object-contain transition-opacity duration-300"
+            [class.opacity-0]="!displayedImageLoaded"
+            [class.opacity-100]="displayedImageLoaded"
+            role="img"
+            alt=""
+            (load)="onMainSpriteLoad()"
+            (error)="onMainSpriteError()"
+            [src]="getMainSprite()"
+          >
+        </ng-template>
+      </div>
     </div>
   </div>
 

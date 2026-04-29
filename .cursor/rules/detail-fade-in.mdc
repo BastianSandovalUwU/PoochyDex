@@ -1,0 +1,19 @@
+---
+description: Animación de entrada detailFadeIn — pantallas y contenedores principales
+alwaysApply: true
+---
+
+# Entrada de vista — `detailFadeIn`
+
+- **Regla:** cada **componente de pantalla** (ruta en `*routing.ts`, carga perezosa) y cada **contenedor raíz** de una vista cuyo contenido depende de datos y aparece con `*ngIf` (p. ej. ficha, detalle, listado principal del feature) debe usar la animación compartida **`detailFadeIn`** al mostrar ese contenido, para un fade-in + ligero `translateY` coherente en toda la app.
+- **Implementación (no duplicar el trigger en cada archivo):**
+  1. `import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';`
+  2. En el `@Component`, `animations: detailFadeInAnimations` (o combinar con otras vía `animations: [ ...detailFadeIn, otros ]` si fuese necesario; preferir añadir triggers compartidos en el mismo módulo de animaciones en lugar de copiarlos).
+  3. En la plantilla, asociar **`[@detailFadeIn]`** al **elemento host** del bloque principal mostrado cuando los datos estén listos (típicamente el `div` o `section` con `*ngIf="...loaded / modelo"`).
+- **Excepciones (no hace falta forzar `detailFadeIn` aquí):**
+  - Subcomponentes internos (tabs, secciones, celdas, filas de lista, pequeñas cards dentro de un listado).
+  - Contenido en `SharedModule` salvo que el componente sea a su vez un **shell de pantalla** dedicado.
+  - Modales, toasts, menús, piezas de solo unos pocos elementos.
+- **Criterio:** si el usuario “aterriza” en un bloque que antes estaba vacío o en loading y ahora reemplaza a ese estado, ese bloque con `*ngIf` suele ser un buen candidato para `[@detailFadeIn]` a nivel de componente de página o sección equivalente.
+
+**Archivo de referencia:** `src/app/modules/shared/animations/detail-fade-in.animation.ts` (`trigger('detailFadeIn', ...)`).

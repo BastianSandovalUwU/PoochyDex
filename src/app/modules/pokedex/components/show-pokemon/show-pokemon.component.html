@@ -1,10 +1,11 @@
-<div class="m-4 max-w-4xl mx-auto" *ngIf="pokemon && pokemonSpecie && !loading">
+<div class="m-4 max-w-4xl mx-auto" *ngIf="pokemon && pokemonSpecie && !loading && filteredAbilityNames.length > 0" [@detailFadeIn]>
   <app-pokemon-info
     [language]="language"
     [pokemon]="pokemon"
     [pokemonSpecie]="pokemonSpecie"
     [pokemonSprite]="pokemonSprite"
-    [pokemonSpriteShiny]="pokemonSpriteShiny">
+    [pokemonSpriteShiny]="pokemonSpriteShiny"
+    [filteredAbilityNames]="filteredAbilityNames">
   </app-pokemon-info>
 
   <div>

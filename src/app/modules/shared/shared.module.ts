@@ -29,6 +29,7 @@ import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { MusicPlayerComponent } from './music-player/music-player.component';
 import { UiButtonComponent } from './ui-button/ui-button.component';
 import { UiModalComponent } from './ui-modal/ui-modal.component';
+import { UiSkeletonComponent } from './ui-skeleton/ui-skeleton.component';
 
 @NgModule({
   imports: [
@@ -68,7 +69,8 @@ import { UiModalComponent } from './ui-modal/ui-modal.component';
     PokemonCardComponent,
     MusicPlayerComponent,
     UiButtonComponent,
-    UiModalComponent
+    UiModalComponent,
+    UiSkeletonComponent
   ],
   declarations: [
     MenuComponent,
@@ -94,7 +96,8 @@ import { UiModalComponent } from './ui-modal/ui-modal.component';
     PokemonCardComponent,
     MusicPlayerComponent,
     UiButtonComponent,
-    UiModalComponent
+    UiModalComponent,
+    UiSkeletonComponent
   ]
 })
 export class SharedModule { }
