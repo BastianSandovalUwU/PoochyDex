@@ -20,6 +20,7 @@ export type PokemonFull = {
   past_abilities:         PastAbility[];
   past_types:             any[];
   species:                Data;
+  sprites:                Sprites;
   stats:                  Stat[];
   types:                  Type[];
   weight:                 number;

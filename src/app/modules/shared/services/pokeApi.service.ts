@@ -50,6 +50,7 @@ export class PokeApiService {
       is_default: pokemon.is_default,
       cries: pokemon.cries,
       moves: pokemon.moves,
+      sprites: pokemon.sprites,
     };
   }
 

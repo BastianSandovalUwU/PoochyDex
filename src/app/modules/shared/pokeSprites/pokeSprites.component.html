@@ -1,294 +1,233 @@
-<div>
-  <div class="bg-gray-100 rounded-md p-4 mt-4">
-    <h1 class="font-bold text-xl">Sprites</h1>
-    <div>
-      <h1 class="font-bold text-xl text-center">1ra Generación</h1>
-      <div class="grid grid-cols-7">
-        <div class="col-start-4 mt-2 bg-white rounded-md border border-black">
-          <h1 class="text-center font-bold">Red - Blue</h1>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-i']['red-blue'].front_transparent">
-              <img class="w-full" [src]="versionSprites['generation-i']['red-blue'].front_transparent">
+<section *ngIf="pokemon?.sprites" class="poke-sprites" [attr.aria-label]="t('Sprites', 'Sprites')">
+  <h2 class="poke-sprites__title">{{ t('Sprites', 'Sprites') }}</h2>
+
+  <div class="poke-sprites__content">
+    <!-- API root (default) -->
+    <div *ngIf="rootSpriteSlots.length" class="poke-sprites__gen">
+      <h3 class="poke-sprites__gen-title">{{ t('Vista predeterminada (API)', 'Default sprites (API)') }}</h3>
+      <article class="poke-sprites__card poke-sprites__card--wide">
+        <div class="poke-sprites__labeled-grid">
+          <div *ngFor="let slot of rootSpriteSlots; trackBy: trackByLabeledId" class="poke-sprites__labeled-cell">
+            <div class="poke-sprites__cell-inner">
+              <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
             </div>
-            <div class="w-20" *ngIf="versionSprites['generation-i']['red-blue'].back_transparent">
-              <img class="w-full" [src]="versionSprites['generation-i']['red-blue'].back_transparent">
-            </div>
+            <span class="poke-sprites__slot-label">{{ t(slot.labelEs, slot.labelEn) }}</span>
           </div>
         </div>
-      </div>
+      </article>
     </div>
-    <div>
-      <h1 class="font-bold text-xl text-center">2da Generación</h1>
-      <div class="grid grid-cols-7 gap-2">
-        <div class="h-full w-full col-start-3 bg-white rounded-md border border-black">
-          <h1 class="text-center font-bold">Cristal</h1>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-ii'].crystal.front_transparent">
-              <img class="w-full" [src]="versionSprites['generation-ii'].crystal.front_transparent">
-            </div>
-            <div  *ngIf="versionSprites['generation-ii'].crystal.back_transparent">
-              <img class="w-full" [src]="versionSprites['generation-ii'].crystal.back_transparent">
-            </div>
-          </div>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-ii'].crystal.front_shiny_transparent">
-              <img class="w-full" [src]="versionSprites['generation-ii'].crystal.front_shiny_transparent">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-ii'].crystal.back_shiny_transparent">
-              <img class="w-full" [src]="versionSprites['generation-ii'].crystal.back_shiny_transparent">
+
+    <!-- other.* -->
+    <div *ngIf="hasOtherGroup" class="poke-sprites__gen">
+      <h3 class="poke-sprites__gen-title">{{ t('Otras apariencias', 'Other artwork') }}</h3>
+
+      <div class="poke-sprites__row poke-sprites__row--wrap">
+        <article *ngIf="dreamWorldSlots.length" class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Mundo onírico', 'Dream World') }}</h4>
+          <div class="poke-sprites__labeled-grid poke-sprites__labeled-grid--sm">
+            <div *ngFor="let slot of dreamWorldSlots; trackBy: trackByLabeledId" class="poke-sprites__labeled-cell">
+              <div class="poke-sprites__cell-inner">
+                <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+              </div>
+              <span class="poke-sprites__slot-label">{{ t(slot.labelEs, slot.labelEn) }}</span>
             </div>
           </div>
-        </div>
-        <div class="bg-white rounded-md border border-black">
-          <h1 class="text-center font-bold">Gold</h1>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-ii'].gold.front_transparent">
-              <img class="w-full" [src]="versionSprites['generation-ii'].gold.front_transparent">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-ii'].gold.back_default">
-              <img class="w-full" [src]="versionSprites['generation-ii'].gold.back_default">
-            </div>
-          </div>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-ii'].gold.front_shiny">
-              <img class="w-full" [src]="versionSprites['generation-ii'].gold.front_shiny">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-ii'].gold.back_shiny">
-              <img class="w-full" [src]="versionSprites['generation-ii'].gold.back_shiny">
+        </article>
+
+        <article *ngIf="homeSlots.length" class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Pokémon HOME', 'Pokémon HOME') }}</h4>
+          <div class="poke-sprites__labeled-grid">
+            <div *ngFor="let slot of homeSlots; trackBy: trackByLabeledId" class="poke-sprites__labeled-cell">
+              <div class="poke-sprites__cell-inner">
+                <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+              </div>
+              <span class="poke-sprites__slot-label">{{ t(slot.labelEs, slot.labelEn) }}</span>
             </div>
           </div>
-        </div>
-        <div class="bg-white rounded-md border border-black">
-          <h1 class="text-center font-bold">Silver</h1>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-ii'].silver.front_transparent">
-              <img class="w-full" [src]="versionSprites['generation-ii'].silver.front_transparent">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-ii'].silver.back_default">
-              <img class="w-full" [src]="versionSprites['generation-ii'].silver.back_default">
-            </div>
-          </div>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-ii'].silver.front_shiny">
-              <img class="w-full" [src]="versionSprites['generation-ii'].silver.front_shiny">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-ii'].silver.back_shiny">
-              <img class="w-full" [src]="versionSprites['generation-ii'].silver.back_shiny">
+        </article>
+
+        <article *ngIf="officialArtworkSlots.length" class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Arte oficial Sugimori', 'Official Sugimori artwork') }}</h4>
+          <div class="poke-sprites__labeled-grid poke-sprites__labeled-grid--sm">
+            <div *ngFor="let slot of officialArtworkSlots; trackBy: trackByLabeledId" class="poke-sprites__labeled-cell">
+              <div class="poke-sprites__cell-inner">
+                <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+              </div>
+              <span class="poke-sprites__slot-label">{{ t(slot.labelEs, slot.labelEn) }}</span>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <h1 class="font-bold text-xl text-center">3ra Generación</h1>
-      <div class="grid grid-cols-7 gap-2">
-        <div class="col-start-3 bg-white rounded-md border border-black">
-          <h1 class="text-center font-bold">Esmeralda</h1>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-iii'].emerald.front_default">
-              <img class="w-full" [src]="versionSprites['generation-iii'].emerald.front_default">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-iii'].emerald.front_shiny">
-              <img class="w-full" [src]="versionSprites['generation-iii'].emerald.front_shiny">
+        </article>
+
+        <article *ngIf="showdownSlots.length" class="poke-sprites__card poke-sprites__card--wide">
+          <h4 class="poke-sprites__card-title">{{ t('Modelo 3D (Showdown)', '3D model (Showdown)') }}</h4>
+          <div class="poke-sprites__labeled-grid poke-sprites__labeled-grid--showdown">
+            <div *ngFor="let slot of showdownSlots; trackBy: trackByLabeledId" class="poke-sprites__labeled-cell">
+              <div class="poke-sprites__cell-inner">
+                <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+              </div>
+              <span class="poke-sprites__slot-label">{{ t(slot.labelEs, slot.labelEn) }}</span>
             </div>
           </div>
-        </div>
-        <div class="bg-white rounded-md border border-black">
-          <h1 class="text-center font-bold">Ruby - Sapphire</h1>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-iii']['ruby-sapphire'].front_default">
-              <img class="w-full" [src]="versionSprites['generation-iii']['ruby-sapphire'].front_default">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-iii']['ruby-sapphire'].back_default">
-              <img class="w-full" [src]="versionSprites['generation-iii']['ruby-sapphire'].back_default">
-            </div>
-          </div>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-iii']['ruby-sapphire'].front_shiny">
-              <img class="w-full" [src]="versionSprites['generation-iii']['ruby-sapphire'].front_shiny">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-iii']['ruby-sapphire'].back_shiny">
-              <img class="w-full" [src]="versionSprites['generation-iii']['ruby-sapphire'].back_shiny">
-            </div>
-          </div>
-        </div>
-        <div class="bg-white rounded-md border border-black">
-          <h1 class="text-center font-bold">Fire Red - Leaf Green</h1>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-iii']['firered-leafgreen'].front_default">
-              <img class="w-full" [src]="versionSprites['generation-iii']['firered-leafgreen'].front_default">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-iii']['firered-leafgreen'].back_default">
-              <img class="w-full" [src]="versionSprites['generation-iii']['firered-leafgreen'].back_default">
-            </div>
-          </div>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-iii']['firered-leafgreen'].front_shiny">
-              <img class="w-full" [src]="versionSprites['generation-iii']['firered-leafgreen'].front_shiny">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-iii']['firered-leafgreen'].back_shiny">
-              <img class="w-full" [src]="versionSprites['generation-iii']['firered-leafgreen'].back_shiny">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <h1 class="font-bold text-xl text-center">4ta Generación</h1>
-      <div class="grid grid-cols-7 gap-2">
-        <div class="col-start-3 bg-white rounded-md border border-black">
-          <h1 class="text-center font-bold">Diamond - Pearl</h1>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-iv']['diamond-pearl'].front_default">
-              <img class="w-full" [src]="versionSprites['generation-iv']['diamond-pearl'].front_default">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-iv']['diamond-pearl'].front_shiny">
-              <img class="w-full" [src]="versionSprites['generation-iv']['diamond-pearl'].front_shiny">
-            </div>
-          </div>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-iv']['diamond-pearl'].back_default">
-              <img class="w-full" [src]="versionSprites['generation-iv']['diamond-pearl'].back_default">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-iv']['diamond-pearl'].back_shiny">
-              <img class="w-full" [src]="versionSprites['generation-iv']['diamond-pearl'].back_shiny">
-            </div>
-          </div>
-        </div>
-        <div class="bg-white rounded-md border border-black">
-          <h1 class="text-center font-bold">Platinum</h1>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-iv'].platinum.front_default">
-              <img class="w-full" [src]="versionSprites['generation-iv'].platinum.front_default">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-iv'].platinum.back_default">
-              <img class="w-full" [src]="versionSprites['generation-iv'].platinum.back_default">
-            </div>
-          </div>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-iv'].platinum.front_shiny">
-              <img class="w-full" [src]="versionSprites['generation-iv'].platinum.front_shiny">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-iv'].platinum.back_shiny">
-              <img class="w-full" [src]="versionSprites['generation-iv'].platinum.back_shiny">
-            </div>
-          </div>
-        </div>
-        <div class="bg-white rounded-md border border-black">
-          <h1 class="text-center font-bold">Fire Red - Leaf Green</h1>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-iv']['heartgold-soulsilver'].front_default">
-              <img class="w-full" [src]="versionSprites['generation-iv']['heartgold-soulsilver'].front_default">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-iv']['heartgold-soulsilver'].back_default">
-              <img class="w-full" [src]="versionSprites['generation-iv']['heartgold-soulsilver'].back_default">
-            </div>
-          </div>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-iv']['heartgold-soulsilver'].front_shiny">
-              <img class="w-full" [src]="versionSprites['generation-iv']['heartgold-soulsilver'].front_shiny">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-iv']['heartgold-soulsilver'].back_shiny">
-              <img class="w-full" [src]="versionSprites['generation-iv']['heartgold-soulsilver'].back_shiny">
-            </div>
-          </div>
-        </div>
+        </article>
       </div>
     </div>
 
-    <div>
-      <h1 class="font-bold text-xl text-center">5ta Generación</h1>
-      <div class="grid grid-cols-7 gap-2">
-        <div class="col-start-4 bg-white rounded-md border border-black">
-          <h1 class="text-center font-bold">Black - White</h1>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-v']['black-white'].animated.front_default">
-              <img class="w-full" [src]="versionSprites['generation-v']['black-white'].animated.front_default">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-v']['black-white'].animated.front_shiny">
-              <img class="w-full" [src]="versionSprites['generation-v']['black-white'].animated.front_shiny">
-            </div>
-          </div>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-v']['black-white'].animated.back_default">
-              <img class="w-full" [src]="versionSprites['generation-v']['black-white'].animated.back_default">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-v']['black-white'].animated.back_shiny">
-              <img class="w-full" [src]="versionSprites['generation-v']['black-white'].animated.back_shiny">
+    <!-- By game / generation (versions) -->
+    <ng-container *ngIf="hasVersionGameSprites">
+      <h3 class="poke-sprites__section-subtitle">{{ t('Por juego (generaciones clásicas)', 'By game (classic generations)') }}</h3>
+    <div *ngIf="gen1RedBlue.length" class="poke-sprites__gen">
+      <h3 class="poke-sprites__gen-title">{{ t('1.ª generación', 'Generation I') }}</h3>
+      <div class="poke-sprites__row poke-sprites__row--center">
+        <article class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Rojo y Azul', 'Red & Blue') }}</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen1RedBlue; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
             </div>
           </div>
-        </div>
+        </article>
       </div>
     </div>
 
-    <div>
-      <h1 class="font-bold text-xl text-center">6ta Generación</h1>
-      <div class="grid grid-cols-6 gap-2">
-        <div class="col-start-3 bg-white rounded-md border border-black">
-          <h1 class="text-center font-bold">X - Y</h1>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-vi']['x-y'].front_default">
-              <img class="w-full" [src]="versionSprites['generation-vi']['x-y'].front_default">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-vi']['x-y'].front_female">
-              <img class="w-full" [src]="versionSprites['generation-vi']['x-y'].front_female">
+    <div *ngIf="gen2Crystal.length || gen2Gold.length || gen2Silver.length" class="poke-sprites__gen">
+      <h3 class="poke-sprites__gen-title">{{ t('2.ª generación', 'Generation II') }}</h3>
+      <div class="poke-sprites__row poke-sprites__row--wrap">
+        <article *ngIf="gen2Crystal.length" class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Cristal', 'Crystal') }}</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen2Crystal; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
             </div>
           </div>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-vi']['x-y'].front_shiny">
-              <img class="w-full" [src]="versionSprites['generation-vi']['x-y'].front_shiny">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-vi']['x-y'].front_shiny_female">
-              <img class="w-full" [src]="versionSprites['generation-vi']['x-y'].front_shiny_female">
-            </div>
-          </div>
-        </div>
-        <div class=" bg-white rounded-md border border-black">
-          <h1 class="text-center font-bold">Omega Ruby - Alpha Sapphire</h1>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_default">
-              <img class="w-full" [src]="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_default">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_female">
-              <img class="w-full" [src]="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_female">
+        </article>
+        <article *ngIf="gen2Gold.length" class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Oro', 'Gold') }}</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen2Gold; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
             </div>
           </div>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_shiny">
-              <img class="w-full" [src]="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_shiny">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_shiny_female">
-              <img class="w-full" [src]="versionSprites['generation-vi']['omegaruby-alphasapphire'].front_shiny_female">
+        </article>
+        <article *ngIf="gen2Silver.length" class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Plata', 'Silver') }}</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen2Silver; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
             </div>
           </div>
-        </div>
+        </article>
       </div>
     </div>
 
-    <div>
-      <h1 class="font-bold text-xl text-center">7ma Generación</h1>
-      <div class="grid grid-cols-7 gap-2">
-        <div class="col-start-4 bg-white rounded-md border border-black">
-          <h1 class="text-center font-bold">Sol - Luna</h1>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_default">
-              <img class="w-full" [src]="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_default">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_female">
-              <img class="w-full" [src]="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_female">
+    <div *ngIf="gen3Emerald.length || gen3RubySapphire.length || gen3FrLg.length" class="poke-sprites__gen">
+      <h3 class="poke-sprites__gen-title">{{ t('3.ª generación', 'Generation III') }}</h3>
+      <div class="poke-sprites__row poke-sprites__row--wrap">
+        <article *ngIf="gen3Emerald.length" class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Esmeralda', 'Emerald') }}</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen3Emerald; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
             </div>
           </div>
-          <div class="grid grid-cols-2">
-            <div class="w-20" *ngIf="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_shiny">
-              <img class="w-full" [src]="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_shiny">
-            </div>
-            <div class="w-20" *ngIf="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_shiny_female">
-              <img class="w-full" [src]="versionSprites['generation-vii']['ultra-sun-ultra-moon'].front_shiny_female">
+        </article>
+        <article *ngIf="gen3RubySapphire.length" class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Rubí y Zafiro', 'Ruby & Sapphire') }}</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen3RubySapphire; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
             </div>
           </div>
-        </div>
+        </article>
+        <article *ngIf="gen3FrLg.length" class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Rojo Fuego y Verde Hoja', 'Fire Red & Leaf Green') }}</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen3FrLg; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+            </div>
+          </div>
+        </article>
       </div>
     </div>
 
+    <div *ngIf="gen4DiamondPearl.length || gen4Platinum.length || gen4HeartGoldSoulSilver.length" class="poke-sprites__gen">
+      <h3 class="poke-sprites__gen-title">{{ t('4.ª generación', 'Generation IV') }}</h3>
+      <div class="poke-sprites__row poke-sprites__row--wrap">
+        <article *ngIf="gen4DiamondPearl.length" class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Diamante y Perla', 'Diamond & Pearl') }}</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen4DiamondPearl; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+            </div>
+          </div>
+        </article>
+        <article *ngIf="gen4Platinum.length" class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Platino', 'Platinum') }}</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen4Platinum; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+            </div>
+          </div>
+        </article>
+        <article *ngIf="gen4HeartGoldSoulSilver.length" class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('HeartGold y SoulSilver', 'HeartGold & SoulSilver') }}</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen4HeartGoldSoulSilver; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div *ngIf="gen5BlackWhite.length" class="poke-sprites__gen">
+      <h3 class="poke-sprites__gen-title">{{ t('5.ª generación', 'Generation V') }}</h3>
+      <div class="poke-sprites__row poke-sprites__row--center">
+        <article class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Negro y Blanco', 'Black & White') }}</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen5BlackWhite; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div *ngIf="gen6Xy.length || gen6Oras.length" class="poke-sprites__gen">
+      <h3 class="poke-sprites__gen-title">{{ t('6.ª generación', 'Generation VI') }}</h3>
+      <div class="poke-sprites__row poke-sprites__row--wrap">
+        <article *ngIf="gen6Xy.length" class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">X &amp; Y</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen6Xy; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+            </div>
+          </div>
+        </article>
+        <article *ngIf="gen6Oras.length" class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Rubí Omega y Zafiro Alfa', 'Omega Ruby & Alpha Sapphire') }}</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen6Oras; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div *ngIf="gen7UsUm.length" class="poke-sprites__gen">
+      <h3 class="poke-sprites__gen-title">{{ t('7.ª generación', 'Generation VII') }}</h3>
+      <div class="poke-sprites__row poke-sprites__row--center">
+        <article class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Ultrasol y Ultraluna', 'Ultra Sun & Ultra Moon') }}</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen7UsUm; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+    </ng-container>
   </div>
-</div>
+</section>

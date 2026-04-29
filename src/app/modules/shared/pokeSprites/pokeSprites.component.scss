@@ -1,0 +1,101 @@
+:host {
+  display: block;
+}
+
+.poke-sprites {
+  @apply mt-6 rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-600 dark:bg-gray-800/90 sm:p-6;
+}
+
+.poke-sprites__title {
+  @apply mb-4 text-xl font-bold text-gray-900 dark:text-white;
+}
+
+.poke-sprites__section-subtitle {
+  @apply mb-3 mt-2 text-center text-base font-semibold text-gray-700 dark:text-gray-200;
+}
+
+.poke-sprites__content {
+  @apply space-y-8;
+}
+
+.poke-sprites__gen {
+  @apply space-y-4;
+}
+
+.poke-sprites__gen-title {
+  @apply text-center text-lg font-bold text-gray-800 dark:text-gray-100;
+}
+
+.poke-sprites__row {
+  @apply flex gap-3;
+}
+
+.poke-sprites__row--center {
+  @apply justify-center;
+}
+
+.poke-sprites__row--wrap {
+  @apply flex flex-wrap justify-center;
+}
+
+.poke-sprites__card {
+  @apply min-w-0 max-w-sm rounded-lg border border-gray-200 bg-gray-50 p-3 dark:border-gray-600 dark:bg-gray-800/60 sm:p-4;
+}
+
+.poke-sprites__card--wide {
+  @apply max-w-4xl;
+}
+
+.poke-sprites__card-title {
+  @apply mb-3 text-center text-sm font-semibold text-gray-800 dark:text-gray-200;
+}
+
+.poke-sprites__grid {
+  @apply grid gap-1.5;
+}
+
+.poke-sprites__grid--2 {
+  @apply grid-cols-2;
+}
+
+.poke-sprites__cell {
+  @apply flex min-h-20 w-20 max-w-full items-center justify-center sm:min-h-24 sm:w-24;
+}
+
+.poke-sprites__labeled-grid {
+  @apply grid w-full max-w-full gap-3;
+  grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
+}
+
+.poke-sprites__labeled-grid--sm {
+  grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
+}
+
+.poke-sprites__labeled-grid--showdown {
+  @apply sm:gap-2;
+  grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
+}
+
+.poke-sprites__labeled-cell {
+  @apply flex min-w-0 flex-col items-center gap-1;
+}
+
+.poke-sprites__cell-inner {
+  @apply flex min-h-20 w-full min-w-0 max-w-full items-center justify-center sm:min-h-24;
+}
+
+.poke-sprites__slot-label {
+  @apply w-full break-words text-center text-[0.65rem] leading-tight text-gray-600 dark:text-gray-400;
+}
+
+.poke-sprites__img {
+  @apply h-full w-full object-contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+@media (min-resolution: 2dppx) {
+  .poke-sprites__img {
+    image-rendering: auto;
+  }
+}
