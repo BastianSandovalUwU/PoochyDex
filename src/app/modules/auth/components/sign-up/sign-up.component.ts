@@ -10,15 +10,13 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LanguageService } from 'app/modules/shared/services/language.service';
-import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss'],
-  animations: detailFadeInAnimations
+  styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit, OnDestroy {
 
