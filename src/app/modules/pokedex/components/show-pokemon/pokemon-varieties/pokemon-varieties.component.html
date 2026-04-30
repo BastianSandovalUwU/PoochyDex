@@ -23,13 +23,23 @@
           (keydown)="onVarietyLinkKeydown($event, variety.name)">
           {{ variety.name |translatePokemonName |replaceDash | titlecase }}
         </p>
-        <img
-          class="w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image"
-          tabindex="0"
-          role="link"
-          (click)="goToPokemonPage(variety.name)"
-          (keydown)="onVarietyLinkKeydown($event, variety.name)"
-          [src]="variety.sprite">
+        <div class="relative w-20 sm:w-48 aspect-square overflow-hidden">
+          <app-ui-skeleton
+            [loading]="!variety.sprite || !isImageLoaded(variety.sprite)"
+            extraClasses="z-10"></app-ui-skeleton>
+          <img
+            *ngIf="variety.sprite"
+            class="relative z-0 w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image transition-opacity duration-300"
+            [class.opacity-0]="!isImageLoaded(variety.sprite)"
+            [class.opacity-100]="isImageLoaded(variety.sprite)"
+            tabindex="0"
+            role="link"
+            (click)="goToPokemonPage(variety.name)"
+            (keydown)="onVarietyLinkKeydown($event, variety.name)"
+            (load)="markImageLoaded(variety.sprite)"
+            (error)="markImageLoaded(variety.sprite)"
+            [src]="variety.sprite">
+        </div>
       </div>
     </ng-container>
   </div>

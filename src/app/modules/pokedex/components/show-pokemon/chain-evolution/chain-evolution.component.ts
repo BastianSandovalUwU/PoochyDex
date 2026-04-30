@@ -21,6 +21,7 @@ export class ChainEvolutionComponent implements OnInit, OnChanges {
   evolutionChain: EvolutionChain;
   backgroundColor: string = '';
   filtersVisible = true;
+  loadedSprites = new Set<string>();
 
   constructor(private pokeApiService: PokeApiService,
     private helperService: HelperService,
@@ -41,7 +42,11 @@ export class ChainEvolutionComponent implements OnInit, OnChanges {
     this.filtersVisible = !this.filtersVisible;
   }
 
+  isImageLoaded(url: string): boolean { return this.loadedSprites.has(url); }
+  markImageLoaded(url: string): void { this.loadedSprites.add(url); }
+
   getEvolutionChain() {
+    this.loadedSprites.clear();
     this.pokeApiService.getEvolutionChainByUrl(this.pokemonSpecie.evolution_chain.url).subscribe({
       next: (evolution) => {
         this.populateEvolutionChainDetails(evolution);
