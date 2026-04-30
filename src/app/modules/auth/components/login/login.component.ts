@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: UntypedFormGroup;
   loading = false;
   showPassword = false;
-  /** Cuenta creada: mensaje tras registro (query `registered=1`). */
+  /** Banner shown after registration redirect (query `registered=1`). */
   registeredBanner = false;
 
   private readonly subs = new Subscription();

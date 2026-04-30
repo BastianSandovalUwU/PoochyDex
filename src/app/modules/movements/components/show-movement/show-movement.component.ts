@@ -6,7 +6,7 @@ import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Pokemon } from '../../../../../../entities/poochydex-api/pokemon.type';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { ErrorMessageService } from 'app/services/error-message.service';
-import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
+import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 

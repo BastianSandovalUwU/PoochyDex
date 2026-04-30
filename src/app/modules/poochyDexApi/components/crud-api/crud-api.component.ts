@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { PoochyDexApiService } from '../../services/poochyDexApi.service';
+import { PoochyDexApiService } from '../../services/poochy-dex-api.service';
 import { POKEMON_TYPES } from '../../../../../../entities/common/const.interface';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { CreatePokemonRequest, Pokemon } from '../../../../../../entities/poochydex-api/pokemon.type';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/modules/auth/services/auth.service';
+import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 
 @Component({
   selector: 'app-crud-api',
   templateUrl: './crud-api.component.html',
-  styleUrls: ['./crud-api.component.scss']
+  styleUrls: ['./crud-api.component.scss'],
+  animations: detailFadeInAnimations
 })
 export class CrudApiComponent implements OnInit {
 
@@ -85,8 +87,8 @@ export class CrudApiComponent implements OnInit {
       error: (err) => {
         console.error(err);
         this.errorMessage = this.isFormMode
-          ? 'Error cargando las formas de Pokémon'
-          : 'Error cargando los Pokémon';
+          ? (this.language === 'es' ? 'Error cargando las formas de Pokémon' : 'Error loading Pokémon forms')
+          : (this.language === 'es' ? 'Error cargando los Pokémon' : 'Error loading Pokémon');
         this.loading = false;
       }
     });
@@ -143,7 +145,9 @@ export class CrudApiComponent implements OnInit {
 
   savePokemon(): void {
     if (!this.formData.number || !this.formData.name || !this.formData.type || !this.formData.generationId || !this.formData.sprites.homeUrl || !this.formData.sprites.iconUrl) {
-      this.errorMessage = 'Número, nombre, tipo, generación, homeUrl e iconUrl son obligatorios';
+      this.errorMessage = this.language === 'es'
+        ? 'Número, nombre, tipo, generación, homeUrl e iconUrl son obligatorios'
+        : 'Number, name, type, generation, homeUrl and iconUrl are required';
       return;
     }
 
@@ -174,8 +178,12 @@ export class CrudApiComponent implements OnInit {
       error: (err) => {
         console.error(err);
         this.errorMessage = isEdit
-          ? (this.isFormMode ? 'Error actualizando la forma de Pokémon' : 'Error actualizando el Pokémon')
-          : (this.isFormMode ? 'Error creando la forma de Pokémon' : 'Error creando el Pokémon');
+          ? (this.isFormMode
+              ? (this.language === 'es' ? 'Error actualizando la forma de Pokémon' : 'Error updating Pokémon form')
+              : (this.language === 'es' ? 'Error actualizando el Pokémon' : 'Error updating Pokémon'))
+          : (this.isFormMode
+              ? (this.language === 'es' ? 'Error creando la forma de Pokémon' : 'Error creating Pokémon form')
+              : (this.language === 'es' ? 'Error creando el Pokémon' : 'Error creating Pokémon'));
         this.loading = false;
       }
     });
@@ -185,7 +193,9 @@ export class CrudApiComponent implements OnInit {
     if (!pokemon.id) {
       return;
     }
-    const confirmed = window.confirm(`¿Eliminar a ${pokemon.name}?`);
+    const confirmed = window.confirm(
+      this.language === 'es' ? `¿Eliminar a ${pokemon.name}?` : `Delete ${pokemon.name}?`
+    );
     if (!confirmed) {
       return;
     }
@@ -205,8 +215,8 @@ export class CrudApiComponent implements OnInit {
       error: (err) => {
         console.error(err);
         this.errorMessage = this.isFormMode
-          ? 'Error eliminando la forma de Pokémon'
-          : 'Error eliminando el Pokémon';
+          ? (this.language === 'es' ? 'Error eliminando la forma de Pokémon' : 'Error deleting Pokémon form')
+          : (this.language === 'es' ? 'Error eliminando el Pokémon' : 'Error deleting Pokémon');
         this.loading = false;
       }
     });

@@ -64,7 +64,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 
-  /** 0 = vacío; 1–4 = nivel mostrado en la barra. */
+  /** 0 = empty; 1–4 = level shown in the bar. */
   get passwordStrengthLevel(): number {
     const p = (this.signUpForm.get('password')?.value as string) ?? '';
     if (!p) {

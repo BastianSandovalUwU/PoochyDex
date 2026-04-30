@@ -18,8 +18,8 @@ export interface LabeledSprite {
 
 @Component({
   selector: 'app-poke-sprites',
-  templateUrl: './pokeSprites.component.html',
-  styleUrls: ['./pokeSprites.component.scss']
+  templateUrl: './poke-sprites.component.html',
+  styleUrls: ['./poke-sprites.component.scss']
 })
 export class PokeSpritesComponent {
   @Input() pokemon: Pokemon;

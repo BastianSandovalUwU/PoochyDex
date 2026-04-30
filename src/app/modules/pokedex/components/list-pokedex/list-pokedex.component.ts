@@ -3,6 +3,7 @@ import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { Router } from '@angular/router';
+import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 
 interface PokedexListItem {
   name: string;
@@ -20,7 +21,8 @@ interface PokedexListResponse {
 @Component({
   selector: 'app-list-pokedex',
   templateUrl: './list-pokedex.component.html',
-  styleUrls: ['./list-pokedex.component.scss']
+  styleUrls: ['./list-pokedex.component.scss'],
+  animations: detailFadeInAnimations
 })
 export class ListPokedexComponent implements OnInit {
   pokedexList: PokedexListItem[] = [];

@@ -3,12 +3,14 @@ import { AuthService } from 'app/modules/auth/services/auth.service';
 import { UserConfigData, UserData } from '../../../../../../entities/auth/user.entity';
 import { Router } from '@angular/router';
 import { LanguageService } from 'app/modules/shared/services/language.service';
+import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-show-profile',
   templateUrl: './show-profile.component.html',
-  styleUrls: ['./show-profile.component.scss']
+  styleUrls: ['./show-profile.component.scss'],
+  animations: detailFadeInAnimations
 })
 export class ShowProfileComponent implements OnInit, OnDestroy {
 
@@ -78,6 +80,10 @@ export class ShowProfileComponent implements OnInit, OnDestroy {
       return this.language === 'es' ? 'Inglés' : 'English';
     }
     return code;
+  }
+
+  goToPokedex(): void {
+    this.router.navigate(['/pokedex']);
   }
 
   logout(): void {

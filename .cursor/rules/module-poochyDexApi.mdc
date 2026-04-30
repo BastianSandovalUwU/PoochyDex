@@ -10,13 +10,13 @@ alwaysApply: false
 
 **Prefijo URL:** `/apiDex`.
 
-**Rutas** (`poochyDexApi.routing.ts`):
+**Rutas** (`poochy-dex-api.routing.ts`):
 
 | Path | Componente |
 |------|------------|
 | `''` | `CrudApiComponent` |
 
-**Servicio:** `services/poochyDexApi.service.ts` (HTTP a la API propia). **Endpoints:** `docs/api-services.md` (sección `PoochyDexApiService`).
+**Servicio:** `services/poochy-dex-api.service.ts` (HTTP a la API propia). **Endpoints:** `docs/api-services.md` (sección `PoochyDexApiService`).
 
 **Cruzado con:** `AuthService` (sesión), `LanguageService`, `HelperService` (shared). Tipos en `entities/poochydex-api/`. Tipos de Pokémon: `POKEMON_TYPES` en `entities/common/const.interface`.
 
