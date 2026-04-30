@@ -7,7 +7,8 @@ import { LanguageService } from 'app/modules/shared/services/language.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { Move, TypeDetail } from '../../../../../../entities/moves.entity';
-import { forkJoin, Subject, takeUntil, timer } from 'rxjs';
+import { forkJoin, merge, Subject, takeUntil } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { ErrorMessageService } from 'app/services/error-message.service';
 import { PokemonSpriteOption } from '../../../../../../entities/poochydex-api/pokemon-sprite-option';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
@@ -21,12 +22,16 @@ import { AbilityName } from '../../../../../../entities/pokemon-ability.entity';
 })
 export class ShowPokemonComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
+  /** Cancels in-flight move `forkJoin` when loading another Pokémon in the same route component. */
+  private cancelPokemonMoves$ = new Subject<void>();
 
   language: string;
   pokemonName: string;
   pokemon: Pokemon;
   pokemonSpecie: PokemonSpecie;
   loading: boolean = true;
+  /** Move-detail fetch (`forkJoin`); skeleton in Pokémon moves section until false. */
+  movesLoading = false;
   pokemonSprite: string;
   pokemonSpriteShiny: string;
   movesWithTypes: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
@@ -66,13 +71,18 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.cancelPokemonMoves$.next();
     this.destroy$.next();
     this.destroy$.complete();
   }
 
   getPokemonByName(name: string) {
+    this.cancelPokemonMoves$.next();
     this.loading = true;
     this.loadingService.show();
+    this.movesWithTypes = [];
+    this.movesWithTypesEn = [];
+    this.movesWithTypesEs = [];
     this.pokeApiService.getPokemonByName(name)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
@@ -127,17 +137,23 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
     const moves = this.pokemon.moves;
 
     if (!moves || moves.length === 0) {
-      this.loading = false;
-      this.loadingService.hide();
+      this.movesLoading = false;
       return;
     }
+
+    this.movesLoading = true;
 
     const observables = moves.map(move =>
       this.pokeApiService.getMoveByUrl(move.move.url, move.move.name, move.version_group_details[0].version_group.name)
     );
 
     forkJoin(observables)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(
+        takeUntil(merge(this.destroy$, this.cancelPokemonMoves$)),
+        finalize(() => {
+          this.movesLoading = false;
+        })
+      )
       .subscribe({
         next: (details) => {
           const movesArray = moves.map((move, index) => ({
@@ -175,16 +191,10 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
           });
 
           this.movesWithTypes = this.language === 'es' ? this.movesWithTypesEs : this.movesWithTypesEn;
-          this.loading = false;
-          timer(2000).subscribe(() => {
-            this.loadingService.hide();
-          });
         },
         error: (error) => {
           const errorMessage = this.language === 'es' ? 'Error al cargar los movimientos' : 'Error loading moves';
           this.errorMessageService.showError(errorMessage, error.message);
-          this.loading = false;
-          this.loadingService.hide();
         }
       });
   }
@@ -204,6 +214,8 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
         name: nameEntry ? nameEntry.abilityName : abilityGroup.ability.ability.name
       };
     });
+    this.loading = false;
+    this.loadingService.hide();
     this.getPokemonMoves();
   }
 

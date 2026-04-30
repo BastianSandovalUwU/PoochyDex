@@ -17,7 +17,7 @@ alwaysApply: false
 | `''` | `PokedexComponent` | Redirige a Pokémon aleatorio → `show-pokemon/:name` |
 | `list` | `ListPokemonComponent` | Filtros en `filter/` |
 | `hunt` | `PokemonHuntComponent` | Caza |
-| `show-pokemon/:name` | `ShowPokemonComponent` | Ficha (tabs: info, entradas, stats, movimientos, variedades, localización…) |
+| `show-pokemon/:name` | `ShowPokemonComponent` | Ficha: overlay global hasta especie + nombres de habilidades; `movesLoading` + skeleton en `pokemon-moves` mientras el `forkJoin` de detalles de movimientos. |
 | `show-ability/:ability` | `ShowAbilityComponent` | Habilidad |
 | `list-pokedex` | `ListPokedexComponent` | Listado Pokédex |
 | `show-pokedex/:number` | `ShowPokedexComponent` | Pokédex regional |

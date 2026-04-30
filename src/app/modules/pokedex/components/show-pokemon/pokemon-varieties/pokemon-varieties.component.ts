@@ -20,6 +20,7 @@ export class PokemonVarietiesComponent implements OnInit, OnChanges {
   pokemonVarieties: any[];
   pokemonId: string;
   filtersVisible = true;
+  loadedSprites = new Set<string>();
 
   constructor(private helperService: HelperService,
               private pokeApiService: PokeApiService,
@@ -39,8 +40,11 @@ export class PokemonVarietiesComponent implements OnInit, OnChanges {
     this.filtersVisible = !this.filtersVisible;
   }
 
-  getVarietiesInfo() {
+  isImageLoaded(url: string): boolean { return this.loadedSprites.has(url); }
+  markImageLoaded(url: string): void { this.loadedSprites.add(url); }
 
+  getVarietiesInfo() {
+    this.loadedSprites.clear();
     const pokemonVarieties = [];
     for (let i = 0; i < this.pokemonSpecie.varieties.length; i++) {
       const pokeInfo = {
