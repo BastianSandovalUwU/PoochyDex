@@ -2,12 +2,14 @@
   display: block;
 }
 
-.poke-sprites {
-  @apply mt-6 rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-600 dark:bg-gray-800/90 sm:p-6;
-}
+/* Shell layout uses Tailwind on the host template (aligned with pokemon-stats). */
 
 .poke-sprites__title {
-  @apply mb-4 text-xl font-bold text-gray-900 dark:text-white;
+  @apply text-xl font-bold text-gray-900 dark:text-white;
+}
+
+.poke-sprites__title--header {
+  @apply mb-0;
 }
 
 .poke-sprites__section-subtitle {

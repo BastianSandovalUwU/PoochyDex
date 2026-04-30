@@ -1,7 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Pokemon } from '../../../../../entities/pokemon.entity';
 import { Showdown, Sprites } from '../../../../../entities/sprites.entity';
 import { Versions } from '../../../../../entities/versions.entity';
+import { PokemonSpecie } from '../../../../../entities/pokemon-specie.entity';
+import { HelperService } from '../services/helper.service';
+import { toggleSectionCollapseAnimations } from '../animations/toggle-section-collapse.animation';
 
 /** Collect sprite URLs in display order; drops empty entries. */
 function pack(...urls: (string | null | undefined)[]): string[] {
@@ -19,11 +22,35 @@ export interface LabeledSprite {
 @Component({
   selector: 'app-poke-sprites',
   templateUrl: './poke-sprites.component.html',
-  styleUrls: ['./poke-sprites.component.scss']
+  styleUrls: ['./poke-sprites.component.scss'],
+  animations: toggleSectionCollapseAnimations
 })
-export class PokeSpritesComponent {
+export class PokeSpritesComponent implements OnChanges {
   @Input() pokemon: Pokemon;
-  @Input() language: string = 'en';
+  @Input() language: string = 'es';
+  @Input() pokemonSpecie: PokemonSpecie;
+
+  backgroundColor: string = '';
+  spritesVisible = true;
+
+  constructor(private helperService: HelperService) { }
+
+  ngOnChanges(_changes: SimpleChanges): void {
+    this.getPokemonColor();
+  }
+
+
+  getPokemonColor() {
+    if (this.pokemonSpecie && this.pokemonSpecie.color) {
+      this.backgroundColor = this.helperService.getPokemonColor(this.pokemonSpecie.color.name);
+    } else {
+      this.backgroundColor = '';
+    }
+  }
+
+  toggleSpritesSection(): void {
+    this.spritesVisible = !this.spritesVisible;
+  }
 
   get sprites(): Sprites | undefined {
     return this.pokemon?.sprites;

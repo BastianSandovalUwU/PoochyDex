@@ -9,3 +9,9 @@ export * from './display/target-type';
 export * from './display/egg-group';
 export * from './display/pokedex-name';
 export * from './display/pokemon-forms';
+
+export enum LocalStorageKeys {
+  SESSION_DATA = 'sessionData',
+  USER_CONFIG_DATA = 'userConfigData',
+  APP_LANGUAGE = 'appLanguage'
+}

@@ -80,16 +80,20 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
       shiny: this.helperService.getPokemonSpriteImg(this.pokemon.name, PokemonSpriteOption.HomeShiny)
     }).subscribe({
       next: ({ home, shiny }) => {
-        this.pokemonSprite = home;
-        this.pokemonSpriteShiny = shiny;
-        if (!home) {
-          this.displayedImageLoaded = true;
-        } else {
-          this.scheduleSpriteDecodeSync();
-        }
+        queueMicrotask(() => {
+          this.pokemonSprite = home;
+          this.pokemonSpriteShiny = shiny;
+          if (!home) {
+            this.displayedImageLoaded = true;
+          } else {
+            this.scheduleSpriteDecodeSync();
+          }
+        });
       },
       error: () => {
-        this.displayedImageLoaded = true;
+        queueMicrotask(() => {
+          this.displayedImageLoaded = true;
+        });
       }
     });
 
@@ -200,11 +204,15 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onMainSpriteLoad(): void {
-    this.displayedImageLoaded = true;
+    queueMicrotask(() => {
+      this.displayedImageLoaded = true;
+    });
   }
 
   onMainSpriteError(): void {
-    this.displayedImageLoaded = true;
+    queueMicrotask(() => {
+      this.displayedImageLoaded = true;
+    });
   }
 
   imageTypeSegmentClass(type: PokemonSpriteOption): string {

@@ -1,6 +1,7 @@
 import { Inject, Injectable, forwardRef } from '@angular/core';
 import { AuthService } from 'app/modules/auth/services/auth.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { LocalStorageKeys } from '../../../../../entities/common/enum';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class LanguageService {
   public currentLanguage$: Observable<string>;
 
   constructor() {
-    const savedLanguage = localStorage.getItem('appLanguage') || 'es';
+    const savedLanguage = localStorage.getItem(LocalStorageKeys.APP_LANGUAGE) || 'es';
     this.currentLanguageSubject = new BehaviorSubject<string>(savedLanguage);
     this.currentLanguage$ = this.currentLanguageSubject.asObservable();
   }

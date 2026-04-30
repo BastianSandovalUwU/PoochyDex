@@ -28,8 +28,6 @@ export class AuthInterceptor implements HttpInterceptor {
             return throwError(() => error);
           })
         );
-      } else {
-        console.log('⚠️ No session data found for:', req.url);
       }
     }
 

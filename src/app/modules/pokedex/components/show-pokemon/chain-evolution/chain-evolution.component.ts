@@ -4,7 +4,7 @@ import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { EvolutionChain } from '../../../../../../../entities/evolution-chain.entity';
 import { Router } from '@angular/router';
 import { HelperService } from 'app/modules/shared/services/helper.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
 import { ErrorMessageService } from 'app/services/error-message.service';
 import { PokemonSpriteOption } from '../../../../../../../entities/poochydex-api/pokemon-sprite-option';
 
@@ -12,21 +12,7 @@ import { PokemonSpriteOption } from '../../../../../../../entities/poochydex-api
   selector: 'app-chain-evolution',
   templateUrl: './chain-evolution.component.html',
   styleUrls: ['./chain-evolution.component.scss'],
-  animations: [
-    trigger('toggleFilters', [
-      state('visible', style({
-        height: '*',
-        opacity: 1
-      })),
-      state('hidden', style({
-        height: '0px',
-        opacity: 0
-      })),
-      transition('visible <=> hidden', [
-        animate('300ms ease-in-out')
-      ])
-    ])
-  ]
+  animations: toggleSectionCollapseAnimations
 })
 export class ChainEvolutionComponent implements OnInit, OnChanges {
   @Input() language: string;

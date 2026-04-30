@@ -2,27 +2,13 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Router } from '@angular/router';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
 
 @Component({
   selector: 'app-pokedex-entries',
   templateUrl: './pokedex-entries.component.html',
   styleUrls: ['./pokedex-entries.component.scss'],
-  animations: [
-    trigger('toggleFilters', [
-      state('visible', style({
-        height: '*',
-        opacity: 1
-      })),
-      state('hidden', style({
-        height: '0px',
-        opacity: 0
-      })),
-      transition('visible <=> hidden', [
-        animate('300ms ease-in-out')
-      ])
-    ])
-  ]
+  animations: toggleSectionCollapseAnimations
 })
 export class PokedexEntriesComponent implements OnInit, OnChanges {
   @Input() language: string;

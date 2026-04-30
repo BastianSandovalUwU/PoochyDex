@@ -6,6 +6,7 @@ import { LoginResponse, SignUp } from '../../../../../entities/auth/auth.entity'
 import { Router } from '@angular/router';
 import { CreateUserConfigData, UserConfigData, UserConfigResponse, UserData } from '../../../../../entities/auth/user.entity';
 import { LanguageService } from 'app/modules/shared/services/language.service';
+import { LocalStorageKeys } from '../../../../../entities/common/enum';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +40,8 @@ export class AuthService {
   createUserConfig(userConfigData: CreateUserConfigData): Observable<CreateUserConfigData> {
     return this.http.post<CreateUserConfigData>(`${this.apiUrl}/api/userConfig/createUserConfig`, userConfigData).pipe(
       tap(response => {
-        localStorage.setItem('userConfigData', JSON.stringify({ language: userConfigData.language }));
-        localStorage.setItem('appLanguage', userConfigData.language);
+        localStorage.setItem(LocalStorageKeys.USER_CONFIG_DATA, JSON.stringify({ language: userConfigData.language }));
+        localStorage.setItem(LocalStorageKeys.APP_LANGUAGE, userConfigData.language);
         this.setLanguage(userConfigData.language);
       })
     );
@@ -49,8 +50,8 @@ export class AuthService {
   updateUserConfig(userConfigData: UserConfigData): Observable<CreateUserConfigData> {
     return this.http.put<CreateUserConfigData>(`${this.apiUrl}/api/userConfig/updateUserConfig`, userConfigData).pipe(
       tap(response => {
-        localStorage.setItem('userConfigData', JSON.stringify({ language: userConfigData.language }));
-        localStorage.setItem('appLanguage', userConfigData.language);
+        localStorage.setItem(LocalStorageKeys.USER_CONFIG_DATA, JSON.stringify({ language: userConfigData.language }));
+        localStorage.setItem(LocalStorageKeys.APP_LANGUAGE, userConfigData.language);
         this.setLanguage(userConfigData.language);
       })
     );
@@ -72,32 +73,32 @@ export class AuthService {
   }
 
   getSessionData(): UserData | null {
-    const sessionData = localStorage.getItem('sessionData');
+    const sessionData = localStorage.getItem(LocalStorageKeys.SESSION_DATA);
     return sessionData ? JSON.parse(sessionData) as UserData : null;
   }
 
   getUserConfigData(): UserConfigData | null {
-    const userConfigData = localStorage.getItem('userConfigData');
+    const userConfigData = localStorage.getItem(LocalStorageKeys.USER_CONFIG_DATA);
     return userConfigData ? JSON.parse(userConfigData) as UserConfigData : null;
   }
 
   setSessionData(userData: UserData): void {
-    localStorage.setItem('sessionData', JSON.stringify(userData));
+    localStorage.setItem(LocalStorageKeys.SESSION_DATA, JSON.stringify(userData));
     this.sessionDataSubject.next(userData);
   }
 
   setUserConfigData(userConfigData: UserConfigData): void {
-    localStorage.setItem('userConfigData', JSON.stringify(userConfigData));
+    localStorage.setItem(LocalStorageKeys.USER_CONFIG_DATA, JSON.stringify(userConfigData));
     this.userConfigSubject.next(userConfigData);
   }
 
   clearSessionData(): void {
-    localStorage.removeItem('sessionData');
+    localStorage.removeItem(LocalStorageKeys.SESSION_DATA);
     this.sessionDataSubject.next(null);
   }
 
   clearUserConfigData(): void {
-    localStorage.removeItem('userConfigData');
+    localStorage.removeItem(LocalStorageKeys.USER_CONFIG_DATA);
     this.userConfigSubject.next(null);
   }
 
@@ -112,7 +113,7 @@ export class AuthService {
   }
 
   setLanguage(language: string): void {
-    localStorage.setItem('appLanguage', language);
+    localStorage.setItem(LocalStorageKeys.APP_LANGUAGE, language);
     this.languageService.setCurrentLanguage(language);
 
   }

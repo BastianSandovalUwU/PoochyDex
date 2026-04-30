@@ -1,28 +1,14 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { FilteredByEgg, FilteredByMachine, FilteredByTutor } from '../../../../../entities/moves.entity';
 import { TabItem } from '../custom-tabs/custom-tabs.component';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { toggleSectionCollapseAnimations } from '../animations/toggle-section-collapse.animation';
 
 @Component({
   selector: 'app-pokemon-moves-table',
   templateUrl: './pokemon-moves-table.component.html',
   styleUrls: ['./pokemon-moves-table.component.scss'],
-  animations: [
-    trigger('toggleFilters', [
-      state('visible', style({
-        height: '*',
-        opacity: 1
-      })),
-      state('hidden', style({
-        height: '0px',
-        opacity: 0
-      })),
-      transition('visible <=> hidden', [
-        animate('300ms ease-in-out')
-      ])
-    ])
-  ]
+  animations: toggleSectionCollapseAnimations
 })
 export class PokemonMovesTableComponent implements OnChanges {
   @Input() language: string = 'es';

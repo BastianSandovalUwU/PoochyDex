@@ -2,27 +2,13 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
 
 @Component({
   selector: 'app-pokemon-stats',
   templateUrl: './pokemon-stats.component.html',
   styleUrls: ['./pokemon-stats.component.scss'],
-  animations: [
-    trigger('toggleFilters', [
-      state('visible', style({
-        height: '*',
-        opacity: 1
-      })),
-      state('hidden', style({
-        height: '0px',
-        opacity: 0
-      })),
-      transition('visible <=> hidden', [
-        animate('300ms ease-in-out')
-      ])
-    ])
-  ]
+  animations: toggleSectionCollapseAnimations
 })
 export class PokemonStatsComponent implements OnInit, OnChanges {
   @Input() language: string;

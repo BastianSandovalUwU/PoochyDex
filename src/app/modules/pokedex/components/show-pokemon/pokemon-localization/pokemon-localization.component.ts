@@ -3,7 +3,7 @@ import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.enti
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
 import { GroupedData, LocationData } from '../../../../../../../entities/localization.entity';
 import { ErrorMessageService } from 'app/services/error-message.service';
 
@@ -11,21 +11,7 @@ import { ErrorMessageService } from 'app/services/error-message.service';
   selector: 'app-pokemon-localization',
   templateUrl: './pokemon-localization.component.html',
   styleUrls: ['./pokemon-localization.component.scss'],
-  animations: [
-    trigger('toggleFilters', [
-      state('visible', style({
-        height: '*',
-        opacity: 1
-      })),
-      state('hidden', style({
-        height: '0px',
-        opacity: 0
-      })),
-      transition('visible <=> hidden', [
-        animate('300ms ease-in-out')
-      ])
-    ])
-  ]
+  animations: toggleSectionCollapseAnimations
 })
 export class PokemonLocalizationComponent implements OnInit, OnChanges {
   @Input() language: string;

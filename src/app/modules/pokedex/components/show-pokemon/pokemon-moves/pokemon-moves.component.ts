@@ -7,29 +7,15 @@ import { Subject, catchError, forkJoin, of, takeUntil } from 'rxjs';
 import { ExtendedMachineDetail } from '../../../../../../../entities/machine-move.entity';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { TabItem } from 'app/modules/shared/custom-tabs/custom-tabs.component';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ErrorMessageService } from 'app/services/error-message.service';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
 
 @Component({
   selector: 'app-pokemon-moves',
   templateUrl: './pokemon-moves.component.html',
   styleUrls: ['./pokemon-moves.component.scss'],
-  animations: [
-    trigger('toggleFilters', [
-      state('visible', style({
-        height: '*',
-        opacity: 1
-      })),
-      state('hidden', style({
-        height: '0px',
-        opacity: 0
-      })),
-      transition('visible <=> hidden', [
-        animate('300ms ease-in-out')
-      ])
-    ])
-  ]
+  animations: toggleSectionCollapseAnimations
 })
 export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   @Input() language: string = 'es';

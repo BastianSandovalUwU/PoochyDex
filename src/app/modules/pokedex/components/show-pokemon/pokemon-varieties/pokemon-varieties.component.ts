@@ -4,27 +4,13 @@ import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Router } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { PokemonSpriteOption } from '../../../../../../../entities/poochydex-api/pokemon-sprite-option';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
 
 @Component({
   selector: 'app-pokemon-varieties',
   templateUrl: './pokemon-varieties.component.html',
   styleUrls: ['./pokemon-varieties.component.scss'],
-  animations: [
-    trigger('toggleFilters', [
-      state('visible', style({
-        height: '*',
-        opacity: 1
-      })),
-      state('hidden', style({
-        height: '0px',
-        opacity: 0
-      })),
-      transition('visible <=> hidden', [
-        animate('300ms ease-in-out')
-      ])
-    ])
-  ]
+  animations: toggleSectionCollapseAnimations
 })
 export class PokemonVarietiesComponent implements OnInit, OnChanges {
   @Input() language: string = 'es';

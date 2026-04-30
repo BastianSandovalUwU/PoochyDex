@@ -1,7 +1,27 @@
-<section *ngIf="pokemon?.sprites" class="poke-sprites" [attr.aria-label]="t('Sprites', 'Sprites')">
-  <h2 class="poke-sprites__title">{{ t('Sprites', 'Sprites') }}</h2>
+<div
+  *ngIf="pokemon?.sprites"
+  [ngClass]="backgroundColor"
+  class="poke-sprites poke-sprites--shell p-4 rounded-md mt-2 border border-gray-200 shadow-sm dark:border-gray-600 dark:bg-gray-800"
+  [attr.aria-label]="t('Sprites', 'Sprites')">
+  <div
+    class="flex justify-between items-center cursor-pointer"
+    role="button"
+    tabindex="0"
+    (click)="toggleSpritesSection()"
+    (keydown.enter)="toggleSpritesSection()"
+    (keydown.space)="$event.preventDefault(); toggleSpritesSection()">
+    <h2 class="poke-sprites__title poke-sprites__title--header font-bold text-xl hover:text-gray-800 dark:text-white dark:hover:text-gray-300">
+      {{ t('Sprites', 'Sprites') }}
+    </h2>
+    <app-ui-button variant="icon" type="button" (buttonClick)="toggleSpritesSection(); $event.stopPropagation()">
+      <mat-icon>{{ spritesVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
+    </app-ui-button>
+  </div>
 
-  <div class="poke-sprites__content">
+  <div
+    [@toggleFilters]="spritesVisible ? 'visible' : 'hidden'"
+    class="poke-sprites__collapsible mt-2 overflow-hidden bg-white p-2 rounded-md w-full dark:bg-gray-900/50">
+    <div class="poke-sprites__content">
     <!-- API root (default) -->
     <div *ngIf="rootSpriteSlots.length" class="poke-sprites__gen">
       <h3 class="poke-sprites__gen-title">{{ t('Vista predeterminada (API)', 'Default sprites (API)') }}</h3>
@@ -229,5 +249,6 @@
       </div>
     </div>
     </ng-container>
+    </div>
   </div>
-</section>
+</div>

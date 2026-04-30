@@ -57,11 +57,13 @@ export class AppComponent implements OnInit, OnDestroy {
         this.currentUser = user;
       });
 
-    // Loading flag
+    // Loading flag (defer to avoid NG0100 when child routes toggle loading in the same CD cycle)
     this.loadingService.loading$
       .pipe(takeUntil(this.destroy$))
       .subscribe((loading) => {
-        this.loading = loading;
+        queueMicrotask(() => {
+          this.loading = loading;
+        });
       });
 
     // Online / offline
