@@ -22,6 +22,8 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   @Input() pokemon: Pokemon;
   @Input() pokemonSpecie: PokemonSpecie;
   @Input() movesWithTypes: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
+  /** While parent fetches move details from PokéAPI */
+  @Input() movesLoading = false;
   private unsubscribe$ = new Subject<void>();
 
   versionGroups: string[] = [];
@@ -49,11 +51,13 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     this.getPokemonColor();
-    this.processMoves();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['movesWithTypes'] && !changes['movesWithTypes'].firstChange) {
+    if (changes['movesLoading']?.previousValue === true && changes['movesLoading']?.currentValue === false) {
+      this.filtersVisibleLevel = true;
+    }
+    if (changes['movesWithTypes']) {
       this.processMoves();
     }
     if (changes['pokemonSpecie'] && !changes['pokemonSpecie'].firstChange) {
@@ -88,6 +92,12 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   processMoves(): void {
     if (this.movesWithTypes.length > 0) {
       this.extractVersionGroups();
+    } else {
+      this.versionGroups = [];
+      this.filteredMoves = [];
+      this.filteredMovesByMachine = [];
+      this.filteredMovesByTutor = [];
+      this.filteredMovesByEgg = [];
     }
   }
 

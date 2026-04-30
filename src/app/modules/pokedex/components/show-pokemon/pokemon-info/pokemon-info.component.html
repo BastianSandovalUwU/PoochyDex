@@ -44,12 +44,16 @@
         class="pokemon-info__sprite-frame relative h-80 w-80 max-w-full shrink-0 overflow-hidden rounded-xl"
         [attr.aria-busy]="displayedImageLoaded ? null : 'true'"
       >
-        <app-ui-skeleton [loading]="!displayedImageLoaded"></app-ui-skeleton>
+        <app-ui-skeleton
+          [loading]="!displayedImageLoaded"
+          extraClasses="z-20">
+        </app-ui-skeleton>
 
         <ng-container *ngIf="selectedImageType === PokemonSpriteOption.Home; else altArtTemplate">
           <img
-            *ngIf="!showShiny"
-            class="relative z-10 mx-auto h-full w-full max-h-full max-w-full cursor-pointer object-contain transition-opacity duration-300"
+            *ngIf="!showShiny && pokemonSprite"
+            class="relative z-0 mx-auto h-full w-full max-h-full max-w-full cursor-pointer object-contain transition-opacity duration-300"
+            [class.z-10]="displayedImageLoaded"
             [class.opacity-0]="!displayedImageLoaded"
             [class.opacity-100]="displayedImageLoaded"
             tabindex="0"
@@ -63,8 +67,9 @@
             [src]="pokemonSprite"
           >
           <img
-            *ngIf="showShiny"
-            class="relative z-10 mx-auto h-full w-full max-h-full max-w-full cursor-pointer object-contain transition-opacity duration-300"
+            *ngIf="showShiny && pokemonSpriteShiny"
+            class="relative z-0 mx-auto h-full w-full max-h-full max-w-full cursor-pointer object-contain transition-opacity duration-300"
+            [class.z-10]="displayedImageLoaded"
             [class.opacity-0]="!displayedImageLoaded"
             [class.opacity-100]="displayedImageLoaded"
             tabindex="0"
@@ -81,7 +86,9 @@
 
         <ng-template #altArtTemplate>
           <img
-            class="relative z-10 mx-auto h-full w-full max-h-full max-w-full object-contain transition-opacity duration-300"
+            *ngIf="getMainSprite()"
+            class="relative z-0 mx-auto h-full w-full max-h-full max-w-full object-contain transition-opacity duration-300"
+            [class.z-10]="displayedImageLoaded"
             [class.opacity-0]="!displayedImageLoaded"
             [class.opacity-100]="displayedImageLoaded"
             role="img"

@@ -1,4 +1,4 @@
-<div class="m-4 max-w-4xl mx-auto" *ngIf="pokemon && pokemonSpecie && !loading && filteredAbilityNames.length > 0" [@detailFadeIn]>
+<div class="m-4 max-w-4xl mx-auto" *ngIf="pokemon && pokemonSpecie && filteredAbilityNames.length > 0" [@detailFadeIn]>
   <app-pokemon-info
     [language]="language"
     [pokemon]="pokemon"
@@ -32,7 +32,8 @@
       [language]="language"
       [pokemonSpecie]="pokemonSpecie"
       [pokemon]="pokemon"
-      [movesWithTypes]="movesWithTypes">
+      [movesWithTypes]="movesWithTypes"
+      [movesLoading]="movesLoading">
     </app-pokemon-moves>
 
     <!-- Pokemon sprites -->
