@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Pokemon, PokemonForm } from '../../../../../../entities/poochydex-api/pokemon.type';
-import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
+import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 @Component({

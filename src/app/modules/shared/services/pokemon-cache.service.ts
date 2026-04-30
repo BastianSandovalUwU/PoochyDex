@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { forkJoin, map } from 'rxjs';
 import { PokeApiService } from './pokeApi.service';
-import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
+import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';
 import { CustomPokemonCatalogService } from './custom-pokemon-catalog.service';
 
 /**

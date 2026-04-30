@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { PokedexOption } from '../../../../../../entities/pokemon-hunt.entity';
 import { ALL_POKEDEX_OPTIONS } from '../../../../../../entities/common/const.interface';
+import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 
 @Component({
   selector: 'app-pokemon-hunt',
   templateUrl: './pokemon-hunt.component.html',
-  styleUrls: ['./pokemon-hunt.component.scss']
+  styleUrls: ['./pokemon-hunt.component.scss'],
+  animations: detailFadeInAnimations
 })
 export class PokemonHuntComponent implements OnInit {
   language: string;

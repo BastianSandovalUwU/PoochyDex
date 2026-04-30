@@ -10,13 +10,15 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LanguageService } from 'app/modules/shared/services/language.service';
+import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss']
+  styleUrls: ['./sign-up.component.scss'],
+  animations: detailFadeInAnimations
 })
 export class SignUpComponent implements OnInit, OnDestroy {
 
@@ -64,7 +66,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 
-  /** 0 = vacío; 1–4 = nivel mostrado en la barra. */
+  /** 0 = empty; 1–4 = level shown in the bar. */
   get passwordStrengthLevel(): number {
     const p = (this.signUpForm.get('password')?.value as string) ?? '';
     if (!p) {

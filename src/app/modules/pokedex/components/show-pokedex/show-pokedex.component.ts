@@ -5,12 +5,15 @@ import { LanguageService } from 'app/modules/shared/services/language.service';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Pokemon } from '../../../../../../entities/poochydex-api/pokemon.type';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
-import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
+import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';
 import { Pokedex } from '../../../../../../entities/poke-api.entity';
+import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
+
 @Component({
   selector: 'app-show-pokedex',
   templateUrl: './show-pokedex.component.html',
-  styleUrls: ['./show-pokedex.component.scss']
+  styleUrls: ['./show-pokedex.component.scss'],
+  animations: detailFadeInAnimations
 })
 export class ShowPokedexComponent implements OnInit {
   language: string;

@@ -6,7 +6,7 @@ import { PokemonAbility, FlavorTextEntry } from '../../../../../../entities/poke
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { ErrorMessageService } from 'app/services/error-message.service';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
-import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
+import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';
 import { Pokemon } from '../../../../../../entities/poochydex-api/pokemon.type';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 

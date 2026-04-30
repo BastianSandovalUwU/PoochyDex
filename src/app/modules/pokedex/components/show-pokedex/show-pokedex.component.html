@@ -1,4 +1,4 @@
-<div class="mt-4 max-w-6xl mx-auto" *ngIf="filteredPokemon.length > 0">
+<div class="mt-4 max-w-6xl mx-auto" *ngIf="filteredPokemon.length > 0" [@detailFadeIn]>
   <h1 class="mx-5 text-black text-2xl font-bold dark:text-white">
     {{ language === 'es' ? 'Lista de Pokémon según la Pokédex de' : ''}} {{ pokedexName |translatePokedexName }} {{
     language === 'es' ? '' : 'Dex'}}

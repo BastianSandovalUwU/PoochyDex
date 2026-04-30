@@ -6,7 +6,7 @@ import { ErrorMessageService } from 'app/services/error-message.service';
 import { PokemonHuntService } from '../services/pokemon-hunt.service';
 import { RegisteredPokemon } from '../../../../../entities/pokemon-hunt.entity';
 import { AuthService } from 'app/modules/auth/services/auth.service';
-import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
+import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';
 import { Pokemon } from '../../../../../entities/poochydex-api/pokemon.type';
 import { LoadingService } from '../services/loading.service';
 

@@ -1,4 +1,4 @@
-<div class="px-4 py-6 max-w-6xl mx-auto">
+<div class="px-4 py-6 max-w-6xl mx-auto" [@detailFadeIn]>
   <h1 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
     Admin Pokémon (API NodeJS)
   </h1>
@@ -9,7 +9,7 @@
       type="button"
       extraClasses="!bg-blue-600 hover:!bg-blue-700 !text-white !rounded-md px-4 py-2 text-sm font-medium"
       (buttonClick)="startCreate()">
-      {{ isFormMode ? 'Nueva forma' : 'Nuevo Pokémon' }}
+      {{ isFormMode ? (language === 'es' ? 'Nueva forma' : 'New form') : (language === 'es' ? 'Nuevo Pokémon' : 'New Pokémon') }}
     </app-ui-button>
 
     <app-ui-button
@@ -18,23 +18,23 @@
       [disabled]="loading"
       extraClasses="px-4 py-2 text-sm !rounded-md"
       (buttonClick)="loadPokemon()">
-      {{ isFormMode ? 'Recargar formas' : 'Recargar Pokémon' }}
+      {{ isFormMode ? (language === 'es' ? 'Recargar formas' : 'Reload forms') : (language === 'es' ? 'Recargar Pokémon' : 'Reload Pokémon') }}
     </app-ui-button>
 
     <span *ngIf="loading" class="text-sm text-gray-500">
-      Cargando...
+      {{ language === 'es' ? 'Cargando...' : 'Loading...' }}
     </span>
 
     <div class="flex items-center gap-2 ml-auto">
       <span class="text-xs text-gray-600 dark:text-gray-300">
-        {{ isFormMode ? 'Modo: Formas alternativas' : 'Modo: Pokémon base' }}
+        {{ isFormMode ? (language === 'es' ? 'Modo: Formas alternativas' : 'Mode: Alt. forms') : (language === 'es' ? 'Modo: Pokémon base' : 'Mode: Base Pokémon') }}
       </span>
       <app-ui-button
         variant="outline"
         type="button"
         extraClasses="px-3 py-1 !rounded-full text-xs font-medium border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
         (buttonClick)="isFormMode = !isFormMode; loadPokemon()">
-        {{ isFormMode ? 'Ver Pokémon base' : 'Ver formas' }}
+        {{ isFormMode ? (language === 'es' ? 'Ver Pokémon base' : 'View base Pokémon') : (language === 'es' ? 'Ver formas' : 'View forms') }}
       </app-ui-button>
     </div>
   </div>
@@ -60,8 +60,8 @@
       <div class="flex justify-between items-center mb-4">
         <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
           {{ isFormMode
-              ? (isEditMode ? 'Editar forma alternativa' : 'Crear forma alternativa')
-              : (isEditMode ? 'Editar Pokémon' : 'Crear Pokémon') }}
+              ? (isEditMode ? (language === 'es' ? 'Editar forma alternativa' : 'Edit alt. form') : (language === 'es' ? 'Crear forma alternativa' : 'Create alt. form'))
+              : (isEditMode ? (language === 'es' ? 'Editar Pokémon' : 'Edit Pokémon') : (language === 'es' ? 'Crear Pokémon' : 'Create Pokémon')) }}
         </h2>
         <app-ui-button
           variant="ghost"
@@ -76,7 +76,7 @@
       <form (ngSubmit)="savePokemon()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-            Número *
+            {{ language === 'es' ? 'Número *' : 'Number *' }}
           </label>
           <input
             type="number"
@@ -89,7 +89,7 @@
 
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-            Nombre *
+            {{ language === 'es' ? 'Nombre *' : 'Name *' }}
           </label>
           <input
             type="text"
@@ -102,14 +102,14 @@
 
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-            Tipo principal *
+            {{ language === 'es' ? 'Tipo principal *' : 'Primary type *' }}
           </label>
           <select
             class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
             [(ngModel)]="formData.type"
             name="type"
             required>
-            <option [ngValue]="''" disabled>Selecciona un tipo</option>
+            <option [ngValue]="''" disabled>{{ language === 'es' ? 'Selecciona un tipo' : 'Select a type' }}</option>
             <option *ngFor="let type of pokemonTypes" [ngValue]="type">
               {{ getTypeLabel(type) }}
             </option>
@@ -118,14 +118,14 @@
 
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-            Segundo tipo
+            {{ language === 'es' ? 'Segundo tipo' : 'Secondary type' }}
           </label>
           <select
             class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
             [(ngModel)]="formData.type2"
             name="type2">
             <option [ngValue]="''">
-              Ninguno
+              {{ language === 'es' ? 'Ninguno' : 'None' }}
             </option>
             <option *ngFor="let type of pokemonTypes" [ngValue]="type">
               {{ getTypeLabel(type) }}
@@ -135,7 +135,7 @@
 
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-            Generación *
+            {{ language === 'es' ? 'Generación *' : 'Generation *' }}
           </label>
           <input
             type="number"
@@ -217,7 +217,7 @@
             variant="primary"
             [disabled]="loading"
             extraClasses="!bg-green-600 hover:!bg-green-700 !text-white !rounded-md px-4 py-2 text-sm font-medium">
-            {{ isEditMode ? 'Guardar cambios' : 'Crear Pokémon' }}
+            {{ isEditMode ? (language === 'es' ? 'Guardar cambios' : 'Save changes') : (language === 'es' ? 'Crear Pokémon' : 'Create Pokémon') }}
           </app-ui-button>
 
           <app-ui-button
@@ -225,7 +225,7 @@
             variant="secondary"
             extraClasses="px-4 py-2 text-sm !rounded-md"
             (buttonClick)="resetForm()">
-            Limpiar formulario
+            {{ language === 'es' ? 'Limpiar formulario' : 'Clear form' }}
           </app-ui-button>
 
           <app-ui-button
@@ -233,7 +233,7 @@
             variant="secondary"
             extraClasses="px-4 py-2 text-sm !rounded-md ml-auto"
             (buttonClick)="closeModal()">
-            Cancelar
+            {{ language === 'es' ? 'Cancelar' : 'Cancel' }}
           </app-ui-button>
         </div>
       </form>
@@ -246,11 +246,11 @@
       <thead class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
         <tr>
           <th class="px-3 py-2 text-left">#</th>
-          <th class="px-3 py-2 text-left">Nombre</th>
-          <th class="px-3 py-2 text-left">Tipos</th>
-          <th class="px-3 py-2 text-left">Generación</th>
+          <th class="px-3 py-2 text-left">{{ language === 'es' ? 'Nombre' : 'Name' }}</th>
+          <th class="px-3 py-2 text-left">{{ language === 'es' ? 'Tipos' : 'Types' }}</th>
+          <th class="px-3 py-2 text-left">{{ language === 'es' ? 'Generación' : 'Generation' }}</th>
           <th class="px-3 py-2 text-left">Sprite</th>
-          <th class="px-3 py-2 text-right">Acciones</th>
+          <th class="px-3 py-2 text-right">{{ language === 'es' ? 'Acciones' : 'Actions' }}</th>
         </tr>
       </thead>
       <tbody>
@@ -281,21 +281,23 @@
               type="button"
               extraClasses="!bg-blue-500 hover:!bg-blue-600 !text-white text-xs font-medium px-3 py-1 !rounded-md mr-2"
               (buttonClick)="startEdit(pokemon)">
-              Editar
+              {{ language === 'es' ? 'Editar' : 'Edit' }}
             </app-ui-button>
             <app-ui-button
               variant="primary"
               type="button"
               extraClasses="!bg-red-500 hover:!bg-red-600 !text-white text-xs font-medium px-3 py-1 !rounded-md"
               (buttonClick)="deletePokemon(pokemon)">
-              Eliminar
+              {{ language === 'es' ? 'Eliminar' : 'Delete' }}
             </app-ui-button>
           </td>
         </tr>
 
         <tr *ngIf="!loading && pokemonList.length === 0">
           <td colspan="6" class="px-3 py-4 text-center text-gray-500">
-            {{ isFormMode ? 'No hay formas de Pokémon en la base de datos.' : 'No hay Pokémon en la base de datos.' }}
+            {{ isFormMode
+              ? (language === 'es' ? 'No hay formas de Pokémon en la base de datos.' : 'No Pokémon forms in the database.')
+              : (language === 'es' ? 'No hay Pokémon en la base de datos.' : 'No Pokémon in the database.') }}
           </td>
         </tr>
       </tbody>

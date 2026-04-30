@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
-import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochyDexApi.service';
+import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';
 import { Pokemon, PokemonForm } from '../../../../../entities/poochydex-api/pokemon.type';
 import { PokemonSpriteOption } from '../../../../../entities/poochydex-api/pokemon-sprite-option';
 import { getCorrectPokemonName } from '../../../../../entities/common/enum';

@@ -3,11 +3,13 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'app/modules/auth/services/auth.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
+import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  animations: detailFadeInAnimations
 })
 export class LoginComponent implements OnInit, OnDestroy {
   errorMessage = '';
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: UntypedFormGroup;
   loading = false;
   showPassword = false;
-  /** Cuenta creada: mensaje tras registro (query `registered=1`). */
+  /** Banner shown after registration redirect (query `registered=1`). */
   registeredBanner = false;
 
   private readonly subs = new Subscription();
