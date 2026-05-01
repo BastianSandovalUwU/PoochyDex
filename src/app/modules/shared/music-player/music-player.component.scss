@@ -2,204 +2,50 @@
   display: contents;
 }
 
-/* Larger tap targets on narrow viewports (matches project sm breakpoint 480px) */
-@media (max-width: 479px) {
-  .music-ctrl {
-    width: 3rem;
-    height: 3rem;
-    min-width: 3rem;
-    min-height: 3rem;
-
-    mat-icon {
-      width: 26px !important;
-      height: 26px !important;
-      font-size: 26px !important;
-      line-height: 26px !important;
-    }
-  }
-
-  .music-ctrl-primary {
-    width: 3.75rem;
-    height: 3.75rem;
-    min-width: 3.75rem;
-    min-height: 3.75rem;
-
-    mat-icon {
-      width: 34px !important;
-      height: 34px !important;
-      font-size: 34px !important;
-      line-height: 34px !important;
-    }
-  }
-}
-
-/* Native <button> reset + perfect circle (browser defaults often squash or pad FABs) */
-.music-fab {
-  appearance: none;
-  -webkit-appearance: none;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  border-radius: 50%;
-  aspect-ratio: 1 / 1;
-  min-width: 0;
-  min-height: 0;
-  width: 4rem;
-  height: 4rem;
-  flex-shrink: 0;
-  line-height: 0;
-
-  mat-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-/* Transport row: every control is a real circle (not just an icon) */
-.music-ctrl {
-  appearance: none;
-  -webkit-appearance: none;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  width: 2.75rem;
-  height: 2.75rem;
-  min-width: 2.75rem;
-  min-height: 2.75rem;
-  display: inline-flex;
+/* Playlist track rows — direct <button> elements in this template, scoped CSS works fine */
+.playlist-item {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  line-height: 0;
+  gap: 0.625rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.625rem;
+  border-radius: 0.75rem;
+  transition: background-color 0.15s ease;
+  background: transparent;
+  border: none;
   cursor: pointer;
-  background-color: #f3f4f6;
-  color: #1f2937;
-  transition: background-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
 
   &:hover {
-    background-color: #e5e7eb;
+    background-color: rgb(243 244 246);
   }
 
   &:focus-visible {
     outline: 2px solid #db2777;
-    outline-offset: 2px;
-  }
-
-  mat-icon {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 24px !important;
-    height: 24px !important;
-    font-size: 24px !important;
-    line-height: 24px !important;
+    outline-offset: 1px;
   }
 }
 
-:host-context(.dark) .music-ctrl {
-  background-color: #1f2937;
-  color: #f3f4f6;
-
-  &:hover {
-    background-color: #374151;
-  }
+:host-context(.dark) .playlist-item:hover {
+  background-color: rgb(31 41 55);
 }
 
-.music-ctrl--on {
-  background-color: #fce7f3 !important;
-  color: #db2777 !important;
-
-  &:hover {
-    background-color: #fbcfe8 !important;
-  }
+.playlist-item--active {
+  background-color: rgb(253 242 248);
 }
 
-:host-context(.dark) .music-ctrl--on {
-  background-color: #831843 !important;
-  color: #fbcfe8 !important;
-
-  &:hover {
-    background-color: #9d174d !important;
-  }
+:host-context(.dark) .playlist-item--active {
+  background-color: rgb(131 24 67 / 0.2);
 }
 
-.music-ctrl--muted {
-  opacity: 0.55;
+/* fab-icon-playing targets a projected mat-icon (ng-content), which keeps the
+   host component's encapsulation attribute — scoped CSS reaches it correctly */
+@keyframes fab-icon-eq {
+  0%, 100% { transform: scaleY(1); }
+  50%       { transform: scaleY(1.18); }
 }
 
-/* Center play / pause — larger circle */
-.music-ctrl-primary {
-  appearance: none;
-  -webkit-appearance: none;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  width: 3.25rem;
-  height: 3.25rem;
-  min-width: 3.25rem;
-  min-height: 3.25rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  line-height: 0;
-  cursor: pointer;
-  background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(219, 39, 119, 0.35);
-  transition: filter 0.15s ease, transform 0.1s ease;
-
-  &:hover {
-    filter: brightness(1.05);
-  }
-
-  &:active {
-    transform: scale(0.97);
-  }
-
-  &:focus-visible {
-    outline: 2px solid #db2777;
-    outline-offset: 2px;
-  }
-
-  mat-icon {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 32px !important;
-    height: 32px !important;
-    font-size: 32px !important;
-    line-height: 32px !important;
-  }
-}
-
-:host-context(.dark) .music-ctrl-primary {
-  background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
-  box-shadow: 0 4px 14px rgba(190, 24, 93, 0.45);
-}
-
-/* Same ripple affordance as search-button (search-button-ripple) */
-.music-fab-ripple {
-  &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-  }
-
-  &:active::before {
-    width: 200px;
-    height: 200px;
-  }
+.fab-icon-playing {
+  animation: fab-icon-eq 0.7s ease-in-out infinite;
+  transform-origin: center bottom;
 }

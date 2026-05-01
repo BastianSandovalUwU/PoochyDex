@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
 import { MusicTrack } from '../music-player/music-track.model';
-import { OFFLINE_MUSIC_PLAYLIST } from '../music-player/offline-music-playlist';
+import { S3MusicService } from './s3-music.service';
 
 const STORAGE_VOLUME = 'poochydex_music_volume';
 const STORAGE_EXPANDED = 'poochydex_music_expanded';
@@ -49,8 +49,10 @@ function createPersistentAudioElement(): HTMLAudioElement {
 })
 export class MusicPlayerService {
   private readonly audio = createPersistentAudioElement();
-  private readonly tracks: MusicTrack[] = OFFLINE_MUSIC_PLAYLIST;
+  private tracks: MusicTrack[] = [];
   private currentIndex = 0;
+  private shuffleQueue: number[] = [];
+  private shuffleQueuePos = 0;
   /** True if playback was active before the tab/app went to background (some browsers pause HTML audio). */
   private shouldResumeAfterHidden = false;
 
@@ -64,6 +66,7 @@ export class MusicPlayerService {
   private readonly isExpandedSubject = new BehaviorSubject<boolean>(true);
   /** Floating player visible (always-on-screen can be toggled off). */
   private readonly fixedVisibleSubject = new BehaviorSubject<boolean>(true);
+  private readonly isLoadingTracksSubject = new BehaviorSubject<boolean>(false);
 
   readonly currentTrack$: Observable<MusicTrack | null> = this.currentTrackSubject.asObservable();
   readonly isPlaying$: Observable<boolean> = this.isPlayingSubject.asObservable();
@@ -74,14 +77,44 @@ export class MusicPlayerService {
   readonly shuffle$: Observable<boolean> = this.shuffleSubject.asObservable();
   readonly isExpanded$: Observable<boolean> = this.isExpandedSubject.asObservable();
   readonly fixedVisible$: Observable<boolean> = this.fixedVisibleSubject.asObservable();
+  readonly isLoadingTracks$: Observable<boolean> = this.isLoadingTracksSubject.asObservable();
 
-  readonly hasTracks = this.tracks.length > 0;
+  get hasTracks(): boolean {
+    return this.tracks.length > 0;
+  }
 
-  constructor() {
+  /** Tracks in current play order: shuffled queue order when shuffle is on, original otherwise. */
+  get playlistOrder(): readonly MusicTrack[] {
+    if (this.shuffleSubject.value && this.shuffleQueue.length === this.tracks.length) {
+      return this.shuffleQueue.map(i => this.tracks[i]);
+    }
+    return this.tracks;
+  }
+
+  /** Index of the current track within `playlistOrder`. */
+  get currentPlaylistIndex(): number {
+    if (this.shuffleSubject.value && this.shuffleQueue.length > 0) {
+      return this.shuffleQueuePos;
+    }
+    return this.currentIndex;
+  }
+
+  /** Select a track by its position in `playlistOrder` (handles shuffle mapping). */
+  selectFromPlaylist(playlistPos: number, autoplay: boolean): void {
+    if (this.shuffleSubject.value && this.shuffleQueue.length === this.tracks.length) {
+      this.shuffleQueuePos = playlistPos;
+      this.selectTrack(this.shuffleQueue[playlistPos], autoplay);
+    } else {
+      this.selectTrack(playlistPos, autoplay, true);
+    }
+  }
+
+  constructor(private s3Music: S3MusicService) {
     this.restoreUiState();
     this.applyVolumeFromStorage();
     this.setupMediaSession();
     this.setupVisibilityResume();
+    void this.loadTracksFromS3();
 
     this.audio.addEventListener('timeupdate', () => {
       this.currentTimeSubject.next(this.audio.currentTime || 0);
@@ -101,6 +134,26 @@ export class MusicPlayerService {
 
     if (this.hasTracks) {
       this.selectTrack(0, false);
+    }
+  }
+
+  async loadTracksFromS3(prefix?: string): Promise<void> {
+    this.isLoadingTracksSubject.next(true);
+    try {
+      const s3Tracks = await firstValueFrom(this.s3Music.listAudioTracks(prefix));
+      if (s3Tracks.length > 0) {
+        this.tracks = s3Tracks;
+        this.currentIndex = 0;
+        this.currentTrackSubject.next(null);
+        if (this.shuffleSubject.value && s3Tracks.length > 1) {
+          this.buildShuffleQueue();
+        }
+        this.selectTrack(0, false);
+      }
+    } catch (e) {
+      console.warn('MusicPlayerService: failed to load S3 tracks, keeping offline playlist', e);
+    } finally {
+      this.isLoadingTracksSubject.next(false);
     }
   }
 
@@ -136,7 +189,11 @@ export class MusicPlayerService {
   }
 
   toggleShuffle(): void {
-    this.shuffleSubject.next(!this.shuffleSubject.value);
+    const next = !this.shuffleSubject.value;
+    this.shuffleSubject.next(next);
+    if (next && this.tracks.length > 1) {
+      this.buildShuffleQueue();
+    }
   }
 
   cycleRepeatMode(): void {
@@ -177,17 +234,15 @@ export class MusicPlayerService {
       return;
     }
     if (this.shuffleSubject.value && this.tracks.length > 1) {
-      let idx = this.currentIndex;
-      let guard = 0;
-      while (idx === this.currentIndex && guard < 16) {
-        idx = Math.floor(Math.random() * this.tracks.length);
-        guard++;
+      this.shuffleQueuePos++;
+      if (this.shuffleQueuePos >= this.shuffleQueue.length) {
+        this.buildShuffleQueue();
+        this.shuffleQueuePos = this.tracks.length > 1 ? 1 : 0;
       }
-      this.selectTrack(idx, true);
+      this.selectTrack(this.shuffleQueue[this.shuffleQueuePos], true);
       return;
     }
-    const nextIndex = (this.currentIndex + 1) % this.tracks.length;
-    this.selectTrack(nextIndex, true);
+    this.selectTrack((this.currentIndex + 1) % this.tracks.length, true);
   }
 
   previous(): void {
@@ -195,35 +250,67 @@ export class MusicPlayerService {
       return;
     }
     if (this.shuffleSubject.value && this.tracks.length > 1) {
-      let idx = this.currentIndex;
-      let guard = 0;
-      while (idx === this.currentIndex && guard < 16) {
-        idx = Math.floor(Math.random() * this.tracks.length);
-        guard++;
-      }
-      this.selectTrack(idx, true);
+      this.shuffleQueuePos = Math.max(0, this.shuffleQueuePos - 1);
+      this.selectTrack(this.shuffleQueue[this.shuffleQueuePos], true);
       return;
     }
-    const prevIndex = (this.currentIndex - 1 + this.tracks.length) % this.tracks.length;
-    this.selectTrack(prevIndex, true);
+    this.selectTrack((this.currentIndex - 1 + this.tracks.length) % this.tracks.length, true);
   }
 
-  selectTrack(index: number, autoplay: boolean): void {
+  private buildShuffleQueue(): void {
+    const rest = Array.from({ length: this.tracks.length }, (_, i) => i)
+      .filter(i => i !== this.currentIndex);
+    for (let i = rest.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [rest[i], rest[j]] = [rest[j], rest[i]];
+    }
+    this.shuffleQueue = [this.currentIndex, ...rest];
+    this.shuffleQueuePos = 0;
+  }
+
+  selectTrack(index: number, autoplay: boolean, rebuildShuffle = false): void {
     if (!this.hasTracks || index < 0 || index >= this.tracks.length) {
       return;
     }
     this.currentIndex = index;
+    if (rebuildShuffle && this.shuffleSubject.value && this.tracks.length > 1) {
+      this.buildShuffleQueue();
+    }
     const track = this.tracks[index];
     this.currentTrackSubject.next(track);
     this.audio.pause();
-    this.audio.src = track.src;
-    this.audio.load();
     this.currentTimeSubject.next(0);
     this.syncMediaSessionMetadata();
-    if (autoplay) {
-      void this.play();
+
+    if (track.s3Key) {
+      void this.loadS3SrcAndPlay(track, index, autoplay);
     } else {
-      this.isPlayingSubject.next(false);
+      this.audio.src = track.src;
+      this.audio.load();
+      if (autoplay) {
+        void this.play();
+      } else {
+        this.isPlayingSubject.next(false);
+      }
+    }
+  }
+
+  private async loadS3SrcAndPlay(track: MusicTrack, index: number, autoplay: boolean): Promise<void> {
+    try {
+      const url = await firstValueFrom(this.s3Music.getPresignedUrl(track.s3Key!));
+      track.src = url;
+      if (this.currentIndex !== index) {
+        return;
+      }
+      this.audio.src = url;
+      this.audio.load();
+      if (autoplay) {
+        void this.play();
+      } else {
+        this.isPlayingSubject.next(false);
+      }
+    } catch (e) {
+      console.warn('MusicPlayerService: could not get presigned URL for', track.s3Key, e);
     }
   }
 

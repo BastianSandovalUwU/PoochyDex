@@ -39,6 +39,7 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
 
   language = 'es';
   hasTracks = false;
+  isLoadingTracks = false;
   currentTrack: MusicTrack | null = null;
   isPlaying = false;
   currentTime = 0;
@@ -48,6 +49,9 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
   shuffle = false;
   isExpanded = true;
   fixedVisible = true;
+  showPlaylist = false;
+  playlistTracks: readonly MusicTrack[] = [];
+  playlistCurrentIndex = 0;
 
   repeatModeLabel = '';
 
@@ -61,6 +65,13 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.hasTracks = this.music.hasTracks;
 
+    this.music.isLoadingTracks$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((loading) => {
+        this.isLoadingTracks = loading;
+        this.hasTracks = this.music.hasTracks;
+      });
+
     this.languageService.currentLanguage$
       .pipe(takeUntil(this.destroy$))
       .subscribe((lang) => {
@@ -70,7 +81,10 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
 
     this.music.currentTrack$
       .pipe(takeUntil(this.destroy$))
-      .subscribe((t) => (this.currentTrack = t));
+      .subscribe((t) => {
+        this.currentTrack = t;
+        this.refreshPlaylist();
+      });
 
     this.music.isPlaying$
       .pipe(takeUntil(this.destroy$))
@@ -97,7 +111,18 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
 
     this.music.shuffle$
       .pipe(takeUntil(this.destroy$))
-      .subscribe((s) => (this.shuffle = s));
+      .subscribe((s) => {
+        this.shuffle = s;
+        this.refreshPlaylist();
+      });
+
+    this.music.isLoadingTracks$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((loading) => {
+        this.isLoadingTracks = loading;
+        this.hasTracks = this.music.hasTracks;
+        this.refreshPlaylist();
+      });
 
     this.music.isExpanded$
       .pipe(takeUntil(this.destroy$))
@@ -111,6 +136,11 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  private refreshPlaylist(): void {
+    this.playlistTracks = this.music.playlistOrder;
+    this.playlistCurrentIndex = this.music.currentPlaylistIndex;
   }
 
   formatTime(seconds: number): string {
@@ -170,8 +200,8 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
 
   emptyHint(): string {
     return this.language === 'es'
-      ? 'Añade archivos en assets/audio y la lista en offline-music-playlist.ts'
-      : 'Add files under assets/audio and register them in offline-music-playlist.ts';
+      ? 'Cargando lista de reproducción…'
+      : 'Loading playlist…';
   }
 
   private updateRepeatLabel(): void {

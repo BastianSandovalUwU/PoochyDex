@@ -23,9 +23,9 @@
       type="button"
       variant="icon"
       [ariaLabel]="language === 'es' ? 'Abrir reproductor de música' : 'Open music player'"
-      extraClasses="music-fab w-full h-full !min-w-[64px] !min-h-[64px] bg-gradient-to-br from-pink-500 to-pink-600 dark:from-pink-500 dark:to-pink-600 border-2 border-white dark:border-pink-100 flex justify-center items-center cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 hover:from-pink-600 hover:to-pink-700 dark:hover:from-pink-600 dark:hover:to-pink-700 transition-all duration-300 ease-out relative overflow-hidden focus-visible:outline-2 focus-visible:outline-pink-600 focus-visible:outline-offset-2 dark:focus-visible:outline-pink-300 active:scale-[0.98] music-fab-ripple"
+      [extraClasses]="'music-fab w-full h-full !min-w-[64px] !min-h-[64px] bg-gradient-to-br from-pink-500 to-pink-600 dark:from-pink-500 dark:to-pink-600 border-2 border-white dark:border-pink-100 flex justify-center items-center cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 hover:from-pink-600 hover:to-pink-700 dark:hover:from-pink-600 dark:hover:to-pink-700 transition-all duration-300 ease-out relative overflow-hidden focus-visible:outline-2 focus-visible:outline-pink-600 focus-visible:outline-offset-2 dark:focus-visible:outline-pink-300 active:scale-[0.98] music-fab-ripple' + (isPlaying ? ' music-fab--playing' : '')"
       (buttonClick)="music.toggleExpanded()">
-      <mat-icon class="text-white text-[28px] w-7 h-7 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)] relative z-10">
+      <mat-icon [class]="'text-white text-[28px] w-7 h-7 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)] relative z-10' + (isPlaying ? ' fab-icon-playing' : '')">
         {{ isPlaying ? 'graphic_eq' : 'music_note' }}
       </mat-icon>
     </app-ui-button>
@@ -36,11 +36,11 @@
     *ngIf="!hasTracks || isExpanded"
     @musicDock
     class="music-dock music-dock--expanded fixed z-[1020] flex flex-col
-           bottom-0 left-0 right-0 w-full max-h-[min(58vh,32rem)] overflow-y-auto overflow-x-hidden
+           bottom-0 left-0 right-0 w-full max-h-[min(72vh,36rem)] overflow-x-hidden
            rounded-t-3xl rounded-b-none border-t border-gray-200 dark:border-gray-600
            bg-white dark:bg-gray-900 p-4 pb-5 gap-3 shadow-[0_-10px_40px_rgba(0,0,0,0.18)]
-           sm:bottom-32 sm:right-[17px] sm:left-auto sm:max-h-none sm:w-[min(100vw-2rem,22rem)] sm:rounded-2xl sm:border sm:border-gray-200 dark:sm:border-gray-600 sm:p-3 sm:gap-2 sm:shadow-xl sm:overflow-visible">
-    <div class="flex items-center justify-between gap-2">
+           sm:bottom-32 sm:right-[17px] sm:left-auto sm:max-h-[min(90vh,36rem)] sm:w-[min(100vw-2rem,22rem)] sm:rounded-2xl sm:border sm:border-gray-200 dark:sm:border-gray-600 sm:p-3 sm:gap-2 sm:shadow-xl">
+    <div class="flex items-center justify-between gap-2 shrink-0">
       <div class="flex items-center gap-1 min-w-0">
         <mat-icon class="text-pink-600 dark:text-pink-400 shrink-0">library_music</mat-icon>
         <span class="text-lg font-semibold text-gray-800 dark:text-gray-100 truncate sm:text-sm">
@@ -48,6 +48,16 @@
         </span>
       </div>
       <div class="flex items-center gap-0.5 shrink-0">
+        <app-ui-button
+          *ngIf="hasTracks"
+          type="button"
+          variant="ghost"
+          [ariaLabel]="language === 'es' ? 'Ver lista de reproducción' : 'View playlist'"
+          [ariaPressed]="showPlaylist"
+          [extraClasses]="'p-1.5 rounded-lg !shadow-none ' + (showPlaylist ? 'text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-900/30' : 'hover:bg-black/5 dark:hover:bg-white/10')"
+          (buttonClick)="showPlaylist = !showPlaylist">
+          <mat-icon>queue_music</mat-icon>
+        </app-ui-button>
         <app-ui-button
           *ngIf="hasTracks"
           type="button"
@@ -73,14 +83,14 @@
       <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400 sm:text-xs sm:leading-snug">{{ emptyHint() }}</p>
     </ng-container>
 
-    <ng-container *ngIf="hasTracks">
-      <p class="text-base font-medium leading-snug text-gray-800 dark:text-gray-200 line-clamp-2 sm:text-xs sm:font-normal sm:leading-normal sm:line-clamp-none sm:truncate" [title]="trackTitle(currentTrack)">
+    <ng-container *ngIf="hasTracks && !showPlaylist">
+      <p class="text-base font-medium leading-snug text-gray-800 dark:text-gray-200 line-clamp-2 sm:text-xs sm:font-normal sm:leading-normal sm:line-clamp-none sm:truncate shrink-0" [title]="trackTitle(currentTrack)">
         {{ trackTitle(currentTrack) }}
       </p>
 
       <div
         #progressBar
-        class="h-2 rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer overflow-hidden sm:h-1.5"
+        class="h-2 rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer overflow-hidden sm:h-1.5 shrink-0"
         tabindex="0"
         (click)="onProgressClick($event, progressBar)"
         (keydown)="onProgressBarKeydown($event, progressBar)"
@@ -93,12 +103,12 @@
           class="h-full bg-pink-600 dark:bg-pink-500 transition-[width] duration-150 ease-linear"
           [style.width.%]="progressPercent()"></div>
       </div>
-      <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 sm:text-[10px]">
+      <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 sm:text-[10px] shrink-0">
         <span>{{ formatTime(currentTime) }}</span>
         <span>{{ formatTime(duration) }}</span>
       </div>
 
-      <div class="flex items-center justify-center gap-2 px-0.5 max-sm:py-1">
+      <div class="flex items-center justify-center gap-2 px-0.5 max-sm:py-1 shrink-0">
         <app-ui-button
           type="button"
           variant="ghost"
@@ -143,7 +153,7 @@
         </app-ui-button>
       </div>
 
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2 shrink-0">
         <mat-icon class="text-gray-500 text-lg shrink-0">{{ volume === 0 ? 'volume_off' : 'volume_up' }}</mat-icon>
         <input
           type="range"
@@ -154,6 +164,31 @@
           (input)="onVolumeInputEvent($event)"
           class="flex-1 h-1 accent-pink-600"
           [attr.aria-label]="language === 'es' ? 'Volumen' : 'Volume'" />
+      </div>
+    </ng-container>
+
+    <!-- Playlist panel -->
+    <ng-container *ngIf="hasTracks && showPlaylist">
+      <div class="overflow-y-auto flex-1 -mx-1 px-1 flex flex-col gap-0.5">
+        <button
+          *ngFor="let track of playlistTracks; let i = index"
+          type="button"
+          [ngClass]="i === playlistCurrentIndex ? 'playlist-item playlist-item--active' : 'playlist-item'"
+          (click)="music.selectFromPlaylist(i, true)">
+          <span class="shrink-0 w-5 flex justify-center">
+            <mat-icon *ngIf="i === playlistCurrentIndex && isPlaying" class="text-pink-600 dark:text-pink-400 text-base w-4 h-4 leading-none">graphic_eq</mat-icon>
+            <span *ngIf="!(i === playlistCurrentIndex && isPlaying)" class="text-xs text-gray-400 dark:text-gray-500 tabular-nums">{{ i + 1 }}</span>
+          </span>
+          <div class="min-w-0 flex-1">
+            <p [ngClass]="i === playlistCurrentIndex
+                ? 'text-sm font-medium truncate text-pink-600 dark:text-pink-400'
+                : 'text-sm font-medium truncate text-gray-800 dark:text-gray-200'">
+              {{ track.title }}
+            </p>
+            <p *ngIf="track.artist" class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ track.artist }}</p>
+          </div>
+          <mat-icon *ngIf="i === playlistCurrentIndex" class="text-pink-500 dark:text-pink-400 text-base w-4 h-4 shrink-0">{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon>
+        </button>
       </div>
     </ng-container>
   </div>
