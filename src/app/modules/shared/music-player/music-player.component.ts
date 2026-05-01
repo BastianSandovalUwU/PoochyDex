@@ -54,6 +54,8 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
   playlistCurrentIndex = 0;
 
   repeatModeLabel = '';
+  readonly isIos = typeof navigator !== 'undefined' &&
+    /iP(hone|ad|od)/.test(navigator.userAgent);
 
   private destroy$ = new Subject<void>();
 
@@ -134,6 +136,7 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.music.pause();
     this.destroy$.next();
     this.destroy$.complete();
   }

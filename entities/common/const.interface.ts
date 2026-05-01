@@ -1,6 +1,6 @@
 import { PokedexOption } from "../pokemon-hunt.entity";
 
-export const VERSION_NUMBER = '1.0.3';
+export const VERSION_NUMBER = '1.1.0';
 
 const LANGUAGES = [
   {

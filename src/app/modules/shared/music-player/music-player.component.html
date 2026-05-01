@@ -153,7 +153,7 @@
         </app-ui-button>
       </div>
 
-      <div class="flex items-center gap-2 shrink-0">
+      <div *ngIf="!isIos" class="flex items-center gap-2 shrink-0">
         <mat-icon class="text-gray-500 text-lg shrink-0">{{ volume === 0 ? 'volume_off' : 'volume_up' }}</mat-icon>
         <input
           type="range"
@@ -162,6 +162,7 @@
           step="0.01"
           [value]="volume"
           (input)="onVolumeInputEvent($event)"
+          (change)="onVolumeInputEvent($event)"
           class="flex-1 h-1 accent-pink-600"
           [attr.aria-label]="language === 'es' ? 'Volumen' : 'Volume'" />
       </div>
@@ -253,9 +254,9 @@
         <mat-icon>{{ repeatMode === 'one' ? 'repeat_one' : 'repeat' }}</mat-icon>
       </app-ui-button>
     </div>
-    <div class="flex items-center gap-2">
+    <div *ngIf="!isIos" class="flex items-center gap-2">
       <mat-icon class="text-gray-500 text-lg shrink-0">{{ volume === 0 ? 'volume_off' : 'volume_up' }}</mat-icon>
-      <input type="range" min="0" max="1" step="0.01" [value]="volume" (input)="onVolumeInputEvent($event)" class="flex-1 h-1 accent-pink-600" />
+      <input type="range" min="0" max="1" step="0.01" [value]="volume" (input)="onVolumeInputEvent($event)" (change)="onVolumeInputEvent($event)" class="flex-1 h-1 accent-pink-600" />
     </div>
   </ng-container>
 </div>
