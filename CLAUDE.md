@@ -86,6 +86,16 @@ Use `routerLink` / `RouterModule` (never bare `<a href>`) to avoid full-page rel
 - **Source code:** identifiers, comments, log strings → **English**.
 - **User-facing text:** always branch on `language === 'es'` / `'en'` from `LanguageService`; provide both variants. Do not hardcode a single language.
 
+### Enums
+Enum **names** use PascalCase. Enum **keys** use UPPER_SNAKE_CASE. Values (strings) use camelCase.
+
+```typescript
+export enum HomeScreenOption {
+  POKEMON_LIST = 'pokemonList',
+  RANDOM_POKEMON = 'randomPokemon',
+}
+```
+
 ### New shared elements
 New components, pipes, or services reused across features → declare and export in `SharedModule`.
 

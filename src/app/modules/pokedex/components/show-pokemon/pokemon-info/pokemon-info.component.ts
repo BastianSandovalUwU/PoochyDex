@@ -15,6 +15,8 @@ import { Name, PokemonSpecie } from '../../../../../../../entities/pokemon-speci
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { AbilityName } from '../../../../../../../entities/pokemon-ability.entity';
 import { PokemonSpriteOption } from '../../../../../../../entities/poochydex-api/pokemon-sprite-option';
+import { PreferredSpriteOption } from '../../../../../../../entities/common/enum';
+import { UserSettingsService } from 'app/modules/shared/services/user-settings.service';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 
 @Component({
@@ -53,7 +55,8 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
   constructor(
     private helperService: HelperService,
     private hostEl: ElementRef<HTMLElement>,
-    private injector: Injector
+    private injector: Injector,
+    private userSettingsService: UserSettingsService
   ) {}
 
   ngOnInit() {
@@ -102,7 +105,7 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
     this.globalLinkArtUrl = artwork.globalLinkArt;
     this.hasSugimoriArt = !!artwork.sugimoriArt;
     this.hasGlobalLinkArt = !!artwork.globalLinkArt;
-    this.selectedImageType = PokemonSpriteOption.Home;
+    this.selectedImageType = this.resolveInitialSpriteType(artwork);
     this.showShiny = false;
 
     this.getPokemonColor();
@@ -157,6 +160,14 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
 
   calculateGenderRateFemale(genderRate: number): number {
     return genderRate != -1 ? genderRate * 12.5 : 0;
+  }
+
+  private resolveInitialSpriteType(artwork: { sugimoriArt?: string; globalLinkArt?: string }): PokemonSpriteOption {
+    const pref = this.userSettingsService.getPreferredSprite();
+    if (pref === PreferredSpriteOption.GLOBAL_LINK && artwork.globalLinkArt) {
+      return PokemonSpriteOption.GlobalLinkArt;
+    }
+    return PokemonSpriteOption.Home;
   }
 
   /** Order of sprite tabs shown in the UI (Home always; others if artwork exists). */

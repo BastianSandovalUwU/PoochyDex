@@ -33,22 +33,31 @@
       </div>
     </div>
 
-    <div class="px-6 py-5 space-y-4 border-b border-gray-100 dark:border-gray-700">
+    <div class="px-6 py-5 space-y-3 border-b border-gray-100 dark:border-gray-700">
       <h2 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
         {{ language === 'es' ? 'Preferencias' : 'Preferences' }}
       </h2>
       <div class="flex items-center justify-between gap-3 text-gray-800 dark:text-gray-200">
-        <span class="flex items-center gap-2">
+        <span class="flex items-center gap-2 text-sm">
           <mat-icon class="text-gray-500 dark:text-gray-400 !w-5 !h-5">language</mat-icon>
-          {{ language === 'es' ? 'Idioma de la app' : 'App language' }}
+          {{ language === 'es' ? 'Idioma' : 'Language' }}
         </span>
-        <span class="font-medium tabular-nums">{{ getLanguagePreferenceLabel() }}</span>
+        <span class="text-sm font-medium">{{ getLanguagePreferenceLabel() }}</span>
       </div>
-      <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
-        {{ language === 'es'
-          ? 'Puedes cambiar el idioma en Configuración cuando la API lo permita; el valor mostrado refleja tu configuración guardada.'
-          : 'You can change the language in Settings when the API supports it; the value shown reflects your saved config.' }}
-      </p>
+      <div class="flex items-center justify-between gap-3 text-gray-800 dark:text-gray-200">
+        <span class="flex items-center gap-2 text-sm">
+          <mat-icon class="text-gray-500 dark:text-gray-400 !w-5 !h-5">home</mat-icon>
+          {{ language === 'es' ? 'Pantalla de inicio' : 'Home screen' }}
+        </span>
+        <span class="text-sm font-medium">{{ getHomeScreenLabel() }}</span>
+      </div>
+      <div class="flex items-center justify-between gap-3 text-gray-800 dark:text-gray-200">
+        <span class="flex items-center gap-2 text-sm">
+          <mat-icon class="text-gray-500 dark:text-gray-400 !w-5 !h-5">image</mat-icon>
+          {{ language === 'es' ? 'Sprite preferido' : 'Preferred sprite' }}
+        </span>
+        <span class="text-sm font-medium">{{ getPreferredSpriteLabel() }}</span>
+      </div>
     </div>
 
     <div class="px-6 py-5 flex flex-col sm:flex-row gap-3">

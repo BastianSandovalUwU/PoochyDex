@@ -3,7 +3,9 @@ import { AuthService } from 'app/modules/auth/services/auth.service';
 import { UserConfigData, UserData } from '../../../../../../entities/auth/user.entity';
 import { Router } from '@angular/router';
 import { LanguageService } from 'app/modules/shared/services/language.service';
+import { UserSettingsService } from 'app/modules/shared/services/user-settings.service';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
+import { HomeScreenOption, LanguageLabel, LanguageOption, PreferredSpriteOption, RoleEnglishLabel, RoleName, RoleSpanishLabel } from '../../../../../../entities/common/enum';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -26,7 +28,8 @@ export class ShowProfileComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private userSettingsService: UserSettingsService
   ) {}
 
   ngOnInit(): void {
@@ -61,25 +64,32 @@ export class ShowProfileComponent implements OnInit, OnDestroy {
     if (!this.userData?.role) {
       return '';
     }
-    const r = this.userData.role.toUpperCase();
-    if (r === 'ADMIN') {
-      return this.language === 'es' ? 'Administrador' : 'Administrator';
+    const role = this.userData.role.toUpperCase();
+    if (role === RoleName.ADMIN) {
+      return this.language === LanguageOption.SPANISH ? RoleSpanishLabel.ADMIN : RoleEnglishLabel.ADMIN;
     }
-    return this.language === 'es' ? 'Usuario' : 'User';
+    return this.language === LanguageOption.SPANISH ? RoleSpanishLabel.USER : RoleEnglishLabel.USER;
   }
 
   getLanguagePreferenceLabel(): string {
-    const code = this.userConfig?.language;
-    if (!code) {
-      return this.language === 'es' ? 'No configurado' : 'Not set';
+    return this.language === LanguageOption.SPANISH ? LanguageLabel.SPANISH : LanguageLabel.ENGLISH;
+  }
+
+  getHomeScreenLabel(): string {
+    switch (this.userSettingsService.getHomeScreen()) {
+      case HomeScreenOption.POKEMON_LIST:   return this.language === LanguageOption.SPANISH ? 'Lista de Pokémon' : 'Pokémon List';
+      case HomeScreenOption.PROFILE:        return this.language === LanguageOption.SPANISH ? 'Perfil' : 'Profile';
+      case HomeScreenOption.RANDOM_POKEMON:
+      default:                              return this.language === LanguageOption.SPANISH ? 'Pokémon Aleatorio' : 'Random Pokémon';
     }
-    if (code === 'es') {
-      return this.language === 'es' ? 'Español' : 'Spanish';
+  }
+
+  getPreferredSpriteLabel(): string {
+    switch (this.userSettingsService.getPreferredSprite()) {
+      case PreferredSpriteOption.GLOBAL_LINK: return 'Global Link';
+      case PreferredSpriteOption.HOME:
+      default:                                return 'Home';
     }
-    if (code === 'en') {
-      return this.language === 'es' ? 'Inglés' : 'English';
-    }
-    return code;
   }
 
   goToPokedex(): void {

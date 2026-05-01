@@ -7,6 +7,7 @@ import { CreatePokemonRequest, Pokemon } from '../../../../../../entities/poochy
 import { Router } from '@angular/router';
 import { AuthService } from 'app/modules/auth/services/auth.service';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
+import { RoleName } from '../../../../../../entities/common/enum';
 
 @Component({
   selector: 'app-crud-api',
@@ -54,7 +55,7 @@ export class CrudApiComponent implements OnInit {
     private authService: AuthService
   ) {
     const userData = this.authService.getSessionData();
-    if(!userData || userData.role !== 'ADMIN') {
+    if(!userData || userData.role !== RoleName.ADMIN) {
       this.router.navigate(['/']);
     }
   }

@@ -1,3 +1,5 @@
+import { RoleName } from "./enum";
+
 export const URL_ROUTES = {
   POKEDEX: {
     LIST: '/pokedex/list',
@@ -67,6 +69,6 @@ export const MENU_OPTIONS: MenuOption[] = [
     labelEn: 'Pokemon Admin (API)',
     icon: 'storage',
     route: URL_ROUTES.API_DEX.CRUD,
-    role: 'ADMIN'
+    role: RoleName.ADMIN
   },
 ];

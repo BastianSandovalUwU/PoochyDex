@@ -13,5 +13,43 @@ export * from './display/pokemon-forms';
 export enum LocalStorageKeys {
   SESSION_DATA = 'sessionData',
   USER_CONFIG_DATA = 'userConfigData',
-  APP_LANGUAGE = 'appLanguage'
+  APP_LANGUAGE = 'appLanguage',
+  HOME_SCREEN = 'homeScreen',
+  PREFERRED_SPRITE = 'preferredSprite'
+}
+
+export enum HomeScreenOption {
+  POKEMON_LIST = 'pokemonList',
+  RANDOM_POKEMON = 'randomPokemon',
+  PROFILE = 'profile'
+}
+
+export enum PreferredSpriteOption {
+  HOME = 'home',
+  GLOBAL_LINK = 'globalLink'
+}
+
+export enum LanguageOption {
+  SPANISH = 'es',
+  ENGLISH = 'en'
+}
+
+export enum LanguageLabel {
+  SPANISH = 'Español',
+  ENGLISH = 'English'
+}
+
+export enum RoleName {
+  USER = 'USER',
+  ADMIN = 'ADMIN'
+}
+
+export enum RoleSpanishLabel {
+  ADMIN = 'Administrador',
+  USER = 'Usuario'
+}
+
+export enum RoleEnglishLabel {
+  ADMIN = 'Administrator',
+  USER = 'User'
 }
