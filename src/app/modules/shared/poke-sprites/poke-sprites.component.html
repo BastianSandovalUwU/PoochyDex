@@ -41,8 +41,8 @@
     <div *ngIf="hasOtherGroup" class="poke-sprites__gen">
       <h3 class="poke-sprites__gen-title">{{ t('Otras apariencias', 'Other artwork') }}</h3>
 
-      <div class="poke-sprites__row poke-sprites__row--wrap">
-        <article *ngIf="dreamWorldSlots.length" class="poke-sprites__card">
+      <div class="poke-sprites__stack poke-sprites__stack--other">
+        <article *ngIf="dreamWorldSlots.length" class="poke-sprites__card poke-sprites__card--other">
           <h4 class="poke-sprites__card-title">{{ t('Mundo onírico', 'Dream World') }}</h4>
           <div class="poke-sprites__labeled-grid poke-sprites__labeled-grid--sm">
             <div *ngFor="let slot of dreamWorldSlots; trackBy: trackByLabeledId" class="poke-sprites__labeled-cell">
@@ -54,7 +54,7 @@
           </div>
         </article>
 
-        <article *ngIf="homeSlots.length" class="poke-sprites__card">
+        <article *ngIf="homeSlots.length" class="poke-sprites__card poke-sprites__card--other">
           <h4 class="poke-sprites__card-title">{{ t('Pokémon HOME', 'Pokémon HOME') }}</h4>
           <div class="poke-sprites__labeled-grid">
             <div *ngFor="let slot of homeSlots; trackBy: trackByLabeledId" class="poke-sprites__labeled-cell">
@@ -66,9 +66,9 @@
           </div>
         </article>
 
-        <article *ngIf="officialArtworkSlots.length" class="poke-sprites__card">
+        <article *ngIf="officialArtworkSlots.length" class="poke-sprites__card poke-sprites__card--other">
           <h4 class="poke-sprites__card-title">{{ t('Arte oficial Sugimori', 'Official Sugimori artwork') }}</h4>
-          <div class="poke-sprites__labeled-grid poke-sprites__labeled-grid--sm">
+          <div class="poke-sprites__labeled-grid">
             <div *ngFor="let slot of officialArtworkSlots; trackBy: trackByLabeledId" class="poke-sprites__labeled-cell">
               <div class="poke-sprites__cell-inner">
                 <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
@@ -78,9 +78,9 @@
           </div>
         </article>
 
-        <article *ngIf="showdownSlots.length" class="poke-sprites__card poke-sprites__card--wide">
+        <article *ngIf="showdownSlots.length" class="poke-sprites__card poke-sprites__card--other">
           <h4 class="poke-sprites__card-title">{{ t('Modelo 3D (Showdown)', '3D model (Showdown)') }}</h4>
-          <div class="poke-sprites__labeled-grid poke-sprites__labeled-grid--showdown">
+          <div class="poke-sprites__labeled-grid poke-sprites__labeled-grid--dense">
             <div *ngFor="let slot of showdownSlots; trackBy: trackByLabeledId" class="poke-sprites__labeled-cell">
               <div class="poke-sprites__cell-inner">
                 <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
