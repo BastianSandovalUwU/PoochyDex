@@ -6,7 +6,6 @@ import { PokemonSpecie } from '../../../../../entities/pokemon-specie.entity';
 import { HelperService } from '../services/helper.service';
 import { toggleSectionCollapseAnimations } from '../animations/toggle-section-collapse.animation';
 
-/** Collect sprite URLs in display order; drops empty entries. */
 function pack(...urls: (string | null | undefined)[]): string[] {
   return urls.filter((u): u is string => !!u);
 }
@@ -15,7 +14,6 @@ export interface LabeledSprite {
   url: string;
   labelEs: string;
   labelEn: string;
-  /** Optional stable id (e.g. Showdown key) for ordering. */
   id?: string;
 }
 
@@ -95,7 +93,6 @@ export class PokeSpritesComponent implements OnChanges {
     return slots;
   }
 
-  // ——— other.dream_world ———
   get dreamWorldSlots(): LabeledSprite[] {
     const d = this.sprites?.other?.['dream_world'];
     if (!d) {
@@ -111,7 +108,6 @@ export class PokeSpritesComponent implements OnChanges {
     return out;
   }
 
-  // ——— other.home ———
   get homeSlots(): LabeledSprite[] {
     const h = this.sprites?.other?.home;
     if (!h) {
@@ -133,7 +129,6 @@ export class PokeSpritesComponent implements OnChanges {
     return out;
   }
 
-  // ——— other["official-artwork"] ———
   get officialArtworkSlots(): LabeledSprite[] {
     const a = this.sprites?.other?.['official-artwork'];
     if (!a) {
@@ -149,7 +144,6 @@ export class PokeSpritesComponent implements OnChanges {
     return out;
   }
 
-  // ——— other.showdown ———
   get showdownSlots(): LabeledSprite[] {
     const sd = this.sprites?.other?.showdown;
     if (!sd) {
@@ -208,7 +202,6 @@ export class PokeSpritesComponent implements OnChanges {
     );
   }
 
-  // ——— Generation I ———
   get gen1RedBlue(): string[] {
     const v = this.versions?.['generation-i']?.['red-blue'];
     if (!v) {
@@ -217,7 +210,6 @@ export class PokeSpritesComponent implements OnChanges {
     return pack(v.front_transparent, v.back_transparent);
   }
 
-  // ——— Generation II ———
   get gen2Crystal(): string[] {
     const c = this.versions?.['generation-ii']?.crystal;
     if (!c) {
@@ -247,7 +239,6 @@ export class PokeSpritesComponent implements OnChanges {
     return pack(s.front_transparent, s.back_default, s.front_shiny, s.back_shiny);
   }
 
-  // ——— Generation III ———
   get gen3Emerald(): string[] {
     const e = this.versions?.['generation-iii']?.emerald;
     if (!e) {
@@ -272,7 +263,6 @@ export class PokeSpritesComponent implements OnChanges {
     return pack(v.front_default, v.back_default, v.front_shiny, v.back_shiny);
   }
 
-  // ——— Generation IV ———
   get gen4DiamondPearl(): string[] {
     const v = this.versions?.['generation-iv']?.['diamond-pearl'];
     if (!v) {
@@ -297,8 +287,7 @@ export class PokeSpritesComponent implements OnChanges {
     return pack(v.front_default, v.back_default, v.front_shiny, v.back_shiny);
   }
 
-  // ——— Generation V ———
-  get gen5BlackWhite(): string[] {
+  get gen5BlackWhiteAnimated(): string[] {
     const bw = this.versions?.['generation-v']?.['black-white'];
     const a = bw?.animated;
     if (!a) {
@@ -307,7 +296,14 @@ export class PokeSpritesComponent implements OnChanges {
     return pack(a.front_default, a.front_shiny, a.back_default, a.back_shiny);
   }
 
-  // ——— Generation VI ———
+  get gen5BlackWhite(): string[] {
+    const bw = this.versions?.['generation-v']?.['black-white'];
+    if (!bw) {
+      return [];
+    }
+    return pack(bw?.back_default, bw?.back_female, bw?.back_shiny, bw?.back_shiny_female, bw?.front_default, bw?.front_female, bw?.front_shiny, bw?.front_shiny_female);
+  }
+
   get gen6Xy(): string[] {
     const v = this.versions?.['generation-vi']?.['x-y'];
     if (!v) {
@@ -324,9 +320,24 @@ export class PokeSpritesComponent implements OnChanges {
     return pack(v.front_default, v.front_female, v.front_shiny, v.front_shiny_female);
   }
 
-  // ——— Generation VII (Ultra Sun / Ultra Moon assets) ———
   get gen7UsUm(): string[] {
     const v = this.versions?.['generation-vii']?.['ultra-sun-ultra-moon'];
+    if (!v) {
+      return [];
+    }
+    return pack(v.front_default, v.front_female, v.front_shiny, v.front_shiny_female);
+  }
+
+  get gen8BrilliantDiamondShiningPearl(): string[] {
+    const v = this.versions?.['generation-viii']?.['brilliant-diamond-shining-pearl'];
+    if (!v) {
+      return [];
+    }
+    return pack(v.front_default, v.front_female, v.front_shiny, v.front_shiny_female);
+  }
+
+  get gen9ScarletViolet(): string[] {
+    const v = this.versions?.['generation-ix']?.['scarlet-violet'];
     if (!v) {
       return [];
     }

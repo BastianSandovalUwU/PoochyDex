@@ -9,6 +9,7 @@ export interface Versions {
   "generation-vi": GenerationVi;
   "generation-vii": GenerationVii;
   "generation-viii": GenerationViii;
+  "generation-ix": GenerationIX;
 }
 
 export type GenerationI = {
@@ -91,11 +92,11 @@ export type BlackWhite = {
 }
 
 export type GenerationVi = {
-  "omegaruby-alphasapphire": OmegarubyAlphasapphire;
-  "x-y":                     OmegarubyAlphasapphire;
+  "omegaruby-alphasapphire": GenerationSprites;
+  "x-y":                     GenerationSprites;
 }
 
-export type OmegarubyAlphasapphire = {
+export type GenerationSprites = {
   front_default:     null;
   front_female:      null;
   front_shiny:       null;
@@ -103,10 +104,15 @@ export type OmegarubyAlphasapphire = {
 }
 
 export type GenerationVii = {
-  "icons":             DreamWorld;
-  "ultra-sun-ultra-moon": OmegarubyAlphasapphire;
+  icons:             DreamWorld;
+  "ultra-sun-ultra-moon": GenerationSprites;
 }
 
 export type GenerationViii = {
   icons: DreamWorld;
+  "brilliant-diamond-shining-pearl": GenerationSprites;
+}
+
+export type GenerationIX = {
+  "scarlet-violet": GenerationSprites;
 }

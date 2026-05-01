@@ -20,11 +20,10 @@
 
   <div
     [@toggleFilters]="spritesVisible ? 'visible' : 'hidden'"
-    class="poke-sprites__collapsible mt-2 overflow-hidden bg-white p-2 rounded-md w-full dark:bg-gray-900/50">
+    class="poke-sprites__collapsible mt-2 overflow-hidden">
     <div class="poke-sprites__content">
     <!-- API root (default) -->
     <div *ngIf="rootSpriteSlots.length" class="poke-sprites__gen">
-      <h3 class="poke-sprites__gen-title">{{ t('Vista predeterminada (API)', 'Default sprites (API)') }}</h3>
       <article class="poke-sprites__card poke-sprites__card--wide">
         <div class="poke-sprites__labeled-grid">
           <div *ngFor="let slot of rootSpriteSlots; trackBy: trackByLabeledId" class="poke-sprites__labeled-cell">
@@ -39,8 +38,6 @@
 
     <!-- other.* -->
     <div *ngIf="hasOtherGroup" class="poke-sprites__gen">
-      <h3 class="poke-sprites__gen-title">{{ t('Otras apariencias', 'Other artwork') }}</h3>
-
       <div class="poke-sprites__stack poke-sprites__stack--other">
         <article *ngIf="dreamWorldSlots.length" class="poke-sprites__card poke-sprites__card--other">
           <h4 class="poke-sprites__card-title">{{ t('Mundo onírico', 'Dream World') }}</h4>
@@ -204,9 +201,22 @@
       <div class="poke-sprites__row poke-sprites__row--center">
         <article class="poke-sprites__card">
           <h4 class="poke-sprites__card-title">{{ t('Negro y Blanco', 'Black & White') }}</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen5BlackWhite; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+          <div class="poke-sprites__bw-stack">
+            <div *ngIf="gen5BlackWhiteAnimated.length" class="poke-sprites__bw-block">
+              <h5 class="poke-sprites__subgroup-title">{{ t('Animados', 'Animated') }}</h5>
+              <div class="poke-sprites__grid poke-sprites__grid--2">
+                <div *ngFor="let u of gen5BlackWhiteAnimated; trackBy: trackByIndex" class="poke-sprites__cell">
+                  <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                </div>
+              </div>
+            </div>
+            <div class="poke-sprites__bw-block">
+              <h5 class="poke-sprites__subgroup-title">{{ t('Estáticos', 'Static') }}</h5>
+              <div class="poke-sprites__grid poke-sprites__grid--2">
+                <div *ngFor="let u of gen5BlackWhite; trackBy: trackByIndex" class="poke-sprites__cell">
+                  <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                </div>
+              </div>
             </div>
           </div>
         </article>
@@ -248,6 +258,35 @@
         </article>
       </div>
     </div>
+
+    <div *ngIf="gen8BrilliantDiamondShiningPearl.length" class="poke-sprites__gen">
+      <h3 class="poke-sprites__gen-title">{{ t('8.ª generación', 'Generation VIII') }}</h3>
+      <div class="poke-sprites__row poke-sprites__row--center">
+        <article class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Diamante Brillante y Perla Brillante', 'Brilliant Diamond & Shining Pearl') }}</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen8BrilliantDiamondShiningPearl; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div *ngIf="gen9ScarletViolet.length" class="poke-sprites__gen">
+      <h3 class="poke-sprites__gen-title">{{ t('9.ª generación', 'Generation IX') }}</h3>
+      <div class="poke-sprites__row poke-sprites__row--center">
+        <article class="poke-sprites__card">
+          <h4 class="poke-sprites__card-title">{{ t('Escarlata y Violeta', 'Scarlet & Violet') }}</h4>
+          <div class="poke-sprites__grid poke-sprites__grid--2">
+            <div *ngFor="let u of gen9ScarletViolet; trackBy: trackByIndex" class="poke-sprites__cell">
+              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
     </ng-container>
     </div>
   </div>

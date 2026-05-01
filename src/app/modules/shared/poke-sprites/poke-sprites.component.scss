@@ -49,7 +49,7 @@
 }
 
 .poke-sprites__card {
-  @apply min-w-0 max-w-sm rounded-lg border border-gray-200 bg-gray-50 p-3 dark:border-gray-600 dark:bg-gray-800/60 sm:p-4;
+  @apply min-w-0 max-w-sm rounded-lg border border-gray-200 bg-white p-3 sm:p-4;
 }
 
 .poke-sprites__card--wide {
@@ -57,7 +57,20 @@
 }
 
 .poke-sprites__card-title {
-  @apply mb-3 text-center text-sm font-semibold text-gray-800 dark:text-gray-200;
+  @apply mb-3 text-center text-sm font-semibold text-gray-800;
+}
+
+/* Gen V Black & White: stacked animated vs static blocks (avoid mixing headings into sprite flex grid). */
+.poke-sprites__bw-stack {
+  @apply flex flex-col gap-6;
+}
+
+.poke-sprites__bw-block {
+  @apply flex flex-col gap-2;
+}
+
+.poke-sprites__subgroup-title {
+  @apply mb-1 text-center text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400;
 }
 
 .poke-sprites__grid {
@@ -104,7 +117,7 @@
 }
 
 .poke-sprites__slot-label {
-  @apply w-full break-words text-center text-[0.65rem] leading-tight text-gray-600 dark:text-gray-400;
+  @apply w-full break-words text-center text-[0.65rem] leading-tight text-gray-600;
 }
 
 .poke-sprites__img {
