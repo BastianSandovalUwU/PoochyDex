@@ -29,6 +29,49 @@
           <span>{{ currentLanguage === 'es' ? 'Instalar App' : 'Install App' }}</span>
         </app-ui-button>
         <app-theme-toggle></app-theme-toggle>
+
+        <!-- Profile menu (only when logged in) -->
+        <div *ngIf="currentUser" class="relative">
+          <button
+            type="button"
+            class="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-green-600 ring-2 ring-white/60 dark:ring-gray-700 hover:ring-purple-400 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 overflow-hidden"
+            [attr.aria-label]="currentLanguage === 'es' ? 'Menú de perfil' : 'Profile menu'"
+            [attr.aria-expanded]="profileMenuOpen"
+            (click)="toggleProfileMenu($event)">
+            <img
+              *ngIf="avatarUrl; else headerIcon"
+              [src]="avatarUrl"
+              alt="avatar"
+              class="w-full h-full object-cover">
+            <ng-template #headerIcon>
+              <mat-icon class="!w-5 !h-5 !text-xl text-white leading-none">person</mat-icon>
+            </ng-template>
+          </button>
+
+          <!-- Dropdown -->
+          <div
+            *ngIf="profileMenuOpen"
+            class="absolute right-0 top-11 z-50 w-44 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl py-1 origin-top-right">
+            <div class="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
+              <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ currentUser.user }}</p>
+            </div>
+            <button
+              type="button"
+              class="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              (click)="goToProfile()">
+              <mat-icon class="!w-4 !h-4 !text-base text-gray-500 dark:text-gray-400">manage_accounts</mat-icon>
+              {{ currentLanguage === 'es' ? 'Ver perfil' : 'View profile' }}
+            </button>
+            <button
+              type="button"
+              class="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+              (click)="logout()">
+              <mat-icon class="!w-4 !h-4 !text-base">logout</mat-icon>
+              {{ currentLanguage === 'es' ? 'Cerrar sesión' : 'Log out' }}
+            </button>
+          </div>
+        </div>
+
       </div>
 
     </div>
