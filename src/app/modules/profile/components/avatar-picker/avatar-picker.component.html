@@ -1,0 +1,101 @@
+<div class="avatar-picker">
+
+  <!-- Tabs -->
+  <div class="flex border-b border-gray-200 dark:border-gray-700 mb-5">
+    <app-ui-button
+      variant="ghost"
+      type="button"
+      [ngClass]="activeTab === 'default'
+        ? 'border-b-2 !border-purple-600 !text-purple-700 dark:!text-purple-300 !rounded-none'
+        : 'border-b-2 border-transparent !rounded-none'"
+      extraClasses="px-4 py-2 !text-sm !font-medium transition-colors"
+      (buttonClick)="selectTab('default')">
+      <mat-icon class="!w-4 !h-4 !text-base">grid_view</mat-icon>
+      {{ language === 'es' ? 'Predeterminados' : 'Default avatars' }}
+    </app-ui-button>
+    <app-ui-button
+      variant="ghost"
+      type="button"
+      [ngClass]="activeTab === 'upload'
+        ? 'border-b-2 !border-purple-600 !text-purple-700 dark:!text-purple-300 !rounded-none'
+        : 'border-b-2 border-transparent !rounded-none'"
+      extraClasses="px-4 py-2 !text-sm !font-medium transition-colors"
+      (buttonClick)="selectTab('upload')">
+      <mat-icon class="!w-4 !h-4 !text-base">upload</mat-icon>
+      {{ language === 'es' ? 'Subir imagen' : 'Upload image' }}
+    </app-ui-button>
+  </div>
+
+  <!-- Default avatars grid -->
+  <div *ngIf="activeTab === 'default'">
+    <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">
+      {{ language === 'es' ? 'Elige un entrenador como avatar' : 'Choose a trainer as your avatar' }}
+    </p>
+    <div class="grid grid-cols-4 gap-3">
+      <app-ui-button
+        *ngFor="let avatar of defaultAvatars"
+        variant="ghost"
+        type="button"
+        [ngClass]="selectedDefaultId === avatar.id
+          ? 'ring-2 ring-purple-500 !bg-purple-50 dark:!bg-purple-900/30'
+          : 'ring-1 ring-gray-200 dark:ring-gray-600 hover:ring-purple-300'"
+        extraClasses="!flex-col !h-auto !p-2 !rounded-xl !gap-1 !w-full"
+        [ariaLabel]="avatar.label"
+        [ariaPressed]="selectedDefaultId === avatar.id"
+        (buttonClick)="selectDefault(avatar.id)">
+        <img
+          [src]="avatar.url"
+          [alt]="avatar.label"
+          class="w-12 h-12 object-contain"
+          loading="lazy">
+        <span class="text-xs text-gray-600 dark:text-gray-300 truncate w-full text-center">{{ avatar.label }}</span>
+      </app-ui-button>
+    </div>
+  </div>
+
+  <!-- Upload tab -->
+  <div *ngIf="activeTab === 'upload'" class="flex flex-col gap-4">
+    <p class="text-xs text-gray-500 dark:text-gray-400">
+      {{ language === 'es' ? 'Sube una imagen desde tu dispositivo (JPG, PNG, WebP).' : 'Upload an image from your device (JPG, PNG, WebP).' }}
+    </p>
+
+    <label
+      class="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-6 cursor-pointer hover:border-purple-400 transition-colors">
+      <mat-icon class="!w-8 !h-8 !text-3xl text-gray-400">add_photo_alternate</mat-icon>
+      <span class="text-sm text-gray-500 dark:text-gray-400">
+        {{ language === 'es' ? 'Haz clic para seleccionar' : 'Click to select' }}
+      </span>
+      <input
+        type="file"
+        accept="image/*"
+        class="hidden"
+        (change)="onFileChange($event)">
+    </label>
+
+    <p *ngIf="uploadError" class="text-sm text-red-600 dark:text-red-400 text-center">
+      {{ language === 'es' ? 'El archivo debe ser una imagen.' : 'The file must be an image.' }}
+    </p>
+
+    <div *ngIf="uploadPreview" class="flex flex-col items-center gap-2">
+      <p class="text-xs text-gray-500 dark:text-gray-400">{{ language === 'es' ? 'Vista previa' : 'Preview' }}</p>
+      <img
+        [src]="uploadPreview"
+        alt="preview"
+        class="w-24 h-24 rounded-full object-cover ring-2 ring-purple-400">
+    </div>
+  </div>
+
+  <!-- Save button -->
+  <div class="mt-6">
+    <app-ui-button
+      variant="primary"
+      type="button"
+      [fullWidth]="true"
+      [disabled]="!canSave()"
+      (buttonClick)="save()">
+      <mat-icon class="mr-1 align-middle">check</mat-icon>
+      {{ language === 'es' ? 'Guardar avatar' : 'Save avatar' }}
+    </app-ui-button>
+  </div>
+
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { LanguageService } from './modules/shared/services/language.service';
 import { UserData } from '../../entities/auth/user.entity';
@@ -8,7 +8,9 @@ import { ThemeService } from './modules/shared/services/theme.service';
 import { NetworkService } from './modules/shared/services/network.service';
 import { PokeApiService } from './modules/shared/services/pokeApi.service';
 import { PwaInstallService } from './modules/shared/services/pwa-install.service';
+import { ProfileAvatarService } from './modules/shared/services/profile-avatar.service';
 import { Subject, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +21,10 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'poochydex';
 
   isMenuOpen = false;
+  profileMenuOpen = false;
   currentLanguage: string;
   currentUser: UserData | null;
+  avatarUrl: string | null = null;
   loading = false;
   isOnline = true;
   lastDataSource: 'network' | 'cache' = 'network';
@@ -28,13 +32,16 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(private languageService: LanguageService,
-              private loadingService: LoadingService,
-              private authService: AuthService,
-              private themeService: ThemeService,
-              private networkService: NetworkService,
-              private pokeApiService: PokeApiService,
-              private pwaInstallService: PwaInstallService,
+  constructor(
+    private languageService: LanguageService,
+    private loadingService: LoadingService,
+    private authService: AuthService,
+    private themeService: ThemeService,
+    private networkService: NetworkService,
+    private pokeApiService: PokeApiService,
+    private pwaInstallService: PwaInstallService,
+    private profileAvatarService: ProfileAvatarService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -80,6 +87,13 @@ export class AppComponent implements OnInit, OnDestroy {
         this.lastDataSource = source;
       });
 
+    // Profile avatar
+    this.profileAvatarService.avatar$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.avatarUrl = this.profileAvatarService.getAvatarUrl();
+      });
+
     // PWA install prompt (production only)
     if (environment.production) {
       this.pwaInstallService.canInstall$
@@ -98,12 +112,35 @@ export class AppComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  @HostListener('document:click')
+  onDocumentClick(): void {
+    if (this.profileMenuOpen) {
+      this.profileMenuOpen = false;
+    }
+  }
+
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
   closeMenu() {
     this.isMenuOpen = false;
+  }
+
+  toggleProfileMenu(event: Event): void {
+    event.stopPropagation();
+    this.profileMenuOpen = !this.profileMenuOpen;
+  }
+
+  goToProfile(): void {
+    this.profileMenuOpen = false;
+    this.router.navigate(['/profile/show']);
+  }
+
+  logout(): void {
+    this.profileMenuOpen = false;
+    this.authService.logout();
+    this.router.navigate(['/pokedex']);
   }
 
   setLanguage(language: string): void {
