@@ -38,13 +38,14 @@
               <mat-icon class="!w-12 !h-12 !text-[48px] leading-none text-white">person</mat-icon>
             </ng-template>
           </div>
-          <button
+          <app-ui-button
+            variant="icon"
             type="button"
-            class="absolute -bottom-1 -right-1 flex h-7 w-7 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-gray-200 hover:bg-gray-50 transition-colors"
-            [attr.aria-label]="language === 'es' ? 'Cambiar avatar' : 'Change avatar'"
-            (click)="avatarModalOpen = true">
+            [ariaLabel]="language === 'es' ? 'Cambiar avatar' : 'Change avatar'"
+            extraClasses="absolute -bottom-1 -right-1 !w-7 !h-7 !min-w-[28px] !min-h-[28px] bg-white shadow-md ring-1 ring-gray-200 hover:!bg-gray-50"
+            (buttonClick)="avatarModalOpen = true">
             <mat-icon class="!w-4 !h-4 !text-base text-purple-700">edit</mat-icon>
-          </button>
+          </app-ui-button>
         </div>
         <div class="min-w-0 flex-1">
           <p class="text-sm uppercase tracking-wide text-white/80">
