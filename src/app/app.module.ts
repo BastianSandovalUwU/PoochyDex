@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
+import { AppHeaderComponent } from './modules/shared/app-header/app-header.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routing';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -18,6 +19,7 @@ import { AuthInterceptor } from './modules/auth/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
+    AppHeaderComponent,
   ],
   imports: [
     BrowserModule,

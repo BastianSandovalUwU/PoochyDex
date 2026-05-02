@@ -1,81 +1,14 @@
 <div class="flex flex-col min-h-screen">
-  <!-- Header with menu button -->
-  <header class="sticky top-2 z-30 bg-white/70 dark:bg-gray-800/70 backdrop-blur-md shadow-lg mx-2 mt-2 rounded-lg">
-    <div class="flex items-center justify-between px-4 py-2">
-      <app-ui-button
-        variant="ghost"
-        type="button"
-        [ariaLabel]="isMenuOpen ? 'Close menu' : 'Open menu'"
-        extraClasses="p-2 mt-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-        (buttonClick)="toggleMenu()">
-        <mat-icon class="text-gray-600 dark:text-gray-300">
-          {{ isMenuOpen ? 'menu_open' : 'menu' }}
-        </mat-icon>
-      </app-ui-button>
 
-      <a class="flex items-center justify-center flex-grow">
-        <img src="/assets/icons/icon-512x512.png" class="h-8 sm:h-10" alt="PoochyDex Logo"/>
-        <span class="ml-2 text-2xl font-bold text-gray-800 dark:text-white">PoochyDex</span>
-      </a>
-
-      <div class="flex items-center gap-2">
-        <app-ui-button
-          *ngIf="canInstallPwa"
-          variant="outline"
-          type="button"
-          extraClasses="btn-diagonal inline-flex items-center gap-2 px-3 py-1.5 text-md font-medium rounded-full border focus:outline-none focus:ring-2 focus:ring-blue-400/60 active:scale-[.98] transition"
-          (buttonClick)="installPwa()">
-          <mat-icon class="!leading-none">download</mat-icon>
-          <span>{{ currentLanguage === 'es' ? 'Instalar App' : 'Install App' }}</span>
-        </app-ui-button>
-        <app-theme-toggle></app-theme-toggle>
-
-        <!-- Profile menu (only when logged in) -->
-        <div *ngIf="currentUser" class="relative">
-          <button
-            type="button"
-            class="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-green-600 ring-2 ring-white/60 dark:ring-gray-700 hover:ring-purple-400 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 overflow-hidden"
-            [attr.aria-label]="currentLanguage === 'es' ? 'Menú de perfil' : 'Profile menu'"
-            [attr.aria-expanded]="profileMenuOpen"
-            (click)="toggleProfileMenu($event)">
-            <img
-              *ngIf="avatarUrl; else headerIcon"
-              [src]="avatarUrl"
-              alt="avatar"
-              class="w-full h-full object-cover">
-            <ng-template #headerIcon>
-              <mat-icon class="!w-5 !h-5 !text-xl text-white leading-none">person</mat-icon>
-            </ng-template>
-          </button>
-
-          <!-- Dropdown -->
-          <div
-            *ngIf="profileMenuOpen"
-            class="absolute right-0 top-11 z-50 w-44 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl py-1 origin-top-right">
-            <div class="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
-              <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ currentUser.user }}</p>
-            </div>
-            <button
-              type="button"
-              class="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-              (click)="goToProfile()">
-              <mat-icon class="!w-4 !h-4 !text-base text-gray-500 dark:text-gray-400">manage_accounts</mat-icon>
-              {{ currentLanguage === 'es' ? 'Ver perfil' : 'View profile' }}
-            </button>
-            <button
-              type="button"
-              class="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
-              (click)="logout()">
-              <mat-icon class="!w-4 !h-4 !text-base">logout</mat-icon>
-              {{ currentLanguage === 'es' ? 'Cerrar sesión' : 'Log out' }}
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </header>
+  <app-header
+    [isMenuOpen]="isMenuOpen"
+    [currentLanguage]="currentLanguage"
+    [currentUser]="currentUser"
+    [avatarUrl]="avatarUrl"
+    [canInstallPwa]="canInstallPwa"
+    (menuToggle)="toggleMenu()"
+    (installPwaClick)="installPwa()">
+  </app-header>
 
   <!-- Menu Component -->
   <app-menu [isOpen]="isMenuOpen"
