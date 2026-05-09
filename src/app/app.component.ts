@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { LanguageService } from './modules/shared/services/language.service';
 import { UserData } from '../../entities/auth/user.entity';
@@ -9,7 +9,6 @@ import { NetworkService } from './modules/shared/services/network.service';
 import { PokeApiService } from './modules/shared/services/pokeApi.service';
 import { PwaInstallService } from './modules/shared/services/pwa-install.service';
 import { ProfileAvatarService } from './modules/shared/services/profile-avatar.service';
-import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -21,7 +20,6 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'poochydex';
 
   isMenuOpen = false;
-  profileMenuOpen = false;
   currentLanguage: string;
   currentUser: UserData | null;
   avatarUrl: string | null = null;
@@ -41,7 +39,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private pokeApiService: PokeApiService,
     private pwaInstallService: PwaInstallService,
     private profileAvatarService: ProfileAvatarService,
-    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -112,35 +109,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  @HostListener('document:click')
-  onDocumentClick(): void {
-    if (this.profileMenuOpen) {
-      this.profileMenuOpen = false;
-    }
-  }
-
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
   closeMenu() {
     this.isMenuOpen = false;
-  }
-
-  toggleProfileMenu(event: Event): void {
-    event.stopPropagation();
-    this.profileMenuOpen = !this.profileMenuOpen;
-  }
-
-  goToProfile(): void {
-    this.profileMenuOpen = false;
-    this.router.navigate(['/profile/show']);
-  }
-
-  logout(): void {
-    this.profileMenuOpen = false;
-    this.authService.logout();
-    this.router.navigate(['/pokedex']);
   }
 
   setLanguage(language: string): void {

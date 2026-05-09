@@ -1,0 +1,90 @@
+<header class="sticky top-2 z-30 bg-white/70 dark:bg-gray-800/70 backdrop-blur-md shadow-lg mx-2 mt-2 rounded-lg">
+  <div class="flex items-center justify-between px-4 py-2">
+
+    <!-- Hamburger -->
+    <app-ui-button
+      variant="ghost"
+      type="button"
+      [ariaLabel]="isMenuOpen ? 'Close menu' : 'Open menu'"
+      extraClasses="p-2 mt-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+      (buttonClick)="menuToggle.emit()">
+      <mat-icon class="text-gray-600 dark:text-gray-300">
+        {{ isMenuOpen ? 'menu_open' : 'menu' }}
+      </mat-icon>
+    </app-ui-button>
+
+    <!-- Logo -->
+    <a class="flex items-center justify-center flex-grow">
+      <img src="/assets/icons/icon-512x512.png" class="h-8 sm:h-10" alt="PoochyDex Logo"/>
+      <span class="ml-2 text-2xl font-bold text-gray-800 dark:text-white">PoochyDex</span>
+    </a>
+
+    <!-- Right actions -->
+    <div class="flex items-center gap-2">
+
+      <!-- PWA install -->
+      <app-ui-button
+        *ngIf="canInstallPwa"
+        variant="outline"
+        type="button"
+        extraClasses="btn-diagonal inline-flex items-center gap-2 px-3 py-1.5 text-md font-medium rounded-full border focus:outline-none focus:ring-2 focus:ring-blue-400/60 active:scale-[.98] transition"
+        (buttonClick)="installPwaClick.emit()">
+        <mat-icon class="!leading-none">download</mat-icon>
+        <span>{{ currentLanguage === 'es' ? 'Instalar App' : 'Install App' }}</span>
+      </app-ui-button>
+
+      <app-theme-toggle></app-theme-toggle>
+
+      <!-- Profile menu (only when logged in) -->
+      <div *ngIf="currentUser" class="relative">
+
+        <app-ui-button
+          variant="icon"
+          type="button"
+          [ariaLabel]="currentLanguage === 'es' ? 'Menú de perfil' : 'Profile menu'"
+          [ariaExpanded]="profileMenuOpen"
+          extraClasses="!w-9 !h-9 !min-w-[36px] !min-h-[36px] !p-0 bg-gradient-to-br from-purple-500 to-green-600 ring-2 ring-white/60 dark:ring-gray-700 hover:ring-purple-400 overflow-hidden"
+          (buttonClick)="toggleProfileMenu($event)">
+          <img
+            *ngIf="avatarUrl; else headerIcon"
+            [src]="avatarUrl"
+            alt="avatar"
+            class="w-full h-full object-cover">
+          <ng-template #headerIcon>
+            <mat-icon class="!w-5 !h-5 !text-xl text-white leading-none">person</mat-icon>
+          </ng-template>
+        </app-ui-button>
+
+        <!-- Dropdown -->
+        <div
+          *ngIf="profileMenuOpen"
+          class="absolute right-0 top-11 z-50 w-44 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl py-1 origin-top-right">
+
+          <div class="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
+            <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ currentUser.user }}</p>
+          </div>
+
+          <app-ui-button
+            variant="ghost"
+            type="button"
+            extraClasses="!w-full !justify-start !rounded-none !px-4 !py-2.5 !text-sm !text-gray-700 dark:!text-gray-200"
+            (buttonClick)="goToProfile()">
+            <mat-icon class="!w-4 !h-4 !text-base text-gray-500 dark:text-gray-400">manage_accounts</mat-icon>
+            {{ currentLanguage === 'es' ? 'Ver perfil' : 'View profile' }}
+          </app-ui-button>
+
+          <app-ui-button
+            variant="ghost"
+            type="button"
+            extraClasses="!w-full !justify-start !rounded-none !px-4 !py-2.5 !text-sm !text-red-600 dark:!text-red-400 hover:!bg-red-50 dark:hover:!bg-red-900/20"
+            (buttonClick)="logout()">
+            <mat-icon class="!w-4 !h-4 !text-base text-red-500 dark:text-red-400">logout</mat-icon>
+            {{ currentLanguage === 'es' ? 'Cerrar sesión' : 'Log out' }}
+          </app-ui-button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>
