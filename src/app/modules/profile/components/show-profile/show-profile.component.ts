@@ -36,13 +36,17 @@ export class ShowProfileComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const session = this.authService.getSessionData();
-    if (!session) {
-      this.router.navigate(['/auth/login']);
-      return;
-    }
-    this.userData = session;
-    this.userConfig = this.authService.getUserConfigData();
+    this.subs.add(
+      this.authService.sessionData$.subscribe(session => {
+        if (!session) {
+          this.router.navigate(['/auth/login']);
+          return;
+        }
+        this.userData = session;
+        this.userConfig = this.authService.getUserConfigData();
+        this.loading = false;
+      })
+    );
 
     this.subs.add(
       this.languageService.currentLanguage$.subscribe(lang => {
@@ -61,8 +65,6 @@ export class ShowProfileComponent implements OnInit, OnDestroy {
         this.avatarUrl = this.profileAvatarService.getAvatarUrl();
       })
     );
-
-    this.loading = false;
   }
 
   ngOnDestroy(): void {
