@@ -62,6 +62,12 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(user => {
         this.currentUser = user;
+        if (user?.profileImgUrl) {
+          // Notify avatar service so header/profile update immediately
+          this.profileAvatarService.setProfileImgUrl(user.profileImgUrl);
+        } else if (!user) {
+          this.profileAvatarService.clearAvatar();
+        }
       });
 
     // Loading flag (defer to avoid NG0100 when child routes toggle loading in the same CD cycle)

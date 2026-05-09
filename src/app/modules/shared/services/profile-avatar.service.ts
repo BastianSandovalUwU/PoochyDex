@@ -1,11 +1,19 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { environment } from 'environments/environment';
 import { LocalStorageKeys } from '../../../../../entities/common/enum';
+import { UserData } from '../../../../../entities/auth/user.entity';
 
 export interface DefaultAvatar {
   id: string;
   label: string;
   url: string;
+}
+
+interface UploadProfileImageResponse {
+  success: boolean;
+  data: { profileImgUrl: string };
 }
 
 const AVATAR_BASE = 'assets/images/avatars';
@@ -29,35 +37,91 @@ export const DEFAULT_AVATARS: DefaultAvatar[] = [
   { id: 'trainer-serena',  label: 'Serena',  url: `${AVATAR_BASE}/serena.png` },
 ];
 
-/** Stored value: a default avatar ID (e.g. 'trainer-red') or a base64 data-URL for custom uploads. */
+/**
+ * Avatar priority (highest to lowest):
+ * 1. profileAvatar key → default trainer ID (e.g. 'trainer-red')
+ * 2. sessionData.profileImgUrl → S3 presigned URL stored on login/upload
+ */
 @Injectable({ providedIn: 'root' })
 export class ProfileAvatarService {
 
+  private readonly apiUrl = environment.nodeJsApi;
   private avatarSubject = new BehaviorSubject<string | null>(this.readAvatar());
 
   avatar$ = this.avatarSubject.asObservable();
+
+  constructor(private http: HttpClient) {}
 
   getAvatar(): string | null {
     return this.avatarSubject.getValue();
   }
 
-  /** Returns the resolved image URL regardless of whether it's a default ID or a base64 string. */
+  /** Returns the resolved URL for display. */
   getAvatarUrl(): string | null {
     const value = this.getAvatar();
     if (!value) return null;
-    if (value.startsWith('data:')) return value;
-    const match = DEFAULT_AVATARS.find(a => a.id === value);
-    return match?.url ?? null;
+    if (value.startsWith('http') || value.startsWith('data:')) return value;
+    return DEFAULT_AVATARS.find(a => a.id === value)?.url ?? null;
   }
 
+  /** Selects a default bundled trainer avatar. */
   setDefaultAvatar(id: string): void {
     localStorage.setItem(LocalStorageKeys.PROFILE_AVATAR, id);
     this.avatarSubject.next(id);
   }
 
-  setCustomAvatar(base64: string): void {
-    localStorage.setItem(LocalStorageKeys.PROFILE_AVATAR, base64);
-    this.avatarSubject.next(base64);
+  /**
+   * Stores an S3/CDN presigned URL in sessionData so it persists with the session.
+   * Also emits to update subscribers immediately.
+   */
+  setProfileImgUrl(url: string): void {
+    this.writeSessionProfileImgUrl(url);
+    this.avatarSubject.next(url);
+  }
+
+  /** Fetches a fresh presigned URL from the API and updates sessionData. */
+  refreshProfileImageUrl(): Observable<UploadProfileImageResponse> {
+    return this.http
+      .get<UploadProfileImageResponse>(`${this.apiUrl}/api/auth/profile/image`)
+      .pipe(
+        tap(response => {
+          if (response.success) {
+            this.setProfileImgUrl(response.data.profileImgUrl);
+          }
+        })
+      );
+  }
+
+  /** Deletes the user's S3 profile image via the API and clears the stored URL. */
+  deleteProfileImage(): Observable<{ success: boolean }> {
+    return this.http
+      .delete<{ success: boolean }>(`${this.apiUrl}/api/auth/profile/image`)
+      .pipe(
+        tap(response => {
+          if (response.success) {
+            this.writeSessionProfileImgUrl('');
+            // Only clear subject if no manual avatar is selected
+            if (!localStorage.getItem(LocalStorageKeys.PROFILE_AVATAR)) {
+              this.avatarSubject.next(null);
+            }
+          }
+        })
+      );
+  }
+
+  /** Uploads image to S3 via the API and stores the returned presigned URL. */
+  uploadProfileImage(file: File): Observable<UploadProfileImageResponse> {
+    const formData = new FormData();
+    formData.append('image', file);
+    return this.http
+      .patch<UploadProfileImageResponse>(`${this.apiUrl}/api/auth/profile/image`, formData)
+      .pipe(
+        tap(response => {
+          if (response.success) {
+            this.setProfileImgUrl(response.data.profileImgUrl);
+          }
+        })
+      );
   }
 
   clearAvatar(): void {
@@ -66,6 +130,30 @@ export class ProfileAvatarService {
   }
 
   private readAvatar(): string | null {
-    return localStorage.getItem(LocalStorageKeys.PROFILE_AVATAR);
+    // Manual selection (default trainer ID) takes priority
+    const manual = localStorage.getItem(LocalStorageKeys.PROFILE_AVATAR);
+    if (manual) return manual;
+    // Fall back to S3 URL stored in session
+    return this.readSessionProfileImgUrl();
+  }
+
+  private readSessionProfileImgUrl(): string | null {
+    try {
+      const raw = localStorage.getItem(LocalStorageKeys.SESSION_DATA);
+      if (!raw) return null;
+      const session = JSON.parse(raw) as UserData;
+      return session.profileImgUrl ?? null;
+    } catch {
+      return null;
+    }
+  }
+
+  private writeSessionProfileImgUrl(url: string): void {
+    try {
+      const raw = localStorage.getItem(LocalStorageKeys.SESSION_DATA);
+      if (!raw) return;
+      const session = JSON.parse(raw) as UserData;
+      localStorage.setItem(LocalStorageKeys.SESSION_DATA, JSON.stringify({ ...session, profileImgUrl: url }));
+    } catch { /* noop */ }
   }
 }

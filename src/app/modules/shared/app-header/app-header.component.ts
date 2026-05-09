@@ -2,6 +2,7 @@ import { Component, EventEmitter, HostListener, Input, Output } from '@angular/c
 import { Router } from '@angular/router';
 import { UserData } from '../../../../../entities/auth/user.entity';
 import { AuthService } from '../../auth/services/auth.service';
+import { ProfileAvatarService } from '../services/profile-avatar.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,11 @@ export class AppHeaderComponent {
 
   profileMenuOpen = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private profileAvatarService: ProfileAvatarService,
+  ) {}
 
   @HostListener('document:click')
   onDocumentClick(): void {
@@ -42,5 +47,9 @@ export class AppHeaderComponent {
     this.profileMenuOpen = false;
     this.authService.logout();
     this.router.navigate(['/pokedex']);
+  }
+
+  onAvatarError(): void {
+    this.profileAvatarService.refreshProfileImageUrl().subscribe();
   }
 }

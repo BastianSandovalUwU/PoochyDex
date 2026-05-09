@@ -33,7 +33,8 @@
               *ngIf="avatarUrl; else defaultIcon"
               [src]="avatarUrl"
               alt="avatar"
-              class="w-full h-full object-cover">
+              class="w-full h-full object-cover"
+              (error)="onAvatarError()">
             <ng-template #defaultIcon>
               <mat-icon class="!w-12 !h-12 !text-[48px] leading-none text-white">person</mat-icon>
             </ng-template>

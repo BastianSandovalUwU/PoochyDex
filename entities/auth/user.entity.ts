@@ -2,6 +2,7 @@ export type UserData = {
   user: string;
   token: string;
   role: string;
+  profileImgUrl?: string;
 }
 
 export type UserConfigResponse = {

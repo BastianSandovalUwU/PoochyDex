@@ -26,6 +26,44 @@
     </app-ui-button>
   </div>
 
+  <!-- Delete confirmation banner -->
+  <div
+    *ngIf="showDeleteConfirm"
+    class="mb-4 rounded-xl border border-amber-300 dark:border-amber-600 bg-amber-50 dark:bg-amber-900/20 px-4 py-3 flex flex-col gap-3">
+    <div class="flex items-start gap-2">
+      <mat-icon class="!w-5 !h-5 !text-xl text-amber-600 dark:text-amber-400 shrink-0 mt-0.5">warning</mat-icon>
+      <p class="text-sm text-amber-800 dark:text-amber-300">
+        {{ language === 'es'
+          ? 'Al aplicar este avatar se eliminará tu imagen de perfil actual. ¿Continuar?'
+          : 'Applying this avatar will delete your current profile image. Continue?' }}
+      </p>
+    </div>
+    <div class="flex gap-2">
+      <app-ui-button
+        variant="primary"
+        type="button"
+        [disabled]="deleting"
+        extraClasses="!bg-amber-600 hover:!bg-amber-700 !text-sm !py-1.5"
+        (buttonClick)="confirmDeleteAndApplyDefault()">
+        <mat-icon class="!w-4 !h-4 !text-base">{{ deleting ? 'hourglass_empty' : 'check' }}</mat-icon>
+        {{ deleting
+          ? (language === 'es' ? 'Eliminando...' : 'Deleting...')
+          : (language === 'es' ? 'Sí, continuar' : 'Yes, continue') }}
+      </app-ui-button>
+      <app-ui-button
+        variant="outline"
+        type="button"
+        [disabled]="deleting"
+        extraClasses="!text-sm !py-1.5"
+        (buttonClick)="cancelDeleteConfirm()">
+        {{ language === 'es' ? 'Cancelar' : 'Cancel' }}
+      </app-ui-button>
+    </div>
+    <p *ngIf="deleteApiError" class="text-xs text-red-600 dark:text-red-400">
+      {{ language === 'es' ? 'Error al eliminar. Intenta de nuevo.' : 'Error deleting. Please try again.' }}
+    </p>
+  </div>
+
   <!-- Default avatars grid -->
   <div *ngIf="activeTab === 'default'">
     <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">
@@ -65,37 +103,58 @@
       <span class="text-sm text-gray-500 dark:text-gray-400">
         {{ language === 'es' ? 'Haz clic para seleccionar' : 'Click to select' }}
       </span>
-      <input
-        type="file"
-        accept="image/*"
-        class="hidden"
-        (change)="onFileChange($event)">
+      <input type="file" accept="image/*" class="hidden" (change)="onFileChange($event)">
     </label>
 
     <p *ngIf="uploadError" class="text-sm text-red-600 dark:text-red-400 text-center">
       {{ language === 'es' ? 'El archivo debe ser una imagen.' : 'The file must be an image.' }}
     </p>
+    <p *ngIf="uploadApiError" class="text-sm text-red-600 dark:text-red-400 text-center">
+      {{ language === 'es' ? 'Error al subir la imagen. Intenta de nuevo.' : 'Error uploading image. Please try again.' }}
+    </p>
 
     <div *ngIf="uploadPreview" class="flex flex-col items-center gap-2">
       <p class="text-xs text-gray-500 dark:text-gray-400">{{ language === 'es' ? 'Vista previa' : 'Preview' }}</p>
-      <img
-        [src]="uploadPreview"
-        alt="preview"
-        class="w-24 h-24 rounded-full object-cover ring-2 ring-purple-400">
+      <img [src]="uploadPreview" alt="preview" class="w-24 h-24 rounded-full object-cover ring-2 ring-purple-400">
     </div>
   </div>
 
-  <!-- Save button -->
-  <div class="mt-6">
+  <!-- Actions -->
+  <div class="mt-6 flex flex-col gap-2">
+
+    <!-- Save / upload button -->
     <app-ui-button
+      *ngIf="!showDeleteConfirm"
       variant="primary"
       type="button"
       [fullWidth]="true"
       [disabled]="!canSave()"
       (buttonClick)="save()">
-      <mat-icon class="mr-1 align-middle">check</mat-icon>
-      {{ language === 'es' ? 'Guardar avatar' : 'Save avatar' }}
+      <mat-icon class="mr-1 align-middle">{{ uploading ? 'hourglass_empty' : 'check' }}</mat-icon>
+      {{ uploading
+        ? (language === 'es' ? 'Subiendo...' : 'Uploading...')
+        : (language === 'es' ? 'Guardar avatar' : 'Save avatar') }}
     </app-ui-button>
+
+    <!-- Delete image button (only when user has S3 image) -->
+    <app-ui-button
+      *ngIf="isLoggedIn && hasS3Image && !showDeleteConfirm"
+      variant="outline"
+      type="button"
+      [fullWidth]="true"
+      [disabled]="deleting"
+      extraClasses="!border-red-400 !text-red-600 dark:!border-red-500 dark:!text-red-400 hover:!bg-red-50 dark:hover:!bg-red-900/20"
+      (buttonClick)="deleteImage()">
+      <mat-icon class="!w-4 !h-4 !text-base">{{ deleting ? 'hourglass_empty' : 'delete' }}</mat-icon>
+      {{ deleting
+        ? (language === 'es' ? 'Eliminando...' : 'Deleting...')
+        : (language === 'es' ? 'Eliminar imagen de perfil' : 'Delete profile image') }}
+    </app-ui-button>
+
+    <p *ngIf="deleteApiError && !showDeleteConfirm" class="text-sm text-red-600 dark:text-red-400 text-center">
+      {{ language === 'es' ? 'Error al eliminar. Intenta de nuevo.' : 'Error deleting. Please try again.' }}
+    </p>
+
   </div>
 
 </div>

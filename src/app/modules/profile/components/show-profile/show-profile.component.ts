@@ -109,6 +109,10 @@ export class ShowProfileComponent implements OnInit, OnDestroy {
     this.avatarModalOpen = false;
   }
 
+  onAvatarError(): void {
+    this.profileAvatarService.refreshProfileImageUrl().subscribe();
+  }
+
   logout(): void {
     this.loading = true;
     this.authService.logout();

@@ -3,6 +3,7 @@ export type LoginResponse = {
   token: string;
   role: string;
   username: string;
+  profileImgUrl: string;
 }
 
 export type SignUp = {

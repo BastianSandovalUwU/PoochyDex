@@ -19,7 +19,11 @@ export class AuthService {
   sessionData$ = this.sessionDataSubject.asObservable();
   userConfig$ = this.userConfigSubject.asObservable();
 
-  constructor(private http: HttpClient, private router: Router, private languageService: LanguageService) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private languageService: LanguageService,
+  ) {}
 
   register(newUserData: SignUp): Observable<any> {
     return this.http.post(`${this.apiUrl}/api/auth/register`, newUserData);
@@ -67,9 +71,16 @@ export class AuthService {
       user: loginResponse.username,
       role: loginResponse.role,
       token: loginResponse.token,
+      ...(loginResponse.profileImgUrl ? { profileImgUrl: loginResponse.profileImgUrl } : {}),
     };
     this.setSessionData(userData);
     return userData;
+  }
+
+  updateProfileImgUrl(url: string): void {
+    const current = this.getSessionData();
+    if (!current) return;
+    this.setSessionData({ ...current, profileImgUrl: url });
   }
 
   getSessionData(): UserData | null {
