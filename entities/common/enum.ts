@@ -15,7 +15,8 @@ export enum LocalStorageKeys {
   USER_CONFIG_DATA = 'userConfigData',
   APP_LANGUAGE = 'appLanguage',
   HOME_SCREEN = 'homeScreen',
-  PREFERRED_SPRITE = 'preferredSprite'
+  PREFERRED_SPRITE = 'preferredSprite',
+  PROFILE_AVATAR = 'profileAvatar'
 }
 
 export enum HomeScreenOption {

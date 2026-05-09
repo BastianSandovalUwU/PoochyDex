@@ -4,6 +4,7 @@ import { UserConfigData, UserData } from '../../../../../../entities/auth/user.e
 import { Router } from '@angular/router';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { UserSettingsService } from 'app/modules/shared/services/user-settings.service';
+import { ProfileAvatarService } from 'app/modules/shared/services/profile-avatar.service';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 import { HomeScreenOption, LanguageLabel, LanguageOption, PreferredSpriteOption, RoleEnglishLabel, RoleName, RoleSpanishLabel } from '../../../../../../entities/common/enum';
 import { Subscription } from 'rxjs';
@@ -20,8 +21,9 @@ export class ShowProfileComponent implements OnInit, OnDestroy {
   userConfig: UserConfigData | null = null;
   loading = true;
   language = 'es';
-  /** Settings modal (shared `app-ui-modal` + `app-settings`). */
   settingsModalOpen = false;
+  avatarModalOpen = false;
+  avatarUrl: string | null = null;
 
   private readonly subs = new Subscription();
 
@@ -29,7 +31,8 @@ export class ShowProfileComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private router: Router,
     private languageService: LanguageService,
-    private userSettingsService: UserSettingsService
+    private userSettingsService: UserSettingsService,
+    private profileAvatarService: ProfileAvatarService
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +53,12 @@ export class ShowProfileComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.authService.userConfig$.subscribe(config => {
         this.userConfig = config;
+      })
+    );
+
+    this.subs.add(
+      this.profileAvatarService.avatar$.subscribe(() => {
+        this.avatarUrl = this.profileAvatarService.getAvatarUrl();
       })
     );
 
@@ -94,6 +103,10 @@ export class ShowProfileComponent implements OnInit, OnDestroy {
 
   goToPokedex(): void {
     this.router.navigate(['/pokedex']);
+  }
+
+  onAvatarSaved(): void {
+    this.avatarModalOpen = false;
   }
 
   logout(): void {

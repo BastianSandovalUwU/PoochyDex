@@ -5,6 +5,16 @@
   <app-settings></app-settings>
 </app-ui-modal>
 
+<app-ui-modal
+  [(open)]="avatarModalOpen"
+  [title]="language === 'es' ? 'Elegir avatar' : 'Choose avatar'"
+  [closeAriaLabel]="language === 'es' ? 'Cerrar' : 'Close'">
+  <app-avatar-picker
+    [language]="language"
+    (avatarSaved)="onAvatarSaved()">
+  </app-avatar-picker>
+</app-ui-modal>
+
 <div class="profile-wrap px-4 py-6 sm:py-10 max-w-lg mx-auto" *ngIf="!loading && userData" [@detailFadeIn]>
 
   <h1 class="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-6">
@@ -16,9 +26,25 @@
 
     <div class="profile-card__header px-6 py-8 bg-gradient-to-br from-purple-600/90 to-green-700/85 text-white">
       <div class="flex flex-col sm:flex-row sm:items-center gap-5">
-        <div
-          class="profile-avatar flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-white/20 ring-2 ring-white/40">
-          <mat-icon class="!w-12 !h-12 !text-[48px] leading-none text-white">person</mat-icon>
+        <div class="relative shrink-0">
+          <div
+            class="profile-avatar flex h-20 w-20 items-center justify-center rounded-full bg-white/20 ring-2 ring-white/40 overflow-hidden">
+            <img
+              *ngIf="avatarUrl; else defaultIcon"
+              [src]="avatarUrl"
+              alt="avatar"
+              class="w-full h-full object-cover">
+            <ng-template #defaultIcon>
+              <mat-icon class="!w-12 !h-12 !text-[48px] leading-none text-white">person</mat-icon>
+            </ng-template>
+          </div>
+          <button
+            type="button"
+            class="absolute -bottom-1 -right-1 flex h-7 w-7 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-gray-200 hover:bg-gray-50 transition-colors"
+            [attr.aria-label]="language === 'es' ? 'Cambiar avatar' : 'Change avatar'"
+            (click)="avatarModalOpen = true">
+            <mat-icon class="!w-4 !h-4 !text-base text-purple-700">edit</mat-icon>
+          </button>
         </div>
         <div class="min-w-0 flex-1">
           <p class="text-sm uppercase tracking-wide text-white/80">

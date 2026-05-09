@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShowProfileComponent } from './components/show-profile/show-profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { AvatarPickerComponent } from './components/avatar-picker/avatar-picker.component';
 import { RouterModule } from '@angular/router';
 import { profileRoute } from './profile.routing';
 import { NgxLoadingModule } from 'ngx-loading';
@@ -20,7 +21,8 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   declarations: [
     ShowProfileComponent,
-    SettingsComponent
+    SettingsComponent,
+    AvatarPickerComponent
   ]
 })
 export class ProfileModule { }
