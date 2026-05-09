@@ -2,26 +2,28 @@
 
   <!-- Tabs -->
   <div class="flex border-b border-gray-200 dark:border-gray-700 mb-5">
-    <button
+    <app-ui-button
+      variant="ghost"
       type="button"
       [ngClass]="activeTab === 'default'
-        ? 'border-purple-600 text-purple-700 dark:text-purple-300'
-        : 'border-transparent text-gray-500 hover:text-gray-700'"
-      class="px-4 py-2 text-sm font-medium border-b-2 transition-colors"
-      (click)="selectTab('default')">
-      <mat-icon class="!w-4 !h-4 !text-base align-middle mr-1">grid_view</mat-icon>
+        ? 'border-b-2 !border-purple-600 !text-purple-700 dark:!text-purple-300 !rounded-none'
+        : 'border-b-2 border-transparent !rounded-none'"
+      extraClasses="px-4 py-2 !text-sm !font-medium transition-colors"
+      (buttonClick)="selectTab('default')">
+      <mat-icon class="!w-4 !h-4 !text-base">grid_view</mat-icon>
       {{ language === 'es' ? 'Predeterminados' : 'Default avatars' }}
-    </button>
-    <button
+    </app-ui-button>
+    <app-ui-button
+      variant="ghost"
       type="button"
       [ngClass]="activeTab === 'upload'
-        ? 'border-purple-600 text-purple-700 dark:text-purple-300'
-        : 'border-transparent text-gray-500 hover:text-gray-700'"
-      class="px-4 py-2 text-sm font-medium border-b-2 transition-colors"
-      (click)="selectTab('upload')">
-      <mat-icon class="!w-4 !h-4 !text-base align-middle mr-1">upload</mat-icon>
+        ? 'border-b-2 !border-purple-600 !text-purple-700 dark:!text-purple-300 !rounded-none'
+        : 'border-b-2 border-transparent !rounded-none'"
+      extraClasses="px-4 py-2 !text-sm !font-medium transition-colors"
+      (buttonClick)="selectTab('upload')">
+      <mat-icon class="!w-4 !h-4 !text-base">upload</mat-icon>
       {{ language === 'es' ? 'Subir imagen' : 'Upload image' }}
-    </button>
+    </app-ui-button>
   </div>
 
   <!-- Default avatars grid -->
@@ -30,23 +32,24 @@
       {{ language === 'es' ? 'Elige un entrenador como avatar' : 'Choose a trainer as your avatar' }}
     </p>
     <div class="grid grid-cols-4 gap-3">
-      <button
+      <app-ui-button
         *ngFor="let avatar of defaultAvatars"
+        variant="ghost"
         type="button"
         [ngClass]="selectedDefaultId === avatar.id
-          ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/30'
-          : 'border-gray-200 dark:border-gray-600 hover:border-purple-300'"
-        class="flex flex-col items-center gap-1 p-2 rounded-xl border-2 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500"
-        (click)="selectDefault(avatar.id)"
-        [attr.aria-label]="avatar.label"
-        [attr.aria-pressed]="selectedDefaultId === avatar.id">
+          ? 'ring-2 ring-purple-500 !bg-purple-50 dark:!bg-purple-900/30'
+          : 'ring-1 ring-gray-200 dark:ring-gray-600 hover:ring-purple-300'"
+        extraClasses="!flex-col !h-auto !p-2 !rounded-xl !gap-1 !w-full"
+        [ariaLabel]="avatar.label"
+        [ariaPressed]="selectedDefaultId === avatar.id"
+        (buttonClick)="selectDefault(avatar.id)">
         <img
           [src]="avatar.url"
           [alt]="avatar.label"
           class="w-12 h-12 object-contain"
           loading="lazy">
         <span class="text-xs text-gray-600 dark:text-gray-300 truncate w-full text-center">{{ avatar.label }}</span>
-      </button>
+      </app-ui-button>
     </div>
   </div>
 
