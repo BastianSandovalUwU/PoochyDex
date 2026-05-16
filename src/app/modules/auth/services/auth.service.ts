@@ -6,7 +6,8 @@ import { LoginResponse, SignUp } from '../../../../../entities/auth/auth.entity'
 import { Router } from '@angular/router';
 import { CreateUserConfigData, UserConfigData, UserConfigResponse, UserData } from '../../../../../entities/auth/user.entity';
 import { LanguageService } from 'app/modules/shared/services/language.service';
-import { LocalStorageKeys } from '../../../../../entities/common/enum';
+import { UserSettingsService } from 'app/modules/shared/services/user-settings.service';
+import { HomeScreenOption, LocalStorageKeys, PreferredSpriteOption } from '../../../../../entities/common/enum';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
     private languageService: LanguageService,
+    private userSettingsService: UserSettingsService,
   ) {}
 
   register(newUserData: SignUp): Observable<any> {
@@ -43,20 +45,18 @@ export class AuthService {
 
   createUserConfig(userConfigData: CreateUserConfigData): Observable<CreateUserConfigData> {
     return this.http.post<CreateUserConfigData>(`${this.apiUrl}/api/userConfig/createUserConfig`, userConfigData).pipe(
-      tap(response => {
-        localStorage.setItem(LocalStorageKeys.USER_CONFIG_DATA, JSON.stringify({ language: userConfigData.language }));
-        localStorage.setItem(LocalStorageKeys.APP_LANGUAGE, userConfigData.language);
+      tap(() => {
         this.setLanguage(userConfigData.language);
       })
     );
   }
 
-  updateUserConfig(userConfigData: UserConfigData): Observable<CreateUserConfigData> {
-    return this.http.put<CreateUserConfigData>(`${this.apiUrl}/api/userConfig/updateUserConfig`, userConfigData).pipe(
+  updateUserConfig(language: string, preferredSprite: PreferredSpriteOption, homeScreen: HomeScreenOption): Observable<UserConfigResponse> {
+    const current = this.getUserConfigData();
+    const payload = { id: current?.id, language, preferredSprite, homeScreen };
+    return this.http.put<UserConfigResponse>(`${this.apiUrl}/api/userConfig/updateUserConfig`, payload).pipe(
       tap(response => {
-        localStorage.setItem(LocalStorageKeys.USER_CONFIG_DATA, JSON.stringify({ language: userConfigData.language }));
-        localStorage.setItem(LocalStorageKeys.APP_LANGUAGE, userConfigData.language);
-        this.setLanguage(userConfigData.language);
+        this.setUserConfigData(response.config);
       })
     );
   }
@@ -74,6 +74,7 @@ export class AuthService {
       ...(loginResponse.profileImgUrl ? { profileImgUrl: loginResponse.profileImgUrl } : {}),
     };
     this.setSessionData(userData);
+    this.setUserConfigData(loginResponse.userConfig);
     return userData;
   }
 
@@ -101,6 +102,9 @@ export class AuthService {
   setUserConfigData(userConfigData: UserConfigData): void {
     localStorage.setItem(LocalStorageKeys.USER_CONFIG_DATA, JSON.stringify(userConfigData));
     this.userConfigSubject.next(userConfigData);
+    this.userSettingsService.setHomeScreen(userConfigData.home_screen as HomeScreenOption);
+    this.userSettingsService.setPreferredSprite(userConfigData.preferred_sprite as PreferredSpriteOption);
+    this.setLanguage(userConfigData.language);
   }
 
   clearSessionData(): void {
@@ -111,6 +115,8 @@ export class AuthService {
   clearUserConfigData(): void {
     localStorage.removeItem(LocalStorageKeys.USER_CONFIG_DATA);
     this.userConfigSubject.next(null);
+    const fallbackLanguage = localStorage.getItem(LocalStorageKeys.APP_LANGUAGE) || 'es';
+    this.languageService.setCurrentLanguage(fallbackLanguage);
   }
 
   isAuthenticated(): boolean {

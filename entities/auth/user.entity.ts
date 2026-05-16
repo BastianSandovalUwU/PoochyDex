@@ -14,6 +14,8 @@ export type UserConfigResponse = {
 export type UserConfigData = {
   id: number;
   language: string;
+  preferred_sprite: string;
+  home_screen: string;
 }
 
 export type CreateUserConfigData = {

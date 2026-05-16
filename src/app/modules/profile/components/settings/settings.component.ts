@@ -37,9 +37,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.language = lang;
       })
     );
-    this.selectedHomeScreen = this.userSettingsService.getHomeScreen();
-    this.selectedSprite = this.userSettingsService.getPreferredSprite();
-    this.selectedLanguage = this.language;
+    const config = this.authService.getUserConfigData();
+    this.selectedHomeScreen = (config?.home_screen as HomeScreenOption) ?? this.userSettingsService.getHomeScreen();
+    this.selectedSprite = (config?.preferred_sprite as PreferredSpriteOption) ?? this.userSettingsService.getPreferredSprite();
+    this.selectedLanguage = config?.language ?? this.language;
   }
 
   ngOnDestroy(): void {
@@ -47,10 +48,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   saveAll(): void {
-    this.userSettingsService.setHomeScreen(this.selectedHomeScreen);
-    this.userSettingsService.setPreferredSprite(this.selectedSprite);
-    this.authService.setLanguage(this.selectedLanguage);
-    this.saved = true;
-    setTimeout(() => (this.saved = false), 2000);
+    this.authService.updateUserConfig(this.selectedLanguage, this.selectedSprite, this.selectedHomeScreen).subscribe({
+      next: () => {
+        this.saved = true;
+        setTimeout(() => (this.saved = false), 2000);
+      }
+    });
   }
 }

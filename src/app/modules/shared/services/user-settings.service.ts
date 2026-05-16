@@ -16,7 +16,6 @@ export class UserSettingsService {
   }
 
   setHomeScreen(option: HomeScreenOption): void {
-    localStorage.setItem(LocalStorageKeys.HOME_SCREEN, option);
     this.homeScreenSubject.next(option);
   }
 
@@ -25,30 +24,39 @@ export class UserSettingsService {
   }
 
   setPreferredSprite(option: PreferredSpriteOption): void {
-    localStorage.setItem(LocalStorageKeys.PREFERRED_SPRITE, option);
     this.preferredSpriteSubject.next(option);
   }
 
   getHomeRoute(): string {
     switch (this.getHomeScreen()) {
-      case HomeScreenOption.PROFILE:     return '/profile/show';
+      case HomeScreenOption.PROFILE:      return '/profile/show';
       case HomeScreenOption.POKEMON_LIST: return '/pokedex/list';
       case HomeScreenOption.RANDOM_POKEMON:
-      default:                           return '/pokedex';
+      default:                            return '/pokedex';
     }
   }
 
   private readHomeScreen(): HomeScreenOption {
-    const stored = localStorage.getItem(LocalStorageKeys.HOME_SCREEN);
-    return (Object.values(HomeScreenOption).includes(stored as HomeScreenOption))
-      ? stored as HomeScreenOption
-      : HomeScreenOption.RANDOM_POKEMON;
+    const configData = localStorage.getItem(LocalStorageKeys.USER_CONFIG_DATA);
+    if (configData) {
+      const config = JSON.parse(configData);
+      const stored = config.home_screen;
+      if (Object.values(HomeScreenOption).includes(stored as HomeScreenOption)) {
+        return stored as HomeScreenOption;
+      }
+    }
+    return HomeScreenOption.RANDOM_POKEMON;
   }
 
   private readPreferredSprite(): PreferredSpriteOption {
-    const stored = localStorage.getItem(LocalStorageKeys.PREFERRED_SPRITE);
-    return (Object.values(PreferredSpriteOption).includes(stored as PreferredSpriteOption))
-      ? stored as PreferredSpriteOption
-      : PreferredSpriteOption.HOME;
+    const configData = localStorage.getItem(LocalStorageKeys.USER_CONFIG_DATA);
+    if (configData) {
+      const config = JSON.parse(configData);
+      const stored = config.preferred_sprite;
+      if (Object.values(PreferredSpriteOption).includes(stored as PreferredSpriteOption)) {
+        return stored as PreferredSpriteOption;
+      }
+    }
+    return PreferredSpriteOption.HOME;
   }
 }
