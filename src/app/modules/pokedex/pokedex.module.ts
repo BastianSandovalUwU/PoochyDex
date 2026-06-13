@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { PokemonInfoComponent } from './components/show-pokemon/pokemon-info/pokemon-info.component';
+import { PokemonNavigationComponent } from './components/show-pokemon/pokemon-navigation/pokemon-navigation.component';
 import { PokedexEntriesComponent } from './components/show-pokemon/pokedex-entries/pokedex-entries.component';
 import { ChainEvolutionComponent } from './components/show-pokemon/chain-evolution/chain-evolution.component';
 import { PokedexNumbersComponent } from './components/show-pokemon/pokedex-numbers/pokedex-numbers.component';
@@ -45,6 +46,7 @@ import { ListPokedexComponent } from './components/list-pokedex/list-pokedex.com
     ListPokedexComponent,
     ShowPokemonComponent,
     PokemonInfoComponent,
+    PokemonNavigationComponent,
     PokedexEntriesComponent,
     ChainEvolutionComponent,
     PokedexNumbersComponent,

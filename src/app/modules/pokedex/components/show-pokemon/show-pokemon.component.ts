@@ -10,7 +10,6 @@ import { Move, TypeDetail } from '../../../../../../entities/moves.entity';
 import { forkJoin, merge, Subject, takeUntil } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { ErrorMessageService } from 'app/services/error-message.service';
-import { PokemonSpriteOption } from '../../../../../../entities/poochydex-api/pokemon-sprite-option';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 import { AbilityName } from '../../../../../../entities/pokemon-ability.entity';
 
@@ -32,8 +31,6 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   /** Move-detail fetch (`forkJoin`); skeleton in Pokémon moves section until false. */
   movesLoading = false;
-  pokemonSprite: string;
-  pokemonSpriteShiny: string;
   movesWithTypes: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
   movesWithTypesEn: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
   movesWithTypesEs: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
@@ -88,12 +85,6 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (pokeInfo) => {
           this.pokemon = pokeInfo;
-          this.helperService.getPokemonSpriteImg(this.pokemon["name"], PokemonSpriteOption.Home)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(sprite => this.pokemonSprite = sprite);
-          this.helperService.getPokemonSpriteImg(this.pokemon["name"], PokemonSpriteOption.HomeShiny)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(sprite => this.pokemonSpriteShiny = sprite);
           this.getPokemonSpecie(this.pokemon.species.name);
         },
         error: (error) => {

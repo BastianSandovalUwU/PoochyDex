@@ -1,0 +1,28 @@
+<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-800 grid grid-cols-3 items-center"
+  [@detailFadeIn]>
+  <div class="flex justify-start">
+    <app-ui-button *ngIf="previousPokemonId" variant="secondary" type="button"
+      [routerLink]="['/pokedex/show-pokemon', previousPokemonId]"
+      [ariaLabel]="language === 'es' ? 'Pokémon anterior' : 'Previous Pokémon'">
+      <mat-icon>chevron_left</mat-icon>
+      <span class="hidden sm:inline">{{ language === 'es' ? 'Anterior' : 'Previous' }}</span>
+    </app-ui-button>
+  </div>
+
+  <div class="flex justify-center">
+    <app-ui-button variant="secondary" type="button" [routerLink]="['/pokedex/list']"
+      [ariaLabel]="language === 'es' ? 'Volver al listado' : 'Back to list'">
+      <mat-icon>apps</mat-icon>
+      <span class="hidden sm:inline">{{ language === 'es' ? 'Listado' : 'List' }}</span>
+    </app-ui-button>
+  </div>
+
+  <div class="flex justify-end">
+    <app-ui-button *ngIf="nextPokemonId" variant="secondary" type="button"
+      [routerLink]="['/pokedex/show-pokemon', nextPokemonId]"
+      [ariaLabel]="language === 'es' ? 'Siguiente Pokémon' : 'Next Pokémon'">
+      <span class="hidden sm:inline">{{ language === 'es' ? 'Siguiente' : 'Next' }}</span>
+      <mat-icon>chevron_right</mat-icon>
+    </app-ui-button>
+  </div>
+</div>

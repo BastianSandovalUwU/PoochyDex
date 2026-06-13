@@ -129,16 +129,6 @@ export class PokeApiService {
     );
   }
 
-  getPokemonById(id: number): Observable<Pokemon> {
-    const url = `${this.apiUrl}/pokemon/${id}/`;
-    return this.http.get<PokemonFull>(url).pipe(
-      map(response => this.convertToLitePokemon(response)),
-      catchError(error => {
-        console.error('Error fetching Pokémon by id:', id, error);
-        return throwError(() => error);
-      })
-    );
-  }
 
   getPokemonByUrl(url: string): Observable<Pokemon> {
     return this.http.get<PokemonFull>(url).pipe(

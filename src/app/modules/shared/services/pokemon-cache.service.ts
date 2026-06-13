@@ -78,7 +78,7 @@ export class PokemonCacheService {
       console.log(`Processing batch ${Math.floor(startIndex / batchSize) + 1} of ${Math.ceil(totalMissing / batchSize)}`);
 
       const batchRequests = batch.map(pokemon =>
-        this.pokeApiService.getPokemonById(pokemon.number).pipe(
+        this.pokeApiService.getPokemonByName(pokemon.number.toString()).pipe(
           map(response => {
             completedRequests++;
             const progress = Math.round((completedRequests / totalMissing) * 100);

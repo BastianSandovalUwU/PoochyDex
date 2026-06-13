@@ -1,43 +1,49 @@
-<h1 *ngIf="pokemon?.cries?.latest" class="font-bold flex items-center gap-3 mb-4">
-  <span>{{ language === 'es' ? 'Grito Actual' : 'Current Cry' }}:</span>
-  <app-ui-button *ngIf="!isPlayingLatest"
-          variant="cry-play"
-          type="button"
-          (buttonClick)="playAudio('latest')"
-          [ariaLabel]="language === 'es' ? 'Reproducir grito actual' : 'Play current cry'">
-    <mat-icon>play_arrow</mat-icon>
-  </app-ui-button>
-  <app-ui-button *ngIf="isPlayingLatest"
-          variant="cry-pause"
-          type="button"
-          (buttonClick)="pauseAudio('latest')"
-          [ariaLabel]="language === 'es' ? 'Pausar grito actual' : 'Pause current cry'">
-    <mat-icon>pause</mat-icon>
-  </app-ui-button>
-  <audio id="audioPlayerLatest" #audioPlayerLatest (ended)="audioEnded('latest')">
-    <source [src]="pokemon?.cries?.latest" type="audio/mpeg">
-    Tu navegador no soporta el elemento de audio.
-  </audio>
-</h1>
+<div class="flex flex-col font-bold">
+  <span *ngIf="pokemon?.cries?.latest" class="flex items-center gap-2">
+    <span>{{ language === 'es' ? 'Grito Actual' : 'Current Cry' }}:</span>
+    <app-ui-button *ngIf="!isPlayingLatest"
+            variant="cry-play"
+            extraClasses="ui-button--cry-flat"
+            type="button"
+            (buttonClick)="playAudio('latest')"
+            [ariaLabel]="language === 'es' ? 'Reproducir grito actual' : 'Play current cry'">
+      <mat-icon>play_arrow</mat-icon>
+    </app-ui-button>
+    <app-ui-button *ngIf="isPlayingLatest"
+            variant="cry-pause"
+            extraClasses="ui-button--cry-flat"
+            type="button"
+            (buttonClick)="pauseAudio('latest')"
+            [ariaLabel]="language === 'es' ? 'Pausar grito actual' : 'Pause current cry'">
+      <mat-icon>pause</mat-icon>
+    </app-ui-button>
+    <audio id="audioPlayerLatest" #audioPlayerLatest (ended)="audioEnded('latest')">
+      <source [src]="pokemon?.cries?.latest" type="audio/mpeg">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+  </span>
 
-<h1 *ngIf="pokemon?.cries?.legacy" class="font-bold flex items-center gap-3">
-  <span>{{ language === 'es' ? 'Grito Antiguo' : 'Previous Scream' }}:</span>
-  <app-ui-button *ngIf="!isPlayingLegacy"
-          variant="cry-play"
-          type="button"
-          (buttonClick)="playAudio('legacy')"
-          [ariaLabel]="language === 'es' ? 'Reproducir grito antiguo' : 'Play previous scream'">
-    <mat-icon>play_arrow</mat-icon>
-  </app-ui-button>
-  <app-ui-button *ngIf="isPlayingLegacy"
-          variant="cry-pause"
-          type="button"
-          (buttonClick)="pauseAudio('legacy')"
-          [ariaLabel]="language === 'es' ? 'Pausar grito antiguo' : 'Pause previous scream'">
-    <mat-icon>pause</mat-icon>
-  </app-ui-button>
-  <audio id="audioPlayerLegacy" #audioPlayerLegacy (ended)="audioEnded('legacy')">
-    <source [src]="pokemon?.cries?.legacy" type="audio/mpeg">
-    Tu navegador no soporta el elemento de audio.
-  </audio>
-</h1>
+  <span *ngIf="pokemon?.cries?.legacy" class="flex items-center gap-2">
+    <span>{{ language === 'es' ? 'Grito Antiguo' : 'Previous Scream' }}:</span>
+    <app-ui-button *ngIf="!isPlayingLegacy"
+            variant="cry-play"
+            extraClasses="ui-button--cry-flat"
+            type="button"
+            (buttonClick)="playAudio('legacy')"
+            [ariaLabel]="language === 'es' ? 'Reproducir grito antiguo' : 'Play previous scream'">
+      <mat-icon>play_arrow</mat-icon>
+    </app-ui-button>
+    <app-ui-button *ngIf="isPlayingLegacy"
+            variant="cry-pause"
+            extraClasses="ui-button--cry-flat"
+            type="button"
+            (buttonClick)="pauseAudio('legacy')"
+            [ariaLabel]="language === 'es' ? 'Pausar grito antiguo' : 'Pause previous scream'">
+      <mat-icon>pause</mat-icon>
+    </app-ui-button>
+    <audio id="audioPlayerLegacy" #audioPlayerLegacy (ended)="audioEnded('legacy')">
+      <source [src]="pokemon?.cries?.legacy" type="audio/mpeg">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+  </span>
+</div>

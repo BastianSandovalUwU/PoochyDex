@@ -86,7 +86,68 @@
   }
 }
 
+// Flat modifier: icon-only, no circle/gradient — for inline use next to text
+.ui-button--cry.ui-button--cry-flat {
+  width: auto;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 0.375rem;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  line-height: 0;
+
+  ::ng-deep mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    color: theme('colors.blue.500');
+    filter: none;
+  }
+
+  &::before {
+    display: none;
+  }
+
+  &:hover {
+    transform: none;
+    box-shadow: none;
+    background: rgba(59, 130, 246, 0.1);
+  }
+
+  &:active {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+.ui-button--cry-pause.ui-button--cry-flat {
+  ::ng-deep mat-icon {
+    color: theme('colors.red.500');
+  }
+
+  &:hover {
+    background: rgba(239, 68, 68, 0.1);
+  }
+}
+
 :host-context(.dark) {
+  .ui-button--cry-flat {
+    ::ng-deep mat-icon {
+      color: theme('colors.blue.400');
+    }
+
+    &.ui-button--cry-pause {
+      ::ng-deep mat-icon {
+        color: theme('colors.red.400');
+      }
+    }
+  }
+
+
   .ui-button--cry-play {
     background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
     box-shadow:

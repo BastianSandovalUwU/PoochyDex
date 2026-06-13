@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, catchError, map, of, shareReplay } from 'rxjs';
 import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';
-import { Pokemon, PokemonForm } from '../../../../../entities/poochydex-api/pokemon.type';
+import { Pokemon, PokemonForm, PokemonResponse } from '../../../../../entities/poochydex-api/pokemon.type';
 import { PokemonSpriteOption } from '../../../../../entities/poochydex-api/pokemon-sprite-option';
 import { getCorrectPokemonName } from '../../../../../entities/common/enum';
 
@@ -16,6 +16,9 @@ export class CustomPokemonCatalogService {
   allPokemon: Pokemon[] = [];
   allPokemonForms: PokemonForm[] = [];
 
+  /** Caches in-flight/completed `getPokemonByName` requests so concurrent sprite lookups for the same Pokémon share one HTTP call. */
+  private pokemonByNameCache = new Map<string, Observable<PokemonResponse>>();
+
   constructor(private poochyDexApiService: PoochyDexApiService) {
     this.poochyDexApiService.getAllPokemon().subscribe((response) => {
       this.allPokemon = response.data;
@@ -25,11 +28,20 @@ export class CustomPokemonCatalogService {
     });
   }
 
+  private getPokemonByNameCached(name: string): Observable<PokemonResponse> {
+    let request = this.pokemonByNameCache.get(name);
+    if (!request) {
+      request = this.poochyDexApiService.getPokemonByName(name).pipe(shareReplay(1));
+      this.pokemonByNameCache.set(name, request);
+    }
+    return request;
+  }
+
   getPokemonSpriteImg(pokemonName: string, option: PokemonSpriteOption): Observable<string> {
     const name = getCorrectPokemonName(pokemonName);
     const placeholder = 'https://i.imgur.com/uKx7iOF.png';
 
-    return this.poochyDexApiService.getPokemonByName(name).pipe(
+    return this.getPokemonByNameCached(name).pipe(
       map((response) => {
         const pokemon = response.data;
         if (!pokemon || !pokemon.sprites) {
