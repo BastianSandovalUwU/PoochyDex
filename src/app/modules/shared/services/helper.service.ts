@@ -116,7 +116,7 @@ export class HelperService {
     return this.customPokemonCatalog.getPokemonSpriteImg(pokemonName, option);
   }
 
-  getPokemonArtwork(pokemonName: string): { sugimoriArt?: string; globalLinkArt?: string } {
+  getPokemonArtwork(pokemonName: string): { homeShinyUrl?: string; sugimoriArt?: string; globalLinkArt?: string } {
     return this.customPokemonCatalog.getPokemonArtwork(pokemonName);
   }
 

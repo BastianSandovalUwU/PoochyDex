@@ -46,6 +46,7 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
   sugimoriArtUrl?: string;
   globalLinkArtUrl?: string;
   hasSugimoriArt: boolean = false;
+  hasHomeShiny: boolean = false;
   hasGlobalLinkArt: boolean = false;
 
   displayedImageLoaded = false;
@@ -101,10 +102,12 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
     });
 
     const artwork = this.helperService.getPokemonArtwork(this.pokemon.name);
+    console.log(artwork);
     this.sugimoriArtUrl = artwork.sugimoriArt;
     this.globalLinkArtUrl = artwork.globalLinkArt;
     this.hasSugimoriArt = !!artwork.sugimoriArt;
     this.hasGlobalLinkArt = !!artwork.globalLinkArt;
+    this.hasHomeShiny = !!artwork.homeShinyUrl;
     this.selectedImageType = this.resolveInitialSpriteType(artwork);
     this.showShiny = false;
 
@@ -129,6 +132,8 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
         return this.sugimoriArtUrl || this.pokemonSprite;
       case PokemonSpriteOption.GlobalLinkArt:
         return this.globalLinkArtUrl || this.pokemonSprite;
+      case PokemonSpriteOption.HomeShiny:
+        return this.pokemonSpriteShiny || this.pokemonSprite;
       default:
         return this.pokemonSprite;
     }
@@ -173,6 +178,9 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
   /** Order of sprite tabs shown in the UI (Home always; others if artwork exists). */
   visibleSpriteOptions(): PokemonSpriteOption[] {
     const options: PokemonSpriteOption[] = [PokemonSpriteOption.Home];
+    if (this.hasHomeShiny) {
+      options.push(PokemonSpriteOption.HomeShiny);
+    }
     if (this.hasSugimoriArt) {
       options.push(PokemonSpriteOption.SugimoriArt);
     }
@@ -241,6 +249,7 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
     const idx = visible.indexOf(type);
     const isFirst = idx === 0;
     const isLast = idx === visible.length - 1;
+    const isMiddle = idx > 0 && idx < visible.length - 1;
     let rounding = '!rounded-none';
     if (isFirst && isLast) {
       rounding = '!rounded-md';
@@ -248,6 +257,8 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
       rounding = '!rounded-l-md !rounded-r-none';
     } else if (isLast) {
       rounding = '!rounded-r-md !rounded-l-none';
+    } else if (isMiddle) {
+      rounding = '!rounded-md';
     }
 
     return `${base} ${rounding} ${state}`;

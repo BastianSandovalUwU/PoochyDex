@@ -1,4 +1,5 @@
-<div [ngClass]="backgroundColor" class=" p-4 rounded-md col-span-1 border border-gray-200 dark:border-gray-600 dark:bg-gray-800">
+<div [ngClass]="backgroundColor"
+  class=" p-4 rounded-md col-span-1 border border-gray-200 dark:border-gray-600 dark:bg-gray-800">
   <h1 class="font-bold text-4xl text-center">{{pokemon.name |translatePokemonName |replaceDash | titlecase}}</h1>
   <h1 class="font-bold text-lg text-center">
     <span class="cursor-pointer" *ngIf="pokemonNameHirgana">{{pokemonNameHirgana.name | titlecase}}</span>
@@ -6,97 +7,59 @@
   </h1>
   <div class="grid grid-cols-3 gap-1">
     <div class="col-span-3 flex min-h-[3rem] items-center justify-center">
-      <div class="inline-flex rounded-lg shadow-sm border border-gray-300 bg-white dark:bg-gray-800 dark:border-gray-600" role="group">
-        <app-ui-button
-          type="button"
-          variant="ghost"
-          role="radio"
+      <div
+        class="inline-flex rounded-lg shadow-sm border border-gray-300 bg-white dark:bg-gray-800 dark:border-gray-600"
+        role="group">
+        <app-ui-button type="button" variant="ghost" role="radio"
           [extraClasses]="imageTypeSegmentClass(PokemonSpriteOption.Home)"
-          (buttonClick)="selectImageType(PokemonSpriteOption.Home)"
-        >
+          (buttonClick)="selectImageType(PokemonSpriteOption.Home)">
           {{ language === 'es' ? 'Modelo Home' : 'Home Model' }}
         </app-ui-button>
-        <app-ui-button
-          *ngIf="hasSugimoriArt"
-          type="button"
-          variant="ghost"
-          role="radio"
+        <app-ui-button *ngIf="hasHomeShiny" type="button" variant="ghost" role="radio"
+          [extraClasses]="imageTypeSegmentClass(PokemonSpriteOption.HomeShiny)"
+          (buttonClick)="selectImageType(PokemonSpriteOption.HomeShiny)">
+          {{ language === 'es' ? 'Modelo Home Shiny' : 'Home Model Shiny' }}
+        </app-ui-button>
+        <app-ui-button *ngIf="hasSugimoriArt" type="button" variant="ghost" role="radio"
           [extraClasses]="imageTypeSegmentClass(PokemonSpriteOption.SugimoriArt)"
-          (buttonClick)="selectImageType(PokemonSpriteOption.SugimoriArt)"
-        >
+          (buttonClick)="selectImageType(PokemonSpriteOption.SugimoriArt)">
           Sugimori
         </app-ui-button>
-        <app-ui-button
-          *ngIf="hasGlobalLinkArt"
-          type="button"
-          variant="ghost"
-          role="radio"
+        <app-ui-button *ngIf="hasGlobalLinkArt" type="button" variant="ghost" role="radio"
           [extraClasses]="imageTypeSegmentClass(PokemonSpriteOption.GlobalLinkArt)"
-          (buttonClick)="selectImageType(PokemonSpriteOption.GlobalLinkArt)"
-        >
+          (buttonClick)="selectImageType(PokemonSpriteOption.GlobalLinkArt)">
           Global Link
         </app-ui-button>
       </div>
     </div>
 
     <div class="col-span-3 flex justify-center">
-      <div
-        class="pokemon-info__sprite-frame relative h-80 w-80 max-w-full shrink-0 overflow-hidden rounded-xl"
-        [attr.aria-busy]="displayedImageLoaded ? null : 'true'"
-      >
-        <app-ui-skeleton
-          [loading]="!displayedImageLoaded"
-          extraClasses="z-20">
+      <div class="pokemon-info__sprite-frame relative h-80 w-80 max-w-full shrink-0 overflow-hidden rounded-xl"
+        [attr.aria-busy]="displayedImageLoaded ? null : 'true'">
+        <app-ui-skeleton [loading]="!displayedImageLoaded" extraClasses="z-20">
         </app-ui-skeleton>
 
         <ng-container *ngIf="selectedImageType === PokemonSpriteOption.Home; else altArtTemplate">
-          <img
-            *ngIf="!showShiny && pokemonSprite"
+          <img *ngIf="!showShiny && pokemonSprite"
             class="relative z-0 mx-auto h-full w-full max-h-full max-w-full cursor-pointer object-contain transition-opacity duration-300"
-            [class.z-10]="displayedImageLoaded"
-            [class.opacity-0]="!displayedImageLoaded"
-            [class.opacity-100]="displayedImageLoaded"
-            tabindex="0"
-            role="img"
-            alt=""
-            (load)="onMainSpriteLoad()"
-            (error)="onMainSpriteError()"
-            (click)="setShowShiny(true)"
-            (keydown.enter)="setShowShiny(true)"
-            (keydown.space)="$event.preventDefault(); setShowShiny(true)"
-            [src]="pokemonSprite"
-          >
-          <img
-            *ngIf="showShiny && pokemonSpriteShiny"
+            [class.z-10]="displayedImageLoaded" [class.opacity-0]="!displayedImageLoaded"
+            [class.opacity-100]="displayedImageLoaded" tabindex="0" role="img" alt="" (load)="onMainSpriteLoad()"
+            (error)="onMainSpriteError()" (click)="setShowShiny(true)" (keydown.enter)="setShowShiny(true)"
+            (keydown.space)="$event.preventDefault(); setShowShiny(true)" [src]="pokemonSprite">
+          <img *ngIf="showShiny && pokemonSpriteShiny"
             class="relative z-0 mx-auto h-full w-full max-h-full max-w-full cursor-pointer object-contain transition-opacity duration-300"
-            [class.z-10]="displayedImageLoaded"
-            [class.opacity-0]="!displayedImageLoaded"
-            [class.opacity-100]="displayedImageLoaded"
-            tabindex="0"
-            role="img"
-            alt=""
-            (load)="onMainSpriteLoad()"
-            (error)="onMainSpriteError()"
-            (click)="setShowShiny(false)"
-            (keydown.enter)="setShowShiny(false)"
-            (keydown.space)="$event.preventDefault(); setShowShiny(false)"
-            [src]="pokemonSpriteShiny"
-          >
+            [class.z-10]="displayedImageLoaded" [class.opacity-0]="!displayedImageLoaded"
+            [class.opacity-100]="displayedImageLoaded" tabindex="0" role="img" alt="" (load)="onMainSpriteLoad()"
+            (error)="onMainSpriteError()" (click)="setShowShiny(false)" (keydown.enter)="setShowShiny(false)"
+            (keydown.space)="$event.preventDefault(); setShowShiny(false)" [src]="pokemonSpriteShiny">
         </ng-container>
 
         <ng-template #altArtTemplate>
-          <img
-            *ngIf="getMainSprite()"
+          <img *ngIf="getMainSprite()"
             class="relative z-0 mx-auto h-full w-full max-h-full max-w-full object-contain transition-opacity duration-300"
-            [class.z-10]="displayedImageLoaded"
-            [class.opacity-0]="!displayedImageLoaded"
-            [class.opacity-100]="displayedImageLoaded"
-            role="img"
-            alt=""
-            (load)="onMainSpriteLoad()"
-            (error)="onMainSpriteError()"
-            [src]="getMainSprite()"
-          >
+            [class.z-10]="displayedImageLoaded" [class.opacity-0]="!displayedImageLoaded"
+            [class.opacity-100]="displayedImageLoaded" role="img" alt="" (load)="onMainSpriteLoad()"
+            (error)="onMainSpriteError()" [src]="getMainSprite()">
         </ng-template>
       </div>
     </div>
@@ -106,8 +69,7 @@
     <div class="col-span-3 sm:col-span-5 flex justify-center">
       <div [ngClass]="'gap-1 grid grid-cols-' + pokemon.types.length">
         <div *ngFor="let type of pokemontypes" class="rounded-md text-center">
-          <img class="w-32"
-          [src]="'./assets/icons/types/' + type.typeName + '.png'">
+          <img class="w-32" [src]="'./assets/icons/types/' + type.typeName + '.png'">
         </div>
       </div>
     </div>
@@ -123,24 +85,30 @@
               <span routerLinkActive *ngIf="!abilityGroup.ability.is_hidden">{{ abilityGroup.ability.slot }}</span>
               <span *ngIf="abilityGroup.ability.is_hidden">{{ language === 'es' ? 'Oculta': 'Hidden' }}</span>:
             </span>
-            <span class="hover:text-blue-500 cursor-pointer" [routerLink]="['/pokedex/show-ability', abilityGroup.ability.ability.name]" >{{ abilityGroup.name }}</span>
+            <span class="hover:text-blue-500 cursor-pointer"
+              [routerLink]="['/pokedex/show-ability', abilityGroup.ability.ability.name]">{{ abilityGroup.name }}</span>
           </div>
         </div>
         <div *ngFor="let eggGroup of pokemonSpecie.egg_groups">
-          <span class="font-bold">{{ language === 'es' ? 'Grupo Huevo': 'Egg Group' }}: </span>{{ getEggGroupName(eggGroup.name) }}
+          <span class="font-bold">{{ language === 'es' ? 'Grupo Huevo': 'Egg Group' }}: </span>{{
+          getEggGroupName(eggGroup.name) }}
         </div>
         <h1><span class="font-bold">{{ language === 'es' ? 'Sexo': 'Sex' }}: </span>
           <span class="text-blue-400 cursor-pointer">{{ calculateGenderRateMale(pokemonSpecie.gender_rate) }}%</span> -
           <span class="text-pink-400 cursor-pointer">{{ calculateGenderRateFemale(pokemonSpecie.gender_rate) }}%</span>
         </h1>
-        <h1><span class="font-bold">{{ language === 'es' ? 'Peso': 'Weight' }}: </span>{{ (pokemon.weight * 0.1).toFixed(1) }}kg</h1>
-        <h1><span class="font-bold">{{ language === 'es' ? 'Altura': 'Heigth' }}: </span>{{ (pokemon.height*0.1).toFixed(1)  }}m</h1>
+        <h1><span class="font-bold">{{ language === 'es' ? 'Peso': 'Weight' }}: </span>{{ (pokemon.weight *
+          0.1).toFixed(1) }}kg</h1>
+        <h1><span class="font-bold">{{ language === 'es' ? 'Altura': 'Heigth' }}: </span>{{
+          (pokemon.height*0.1).toFixed(1) }}m</h1>
         <h1 class="font-bold" *ngIf="pokemonSpecie.is_legendary">Pokémon Legendario</h1>
         <h1 class="font-bold" *ngIf="pokemonSpecie.is_mythical">Pokémon Mitico</h1>
         <h1 class="font-bold" *ngIf="pokemonSpecie.is_baby">Pokémon Bebé</h1>
-        <h1><span class="font-bold">{{ language === 'es' ? 'Generación': 'Generation' }}: </span>{{getGenerationName(pokemonSpecie.generation.name)}}</h1>
+        <h1><span class="font-bold">{{ language === 'es' ? 'Generación': 'Generation' }}:
+          </span>{{getGenerationName(pokemonSpecie.generation.name)}}</h1>
         <div *ngFor="let genera of pokemonSpecie.genera">
-          <span *ngIf="genera.language.name === language"><span class="font-bold">{{ language === 'es' ? 'Categoria': 'Category' }}: </span>{{ genera.genus }} </span>
+          <span *ngIf="genera.language.name === language"><span class="font-bold">{{ language === 'es' ? 'Categoria':
+              'Category' }}: </span>{{ genera.genus }} </span>
         </div>
 
         <app-pokemon-cry [pokemon]="pokemon" [language]="language"></app-pokemon-cry>

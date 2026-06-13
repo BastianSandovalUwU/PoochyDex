@@ -58,7 +58,7 @@ export class CustomPokemonCatalogService {
   /**
    * Alternate artwork URLs from the custom API (Sugimori / Global Link), when present.
    */
-  getPokemonArtwork(pokemonName: string): { sugimoriArt?: string; globalLinkArt?: string } {
+  getPokemonArtwork(pokemonName: string): { homeShinyUrl?: string; sugimoriArt?: string; globalLinkArt?: string } {
     const name = getCorrectPokemonName(pokemonName);
     let combined: (Pokemon | PokemonForm)[] = [...this.allPokemon, ...this.allPokemonForms];
 
@@ -68,9 +68,10 @@ export class CustomPokemonCatalogService {
       return {};
     }
 
-    const { sugimoriArt, globalLinkArt } = pokemon.sprites;
+    const { homeShinyUrl, sugimoriArt, globalLinkArt } = pokemon.sprites;
 
     return {
+      ...(homeShinyUrl ? { homeShinyUrl } : {}),
       ...(sugimoriArt ? { sugimoriArt } : {}),
       ...(globalLinkArt ? { globalLinkArt } : {})
     };
