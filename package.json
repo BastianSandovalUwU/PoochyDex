@@ -13,7 +13,9 @@
     "android:sync": "ng build && npx cap sync android",
     "android:apk": "npm run android:sync && cd android && ./gradlew assembleDebug",
     "android:icons": "npx @capacitor/assets generate --android",
-    "android:install": "adb install -r android/app/build/outputs/apk/debug/app-debug.apk"
+    "android:install": "adb install -r android/app/build/outputs/apk/debug/app-debug.apk",
+    "android:release:apk": "npm run android:sync && cd android && ./gradlew assembleRelease",
+    "android:release:aab": "npm run android:sync && cd android && ./gradlew bundleRelease"
   },
   "private": true,
   "dependencies": {
