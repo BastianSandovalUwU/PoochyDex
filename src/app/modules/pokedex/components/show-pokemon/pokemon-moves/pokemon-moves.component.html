@@ -40,7 +40,7 @@
 
     <ng-container *ngIf="!movesLoading">
       <app-custom-tabs
-        [tabs]="getLevelUpTabs()"
+        [tabs]="levelUpTabs"
         [(selectedIndex)]="selectedTabIndex"
         (tabChange)="levelUpChangeGame($event)"
         activeTabColor="text-purple-600 dark:text-purple-400"
@@ -58,8 +58,8 @@
           <span class="font-semibold col-span-3">{{ language === 'es' ? 'Juego': 'Game' }}</span>
           <span class="font-semibold col-span-2">{{ language === 'es' ? 'Tipo': 'Type' }}</span>
         </div>
-        <div *ngFor="let pokeMove of filteredMoves">
-          <div *ngFor="let detail of pokeMove.move.version_group_details">
+        <div *ngFor="let pokeMove of filteredMoves; trackBy: trackByMove">
+          <div *ngFor="let detail of pokeMove.move.version_group_details; trackBy: trackByIndex">
             <div class="grid grid-cols-9 gap-2 mb-1 dark:border-gray-600" *ngIf="detail.version_group.name === levelUpSelectedVersionGroup">
               <div class="col-span-1">
                 {{ detail.level_learned_at }}
@@ -83,7 +83,7 @@
                        [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(detail.version_group.name)[1] + '.png'" alt="Game Icon">
                 </div>
               </div>
-              <div class="col-span-2" *ngFor="let type of pokeMove.types">
+              <div class="col-span-2" *ngFor="let type of pokeMove.types; trackBy: trackByType">
                 <div class="grid grid-cols-2 dark:border-gray-600">
                   <div class="text-center">
                     <img class="w-32"
@@ -142,7 +142,7 @@
 
     <ng-container *ngIf="!movesLoading">
       <app-custom-tabs
-        [tabs]="getLevelUpTabs()"
+        [tabs]="levelUpTabs"
         [(selectedIndex)]="selectedTabIndex"
         (tabChange)="levelUpChangeGame($event)"
         activeTabColor="text-purple-600 dark:text-purple-400"
@@ -163,7 +163,7 @@
         </div>
 
         <!-- Fila de movimientos -->
-        <div *ngFor="let pokeMove of filteredMoves" class="move-row dark:border-gray-600 dark:bg-gray-800">
+        <div *ngFor="let pokeMove of filteredMoves; trackBy: trackByMove" class="move-row dark:border-gray-600 dark:bg-gray-800">
           <div class="move-detail">
             <span class="move-label">{{ language === 'es' ? 'Nivel': 'Level' }}</span>
             <span class="move-value">{{ getLevelLearnedAt(pokeMove) }}</span>

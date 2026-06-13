@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
@@ -11,7 +11,8 @@ const MAX_POKEMON_ID = 1025;
   selector: 'app-pokemon-navigation',
   templateUrl: './pokemon-navigation.component.html',
   styleUrls: ['./pokemon-navigation.component.scss'],
-  animations: detailFadeInAnimations
+  animations: detailFadeInAnimations,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PokemonNavigationComponent implements OnChanges {
   @Input() pokemon: Pokemon;

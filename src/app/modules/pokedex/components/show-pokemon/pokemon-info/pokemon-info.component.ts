@@ -1,5 +1,7 @@
 import {
   afterNextRender,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   Injector,
@@ -13,7 +15,6 @@ import { forkJoin, Subscription } from 'rxjs';
 import { Ability, Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { Name, PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
-import { AbilityName } from '../../../../../../../entities/pokemon-ability.entity';
 import { PokemonSpriteOption } from '../../../../../../../entities/poochydex-api/pokemon-sprite-option';
 import { PreferredSpriteOption } from '../../../../../../../entities/common/enum';
 import { UserSettingsService } from 'app/modules/shared/services/user-settings.service';
@@ -23,7 +24,8 @@ import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fad
   selector: 'app-pokemon-info',
   templateUrl: './pokemon-info.component.html',
   styleUrls: ['./pokemon-info.component.scss'],
-  animations: detailFadeInAnimations
+  animations: detailFadeInAnimations,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
   /** Exposed for template bindings (Angular templates cannot reference imported enums). */
@@ -51,13 +53,24 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
 
   displayedImageLoaded = false;
 
+  /** Image shown by the alt-art template, recomputed when sprite/selection changes. */
+  mainSprite: string = '';
+  generationName: string = '';
+  genderRateMale: number = 0;
+  genderRateFemale: number = 0;
+  weightKg: string = '';
+  heightM: string = '';
+  eggGroupNames: string[] = [];
+  genusForLanguage: string = '';
+
   private spriteLoadSub?: Subscription;
 
   constructor(
     private helperService: HelperService,
     private hostEl: ElementRef<HTMLElement>,
     private injector: Injector,
-    private userSettingsService: UserSettingsService
+    private userSettingsService: UserSettingsService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -87,22 +100,24 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
         queueMicrotask(() => {
           this.pokemonSprite = home;
           this.pokemonSpriteShiny = shiny;
+          this.updateMainSprite();
           if (!home) {
             this.displayedImageLoaded = true;
           } else {
             this.scheduleSpriteDecodeSync();
           }
+          this.cdr.markForCheck();
         });
       },
       error: () => {
         queueMicrotask(() => {
           this.displayedImageLoaded = true;
+          this.cdr.markForCheck();
         });
       }
     });
 
     const artwork = this.helperService.getPokemonArtwork(this.pokemon.name);
-    console.log(artwork);
     this.sugimoriArtUrl = artwork.sugimoriArt;
     this.globalLinkArtUrl = artwork.globalLinkArt;
     this.hasSugimoriArt = !!artwork.sugimoriArt;
@@ -110,6 +125,7 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
     this.hasHomeShiny = !!artwork.homeShinyUrl;
     this.selectedImageType = this.resolveInitialSpriteType(artwork);
     this.showShiny = false;
+    this.updateMainSprite();
 
     this.getPokemonColor();
     this.pokemontypes = this.pokemon.types.map(type => {
@@ -120,6 +136,27 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
     });
     this.pokemonNameRomaji = this.pokemonSpecie.names.filter(f => f.language.name === 'roomaji')[0];
     this.pokemonNameHirgana = this.pokemonSpecie.names.filter(f => f.language.name === 'ja-Hrkt')[0];
+
+    this.generationName = this.helperService.getGenerationName(this.pokemonSpecie.generation.name, this.language);
+    this.genderRateMale = this.calculateGenderRateMale(this.pokemonSpecie.gender_rate);
+    this.genderRateFemale = this.calculateGenderRateFemale(this.pokemonSpecie.gender_rate);
+    this.weightKg = (this.pokemon.weight * 0.1).toFixed(1);
+    this.heightM = (this.pokemon.height * 0.1).toFixed(1);
+    this.eggGroupNames = this.pokemonSpecie.egg_groups.map(group => this.helperService.getEggGroupName(group.name, this.language));
+    this.genusForLanguage = this.pokemonSpecie.genera.find(g => g.language.name === this.language)?.genus || '';
+  }
+
+  /** Recomputes the sprite shown by the alt-art template based on the active selection. */
+  private updateMainSprite(): void {
+    this.mainSprite = this.getMainSprite();
+  }
+
+  trackByTypeName(_index: number, type: { typeName: string }): string {
+    return type.typeName;
+  }
+
+  trackByAbility(_index: number, abilityGroup: { ability: Ability }): string {
+    return abilityGroup.ability.ability.name;
   }
 
   /**
@@ -145,18 +182,6 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
     } else {
       this.backgroundColor = '';
     }
-  }
-
-  getGenerationName(generationName: string): string {
-    return this.helperService.getGenerationName(generationName, this.language);
-  }
-
-  getColorClassByLanguageAndType(typeName: string, language: string): string {
-    return this.helperService.getTypeColorClass(typeName, language);
-  }
-
-  getEggGroupName(groupName: string): string {
-    return this.helperService.getEggGroupName(groupName, this.language);
   }
 
   calculateGenderRateMale(genderRate: number): number {
@@ -194,12 +219,14 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
     this.selectedImageType = type;
     this.showShiny = false;
     this.displayedImageLoaded = false;
+    this.updateMainSprite();
     this.scheduleSpriteDecodeSync();
   }
 
   setShowShiny(value: boolean): void {
     this.showShiny = value;
     this.displayedImageLoaded = false;
+    this.updateMainSprite();
     this.scheduleSpriteDecodeSync();
   }
 
@@ -225,12 +252,14 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
   onMainSpriteLoad(): void {
     queueMicrotask(() => {
       this.displayedImageLoaded = true;
+      this.cdr.markForCheck();
     });
   }
 
   onMainSpriteError(): void {
     queueMicrotask(() => {
       this.displayedImageLoaded = true;
+      this.cdr.markForCheck();
     });
   }
 

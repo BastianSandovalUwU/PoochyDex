@@ -1,10 +1,11 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 
 @Component({
   selector: 'app-pokemon-cry',
   templateUrl: './pokemon-cry.component.html',
-  styleUrls: ['./pokemon-cry.component.scss']
+  styleUrls: ['./pokemon-cry.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PokemonCryComponent implements OnInit, OnChanges {
   @Input() pokemon: Pokemon;
@@ -15,7 +16,7 @@ export class PokemonCryComponent implements OnInit, OnChanges {
   isPlayingLatest: boolean = false;
   isPlayingLegacy: boolean = false;
 
-  constructor() { }
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit() { }
 
@@ -52,6 +53,7 @@ export class PokemonCryComponent implements OnInit, OnChanges {
     if (audioElement) {
       audioElement.play().catch(() => {
         this.resetPlayStatus(player);
+        this.cdr.markForCheck();
       });
     }
   }
