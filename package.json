@@ -9,7 +9,11 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:tailwind": "tailwindcss build src/styles/styles.scss -o src/tailwind.css",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "android:sync": "ng build && npx cap sync android",
+    "android:apk": "npm run android:sync && cd android && ./gradlew assembleDebug",
+    "android:icons": "npx @capacitor/assets generate --android",
+    "android:install": "adb install -r android/app/build/outputs/apk/debug/app-debug.apk"
   },
   "private": true,
   "dependencies": {
