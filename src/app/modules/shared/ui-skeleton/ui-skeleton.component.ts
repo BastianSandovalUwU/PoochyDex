@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 /**
  * Shimmer placeholder for loading states. Place inside a `position: relative` container
@@ -7,10 +7,11 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-ui-skeleton',
   templateUrl: './ui-skeleton.component.html',
-  styleUrls: ['./ui-skeleton.component.scss'],
-  host: { class: 'contents' }
+  styleUrls: ['./ui-skeleton.component.scss']
 })
 export class UiSkeletonComponent {
+  @HostBinding('class.contents') readonly contentsClass = true;
+
   /** When true, the shimmer overlay is visible. */
   @Input() loading = false;
 
