@@ -6,6 +6,14 @@ Documento de referencia para personas y asistentes de IA que trabajan en este re
 
 PoochyDex es una Pokédex web que consume [PokéAPI](https://pokeapi.co/) y, cuando está configurada, una API Node propia (`nodeJsApi`). Incluye autenticación contra esa API, perfil, ajustes, movimientos, módulo de API personalizada y empaquetado móvil con Capacitor.
 
+## App móvil (Android / Capacitor)
+
+El proyecto nativo vive en `android/` y **está versionado** (se ignoran solo `build/`, `.gradle/`, `local.properties` y keystores; ver `.gitignore`). Detalles de toolchain, scripts y firma de release: [docs/android-build.md](docs/android-build.md).
+
+- `npm run android:apk` — build web + sync + APK debug.
+- `npm run android:icons` — regenera íconos/splash desde `assets/icon.png`.
+- Las llamadas HTTP usan el cliente nativo (`CapacitorHttp` en `capacitor.config.ts`) para evitar CORS dentro del WebView (`https://localhost`).
+
 ## Stack
 
 | Área | Tecnología |

@@ -5,7 +5,20 @@
 /tmp
 /out-tsc
 /bazel-out
-android/
+
+# Android generated output (the native project itself IS versioned)
+android/build/
+android/app/build/
+android/.gradle/
+android/capacitor.build.gradle
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+android/local.properties
+android/.idea/
+android/keystore.properties
+*.keystore
+*.jks
 
 # Node
 /node_modules

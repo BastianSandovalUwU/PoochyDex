@@ -11,6 +11,10 @@ npm run watch          # build --watch in development mode
 npm test               # Karma + Jasmine
 npm run lint           # ESLint via ng lint
 npm run build:tailwind # regenerate src/tailwind.css from src/styles/styles.scss
+
+# Android (Capacitor) — see docs/android-build.md
+npm run android:apk    # build + sync + debug APK
+npm run android:icons  # regenerate icons/splash from assets/icon.png
 ```
 
 ## Environment
@@ -31,6 +35,10 @@ npm run build:tailwind # regenerate src/tailwind.css from src/styles/styles.scss
 | `auth` | `/auth` | Login / register |
 | `profile` | `/profile/show` | User profile; settings open in a modal from here |
 | `shared` | (no route) | Shared components, pipes, services — imported by all feature modules |
+
+### Mobile (Android / Capacitor)
+
+The native Android project lives in `android/` and is versioned in git (only `build/`, `.gradle/`, `local.properties`, and keystores are gitignored — see `.gitignore`). `CapacitorHttp` is enabled in `capacitor.config.ts` so HTTP calls use the native client and bypass WebView CORS (the app runs from the `https://localhost` origin in the APK). Full toolchain setup, npm scripts, and release signing: [docs/android-build.md](docs/android-build.md).
 
 ### SharedModule
 
