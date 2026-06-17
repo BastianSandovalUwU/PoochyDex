@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { Ability, Pokemon } from '../../../../../../entities/pokemon.entity';
@@ -17,7 +17,8 @@ import { AbilityName } from '../../../../../../entities/pokemon-ability.entity';
   selector: 'app-show-pokemon',
   templateUrl: './show-pokemon.component.html',
   styleUrls: ['./show-pokemon.component.scss'],
-  animations: detailFadeInAnimations
+  animations: detailFadeInAnimations,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShowPokemonComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
@@ -44,6 +45,7 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
     private loadingService: LoadingService,
     private activatedRoute: ActivatedRoute,
     private errorMessageService: ErrorMessageService,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -54,6 +56,7 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
         if (this.pokemon) {
           this.updateMovesForCurrentLanguage();
         }
+        this.cdr.markForCheck();
       });
 
     // Load Pokémon immediately (no cache gate)
@@ -86,12 +89,14 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
         next: (pokeInfo) => {
           this.pokemon = pokeInfo;
           this.getPokemonSpecie(this.pokemon.species.name);
+          this.cdr.markForCheck();
         },
         error: (error) => {
           const errorMessage = this.language === 'es' ? 'Error al cargar el Pokémon' : 'Error loading Pokémon';
           this.errorMessageService.showError(errorMessage, error.message);
           this.loading = false;
           this.loadingService.hide();
+          this.cdr.markForCheck();
         }
       });
   }
@@ -103,12 +108,14 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
         next: (specie) => {
           this.pokemonSpecie = specie;
           this.getPokemonAbility();
+          this.cdr.markForCheck();
         },
         error: (error) => {
           const errorMessage = this.language === 'es' ? 'Error al cargar la información de la especie' : 'Error loading species information';
           this.errorMessageService.showError(errorMessage, error.message);
           this.loading = false;
           this.loadingService.hide();
+          this.cdr.markForCheck();
         }
       });
   }
@@ -143,6 +150,7 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
         takeUntil(merge(this.destroy$, this.cancelPokemonMoves$)),
         finalize(() => {
           this.movesLoading = false;
+          this.cdr.markForCheck();
         })
       )
       .subscribe({
@@ -182,19 +190,24 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
           });
 
           this.movesWithTypes = this.language === 'es' ? this.movesWithTypesEs : this.movesWithTypesEn;
+          this.cdr.markForCheck();
         },
         error: (error) => {
           const errorMessage = this.language === 'es' ? 'Error al cargar los movimientos' : 'Error loading moves';
           this.errorMessageService.showError(errorMessage, error.message);
+          this.cdr.markForCheck();
         }
       });
   }
 
   getPokemonAbility() {
-    this.helperService.getAbilityNames(this.pokemon.abilities).subscribe((abilities) => {
-      this.abilityNames = abilities;
-      this.filterAbilityNamesByLanguage();
-    });
+    this.helperService.getAbilityNames(this.pokemon.abilities)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((abilities) => {
+        this.abilityNames = abilities;
+        this.filterAbilityNamesByLanguage();
+        this.cdr.markForCheck();
+      });
   }
 
   filterAbilityNamesByLanguage(): void {

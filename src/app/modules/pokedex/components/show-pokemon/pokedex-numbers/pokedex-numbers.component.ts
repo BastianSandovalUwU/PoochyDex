@@ -1,5 +1,5 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { PokemonSpecie, PokedexNumber } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
 
@@ -7,7 +7,8 @@ import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/t
   selector: 'app-pokedex-numbers',
   templateUrl: './pokedex-numbers.component.html',
   styleUrls: ['./pokedex-numbers.component.scss'],
-  animations: toggleSectionCollapseAnimations
+  animations: toggleSectionCollapseAnimations,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PokedexNumbersComponent implements OnInit, OnChanges {
   @Input() language: string;
@@ -28,6 +29,10 @@ export class PokedexNumbersComponent implements OnInit, OnChanges {
 
   toggleFilters() {
     this.filtersVisible = !this.filtersVisible;
+  }
+
+  trackByPokedex(_index: number, dex: PokedexNumber): string {
+    return dex.pokedex.name;
   }
 
   getPokemonColor() {

@@ -41,7 +41,7 @@
       </div>
 
       <!-- Evolution Pokemon around the circle -->
-      <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to; let i = index">
+      <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to; let i = index; trackBy: trackByStage">
         <!-- Arrow pointing to center -->
         <div class="absolute" [style.transform]="'rotate(' + (i * (360 / evolutionChain.chain.evolves_to.length)) + 'deg) translate(200px) rotate(0deg)'">
           <mat-icon class="text-7xl dark:text-white text-black" style="width: 48px; height: 48px;">arrow_forward</mat-icon>
@@ -172,7 +172,7 @@
                [src]="evolutionChain.chain.imageName">
         </div>
       </div>
-      <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
+      <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to; trackBy: trackByStage">
         <div class="hidden sm:flex flex-col items-center evolution-step">
           <p class="cursor-pointer hover:text-blue-500" tabindex="0" role="link" (click)="goToPokemonPage(stage.species.name)" (keydown)="onNavigateKeydown($event, stage.species.name)">
             {{ stage.species.name |translatePokemonName |replaceDash | titlecase }}
@@ -223,7 +223,7 @@
             {{ stage?.evolution_details[0]?.trade_species.name |titlecase}}
           </p>
         </div>
-        <ng-container *ngFor="let stage2 of stage.evolves_to">
+        <ng-container *ngFor="let stage2 of stage.evolves_to; trackBy: trackByStage">
           <div class="hidden sm:flex flex-col items-center evolution-step">
             <p class="cursor-pointer hover:text-blue-500" tabindex="0" role="link" (click)="goToPokemonPage(stage2.species.name)" (keydown)="onNavigateKeydown($event, stage2.species.name)">
               {{ stage2.species.name |translatePokemonName |replaceDash | titlecase }}
@@ -294,7 +294,7 @@
           {{ evolutionChain.chain.species.name |translatePokemonName |replaceDash | titlecase }}
         </p>
       </div>
-      <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
+      <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to; trackBy: trackByStage">
         <div class="sm:hidden flex flex-col items-center evolution-step">
           <div class="relative w-20 sm:w-48 aspect-square overflow-hidden">
             <app-ui-skeleton
@@ -345,7 +345,7 @@
             {{ stage?.evolution_details[0]?.trade_species.name |titlecase}}
           </p>
         </div>
-        <ng-container *ngFor="let stage2 of stage.evolves_to">
+        <ng-container *ngFor="let stage2 of stage.evolves_to; trackBy: trackByStage">
           <div class="sm:hidden flex flex-col items-center evolution-step">
             <div class="relative w-20 sm:w-48 aspect-square overflow-hidden">
               <app-ui-skeleton
@@ -415,7 +415,7 @@
           {{ evolutionChain.chain.species.name |translatePokemonName |replaceDash | titlecase }}
         </p>
 
-      <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to">
+      <ng-container *ngFor="let stage of evolutionChain.chain.evolves_to; trackBy: trackByStage">
         <div class="flex flex-col items-center evolution-step">
           <div class="relative w-20 sm:w-48 aspect-square overflow-hidden">
             <app-ui-skeleton
@@ -466,7 +466,7 @@
             {{ stage?.evolution_details[0]?.trade_species.name |titlecase}}
           </p>
         </div>
-        <ng-container *ngFor="let stage2 of stage.evolves_to">
+        <ng-container *ngFor="let stage2 of stage.evolves_to; trackBy: trackByStage">
           <div class="flex flex-col items-center evolution-step">
             <div class="relative w-20 sm:w-48 aspect-square overflow-hidden">
               <app-ui-skeleton

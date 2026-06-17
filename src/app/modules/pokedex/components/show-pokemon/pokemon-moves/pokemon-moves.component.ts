@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
@@ -15,7 +15,8 @@ import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/t
   selector: 'app-pokemon-moves',
   templateUrl: './pokemon-moves.component.html',
   styleUrls: ['./pokemon-moves.component.scss'],
-  animations: toggleSectionCollapseAnimations
+  animations: toggleSectionCollapseAnimations,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   @Input() language: string = 'es';
@@ -27,6 +28,7 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   private unsubscribe$ = new Subject<void>();
 
   versionGroups: string[] = [];
+  levelUpTabs: TabItem[] = [];
   levelUpSelectedVersionGroup: string = '';
   tutorSelectedVersionGroup: string = '';
   machineSelectedVersionGroup: string = '';
@@ -44,10 +46,13 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   filtersVisibleMt = true;
   filtersVisibleTutor = true;
   filtersVisibleEgg = true;
+  /** Caches resolved machine moves per version group to avoid refetching (e.g. on language toggle). */
+  private machineMovesCache = new Map<string, FilteredByMachine[]>();
 
   constructor(private pokeApiService: PokeApiService,
               private helperService: HelperService,
-              private errorMessageService: ErrorMessageService) { }
+              private errorMessageService: ErrorMessageService,
+              private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.getPokemonColor();
@@ -56,6 +61,10 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['movesLoading']?.previousValue === true && changes['movesLoading']?.currentValue === false) {
       this.filtersVisibleLevel = true;
+    }
+    if (changes['pokemon']) {
+      // New Pokémon: previously fetched machine moves no longer apply.
+      this.machineMovesCache.clear();
     }
     if (changes['movesWithTypes']) {
       this.processMoves();
@@ -109,8 +118,8 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     this.filterMovesByLevel();
   }
 
-  getLevelUpTabs(): TabItem[] {
-    return this.versionGroups.map(group => ({
+  buildLevelUpTabs(): void {
+    this.levelUpTabs = this.versionGroups.map(group => ({
       label: this.getGameName(group),
       value: group
     }));
@@ -175,6 +184,7 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     this.versionGroups = Array.from(versionGroupsSet);
     this.versionGroups = desiredOrder.filter(version => this.versionGroups.includes(version));
     this.versionGroups.sort((a, b) => desiredOrder.indexOf(a) - desiredOrder.indexOf(b));
+    this.buildLevelUpTabs();
 
     const defaultVersion = 'scarlet-violet';
 
@@ -225,6 +235,13 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   filterMovesByMachine(): void {
+    const cacheKey = `${this.language}|${this.machineSelectedVersionGroup}`;
+    const cached = this.machineMovesCache.get(cacheKey);
+    if (cached) {
+      this.filteredMovesByMachine = cached;
+      return;
+    }
+
     const machineMoves = this.movesWithTypes
       .map(moveWithTypes => {
         const machineDetails: ExtendedMachineDetail[] = moveWithTypes.move.detailMove.machines.filter((machine) =>
@@ -261,12 +278,15 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe({
         next: (machineDetails) => {
-          this.filteredMovesByMachine = machineMoves.map((move, index) => {
+          const resolved = machineMoves.map((move, index) => {
             if (machineDetails[index]) {
               move.machineDetail.moveDetails = machineDetails[index];
           }
           return move;
         });
+        this.machineMovesCache.set(cacheKey, resolved);
+        this.filteredMovesByMachine = resolved;
+        this.cdr.markForCheck();
       },
       error: (error) => {
         const errorMessage = this.language === 'es' ? 'Error al cargar los movimientos' : 'Error loading moves';
@@ -323,6 +343,18 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
       .filter(moveWithDetails => moveWithDetails !== null);
 
     this.filteredMovesByEgg = filteredMoves as FilteredByEgg[];
+  }
+
+  trackByMove(_index: number, pokeMove: FilteredMove): string {
+    return pokeMove.move.move.name;
+  }
+
+  trackByIndex(index: number): number {
+    return index;
+  }
+
+  trackByType(_index: number, type: TypeDetail): string {
+    return type.typeName;
   }
 
   getGameName(gameName: string): string {

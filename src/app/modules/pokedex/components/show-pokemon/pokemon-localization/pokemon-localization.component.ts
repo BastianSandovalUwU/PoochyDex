@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
@@ -6,28 +6,37 @@ import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
 import { GroupedData, LocationData } from '../../../../../../../entities/localization.entity';
 import { ErrorMessageService } from 'app/services/error-message.service';
+import { Subject, takeUntil } from 'rxjs';
+
+interface GroupedDataView extends GroupedData {
+  versionColor: string;
+  versionIcon: string;
+}
 
 @Component({
   selector: 'app-pokemon-localization',
   templateUrl: './pokemon-localization.component.html',
   styleUrls: ['./pokemon-localization.component.scss'],
-  animations: toggleSectionCollapseAnimations
+  animations: toggleSectionCollapseAnimations,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PokemonLocalizationComponent implements OnInit, OnChanges {
+export class PokemonLocalizationComponent implements OnInit, OnChanges, OnDestroy {
   @Input() language: string;
   @Input() pokemonSpecie: PokemonSpecie;
   @Input() pokemon: Pokemon;
   backgroundColor: string = '';
-  groupedLocations: GroupedData[] = [];
+  groupedLocations: GroupedDataView[] = [];
   expandedVersions: { [key: string]: boolean } = {};
   expandedMethods: { [versionName: string]: { [methodName: string]: boolean } } = {};
   minimumVisibleItems = 20;
   loadInfo: boolean;
   filtersVisible = false;
+  private destroy$ = new Subject<void>();
 
   constructor(private helperService: HelperService,
               private pokeApiService: PokeApiService,
-              private errorMessageService: ErrorMessageService
+              private errorMessageService: ErrorMessageService,
+              private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -37,7 +46,14 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.getPokemonColor();
-    this.getPokemonLocalization();
+    if (changes['pokemon']) {
+      this.getPokemonLocalization();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   toggleFilters() {
@@ -48,20 +64,19 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
     if(this.pokemon.id > 10000) {
       return;
     }
-    this.pokeApiService.getPokemonLocalization(this.pokemon.id).subscribe({
-      next: (localizationData) => {
-        this.groupedLocations = this.groupByVersionAndMethod(localizationData);
-        if(this.groupedLocations.length > 0) {
-          this.loadInfo = true;
-        } else {
-          this.loadInfo = false;
+    this.pokeApiService.getPokemonLocalization(this.pokemon.id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (localizationData) => {
+          this.groupedLocations = this.groupByVersionAndMethod(localizationData);
+          this.loadInfo = this.groupedLocations.length > 0;
+          this.cdr.markForCheck();
+        },
+        error: (error) => {
+          const errorMessage = this.language === 'es' ? 'Error al cargar la localización' : 'Error loading localization';
+          this.errorMessageService.showError(errorMessage, error.message);
         }
-    },
-    error: (error) => {
-        const errorMessage = this.language === 'es' ? 'Error al cargar la localización' : 'Error loading localization';
-        this.errorMessageService.showError(errorMessage, error.message);
-      }
-    });
+      });
   }
 
   getPokemonColor() {
@@ -72,19 +87,7 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
     }
   }
 
-  getGameVersionColor(gameVersion: string): string {
-    return this.helperService.getGameVersionColor(gameVersion);
-  }
-
-  getGameName(gameName: string): string {
-    return this.helperService.getGameName(gameName, this.language);
-  }
-
-  getGameIconGame(gameName: string): string[] {
-    return this.helperService.getGameIconGame(gameName);
-  }
-
-  groupByVersionAndMethod(data: LocationData[]): GroupedData[] {
+  groupByVersionAndMethod(data: LocationData[]): GroupedDataView[] {
     const groupedData: { [versionName: string]: { [methodName: string]: string[] } } = {};
 
     const gameOrder = [
@@ -150,8 +153,14 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges {
       .sort((a, b) => gameOrder.indexOf(a) - gameOrder.indexOf(b))
       .map(versionName => ({
         versionName,
-        methods: groupedData[versionName]
+        methods: groupedData[versionName],
+        versionColor: this.helperService.getGameVersionColor(versionName),
+        versionIcon: this.helperService.getGameIconGame(versionName)[0]
       }));
+  }
+
+  trackByVersion(_index: number, version: GroupedDataView): string {
+    return version.versionName;
   }
 
   toggleMethod(versionName: string, methodName: string) {
