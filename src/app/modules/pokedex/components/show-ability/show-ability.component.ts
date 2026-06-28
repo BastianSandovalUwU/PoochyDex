@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
+import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { PokemonAbility, FlavorTextEntry } from '../../../../../../entities/pokemon-ability.entity';
 import { LanguageService } from 'app/modules/shared/services/language.service';

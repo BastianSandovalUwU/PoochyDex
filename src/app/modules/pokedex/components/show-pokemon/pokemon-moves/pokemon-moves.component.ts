@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
-import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
+import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { FilteredByEgg, FilteredByMachine, FilteredByTutor, FilteredMove, Move, ShowMove, TypeDetail } from '../../../../../../../entities/moves.entity';
 import { Subject, catchError, forkJoin, of, takeUntil } from 'rxjs';

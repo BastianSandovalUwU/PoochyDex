@@ -22,7 +22,7 @@
           <span class="text-center hover:text-blue-500 cursor-pointer">
             <app-hyperlink type="game" [value]="entry.version" [textBlue]="false"></app-hyperlink>
           </span>
-          <img class="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 mr-2" [src]="'./assets/pokemon-version-icon-sprite/' + entry.versionIcon + '.png'" alt="">
+          <img *ngIf="entry.versionIcon" class="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 mr-2" [src]="'./assets/pokemon-version-icon-sprite/' + entry.versionIcon + '.png'" alt="">
         </div>
         <div class="col-span-4">
           <p>{{ entry.flavor_text }}</p>

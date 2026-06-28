@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
+import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { Ability, Pokemon } from '../../../../../../entities/pokemon.entity';
 import { PokemonSpecie } from '../../../../../../entities/pokemon-specie.entity';
 import { LanguageService } from 'app/modules/shared/services/language.service';

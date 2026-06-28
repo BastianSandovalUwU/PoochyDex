@@ -6,7 +6,7 @@ import { AuthService } from './modules/auth/services/auth.service';
 import { LoadingService } from './modules/shared/services/loading.service';
 import { ThemeService } from './modules/shared/services/theme.service';
 import { NetworkService } from './modules/shared/services/network.service';
-import { PokeApiService } from './modules/shared/services/pokeApi.service';
+import { PokeApiService } from './modules/shared/services/poke-api.service';
 import { PwaInstallService } from './modules/shared/services/pwa-install.service';
 import { ProfileAvatarService } from './modules/shared/services/profile-avatar.service';
 import { Subject, takeUntil } from 'rxjs';

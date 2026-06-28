@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { UserData } from '../../../../../entities/auth/user.entity';
-import { PokeApiService } from '../services/pokeApi.service';
+import { PokeApiService } from '../services/poke-api.service';
 import { NetworkService } from '../services/network.service';
 import { VERSION_NUMBER } from '../../../../../entities/common/const.interface';
 import { AuthService } from 'app/modules/auth/services/auth.service';

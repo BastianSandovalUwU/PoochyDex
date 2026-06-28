@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, of, shareReplay } from 'rxjs';
+import { combineLatest, Observable, catchError, map, of, shareReplay } from 'rxjs';
 import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';
 import { Pokemon, PokemonForm, PokemonResponse } from '../../../../../entities/poochydex-api/pokemon.type';
 import { PokemonSpriteOption } from '../../../../../entities/poochydex-api/pokemon-sprite-option';
@@ -19,13 +19,31 @@ export class CustomPokemonCatalogService {
   /** Caches in-flight/completed `getPokemonByName` requests so concurrent sprite lookups for the same Pokémon share one HTTP call. */
   private pokemonByNameCache = new Map<string, Observable<PokemonResponse>>();
 
+  /**
+   * Emits once both the Pokémon list and the forms list have loaded, so callers loading
+   * straight into a detail page (deep link / page refresh) don't read `allPokemon` before
+   * the catalog request resolves and silently get no alternate artwork.
+   */
+  private readonly catalogReady$: Observable<[Pokemon[], PokemonForm[]]>;
+
   constructor(private poochyDexApiService: PoochyDexApiService) {
-    this.poochyDexApiService.getAllPokemon().subscribe((response) => {
-      this.allPokemon = response.data;
-    });
-    this.poochyDexApiService.getAllPokemonForms().subscribe((response) => {
-      this.allPokemonForms = response.data;
-    });
+    const allPokemon$ = this.poochyDexApiService.getAllPokemon().pipe(
+      map((response) => {
+        this.allPokemon = response.data;
+        return this.allPokemon;
+      }),
+      shareReplay(1)
+    );
+    const allPokemonForms$ = this.poochyDexApiService.getAllPokemonForms().pipe(
+      map((response) => {
+        this.allPokemonForms = response.data;
+        return this.allPokemonForms;
+      }),
+      shareReplay(1)
+    );
+
+    this.catalogReady$ = combineLatest([allPokemon$, allPokemonForms$]).pipe(shareReplay(1));
+    this.catalogReady$.subscribe();
   }
 
   private getPokemonByNameCached(name: string): Observable<PokemonResponse> {
@@ -69,10 +87,12 @@ export class CustomPokemonCatalogService {
 
   /**
    * Alternate artwork URLs from the custom API (Sugimori / Global Link), when present.
+   * Synchronous: only reliable once `allPokemon`/`allPokemonForms` have already loaded.
+   * Prefer `getPokemonArtwork$` when the catalog may still be in flight (e.g. deep link).
    */
   getPokemonArtwork(pokemonName: string): { homeShinyUrl?: string; sugimoriArt?: string; globalLinkArt?: string } {
     const name = getCorrectPokemonName(pokemonName);
-    let combined: (Pokemon | PokemonForm)[] = [...this.allPokemon, ...this.allPokemonForms];
+    const combined: (Pokemon | PokemonForm)[] = [...this.allPokemon, ...this.allPokemonForms];
 
     const pokemon = combined.find(f => f.name === name);
 
@@ -87,5 +107,10 @@ export class CustomPokemonCatalogService {
       ...(sugimoriArt ? { sugimoriArt } : {}),
       ...(globalLinkArt ? { globalLinkArt } : {})
     };
+  }
+
+  /** Same as `getPokemonArtwork`, but waits for the catalog lists to finish loading first. */
+  getPokemonArtwork$(pokemonName: string): Observable<{ homeShinyUrl?: string; sugimoriArt?: string; globalLinkArt?: string }> {
+    return this.catalogReady$.pipe(map(() => this.getPokemonArtwork(pokemonName)));
   }
 }

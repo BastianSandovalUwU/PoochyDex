@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, forkJoin, map, of } from 'rxjs';
-import { PokeApiService } from './pokeApi.service';
+import { PokeApiService } from './poke-api.service';
 import { Ability } from '../../../../../entities/pokemon.entity';
 import { AbilityName, AbilityResponse, Name } from '../../../../../entities/pokemon-ability.entity';
 import { DetailMove } from '../../../../../entities/moves.entity';

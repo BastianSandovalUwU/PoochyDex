@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Router } from '@angular/router';
-import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
+import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { PokemonSpriteOption } from '../../../../../../../entities/poochydex-api/pokemon-sprite-option';
 import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
 import { Subject, takeUntil } from 'rxjs';

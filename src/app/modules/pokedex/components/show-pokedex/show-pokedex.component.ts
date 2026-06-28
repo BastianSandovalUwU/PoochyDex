@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
-import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
+import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { Pokemon } from '../../../../../../entities/poochydex-api/pokemon.type';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';

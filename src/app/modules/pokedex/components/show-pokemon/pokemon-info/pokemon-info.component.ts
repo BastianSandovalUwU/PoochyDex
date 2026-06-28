@@ -64,6 +64,7 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
   genusForLanguage: string = '';
 
   private spriteLoadSub?: Subscription;
+  private artworkLoadSub?: Subscription;
 
   constructor(
     private helperService: HelperService,
@@ -78,6 +79,7 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy(): void {
     this.spriteLoadSub?.unsubscribe();
+    this.artworkLoadSub?.unsubscribe();
   }
 
   ngOnChanges(_changes: SimpleChanges): void {
@@ -117,15 +119,18 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
       }
     });
 
-    const artwork = this.helperService.getPokemonArtwork(this.pokemon.name);
-    this.sugimoriArtUrl = artwork.sugimoriArt;
-    this.globalLinkArtUrl = artwork.globalLinkArt;
-    this.hasSugimoriArt = !!artwork.sugimoriArt;
-    this.hasGlobalLinkArt = !!artwork.globalLinkArt;
-    this.hasHomeShiny = !!artwork.homeShinyUrl;
-    this.selectedImageType = this.resolveInitialSpriteType(artwork);
-    this.showShiny = false;
-    this.updateMainSprite();
+    this.artworkLoadSub?.unsubscribe();
+    this.artworkLoadSub = this.helperService.getPokemonArtwork$(this.pokemon.name).subscribe(artwork => {
+      this.sugimoriArtUrl = artwork.sugimoriArt;
+      this.globalLinkArtUrl = artwork.globalLinkArt;
+      this.hasSugimoriArt = !!artwork.sugimoriArt;
+      this.hasGlobalLinkArt = !!artwork.globalLinkArt;
+      this.hasHomeShiny = !!artwork.homeShinyUrl;
+      this.selectedImageType = this.resolveInitialSpriteType(artwork);
+      this.showShiny = false;
+      this.updateMainSprite();
+      this.cdr.markForCheck();
+    });
 
     this.getPokemonColor();
     this.pokemontypes = this.pokemon.types.map(type => {

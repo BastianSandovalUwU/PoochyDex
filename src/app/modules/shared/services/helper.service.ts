@@ -120,6 +120,10 @@ export class HelperService {
     return this.customPokemonCatalog.getPokemonArtwork(pokemonName);
   }
 
+  getPokemonArtwork$(pokemonName: string): Observable<{ homeShinyUrl?: string; sugimoriArt?: string; globalLinkArt?: string }> {
+    return this.customPokemonCatalog.getPokemonArtwork$(pokemonName);
+  }
+
   getCorrectPokemonName(pokemonName: string): string {
     return this.pokemonDisplay.getCorrectPokemonName(pokemonName);
   }

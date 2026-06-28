@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { PokeApiService } from '../services/pokeApi.service';
+import { PokeApiService } from '../services/poke-api.service';
 import { LanguageService } from '../services/language.service';
 import { HelperService } from '../services/helper.service';
 import { ErrorMessageService } from 'app/services/error-message.service';

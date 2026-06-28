@@ -147,7 +147,7 @@
   </div>
   <div class="grid grid-cols-3 col-span-2">
     <div class="relative col-span-3 rounded-md px-2 text-white text-center border border-black flex justify-center items-center" [ngClass]="getGameVersionColor(versionGroup)">
-      <img class="absolute left-0 top-1/2 transform -translate-y-1/2 w-8 ml-2"
+      <img *ngIf="getGameIconGame(versionGroup)[0]" class="absolute left-0 top-1/2 transform -translate-y-1/2 w-8 ml-2"
            [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconGame(versionGroup)[0] + '.png'" alt="Game Icon">
       <span class="hover:text-blue-500 cursor-pointer">
         {{ getGameName(versionGroup) | replaceDash | titlecase }}

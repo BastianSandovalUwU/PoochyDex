@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PokeApiService } from 'app/modules/shared/services/pokeApi.service';
+import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { Router } from '@angular/router';
