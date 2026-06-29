@@ -86,8 +86,8 @@
 
   <!-- Footer with Settings -->
   <div class="p-4 border-t dark:border-gray-700">
-    <!-- User Authentication Section -->
-    <div class="mb-4 pb-4 border-b dark:border-gray-700">
+    <!-- User Authentication Section (login/session features disabled in the Android app) -->
+    <div *ngIf="!platformService.isNative" class="mb-4 pb-4 border-b dark:border-gray-700">
       <div *ngIf="!userData" class="space-y-1.5">
         <a routerLink="/auth/login"
            (click)="closeMenu()"

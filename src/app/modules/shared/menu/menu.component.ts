@@ -5,6 +5,7 @@ import { PokeApiService } from '../services/poke-api.service';
 import { NetworkService } from '../services/network.service';
 import { VERSION_NUMBER } from '../../../../../entities/common/const.interface';
 import { AuthService } from 'app/modules/auth/services/auth.service';
+import { PlatformService } from '../services/platform.service';
 import { MENU_OPTIONS, MenuOption } from '../../../../../entities/common/url-routes';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -32,7 +33,8 @@ export class MenuComponent implements OnInit, OnChanges, OnDestroy {
     private router: Router,
     private pokeApiService: PokeApiService,
     private networkService: NetworkService,
-    private authService: AuthService
+    private authService: AuthService,
+    readonly platformService: PlatformService
   ) {
   }
 
