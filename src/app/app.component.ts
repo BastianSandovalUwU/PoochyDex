@@ -1,4 +1,7 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { App } from '@capacitor/app';
+import { Capacitor, type PluginListenerHandle } from '@capacitor/core';
 import { environment } from '../environments/environment';
 import { LanguageService } from './modules/shared/services/language.service';
 import { UserData } from '../../entities/auth/user.entity';
@@ -9,6 +12,7 @@ import { NetworkService } from './modules/shared/services/network.service';
 import { PokeApiService } from './modules/shared/services/poke-api.service';
 import { PwaInstallService } from './modules/shared/services/pwa-install.service';
 import { ProfileAvatarService } from './modules/shared/services/profile-avatar.service';
+import { ErrorMessageService } from './services/error-message.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -31,6 +35,8 @@ export class AppComponent implements OnInit, OnDestroy {
   canInstallPwa = false;
 
   private destroy$ = new Subject<void>();
+  private backButtonListener: PluginListenerHandle | null = null;
+  private offlineErrorShown = false;
 
   constructor(
     private languageService: LanguageService,
@@ -42,6 +48,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private pwaInstallService: PwaInstallService,
     private profileAvatarService: ProfileAvatarService,
     private router: Router,
+    private location: Location,
+    private errorMessageService: ErrorMessageService,
   ) {}
 
   ngOnInit() {
@@ -84,6 +92,18 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(isOnline => {
         this.isOnline = isOnline;
+        if (!isOnline) {
+          this.offlineErrorShown = true;
+          this.errorMessageService.showError(
+            this.currentLanguage === 'es' ? 'Sin conexión' : 'No connection',
+            this.currentLanguage === 'es'
+              ? 'No se detecta conexión a internet. Podrás seguir viendo los datos guardados en caché.'
+              : 'No internet connection detected. You can keep browsing cached data.'
+          );
+        } else if (this.offlineErrorShown) {
+          this.offlineErrorShown = false;
+          this.errorMessageService.hideError();
+        }
       });
 
     // Last PokéAPI data source (network vs cache)
@@ -111,11 +131,29 @@ export class AppComponent implements OnInit, OnDestroy {
       // Dev: never show install prompt
       this.canInstallPwa = false;
     }
+
+    if (Capacitor.isNativePlatform()) {
+      App.addListener('backButton', ({ canGoBack }) => {
+        if (this.isMenuOpen || this.profileMenuOpen) {
+          this.isMenuOpen = false;
+          this.profileMenuOpen = false;
+          return;
+        }
+        if (canGoBack) {
+          this.location.back();
+        } else {
+          App.exitApp();
+        }
+      }).then(handle => {
+        this.backButtonListener = handle;
+      });
+    }
   }
 
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+    this.backButtonListener?.remove();
   }
 
   @HostListener('document:click')
