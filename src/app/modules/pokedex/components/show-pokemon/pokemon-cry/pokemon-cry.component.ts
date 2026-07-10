@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 
 @Component({
@@ -7,7 +7,7 @@ import { Pokemon } from '../../../../../../../entities/pokemon.entity';
   styleUrls: ['./pokemon-cry.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PokemonCryComponent implements OnInit, OnChanges {
+export class PokemonCryComponent implements OnChanges {
   @Input() pokemon: Pokemon;
   @Input() language: string;
   @ViewChild('audioPlayerLatest', { static: false }) audioPlayerLatest: ElementRef<HTMLAudioElement>;
@@ -18,7 +18,6 @@ export class PokemonCryComponent implements OnInit, OnChanges {
 
   constructor(private cdr: ChangeDetectorRef) { }
 
-  ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['pokemon'] && changes['pokemon'].currentValue) {

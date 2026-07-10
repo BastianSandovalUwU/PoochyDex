@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
-import { catchError, map, timeout, tap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Pokemon, PokemonFull } from '../../../../../entities/pokemon.entity';
 import { PokemonSpecie } from '../../../../../entities/pokemon-specie.entity';
 import { MachineMove } from '../../../../../entities/machine-move.entity';
@@ -72,7 +72,7 @@ export class PokeApiService {
   private setPokemonInCache(name: string, pokemon: PokemonFull): void {
     try {
       const cache = localStorage.getItem(this.POKEMON_CACHE_KEY);
-      let pokemonCache = cache ? JSON.parse(cache) : {};
+      const pokemonCache = cache ? JSON.parse(cache) : {};
 
       const cacheKeys = Object.keys(pokemonCache);
       if (cacheKeys.length >= this.MAX_CACHE_SIZE) {
@@ -179,7 +179,7 @@ export class PokeApiService {
 
   getMoveByUrl(url: string, name: string, gameName: string): Observable<DetailMove> {
     return this.http.get<DetailMove>(url).pipe(
-      catchError(error => {
+      catchError(() => {
         const placeHolderMove = createPlaceHolderMove(name, gameName);
         return of(placeHolderMove);
       })
@@ -199,7 +199,7 @@ export class PokeApiService {
 
   getMachineMoveByUrl(url: string): Observable<MachineMove> {
     return this.http.get<MachineMove>(url).pipe(
-      catchError(error => {
+      catchError(() => {
         return of(null);
       })
     );

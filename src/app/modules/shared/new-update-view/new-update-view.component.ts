@@ -22,9 +22,6 @@ export class NewUpdateViewComponent {
     }
   }
 
-  ngOnInit() {
-  }
-
   updateApp() {
     this.showMessage = false;
     window.location.reload();

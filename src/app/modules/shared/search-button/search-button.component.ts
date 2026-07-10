@@ -1,8 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { ALL_POKEMON } from '../../../../../entities/common/const.interface';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LanguageService } from '../services/language.service';
-import { debounceTime } from 'rxjs';
 import { ALL_POKEMON_ALOLA } from '../../../../../entities/common/alola-pokemon-data';
 import { ALL_POKEMON_GALAR } from '../../../../../entities/common/galar-pokemon-data';
 import { ALL_POKEMON_HOENN } from '../../../../../entities/common/hoenn-pokemon-data';

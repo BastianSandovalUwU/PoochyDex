@@ -8,7 +8,6 @@ import {
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
   SimpleChanges
 } from '@angular/core';
 import { forkJoin, Subscription } from 'rxjs';
@@ -27,7 +26,7 @@ import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fad
   animations: detailFadeInAnimations,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
+export class PokemonInfoComponent implements OnChanges, OnDestroy {
   /** Exposed for template bindings (Angular templates cannot reference imported enums). */
   readonly PokemonSpriteOption = PokemonSpriteOption;
 
@@ -73,9 +72,6 @@ export class PokemonInfoComponent implements OnInit, OnChanges, OnDestroy {
     private userSettingsService: UserSettingsService,
     private cdr: ChangeDetectorRef
   ) {}
-
-  ngOnInit() {
-  }
 
   ngOnDestroy(): void {
     this.spriteLoadSub?.unsubscribe();
