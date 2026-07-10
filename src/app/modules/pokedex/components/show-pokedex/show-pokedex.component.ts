@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DestroyRef, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
@@ -8,6 +8,7 @@ import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';
 import { Pokedex } from '../../../../../../entities/poke-api.entity';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-show-pokedex',
@@ -16,6 +17,7 @@ import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fad
   animations: detailFadeInAnimations
 })
 export class ShowPokedexComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
   language: string;
   pokedexNumber: number;
   pokedexName: string;
@@ -41,7 +43,9 @@ export class ShowPokedexComponent implements OnInit {
   }
 
   getLanguage() {
-    this.languageService.currentLanguage$.subscribe(language => {
+    this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(language => {
       this.language = language;
     });
   }

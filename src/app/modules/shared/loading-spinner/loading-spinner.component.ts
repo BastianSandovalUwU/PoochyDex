@@ -1,6 +1,7 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, DestroyRef, inject } from '@angular/core';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { Subscription } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-loading-spinner',
@@ -8,6 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./loading-spinner.component.css']
 })
 export class LoadingSpinnerComponent implements OnInit, OnDestroy {
+  private destroyRef = inject(DestroyRef);
   @Input() loading: boolean = false;
   language = 'es';
 
@@ -17,7 +19,9 @@ export class LoadingSpinnerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subs.add(
-      this.languageService.currentLanguage$.subscribe(lang => {
+      this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(lang => {
         this.language = lang;
       })
     );

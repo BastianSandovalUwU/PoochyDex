@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { LanguageService } from '../services/language.service';
 import { translateWithEsMap } from '../../../../../entities/common/i18n/lookup';
 import { POKEDEX_NAME_ES } from '../../../../../entities/common/i18n/ui-string-maps';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Pipe({
   name: 'translatePokedexName'
@@ -13,7 +14,9 @@ export class TranslatePokedexNamePipe implements PipeTransform {
     this.getLanguage();
   }
   getLanguage() {
-    this.languageService.currentLanguage$.subscribe(language => {
+    this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed())
+      .subscribe(language => {
       this.language = language;
     });
   }

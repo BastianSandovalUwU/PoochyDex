@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DestroyRef, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { DetailMove, FlavorTextEntry } from '../../../../../../entities/moves.entity';
@@ -9,6 +9,7 @@ import { ErrorMessageService } from 'app/services/error-message.service';
 import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-show-movement',
@@ -17,6 +18,7 @@ import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fad
   animations: detailFadeInAnimations
 })
 export class ShowMovementComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
 
   language: string;
   backgroundColor: string = '';
@@ -46,7 +48,9 @@ export class ShowMovementComponent implements OnInit {
   }
 
   getLanguage() {
-    this.languageService.currentLanguage$.subscribe(language => {
+    this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(language => {
       this.language = language;
     });
   }

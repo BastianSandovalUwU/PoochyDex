@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DestroyRef, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LanguageService } from '../services/language.service';
 import { ALL_POKEMON_ALOLA } from '../../../../../entities/common/alola-pokemon-data';
@@ -11,6 +11,7 @@ import { ALL_POKEMON_PALDEA } from '../../../../../entities/common/paldea-pokemo
 import { ALL_POKEMON_SINNOH } from '../../../../../entities/common/sinnoh-pokemon-data';
 import { ALL_POKEMON_UNOVA } from '../../../../../entities/common/unova-pokemon-data';
 import { PokemonList } from '../../../../../entities/pokemon-list.entity';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-search-button',
@@ -18,6 +19,7 @@ import { PokemonList } from '../../../../../entities/pokemon-list.entity';
   styleUrls: ['./search-button.component.scss']
 })
 export class SearchButtonComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
 
   showSearch = false;
   searchQuery = '';
@@ -43,7 +45,9 @@ export class SearchButtonComponent implements OnInit {
   }
 
   getLanguage() {
-    this.languageService.currentLanguage$.subscribe(language => {
+    this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(language => {
       this.language = language;
     });
   }

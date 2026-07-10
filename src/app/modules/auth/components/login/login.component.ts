@@ -1,15 +1,17 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, DestroyRef, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'app/modules/auth/services/auth.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { Subscription } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  private destroyRef = inject(DestroyRef);
   errorMessage = '';
   language = 'es';
   loginForm: UntypedFormGroup;
@@ -40,7 +42,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
 
     this.subs.add(
-      this.languageService.currentLanguage$.subscribe(lang => {
+      this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(lang => {
         this.language = lang;
       })
     );

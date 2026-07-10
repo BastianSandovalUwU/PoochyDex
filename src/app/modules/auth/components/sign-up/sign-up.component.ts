@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, DestroyRef, inject } from '@angular/core';
 import {
   AbstractControl,
   UntypedFormBuilder,
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-sign-up',
@@ -19,6 +20,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit, OnDestroy {
+  private destroyRef = inject(DestroyRef);
 
   errorMessage = '';
   language = 'es';
@@ -54,7 +56,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
       return;
     }
     this.subs.add(
-      this.languageService.currentLanguage$.subscribe(lang => {
+      this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(lang => {
         this.language = lang;
       })
     );

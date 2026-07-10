@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DestroyRef, inject } from '@angular/core';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { PokedexOption } from '../../../../../../entities/pokemon-hunt.entity';
 import { ALL_POKEDEX_OPTIONS } from '../../../../../../entities/common/const.interface';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-pokemon-hunt',
@@ -11,6 +12,7 @@ import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fad
   animations: detailFadeInAnimations
 })
 export class PokemonHuntComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
   language: string;
   selectedPokedexNumber: number | null = null;
   isExpanded: boolean = false;
@@ -23,7 +25,9 @@ export class PokemonHuntComponent implements OnInit {
   }
 
   getLanguage() {
-    this.languageService.currentLanguage$.subscribe(language => {
+    this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(language => {
       this.language = language;
     });
   }

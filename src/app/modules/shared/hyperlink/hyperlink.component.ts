@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, DestroyRef, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { HelperService } from '../services/helper.service';
 import { LanguageService } from '../services/language.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-hyperlink',
@@ -9,6 +10,7 @@ import { LanguageService } from '../services/language.service';
   styleUrls: ['./hyperlink.component.scss']
 })
 export class HyperlinkComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
   @Input() value: string = '';
   @Input() type: 'pokemon' | 'game' | 'localization';
   @Input() textBlue: boolean = true;
@@ -23,7 +25,9 @@ export class HyperlinkComponent implements OnInit {
   }
 
   getLanguage() {
-    this.languageService.currentLanguage$.subscribe(language => {
+    this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(language => {
       this.language = language;
     });
   }

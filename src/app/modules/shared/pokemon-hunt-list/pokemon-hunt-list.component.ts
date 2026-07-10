@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, DestroyRef, inject } from '@angular/core';
 import { PokeApiService } from '../services/poke-api.service';
 import { LanguageService } from '../services/language.service';
 import { HelperService } from '../services/helper.service';
@@ -9,6 +9,7 @@ import { AuthService } from 'app/modules/auth/services/auth.service';
 import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';
 import { Pokemon } from '../../../../../entities/poochydex-api/pokemon.type';
 import { LoadingService } from '../services/loading.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-pokemon-hunt-list',
@@ -16,6 +17,7 @@ import { LoadingService } from '../services/loading.service';
   styleUrls: ['./pokemon-hunt-list.component.scss']
 })
 export class PokemonHuntListComponent implements OnInit, OnChanges {
+  private destroyRef = inject(DestroyRef);
   @Input() pokedexNumber: number = 34;
 
   private allPokemon: Pokemon[] = [];
@@ -92,7 +94,9 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
   }
 
   getLanguage() {
-    this.languageService.currentLanguage$.subscribe(language => {
+    this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(language => {
       this.language = language;
     });
   }

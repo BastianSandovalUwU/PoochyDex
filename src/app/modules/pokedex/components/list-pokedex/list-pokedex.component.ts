@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DestroyRef, inject } from '@angular/core';
 import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { Router } from '@angular/router';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 interface PokedexListItem {
   name: string;
@@ -25,6 +26,7 @@ interface PokedexListResponse {
   animations: detailFadeInAnimations
 })
 export class ListPokedexComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
   pokedexList: PokedexListItem[] = [];
   language: string = 'es';
   loading: boolean = false;
@@ -42,7 +44,9 @@ export class ListPokedexComponent implements OnInit {
   }
 
   getLanguage() {
-    this.languageService.currentLanguage$.subscribe(language => {
+    this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(language => {
       this.language = language;
     });
   }

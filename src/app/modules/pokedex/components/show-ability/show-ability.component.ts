@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DestroyRef, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
@@ -9,6 +9,7 @@ import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';
 import { Pokemon } from '../../../../../../entities/poochydex-api/pokemon.type';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 const FALLBACK_SPRITE = 'https://i.imgur.com/uKx7iOF.png';
 
@@ -19,6 +20,7 @@ const FALLBACK_SPRITE = 'https://i.imgur.com/uKx7iOF.png';
   animations: detailFadeInAnimations
 })
 export class ShowAbilityComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
   language: string = 'es';
   ability: PokemonAbility;
   abilityDescription: FlavorTextEntry[];
@@ -49,7 +51,9 @@ export class ShowAbilityComponent implements OnInit {
   }
 
   getLanguage() {
-    this.languageService.currentLanguage$.subscribe(language => {
+    this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(language => {
       this.language = language;
     });
   }
