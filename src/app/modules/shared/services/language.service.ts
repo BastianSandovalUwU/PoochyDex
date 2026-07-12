@@ -1,5 +1,4 @@
-import { Inject, Injectable, forwardRef } from '@angular/core';
-import { AuthService } from 'app/modules/auth/services/auth.service';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LocalStorageKeys } from '../../../../../entities/common/enum';
 

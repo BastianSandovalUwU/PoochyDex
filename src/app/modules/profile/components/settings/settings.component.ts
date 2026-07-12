@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, DestroyRef, inject } from '@angular/core';
 import { LanguageService } from '../../../shared/services/language.service';
 import { UserSettingsService } from '../../../shared/services/user-settings.service';
 import { AuthService } from '../../../auth/services/auth.service';
 import { Subscription } from 'rxjs';
 import { HomeScreenOption, PreferredSpriteOption } from '../../../../../../entities/common/enum';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-settings',
@@ -11,6 +12,7 @@ import { HomeScreenOption, PreferredSpriteOption } from '../../../../../../entit
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit, OnDestroy {
+  private destroyRef = inject(DestroyRef);
   language = 'es';
 
   readonly HomeScreenOption = HomeScreenOption;
@@ -33,7 +35,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subs.add(
-      this.languageService.currentLanguage$.subscribe((lang) => {
+      this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((lang) => {
         this.language = lang;
       })
     );

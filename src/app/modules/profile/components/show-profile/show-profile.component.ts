@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, DestroyRef, inject } from '@angular/core';
 import { AuthService } from 'app/modules/auth/services/auth.service';
 import { UserConfigData, UserData } from '../../../../../../entities/auth/user.entity';
 import { Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { ProfileAvatarService } from 'app/modules/shared/services/profile-avatar
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 import { HomeScreenOption, LanguageLabel, LanguageOption, PreferredSpriteOption, RoleEnglishLabel, RoleName, RoleSpanishLabel } from '../../../../../../entities/common/enum';
 import { Subscription } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-show-profile',
@@ -16,6 +17,7 @@ import { Subscription } from 'rxjs';
   animations: detailFadeInAnimations
 })
 export class ShowProfileComponent implements OnInit, OnDestroy {
+  private destroyRef = inject(DestroyRef);
 
   userData: UserData | null = null;
   userConfig: UserConfigData | null = null;
@@ -49,7 +51,9 @@ export class ShowProfileComponent implements OnInit, OnDestroy {
     );
 
     this.subs.add(
-      this.languageService.currentLanguage$.subscribe(lang => {
+      this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(lang => {
         this.language = lang;
       })
     );

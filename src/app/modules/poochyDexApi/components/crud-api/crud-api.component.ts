@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DestroyRef, inject } from '@angular/core';
 import { PoochyDexApiService } from '../../services/poochy-dex-api.service';
 import { POKEMON_TYPES } from '../../../../../../entities/common/const.interface';
 import { LanguageService } from 'app/modules/shared/services/language.service';
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'app/modules/auth/services/auth.service';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 import { RoleName } from '../../../../../../entities/common/enum';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-crud-api',
@@ -16,6 +17,7 @@ import { RoleName } from '../../../../../../entities/common/enum';
   animations: detailFadeInAnimations
 })
 export class CrudApiComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
 
   pokemonList: Pokemon[] = [];
   loading = false;
@@ -61,7 +63,9 @@ export class CrudApiComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.languageService.currentLanguage$.subscribe(lang => {
+    this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(lang => {
       this.language = lang || 'es';
     });
     this.loadPokemon();

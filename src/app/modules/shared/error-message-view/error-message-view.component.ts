@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ErrorMessageService } from '../../../services/error-message.service';
 import { Subscription } from 'rxjs';
 
@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-error-message-view',
   templateUrl: './error-message-view.component.html'
 })
-export class ErrorMessageViewComponent implements OnInit, OnDestroy {
+export class ErrorMessageViewComponent implements OnDestroy {
   message: string = '';
   systemErrorMessage: string = '';
   showMessage: boolean = false;
@@ -19,8 +19,6 @@ export class ErrorMessageViewComponent implements OnInit, OnDestroy {
       this.showMessage = state.show;
     });
   }
-
-  ngOnInit() {}
 
   ngOnDestroy() {
     if (this.subscription) {

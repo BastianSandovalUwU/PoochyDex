@@ -173,7 +173,7 @@ export class PokemonHuntService {
           lastUpdated: new Date()
         }
       })),
-      catchError(error => {
+      catchError(() => {
         return of({
           success: false,
           message: 'Failed to sync with server'

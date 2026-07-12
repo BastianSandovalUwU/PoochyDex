@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
-import { FilteredByEgg, FilteredByMachine, FilteredByTutor, FilteredMove, Move, ShowMove, TypeDetail } from '../../../../../../../entities/moves.entity';
+import { FilteredByEgg, FilteredByMachine, FilteredByTutor, FilteredMove, Move, TypeDetail } from '../../../../../../../entities/moves.entity';
 import { Subject, catchError, forkJoin, of, takeUntil } from 'rxjs';
 import { ExtendedMachineDetail } from '../../../../../../../entities/machine-move.entity';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
@@ -268,7 +268,7 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
 
     const machineDetailObservables = machineMoves.map(move =>
       this.pokeApiService.getMachineMoveByUrl(move.machineDetail.machine.url).pipe(
-        catchError(error => {
+        catchError(() => {
           return of(null);
         })
       )

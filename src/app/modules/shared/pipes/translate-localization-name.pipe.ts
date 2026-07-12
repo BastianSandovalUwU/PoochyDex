@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { LanguageService } from '../services/language.service';
 import { LOCALIZATION_WORD_ES } from '../../../../../entities/common/i18n/ui-string-maps';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Pipe({
   name: 'translateLocalizationName'
@@ -12,7 +13,9 @@ export class TranslateLocalizationNamePipe implements PipeTransform {
     this.getLanguage();
   }
   getLanguage() {
-    this.languageService.currentLanguage$.subscribe(language => {
+    this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed())
+      .subscribe(language => {
       this.language = language;
     });
   }

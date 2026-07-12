@@ -35,7 +35,7 @@ export class PokedexEntriesComponent implements OnInit, OnChanges {
     this.filterFlavorTextEntries();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(_changes: SimpleChanges): void {
     this.getPokemonColor();
     this.filterFlavorTextEntries();
   }

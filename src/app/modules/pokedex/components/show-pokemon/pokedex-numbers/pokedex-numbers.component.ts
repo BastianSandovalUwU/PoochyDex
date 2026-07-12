@@ -23,7 +23,7 @@ export class PokedexNumbersComponent implements OnInit, OnChanges {
     this.getPokemonColor();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(_changes: SimpleChanges): void {
       this.getPokemonColor();
   }
 

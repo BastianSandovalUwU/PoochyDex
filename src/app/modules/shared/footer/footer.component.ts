@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DestroyRef, inject } from '@angular/core';
 import { LanguageService } from '../services/language.service';
 import { AuthService } from 'app/modules/auth/services/auth.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-footer',
@@ -8,6 +9,7 @@ import { AuthService } from 'app/modules/auth/services/auth.service';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
 
   currentYear = new Date().getFullYear();
   currentLanguage: string;
@@ -15,7 +17,9 @@ export class FooterComponent implements OnInit {
   constructor(private languageService: LanguageService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.languageService.currentLanguage$.subscribe(language => {
+    this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(language => {
       this.currentLanguage = language;
     });
   }

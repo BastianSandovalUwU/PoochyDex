@@ -1,10 +1,11 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, DestroyRef, inject } from '@angular/core';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Pokemon, PokemonForm } from '../../../../../../entities/poochydex-api/pokemon.type';
 import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-list-pokemon',
   templateUrl: './list-pokemon.component.html',
@@ -12,6 +13,7 @@ import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fad
   animations: detailFadeInAnimations
 })
 export class ListPokemonComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
 
   allPokemon: Pokemon[] = [];
   allPokemonForms: PokemonForm[] = [];
@@ -65,7 +67,9 @@ export class ListPokemonComponent implements OnInit {
   }
 
   getLanguage() {
-    this.languageService.currentLanguage$.subscribe(language => {
+    this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(language => {
       this.language = language;
     });
   }
