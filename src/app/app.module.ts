@@ -10,7 +10,6 @@ import { appRoutes } from './app.routing';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { LanguageService } from './modules/shared/services/language.service';
-import { NgxLoadingModule } from 'ngx-loading';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from 'environments/environment';
 import { AuthService } from './modules/auth/services/auth.service';
@@ -27,7 +26,6 @@ import { AuthInterceptor } from './modules/auth/auth.interceptor';
     HttpClientModule,
     SharedModule,
     BrowserAnimationsModule,
-    NgxLoadingModule.forRoot({}),
     MatSnackBarModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
