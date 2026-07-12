@@ -1,24 +1,24 @@
-<div class="mt-4 max-w-6xl mx-auto" *ngIf="!loading" [@detailFadeIn]>
-  <h1 class="mx-5 pl-2 text-black text-2xl font-bold dark:text-white">{{ language === 'es' ? 'Listado de Pokémon' : 'Pokémon List'}}</h1>
-
-  <div class="mt-4 mx-3 sm:mx-0">
-    <app-filter [language]="language" (filters)="applyFilters($event)" [isShow]="showFloatingFilter"></app-filter>
+@if (!loading) {
+  <div class="mt-4 max-w-6xl mx-auto" [@detailFadeIn]>
+    <h1 class="mx-5 pl-2 text-black text-2xl font-bold dark:text-white">{{ language === 'es' ? 'Listado de Pokémon' : 'Pokémon List'}}</h1>
+    <div class="mt-4 mx-3 sm:mx-0">
+      <app-filter [language]="language" (filters)="applyFilters($event)" [isShow]="showFloatingFilter"></app-filter>
+    </div>
+    <div class="fixed-filter mt-[10px]" [class.visible]="showFloatingFilter">
+      <app-filter [language]="language" (filters)="applyFilters($event)" [isShow]="showFloatingFilter"></app-filter>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-8 gap-2 pb-15 w-full mt-2">
+      @for (pokemon of filteredPokemon; track pokemon) {
+        <app-pokemon-card
+          [pokemon]="pokemon"
+          [language]="language">
+        </app-pokemon-card>
+      }
+    </div>
+    @if (filteredPokemon.length === 0) {
+      <div>
+        <h1 class="text-center text-2xl text-gray-800 dark:text-gray-200">{{ language === 'es' ? 'No hay Pokémon que coincidan con los filtros aplicados.' : 'No Pokémon found that match the applied filters.' }}</h1>
+      </div>
+    }
   </div>
-
-  <div class="fixed-filter mt-[10px]" [class.visible]="showFloatingFilter">
-    <app-filter [language]="language" (filters)="applyFilters($event)" [isShow]="showFloatingFilter"></app-filter>
-  </div>
-
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-8 gap-2 pb-15 w-full mt-2">
-    <app-pokemon-card
-      *ngFor="let pokemon of filteredPokemon"
-      [pokemon]="pokemon"
-      [language]="language">
-    </app-pokemon-card>
-  </div>
-
-  <div *ngIf="filteredPokemon.length === 0">
-    <h1 class="text-center text-2xl text-gray-800 dark:text-gray-200">{{ language === 'es' ? 'No hay Pokémon que coincidan con los filtros aplicados.' : 'No Pokémon found that match the applied filters.' }}</h1>
-  </div>
-
-</div>
+}

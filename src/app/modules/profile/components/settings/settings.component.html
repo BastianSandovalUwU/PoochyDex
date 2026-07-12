@@ -8,38 +8,39 @@
       </p>
       <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
         {{ language === 'es'
-          ? 'Pantalla que se muestra al abrir la app.'
-          : 'Screen shown when you open the app.' }}
+        ? 'Pantalla que se muestra al abrir la app.'
+        : 'Screen shown when you open the app.' }}
       </p>
     </div>
     <div class="p-4 space-y-2">
-      <label
-        *ngFor="let option of [HomeScreenOption.POKEMON_LIST, HomeScreenOption.RANDOM_POKEMON, HomeScreenOption.PROFILE]"
+      @for (option of [HomeScreenOption.POKEMON_LIST, HomeScreenOption.RANDOM_POKEMON, HomeScreenOption.PROFILE]; track option) {
+        <label
         [ngClass]="selectedHomeScreen === option
           ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
           : 'border-transparent hover:bg-gray-50 dark:hover:bg-gray-700/40'"
-        class="flex items-center gap-3 p-3 rounded-lg cursor-pointer border transition-colors">
-        <input
-          type="radio"
-          name="homeScreen"
-          [value]="option"
-          [(ngModel)]="selectedHomeScreen"
-          class="accent-blue-500"
-        />
-        <p class="text-sm font-medium text-gray-900 dark:text-gray-100">
-          <ng-container [ngSwitch]="option">
-            <ng-container *ngSwitchCase="HomeScreenOption.POKEMON_LIST">
-              {{ language === 'es' ? 'Lista de Pokémon' : 'Pokémon List' }}
-            </ng-container>
-            <ng-container *ngSwitchCase="HomeScreenOption.RANDOM_POKEMON">
-              {{ language === 'es' ? 'Pokémon Aleatorio' : 'Random Pokémon' }}
-            </ng-container>
-            <ng-container *ngSwitchCase="HomeScreenOption.PROFILE">
-              {{ language === 'es' ? 'Perfil' : 'Profile' }}
-            </ng-container>
-          </ng-container>
-        </p>
-      </label>
+          class="flex items-center gap-3 p-3 rounded-lg cursor-pointer border transition-colors">
+          <input
+            type="radio"
+            name="homeScreen"
+            [value]="option"
+            [(ngModel)]="selectedHomeScreen"
+            class="accent-blue-500"
+            />
+          <p class="text-sm font-medium text-gray-900 dark:text-gray-100">
+            @switch (option) {
+              @case (HomeScreenOption.POKEMON_LIST) {
+                {{ language === 'es' ? 'Lista de Pokémon' : 'Pokémon List' }}
+              }
+              @case (HomeScreenOption.RANDOM_POKEMON) {
+                {{ language === 'es' ? 'Pokémon Aleatorio' : 'Random Pokémon' }}
+              }
+              @case (HomeScreenOption.PROFILE) {
+                {{ language === 'es' ? 'Perfil' : 'Profile' }}
+              }
+            }
+          </p>
+        </label>
+      }
 
     </div>
   </div>
@@ -52,35 +53,36 @@
       </p>
       <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
         {{ language === 'es'
-          ? 'Solo si el Pokémon tiene ese sprite; si no existe, se usa el sprite Home.'
-          : 'Only if the Pokémon has that sprite; otherwise the Home sprite is shown.' }}
+        ? 'Solo si el Pokémon tiene ese sprite; si no existe, se usa el sprite Home.'
+        : 'Only if the Pokémon has that sprite; otherwise the Home sprite is shown.' }}
       </p>
     </div>
     <div class="p-4 space-y-2">
-      <label
-        *ngFor="let option of [PreferredSpriteOption.HOME, PreferredSpriteOption.GLOBAL_LINK]"
+      @for (option of [PreferredSpriteOption.HOME, PreferredSpriteOption.GLOBAL_LINK]; track option) {
+        <label
         [ngClass]="selectedSprite === option
           ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
           : 'border-transparent hover:bg-gray-50 dark:hover:bg-gray-700/40'"
-        class="flex items-center gap-3 p-3 rounded-lg cursor-pointer border transition-colors">
-        <input
-          type="radio"
-          name="preferredSprite"
-          [value]="option"
-          [(ngModel)]="selectedSprite"
-          class="accent-blue-500"
-        />
-        <p class="text-sm font-medium text-gray-900 dark:text-gray-100">
-          <ng-container [ngSwitch]="option">
-            <ng-container *ngSwitchCase="PreferredSpriteOption.HOME">
-              {{ language === 'es' ? 'Sprite Home' : 'Home Sprite' }}
-            </ng-container>
-            <ng-container *ngSwitchCase="PreferredSpriteOption.GLOBAL_LINK">
-              Global Link
-            </ng-container>
-          </ng-container>
-        </p>
-      </label>
+          class="flex items-center gap-3 p-3 rounded-lg cursor-pointer border transition-colors">
+          <input
+            type="radio"
+            name="preferredSprite"
+            [value]="option"
+            [(ngModel)]="selectedSprite"
+            class="accent-blue-500"
+            />
+          <p class="text-sm font-medium text-gray-900 dark:text-gray-100">
+            @switch (option) {
+              @case (PreferredSpriteOption.HOME) {
+                {{ language === 'es' ? 'Sprite Home' : 'Home Sprite' }}
+              }
+              @case (PreferredSpriteOption.GLOBAL_LINK) {
+                Global Link
+              }
+            }
+          </p>
+        </label>
+      }
 
     </div>
   </div>
@@ -93,29 +95,30 @@
       </p>
     </div>
     <div class="p-4 space-y-2">
-      <label
-        *ngFor="let lang of [{ code: 'es', label: 'Español' }, { code: 'en', label: 'English' }]"
+      @for (lang of [{ code: 'es', label: 'Español' }, { code: 'en', label: 'English' }]; track lang) {
+        <label
         [ngClass]="selectedLanguage === lang.code
           ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
           : 'border-transparent hover:bg-gray-50 dark:hover:bg-gray-700/40'"
-        class="flex items-center gap-3 p-3 rounded-lg cursor-pointer border transition-colors">
-        <input
-          type="radio"
-          name="language"
-          [value]="lang.code"
-          [(ngModel)]="selectedLanguage"
-          class="accent-blue-500"
-        />
-        <p class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ lang.label }}</p>
-      </label>
+          class="flex items-center gap-3 p-3 rounded-lg cursor-pointer border transition-colors">
+          <input
+            type="radio"
+            name="language"
+            [value]="lang.code"
+            [(ngModel)]="selectedLanguage"
+            class="accent-blue-500"
+            />
+          <p class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ lang.label }}</p>
+        </label>
+      }
     </div>
   </div>
 
   <div class="flex justify-end">
     <app-ui-button variant="primary" (buttonClick)="saveAll()">
       {{ saved
-        ? (language === 'es' ? '¡Guardado!' : 'Saved!')
-        : (language === 'es' ? 'Guardar' : 'Save') }}
+      ? (language === 'es' ? '¡Guardado!' : 'Saved!')
+      : (language === 'es' ? 'Guardar' : 'Save') }}
     </app-ui-button>
   </div>
 

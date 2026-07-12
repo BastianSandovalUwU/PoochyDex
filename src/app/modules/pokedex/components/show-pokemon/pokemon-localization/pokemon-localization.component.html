@@ -1,64 +1,82 @@
-<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-gray-200border-black dark:border-gray-600 dark:bg-gray-800" *ngIf="groupedLocations.length > 0">
-  <div
-    class="flex justify-between items-center cursor-pointer"
-    role="button"
-    tabindex="0"
-    (click)="toggleFilters()"
-    (keydown.enter)="toggleFilters()"
-    (keydown.space)="$event.preventDefault(); toggleFilters()">
-    <h1 class="font-bold text-xl hover:text-gray-800 dark:text-white dark:hover:text-gray-300">{{ language === 'es' ? 'Localización': 'Localization' }}</h1>
-    <app-ui-button variant="icon" type="button" (buttonClick)="toggleFilters(); $event.stopPropagation()">
-      <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
-    </app-ui-button>
-  </div>
-  <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'"
-    class="border-black border p-3 rounded-md bg-white filters-container ">
-    <div *ngIf="loadInfo">
-      <div class="grid grid-cols-6 gap-4 border-b border-black pb-1 dark:border-gray-600 dark:bg-gray-800">
-        <span class="text-center font-semibold col-span-1">{{ language === 'es' ? 'Juego': 'Game' }}</span>
-        <span class="font-semibold col-span-5">{{ language === 'es' ? 'Localización': 'Localization' }}</span>
-      </div>
-      <div *ngFor="let version of groupedLocations; trackBy: trackByVersion" class="grid grid-cols-4">
-        <div class="col-span-4 grid grid-cols-1 sm:grid-cols-6 gap-4 border-b border-black py-2 dark:border-gray-600 dark:bg-gray-800">
-          <div [ngClass]="version.versionColor"
-            class="relative col-span-2 sm:col-span-1 rounded-md text-white border border-black flex justify-center items-center">
-            <span class="text-center hover:text-blue-500 cursor-pointer">
-              <app-hyperlink type="game" [value]="version.versionName" [textBlue]="false"></app-hyperlink>
-            </span>
-            <img *ngIf="version.versionIcon" class="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 mr-2"
-              [src]="'./assets/pokemon-version-icon-sprite/' + version.versionIcon + '.png'" alt="">
+@if (groupedLocations.length > 0) {
+  <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 border border-gray-200border-black dark:border-gray-600 dark:bg-gray-800">
+    <div
+      class="flex justify-between items-center cursor-pointer"
+      role="button"
+      tabindex="0"
+      (click)="toggleFilters()"
+      (keydown.enter)="toggleFilters()"
+      (keydown.space)="$event.preventDefault(); toggleFilters()">
+      <h1 class="font-bold text-xl hover:text-gray-800 dark:text-white dark:hover:text-gray-300">{{ language === 'es' ? 'Localización': 'Localization' }}</h1>
+      <app-ui-button variant="icon" type="button" (buttonClick)="toggleFilters(); $event.stopPropagation()">
+        <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </app-ui-button>
+    </div>
+    <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'"
+      class="border-black border p-3 rounded-md bg-white filters-container ">
+      @if (loadInfo) {
+        <div>
+          <div class="grid grid-cols-6 gap-4 border-b border-black pb-1 dark:border-gray-600 dark:bg-gray-800">
+            <span class="text-center font-semibold col-span-1">{{ language === 'es' ? 'Juego': 'Game' }}</span>
+            <span class="font-semibold col-span-5">{{ language === 'es' ? 'Localización': 'Localization' }}</span>
           </div>
-          <div class="col-span-3 sm:col-span-5">
-            <div *ngFor="let method of version.methods | keyvalue">
-              <p>
-                <strong>
-                  {{ method.key | translateLocalizationMethod | replaceDash | titlecase }}:
-                </strong>
-                <ng-container *ngIf="getVisibleMethodValues(method.value, version.versionName, method.key) as visibleValues">
-                  <span *ngFor="let methodValue of visibleValues; let i = index">
-                    <app-hyperlink type="localization" [value]="methodValue"></app-hyperlink>
-                    <ng-container *ngIf="i < visibleValues.length - 1">,</ng-container>
-                    <ng-container *ngIf="i === visibleValues.length - 1">.</ng-container>
+          @for (version of groupedLocations; track trackByVersion($index, version)) {
+            <div class="grid grid-cols-4">
+              <div class="col-span-4 grid grid-cols-1 sm:grid-cols-6 gap-4 border-b border-black py-2 dark:border-gray-600 dark:bg-gray-800">
+                <div [ngClass]="version.versionColor"
+                  class="relative col-span-2 sm:col-span-1 rounded-md text-white border border-black flex justify-center items-center">
+                  <span class="text-center hover:text-blue-500 cursor-pointer">
+                    <app-hyperlink type="game" [value]="version.versionName" [textBlue]="false"></app-hyperlink>
                   </span>
-                </ng-container>
-                <ng-container *ngIf="hasMoreMethodItems(method.value)">
-                  <app-ui-button
-                    variant="ghost"
-                    type="button"
-                    extraClasses="!inline !p-0 !h-auto !min-h-0 !shadow-none !bg-transparent text-blue-500 underline cursor-pointer"
-                    (buttonClick)="toggleMethod(version.versionName, method.key)">
-                    {{ isMethodExpanded(version.versionName, method.key) ? 'Ver menos' : 'Ver más' }}
-                  </app-ui-button>
-                </ng-container>
-              </p>
+                  @if (version.versionIcon) {
+                    <img class="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 mr-2"
+                      [src]="'./assets/pokemon-version-icon-sprite/' + version.versionIcon + '.png'" alt="">
+                    }
+                  </div>
+                  <div class="col-span-3 sm:col-span-5">
+                    @for (method of version.methods | keyvalue; track method) {
+                      <div>
+                        <p>
+                          <strong>
+                            {{ method.key | translateLocalizationMethod | replaceDash | titlecase }}:
+                          </strong>
+                          @if (getVisibleMethodValues(method.value, version.versionName, method.key); as visibleValues) {
+                            @for (methodValue of visibleValues; track methodValue; let i = $index) {
+                              <span>
+                                <app-hyperlink type="localization" [value]="methodValue"></app-hyperlink>
+                                @if (i < visibleValues.length - 1) {
+                                  ,
+                                }
+                                @if (i === visibleValues.length - 1) {
+                                  .
+                                }
+                              </span>
+                            }
+                          }
+                          @if (hasMoreMethodItems(method.value)) {
+                            <app-ui-button
+                              variant="ghost"
+                              type="button"
+                              extraClasses="!inline !p-0 !h-auto !min-h-0 !shadow-none !bg-transparent text-blue-500 underline cursor-pointer"
+                              (buttonClick)="toggleMethod(version.versionName, method.key)">
+                            {{ isMethodExpanded(version.versionName, method.key) ? 'Ver menos' : 'Ver más' }}
+                          </app-ui-button>
+                        }
+                      </p>
+                    </div>
+                  }
+                </div>
+              </div>
             </div>
-          </div>
+          }
         </div>
-      </div>
-    </div>
-    <div class="border-black border p-3 rounded-md bg-white"
-      *ngIf="loadInfo === false && groupedLocations.length === 0">
-      <h1>{{ language === 'es' ? 'No se puede atrapar salvaje' : 'It can\'t be caught wild' }}</h1>
+      }
+      @if (loadInfo === false && groupedLocations.length === 0) {
+        <div class="border-black border p-3 rounded-md bg-white"
+          >
+          <h1>{{ language === 'es' ? 'No se puede atrapar salvaje' : 'It can\'t be caught wild' }}</h1>
+        </div>
+      }
     </div>
   </div>
-</div>
+}

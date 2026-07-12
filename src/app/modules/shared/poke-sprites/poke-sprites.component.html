@@ -1,293 +1,377 @@
-<div
-  *ngIf="pokemon?.sprites"
-  [ngClass]="backgroundColor"
-  class="poke-sprites poke-sprites--shell p-4 rounded-md mt-2 border border-gray-200 shadow-sm dark:border-gray-600 dark:bg-gray-800"
-  [attr.aria-label]="t('Sprites', 'Sprites')">
+@if (pokemon?.sprites) {
   <div
-    class="flex justify-between items-center cursor-pointer"
-    role="button"
-    tabindex="0"
-    (click)="toggleSpritesSection()"
-    (keydown.enter)="toggleSpritesSection()"
-    (keydown.space)="$event.preventDefault(); toggleSpritesSection()">
-    <h2 class="poke-sprites__title poke-sprites__title--header font-bold text-xl hover:text-gray-800 dark:text-white dark:hover:text-gray-300">
-      {{ t('Sprites', 'Sprites') }}
-    </h2>
-    <app-ui-button variant="icon" type="button" (buttonClick)="toggleSpritesSection(); $event.stopPropagation()">
-      <mat-icon>{{ spritesVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
-    </app-ui-button>
+    [ngClass]="backgroundColor"
+    class="poke-sprites poke-sprites--shell p-4 rounded-md mt-2 border border-gray-200 shadow-sm dark:border-gray-600 dark:bg-gray-800"
+    [attr.aria-label]="t('Sprites', 'Sprites')">
+    <div
+      class="flex justify-between items-center cursor-pointer"
+      role="button"
+      tabindex="0"
+      (click)="toggleSpritesSection()"
+      (keydown.enter)="toggleSpritesSection()"
+      (keydown.space)="$event.preventDefault(); toggleSpritesSection()">
+      <h2 class="poke-sprites__title poke-sprites__title--header font-bold text-xl hover:text-gray-800 dark:text-white dark:hover:text-gray-300">
+        {{ t('Sprites', 'Sprites') }}
+      </h2>
+      <app-ui-button variant="icon" type="button" (buttonClick)="toggleSpritesSection(); $event.stopPropagation()">
+        <mat-icon>{{ spritesVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </app-ui-button>
+    </div>
+    <div
+      [@toggleFilters]="spritesVisible ? 'visible' : 'hidden'"
+      class="poke-sprites__collapsible mt-2 overflow-hidden">
+      <div class="poke-sprites__content">
+        <!-- API root (default) -->
+        @if (rootSpriteSlots.length) {
+          <div class="poke-sprites__gen">
+            <article class="poke-sprites__card poke-sprites__card--wide">
+              <div class="poke-sprites__labeled-grid">
+                @for (slot of rootSpriteSlots; track trackByLabeledId($index, slot)) {
+                  <div class="poke-sprites__labeled-cell">
+                    <div class="poke-sprites__cell-inner">
+                      <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                    </div>
+                    <span class="poke-sprites__slot-label">{{ t(slot.labelEs, slot.labelEn) }}</span>
+                  </div>
+                }
+              </div>
+            </article>
+          </div>
+        }
+        <!-- other.* -->
+        @if (hasOtherGroup) {
+          <div class="poke-sprites__gen">
+            <div class="poke-sprites__stack poke-sprites__stack--other">
+              @if (dreamWorldSlots.length) {
+                <article class="poke-sprites__card poke-sprites__card--other">
+                  <h4 class="poke-sprites__card-title">{{ t('Mundo onírico', 'Dream World') }}</h4>
+                  <div class="poke-sprites__labeled-grid poke-sprites__labeled-grid--sm">
+                    @for (slot of dreamWorldSlots; track trackByLabeledId($index, slot)) {
+                      <div class="poke-sprites__labeled-cell">
+                        <div class="poke-sprites__cell-inner">
+                          <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                        </div>
+                        <span class="poke-sprites__slot-label">{{ t(slot.labelEs, slot.labelEn) }}</span>
+                      </div>
+                    }
+                  </div>
+                </article>
+              }
+              @if (homeSlots.length) {
+                <article class="poke-sprites__card poke-sprites__card--other">
+                  <h4 class="poke-sprites__card-title">{{ t('Pokémon HOME', 'Pokémon HOME') }}</h4>
+                  <div class="poke-sprites__labeled-grid">
+                    @for (slot of homeSlots; track trackByLabeledId($index, slot)) {
+                      <div class="poke-sprites__labeled-cell">
+                        <div class="poke-sprites__cell-inner">
+                          <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                        </div>
+                        <span class="poke-sprites__slot-label">{{ t(slot.labelEs, slot.labelEn) }}</span>
+                      </div>
+                    }
+                  </div>
+                </article>
+              }
+              @if (officialArtworkSlots.length) {
+                <article class="poke-sprites__card poke-sprites__card--other">
+                  <h4 class="poke-sprites__card-title">{{ t('Arte oficial Sugimori', 'Official Sugimori artwork') }}</h4>
+                  <div class="poke-sprites__labeled-grid">
+                    @for (slot of officialArtworkSlots; track trackByLabeledId($index, slot)) {
+                      <div class="poke-sprites__labeled-cell">
+                        <div class="poke-sprites__cell-inner">
+                          <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                        </div>
+                        <span class="poke-sprites__slot-label">{{ t(slot.labelEs, slot.labelEn) }}</span>
+                      </div>
+                    }
+                  </div>
+                </article>
+              }
+              @if (showdownSlots.length) {
+                <article class="poke-sprites__card poke-sprites__card--other">
+                  <h4 class="poke-sprites__card-title">{{ t('Modelo 3D (Showdown)', '3D model (Showdown)') }}</h4>
+                  <div class="poke-sprites__labeled-grid poke-sprites__labeled-grid--dense">
+                    @for (slot of showdownSlots; track trackByLabeledId($index, slot)) {
+                      <div class="poke-sprites__labeled-cell">
+                        <div class="poke-sprites__cell-inner">
+                          <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                        </div>
+                        <span class="poke-sprites__slot-label">{{ t(slot.labelEs, slot.labelEn) }}</span>
+                      </div>
+                    }
+                  </div>
+                </article>
+              }
+            </div>
+          </div>
+        }
+        <!-- By game / generation (versions) -->
+        @if (hasVersionGameSprites) {
+          <h3 class="poke-sprites__section-subtitle">{{ t('Por juego (generaciones clásicas)', 'By game (classic generations)') }}</h3>
+          @if (gen1RedBlue.length) {
+            <div class="poke-sprites__gen">
+              <h3 class="poke-sprites__gen-title">{{ t('1.ª generación', 'Generation I') }}</h3>
+              <div class="poke-sprites__row poke-sprites__row--center">
+                <article class="poke-sprites__card">
+                  <h4 class="poke-sprites__card-title">{{ t('Rojo y Azul', 'Red & Blue') }}</h4>
+                  <div class="poke-sprites__grid poke-sprites__grid--2">
+                    @for (u of gen1RedBlue; track trackByIndex($index, u)) {
+                      <div class="poke-sprites__cell">
+                        <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                      </div>
+                    }
+                  </div>
+                </article>
+              </div>
+            </div>
+          }
+          @if (gen2Crystal.length || gen2Gold.length || gen2Silver.length) {
+            <div class="poke-sprites__gen">
+              <h3 class="poke-sprites__gen-title">{{ t('2.ª generación', 'Generation II') }}</h3>
+              <div class="poke-sprites__row poke-sprites__row--wrap">
+                @if (gen2Crystal.length) {
+                  <article class="poke-sprites__card">
+                    <h4 class="poke-sprites__card-title">{{ t('Cristal', 'Crystal') }}</h4>
+                    <div class="poke-sprites__grid poke-sprites__grid--2">
+                      @for (u of gen2Crystal; track trackByIndex($index, u)) {
+                        <div class="poke-sprites__cell">
+                          <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                        </div>
+                      }
+                    </div>
+                  </article>
+                }
+                @if (gen2Gold.length) {
+                  <article class="poke-sprites__card">
+                    <h4 class="poke-sprites__card-title">{{ t('Oro', 'Gold') }}</h4>
+                    <div class="poke-sprites__grid poke-sprites__grid--2">
+                      @for (u of gen2Gold; track trackByIndex($index, u)) {
+                        <div class="poke-sprites__cell">
+                          <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                        </div>
+                      }
+                    </div>
+                  </article>
+                }
+                @if (gen2Silver.length) {
+                  <article class="poke-sprites__card">
+                    <h4 class="poke-sprites__card-title">{{ t('Plata', 'Silver') }}</h4>
+                    <div class="poke-sprites__grid poke-sprites__grid--2">
+                      @for (u of gen2Silver; track trackByIndex($index, u)) {
+                        <div class="poke-sprites__cell">
+                          <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                        </div>
+                      }
+                    </div>
+                  </article>
+                }
+              </div>
+            </div>
+          }
+          @if (gen3Emerald.length || gen3RubySapphire.length || gen3FrLg.length) {
+            <div class="poke-sprites__gen">
+              <h3 class="poke-sprites__gen-title">{{ t('3.ª generación', 'Generation III') }}</h3>
+              <div class="poke-sprites__row poke-sprites__row--wrap">
+                @if (gen3Emerald.length) {
+                  <article class="poke-sprites__card">
+                    <h4 class="poke-sprites__card-title">{{ t('Esmeralda', 'Emerald') }}</h4>
+                    <div class="poke-sprites__grid poke-sprites__grid--2">
+                      @for (u of gen3Emerald; track trackByIndex($index, u)) {
+                        <div class="poke-sprites__cell">
+                          <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                        </div>
+                      }
+                    </div>
+                  </article>
+                }
+                @if (gen3RubySapphire.length) {
+                  <article class="poke-sprites__card">
+                    <h4 class="poke-sprites__card-title">{{ t('Rubí y Zafiro', 'Ruby & Sapphire') }}</h4>
+                    <div class="poke-sprites__grid poke-sprites__grid--2">
+                      @for (u of gen3RubySapphire; track trackByIndex($index, u)) {
+                        <div class="poke-sprites__cell">
+                          <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                        </div>
+                      }
+                    </div>
+                  </article>
+                }
+                @if (gen3FrLg.length) {
+                  <article class="poke-sprites__card">
+                    <h4 class="poke-sprites__card-title">{{ t('Rojo Fuego y Verde Hoja', 'Fire Red & Leaf Green') }}</h4>
+                    <div class="poke-sprites__grid poke-sprites__grid--2">
+                      @for (u of gen3FrLg; track trackByIndex($index, u)) {
+                        <div class="poke-sprites__cell">
+                          <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                        </div>
+                      }
+                    </div>
+                  </article>
+                }
+              </div>
+            </div>
+          }
+          @if (gen4DiamondPearl.length || gen4Platinum.length || gen4HeartGoldSoulSilver.length) {
+            <div class="poke-sprites__gen">
+              <h3 class="poke-sprites__gen-title">{{ t('4.ª generación', 'Generation IV') }}</h3>
+              <div class="poke-sprites__row poke-sprites__row--wrap">
+                @if (gen4DiamondPearl.length) {
+                  <article class="poke-sprites__card">
+                    <h4 class="poke-sprites__card-title">{{ t('Diamante y Perla', 'Diamond & Pearl') }}</h4>
+                    <div class="poke-sprites__grid poke-sprites__grid--2">
+                      @for (u of gen4DiamondPearl; track trackByIndex($index, u)) {
+                        <div class="poke-sprites__cell">
+                          <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                        </div>
+                      }
+                    </div>
+                  </article>
+                }
+                @if (gen4Platinum.length) {
+                  <article class="poke-sprites__card">
+                    <h4 class="poke-sprites__card-title">{{ t('Platino', 'Platinum') }}</h4>
+                    <div class="poke-sprites__grid poke-sprites__grid--2">
+                      @for (u of gen4Platinum; track trackByIndex($index, u)) {
+                        <div class="poke-sprites__cell">
+                          <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                        </div>
+                      }
+                    </div>
+                  </article>
+                }
+                @if (gen4HeartGoldSoulSilver.length) {
+                  <article class="poke-sprites__card">
+                    <h4 class="poke-sprites__card-title">{{ t('HeartGold y SoulSilver', 'HeartGold & SoulSilver') }}</h4>
+                    <div class="poke-sprites__grid poke-sprites__grid--2">
+                      @for (u of gen4HeartGoldSoulSilver; track trackByIndex($index, u)) {
+                        <div class="poke-sprites__cell">
+                          <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                        </div>
+                      }
+                    </div>
+                  </article>
+                }
+              </div>
+            </div>
+          }
+          @if (gen5BlackWhite.length) {
+            <div class="poke-sprites__gen">
+              <h3 class="poke-sprites__gen-title">{{ t('5.ª generación', 'Generation V') }}</h3>
+              <div class="poke-sprites__row poke-sprites__row--center">
+                <article class="poke-sprites__card">
+                  <h4 class="poke-sprites__card-title">{{ t('Negro y Blanco', 'Black & White') }}</h4>
+                  <div class="poke-sprites__bw-stack">
+                    @if (gen5BlackWhiteAnimated.length) {
+                      <div class="poke-sprites__bw-block">
+                        <h5 class="poke-sprites__subgroup-title">{{ t('Animados', 'Animated') }}</h5>
+                        <div class="poke-sprites__grid poke-sprites__grid--2">
+                          @for (u of gen5BlackWhiteAnimated; track trackByIndex($index, u)) {
+                            <div class="poke-sprites__cell">
+                              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                            </div>
+                          }
+                        </div>
+                      </div>
+                    }
+                    <div class="poke-sprites__bw-block">
+                      <h5 class="poke-sprites__subgroup-title">{{ t('Estáticos', 'Static') }}</h5>
+                      <div class="poke-sprites__grid poke-sprites__grid--2">
+                        @for (u of gen5BlackWhite; track trackByIndex($index, u)) {
+                          <div class="poke-sprites__cell">
+                            <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          }
+          @if (gen6Xy.length || gen6Oras.length) {
+            <div class="poke-sprites__gen">
+              <h3 class="poke-sprites__gen-title">{{ t('6.ª generación', 'Generation VI') }}</h3>
+              <div class="poke-sprites__row poke-sprites__row--wrap">
+                @if (gen6Xy.length) {
+                  <article class="poke-sprites__card">
+                    <h4 class="poke-sprites__card-title">X &amp; Y</h4>
+                    <div class="poke-sprites__grid poke-sprites__grid--2">
+                      @for (u of gen6Xy; track trackByIndex($index, u)) {
+                        <div class="poke-sprites__cell">
+                          <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                        </div>
+                      }
+                    </div>
+                  </article>
+                }
+                @if (gen6Oras.length) {
+                  <article class="poke-sprites__card">
+                    <h4 class="poke-sprites__card-title">{{ t('Rubí Omega y Zafiro Alfa', 'Omega Ruby & Alpha Sapphire') }}</h4>
+                    <div class="poke-sprites__grid poke-sprites__grid--2">
+                      @for (u of gen6Oras; track trackByIndex($index, u)) {
+                        <div class="poke-sprites__cell">
+                          <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                        </div>
+                      }
+                    </div>
+                  </article>
+                }
+              </div>
+            </div>
+          }
+          @if (gen7UsUm.length) {
+            <div class="poke-sprites__gen">
+              <h3 class="poke-sprites__gen-title">{{ t('7.ª generación', 'Generation VII') }}</h3>
+              <div class="poke-sprites__row poke-sprites__row--center">
+                <article class="poke-sprites__card">
+                  <h4 class="poke-sprites__card-title">{{ t('Ultrasol y Ultraluna', 'Ultra Sun & Ultra Moon') }}</h4>
+                  <div class="poke-sprites__grid poke-sprites__grid--2">
+                    @for (u of gen7UsUm; track trackByIndex($index, u)) {
+                      <div class="poke-sprites__cell">
+                        <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                      </div>
+                    }
+                  </div>
+                </article>
+              </div>
+            </div>
+          }
+          @if (gen8BrilliantDiamondShiningPearl.length) {
+            <div class="poke-sprites__gen">
+              <h3 class="poke-sprites__gen-title">{{ t('8.ª generación', 'Generation VIII') }}</h3>
+              <div class="poke-sprites__row poke-sprites__row--center">
+                <article class="poke-sprites__card">
+                  <h4 class="poke-sprites__card-title">{{ t('Diamante Brillante y Perla Brillante', 'Brilliant Diamond & Shining Pearl') }}</h4>
+                  <div class="poke-sprites__grid poke-sprites__grid--2">
+                    @for (u of gen8BrilliantDiamondShiningPearl; track trackByIndex($index, u)) {
+                      <div class="poke-sprites__cell">
+                        <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                      </div>
+                    }
+                  </div>
+                </article>
+              </div>
+            </div>
+          }
+          @if (gen9ScarletViolet.length) {
+            <div class="poke-sprites__gen">
+              <h3 class="poke-sprites__gen-title">{{ t('9.ª generación', 'Generation IX') }}</h3>
+              <div class="poke-sprites__row poke-sprites__row--center">
+                <article class="poke-sprites__card">
+                  <h4 class="poke-sprites__card-title">{{ t('Escarlata y Violeta', 'Scarlet & Violet') }}</h4>
+                  <div class="poke-sprites__grid poke-sprites__grid--2">
+                    @for (u of gen9ScarletViolet; track trackByIndex($index, u)) {
+                      <div class="poke-sprites__cell">
+                        <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
+                      </div>
+                    }
+                  </div>
+                </article>
+              </div>
+            </div>
+          }
+        }
+      </div>
+    </div>
   </div>
-
-  <div
-    [@toggleFilters]="spritesVisible ? 'visible' : 'hidden'"
-    class="poke-sprites__collapsible mt-2 overflow-hidden">
-    <div class="poke-sprites__content">
-    <!-- API root (default) -->
-    <div *ngIf="rootSpriteSlots.length" class="poke-sprites__gen">
-      <article class="poke-sprites__card poke-sprites__card--wide">
-        <div class="poke-sprites__labeled-grid">
-          <div *ngFor="let slot of rootSpriteSlots; trackBy: trackByLabeledId" class="poke-sprites__labeled-cell">
-            <div class="poke-sprites__cell-inner">
-              <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-            <span class="poke-sprites__slot-label">{{ t(slot.labelEs, slot.labelEn) }}</span>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <!-- other.* -->
-    <div *ngIf="hasOtherGroup" class="poke-sprites__gen">
-      <div class="poke-sprites__stack poke-sprites__stack--other">
-        <article *ngIf="dreamWorldSlots.length" class="poke-sprites__card poke-sprites__card--other">
-          <h4 class="poke-sprites__card-title">{{ t('Mundo onírico', 'Dream World') }}</h4>
-          <div class="poke-sprites__labeled-grid poke-sprites__labeled-grid--sm">
-            <div *ngFor="let slot of dreamWorldSlots; trackBy: trackByLabeledId" class="poke-sprites__labeled-cell">
-              <div class="poke-sprites__cell-inner">
-                <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-              </div>
-              <span class="poke-sprites__slot-label">{{ t(slot.labelEs, slot.labelEn) }}</span>
-            </div>
-          </div>
-        </article>
-
-        <article *ngIf="homeSlots.length" class="poke-sprites__card poke-sprites__card--other">
-          <h4 class="poke-sprites__card-title">{{ t('Pokémon HOME', 'Pokémon HOME') }}</h4>
-          <div class="poke-sprites__labeled-grid">
-            <div *ngFor="let slot of homeSlots; trackBy: trackByLabeledId" class="poke-sprites__labeled-cell">
-              <div class="poke-sprites__cell-inner">
-                <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-              </div>
-              <span class="poke-sprites__slot-label">{{ t(slot.labelEs, slot.labelEn) }}</span>
-            </div>
-          </div>
-        </article>
-
-        <article *ngIf="officialArtworkSlots.length" class="poke-sprites__card poke-sprites__card--other">
-          <h4 class="poke-sprites__card-title">{{ t('Arte oficial Sugimori', 'Official Sugimori artwork') }}</h4>
-          <div class="poke-sprites__labeled-grid">
-            <div *ngFor="let slot of officialArtworkSlots; trackBy: trackByLabeledId" class="poke-sprites__labeled-cell">
-              <div class="poke-sprites__cell-inner">
-                <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-              </div>
-              <span class="poke-sprites__slot-label">{{ t(slot.labelEs, slot.labelEn) }}</span>
-            </div>
-          </div>
-        </article>
-
-        <article *ngIf="showdownSlots.length" class="poke-sprites__card poke-sprites__card--other">
-          <h4 class="poke-sprites__card-title">{{ t('Modelo 3D (Showdown)', '3D model (Showdown)') }}</h4>
-          <div class="poke-sprites__labeled-grid poke-sprites__labeled-grid--dense">
-            <div *ngFor="let slot of showdownSlots; trackBy: trackByLabeledId" class="poke-sprites__labeled-cell">
-              <div class="poke-sprites__cell-inner">
-                <img [src]="slot.url" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-              </div>
-              <span class="poke-sprites__slot-label">{{ t(slot.labelEs, slot.labelEn) }}</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <!-- By game / generation (versions) -->
-    <ng-container *ngIf="hasVersionGameSprites">
-      <h3 class="poke-sprites__section-subtitle">{{ t('Por juego (generaciones clásicas)', 'By game (classic generations)') }}</h3>
-    <div *ngIf="gen1RedBlue.length" class="poke-sprites__gen">
-      <h3 class="poke-sprites__gen-title">{{ t('1.ª generación', 'Generation I') }}</h3>
-      <div class="poke-sprites__row poke-sprites__row--center">
-        <article class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">{{ t('Rojo y Azul', 'Red & Blue') }}</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen1RedBlue; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <div *ngIf="gen2Crystal.length || gen2Gold.length || gen2Silver.length" class="poke-sprites__gen">
-      <h3 class="poke-sprites__gen-title">{{ t('2.ª generación', 'Generation II') }}</h3>
-      <div class="poke-sprites__row poke-sprites__row--wrap">
-        <article *ngIf="gen2Crystal.length" class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">{{ t('Cristal', 'Crystal') }}</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen2Crystal; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-          </div>
-        </article>
-        <article *ngIf="gen2Gold.length" class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">{{ t('Oro', 'Gold') }}</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen2Gold; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-          </div>
-        </article>
-        <article *ngIf="gen2Silver.length" class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">{{ t('Plata', 'Silver') }}</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen2Silver; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <div *ngIf="gen3Emerald.length || gen3RubySapphire.length || gen3FrLg.length" class="poke-sprites__gen">
-      <h3 class="poke-sprites__gen-title">{{ t('3.ª generación', 'Generation III') }}</h3>
-      <div class="poke-sprites__row poke-sprites__row--wrap">
-        <article *ngIf="gen3Emerald.length" class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">{{ t('Esmeralda', 'Emerald') }}</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen3Emerald; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-          </div>
-        </article>
-        <article *ngIf="gen3RubySapphire.length" class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">{{ t('Rubí y Zafiro', 'Ruby & Sapphire') }}</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen3RubySapphire; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-          </div>
-        </article>
-        <article *ngIf="gen3FrLg.length" class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">{{ t('Rojo Fuego y Verde Hoja', 'Fire Red & Leaf Green') }}</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen3FrLg; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <div *ngIf="gen4DiamondPearl.length || gen4Platinum.length || gen4HeartGoldSoulSilver.length" class="poke-sprites__gen">
-      <h3 class="poke-sprites__gen-title">{{ t('4.ª generación', 'Generation IV') }}</h3>
-      <div class="poke-sprites__row poke-sprites__row--wrap">
-        <article *ngIf="gen4DiamondPearl.length" class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">{{ t('Diamante y Perla', 'Diamond & Pearl') }}</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen4DiamondPearl; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-          </div>
-        </article>
-        <article *ngIf="gen4Platinum.length" class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">{{ t('Platino', 'Platinum') }}</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen4Platinum; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-          </div>
-        </article>
-        <article *ngIf="gen4HeartGoldSoulSilver.length" class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">{{ t('HeartGold y SoulSilver', 'HeartGold & SoulSilver') }}</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen4HeartGoldSoulSilver; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <div *ngIf="gen5BlackWhite.length" class="poke-sprites__gen">
-      <h3 class="poke-sprites__gen-title">{{ t('5.ª generación', 'Generation V') }}</h3>
-      <div class="poke-sprites__row poke-sprites__row--center">
-        <article class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">{{ t('Negro y Blanco', 'Black & White') }}</h4>
-          <div class="poke-sprites__bw-stack">
-            <div *ngIf="gen5BlackWhiteAnimated.length" class="poke-sprites__bw-block">
-              <h5 class="poke-sprites__subgroup-title">{{ t('Animados', 'Animated') }}</h5>
-              <div class="poke-sprites__grid poke-sprites__grid--2">
-                <div *ngFor="let u of gen5BlackWhiteAnimated; trackBy: trackByIndex" class="poke-sprites__cell">
-                  <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-                </div>
-              </div>
-            </div>
-            <div class="poke-sprites__bw-block">
-              <h5 class="poke-sprites__subgroup-title">{{ t('Estáticos', 'Static') }}</h5>
-              <div class="poke-sprites__grid poke-sprites__grid--2">
-                <div *ngFor="let u of gen5BlackWhite; trackBy: trackByIndex" class="poke-sprites__cell">
-                  <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <div *ngIf="gen6Xy.length || gen6Oras.length" class="poke-sprites__gen">
-      <h3 class="poke-sprites__gen-title">{{ t('6.ª generación', 'Generation VI') }}</h3>
-      <div class="poke-sprites__row poke-sprites__row--wrap">
-        <article *ngIf="gen6Xy.length" class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">X &amp; Y</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen6Xy; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-          </div>
-        </article>
-        <article *ngIf="gen6Oras.length" class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">{{ t('Rubí Omega y Zafiro Alfa', 'Omega Ruby & Alpha Sapphire') }}</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen6Oras; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <div *ngIf="gen7UsUm.length" class="poke-sprites__gen">
-      <h3 class="poke-sprites__gen-title">{{ t('7.ª generación', 'Generation VII') }}</h3>
-      <div class="poke-sprites__row poke-sprites__row--center">
-        <article class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">{{ t('Ultrasol y Ultraluna', 'Ultra Sun & Ultra Moon') }}</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen7UsUm; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <div *ngIf="gen8BrilliantDiamondShiningPearl.length" class="poke-sprites__gen">
-      <h3 class="poke-sprites__gen-title">{{ t('8.ª generación', 'Generation VIII') }}</h3>
-      <div class="poke-sprites__row poke-sprites__row--center">
-        <article class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">{{ t('Diamante Brillante y Perla Brillante', 'Brilliant Diamond & Shining Pearl') }}</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen8BrilliantDiamondShiningPearl; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <div *ngIf="gen9ScarletViolet.length" class="poke-sprites__gen">
-      <h3 class="poke-sprites__gen-title">{{ t('9.ª generación', 'Generation IX') }}</h3>
-      <div class="poke-sprites__row poke-sprites__row--center">
-        <article class="poke-sprites__card">
-          <h4 class="poke-sprites__card-title">{{ t('Escarlata y Violeta', 'Scarlet & Violet') }}</h4>
-          <div class="poke-sprites__grid poke-sprites__grid--2">
-            <div *ngFor="let u of gen9ScarletViolet; trackBy: trackByIndex" class="poke-sprites__cell">
-              <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    </ng-container>
-    </div>
-  </div>
-</div>
+}

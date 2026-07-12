@@ -1,19 +1,20 @@
-<div class="mt-4 max-w-6xl mx-auto" *ngIf="filteredPokemon.length > 0" [@detailFadeIn]>
-  <h1 class="mx-5 text-black text-2xl font-bold dark:text-white">
-    {{ language === 'es' ? 'Lista de Pokémon según la Pokédex de' : ''}} {{ pokedexName |translatePokedexName }} {{
-    language === 'es' ? '' : 'Dex'}}
-  </h1>
-  <hr class="my-2">
-
-  <div class="bg-gray-100 rounded-md border border-black my-2 dark:bg-gray-800 dark:border-gray-600">
-    <app-pokedex-description [pokedexName]="pokedexName"></app-pokedex-description>
+@if (filteredPokemon.length > 0) {
+  <div class="mt-4 max-w-6xl mx-auto" [@detailFadeIn]>
+    <h1 class="mx-5 text-black text-2xl font-bold dark:text-white">
+      {{ language === 'es' ? 'Lista de Pokémon según la Pokédex de' : ''}} {{ pokedexName |translatePokedexName }} {{
+      language === 'es' ? '' : 'Dex'}}
+    </h1>
+    <hr class="my-2">
+    <div class="bg-gray-100 rounded-md border border-black my-2 dark:bg-gray-800 dark:border-gray-600">
+      <app-pokedex-description [pokedexName]="pokedexName"></app-pokedex-description>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-8 gap-2 pb-15 w-full mt-2">
+      @for (pokemon of filteredPokemon; track pokemon) {
+        <app-pokemon-card
+          [pokemon]="pokemon"
+          [language]="language">
+        </app-pokemon-card>
+      }
+    </div>
   </div>
-
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-8 gap-2 pb-15 w-full mt-2">
-    <app-pokemon-card
-      *ngFor="let pokemon of filteredPokemon"
-      [pokemon]="pokemon"
-      [language]="language">
-    </app-pokemon-card>
-  </div>
-</div>
+}

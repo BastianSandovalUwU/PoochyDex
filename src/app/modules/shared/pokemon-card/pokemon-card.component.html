@@ -10,29 +10,37 @@
       <h1 class="text-white text-lg font-bold">N° #{{ addZerosToNumber(pokemon.number) }}</h1>
       <div class="cursor-pointer">
         <img class="w-24"
-             [src]="pokemon.sprites.iconUrl" alt=""
-        >
+          [src]="pokemon.sprites.iconUrl" alt=""
+          >
       </div>
       <h1 class="text-black text-xl"
       >{{ pokemon.name |translatePokemonName |replaceDash | titlecase }}</h1>
     </div>
 
     <div class="absolute bottom-1 left-0 w-full flex justify-center gap-1 p-1">
-      <div class="rounded-md w-3/4" *ngIf="pokemon.type">
-        <img class="w-full"
-        [src]="'./assets/icons/types/' + getGameIconNameForLanguage(pokemon.type, language) + '.png'">
-      </div>
-      <div class="rounded-md w-3/4" *ngIf="!pokemon.type">
-        <div class="w-full"></div>
-      </div>
-      <div class="rounded-md w-3/4" *ngIf="pokemon.type2">
-        <img class="w-full"
-        [src]="'./assets/icons/types/' + getGameIconNameForLanguage(pokemon.type2, language) + '.png'">
-      </div>
-      <div class="rounded-md w-3/4" *ngIf="!pokemon.type2">
-        <div class="w-full"></div>
+      @if (pokemon.type) {
+        <div class="rounded-md w-3/4">
+          <img class="w-full"
+            [src]="'./assets/icons/types/' + getGameIconNameForLanguage(pokemon.type, language) + '.png'">
+          </div>
+        }
+        @if (!pokemon.type) {
+          <div class="rounded-md w-3/4">
+            <div class="w-full"></div>
+          </div>
+        }
+        @if (pokemon.type2) {
+          <div class="rounded-md w-3/4">
+            <img class="w-full"
+              [src]="'./assets/icons/types/' + getGameIconNameForLanguage(pokemon.type2, language) + '.png'">
+            </div>
+          }
+          @if (!pokemon.type2) {
+            <div class="rounded-md w-3/4">
+              <div class="w-full"></div>
+            </div>
+          }
+        </div>
       </div>
     </div>
-  </div>
-</div>
 

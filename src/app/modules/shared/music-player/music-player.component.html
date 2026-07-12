@@ -1,99 +1,235 @@
 <!-- Restore FAB when dock hidden (same shape as search button) -->
-<div
-  *ngIf="fixedLayout && !fixedVisible"
-  @musicFab
-  class="fixed bottom-[7.5rem] right-[17px] w-16 h-16 z-[1020] transition-transform duration-300 ease-out hover:scale-110 active:scale-95 sm:bottom-32">
-  <app-ui-button
-    type="button"
-    variant="icon"
-    [ariaLabel]="language === 'es' ? 'Mostrar reproductor' : 'Show music player'"
-    extraClasses="music-fab music-restore-btn w-full h-full !min-w-[64px] !min-h-[64px] bg-gradient-to-br from-pink-500 to-pink-600 dark:from-pink-500 dark:to-pink-600 border-2 border-white dark:border-pink-100 flex justify-center items-center cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 hover:from-pink-600 hover:to-pink-700 dark:hover:from-pink-600 dark:hover:to-pink-700 transition-all duration-300 ease-out relative overflow-hidden focus-visible:outline-2 focus-visible:outline-pink-600 focus-visible:outline-offset-2 dark:focus-visible:outline-pink-300 active:scale-[0.98] music-fab-ripple"
-    (buttonClick)="music.toggleFixedVisible()">
-    <mat-icon class="text-white text-[28px] w-7 h-7 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)] relative z-10">music_note</mat-icon>
-  </app-ui-button>
-</div>
-
-<ng-container *ngIf="fixedLayout && fixedVisible">
-  <!-- Minimized: round FAB like search button; tap opens expanded panel -->
+@if (fixedLayout && !fixedVisible) {
   <div
-    *ngIf="hasTracks && !isExpanded"
     @musicFab
     class="fixed bottom-[7.5rem] right-[17px] w-16 h-16 z-[1020] transition-transform duration-300 ease-out hover:scale-110 active:scale-95 sm:bottom-32">
     <app-ui-button
       type="button"
       variant="icon"
-      [ariaLabel]="language === 'es' ? 'Abrir reproductor de música' : 'Open music player'"
-      [extraClasses]="'music-fab w-full h-full !min-w-[64px] !min-h-[64px] bg-gradient-to-br from-pink-500 to-pink-600 dark:from-pink-500 dark:to-pink-600 border-2 border-white dark:border-pink-100 flex justify-center items-center cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 hover:from-pink-600 hover:to-pink-700 dark:hover:from-pink-600 dark:hover:to-pink-700 transition-all duration-300 ease-out relative overflow-hidden focus-visible:outline-2 focus-visible:outline-pink-600 focus-visible:outline-offset-2 dark:focus-visible:outline-pink-300 active:scale-[0.98] music-fab-ripple' + (isPlaying ? ' music-fab--playing' : '')"
-      (buttonClick)="music.toggleExpanded()">
-      <mat-icon [class]="'text-white text-[28px] w-7 h-7 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)] relative z-10' + (isPlaying ? ' fab-icon-playing' : '')">
-        {{ isPlaying ? 'graphic_eq' : 'music_note' }}
-      </mat-icon>
+      [ariaLabel]="language === 'es' ? 'Mostrar reproductor' : 'Show music player'"
+      extraClasses="music-fab music-restore-btn w-full h-full !min-w-[64px] !min-h-[64px] bg-gradient-to-br from-pink-500 to-pink-600 dark:from-pink-500 dark:to-pink-600 border-2 border-white dark:border-pink-100 flex justify-center items-center cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 hover:from-pink-600 hover:to-pink-700 dark:hover:from-pink-600 dark:hover:to-pink-700 transition-all duration-300 ease-out relative overflow-hidden focus-visible:outline-2 focus-visible:outline-pink-600 focus-visible:outline-offset-2 dark:focus-visible:outline-pink-300 active:scale-[0.98] music-fab-ripple"
+      (buttonClick)="music.toggleFixedVisible()">
+      <mat-icon class="text-white text-[28px] w-7 h-7 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)] relative z-10">music_note</mat-icon>
     </app-ui-button>
   </div>
+}
 
+@if (fixedLayout && fixedVisible) {
+  <!-- Minimized: round FAB like search button; tap opens expanded panel -->
+  @if (hasTracks && !isExpanded) {
+    <div
+      @musicFab
+      class="fixed bottom-[7.5rem] right-[17px] w-16 h-16 z-[1020] transition-transform duration-300 ease-out hover:scale-110 active:scale-95 sm:bottom-32">
+      <app-ui-button
+        type="button"
+        variant="icon"
+        [ariaLabel]="language === 'es' ? 'Abrir reproductor de música' : 'Open music player'"
+        [extraClasses]="'music-fab w-full h-full !min-w-[64px] !min-h-[64px] bg-gradient-to-br from-pink-500 to-pink-600 dark:from-pink-500 dark:to-pink-600 border-2 border-white dark:border-pink-100 flex justify-center items-center cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 hover:from-pink-600 hover:to-pink-700 dark:hover:from-pink-600 dark:hover:to-pink-700 transition-all duration-300 ease-out relative overflow-hidden focus-visible:outline-2 focus-visible:outline-pink-600 focus-visible:outline-offset-2 dark:focus-visible:outline-pink-300 active:scale-[0.98] music-fab-ripple' + (isPlaying ? ' music-fab--playing' : '')"
+        (buttonClick)="music.toggleExpanded()">
+        <mat-icon [class]="'text-white text-[28px] w-7 h-7 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)] relative z-10' + (isPlaying ? ' fab-icon-playing' : '')">
+          {{ isPlaying ? 'graphic_eq' : 'music_note' }}
+        </mat-icon>
+      </app-ui-button>
+    </div>
+  }
   <!-- Expanded (empty playlist OR expanded with tracks) -->
-  <div
-    *ngIf="!hasTracks || isExpanded"
-    @musicDock
+  @if (!hasTracks || isExpanded) {
+    <div
+      @musicDock
     class="music-dock music-dock--expanded fixed z-[1020] flex flex-col
            bottom-0 left-0 right-0 w-full max-h-[min(72vh,36rem)] overflow-x-hidden
            rounded-t-3xl rounded-b-none border-t border-gray-200 dark:border-gray-600
            bg-white dark:bg-gray-900 p-4 pb-5 gap-3 shadow-[0_-10px_40px_rgba(0,0,0,0.18)]
            sm:bottom-32 sm:right-[17px] sm:left-auto sm:max-h-[min(90vh,36rem)] sm:w-[min(100vw-2rem,22rem)] sm:rounded-2xl sm:border sm:border-gray-200 dark:sm:border-gray-600 sm:p-3 sm:gap-2 sm:shadow-xl">
-    <div class="flex items-center justify-between gap-2 shrink-0">
+      <div class="flex items-center justify-between gap-2 shrink-0">
+        <div class="flex items-center gap-1 min-w-0">
+          <mat-icon class="text-pink-600 dark:text-pink-400 shrink-0">library_music</mat-icon>
+          <span class="text-lg font-semibold text-gray-800 dark:text-gray-100 truncate sm:text-sm">
+            {{ language === 'es' ? 'Música' : 'Music' }}
+          </span>
+        </div>
+        <div class="flex items-center gap-0.5 shrink-0">
+          @if (hasTracks) {
+            <app-ui-button
+              type="button"
+              variant="ghost"
+              [ariaLabel]="language === 'es' ? 'Ver lista de reproducción' : 'View playlist'"
+              [ariaPressed]="showPlaylist"
+              [extraClasses]="'p-1.5 rounded-lg !shadow-none ' + (showPlaylist ? 'text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-900/30' : 'hover:bg-black/5 dark:hover:bg-white/10')"
+              (buttonClick)="showPlaylist = !showPlaylist">
+              <mat-icon>queue_music</mat-icon>
+            </app-ui-button>
+          }
+          @if (hasTracks) {
+            <app-ui-button
+              type="button"
+              variant="ghost"
+              [ariaLabel]="language === 'es' ? 'Minimizar reproductor' : 'Minimize player'"
+              extraClasses="p-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 !shadow-none"
+              (buttonClick)="music.toggleExpanded()">
+              <mat-icon>expand_more</mat-icon>
+            </app-ui-button>
+          }
+          @if (!hasTracks) {
+            <app-ui-button
+              type="button"
+              variant="ghost"
+              [ariaLabel]="language === 'es' ? 'Ocultar aviso de música' : 'Dismiss music hint'"
+              extraClasses="p-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-gray-500 !shadow-none"
+              (buttonClick)="music.toggleFixedVisible()">
+              <mat-icon>close</mat-icon>
+            </app-ui-button>
+          }
+        </div>
+      </div>
+      @if (!hasTracks) {
+        <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400 sm:text-xs sm:leading-snug">{{ emptyHint() }}</p>
+      }
+      @if (hasTracks && !showPlaylist) {
+        <p class="text-base font-medium leading-snug text-gray-800 dark:text-gray-200 line-clamp-2 sm:text-xs sm:font-normal sm:leading-normal sm:line-clamp-none sm:truncate shrink-0" [title]="trackTitle(currentTrack)">
+          {{ trackTitle(currentTrack) }}
+        </p>
+        <div
+          #progressBar
+          class="h-2 rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer overflow-hidden sm:h-1.5 shrink-0"
+          tabindex="0"
+          (click)="onProgressClick($event, progressBar)"
+          (keydown)="onProgressBarKeydown($event, progressBar)"
+          role="slider"
+          [attr.aria-valuenow]="progressPercent()"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [attr.aria-label]="language === 'es' ? 'Progreso' : 'Progress'">
+          <div
+            class="h-full bg-pink-600 dark:bg-pink-500 transition-[width] duration-150 ease-linear"
+          [style.width.%]="progressPercent()"></div>
+        </div>
+        <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 sm:text-[10px] shrink-0">
+          <span>{{ formatTime(currentTime) }}</span>
+          <span>{{ formatTime(duration) }}</span>
+        </div>
+        <div class="flex items-center justify-center gap-2 px-0.5 max-sm:py-1 shrink-0">
+          <app-ui-button
+            type="button"
+            variant="ghost"
+            [ariaLabel]="language === 'es' ? 'Aleatorio' : 'Shuffle'"
+            [ariaPressed]="shuffle"
+            [extraClasses]="'music-ctrl !shadow-none ' + (shuffle ? 'music-ctrl--on' : 'music-ctrl--muted')"
+            (buttonClick)="music.toggleShuffle()">
+            <mat-icon>shuffle</mat-icon>
+          </app-ui-button>
+          <app-ui-button
+            type="button"
+            variant="ghost"
+            [ariaLabel]="language === 'es' ? 'Anterior' : 'Previous'"
+            extraClasses="music-ctrl !shadow-none"
+            (buttonClick)="music.previous()">
+            <mat-icon>skip_previous</mat-icon>
+          </app-ui-button>
+          <app-ui-button
+            type="button"
+            variant="ghost"
+            [ariaLabel]="language === 'es' ? (isPlaying ? 'Pausar' : 'Reproducir') : (isPlaying ? 'Pause' : 'Play')"
+            extraClasses="music-ctrl-primary !shadow-none"
+            (buttonClick)="music.togglePlay()">
+            <mat-icon>{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon>
+          </app-ui-button>
+          <app-ui-button
+            type="button"
+            variant="ghost"
+            [ariaLabel]="language === 'es' ? 'Siguiente' : 'Next'"
+            extraClasses="music-ctrl !shadow-none"
+            (buttonClick)="music.next()">
+            <mat-icon>skip_next</mat-icon>
+          </app-ui-button>
+          <app-ui-button
+            type="button"
+            variant="ghost"
+            [ariaLabel]="repeatModeLabel"
+            [ariaPressed]="repeatMode !== 'off'"
+            [extraClasses]="'music-ctrl !shadow-none ' + (repeatMode !== 'off' ? 'music-ctrl--on' : 'music-ctrl--muted')"
+            (buttonClick)="music.cycleRepeatMode()">
+            <mat-icon>{{ repeatMode === 'one' ? 'repeat_one' : 'repeat' }}</mat-icon>
+          </app-ui-button>
+        </div>
+        @if (!isIos) {
+          <div class="flex items-center gap-2 shrink-0">
+            <mat-icon class="text-gray-500 text-lg shrink-0">{{ volume === 0 ? 'volume_off' : 'volume_up' }}</mat-icon>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              [value]="volume"
+              (input)="onVolumeInputEvent($event)"
+              (change)="onVolumeInputEvent($event)"
+              class="flex-1 h-1 accent-pink-600"
+              [attr.aria-label]="language === 'es' ? 'Volumen' : 'Volume'" />
+          </div>
+        }
+      }
+      <!-- Playlist panel -->
+      @if (hasTracks && showPlaylist) {
+        <div class="overflow-y-auto flex-1 -mx-1 px-1 flex flex-col gap-0.5">
+          @for (track of playlistTracks; track track; let i = $index) {
+            <button
+              type="button"
+              [ngClass]="i === playlistCurrentIndex ? 'playlist-item playlist-item--active' : 'playlist-item'"
+              (click)="music.selectFromPlaylist(i, true)">
+              <span class="shrink-0 w-5 flex justify-center">
+                @if (i === playlistCurrentIndex && isPlaying) {
+                  <mat-icon class="text-pink-600 dark:text-pink-400 text-base w-4 h-4 leading-none">graphic_eq</mat-icon>
+                }
+                @if (!(i === playlistCurrentIndex && isPlaying)) {
+                  <span class="text-xs text-gray-400 dark:text-gray-500 tabular-nums">{{ i + 1 }}</span>
+                }
+              </span>
+              <div class="min-w-0 flex-1">
+            <p [ngClass]="i === playlistCurrentIndex
+                ? 'text-sm font-medium truncate text-pink-600 dark:text-pink-400'
+                : 'text-sm font-medium truncate text-gray-800 dark:text-gray-200'">
+                  {{ track.title }}
+                </p>
+                @if (track.artist) {
+                  <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ track.artist }}</p>
+                }
+              </div>
+              @if (i === playlistCurrentIndex) {
+                <mat-icon class="text-pink-500 dark:text-pink-400 text-base w-4 h-4 shrink-0">{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon>
+              }
+            </button>
+          }
+        </div>
+      }
+    </div>
+  }
+}
+
+<!-- Embedded: same panel without fixed positioning (reusable elsewhere) -->
+@if (!fixedLayout) {
+  <div
+    @musicDock
+  class="music-dock music-dock--inline relative w-full max-w-md mx-auto rounded-2xl shadow-xl border border-gray-200 dark:border-gray-600
+         bg-white dark:bg-gray-900 p-3 flex flex-col gap-2">
+    <div class="flex items-center justify-between gap-2">
       <div class="flex items-center gap-1 min-w-0">
         <mat-icon class="text-pink-600 dark:text-pink-400 shrink-0">library_music</mat-icon>
-        <span class="text-lg font-semibold text-gray-800 dark:text-gray-100 truncate sm:text-sm">
+        <span class="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">
           {{ language === 'es' ? 'Música' : 'Music' }}
         </span>
       </div>
-      <div class="flex items-center gap-0.5 shrink-0">
-        <app-ui-button
-          *ngIf="hasTracks"
-          type="button"
-          variant="ghost"
-          [ariaLabel]="language === 'es' ? 'Ver lista de reproducción' : 'View playlist'"
-          [ariaPressed]="showPlaylist"
-          [extraClasses]="'p-1.5 rounded-lg !shadow-none ' + (showPlaylist ? 'text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-900/30' : 'hover:bg-black/5 dark:hover:bg-white/10')"
-          (buttonClick)="showPlaylist = !showPlaylist">
-          <mat-icon>queue_music</mat-icon>
-        </app-ui-button>
-        <app-ui-button
-          *ngIf="hasTracks"
-          type="button"
-          variant="ghost"
-          [ariaLabel]="language === 'es' ? 'Minimizar reproductor' : 'Minimize player'"
-          extraClasses="p-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 !shadow-none"
-          (buttonClick)="music.toggleExpanded()">
-          <mat-icon>expand_more</mat-icon>
-        </app-ui-button>
-        <app-ui-button
-          *ngIf="!hasTracks"
-          type="button"
-          variant="ghost"
-          [ariaLabel]="language === 'es' ? 'Ocultar aviso de música' : 'Dismiss music hint'"
-          extraClasses="p-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-gray-500 !shadow-none"
-          (buttonClick)="music.toggleFixedVisible()">
-          <mat-icon>close</mat-icon>
-        </app-ui-button>
-      </div>
     </div>
-
-    <ng-container *ngIf="!hasTracks">
-      <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400 sm:text-xs sm:leading-snug">{{ emptyHint() }}</p>
-    </ng-container>
-
-    <ng-container *ngIf="hasTracks && !showPlaylist">
-      <p class="text-base font-medium leading-snug text-gray-800 dark:text-gray-200 line-clamp-2 sm:text-xs sm:font-normal sm:leading-normal sm:line-clamp-none sm:truncate shrink-0" [title]="trackTitle(currentTrack)">
-        {{ trackTitle(currentTrack) }}
-      </p>
-
+    @if (!hasTracks) {
+      <p class="text-xs text-gray-600 dark:text-gray-400 leading-snug">{{ emptyHint() }}</p>
+    }
+    @if (hasTracks) {
+      <p class="text-xs text-gray-700 dark:text-gray-300 truncate" [title]="trackTitle(currentTrack)">{{ trackTitle(currentTrack) }}</p>
       <div
-        #progressBar
-        class="h-2 rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer overflow-hidden sm:h-1.5 shrink-0"
+        #progressBarInline
+        class="h-1.5 rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer overflow-hidden"
         tabindex="0"
-        (click)="onProgressClick($event, progressBar)"
-        (keydown)="onProgressBarKeydown($event, progressBar)"
+        (click)="onProgressClick($event, progressBarInline)"
+        (keydown)="onProgressBarKeydown($event, progressBarInline)"
         role="slider"
         [attr.aria-valuenow]="progressPercent()"
         aria-valuemin="0"
@@ -101,162 +237,39 @@
         [attr.aria-label]="language === 'es' ? 'Progreso' : 'Progress'">
         <div
           class="h-full bg-pink-600 dark:bg-pink-500 transition-[width] duration-150 ease-linear"
-          [style.width.%]="progressPercent()"></div>
+        [style.width.%]="progressPercent()"></div>
       </div>
-      <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 sm:text-[10px] shrink-0">
+      <div class="flex justify-between text-[10px] text-gray-500 dark:text-gray-400">
         <span>{{ formatTime(currentTime) }}</span>
         <span>{{ formatTime(duration) }}</span>
       </div>
-
-      <div class="flex items-center justify-center gap-2 px-0.5 max-sm:py-1 shrink-0">
+      <div class="flex items-center justify-center gap-2 px-0.5">
         <app-ui-button
           type="button"
           variant="ghost"
-          [ariaLabel]="language === 'es' ? 'Aleatorio' : 'Shuffle'"
           [ariaPressed]="shuffle"
           [extraClasses]="'music-ctrl !shadow-none ' + (shuffle ? 'music-ctrl--on' : 'music-ctrl--muted')"
           (buttonClick)="music.toggleShuffle()">
           <mat-icon>shuffle</mat-icon>
         </app-ui-button>
+        <app-ui-button type="button" variant="ghost" extraClasses="music-ctrl !shadow-none" (buttonClick)="music.previous()"><mat-icon>skip_previous</mat-icon></app-ui-button>
+        <app-ui-button type="button" variant="ghost" extraClasses="music-ctrl-primary !shadow-none" (buttonClick)="music.togglePlay()"><mat-icon>{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon></app-ui-button>
+        <app-ui-button type="button" variant="ghost" extraClasses="music-ctrl !shadow-none" (buttonClick)="music.next()"><mat-icon>skip_next</mat-icon></app-ui-button>
         <app-ui-button
           type="button"
           variant="ghost"
-          [ariaLabel]="language === 'es' ? 'Anterior' : 'Previous'"
-          extraClasses="music-ctrl !shadow-none"
-          (buttonClick)="music.previous()">
-          <mat-icon>skip_previous</mat-icon>
-        </app-ui-button>
-        <app-ui-button
-          type="button"
-          variant="ghost"
-          [ariaLabel]="language === 'es' ? (isPlaying ? 'Pausar' : 'Reproducir') : (isPlaying ? 'Pause' : 'Play')"
-          extraClasses="music-ctrl-primary !shadow-none"
-          (buttonClick)="music.togglePlay()">
-          <mat-icon>{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon>
-        </app-ui-button>
-        <app-ui-button
-          type="button"
-          variant="ghost"
-          [ariaLabel]="language === 'es' ? 'Siguiente' : 'Next'"
-          extraClasses="music-ctrl !shadow-none"
-          (buttonClick)="music.next()">
-          <mat-icon>skip_next</mat-icon>
-        </app-ui-button>
-        <app-ui-button
-          type="button"
-          variant="ghost"
-          [ariaLabel]="repeatModeLabel"
           [ariaPressed]="repeatMode !== 'off'"
           [extraClasses]="'music-ctrl !shadow-none ' + (repeatMode !== 'off' ? 'music-ctrl--on' : 'music-ctrl--muted')"
           (buttonClick)="music.cycleRepeatMode()">
           <mat-icon>{{ repeatMode === 'one' ? 'repeat_one' : 'repeat' }}</mat-icon>
         </app-ui-button>
       </div>
-
-      <div *ngIf="!isIos" class="flex items-center gap-2 shrink-0">
-        <mat-icon class="text-gray-500 text-lg shrink-0">{{ volume === 0 ? 'volume_off' : 'volume_up' }}</mat-icon>
-        <input
-          type="range"
-          min="0"
-          max="1"
-          step="0.01"
-          [value]="volume"
-          (input)="onVolumeInputEvent($event)"
-          (change)="onVolumeInputEvent($event)"
-          class="flex-1 h-1 accent-pink-600"
-          [attr.aria-label]="language === 'es' ? 'Volumen' : 'Volume'" />
-      </div>
-    </ng-container>
-
-    <!-- Playlist panel -->
-    <ng-container *ngIf="hasTracks && showPlaylist">
-      <div class="overflow-y-auto flex-1 -mx-1 px-1 flex flex-col gap-0.5">
-        <button
-          *ngFor="let track of playlistTracks; let i = index"
-          type="button"
-          [ngClass]="i === playlistCurrentIndex ? 'playlist-item playlist-item--active' : 'playlist-item'"
-          (click)="music.selectFromPlaylist(i, true)">
-          <span class="shrink-0 w-5 flex justify-center">
-            <mat-icon *ngIf="i === playlistCurrentIndex && isPlaying" class="text-pink-600 dark:text-pink-400 text-base w-4 h-4 leading-none">graphic_eq</mat-icon>
-            <span *ngIf="!(i === playlistCurrentIndex && isPlaying)" class="text-xs text-gray-400 dark:text-gray-500 tabular-nums">{{ i + 1 }}</span>
-          </span>
-          <div class="min-w-0 flex-1">
-            <p [ngClass]="i === playlistCurrentIndex
-                ? 'text-sm font-medium truncate text-pink-600 dark:text-pink-400'
-                : 'text-sm font-medium truncate text-gray-800 dark:text-gray-200'">
-              {{ track.title }}
-            </p>
-            <p *ngIf="track.artist" class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ track.artist }}</p>
-          </div>
-          <mat-icon *ngIf="i === playlistCurrentIndex" class="text-pink-500 dark:text-pink-400 text-base w-4 h-4 shrink-0">{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon>
-        </button>
-      </div>
-    </ng-container>
+      @if (!isIos) {
+        <div class="flex items-center gap-2">
+          <mat-icon class="text-gray-500 text-lg shrink-0">{{ volume === 0 ? 'volume_off' : 'volume_up' }}</mat-icon>
+          <input type="range" min="0" max="1" step="0.01" [value]="volume" (input)="onVolumeInputEvent($event)" (change)="onVolumeInputEvent($event)" class="flex-1 h-1 accent-pink-600" />
+        </div>
+      }
+    }
   </div>
-</ng-container>
-
-<!-- Embedded: same panel without fixed positioning (reusable elsewhere) -->
-<div
-  *ngIf="!fixedLayout"
-  @musicDock
-  class="music-dock music-dock--inline relative w-full max-w-md mx-auto rounded-2xl shadow-xl border border-gray-200 dark:border-gray-600
-         bg-white dark:bg-gray-900 p-3 flex flex-col gap-2">
-  <div class="flex items-center justify-between gap-2">
-    <div class="flex items-center gap-1 min-w-0">
-      <mat-icon class="text-pink-600 dark:text-pink-400 shrink-0">library_music</mat-icon>
-      <span class="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">
-        {{ language === 'es' ? 'Música' : 'Music' }}
-      </span>
-    </div>
-  </div>
-  <ng-container *ngIf="!hasTracks">
-    <p class="text-xs text-gray-600 dark:text-gray-400 leading-snug">{{ emptyHint() }}</p>
-  </ng-container>
-  <ng-container *ngIf="hasTracks">
-    <p class="text-xs text-gray-700 dark:text-gray-300 truncate" [title]="trackTitle(currentTrack)">{{ trackTitle(currentTrack) }}</p>
-    <div
-      #progressBarInline
-      class="h-1.5 rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer overflow-hidden"
-      tabindex="0"
-      (click)="onProgressClick($event, progressBarInline)"
-      (keydown)="onProgressBarKeydown($event, progressBarInline)"
-      role="slider"
-      [attr.aria-valuenow]="progressPercent()"
-      aria-valuemin="0"
-      aria-valuemax="100"
-      [attr.aria-label]="language === 'es' ? 'Progreso' : 'Progress'">
-      <div
-        class="h-full bg-pink-600 dark:bg-pink-500 transition-[width] duration-150 ease-linear"
-        [style.width.%]="progressPercent()"></div>
-    </div>
-    <div class="flex justify-between text-[10px] text-gray-500 dark:text-gray-400">
-      <span>{{ formatTime(currentTime) }}</span>
-      <span>{{ formatTime(duration) }}</span>
-    </div>
-    <div class="flex items-center justify-center gap-2 px-0.5">
-      <app-ui-button
-        type="button"
-        variant="ghost"
-        [ariaPressed]="shuffle"
-        [extraClasses]="'music-ctrl !shadow-none ' + (shuffle ? 'music-ctrl--on' : 'music-ctrl--muted')"
-        (buttonClick)="music.toggleShuffle()">
-        <mat-icon>shuffle</mat-icon>
-      </app-ui-button>
-      <app-ui-button type="button" variant="ghost" extraClasses="music-ctrl !shadow-none" (buttonClick)="music.previous()"><mat-icon>skip_previous</mat-icon></app-ui-button>
-      <app-ui-button type="button" variant="ghost" extraClasses="music-ctrl-primary !shadow-none" (buttonClick)="music.togglePlay()"><mat-icon>{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon></app-ui-button>
-      <app-ui-button type="button" variant="ghost" extraClasses="music-ctrl !shadow-none" (buttonClick)="music.next()"><mat-icon>skip_next</mat-icon></app-ui-button>
-      <app-ui-button
-        type="button"
-        variant="ghost"
-        [ariaPressed]="repeatMode !== 'off'"
-        [extraClasses]="'music-ctrl !shadow-none ' + (repeatMode !== 'off' ? 'music-ctrl--on' : 'music-ctrl--muted')"
-        (buttonClick)="music.cycleRepeatMode()">
-        <mat-icon>{{ repeatMode === 'one' ? 'repeat_one' : 'repeat' }}</mat-icon>
-      </app-ui-button>
-    </div>
-    <div *ngIf="!isIos" class="flex items-center gap-2">
-      <mat-icon class="text-gray-500 text-lg shrink-0">{{ volume === 0 ? 'volume_off' : 'volume_up' }}</mat-icon>
-      <input type="range" min="0" max="1" step="0.01" [value]="volume" (input)="onVolumeInputEvent($event)" (change)="onVolumeInputEvent($event)" class="flex-1 h-1 accent-pink-600" />
-    </div>
-  </ng-container>
-</div>
+}

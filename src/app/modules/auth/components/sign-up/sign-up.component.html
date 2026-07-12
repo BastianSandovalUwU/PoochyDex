@@ -13,12 +13,14 @@
     </div>
 
     <div class="bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8 space-y-6">
-      <div *ngIf="errorMessage" class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 rounded">
-        <div class="flex items-start gap-2">
-          <mat-icon class="text-red-500 shrink-0">error</mat-icon>
-          <p class="text-sm text-red-700 dark:text-red-400">{{ errorMessage }}</p>
+      @if (errorMessage) {
+        <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 rounded">
+          <div class="flex items-start gap-2">
+            <mat-icon class="text-red-500 shrink-0">error</mat-icon>
+            <p class="text-sm text-red-700 dark:text-red-400">{{ errorMessage }}</p>
+          </div>
         </div>
-      </div>
+      }
 
       <form [formGroup]="signUpForm" (ngSubmit)="signUp()" class="space-y-5" novalidate>
         <div>
@@ -41,32 +43,42 @@
                 'border-green-500 focus:ring-green-500': signUpForm.get('username')?.valid && signUpForm.get('username')?.touched
               }"
               [placeholder]="language === 'es' ? '3–64 caracteres, sin espacios' : '3–64 characters, no spaces'"
-            />
-            <div *ngIf="signUpForm.get('username')?.valid && signUpForm.get('username')?.touched"
-                 class="absolute inset-y-0 right-0 pr-3 flex items-center">
-              <mat-icon class="text-green-500">check_circle</mat-icon>
-            </div>
+              />
+            @if (signUpForm.get('username')?.valid && signUpForm.get('username')?.touched) {
+              <div
+                class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                <mat-icon class="text-green-500">check_circle</mat-icon>
+              </div>
+            }
           </div>
-          <p *ngIf="signUpForm.get('username')?.hasError('required') && signUpForm.get('username')?.touched"
-             class="mt-1 text-xs text-red-500 flex items-center gap-1">
-            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
-            {{ language === 'es' ? 'El nombre de usuario es obligatorio' : 'Username is required' }}
-          </p>
-          <p *ngIf="signUpForm.get('username')?.hasError('minlength') && signUpForm.get('username')?.touched"
-             class="mt-1 text-xs text-red-500 flex items-center gap-1">
-            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
-            {{ language === 'es' ? 'Mínimo 3 caracteres' : 'Minimum 3 characters' }}
-          </p>
-          <p *ngIf="signUpForm.get('username')?.hasError('maxlength') && signUpForm.get('username')?.touched"
-             class="mt-1 text-xs text-red-500 flex items-center gap-1">
-            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
-            {{ language === 'es' ? 'Máximo 64 caracteres' : 'Maximum 64 characters' }}
-          </p>
-          <p *ngIf="signUpForm.get('username')?.hasError('pattern') && signUpForm.get('username')?.touched"
-             class="mt-1 text-xs text-red-500 flex items-center gap-1">
-            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
-            {{ language === 'es' ? 'Sin espacios en blanco' : 'No whitespace allowed' }}
-          </p>
+          @if (signUpForm.get('username')?.hasError('required') && signUpForm.get('username')?.touched) {
+            <p
+              class="mt-1 text-xs text-red-500 flex items-center gap-1">
+              <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
+              {{ language === 'es' ? 'El nombre de usuario es obligatorio' : 'Username is required' }}
+            </p>
+          }
+          @if (signUpForm.get('username')?.hasError('minlength') && signUpForm.get('username')?.touched) {
+            <p
+              class="mt-1 text-xs text-red-500 flex items-center gap-1">
+              <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
+              {{ language === 'es' ? 'Mínimo 3 caracteres' : 'Minimum 3 characters' }}
+            </p>
+          }
+          @if (signUpForm.get('username')?.hasError('maxlength') && signUpForm.get('username')?.touched) {
+            <p
+              class="mt-1 text-xs text-red-500 flex items-center gap-1">
+              <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
+              {{ language === 'es' ? 'Máximo 64 caracteres' : 'Maximum 64 characters' }}
+            </p>
+          }
+          @if (signUpForm.get('username')?.hasError('pattern') && signUpForm.get('username')?.touched) {
+            <p
+              class="mt-1 text-xs text-red-500 flex items-center gap-1">
+              <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
+              {{ language === 'es' ? 'Sin espacios en blanco' : 'No whitespace allowed' }}
+            </p>
+          }
         </div>
 
         <div>
@@ -89,7 +101,7 @@
                 'border-green-500 focus:ring-green-500': signUpForm.get('password')?.valid && signUpForm.get('password')?.touched
               }"
               [placeholder]="language === 'es' ? 'Mínimo 6 caracteres' : 'Minimum 6 characters'"
-            />
+              />
             <app-ui-button
               type="button"
               variant="ghost"
@@ -100,30 +112,38 @@
             </app-ui-button>
           </div>
 
-          <div class="mt-2 space-y-1" *ngIf="signUpForm.get('password')?.value">
-            <div class="flex gap-1" role="status" [attr.aria-label]="getStrengthLabel()">
-              <span *ngFor="let _ of [0,1,2,3]; let i = index" class="h-1.5 flex-1 rounded-full transition-colors duration-200"
-                    [ngClass]="strengthSegmentClass(i)"></span>
-            </div>
-            <p class="text-xs text-gray-600 dark:text-gray-400">
-              {{ getStrengthLabel() }}
-              <span class="text-gray-400 dark:text-gray-500"> · </span>
-              {{ language === 'es'
+          @if (signUpForm.get('password')?.value) {
+            <div class="mt-2 space-y-1">
+              <div class="flex gap-1" role="status" [attr.aria-label]="getStrengthLabel()">
+                @for (_ of [0,1,2,3]; track _; let i = $index) {
+                  <span class="h-1.5 flex-1 rounded-full transition-colors duration-200"
+                  [ngClass]="strengthSegmentClass(i)"></span>
+                }
+              </div>
+              <p class="text-xs text-gray-600 dark:text-gray-400">
+                {{ getStrengthLabel() }}
+                <span class="text-gray-400 dark:text-gray-500"> · </span>
+                {{ language === 'es'
                 ? 'Combina mayúsculas, números y símbolos para más seguridad.'
                 : 'Mix upper and lower case, numbers, and symbols for better security.' }}
-            </p>
-          </div>
+              </p>
+            </div>
+          }
 
-          <p *ngIf="signUpForm.get('password')?.hasError('required') && signUpForm.get('password')?.touched"
-             class="mt-1 text-xs text-red-500 flex items-center gap-1">
-            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
-            {{ language === 'es' ? 'La contraseña es obligatoria' : 'Password is required' }}
-          </p>
-          <p *ngIf="signUpForm.get('password')?.hasError('minlength') && signUpForm.get('password')?.touched"
-             class="mt-1 text-xs text-red-500 flex items-center gap-1">
-            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
-            {{ language === 'es' ? 'Mínimo 6 caracteres' : 'Minimum 6 characters' }}
-          </p>
+          @if (signUpForm.get('password')?.hasError('required') && signUpForm.get('password')?.touched) {
+            <p
+              class="mt-1 text-xs text-red-500 flex items-center gap-1">
+              <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
+              {{ language === 'es' ? 'La contraseña es obligatoria' : 'Password is required' }}
+            </p>
+          }
+          @if (signUpForm.get('password')?.hasError('minlength') && signUpForm.get('password')?.touched) {
+            <p
+              class="mt-1 text-xs text-red-500 flex items-center gap-1">
+              <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
+              {{ language === 'es' ? 'Mínimo 6 caracteres' : 'Minimum 6 characters' }}
+            </p>
+          }
         </div>
 
         <div>
@@ -146,7 +166,7 @@
                 'border-green-500 focus:ring-green-500': !signUpForm.hasError('passwordMismatch') && signUpForm.get('confirmPassword')?.valid && signUpForm.get('confirmPassword')?.touched
               }"
               [placeholder]="language === 'es' ? 'Repite tu contraseña' : 'Repeat your password'"
-            />
+              />
             <app-ui-button
               type="button"
               variant="ghost"
@@ -156,21 +176,27 @@
               <mat-icon>{{ showConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
             </app-ui-button>
           </div>
-          <p *ngIf="signUpForm.get('confirmPassword')?.hasError('required') && signUpForm.get('confirmPassword')?.touched"
-             class="mt-1 text-xs text-red-500 flex items-center gap-1">
-            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
-            {{ language === 'es' ? 'Confirma tu contraseña' : 'Confirm your password' }}
-          </p>
-          <p *ngIf="signUpForm.hasError('passwordMismatch') && signUpForm.get('confirmPassword')?.touched"
-             class="mt-1 text-xs text-red-500 flex items-center gap-1">
-            <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
-            {{ language === 'es' ? 'Las contraseñas no coinciden' : 'Passwords do not match' }}
-          </p>
-          <p *ngIf="!signUpForm.hasError('passwordMismatch') && signUpForm.get('confirmPassword')?.valid && signUpForm.get('confirmPassword')?.touched"
-             class="mt-1 text-xs text-green-600 dark:text-green-400 flex items-center gap-1">
-            <mat-icon class="!w-3.5 !h-3.5">check_circle</mat-icon>
-            {{ language === 'es' ? 'Las contraseñas coinciden' : 'Passwords match' }}
-          </p>
+          @if (signUpForm.get('confirmPassword')?.hasError('required') && signUpForm.get('confirmPassword')?.touched) {
+            <p
+              class="mt-1 text-xs text-red-500 flex items-center gap-1">
+              <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
+              {{ language === 'es' ? 'Confirma tu contraseña' : 'Confirm your password' }}
+            </p>
+          }
+          @if (signUpForm.hasError('passwordMismatch') && signUpForm.get('confirmPassword')?.touched) {
+            <p
+              class="mt-1 text-xs text-red-500 flex items-center gap-1">
+              <mat-icon class="!w-3.5 !h-3.5">info</mat-icon>
+              {{ language === 'es' ? 'Las contraseñas no coinciden' : 'Passwords do not match' }}
+            </p>
+          }
+          @if (!signUpForm.hasError('passwordMismatch') && signUpForm.get('confirmPassword')?.valid && signUpForm.get('confirmPassword')?.touched) {
+            <p
+              class="mt-1 text-xs text-green-600 dark:text-green-400 flex items-center gap-1">
+              <mat-icon class="!w-3.5 !h-3.5">check_circle</mat-icon>
+              {{ language === 'es' ? 'Las contraseñas coinciden' : 'Passwords match' }}
+            </p>
+          }
         </div>
 
         <app-ui-button
@@ -179,8 +205,12 @@
           [fullWidth]="true"
           [disabled]="signUpForm.invalid || loading"
           extraClasses="!bg-indigo-600 hover:!bg-indigo-700 !text-white !rounded-lg flex justify-center items-center py-3 px-4 text-sm font-medium !border-0 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]">
-          <mat-icon *ngIf="!loading" class="mr-2">person_add</mat-icon>
-          <mat-icon *ngIf="loading" class="mr-2 animate-spin">refresh</mat-icon>
+          @if (!loading) {
+            <mat-icon class="mr-2">person_add</mat-icon>
+          }
+          @if (loading) {
+            <mat-icon class="mr-2 animate-spin">refresh</mat-icon>
+          }
           {{ loading ? (language === 'es' ? 'Creando cuenta…' : 'Creating account…') : (language === 'es' ? 'Crear cuenta' : 'Create account') }}
         </app-ui-button>
       </form>

@@ -23,109 +23,133 @@
   <!-- Main Navigation -->
   <div class="flex-1 px-3 py-4 overflow-y-auto">
     <ul class="space-y-1">
-      <ng-container *ngFor="let option of filteredMenuOptions">
+      @for (option of filteredMenuOptions; track option) {
         <!-- Opción con hijos (menú expandible) -->
-        <li *ngIf="option.children && option.children.length > 0">
-          <div class="">
-            <div
-                 role="button"
-                 tabindex="0"
-                 (click)="toggleExpanded(option)"
-                 (keydown.enter)="toggleExpanded(option)"
-                 (keydown.space)="$event.preventDefault(); toggleExpanded(option)"
-                 class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer group">
-              <img *ngIf="option.imageIcon" class="w-8 h-8 object-contain" [src]="option.imageIcon" [alt]="getLabel(option)">
-              <mat-icon *ngIf="!option.imageIcon" class="text-gray-600 dark:text-gray-300 mr-2">{{ option.icon }}</mat-icon>
-              <span class="ml-3 font-medium flex-1">{{ getLabel(option) }}</span>
-              <mat-icon class="text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-transform duration-200"
-                        [class.rotate-90]="isExpanded(option)">
-                chevron_right
-              </mat-icon>
+        @if (option.children && option.children.length > 0) {
+          <li>
+            <div class="">
+              <div
+                role="button"
+                tabindex="0"
+                (click)="toggleExpanded(option)"
+                (keydown.enter)="toggleExpanded(option)"
+                (keydown.space)="$event.preventDefault(); toggleExpanded(option)"
+                class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer group">
+                @if (option.imageIcon) {
+                  <img class="w-8 h-8 object-contain" [src]="option.imageIcon" [alt]="getLabel(option)">
+                }
+                @if (!option.imageIcon) {
+                  <mat-icon class="text-gray-600 dark:text-gray-300 mr-2">{{ option.icon }}</mat-icon>
+                }
+                <span class="ml-3 font-medium flex-1">{{ getLabel(option) }}</span>
+                <mat-icon class="text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-transform duration-200"
+                  [class.rotate-90]="isExpanded(option)">
+                  chevron_right
+                </mat-icon>
+              </div>
+              @if (isExpanded(option)) {
+                <ul class="mt-1 ml-4 space-y-1 animate-fade-in">
+                  @for (child of option.children; track child) {
+                    <li>
+                      <a [routerLink]="child.route"
+                        (click)="closeMenu()"
+                        [class.bg-red-100]="isRouteActive(child.route)"
+                        [class.dark:bg-red-900]="isRouteActive(child.route)"
+                        [class.border-red-500]="isRouteActive(child.route)"
+                        [class.border-2]="isRouteActive(child.route)"
+                        [class.text-red-700]="isRouteActive(child.route)"
+                        [class.dark:text-red-300]="isRouteActive(child.route)"
+                        class="flex items-center p-2 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
+                        @if (child.imageIcon) {
+                          <img class="w-6 h-6 object-contain" [src]="child.imageIcon" [alt]="getLabel(child)">
+                        }
+                        @if (!child.imageIcon) {
+                          <mat-icon class="text-gray-600 dark:text-gray-300 mr-2" style="font-size: 20px; width: 20px; height: 20px;">{{ child.icon }}</mat-icon>
+                        }
+                        <span class="ml-2 font-medium text-sm">{{ getLabel(child) }}</span>
+                        <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300" style="font-size: 18px; width: 18px; height: 18px;">chevron_right</mat-icon>
+                      </a>
+                    </li>
+                  }
+                </ul>
+              }
             </div>
-            <ul *ngIf="isExpanded(option)" class="mt-1 ml-4 space-y-1 animate-fade-in">
-              <li *ngFor="let child of option.children">
-                <a [routerLink]="child.route"
-                   (click)="closeMenu()"
-                   [class.bg-red-100]="isRouteActive(child.route)"
-                   [class.dark:bg-red-900]="isRouteActive(child.route)"
-                   [class.border-red-500]="isRouteActive(child.route)"
-                   [class.border-2]="isRouteActive(child.route)"
-                   [class.text-red-700]="isRouteActive(child.route)"
-                   [class.dark:text-red-300]="isRouteActive(child.route)"
-                   class="flex items-center p-2 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
-                  <img *ngIf="child.imageIcon" class="w-6 h-6 object-contain" [src]="child.imageIcon" [alt]="getLabel(child)">
-                  <mat-icon *ngIf="!child.imageIcon" class="text-gray-600 dark:text-gray-300 mr-2" style="font-size: 20px; width: 20px; height: 20px;">{{ child.icon }}</mat-icon>
-                  <span class="ml-2 font-medium text-sm">{{ getLabel(child) }}</span>
-                  <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300" style="font-size: 18px; width: 18px; height: 18px;">chevron_right</mat-icon>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li>
-
+          </li>
+        }
         <!-- Opción simple sin hijos -->
-        <li *ngIf="!option.children || option.children.length === 0">
-          <a [routerLink]="option.route"
-             (click)="closeMenu()"
-             [class.bg-red-100]="isRouteActive(option.route)"
-             [class.dark:bg-red-900]="isRouteActive(option.route)"
-             [class.border-red-500]="isRouteActive(option.route)"
-             [class.border-2]="isRouteActive(option.route)"
-             [class.text-red-700]="isRouteActive(option.route)"
-             [class.dark:text-red-300]="isRouteActive(option.route)"
-             class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
-            <img *ngIf="option.imageIcon" class="w-8 h-8 object-contain" [src]="option.imageIcon" [alt]="getLabel(option)">
-            <mat-icon *ngIf="!option.imageIcon" class="text-gray-600 dark:text-gray-300 mr-2">{{ option.icon }}</mat-icon>
-            <span class="ml-3 font-medium">{{ getLabel(option) }}</span>
-            <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">chevron_right</mat-icon>
-          </a>
-        </li>
-      </ng-container>
+        @if (!option.children || option.children.length === 0) {
+          <li>
+            <a [routerLink]="option.route"
+              (click)="closeMenu()"
+              [class.bg-red-100]="isRouteActive(option.route)"
+              [class.dark:bg-red-900]="isRouteActive(option.route)"
+              [class.border-red-500]="isRouteActive(option.route)"
+              [class.border-2]="isRouteActive(option.route)"
+              [class.text-red-700]="isRouteActive(option.route)"
+              [class.dark:text-red-300]="isRouteActive(option.route)"
+              class="flex items-center p-3 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
+              @if (option.imageIcon) {
+                <img class="w-8 h-8 object-contain" [src]="option.imageIcon" [alt]="getLabel(option)">
+              }
+              @if (!option.imageIcon) {
+                <mat-icon class="text-gray-600 dark:text-gray-300 mr-2">{{ option.icon }}</mat-icon>
+              }
+              <span class="ml-3 font-medium">{{ getLabel(option) }}</span>
+              <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">chevron_right</mat-icon>
+            </a>
+          </li>
+        }
+      }
     </ul>
   </div>
 
   <!-- Footer with Settings -->
   <div class="p-4 border-t dark:border-gray-700">
     <!-- User Authentication Section (login/session features disabled in the Android app) -->
-    <div *ngIf="!platformService.isNative" class="mb-4 pb-4 border-b dark:border-gray-700">
-      <div *ngIf="!userData" class="space-y-1.5">
-        <a routerLink="/auth/login"
-           (click)="closeMenu()"
-           class="flex items-center justify-center px-3 py-2 text-sm text-white bg-blue-500 hover:bg-blue-600 rounded-md transition-colors group">
-          <mat-icon class="mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">login</mat-icon>
-          <span class="font-medium">{{ language === 'es' ? 'Iniciar Sesión' : 'Login'}}</span>
-        </a>
-        <a routerLink="/auth/sign-up"
-           (click)="closeMenu()"
-           class="flex items-center justify-center px-3 py-2 text-sm text-blue-500 border border-blue-500 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-md transition-colors">
-          <mat-icon class="mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">person_add</mat-icon>
-          <span class="font-medium">{{ language === 'es' ? 'Registrarse' : 'Sign Up'}}</span>
-        </a>
+    @if (!platformService.isNative) {
+      <div class="mb-4 pb-4 border-b dark:border-gray-700">
+        @if (!userData) {
+          <div class="space-y-1.5">
+            <a routerLink="/auth/login"
+              (click)="closeMenu()"
+              class="flex items-center justify-center px-3 py-2 text-sm text-white bg-blue-500 hover:bg-blue-600 rounded-md transition-colors group">
+              <mat-icon class="mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">login</mat-icon>
+              <span class="font-medium">{{ language === 'es' ? 'Iniciar Sesión' : 'Login'}}</span>
+            </a>
+            <a routerLink="/auth/sign-up"
+              (click)="closeMenu()"
+              class="flex items-center justify-center px-3 py-2 text-sm text-blue-500 border border-blue-500 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-md transition-colors">
+              <mat-icon class="mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">person_add</mat-icon>
+              <span class="font-medium">{{ language === 'es' ? 'Registrarse' : 'Sign Up'}}</span>
+            </a>
+          </div>
+        }
+        @if (userData) {
+          <div class="space-y-1.5">
+            <div class="flex items-center px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded-md">
+              <mat-icon class="text-gray-600 dark:text-gray-300 mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">account_circle</mat-icon>
+              <span class="text-sm text-gray-700 dark:text-gray-200 font-medium truncate">{{ userData.user }}</span>
+            </div>
+            <a routerLink="/profile/show"
+              (click)="closeMenu()"
+              class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
+              <mat-icon class="mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">person</mat-icon>
+              <span class="font-medium">{{ language === 'es' ? 'Mi Perfil' : 'My Profile'}}</span>
+              <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300" style="font-size: 18px; width: 18px; height: 18px;">chevron_right</mat-icon>
+            </a>
+            <app-ui-button
+              variant="primary"
+              type="button"
+              [fullWidth]="true"
+              extraClasses="!flex !items-center !justify-center px-3 py-2 text-sm !rounded-md"
+              (buttonClick)="logout()">
+              <mat-icon class="mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">logout</mat-icon>
+              <span class="font-medium">{{ language === 'es' ? 'Cerrar Sesión' : 'Logout'}}</span>
+            </app-ui-button>
+          </div>
+        }
       </div>
-
-      <div *ngIf="userData" class="space-y-1.5">
-        <div class="flex items-center px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded-md">
-          <mat-icon class="text-gray-600 dark:text-gray-300 mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">account_circle</mat-icon>
-          <span class="text-sm text-gray-700 dark:text-gray-200 font-medium truncate">{{ userData.user }}</span>
-        </div>
-        <a routerLink="/profile/show"
-           (click)="closeMenu()"
-           class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group">
-          <mat-icon class="mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">person</mat-icon>
-          <span class="font-medium">{{ language === 'es' ? 'Mi Perfil' : 'My Profile'}}</span>
-          <mat-icon class="ml-auto text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300" style="font-size: 18px; width: 18px; height: 18px;">chevron_right</mat-icon>
-        </a>
-        <app-ui-button
-          variant="primary"
-          type="button"
-          [fullWidth]="true"
-          extraClasses="!flex !items-center !justify-center px-3 py-2 text-sm !rounded-md"
-          (buttonClick)="logout()">
-          <mat-icon class="mr-1.5" style="font-size: 18px; width: 18px; height: 18px;">logout</mat-icon>
-          <span class="font-medium">{{ language === 'es' ? 'Cerrar Sesión' : 'Logout'}}</span>
-        </app-ui-button>
-      </div>
-    </div>
+    }
 
     <div class="flex items-center justify-between mb-2">
       <span class="text-gray-600 dark:text-gray-400 text-sm font-medium">{{ language === 'es' ? 'Tema' : 'Theme' }}</span>
@@ -137,13 +161,14 @@
 </aside>
 
 <!-- Overlay for mobile -->
-<div
-     *ngIf="isOpen"
-     role="button"
-     tabindex="0"
-     class="fixed inset-0 bg-black bg-opacity-50 z-30 sm:hidden transition-opacity duration-300"
-     (click)="closeMenu()"
-     (keydown.enter)="closeMenu()"
-     (keydown.space)="$event.preventDefault(); closeMenu()"
-     (keydown.escape)="closeMenu()">
-</div>
+@if (isOpen) {
+  <div
+    role="button"
+    tabindex="0"
+    class="fixed inset-0 bg-black bg-opacity-50 z-30 sm:hidden transition-opacity duration-300"
+    (click)="closeMenu()"
+    (keydown.enter)="closeMenu()"
+    (keydown.space)="$event.preventDefault(); closeMenu()"
+    (keydown.escape)="closeMenu()">
+  </div>
+}

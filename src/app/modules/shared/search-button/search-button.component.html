@@ -58,63 +58,69 @@
         autocomplete="off"
         [attr.aria-label]="language === 'es' ? 'Campo de búsqueda' : 'Search field'"
         class="w-full pl-12 pr-10 py-3 text-base border-2 border-black/10 dark:border-white/15 rounded-xl bg-gray-50 dark:bg-gray-900/60 text-gray-900 dark:text-gray-50 transition-all duration-200 outline-none placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-blue-500 dark:focus:border-blue-400 focus:bg-white dark:focus:bg-gray-900/80 focus:ring-4 focus:ring-blue-500/10 dark:focus:ring-blue-400/20"
-      />
-      <app-ui-button
-        *ngIf="searchQuery"
-        variant="ghost"
-        type="button"
-        [ariaLabel]="language === 'es' ? 'Limpiar búsqueda' : 'Clear search'"
-        extraClasses="absolute right-9 w-7 h-7 !min-w-[28px] !min-h-[28px] flex items-center justify-center rounded-md border-none bg-black/5 dark:bg-white/10 text-gray-500 dark:text-gray-400 cursor-pointer transition-all duration-200 hover:bg-black/10 dark:hover:bg-white/15 hover:text-gray-900 dark:hover:text-gray-50 focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 dark:focus-visible:outline-blue-400 sm:right-8"
-        (buttonClick)="searchQuery = ''; filterData()">
-        <mat-icon class="text-base w-4 h-4">close</mat-icon>
-      </app-ui-button>
+        />
+      @if (searchQuery) {
+        <app-ui-button
+          variant="ghost"
+          type="button"
+          [ariaLabel]="language === 'es' ? 'Limpiar búsqueda' : 'Clear search'"
+          extraClasses="absolute right-9 w-7 h-7 !min-w-[28px] !min-h-[28px] flex items-center justify-center rounded-md border-none bg-black/5 dark:bg-white/10 text-gray-500 dark:text-gray-400 cursor-pointer transition-all duration-200 hover:bg-black/10 dark:hover:bg-white/15 hover:text-gray-900 dark:hover:text-gray-50 focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 dark:focus-visible:outline-blue-400 sm:right-8"
+          (buttonClick)="searchQuery = ''; filterData()">
+          <mat-icon class="text-base w-4 h-4">close</mat-icon>
+        </app-ui-button>
+      }
     </div>
 
     <!-- Results -->
     <div class="flex-1 overflow-y-auto px-4 pb-4 min-h-[200px] max-h-[calc(85vh-220px)] sm:px-3 sm:pb-3 sm:max-h-[calc(90vh-200px)] search-results-scrollbar">
-      <ul class="list-none p-0 m-0" *ngIf="limitedFilteredData.length > 0">
-        <li
-          (click)="navigateToPokemon(item.name)"
-          (keydown.enter)="navigateToPokemon(item.name)"
-          (keydown.space)="$event.preventDefault(); navigateToPokemon(item.name)"
-          *ngFor="let item of limitedFilteredData; trackBy: trackByPokemonName"
-          tabindex="0"
-          role="button"
-          class="flex items-center px-4 py-3 mb-2 rounded-xl cursor-pointer bg-transparent border border-transparent transition-all duration-200 outline-none hover:bg-blue-500/10 dark:hover:bg-blue-400/15 hover:border-blue-500/20 dark:hover:border-blue-400/25 hover:translate-x-1 active:translate-x-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 dark:focus-visible:outline-blue-400 sm:px-3 sm:py-2.5">
-          <img
-            [src]="item.sprites.iconUrl"
-            [alt]="(item.name | replaceDash | titlecase) + ' sprite'"
-            loading="lazy"
-            class="w-14 h-14 object-contain mr-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)] sm:w-12 sm:h-12 sm:mr-3"
-          />
-          <span class="text-base font-medium text-gray-900 dark:text-gray-50 tracking-tight">{{ item.name | replaceDash | titlecase }}</span>
-        </li>
-      </ul>
+      @if (limitedFilteredData.length > 0) {
+        <ul class="list-none p-0 m-0">
+          @for (item of limitedFilteredData; track trackByPokemonName($index, item)) {
+            <li
+              (click)="navigateToPokemon(item.name)"
+              (keydown.enter)="navigateToPokemon(item.name)"
+              (keydown.space)="$event.preventDefault(); navigateToPokemon(item.name)"
+              tabindex="0"
+              role="button"
+              class="flex items-center px-4 py-3 mb-2 rounded-xl cursor-pointer bg-transparent border border-transparent transition-all duration-200 outline-none hover:bg-blue-500/10 dark:hover:bg-blue-400/15 hover:border-blue-500/20 dark:hover:border-blue-400/25 hover:translate-x-1 active:translate-x-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 dark:focus-visible:outline-blue-400 sm:px-3 sm:py-2.5">
+              <img
+                [src]="item.sprites.iconUrl"
+                [alt]="(item.name | replaceDash | titlecase) + ' sprite'"
+                loading="lazy"
+                class="w-14 h-14 object-contain mr-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)] sm:w-12 sm:h-12 sm:mr-3"
+                />
+              <span class="text-base font-medium text-gray-900 dark:text-gray-50 tracking-tight">{{ item.name | replaceDash | titlecase }}</span>
+            </li>
+          }
+        </ul>
+      }
 
       <!-- Empty State -->
-      <div
-        *ngIf="limitedFilteredData.length === 0 && searchQuery !== ''"
-        class="flex flex-col items-center justify-center py-12 px-6 text-center">
-        <mat-icon class="text-[64px] w-16 h-16 text-gray-400 dark:text-gray-500 mb-4 opacity-60">search_off</mat-icon>
-        <p class="text-lg font-semibold text-gray-700 dark:text-gray-300 m-0 mb-2">
-          {{ language === 'es' ? 'No se encontró ningún Pokémon' : 'No Pokémon found' }}
-        </p>
-        <p class="text-sm text-gray-500 dark:text-gray-400 m-0">
-          {{ language === 'es' ? 'Intenta buscar con otro nombre' : 'Try searching with a different name' }}
-        </p>
-      </div>
+      @if (limitedFilteredData.length === 0 && searchQuery !== '') {
+        <div
+          class="flex flex-col items-center justify-center py-12 px-6 text-center">
+          <mat-icon class="text-[64px] w-16 h-16 text-gray-400 dark:text-gray-500 mb-4 opacity-60">search_off</mat-icon>
+          <p class="text-lg font-semibold text-gray-700 dark:text-gray-300 m-0 mb-2">
+            {{ language === 'es' ? 'No se encontró ningún Pokémon' : 'No Pokémon found' }}
+          </p>
+          <p class="text-sm text-gray-500 dark:text-gray-400 m-0">
+            {{ language === 'es' ? 'Intenta buscar con otro nombre' : 'Try searching with a different name' }}
+          </p>
+        </div>
+      }
 
       <!-- Initial State -->
-      <div
-        *ngIf="limitedFilteredData.length === 0 && searchQuery === ''"
-        class="flex flex-col items-center justify-center py-12 px-6 text-center">
-        <p class="text-lg font-semibold text-gray-700 dark:text-gray-300 m-0 mb-2">
-          {{ language === 'es' ? 'Busca cualquier Pokémon' : 'Search for any Pokémon' }}
-        </p>
-        <p class="text-sm text-gray-500 dark:text-gray-400 m-0">
-          {{ language === 'es' ? 'Escribe el nombre para comenzar' : 'Type a name to get started' }}
-        </p>
-      </div>
+      @if (limitedFilteredData.length === 0 && searchQuery === '') {
+        <div
+          class="flex flex-col items-center justify-center py-12 px-6 text-center">
+          <p class="text-lg font-semibold text-gray-700 dark:text-gray-300 m-0 mb-2">
+            {{ language === 'es' ? 'Busca cualquier Pokémon' : 'Search for any Pokémon' }}
+          </p>
+          <p class="text-sm text-gray-500 dark:text-gray-400 m-0">
+            {{ language === 'es' ? 'Escribe el nombre para comenzar' : 'Type a name to get started' }}
+          </p>
+        </div>
+      }
     </div>
   </div>
 </div>

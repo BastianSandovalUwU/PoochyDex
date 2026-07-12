@@ -1,47 +1,48 @@
-<div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 col-span-1 border border-gray-200 dark:border-gray-600 dark:bg-gray-800" *ngIf="pokemonVarieties">
-  <div class="flex justify-between items-center">
-    <h1
-      class="font-bold text-xl cursor-pointer hover:text-gray-800 dark:text-white dark:hover:text-gray-300"
-      role="button"
-      tabindex="0"
-      (click)="toggleFilters()"
-      (keydown.enter)="toggleFilters()"
+@if (pokemonVarieties) {
+  <div [ngClass]="backgroundColor" class="p-4 rounded-md mt-2 col-span-1 border border-gray-200 dark:border-gray-600 dark:bg-gray-800">
+    <div class="flex justify-between items-center">
+      <h1
+        class="font-bold text-xl cursor-pointer hover:text-gray-800 dark:text-white dark:hover:text-gray-300"
+        role="button"
+        tabindex="0"
+        (click)="toggleFilters()"
+        (keydown.enter)="toggleFilters()"
       (keydown.space)="$event.preventDefault(); toggleFilters()">{{ language === 'es' ? 'Formas': 'Varieties' }}</h1>
-
-    <app-ui-button variant="icon" type="button" (buttonClick)="toggleFilters()">
-      <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
-    </app-ui-button>
-  </div>
-  <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="flex flex-wrap justify-center space-x-8 evolution-container" >
-    <ng-container *ngFor="let variety of pokemonVarieties; trackBy: trackByVariety">
-      <div class="flex flex-col items-center evolution-step">
-        <p
-          class="cursor-pointer hover:text-blue-500 dark:text-white"
-          tabindex="0"
-          role="link"
-          (click)="goToPokemonPage(variety.name)"
-          (keydown)="onVarietyLinkKeydown($event, variety.name)">
-          {{ variety.name |translatePokemonName |replaceDash | titlecase }}
-        </p>
-        <div class="relative w-20 sm:w-48 aspect-square overflow-hidden">
-          <app-ui-skeleton
-            [loading]="!variety.sprite || !isImageLoaded(variety.sprite)"
-            extraClasses="z-10"></app-ui-skeleton>
-          <img
-            *ngIf="variety.sprite"
-            class="relative z-0 w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image transition-opacity duration-300"
-            [class.opacity-0]="!isImageLoaded(variety.sprite)"
-            [class.opacity-100]="isImageLoaded(variety.sprite)"
+      <app-ui-button variant="icon" type="button" (buttonClick)="toggleFilters()">
+        <mat-icon>{{ filtersVisible ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </app-ui-button>
+    </div>
+    <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="flex flex-wrap justify-center space-x-8 evolution-container" >
+      @for (variety of pokemonVarieties; track trackByVariety($index, variety)) {
+        <div class="flex flex-col items-center evolution-step">
+          <p
+            class="cursor-pointer hover:text-blue-500 dark:text-white"
             tabindex="0"
             role="link"
             (click)="goToPokemonPage(variety.name)"
-            (keydown)="onVarietyLinkKeydown($event, variety.name)"
-            (load)="markImageLoaded(variety.sprite)"
-            (error)="markImageLoaded(variety.sprite)"
-            [src]="variety.sprite">
+            (keydown)="onVarietyLinkKeydown($event, variety.name)">
+            {{ variety.name |translatePokemonName |replaceDash | titlecase }}
+          </p>
+          <div class="relative w-20 sm:w-48 aspect-square overflow-hidden">
+            <app-ui-skeleton
+              [loading]="!variety.sprite || !isImageLoaded(variety.sprite)"
+            extraClasses="z-10"></app-ui-skeleton>
+            @if (variety.sprite) {
+              <img
+                class="relative z-0 w-20 sm:w-48 cursor-pointer hover:opacity-80 evolution-image transition-opacity duration-300"
+                [class.opacity-0]="!isImageLoaded(variety.sprite)"
+                [class.opacity-100]="isImageLoaded(variety.sprite)"
+                tabindex="0"
+                role="link"
+                (click)="goToPokemonPage(variety.name)"
+                (keydown)="onVarietyLinkKeydown($event, variety.name)"
+                (load)="markImageLoaded(variety.sprite)"
+                (error)="markImageLoaded(variety.sprite)"
+                [src]="variety.sprite">
+            }
+          </div>
         </div>
-      </div>
-    </ng-container>
+      }
+    </div>
   </div>
-
-</div>
+}

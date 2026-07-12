@@ -15,110 +15,106 @@
   </app-avatar-picker>
 </app-ui-modal>
 
-<div class="profile-wrap px-4 py-6 sm:py-10 max-w-lg mx-auto" *ngIf="!loading && userData" [@detailFadeIn]>
-
-  <h1 class="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-6">
-    {{ language === 'es' ? 'Tu perfil' : 'Your profile' }}
-  </h1>
-
-  <div
-    class="profile-card rounded-2xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800/90 shadow-lg overflow-hidden">
-
-    <div class="profile-card__header px-6 py-8 bg-gradient-to-br from-purple-600/90 to-green-700/85 text-white">
-      <div class="flex flex-col sm:flex-row sm:items-center gap-5">
-        <div class="relative shrink-0">
-          <div
-            class="profile-avatar flex h-20 w-20 items-center justify-center rounded-full bg-white/20 ring-2 ring-white/40 overflow-hidden">
-            <img
-              *ngIf="avatarUrl; else defaultIcon"
-              [src]="avatarUrl"
-              alt="avatar"
-              class="w-full h-full object-cover"
-              (error)="onAvatarError()">
-            <ng-template #defaultIcon>
-              <mat-icon class="!w-12 !h-12 !text-[48px] leading-none text-white">person</mat-icon>
-            </ng-template>
+@if (!loading && userData) {
+  <div class="profile-wrap px-4 py-6 sm:py-10 max-w-lg mx-auto" [@detailFadeIn]>
+    <h1 class="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-6">
+      {{ language === 'es' ? 'Tu perfil' : 'Your profile' }}
+    </h1>
+    <div
+      class="profile-card rounded-2xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800/90 shadow-lg overflow-hidden">
+      <div class="profile-card__header px-6 py-8 bg-gradient-to-br from-purple-600/90 to-green-700/85 text-white">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-5">
+          <div class="relative shrink-0">
+            <div
+              class="profile-avatar flex h-20 w-20 items-center justify-center rounded-full bg-white/20 ring-2 ring-white/40 overflow-hidden">
+              @if (avatarUrl) {
+                <img
+                  [src]="avatarUrl"
+                  alt="avatar"
+                  class="w-full h-full object-cover"
+                  (error)="onAvatarError()">
+              } @else {
+                <mat-icon class="!w-12 !h-12 !text-[48px] leading-none text-white">person</mat-icon>
+              }
+            </div>
+            <app-ui-button
+              variant="icon"
+              type="button"
+              [ariaLabel]="language === 'es' ? 'Cambiar avatar' : 'Change avatar'"
+              extraClasses="absolute -bottom-1 -right-1 !w-7 !h-7 !min-w-[28px] !min-h-[28px] bg-white shadow-md ring-1 ring-gray-200 hover:!bg-gray-50"
+              (buttonClick)="avatarModalOpen = true">
+              <mat-icon class="!w-4 !h-4 !text-base text-purple-700">edit</mat-icon>
+            </app-ui-button>
           </div>
-          <app-ui-button
-            variant="icon"
-            type="button"
-            [ariaLabel]="language === 'es' ? 'Cambiar avatar' : 'Change avatar'"
-            extraClasses="absolute -bottom-1 -right-1 !w-7 !h-7 !min-w-[28px] !min-h-[28px] bg-white shadow-md ring-1 ring-gray-200 hover:!bg-gray-50"
-            (buttonClick)="avatarModalOpen = true">
-            <mat-icon class="!w-4 !h-4 !text-base text-purple-700">edit</mat-icon>
-          </app-ui-button>
+          <div class="min-w-0 flex-1">
+            <p class="text-sm uppercase tracking-wide text-white/80">
+              {{ language === 'es' ? 'Sesión iniciada como' : 'Signed in as' }}
+            </p>
+            <p class="text-2xl font-bold truncate" [attr.title]="userData.user">{{ userData.user }}</p>
+            <span
+              class="inline-flex mt-2 items-center rounded-full px-3 py-0.5 text-sm font-medium bg-white/20 text-white">
+              {{ getRoleLabel() }}
+            </span>
+          </div>
         </div>
-        <div class="min-w-0 flex-1">
-          <p class="text-sm uppercase tracking-wide text-white/80">
-            {{ language === 'es' ? 'Sesión iniciada como' : 'Signed in as' }}
-          </p>
-          <p class="text-2xl font-bold truncate" [attr.title]="userData.user">{{ userData.user }}</p>
-          <span
-            class="inline-flex mt-2 items-center rounded-full px-3 py-0.5 text-sm font-medium bg-white/20 text-white">
-            {{ getRoleLabel() }}
+      </div>
+      <div class="px-6 py-5 space-y-3 border-b border-gray-100 dark:border-gray-700">
+        <h2 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+          {{ language === 'es' ? 'Preferencias' : 'Preferences' }}
+        </h2>
+        <div class="flex items-center justify-between gap-3 text-gray-800 dark:text-gray-200">
+          <span class="flex items-center gap-2 text-sm">
+            <mat-icon class="text-gray-500 dark:text-gray-400 !w-5 !h-5">language</mat-icon>
+            {{ language === 'es' ? 'Idioma' : 'Language' }}
           </span>
+          <span class="text-sm font-medium">{{ getLanguagePreferenceLabel() }}</span>
+        </div>
+        <div class="flex items-center justify-between gap-3 text-gray-800 dark:text-gray-200">
+          <span class="flex items-center gap-2 text-sm">
+            <mat-icon class="text-gray-500 dark:text-gray-400 !w-5 !h-5">home</mat-icon>
+            {{ language === 'es' ? 'Pantalla de inicio' : 'Home screen' }}
+          </span>
+          <span class="text-sm font-medium">{{ getHomeScreenLabel() }}</span>
+        </div>
+        <div class="flex items-center justify-between gap-3 text-gray-800 dark:text-gray-200">
+          <span class="flex items-center gap-2 text-sm">
+            <mat-icon class="text-gray-500 dark:text-gray-400 !w-5 !h-5">image</mat-icon>
+            {{ language === 'es' ? 'Sprite preferido' : 'Preferred sprite' }}
+          </span>
+          <span class="text-sm font-medium">{{ getPreferredSpriteLabel() }}</span>
         </div>
       </div>
-    </div>
-
-    <div class="px-6 py-5 space-y-3 border-b border-gray-100 dark:border-gray-700">
-      <h2 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-        {{ language === 'es' ? 'Preferencias' : 'Preferences' }}
-      </h2>
-      <div class="flex items-center justify-between gap-3 text-gray-800 dark:text-gray-200">
-        <span class="flex items-center gap-2 text-sm">
-          <mat-icon class="text-gray-500 dark:text-gray-400 !w-5 !h-5">language</mat-icon>
-          {{ language === 'es' ? 'Idioma' : 'Language' }}
-        </span>
-        <span class="text-sm font-medium">{{ getLanguagePreferenceLabel() }}</span>
+      <div class="px-6 py-5 flex flex-col sm:flex-row gap-3">
+        <app-ui-button
+          variant="outline"
+          type="button"
+          extraClasses="flex-1 !flex !items-center !justify-center !gap-2 !border-purple-600 !text-purple-700 dark:!border-purple-400 dark:!text-purple-300"
+          (buttonClick)="settingsModalOpen = true">
+          <mat-icon>tune</mat-icon>
+          {{ language === 'es' ? 'Configuración' : 'Settings' }}
+        </app-ui-button>
+        <app-ui-button
+          variant="outline"
+          type="button"
+          extraClasses="flex-1 !flex !items-center !justify-center !gap-2 !border-gray-300 dark:!border-gray-500"
+          (buttonClick)="goToPokedex()">
+          <mat-icon>catching_pokemon</mat-icon>
+          Pokédex
+        </app-ui-button>
       </div>
-      <div class="flex items-center justify-between gap-3 text-gray-800 dark:text-gray-200">
-        <span class="flex items-center gap-2 text-sm">
-          <mat-icon class="text-gray-500 dark:text-gray-400 !w-5 !h-5">home</mat-icon>
-          {{ language === 'es' ? 'Pantalla de inicio' : 'Home screen' }}
-        </span>
-        <span class="text-sm font-medium">{{ getHomeScreenLabel() }}</span>
+      <div class="px-6 pb-6">
+        <app-ui-button
+          variant="primary"
+          type="button"
+          [fullWidth]="true"
+          extraClasses="!py-2 !bg-red-600 hover:!bg-red-700 dark:!bg-red-700"
+          (buttonClick)="logout()">
+          <mat-icon class="mr-1 align-middle">logout</mat-icon>
+          {{ language === 'es' ? 'Cerrar sesión' : 'Log out' }}
+        </app-ui-button>
       </div>
-      <div class="flex items-center justify-between gap-3 text-gray-800 dark:text-gray-200">
-        <span class="flex items-center gap-2 text-sm">
-          <mat-icon class="text-gray-500 dark:text-gray-400 !w-5 !h-5">image</mat-icon>
-          {{ language === 'es' ? 'Sprite preferido' : 'Preferred sprite' }}
-        </span>
-        <span class="text-sm font-medium">{{ getPreferredSpriteLabel() }}</span>
-      </div>
-    </div>
-
-    <div class="px-6 py-5 flex flex-col sm:flex-row gap-3">
-      <app-ui-button
-        variant="outline"
-        type="button"
-        extraClasses="flex-1 !flex !items-center !justify-center !gap-2 !border-purple-600 !text-purple-700 dark:!border-purple-400 dark:!text-purple-300"
-        (buttonClick)="settingsModalOpen = true">
-        <mat-icon>tune</mat-icon>
-        {{ language === 'es' ? 'Configuración' : 'Settings' }}
-      </app-ui-button>
-      <app-ui-button
-        variant="outline"
-        type="button"
-        extraClasses="flex-1 !flex !items-center !justify-center !gap-2 !border-gray-300 dark:!border-gray-500"
-        (buttonClick)="goToPokedex()">
-        <mat-icon>catching_pokemon</mat-icon>
-        Pokédex
-      </app-ui-button>
-    </div>
-
-    <div class="px-6 pb-6">
-      <app-ui-button
-        variant="primary"
-        type="button"
-        [fullWidth]="true"
-        extraClasses="!py-2 !bg-red-600 hover:!bg-red-700 dark:!bg-red-700"
-        (buttonClick)="logout()">
-        <mat-icon class="mr-1 align-middle">logout</mat-icon>
-        {{ language === 'es' ? 'Cerrar sesión' : 'Log out' }}
-      </app-ui-button>
     </div>
   </div>
-</div>
+}
 
 <app-loading-spinner [loading]="loading"></app-loading-spinner>

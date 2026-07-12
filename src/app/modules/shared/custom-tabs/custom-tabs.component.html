@@ -1,17 +1,18 @@
 <div class="custom-tabs-wrapper">
   <div class="flex items-center">
     <!-- Left Arrow -->
-    <app-ui-button
-      *ngIf="showArrows && scrollable"
-      type="button"
-      variant="ghost"
-      ariaLabel="Scroll left"
-      extraClasses="custom-tabs-arrow left-arrow flex-shrink-0 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-l-md transition-colors"
-      (buttonClick)="scrollLeft()">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-      </svg>
-    </app-ui-button>
+    @if (showArrows && scrollable) {
+      <app-ui-button
+        type="button"
+        variant="ghost"
+        ariaLabel="Scroll left"
+        extraClasses="custom-tabs-arrow left-arrow flex-shrink-0 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-l-md transition-colors"
+        (buttonClick)="scrollLeft()">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </app-ui-button>
+    }
 
     <!-- Tabs Container -->
     <div
@@ -19,29 +20,31 @@
       class="custom-tabs-container flex flex-nowrap items-center overflow-x-auto scrollbar-hide"
       [class.with-arrows]="showArrows && scrollable"
       [class.without-arrows]="!showArrows || !scrollable">
-      <app-ui-button
-        *ngFor="let tab of tabs; let i = index"
-        type="button"
-        variant="ghost"
-        role="tab"
-        [extraClasses]="tabButtonClasses(i)"
-        [ariaSelected]="i === selectedIndex"
-        (buttonClick)="selectTab(i)">
-        {{ tab.label }}
-      </app-ui-button>
+      @for (tab of tabs; track tab; let i = $index) {
+        <app-ui-button
+          type="button"
+          variant="ghost"
+          role="tab"
+          [extraClasses]="tabButtonClasses(i)"
+          [ariaSelected]="i === selectedIndex"
+          (buttonClick)="selectTab(i)">
+          {{ tab.label }}
+        </app-ui-button>
+      }
     </div>
 
     <!-- Right Arrow -->
-    <app-ui-button
-      *ngIf="showArrows && scrollable"
-      type="button"
-      variant="ghost"
-      ariaLabel="Scroll right"
-      extraClasses="custom-tabs-arrow right-arrow flex-shrink-0 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-r-md transition-colors"
-      (buttonClick)="scrollRight()">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-      </svg>
-    </app-ui-button>
+    @if (showArrows && scrollable) {
+      <app-ui-button
+        type="button"
+        variant="ghost"
+        ariaLabel="Scroll right"
+        extraClasses="custom-tabs-arrow right-arrow flex-shrink-0 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-r-md transition-colors"
+        (buttonClick)="scrollRight()">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </app-ui-button>
+    }
   </div>
 </div>
