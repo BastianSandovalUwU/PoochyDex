@@ -4,7 +4,8 @@ import { LOCALIZATION_WORD_ES } from '../../../../../entities/common/i18n/ui-str
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Pipe({
-  name: 'translateLocalizationName'
+    name: 'translateLocalizationName',
+    standalone: false
 })
 export class TranslateLocalizationNamePipe implements PipeTransform {
   language: string;

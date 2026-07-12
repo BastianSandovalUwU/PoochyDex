@@ -5,7 +5,8 @@ import { POKEDEX_NAME_ES } from '../../../../../entities/common/i18n/ui-string-m
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Pipe({
-  name: 'translatePokedexName'
+    name: 'translatePokedexName',
+    standalone: false
 })
 export class TranslatePokedexNamePipe implements PipeTransform {
   language: string;

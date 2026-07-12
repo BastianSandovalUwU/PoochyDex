@@ -8,11 +8,12 @@ import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.enti
 const MAX_POKEMON_ID = 1025;
 
 @Component({
-  selector: 'app-pokemon-navigation',
-  templateUrl: './pokemon-navigation.component.html',
-  styleUrls: ['./pokemon-navigation.component.scss'],
-  animations: detailFadeInAnimations,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-pokemon-navigation',
+    templateUrl: './pokemon-navigation.component.html',
+    styleUrls: ['./pokemon-navigation.component.scss'],
+    animations: detailFadeInAnimations,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PokemonNavigationComponent implements OnChanges {
   @Input() pokemon: Pokemon;

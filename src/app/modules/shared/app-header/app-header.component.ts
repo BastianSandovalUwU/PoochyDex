@@ -6,9 +6,10 @@ import { ProfileAvatarService } from '../services/profile-avatar.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './app-header.component.html',
-  styleUrls: ['./app-header.component.scss']
+    selector: 'app-header',
+    templateUrl: './app-header.component.html',
+    styleUrls: ['./app-header.component.scss'],
+    standalone: false
 })
 export class AppHeaderComponent {
   private destroyRef = inject(DestroyRef);

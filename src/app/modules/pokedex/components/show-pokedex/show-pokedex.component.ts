@@ -11,10 +11,11 @@ import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fad
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-show-pokedex',
-  templateUrl: './show-pokedex.component.html',
-  styleUrls: ['./show-pokedex.component.scss'],
-  animations: detailFadeInAnimations
+    selector: 'app-show-pokedex',
+    templateUrl: './show-pokedex.component.html',
+    styleUrls: ['./show-pokedex.component.scss'],
+    animations: detailFadeInAnimations,
+    standalone: false
 })
 export class ShowPokedexComponent implements OnInit {
   private destroyRef = inject(DestroyRef);

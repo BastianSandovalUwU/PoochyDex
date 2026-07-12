@@ -14,11 +14,12 @@ import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fad
 import { AbilityName } from '../../../../../../entities/pokemon-ability.entity';
 
 @Component({
-  selector: 'app-show-pokemon',
-  templateUrl: './show-pokemon.component.html',
-  styleUrls: ['./show-pokemon.component.scss'],
-  animations: detailFadeInAnimations,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-show-pokemon',
+    templateUrl: './show-pokemon.component.html',
+    styleUrls: ['./show-pokemon.component.scss'],
+    animations: detailFadeInAnimations,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ShowPokemonComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();

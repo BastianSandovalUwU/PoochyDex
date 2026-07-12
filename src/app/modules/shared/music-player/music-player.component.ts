@@ -9,29 +9,30 @@ const EASE_OUT = 'cubic-bezier(0.22, 1, 0.36, 1)';
 const EASE_IN = 'cubic-bezier(0.4, 0, 1, 1)';
 
 @Component({
-  selector: 'app-music-player',
-  templateUrl: './music-player.component.html',
-  styleUrls: ['./music-player.component.scss'],
-  animations: [
-    trigger('musicDock', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(1.25rem)' }),
-        animate(`280ms ${EASE_OUT}`, style({ opacity: 1, transform: 'translateY(0)' }))
-      ]),
-      transition(':leave', [
-        animate(`240ms ${EASE_IN}`, style({ opacity: 0, transform: 'translateY(0.75rem)' }))
-      ])
-    ]),
-    trigger('musicFab', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'scale(0.88)' }),
-        animate(`220ms ${EASE_OUT}`, style({ opacity: 1, transform: 'scale(1)' }))
-      ]),
-      transition(':leave', [
-        animate(`180ms ${EASE_IN}`, style({ opacity: 0, transform: 'scale(0.88)' }))
-      ])
-    ])
-  ]
+    selector: 'app-music-player',
+    templateUrl: './music-player.component.html',
+    styleUrls: ['./music-player.component.scss'],
+    animations: [
+        trigger('musicDock', [
+            transition(':enter', [
+                style({ opacity: 0, transform: 'translateY(1.25rem)' }),
+                animate(`280ms ${EASE_OUT}`, style({ opacity: 1, transform: 'translateY(0)' }))
+            ]),
+            transition(':leave', [
+                animate(`240ms ${EASE_IN}`, style({ opacity: 0, transform: 'translateY(0.75rem)' }))
+            ])
+        ]),
+        trigger('musicFab', [
+            transition(':enter', [
+                style({ opacity: 0, transform: 'scale(0.88)' }),
+                animate(`220ms ${EASE_OUT}`, style({ opacity: 1, transform: 'scale(1)' }))
+            ]),
+            transition(':leave', [
+                animate(`180ms ${EASE_IN}`, style({ opacity: 0, transform: 'scale(0.88)' }))
+            ])
+        ])
+    ],
+    standalone: false
 })
 export class MusicPlayerComponent implements OnInit, OnDestroy {
   /** When true, the player is fixed above the fold (e.g. shell). When false, host controls layout via class. */

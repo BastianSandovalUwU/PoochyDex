@@ -4,8 +4,9 @@ import { translatePokemonName } from '../../../../../entities/common/enum';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Pipe({
-  name: 'translatePokemonName',
-  pure: false
+    name: 'translatePokemonName',
+    pure: false,
+    standalone: false
 })
 export class TranslatePokemonNamePipe implements PipeTransform {
   private language: string;

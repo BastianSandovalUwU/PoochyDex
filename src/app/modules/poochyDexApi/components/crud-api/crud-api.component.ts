@@ -11,10 +11,11 @@ import { RoleName } from '../../../../../../entities/common/enum';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-crud-api',
-  templateUrl: './crud-api.component.html',
-  styleUrls: ['./crud-api.component.scss'],
-  animations: detailFadeInAnimations
+    selector: 'app-crud-api',
+    templateUrl: './crud-api.component.html',
+    styleUrls: ['./crud-api.component.scss'],
+    animations: detailFadeInAnimations,
+    standalone: false
 })
 export class CrudApiComponent implements OnInit {
   private destroyRef = inject(DestroyRef);

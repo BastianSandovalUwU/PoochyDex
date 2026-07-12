@@ -14,9 +14,10 @@ import {
  * z-index above app chrome (e.g. music player); locks body scroll while open.
  */
 @Component({
-  selector: 'app-ui-modal',
-  templateUrl: './ui-modal.component.html',
-  styleUrls: ['./ui-modal.component.scss']
+    selector: 'app-ui-modal',
+    templateUrl: './ui-modal.component.html',
+    styleUrls: ['./ui-modal.component.scss'],
+    standalone: false
 })
 export class UiModalComponent implements OnChanges, OnDestroy {
   /** Controls visibility; supports two-way binding via openChange. */

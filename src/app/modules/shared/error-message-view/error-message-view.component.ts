@@ -3,8 +3,9 @@ import { ErrorMessageService } from '../../../services/error-message.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-error-message-view',
-  templateUrl: './error-message-view.component.html'
+    selector: 'app-error-message-view',
+    templateUrl: './error-message-view.component.html',
+    standalone: false
 })
 export class ErrorMessageViewComponent implements OnDestroy {
   message: string = '';

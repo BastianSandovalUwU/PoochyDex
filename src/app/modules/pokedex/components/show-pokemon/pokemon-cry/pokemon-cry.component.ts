@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inpu
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 
 @Component({
-  selector: 'app-pokemon-cry',
-  templateUrl: './pokemon-cry.component.html',
-  styleUrls: ['./pokemon-cry.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-pokemon-cry',
+    templateUrl: './pokemon-cry.component.html',
+    styleUrls: ['./pokemon-cry.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PokemonCryComponent implements OnChanges {
   @Input() pokemon: Pokemon;

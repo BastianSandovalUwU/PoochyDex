@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'replaceDash'
+    name: 'replaceDash',
+    standalone: false
 })
 export class ReplaceDashPipe implements PipeTransform {
 

@@ -12,11 +12,12 @@ interface FlavorTextEntryView {
 }
 
 @Component({
-  selector: 'app-pokedex-entries',
-  templateUrl: './pokedex-entries.component.html',
-  styleUrls: ['./pokedex-entries.component.scss'],
-  animations: toggleSectionCollapseAnimations,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-pokedex-entries',
+    templateUrl: './pokedex-entries.component.html',
+    styleUrls: ['./pokedex-entries.component.scss'],
+    animations: toggleSectionCollapseAnimations,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PokedexEntriesComponent implements OnInit, OnChanges {
   @Input() language: string;

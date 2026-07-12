@@ -4,9 +4,10 @@ import { Subscription } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-loading-spinner',
-  templateUrl: './loading-spinner.component.html',
-  styleUrls: ['./loading-spinner.component.css']
+    selector: 'app-loading-spinner',
+    templateUrl: './loading-spinner.component.html',
+    styleUrls: ['./loading-spinner.component.css'],
+    standalone: false
 })
 export class LoadingSpinnerComponent implements OnInit, OnDestroy {
   private destroyRef = inject(DestroyRef);

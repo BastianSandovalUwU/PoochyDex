@@ -14,10 +14,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 const FALLBACK_SPRITE = 'https://i.imgur.com/uKx7iOF.png';
 
 @Component({
-  selector: 'app-show-ability',
-  templateUrl: './show-ability.component.html',
-  styleUrls: ['./show-ability.component.scss'],
-  animations: detailFadeInAnimations
+    selector: 'app-show-ability',
+    templateUrl: './show-ability.component.html',
+    styleUrls: ['./show-ability.component.scss'],
+    animations: detailFadeInAnimations,
+    standalone: false
 })
 export class ShowAbilityComponent implements OnInit {
   private destroyRef = inject(DestroyRef);

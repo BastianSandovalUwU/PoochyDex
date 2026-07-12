@@ -3,9 +3,10 @@ import { HelperService } from '../services/helper.service';
 import { Pokemon } from '../../../../../entities/poochydex-api/pokemon.type';
 
 @Component({
-  selector: 'app-pokemon-card',
-  templateUrl: './pokemon-card.component.html',
-  styleUrls: ['./pokemon-card.component.scss']
+    selector: 'app-pokemon-card',
+    templateUrl: './pokemon-card.component.html',
+    styleUrls: ['./pokemon-card.component.scss'],
+    standalone: false
 })
 export class PokemonCardComponent {
   @Input() pokemon!: Pokemon;

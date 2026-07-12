@@ -10,9 +10,10 @@ export type UiButtonVariant =
   | 'cry-pause';
 
 @Component({
-  selector: 'app-ui-button',
-  templateUrl: './ui-button.component.html',
-  styleUrls: ['./ui-button.component.scss']
+    selector: 'app-ui-button',
+    templateUrl: './ui-button.component.html',
+    styleUrls: ['./ui-button.component.scss'],
+    standalone: false
 })
 export class UiButtonComponent {
   /** Visual style. `cry-play` / `cry-pause` are circular audio controls (Pokémon cry). */
