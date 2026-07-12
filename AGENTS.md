@@ -18,7 +18,7 @@ El proyecto nativo vive en `android/` y **está versionado** (se ignoran solo `b
 
 | Área | Tecnología |
 |------|------------|
-| Framework | Angular **18** (NgModules, no standalone por defecto) |
+| Framework | Angular **19** (NgModules, no standalone por defecto) |
 | Lenguaje | TypeScript **~5.4** |
 | Estilos | **SCSS** por componente + Tailwind (`src/styles/`, `src/tailwind.css`; script `build:tailwind`) |
 | UI | Angular Material (tema prebuilt `purple-green` en `angular.json`) |
