@@ -34,7 +34,7 @@ export class ShowPokedexComponent implements OnInit {
               private poochyDexApiService: PoochyDexApiService) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(({ number }) => {
+    this.activatedRoute.params.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(({ number }) => {
       this.pokedexName = number;
       this.pokedexNumber = this.helperService.getPokedexNumber(number);
       this.getPokedex(this.pokedexNumber);
@@ -51,7 +51,7 @@ export class ShowPokedexComponent implements OnInit {
   }
 
   getPokedex(num: number): void {
-    this.pokeApiService.getPokedex(num).subscribe({
+    this.pokeApiService.getPokedex(num).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (pokemon) => {
         this.pokedex = pokemon;
         this.getPokemon();
@@ -67,7 +67,7 @@ export class ShowPokedexComponent implements OnInit {
   getPokemon() {
     this.loading = true;
     this.loadingService.show();
-    this.poochyDexApiService.getAllPokemon().subscribe({
+    this.poochyDexApiService.getAllPokemon().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         this.allPokemon = response.data;
         this.filteredPokemon = this.createFilteredPokemonList();

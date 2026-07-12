@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, DestroyRef, inject } from '@angular/core';
 import { DEFAULT_AVATARS, DefaultAvatar, ProfileAvatarService } from 'app/modules/shared/services/profile-avatar.service';
 import { AuthService } from 'app/modules/auth/services/auth.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 type PickerTab = 'default' | 'upload';
 
@@ -10,6 +11,7 @@ type PickerTab = 'default' | 'upload';
   styleUrls: ['./avatar-picker.component.scss']
 })
 export class AvatarPickerComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
 
   @Input() language = 'es';
   @Output() avatarSaved = new EventEmitter<void>();
@@ -122,7 +124,7 @@ export class AvatarPickerComponent implements OnInit {
     this.deleting = true;
     this.deleteApiError = false;
 
-    this.avatarService.deleteProfileImage().subscribe({
+    this.avatarService.deleteProfileImage().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.deleting = false;
         this.showDeleteConfirm = false;
@@ -145,7 +147,7 @@ export class AvatarPickerComponent implements OnInit {
     this.deleting = true;
     this.deleteApiError = false;
 
-    this.avatarService.deleteProfileImage().subscribe({
+    this.avatarService.deleteProfileImage().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.deleting = false;
         this.avatarSaved.emit();
@@ -166,7 +168,7 @@ export class AvatarPickerComponent implements OnInit {
     this.uploading = true;
     this.uploadApiError = false;
 
-    this.avatarService.uploadProfileImage(file).subscribe({
+    this.avatarService.uploadProfileImage(file).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.uploading = false;
         this.avatarSaved.emit();

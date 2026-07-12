@@ -40,7 +40,7 @@ export class ShowAbilityComponent implements OnInit {
 
   ngOnInit() {
     this.getLanguage();
-    this.activatedRoute.params.subscribe(({ ability }) => {
+    this.activatedRoute.params.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(({ ability }) => {
       if (ability) {
         this.getAbilityWithPokemonDetails(ability);
       } else {
@@ -64,7 +64,7 @@ export class ShowAbilityComponent implements OnInit {
 
   getAbilityWithPokemonDetails(abilityName: string) {
     this.loadingService.show();
-    this.pokeApiService.getAbilityById(abilityName).subscribe({
+    this.pokeApiService.getAbilityById(abilityName).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (ability) => {
         this.ability = ability;
         this.abilityPokemonNames = ability.pokemon.map(p => p.pokemon.name);
@@ -81,7 +81,7 @@ export class ShowAbilityComponent implements OnInit {
   }
 
   loadAllPokemon(): void {
-    this.poochyDexApiService.getAllPokemon().subscribe({
+    this.poochyDexApiService.getAllPokemon().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         this.pokemonDataMap.clear();
         response.data.forEach(pokemon => {

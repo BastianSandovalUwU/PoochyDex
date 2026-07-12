@@ -1,15 +1,4 @@
-import {
-  afterNextRender,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  Injector,
-  Input,
-  OnChanges,
-  OnDestroy,
-  SimpleChanges
-} from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Injector, Input, OnChanges, OnDestroy, SimpleChanges, DestroyRef, inject } from '@angular/core';
 import { forkJoin, Subscription } from 'rxjs';
 import { Ability, Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { Name, PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
@@ -18,6 +7,7 @@ import { PokemonSpriteOption } from '../../../../../../../entities/poochydex-api
 import { PreferredSpriteOption } from '../../../../../../../entities/common/enum';
 import { UserSettingsService } from 'app/modules/shared/services/user-settings.service';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-pokemon-info',
@@ -27,6 +17,7 @@ import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fad
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PokemonInfoComponent implements OnChanges, OnDestroy {
+  private destroyRef = inject(DestroyRef);
   /** Exposed for template bindings (Angular templates cannot reference imported enums). */
   readonly PokemonSpriteOption = PokemonSpriteOption;
 
@@ -93,7 +84,7 @@ export class PokemonInfoComponent implements OnChanges, OnDestroy {
     this.spriteLoadSub = forkJoin({
       home: this.helperService.getPokemonSpriteImg(this.pokemon.name, PokemonSpriteOption.Home),
       shiny: this.helperService.getPokemonSpriteImg(this.pokemon.name, PokemonSpriteOption.HomeShiny)
-    }).subscribe({
+    }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: ({ home, shiny }) => {
         queueMicrotask(() => {
           this.pokemonSprite = home;
@@ -116,7 +107,7 @@ export class PokemonInfoComponent implements OnChanges, OnDestroy {
     });
 
     this.artworkLoadSub?.unsubscribe();
-    this.artworkLoadSub = this.helperService.getPokemonArtwork$(this.pokemon.name).subscribe(artwork => {
+    this.artworkLoadSub = this.helperService.getPokemonArtwork$(this.pokemon.name).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(artwork => {
       this.sugimoriArtUrl = artwork.sugimoriArt;
       this.globalLinkArtUrl = artwork.globalLinkArt;
       this.hasSugimoriArt = !!artwork.sugimoriArt;

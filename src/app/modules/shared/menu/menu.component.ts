@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, OnDestroy, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, OnDestroy, Output, SimpleChanges, DestroyRef, inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { UserData } from '../../../../../entities/auth/user.entity';
 import { PokeApiService } from '../services/poke-api.service';
@@ -9,6 +9,7 @@ import { PlatformService } from '../services/platform.service';
 import { MENU_OPTIONS, MenuOption } from '../../../../../entities/common/url-routes';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-menu',
@@ -16,6 +17,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit, OnChanges, OnDestroy {
+  private destroyRef = inject(DestroyRef);
   @Input() isOpen = false;
   @Input() language: string = 'es';
   @Input() userData: UserData | null;
@@ -47,7 +49,7 @@ export class MenuComponent implements OnInit, OnChanges, OnDestroy {
     // Suscribirse a los cambios de ruta
     this.routerSubscription = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
+    ).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
       this.updateCurrentRoute();
     });
   }

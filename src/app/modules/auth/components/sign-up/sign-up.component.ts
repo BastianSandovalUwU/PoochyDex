@@ -159,7 +159,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
       password: this.signUpForm.value.password as string
     };
 
-    this.authService.register(formData).subscribe({
+    this.authService.register(formData).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.loading = false;
         this.router.navigate(['/auth/login'], { queryParams: { registered: '1' } });
