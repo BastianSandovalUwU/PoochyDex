@@ -27,17 +27,15 @@ interface PokedexListResponse {
     standalone: false
 })
 export class ListPokedexComponent implements OnInit {
+  private pokeApiService = inject(PokeApiService);
+  private languageService = inject(LanguageService);
+  private loadingService = inject(LoadingService);
+  private router = inject(Router);
+
   private destroyRef = inject(DestroyRef);
   pokedexList: PokedexListItem[] = [];
   language: string = 'es';
   loading: boolean = false;
-
-  constructor(
-    private pokeApiService: PokeApiService,
-    private languageService: LanguageService,
-    private loadingService: LoadingService,
-    private router: Router
-  ) { }
 
   ngOnInit() {
     this.getLanguage();

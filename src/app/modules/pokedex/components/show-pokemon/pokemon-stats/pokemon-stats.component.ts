@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
@@ -20,6 +20,8 @@ interface StatView {
     standalone: false
 })
 export class PokemonStatsComponent implements OnInit, OnChanges {
+  private helperService = inject(HelperService);
+
   @Input() language: string;
   @Input() pokemon: Pokemon;
   @Input() pokemonSpecie: PokemonSpecie;
@@ -30,8 +32,6 @@ export class PokemonStatsComponent implements OnInit, OnChanges {
   statNames: string [];
   statViews: StatView[] = [];
   filtersVisible = true;
-
-  constructor(private helperService: HelperService,) { }
 
   ngOnInit() {
     this.getTotalStat();

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { AuthService } from './services/auth.service';
@@ -6,9 +6,9 @@ import { environment } from 'environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  private targetApiUrl = environment.nodeJsApi;
+  private authService = inject(AuthService);
 
-  constructor(private authService: AuthService) {}
+  private targetApiUrl = environment.nodeJsApi;
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.url.startsWith(this.targetApiUrl)) {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { HelperService } from '../services/helper.service';
 import { Pokemon } from '../../../../../entities/poochydex-api/pokemon.type';
 
@@ -9,11 +9,11 @@ import { Pokemon } from '../../../../../entities/poochydex-api/pokemon.type';
     standalone: false
 })
 export class PokemonCardComponent {
+  private helperService = inject(HelperService);
+
   @Input() pokemon!: Pokemon;
   @Input() language: string = 'es';
   @Input() routerLinkPath: string[] = ['/pokedex/show-pokemon'];
-
-  constructor(private helperService: HelperService) {}
 
   getGameIconNameForLanguage(typeName: string, language: string): string {
     return this.helperService.getGameIconNameForLanguage(typeName, language);

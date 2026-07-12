@@ -18,6 +18,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class PokemonInfoComponent implements OnChanges, OnDestroy {
+  private helperService = inject(HelperService);
+  private hostEl = inject<ElementRef<HTMLElement>>(ElementRef);
+  private injector = inject(Injector);
+  private userSettingsService = inject(UserSettingsService);
+  private cdr = inject(ChangeDetectorRef);
+
   private destroyRef = inject(DestroyRef);
   /** Exposed for template bindings (Angular templates cannot reference imported enums). */
   readonly PokemonSpriteOption = PokemonSpriteOption;
@@ -56,14 +62,6 @@ export class PokemonInfoComponent implements OnChanges, OnDestroy {
 
   private spriteLoadSub?: Subscription;
   private artworkLoadSub?: Subscription;
-
-  constructor(
-    private helperService: HelperService,
-    private hostEl: ElementRef<HTMLElement>,
-    private injector: Injector,
-    private userSettingsService: UserSettingsService,
-    private cdr: ChangeDetectorRef
-  ) {}
 
   ngOnDestroy(): void {
     this.spriteLoadSub?.unsubscribe();

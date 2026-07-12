@@ -18,6 +18,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class ShowPokedexComponent implements OnInit {
+  private pokeApiService = inject(PokeApiService);
+  private languageService = inject(LanguageService);
+  private helperService = inject(HelperService);
+  private activatedRoute = inject(ActivatedRoute);
+  private loadingService = inject(LoadingService);
+  private poochyDexApiService = inject(PoochyDexApiService);
+
   private destroyRef = inject(DestroyRef);
   language: string;
   pokedexNumber: number;
@@ -26,13 +33,6 @@ export class ShowPokedexComponent implements OnInit {
   allPokemon: Pokemon[] = [];
   filteredPokemon: Pokemon[] = [];
   loading: boolean = false;
-
-  constructor(private pokeApiService: PokeApiService,
-              private languageService: LanguageService,
-              private helperService: HelperService,
-              private activatedRoute: ActivatedRoute,
-              private loadingService: LoadingService,
-              private poochyDexApiService: PoochyDexApiService) { }
 
   ngOnInit() {
     this.activatedRoute.params.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(({ number }) => {

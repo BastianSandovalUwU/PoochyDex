@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from 'environments/environment';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LoginResponse, SignUp } from '../../../../../entities/auth/auth.entity';
@@ -13,19 +13,17 @@ import { HomeScreenOption, LocalStorageKeys, PreferredSpriteOption } from '../..
   providedIn: 'root'
 })
 export class AuthService {
+  private http = inject(HttpClient);
+  private router = inject(Router);
+  private languageService = inject(LanguageService);
+  private userSettingsService = inject(UserSettingsService);
+
 
   private apiUrl = environment.nodeJsApi;
   private sessionDataSubject = new BehaviorSubject<UserData | null>(this.getSessionData());
   private userConfigSubject = new BehaviorSubject<UserConfigData | null>(this.getUserConfigData());
   sessionData$ = this.sessionDataSubject.asObservable();
   userConfig$ = this.userConfigSubject.asObservable();
-
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private languageService: LanguageService,
-    private userSettingsService: UserSettingsService,
-  ) {}
 
   register(newUserData: SignUp): Observable<any> {
     return this.http.post(`${this.apiUrl}/api/auth/register`, newUserData);

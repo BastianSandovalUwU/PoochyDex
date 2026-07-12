@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild, inject } from '@angular/core';
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 
 @Component({
@@ -9,6 +9,8 @@ import { Pokemon } from '../../../../../../../entities/pokemon.entity';
     standalone: false
 })
 export class PokemonCryComponent implements OnChanges {
+  private cdr = inject(ChangeDetectorRef);
+
   @Input() pokemon: Pokemon;
   @Input() language: string;
   @ViewChild('audioPlayerLatest', { static: false }) audioPlayerLatest: ElementRef<HTMLAudioElement>;
@@ -16,8 +18,6 @@ export class PokemonCryComponent implements OnChanges {
 
   isPlayingLatest: boolean = false;
   isPlayingLegacy: boolean = false;
-
-  constructor(private cdr: ChangeDetectorRef) { }
 
 
   ngOnChanges(changes: SimpleChanges) {

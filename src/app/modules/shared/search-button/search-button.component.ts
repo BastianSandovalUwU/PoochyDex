@@ -20,6 +20,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class SearchButtonComponent implements OnInit {
+  private router = inject(Router);
+  private languageService = inject(LanguageService);
+
   private destroyRef = inject(DestroyRef);
 
   showSearch = false;
@@ -30,9 +33,6 @@ export class SearchButtonComponent implements OnInit {
   filteredData: PokemonList[] = [];
   limitedFilteredData: PokemonList[] = [];
   language: string;
-
-  constructor(private router: Router,
-              private languageService: LanguageService) { }
 
   ngOnInit() {
     this.getLanguage();

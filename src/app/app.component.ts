@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
 import { Location } from '@angular/common';
 import { App } from '@capacitor/app';
 import { Capacitor, type PluginListenerHandle } from '@capacitor/core';
@@ -23,6 +23,18 @@ import { Router } from '@angular/router';
     standalone: false
 })
 export class AppComponent implements OnInit, OnDestroy {
+  private languageService = inject(LanguageService);
+  private loadingService = inject(LoadingService);
+  private authService = inject(AuthService);
+  private themeService = inject(ThemeService);
+  private networkService = inject(NetworkService);
+  private pokeApiService = inject(PokeApiService);
+  private pwaInstallService = inject(PwaInstallService);
+  private profileAvatarService = inject(ProfileAvatarService);
+  private router = inject(Router);
+  private location = inject(Location);
+  private errorMessageService = inject(ErrorMessageService);
+
   title = 'poochydex';
 
   isMenuOpen = false;
@@ -38,20 +50,6 @@ export class AppComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   private backButtonListener: PluginListenerHandle | null = null;
   private offlineErrorShown = false;
-
-  constructor(
-    private languageService: LanguageService,
-    private loadingService: LoadingService,
-    private authService: AuthService,
-    private themeService: ThemeService,
-    private networkService: NetworkService,
-    private pokeApiService: PokeApiService,
-    private pwaInstallService: PwaInstallService,
-    private profileAvatarService: ProfileAvatarService,
-    private router: Router,
-    private location: Location,
-    private errorMessageService: ErrorMessageService,
-  ) {}
 
   ngOnInit() {
     // Theme observable (side-effect subscription)

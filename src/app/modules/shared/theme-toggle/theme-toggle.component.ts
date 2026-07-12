@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ThemeService } from '../services/theme.service';
 import { Observable } from 'rxjs';
 
@@ -9,9 +9,11 @@ import { Observable } from 'rxjs';
     standalone: false
 })
 export class ThemeToggleComponent {
+  private themeService = inject(ThemeService);
+
   isDarkMode$: Observable<boolean>;
 
-  constructor(private themeService: ThemeService) {
+  constructor() {
     this.isDarkMode$ = this.themeService.isDarkMode$;
   }
 

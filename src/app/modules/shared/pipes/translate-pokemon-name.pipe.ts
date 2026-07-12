@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, inject } from '@angular/core';
 import { LanguageService } from '../services/language.service';
 import { translatePokemonName } from '../../../../../entities/common/enum';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -9,9 +9,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class TranslatePokemonNamePipe implements PipeTransform {
+  private languageService = inject(LanguageService);
+
   private language: string;
 
-  constructor(private languageService: LanguageService) {
+  constructor() {
     this.languageService.currentLanguage$
       .pipe(takeUntilDestroyed())
       .subscribe(language => {

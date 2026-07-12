@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, inject } from '@angular/core';
 import { LanguageService } from '../services/language.service';
 import { translateWithEsMap } from '../../../../../entities/common/i18n/lookup';
 import { EVO_METHOD_ES } from '../../../../../entities/common/i18n/ui-string-maps';
@@ -9,9 +9,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class TranslateEvoMethodPipe implements PipeTransform {
+  private languageService = inject(LanguageService);
+
   language: string;
 
-  constructor(private languageService: LanguageService) {
+  constructor() {
     this.getLanguage();
   }
   getLanguage() {

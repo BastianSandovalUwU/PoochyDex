@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from 'environments/environment';
@@ -44,13 +44,13 @@ export const DEFAULT_AVATARS: DefaultAvatar[] = [
  */
 @Injectable({ providedIn: 'root' })
 export class ProfileAvatarService {
+  private http = inject(HttpClient);
+
 
   private readonly apiUrl = environment.nodeJsApi;
   private avatarSubject = new BehaviorSubject<string | null>(this.readAvatar());
 
   avatar$ = this.avatarSubject.asObservable();
-
-  constructor(private http: HttpClient) {}
 
   getAvatar(): string | null {
     return this.avatarSubject.getValue();

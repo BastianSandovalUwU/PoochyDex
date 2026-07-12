@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable, NgZone, inject } from '@angular/core';
 import { Capacitor } from '@capacitor/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../../../environments/environment';
@@ -10,11 +10,13 @@ type BeforeInstallPromptEvent = Event & {
 
 @Injectable({ providedIn: 'root' })
 export class PwaInstallService {
+  private zone = inject(NgZone);
+
   private deferredPrompt: BeforeInstallPromptEvent | null = null;
   private canInstallSubject = new BehaviorSubject<boolean>(false);
   canInstall$ = this.canInstallSubject.asObservable();
 
-  constructor(private zone: NgZone) {
+  constructor() {
     if (environment.production && !Capacitor.isNativePlatform()) {
       window.addEventListener('beforeinstallprompt', (e: Event) => {
         e.preventDefault();

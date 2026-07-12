@@ -19,6 +19,14 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class ShowMovementComponent implements OnInit {
+  private activatedRoute = inject(ActivatedRoute);
+  private languageService = inject(LanguageService);
+  private pokeApiService = inject(PokeApiService);
+  private helperService = inject(HelperService);
+  private loadingService = inject(LoadingService);
+  private errorMessageService = inject(ErrorMessageService);
+  private poochyDexApiService = inject(PoochyDexApiService);
+
   private destroyRef = inject(DestroyRef);
 
   language: string;
@@ -33,13 +41,7 @@ export class ShowMovementComponent implements OnInit {
   flavorTextsByGame: Map<string, FlavorTextEntry[]> = new Map();
   moveType: string = '';
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private languageService: LanguageService,
-              private pokeApiService: PokeApiService,
-              private helperService: HelperService,
-              private loadingService: LoadingService,
-              private errorMessageService: ErrorMessageService,
-              private poochyDexApiService: PoochyDexApiService) {
+  constructor() {
     this.activatedRoute.params.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(({ id }) => this.pokemonMove = id);
   }
 

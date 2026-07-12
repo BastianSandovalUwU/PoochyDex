@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges, inject } from '@angular/core';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
@@ -16,6 +16,8 @@ const MAX_POKEMON_ID = 1025;
     standalone: false
 })
 export class PokemonNavigationComponent implements OnChanges {
+  private helperService = inject(HelperService);
+
   @Input() pokemon: Pokemon;
   @Input() pokemonSpecie: PokemonSpecie;
   @Input() language: string;
@@ -23,8 +25,6 @@ export class PokemonNavigationComponent implements OnChanges {
   previousPokemonId?: number;
   nextPokemonId?: number;
   backgroundColor: string = '';
-
-  constructor(private helperService: HelperService) { }
 
   ngOnChanges(_changes: SimpleChanges): void {
     if (!this.pokemon) {

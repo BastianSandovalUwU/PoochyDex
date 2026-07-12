@@ -10,13 +10,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class LoadingSpinnerComponent implements OnInit, OnDestroy {
+  private languageService = inject(LanguageService);
+
   private destroyRef = inject(DestroyRef);
   @Input() loading: boolean = false;
   language = 'es';
 
   private readonly subs = new Subscription();
-
-  constructor(private languageService: LanguageService) {}
 
   ngOnInit() {
     this.subs.add(

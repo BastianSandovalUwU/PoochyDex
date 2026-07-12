@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { forkJoin, map } from 'rxjs';
 import { PokeApiService } from './poke-api.service';
@@ -12,17 +12,15 @@ import { CustomPokemonCatalogService } from './custom-pokemon-catalog.service';
   providedIn: 'root'
 })
 export class PokemonCacheService {
+  private pokeApiService = inject(PokeApiService);
+  private poochyDexApiService = inject(PoochyDexApiService);
+  private catalog = inject(CustomPokemonCatalogService);
+
   private cacheLoadingProgress = new BehaviorSubject<number>(0);
   private isCacheLoading = new BehaviorSubject<boolean>(false);
 
   readonly cacheLoadingProgress$ = this.cacheLoadingProgress.asObservable();
   readonly isCacheLoading$ = this.isCacheLoading.asObservable();
-
-  constructor(
-    private pokeApiService: PokeApiService,
-    private poochyDexApiService: PoochyDexApiService,
-    private catalog: CustomPokemonCatalogService
-  ) {}
 
   createAllPokemonCache(): void {
     console.log('Checking Pokémon cache...');

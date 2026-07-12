@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, forkJoin, map, of } from 'rxjs';
 import { PokeApiService } from './poke-api.service';
 import { Ability } from '../../../../../entities/pokemon.entity';
@@ -12,8 +12,8 @@ import { DetailMove } from '../../../../../entities/moves.entity';
   providedIn: 'root'
 })
 export class PokemonMoveAbilityService {
+  private pokeApiService = inject(PokeApiService);
 
-  constructor(private pokeApiService: PokeApiService) {}
 
   getAbilityNames(abilities: Ability[]): Observable<{ ability: Ability, names: AbilityName[] }[]> {
     const observables = abilities.map(ability =>

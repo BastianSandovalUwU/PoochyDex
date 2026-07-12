@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { isDevMode } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -9,12 +9,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class NewUpdateViewComponent {
+  private updates = inject(SwUpdate);
+
 
   showMessage = false;
 
-  constructor(
-    private updates: SwUpdate,
-  ) {
+  constructor() {
     if (!isDevMode() && this.updates.isEnabled) {
       this.updates.versionUpdates
         .pipe(takeUntilDestroyed())

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { Ability, Pokemon } from '../../../../../../entities/pokemon.entity';
@@ -22,6 +22,14 @@ import { AbilityName } from '../../../../../../entities/pokemon-ability.entity';
     standalone: false
 })
 export class ShowPokemonComponent implements OnInit, OnDestroy {
+  private pokeApiService = inject(PokeApiService);
+  private languageService = inject(LanguageService);
+  private helperService = inject(HelperService);
+  private loadingService = inject(LoadingService);
+  private activatedRoute = inject(ActivatedRoute);
+  private errorMessageService = inject(ErrorMessageService);
+  private cdr = inject(ChangeDetectorRef);
+
   private destroy$ = new Subject<void>();
   /** Cancels in-flight move `forkJoin` when loading another Pokémon in the same route component. */
   private cancelPokemonMoves$ = new Subject<void>();
@@ -38,16 +46,6 @@ export class ShowPokemonComponent implements OnInit, OnDestroy {
   movesWithTypesEs: { moveName: string, move: Move, types: TypeDetail[] }[] = [];
   filteredAbilityNames: { ability: Ability, name: string }[] = [];
   abilityNames: { ability: Ability, names: AbilityName[] }[];
-  
-  constructor(
-    private pokeApiService: PokeApiService,
-    private languageService: LanguageService,
-    private helperService: HelperService,
-    private loadingService: LoadingService,
-    private activatedRoute: ActivatedRoute,
-    private errorMessageService: ErrorMessageService,
-    private cdr: ChangeDetectorRef,
-  ) {}
 
   ngOnInit() {
     this.languageService.currentLanguage$

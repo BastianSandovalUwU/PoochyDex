@@ -12,6 +12,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  private fb = inject(UntypedFormBuilder);
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private languageService = inject(LanguageService);
+
   private destroyRef = inject(DestroyRef);
   errorMessage = '';
   language = 'es';
@@ -22,14 +28,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   registeredBanner = false;
 
   private readonly subs = new Subscription();
-
-  constructor(
-    private fb: UntypedFormBuilder,
-    private authService: AuthService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private languageService: LanguageService
-  ) {}
 
   ngOnInit(): void {
     if (this.authService.getSessionData()) {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, inject } from '@angular/core';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { Chain, EvolutionChain } from '../../../../../../../entities/evolution-chain.entity';
@@ -18,6 +18,12 @@ import { Subject, takeUntil } from 'rxjs';
     standalone: false
 })
 export class ChainEvolutionComponent implements OnInit, OnChanges, OnDestroy {
+  private pokeApiService = inject(PokeApiService);
+  private helperService = inject(HelperService);
+  private router = inject(Router);
+  private errorMessageService = inject(ErrorMessageService);
+  private cdr = inject(ChangeDetectorRef);
+
   @Input() language: string;
   @Input() pokemonSpecie: PokemonSpecie;
 
@@ -26,12 +32,6 @@ export class ChainEvolutionComponent implements OnInit, OnChanges, OnDestroy {
   filtersVisible = true;
   loadedSprites = new Set<string>();
   private destroy$ = new Subject<void>();
-
-  constructor(private pokeApiService: PokeApiService,
-    private helperService: HelperService,
-    private router: Router,
-    private errorMessageService: ErrorMessageService,
-    private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.getPokemonColor();

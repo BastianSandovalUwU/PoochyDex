@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, inject } from '@angular/core';
 import { LanguageService } from '../services/language.service';
 import { LOCALIZATION_WORD_ES } from '../../../../../entities/common/i18n/ui-string-maps';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -8,9 +8,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class TranslateLocalizationNamePipe implements PipeTransform {
+  private languageService = inject(LanguageService);
+
   language: string;
 
-  constructor(private languageService: LanguageService) {
+  constructor() {
     this.getLanguage();
   }
   getLanguage() {

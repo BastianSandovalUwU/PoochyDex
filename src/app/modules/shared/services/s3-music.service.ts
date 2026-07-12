@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { environment } from 'environments/environment';
 import { MusicTrack } from '../music-player/music-track.model';
@@ -29,9 +29,9 @@ function keyToTitle(key: string): string {
 
 @Injectable({ providedIn: 'root' })
 export class S3MusicService {
-  private readonly base = environment.nodeJsApi;
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  private readonly base = environment.nodeJsApi;
 
   listAudioTracks(prefix?: string): Observable<MusicTrack[]> {
     const params: Record<string, string> = {};

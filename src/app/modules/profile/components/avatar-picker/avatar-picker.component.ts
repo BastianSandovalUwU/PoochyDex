@@ -12,6 +12,9 @@ type PickerTab = 'default' | 'upload';
     standalone: false
 })
 export class AvatarPickerComponent implements OnInit {
+  private avatarService = inject(ProfileAvatarService);
+  private authService = inject(AuthService);
+
   private destroyRef = inject(DestroyRef);
 
   @Input() language = 'es';
@@ -45,11 +48,6 @@ export class AvatarPickerComponent implements OnInit {
     const url = this.avatarService.getAvatarUrl();
     return !!url && url.startsWith('http');
   }
-
-  constructor(
-    private avatarService: ProfileAvatarService,
-    private authService: AuthService,
-  ) {}
 
   ngOnInit(): void {
     const current = this.avatarService.getAvatar();

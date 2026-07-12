@@ -11,7 +11,7 @@ describe('TranslatePokemonNamePipe', () => {
       providers: [LanguageService]
     });
     languageService = TestBed.inject(LanguageService);
-    pipe = TestBed.runInInjectionContext(() => new TranslatePokemonNamePipe(languageService));
+    pipe = TestBed.runInInjectionContext(() => new TranslatePokemonNamePipe());
   });
 
   it('should translate a known form name to Spanish', () => {
