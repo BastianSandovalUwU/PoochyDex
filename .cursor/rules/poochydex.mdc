@@ -7,11 +7,11 @@ alwaysApply: true
 
 Contexto narrativo y comandos: **`AGENTS.md`**. Detalle por feature: reglas **`module-*.mdc`** en `.cursor/rules/` (se aplican al editar archivos dentro de cada carpeta `src/app/modules/<módulo>/`).
 
-- **Angular 20** con **NgModules** (no asumir standalone). Prefijo de selectores: **`app`**.
+- **Angular 22** con **NgModules** (no asumir standalone). Prefijo de selectores: **`app`**.
 - Rutas en `src/app/app.routing.ts`: lazy `loadChildren` hacia `pokedex`, `movement`, `poochyDexApi`, `auth`, `profile` (perfil en `/profile/show`; ajustes en modal, no ruta aparte).
 - Estilos: **SCSS** por componente; Tailwind vía `src/tailwind.css` y `npm run build:tailwind`. Material: tema `purple-green` en build.
 - **`npm run build`** ejecuta `generate-env.js` antes: define `NODE_JS_API` (env o `.env`) para generar `src/environments/environment.ts` y `environment.prod.ts`.
 - Features en `src/app/modules/<feature>/`. Reutilizable: **`SharedModule`** en `src/app/modules/shared/`.
 - Datos Pokémon: **PokéAPI**. API propia y auth HTTP: **`environment.nodeJsApi`**, **`AuthService`**, **`AuthInterceptor`** en `app.module.ts`.
 - UI: alinear con **Material** y componentes ya usados en `shared`; botones de acción con **`app-ui-button`** (regla **`ui-button.mdc`**); no duplicar lógica de servicios compartidos.
-- Entrada de pantallas y bloques principales bajo `*ngIf`: usar **`detailFadeInAnimations`** + `[@detailFadeIn]` (regla **`detail-fade-in.mdc`**, `shared/animations/detail-fade-in.animation.ts`).
+- Entrada de pantallas y bloques principales bajo `@if`: usar **`detailFadeInAnimations`** + `[@detailFadeIn]` (regla **`detail-fade-in.mdc`**, `shared/animations/detail-fade-in.animation.ts`).
