@@ -23,7 +23,7 @@ npm run android:icons  # regenerate icons/splash from assets/icon.png
 
 ## Architecture
 
-**Angular 17 with NgModules** (not standalone components by default). Lazy-loaded feature modules are declared under `src/app/modules/` and wired via `app.routing.ts`.
+**Angular 18 with NgModules** (not standalone components by default). Lazy-loaded feature modules are declared under `src/app/modules/` and wired via `app.routing.ts`.
 
 ### Module map
 

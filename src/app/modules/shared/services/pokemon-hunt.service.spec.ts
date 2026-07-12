@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { PokemonHuntService } from './pokemon-hunt.service';
 import { AuthService } from 'app/modules/auth/services/auth.service';
 import { RegisteredPokemon } from '../../../../../entities/pokemon-hunt.entity';
 import { environment } from 'environments/environment';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('PokemonHuntService', () => {
   let service: PokemonHuntService;
@@ -22,12 +23,14 @@ describe('PokemonHuntService', () => {
     authServiceSpy = jasmine.createSpyObj('AuthService', ['isAuthenticated']);
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [
+    imports: [],
+    providers: [
         PokemonHuntService,
-        { provide: AuthService, useValue: authServiceSpy }
-      ]
-    });
+        { provide: AuthService, useValue: authServiceSpy },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
 
     service = TestBed.inject(PokemonHuntService);
     httpMock = TestBed.inject(HttpTestingController);
