@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-pokedex-description',
-  templateUrl: './pokedex-description.component.html',
-  styleUrls: ['./pokedex-description.component.scss']
+    selector: 'app-pokedex-description',
+    templateUrl: './pokedex-description.component.html',
+    styleUrls: ['./pokedex-description.component.scss'],
+    standalone: false
 })
 export class PokedexDescriptionComponent implements OnInit {
   @Input() pokedexName: string;

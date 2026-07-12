@@ -5,7 +5,8 @@ import { LOCALIZATION_METHOD_ES } from '../../../../../entities/common/i18n/ui-s
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Pipe({
-  name: 'translateLocalizationMethod'
+    name: 'translateLocalizationMethod',
+    standalone: false
 })
 export class TranslateLocalizationMethodPipe implements PipeTransform {
   language: string;

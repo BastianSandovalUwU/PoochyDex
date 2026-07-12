@@ -2,10 +2,11 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
 @Component({
-  selector: 'app-filter',
-  templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss'],
-  animations: toggleSectionCollapseAnimations
+    selector: 'app-filter',
+    templateUrl: './filter.component.html',
+    styleUrls: ['./filter.component.scss'],
+    animations: toggleSectionCollapseAnimations,
+    standalone: false
 })
 export class FilterComponent implements OnInit, OnChanges {
   @Input() language: string = 'es';

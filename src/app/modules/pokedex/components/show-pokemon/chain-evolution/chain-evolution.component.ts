@@ -10,11 +10,12 @@ import { PokemonSpriteOption } from '../../../../../../../entities/poochydex-api
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'app-chain-evolution',
-  templateUrl: './chain-evolution.component.html',
-  styleUrls: ['./chain-evolution.component.scss'],
-  animations: toggleSectionCollapseAnimations,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-chain-evolution',
+    templateUrl: './chain-evolution.component.html',
+    styleUrls: ['./chain-evolution.component.scss'],
+    animations: toggleSectionCollapseAnimations,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ChainEvolutionComponent implements OnInit, OnChanges, OnDestroy {
   @Input() language: string;

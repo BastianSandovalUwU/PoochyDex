@@ -1,9 +1,10 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-up-button',
-  templateUrl: './up-button.component.html',
-  styleUrls: ['./up-button.component.scss']
+    selector: 'app-up-button',
+    templateUrl: './up-button.component.html',
+    styleUrls: ['./up-button.component.scss'],
+    standalone: false
 })
 export class UpButtonComponent implements OnInit {
   upButton: HTMLElement;

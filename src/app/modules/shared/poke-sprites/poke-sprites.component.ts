@@ -18,10 +18,11 @@ export interface LabeledSprite {
 }
 
 @Component({
-  selector: 'app-poke-sprites',
-  templateUrl: './poke-sprites.component.html',
-  styleUrls: ['./poke-sprites.component.scss'],
-  animations: toggleSectionCollapseAnimations
+    selector: 'app-poke-sprites',
+    templateUrl: './poke-sprites.component.html',
+    styleUrls: ['./poke-sprites.component.scss'],
+    animations: toggleSectionCollapseAnimations,
+    standalone: false
 })
 export class PokeSpritesComponent implements OnChanges {
   @Input() pokemon: Pokemon;

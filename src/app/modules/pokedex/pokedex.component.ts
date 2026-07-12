@@ -3,9 +3,10 @@ import { ALL_POKEMON } from '../../../../entities/common/const.interface';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-pokedex',
-  templateUrl: './pokedex.component.html',
-  styleUrls: []
+    selector: 'app-pokedex',
+    templateUrl: './pokedex.component.html',
+    styleUrls: [],
+    standalone: false
 })
 export class PokedexComponent implements OnInit {
 

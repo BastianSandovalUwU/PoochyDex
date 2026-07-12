@@ -12,11 +12,12 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
 
 @Component({
-  selector: 'app-pokemon-moves',
-  templateUrl: './pokemon-moves.component.html',
-  styleUrls: ['./pokemon-moves.component.scss'],
-  animations: toggleSectionCollapseAnimations,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-pokemon-moves',
+    templateUrl: './pokemon-moves.component.html',
+    styleUrls: ['./pokemon-moves.component.scss'],
+    animations: toggleSectionCollapseAnimations,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   @Input() language: string = 'es';

@@ -6,9 +6,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 type PickerTab = 'default' | 'upload';
 
 @Component({
-  selector: 'app-avatar-picker',
-  templateUrl: './avatar-picker.component.html',
-  styleUrls: ['./avatar-picker.component.scss']
+    selector: 'app-avatar-picker',
+    templateUrl: './avatar-picker.component.html',
+    styleUrls: ['./avatar-picker.component.scss'],
+    standalone: false
 })
 export class AvatarPickerComponent implements OnInit {
   private destroyRef = inject(DestroyRef);

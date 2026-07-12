@@ -13,11 +13,12 @@ interface VarietyView {
 }
 
 @Component({
-  selector: 'app-pokemon-varieties',
-  templateUrl: './pokemon-varieties.component.html',
-  styleUrls: ['./pokemon-varieties.component.scss'],
-  animations: toggleSectionCollapseAnimations,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-pokemon-varieties',
+    templateUrl: './pokemon-varieties.component.html',
+    styleUrls: ['./pokemon-varieties.component.scss'],
+    animations: toggleSectionCollapseAnimations,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PokemonVarietiesComponent implements OnInit, OnChanges, OnDestroy {
   @Input() language: string = 'es';

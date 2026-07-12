@@ -3,9 +3,10 @@ import { SwUpdate } from '@angular/service-worker';
 import { isDevMode } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
-  selector: 'app-new-update-view',
-  templateUrl: './new-update-view.component.html',
-  styleUrls: ['./new-update-view.component.scss']
+    selector: 'app-new-update-view',
+    templateUrl: './new-update-view.component.html',
+    styleUrls: ['./new-update-view.component.scss'],
+    standalone: false
 })
 export class NewUpdateViewComponent {
 

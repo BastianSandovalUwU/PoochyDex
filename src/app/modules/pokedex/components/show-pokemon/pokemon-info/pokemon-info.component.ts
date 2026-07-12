@@ -10,11 +10,12 @@ import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fad
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-pokemon-info',
-  templateUrl: './pokemon-info.component.html',
-  styleUrls: ['./pokemon-info.component.scss'],
-  animations: detailFadeInAnimations,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-pokemon-info',
+    templateUrl: './pokemon-info.component.html',
+    styleUrls: ['./pokemon-info.component.scss'],
+    animations: detailFadeInAnimations,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PokemonInfoComponent implements OnChanges, OnDestroy {
   private destroyRef = inject(DestroyRef);

@@ -14,11 +14,12 @@ interface GroupedDataView extends GroupedData {
 }
 
 @Component({
-  selector: 'app-pokemon-localization',
-  templateUrl: './pokemon-localization.component.html',
-  styleUrls: ['./pokemon-localization.component.scss'],
-  animations: toggleSectionCollapseAnimations,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-pokemon-localization',
+    templateUrl: './pokemon-localization.component.html',
+    styleUrls: ['./pokemon-localization.component.scss'],
+    animations: toggleSectionCollapseAnimations,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PokemonLocalizationComponent implements OnInit, OnChanges, OnDestroy {
   @Input() language: string;

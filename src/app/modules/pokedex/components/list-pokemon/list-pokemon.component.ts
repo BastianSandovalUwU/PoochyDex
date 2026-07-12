@@ -7,10 +7,11 @@ import { LoadingService } from 'app/modules/shared/services/loading.service';
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
-  selector: 'app-list-pokemon',
-  templateUrl: './list-pokemon.component.html',
-  styleUrls: ['./list-pokemon.component.scss'],
-  animations: detailFadeInAnimations
+    selector: 'app-list-pokemon',
+    templateUrl: './list-pokemon.component.html',
+    styleUrls: ['./list-pokemon.component.scss'],
+    animations: detailFadeInAnimations,
+    standalone: false
 })
 export class ListPokemonComponent implements OnInit {
   private destroyRef = inject(DestroyRef);

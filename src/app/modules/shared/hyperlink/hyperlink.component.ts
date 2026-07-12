@@ -5,9 +5,10 @@ import { LanguageService } from '../services/language.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-hyperlink',
-  templateUrl: './hyperlink.component.html',
-  styleUrls: ['./hyperlink.component.scss']
+    selector: 'app-hyperlink',
+    templateUrl: './hyperlink.component.html',
+    styleUrls: ['./hyperlink.component.scss'],
+    standalone: false
 })
 export class HyperlinkComponent implements OnInit {
   private destroyRef = inject(DestroyRef);

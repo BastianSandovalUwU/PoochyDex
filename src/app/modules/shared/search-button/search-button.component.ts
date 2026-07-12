@@ -14,9 +14,10 @@ import { PokemonList } from '../../../../../entities/pokemon-list.entity';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-search-button',
-  templateUrl: './search-button.component.html',
-  styleUrls: ['./search-button.component.scss']
+    selector: 'app-search-button',
+    templateUrl: './search-button.component.html',
+    styleUrls: ['./search-button.component.scss'],
+    standalone: false
 })
 export class SearchButtonComponent implements OnInit {
   private destroyRef = inject(DestroyRef);

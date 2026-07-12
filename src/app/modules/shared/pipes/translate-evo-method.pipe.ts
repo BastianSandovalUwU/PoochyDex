@@ -5,7 +5,8 @@ import { EVO_METHOD_ES } from '../../../../../entities/common/i18n/ui-string-map
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Pipe({
-  name: 'translateEvoMethod'
+    name: 'translateEvoMethod',
+    standalone: false
 })
 export class TranslateEvoMethodPipe implements PipeTransform {
   language: string;

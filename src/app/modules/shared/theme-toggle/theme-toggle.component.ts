@@ -3,9 +3,10 @@ import { ThemeService } from '../services/theme.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-theme-toggle',
-  templateUrl: './theme-toggle.component.html',
-  styleUrls: ['./theme-toggle.component.scss']
+    selector: 'app-theme-toggle',
+    templateUrl: './theme-toggle.component.html',
+    styleUrls: ['./theme-toggle.component.scss'],
+    standalone: false
 })
 export class ThemeToggleComponent {
   isDarkMode$: Observable<boolean>;

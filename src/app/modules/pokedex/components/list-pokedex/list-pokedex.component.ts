@@ -20,10 +20,11 @@ interface PokedexListResponse {
 }
 
 @Component({
-  selector: 'app-list-pokedex',
-  templateUrl: './list-pokedex.component.html',
-  styleUrls: ['./list-pokedex.component.scss'],
-  animations: detailFadeInAnimations
+    selector: 'app-list-pokedex',
+    templateUrl: './list-pokedex.component.html',
+    styleUrls: ['./list-pokedex.component.scss'],
+    animations: detailFadeInAnimations,
+    standalone: false
 })
 export class ListPokedexComponent implements OnInit {
   private destroyRef = inject(DestroyRef);

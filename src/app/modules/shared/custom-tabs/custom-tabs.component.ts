@@ -6,9 +6,10 @@ export interface TabItem {
 }
 
 @Component({
-  selector: 'app-custom-tabs',
-  templateUrl: './custom-tabs.component.html',
-  styleUrls: ['./custom-tabs.component.scss']
+    selector: 'app-custom-tabs',
+    templateUrl: './custom-tabs.component.html',
+    styleUrls: ['./custom-tabs.component.scss'],
+    standalone: false
 })
 export class CustomTabsComponent {
   @Input() tabs: TabItem[] = [];

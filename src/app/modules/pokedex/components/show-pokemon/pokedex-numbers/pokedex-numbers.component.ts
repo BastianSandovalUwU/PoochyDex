@@ -4,11 +4,12 @@ import { HelperService } from 'app/modules/shared/services/helper.service';
 import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
 
 @Component({
-  selector: 'app-pokedex-numbers',
-  templateUrl: './pokedex-numbers.component.html',
-  styleUrls: ['./pokedex-numbers.component.scss'],
-  animations: toggleSectionCollapseAnimations,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-pokedex-numbers',
+    templateUrl: './pokedex-numbers.component.html',
+    styleUrls: ['./pokedex-numbers.component.scss'],
+    animations: toggleSectionCollapseAnimations,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PokedexNumbersComponent implements OnInit, OnChanges {
   @Input() language: string;

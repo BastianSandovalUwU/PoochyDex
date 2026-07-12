@@ -12,9 +12,10 @@ import { LoadingService } from '../services/loading.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-pokemon-hunt-list',
-  templateUrl: './pokemon-hunt-list.component.html',
-  styleUrls: ['./pokemon-hunt-list.component.scss']
+    selector: 'app-pokemon-hunt-list',
+    templateUrl: './pokemon-hunt-list.component.html',
+    styleUrls: ['./pokemon-hunt-list.component.scss'],
+    standalone: false
 })
 export class PokemonHuntListComponent implements OnInit, OnChanges {
   private destroyRef = inject(DestroyRef);

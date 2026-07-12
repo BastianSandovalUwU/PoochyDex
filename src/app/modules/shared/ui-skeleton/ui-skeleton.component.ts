@@ -5,9 +5,10 @@ import { Component, HostBinding, Input } from '@angular/core';
  * with defined size so the overlay fills it (`absolute inset-0`).
  */
 @Component({
-  selector: 'app-ui-skeleton',
-  templateUrl: './ui-skeleton.component.html',
-  styleUrls: ['./ui-skeleton.component.scss']
+    selector: 'app-ui-skeleton',
+    templateUrl: './ui-skeleton.component.html',
+    styleUrls: ['./ui-skeleton.component.scss'],
+    standalone: false
 })
 export class UiSkeletonComponent {
   @HostBinding('class.contents') readonly contentsClass = true;

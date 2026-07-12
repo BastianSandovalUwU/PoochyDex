@@ -11,10 +11,11 @@ import { Subscription } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-show-profile',
-  templateUrl: './show-profile.component.html',
-  styleUrls: ['./show-profile.component.scss'],
-  animations: detailFadeInAnimations
+    selector: 'app-show-profile',
+    templateUrl: './show-profile.component.html',
+    styleUrls: ['./show-profile.component.scss'],
+    animations: detailFadeInAnimations,
+    standalone: false
 })
 export class ShowProfileComponent implements OnInit, OnDestroy {
   private destroyRef = inject(DestroyRef);

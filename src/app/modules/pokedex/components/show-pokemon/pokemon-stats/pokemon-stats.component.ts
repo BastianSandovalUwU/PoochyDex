@@ -12,11 +12,12 @@ interface StatView {
 }
 
 @Component({
-  selector: 'app-pokemon-stats',
-  templateUrl: './pokemon-stats.component.html',
-  styleUrls: ['./pokemon-stats.component.scss'],
-  animations: toggleSectionCollapseAnimations,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-pokemon-stats',
+    templateUrl: './pokemon-stats.component.html',
+    styleUrls: ['./pokemon-stats.component.scss'],
+    animations: toggleSectionCollapseAnimations,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PokemonStatsComponent implements OnInit, OnChanges {
   @Input() language: string;
