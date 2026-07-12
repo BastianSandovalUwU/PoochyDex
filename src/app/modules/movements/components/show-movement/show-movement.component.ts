@@ -39,7 +39,7 @@ export class ShowMovementComponent implements OnInit {
               private loadingService: LoadingService,
               private errorMessageService: ErrorMessageService,
               private poochyDexApiService: PoochyDexApiService) {
-    this.activatedRoute.params.subscribe(({ id }) => this.pokemonMove = id);
+    this.activatedRoute.params.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(({ id }) => this.pokemonMove = id);
   }
 
   ngOnInit(): void {
@@ -57,7 +57,7 @@ export class ShowMovementComponent implements OnInit {
 
   getMove() {
     this.loadingService.show();
-    this.pokeApiService.getMoveByName(this.pokemonMove, 'scarlet-violet').subscribe({
+    this.pokeApiService.getMoveByName(this.pokemonMove, 'scarlet-violet').pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (movement) => {
         this.moveType = this.helperService.getTypeNameByLanguage(movement.type.name, this.language);
         this.move = movement;
@@ -130,7 +130,7 @@ export class ShowMovementComponent implements OnInit {
 
   loadAllPokemon() {
     this.loadingService.show();
-    this.poochyDexApiService.getAllPokemon().subscribe({
+    this.poochyDexApiService.getAllPokemon().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         this.allPokemon = response.data;
         // Name -> Pokémon map for lookups
@@ -156,7 +156,7 @@ export class ShowMovementComponent implements OnInit {
   }
   getMoveEffectEntryByLanguage() {
     let effectEntry = null;
-    this.helperService.getMoveEffectEntryByLanguage(this.move, this.language).subscribe((effect) => {
+    this.helperService.getMoveEffectEntryByLanguage(this.move, this.language).pipe(takeUntilDestroyed(this.destroyRef)).subscribe((effect) => {
       effectEntry = effect
     });
     return effectEntry;
@@ -201,7 +201,7 @@ export class ShowMovementComponent implements OnInit {
 
   getMoveNameByLanguage(): string {
     let name;
-    this.helperService.getMoveNameByLanguage(this.move, this.language).subscribe((moveName) => {
+    this.helperService.getMoveNameByLanguage(this.move, this.language).pipe(takeUntilDestroyed(this.destroyRef)).subscribe((moveName) => {
       name = moveName
       });
     return name.moveName;

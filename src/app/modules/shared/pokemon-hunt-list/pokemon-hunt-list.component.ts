@@ -60,7 +60,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
 
   loadAllPokemon() {
     this.loadingService.show();
-    this.poochyDexApiService.getAllPokemon().subscribe({
+    this.poochyDexApiService.getAllPokemon().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         this.allPokemon = response.data;
         // Name -> Pokémon map for fast lookup
@@ -111,7 +111,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     // Clear list after isLoading to avoid flashing an empty state
     this.filteredPokemon = [];
 
-    this.pokeApiService.getPokedex(num).subscribe({
+    this.pokeApiService.getPokedex(num).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (pokedexData) => {
         const pokemonList: Pokemon[] = [];
 
@@ -151,7 +151,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
       return;
     }
 
-    this.pokemonHuntService.getRegisteredPokemon().subscribe({
+    this.pokemonHuntService.getRegisteredPokemon().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (registeredList) => {
         this.registeredPokemonMap = new Map(
           registeredList
@@ -243,7 +243,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     }
 
     // Authenticated: save via API (service also mirrors to localStorage)
-    this.pokemonHuntService.saveRegisteredPokemon(registeredList).subscribe({
+    this.pokemonHuntService.saveRegisteredPokemon(registeredList).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         if (response.success) {
           this.lastSync = this.pokemonHuntService.getLastSync();
@@ -285,7 +285,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     }
 
     this.isSyncing = true;
-    this.pokemonHuntService.syncWithServer().subscribe({
+    this.pokemonHuntService.syncWithServer().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         if (response.success) {
           this.loadRegisteredPokemon();
@@ -313,7 +313,7 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
     }
 
     // Authenticated: clear remote + local
-    this.pokemonHuntService.clearRegisteredPokemon().subscribe({
+    this.pokemonHuntService.clearRegisteredPokemon().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         if (response.success) {
           this.registeredPokemonMap.clear();

@@ -40,7 +40,7 @@ export class ListPokemonComponent implements OnInit {
   getPokemon() {
     this.loading = true;
     this.loadingService.show();
-    this.poochyDexApiService.getAllPokemon().subscribe({
+    this.poochyDexApiService.getAllPokemon().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         this.allPokemon = response.data;
         this.filteredPokemon = this.allPokemon;
@@ -56,7 +56,7 @@ export class ListPokemonComponent implements OnInit {
   }
 
   getPokemonForms() {
-    this.poochyDexApiService.getAllPokemonForms().subscribe({
+    this.poochyDexApiService.getAllPokemonForms().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         this.allPokemonForms = response.data;
       },

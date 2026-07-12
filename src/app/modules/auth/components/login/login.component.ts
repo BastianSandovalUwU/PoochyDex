@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     );
 
     this.subs.add(
-      this.route.queryParamMap.subscribe(params => {
+      this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(params => {
         const r = params.get('registered');
         if (r === '1' || r === 'true') {
           this.registeredBanner = true;
@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.loading = true;
     const formData = this.loginForm.value;
-    this.authService.login(formData).subscribe({
+    this.authService.login(formData).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.loading = false;
         this.router.navigate(['/profile/show']);

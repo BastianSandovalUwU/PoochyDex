@@ -52,7 +52,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   saveAll(): void {
-    this.authService.updateUserConfig(this.selectedLanguage, this.selectedSprite, this.selectedHomeScreen).subscribe({
+    this.authService.updateUserConfig(this.selectedLanguage, this.selectedSprite, this.selectedHomeScreen).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.saved = true;
         setTimeout(() => (this.saved = false), 2000);

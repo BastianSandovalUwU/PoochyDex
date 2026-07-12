@@ -83,7 +83,7 @@ export class CrudApiComponent implements OnInit {
       ? this.poochyDexApiService.getAllPokemonForms()
       : this.poochyDexApiService.getAllPokemon();
 
-    obs.subscribe({
+    obs.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (resp) => {
         const data = Array.isArray(resp.data) ? resp.data : [];
         this.pokemonList = data.sort((a, b) => a.number - b.number);

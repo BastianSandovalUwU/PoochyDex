@@ -116,7 +116,7 @@ export class ShowProfileComponent implements OnInit, OnDestroy {
   }
 
   onAvatarError(): void {
-    this.profileAvatarService.refreshProfileImageUrl().subscribe();
+    this.profileAvatarService.refreshProfileImageUrl().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
 
   logout(): void {
