@@ -63,10 +63,6 @@ export class PokeSpritesComponent implements OnChanges {
     return this.language === 'es' ? es : en;
   }
 
-  trackByIndex(index: number): number {
-    return index;
-  }
-
   trackByLabeledId(_i: number, s: LabeledSprite): string {
     return s.id ?? s.url;
   }

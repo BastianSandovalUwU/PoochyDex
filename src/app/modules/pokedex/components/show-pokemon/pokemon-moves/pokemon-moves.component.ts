@@ -350,10 +350,6 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     return pokeMove.move.move.name;
   }
 
-  trackByIndex(index: number): number {
-    return index;
-  }
-
   trackByType(_index: number, type: TypeDetail): string {
     return type.typeName;
   }

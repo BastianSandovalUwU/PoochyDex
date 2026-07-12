@@ -115,7 +115,7 @@
                 <article class="poke-sprites__card">
                   <h4 class="poke-sprites__card-title">{{ t('Rojo y Azul', 'Red & Blue') }}</h4>
                   <div class="poke-sprites__grid poke-sprites__grid--2">
-                    @for (u of gen1RedBlue; track trackByIndex($index, u)) {
+                    @for (u of gen1RedBlue; track $index) {
                       <div class="poke-sprites__cell">
                         <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                       </div>
@@ -133,7 +133,7 @@
                   <article class="poke-sprites__card">
                     <h4 class="poke-sprites__card-title">{{ t('Cristal', 'Crystal') }}</h4>
                     <div class="poke-sprites__grid poke-sprites__grid--2">
-                      @for (u of gen2Crystal; track trackByIndex($index, u)) {
+                      @for (u of gen2Crystal; track $index) {
                         <div class="poke-sprites__cell">
                           <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                         </div>
@@ -145,7 +145,7 @@
                   <article class="poke-sprites__card">
                     <h4 class="poke-sprites__card-title">{{ t('Oro', 'Gold') }}</h4>
                     <div class="poke-sprites__grid poke-sprites__grid--2">
-                      @for (u of gen2Gold; track trackByIndex($index, u)) {
+                      @for (u of gen2Gold; track $index) {
                         <div class="poke-sprites__cell">
                           <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                         </div>
@@ -157,7 +157,7 @@
                   <article class="poke-sprites__card">
                     <h4 class="poke-sprites__card-title">{{ t('Plata', 'Silver') }}</h4>
                     <div class="poke-sprites__grid poke-sprites__grid--2">
-                      @for (u of gen2Silver; track trackByIndex($index, u)) {
+                      @for (u of gen2Silver; track $index) {
                         <div class="poke-sprites__cell">
                           <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                         </div>
@@ -176,7 +176,7 @@
                   <article class="poke-sprites__card">
                     <h4 class="poke-sprites__card-title">{{ t('Esmeralda', 'Emerald') }}</h4>
                     <div class="poke-sprites__grid poke-sprites__grid--2">
-                      @for (u of gen3Emerald; track trackByIndex($index, u)) {
+                      @for (u of gen3Emerald; track $index) {
                         <div class="poke-sprites__cell">
                           <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                         </div>
@@ -188,7 +188,7 @@
                   <article class="poke-sprites__card">
                     <h4 class="poke-sprites__card-title">{{ t('Rubí y Zafiro', 'Ruby & Sapphire') }}</h4>
                     <div class="poke-sprites__grid poke-sprites__grid--2">
-                      @for (u of gen3RubySapphire; track trackByIndex($index, u)) {
+                      @for (u of gen3RubySapphire; track $index) {
                         <div class="poke-sprites__cell">
                           <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                         </div>
@@ -200,7 +200,7 @@
                   <article class="poke-sprites__card">
                     <h4 class="poke-sprites__card-title">{{ t('Rojo Fuego y Verde Hoja', 'Fire Red & Leaf Green') }}</h4>
                     <div class="poke-sprites__grid poke-sprites__grid--2">
-                      @for (u of gen3FrLg; track trackByIndex($index, u)) {
+                      @for (u of gen3FrLg; track $index) {
                         <div class="poke-sprites__cell">
                           <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                         </div>
@@ -219,7 +219,7 @@
                   <article class="poke-sprites__card">
                     <h4 class="poke-sprites__card-title">{{ t('Diamante y Perla', 'Diamond & Pearl') }}</h4>
                     <div class="poke-sprites__grid poke-sprites__grid--2">
-                      @for (u of gen4DiamondPearl; track trackByIndex($index, u)) {
+                      @for (u of gen4DiamondPearl; track $index) {
                         <div class="poke-sprites__cell">
                           <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                         </div>
@@ -231,7 +231,7 @@
                   <article class="poke-sprites__card">
                     <h4 class="poke-sprites__card-title">{{ t('Platino', 'Platinum') }}</h4>
                     <div class="poke-sprites__grid poke-sprites__grid--2">
-                      @for (u of gen4Platinum; track trackByIndex($index, u)) {
+                      @for (u of gen4Platinum; track $index) {
                         <div class="poke-sprites__cell">
                           <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                         </div>
@@ -243,7 +243,7 @@
                   <article class="poke-sprites__card">
                     <h4 class="poke-sprites__card-title">{{ t('HeartGold y SoulSilver', 'HeartGold & SoulSilver') }}</h4>
                     <div class="poke-sprites__grid poke-sprites__grid--2">
-                      @for (u of gen4HeartGoldSoulSilver; track trackByIndex($index, u)) {
+                      @for (u of gen4HeartGoldSoulSilver; track $index) {
                         <div class="poke-sprites__cell">
                           <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                         </div>
@@ -265,7 +265,7 @@
                       <div class="poke-sprites__bw-block">
                         <h5 class="poke-sprites__subgroup-title">{{ t('Animados', 'Animated') }}</h5>
                         <div class="poke-sprites__grid poke-sprites__grid--2">
-                          @for (u of gen5BlackWhiteAnimated; track trackByIndex($index, u)) {
+                          @for (u of gen5BlackWhiteAnimated; track $index) {
                             <div class="poke-sprites__cell">
                               <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                             </div>
@@ -276,7 +276,7 @@
                     <div class="poke-sprites__bw-block">
                       <h5 class="poke-sprites__subgroup-title">{{ t('Estáticos', 'Static') }}</h5>
                       <div class="poke-sprites__grid poke-sprites__grid--2">
-                        @for (u of gen5BlackWhite; track trackByIndex($index, u)) {
+                        @for (u of gen5BlackWhite; track $index) {
                           <div class="poke-sprites__cell">
                             <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                           </div>
@@ -296,7 +296,7 @@
                   <article class="poke-sprites__card">
                     <h4 class="poke-sprites__card-title">X &amp; Y</h4>
                     <div class="poke-sprites__grid poke-sprites__grid--2">
-                      @for (u of gen6Xy; track trackByIndex($index, u)) {
+                      @for (u of gen6Xy; track $index) {
                         <div class="poke-sprites__cell">
                           <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                         </div>
@@ -308,7 +308,7 @@
                   <article class="poke-sprites__card">
                     <h4 class="poke-sprites__card-title">{{ t('Rubí Omega y Zafiro Alfa', 'Omega Ruby & Alpha Sapphire') }}</h4>
                     <div class="poke-sprites__grid poke-sprites__grid--2">
-                      @for (u of gen6Oras; track trackByIndex($index, u)) {
+                      @for (u of gen6Oras; track $index) {
                         <div class="poke-sprites__cell">
                           <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                         </div>
@@ -326,7 +326,7 @@
                 <article class="poke-sprites__card">
                   <h4 class="poke-sprites__card-title">{{ t('Ultrasol y Ultraluna', 'Ultra Sun & Ultra Moon') }}</h4>
                   <div class="poke-sprites__grid poke-sprites__grid--2">
-                    @for (u of gen7UsUm; track trackByIndex($index, u)) {
+                    @for (u of gen7UsUm; track $index) {
                       <div class="poke-sprites__cell">
                         <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                       </div>
@@ -343,7 +343,7 @@
                 <article class="poke-sprites__card">
                   <h4 class="poke-sprites__card-title">{{ t('Diamante Brillante y Perla Brillante', 'Brilliant Diamond & Shining Pearl') }}</h4>
                   <div class="poke-sprites__grid poke-sprites__grid--2">
-                    @for (u of gen8BrilliantDiamondShiningPearl; track trackByIndex($index, u)) {
+                    @for (u of gen8BrilliantDiamondShiningPearl; track $index) {
                       <div class="poke-sprites__cell">
                         <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                       </div>
@@ -360,7 +360,7 @@
                 <article class="poke-sprites__card">
                   <h4 class="poke-sprites__card-title">{{ t('Escarlata y Violeta', 'Scarlet & Violet') }}</h4>
                   <div class="poke-sprites__grid poke-sprites__grid--2">
-                    @for (u of gen9ScarletViolet; track trackByIndex($index, u)) {
+                    @for (u of gen9ScarletViolet; track $index) {
                       <div class="poke-sprites__cell">
                         <img [src]="u" loading="lazy" decoding="async" class="poke-sprites__img" alt="" />
                       </div>

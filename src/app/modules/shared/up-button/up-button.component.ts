@@ -21,7 +21,7 @@ export class UpButtonComponent implements OnInit {
     this.downButton.style.display = 'flex';
   }
 
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:scroll')
   onWindowScroll() {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollMaximo = document.documentElement.scrollHeight - window.innerHeight;

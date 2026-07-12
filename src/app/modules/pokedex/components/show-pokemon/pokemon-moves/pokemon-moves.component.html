@@ -59,7 +59,7 @@
         </div>
         @for (pokeMove of filteredMoves; track trackByMove($index, pokeMove)) {
           <div>
-            @for (detail of pokeMove.move.version_group_details; track trackByIndex($index, detail)) {
+            @for (detail of pokeMove.move.version_group_details; track $index) {
               <div>
                 @if (detail.version_group.name === levelUpSelectedVersionGroup) {
                   <div class="grid grid-cols-9 gap-2 mb-1 dark:border-gray-600">

@@ -13,7 +13,7 @@
     </app-ui-button>
   </div>
   <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="flex flex-col items-center bg-white p-2 rounded-md w-full">
-    @for (stat of statViews; track trackByStat($index, stat)) {
+    @for (stat of statViews; track $index) {
       <div class="w-full flex items-center mb-2">
         <span class="w-1/4">{{ stat.name }}:</span>
         <div class="flex items-center w-full">
