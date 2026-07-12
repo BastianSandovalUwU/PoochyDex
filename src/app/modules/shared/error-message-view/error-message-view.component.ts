@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { ErrorMessageService } from '../../../services/error-message.service';
 import { Subscription } from 'rxjs';
 
@@ -8,12 +8,14 @@ import { Subscription } from 'rxjs';
     standalone: false
 })
 export class ErrorMessageViewComponent implements OnDestroy {
+  private errorMessageService = inject(ErrorMessageService);
+
   message: string = '';
   systemErrorMessage: string = '';
   showMessage: boolean = false;
   private subscription: Subscription;
 
-  constructor(private errorMessageService: ErrorMessageService) {
+  constructor() {
     this.subscription = this.errorMessageService.errorState$.subscribe(state => {
       this.message = state.message;
       this.systemErrorMessage = state.systemErrorMessage;

@@ -21,6 +21,14 @@ const FALLBACK_SPRITE = 'https://i.imgur.com/uKx7iOF.png';
     standalone: false
 })
 export class ShowAbilityComponent implements OnInit {
+  private pokeApiService = inject(PokeApiService);
+  private activatedRoute = inject(ActivatedRoute);
+  private languageService = inject(LanguageService);
+  private helperService = inject(HelperService);
+  private errorMessageService = inject(ErrorMessageService);
+  private loadingService = inject(LoadingService);
+  private poochyDexApiService = inject(PoochyDexApiService);
+
   private destroyRef = inject(DestroyRef);
   language: string = 'es';
   ability: PokemonAbility;
@@ -28,16 +36,6 @@ export class ShowAbilityComponent implements OnInit {
   flavorTextsByGame: Map<string, FlavorTextEntry[]> = new Map();
   pokemonDataMap: Map<string, Pokemon> = new Map();
   abilityPokemonNames: string[] = [];
-
-  constructor(
-    private pokeApiService: PokeApiService,
-    private activatedRoute: ActivatedRoute,
-    private languageService: LanguageService,
-    private helperService: HelperService,
-    private errorMessageService: ErrorMessageService,
-    private loadingService: LoadingService,
-    private poochyDexApiService: PoochyDexApiService
-  ) {}
 
   ngOnInit() {
     this.getLanguage();

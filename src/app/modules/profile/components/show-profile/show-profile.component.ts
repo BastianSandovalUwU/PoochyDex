@@ -18,6 +18,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class ShowProfileComponent implements OnInit, OnDestroy {
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private languageService = inject(LanguageService);
+  private userSettingsService = inject(UserSettingsService);
+  private profileAvatarService = inject(ProfileAvatarService);
+
   private destroyRef = inject(DestroyRef);
 
   userData: UserData | null = null;
@@ -29,14 +35,6 @@ export class ShowProfileComponent implements OnInit, OnDestroy {
   avatarUrl: string | null = null;
 
   private readonly subs = new Subscription();
-
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private languageService: LanguageService,
-    private userSettingsService: UserSettingsService,
-    private profileAvatarService: ProfileAvatarService
-  ) {}
 
   ngOnInit(): void {
     this.subs.add(

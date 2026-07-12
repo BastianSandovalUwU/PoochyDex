@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, inject } from '@angular/core';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Router } from '@angular/router';
@@ -21,6 +21,11 @@ interface VarietyView {
     standalone: false
 })
 export class PokemonVarietiesComponent implements OnInit, OnChanges, OnDestroy {
+  private helperService = inject(HelperService);
+  private pokeApiService = inject(PokeApiService);
+  private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
+
   @Input() language: string = 'es';
   @Input() pokemonSpecie: PokemonSpecie;
 
@@ -30,11 +35,6 @@ export class PokemonVarietiesComponent implements OnInit, OnChanges, OnDestroy {
   filtersVisible = true;
   loadedSprites = new Set<string>();
   private destroy$ = new Subject<void>();
-
-  constructor(private helperService: HelperService,
-              private pokeApiService: PokeApiService,
-              private router: Router,
-              private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.getPokemonColor();

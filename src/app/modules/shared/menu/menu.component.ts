@@ -18,6 +18,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class MenuComponent implements OnInit, OnChanges, OnDestroy {
+  private router = inject(Router);
+  private pokeApiService = inject(PokeApiService);
+  private networkService = inject(NetworkService);
+  private authService = inject(AuthService);
+  readonly platformService = inject(PlatformService);
+
   private destroyRef = inject(DestroyRef);
   @Input() isOpen = false;
   @Input() language: string = 'es';
@@ -31,15 +37,6 @@ export class MenuComponent implements OnInit, OnChanges, OnDestroy {
   currentRoute: string = '';
   expandedSections: Set<string> = new Set();
   private routerSubscription?: Subscription;
-
-  constructor(
-    private router: Router,
-    private pokeApiService: PokeApiService,
-    private networkService: NetworkService,
-    private authService: AuthService,
-    readonly platformService: PlatformService
-  ) {
-  }
 
   ngOnInit() {
     this.networkService.isOnline$.subscribe(v => this.isOnline = v);

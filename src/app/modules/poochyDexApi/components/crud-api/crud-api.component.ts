@@ -18,6 +18,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class CrudApiComponent implements OnInit {
+  private poochyDexApiService = inject(PoochyDexApiService);
+  private languageService = inject(LanguageService);
+  helperService = inject(HelperService);
+  private router = inject(Router);
+  private authService = inject(AuthService);
+
   private destroyRef = inject(DestroyRef);
 
   pokemonList: Pokemon[] = [];
@@ -50,13 +56,7 @@ export class CrudApiComponent implements OnInit {
     }
   };
 
-  constructor(
-    private poochyDexApiService: PoochyDexApiService,
-    private languageService: LanguageService,
-    public helperService: HelperService,
-    private router: Router,
-    private authService: AuthService
-  ) {
+  constructor() {
     const userData = this.authService.getSessionData();
     if(!userData || userData.role !== RoleName.ADMIN) {
       this.router.navigate(['/']);

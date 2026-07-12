@@ -14,6 +14,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class ListPokemonComponent implements OnInit {
+  private languageService = inject(LanguageService);
+  private helperService = inject(HelperService);
+  private poochyDexApiService = inject(PoochyDexApiService);
+  private loadingService = inject(LoadingService);
+
   private destroyRef = inject(DestroyRef);
 
   allPokemon: Pokemon[] = [];
@@ -24,13 +29,6 @@ export class ListPokemonComponent implements OnInit {
   showFloatingFilter: boolean = false;
   private scrollThreshold: number = 200;
   loading = false;
-
-  constructor(
-              private languageService: LanguageService,
-              private helperService: HelperService,
-              private poochyDexApiService: PoochyDexApiService,
-              private loadingService: LoadingService
-              ) { }
 
   ngOnInit() {
     this.getLanguage();

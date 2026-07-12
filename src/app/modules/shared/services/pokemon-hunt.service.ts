@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -10,14 +10,12 @@ import { RegisteredPokemon, PokemonHuntData, PokemonHuntResponse } from '../../.
   providedIn: 'root'
 })
 export class PokemonHuntService {
+  private http = inject(HttpClient);
+  private authService = inject(AuthService);
+
   private apiUrl = environment.nodeJsApi;
   private localStorageKey = 'pokemon-hunt-registered';
   private lastSyncKey = 'pokemon-hunt-last-sync';
-
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService
-  ) {}
 
   /**
    * Fetches registered Pokémon from the backend.

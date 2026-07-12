@@ -11,15 +11,15 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class HyperlinkComponent implements OnInit {
+  private router = inject(Router);
+  private helperService = inject(HelperService);
+  private languageService = inject(LanguageService);
+
   private destroyRef = inject(DestroyRef);
   @Input() value: string = '';
   @Input() type: 'pokemon' | 'game' | 'localization';
   @Input() textBlue: boolean = true;
   language: string;
-
-  constructor(private router: Router, private helperService: HelperService,
-              private languageService: LanguageService
-  ) { }
 
   ngOnInit() {
     this.getLanguage()

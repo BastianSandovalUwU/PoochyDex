@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
 import { MusicTrack } from '../music-player/music-track.model';
 import { S3MusicService } from './s3-music.service';
@@ -48,6 +48,8 @@ function createPersistentAudioElement(): HTMLAudioElement {
   providedIn: 'root'
 })
 export class MusicPlayerService {
+  private s3Music = inject(S3MusicService);
+
   private readonly audio = createPersistentAudioElement();
   private tracks: MusicTrack[] = [];
   private currentIndex = 0;
@@ -109,7 +111,7 @@ export class MusicPlayerService {
     }
   }
 
-  constructor(private s3Music: S3MusicService) {
+  constructor() {
     this.restoreUiState();
     this.applyVolumeFromStorage();
     this.setupMediaSession();

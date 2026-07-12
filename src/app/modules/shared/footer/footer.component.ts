@@ -10,12 +10,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class FooterComponent implements OnInit {
+  private languageService = inject(LanguageService);
+  private authService = inject(AuthService);
+
   private destroyRef = inject(DestroyRef);
 
   currentYear = new Date().getFullYear();
   currentLanguage: string;
-
-  constructor(private languageService: LanguageService, private authService: AuthService) { }
 
   ngOnInit() {
     this.languageService.currentLanguage$

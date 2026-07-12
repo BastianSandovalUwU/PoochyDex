@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ALL_POKEMON } from '../../../../entities/common/const.interface';
 import { Router } from '@angular/router';
 
@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
     standalone: false
 })
 export class PokedexComponent implements OnInit {
+  private router = inject(Router);
+
 
   randomPokemon: string = '';
   pokemonList = ALL_POKEMON;
-
-  constructor(private router: Router) { }
 
   ngOnInit() {
     const currentUrl = this.router.url;

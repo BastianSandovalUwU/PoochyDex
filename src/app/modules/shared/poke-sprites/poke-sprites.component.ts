@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, inject } from '@angular/core';
 import { Pokemon } from '../../../../../entities/pokemon.entity';
 import { Showdown, Sprites } from '../../../../../entities/sprites.entity';
 import { Versions } from '../../../../../entities/versions.entity';
@@ -25,14 +25,14 @@ export interface LabeledSprite {
     standalone: false
 })
 export class PokeSpritesComponent implements OnChanges {
+  private helperService = inject(HelperService);
+
   @Input() pokemon: Pokemon;
   @Input() language: string = 'es';
   @Input() pokemonSpecie: PokemonSpecie;
 
   backgroundColor: string = '';
   spritesVisible = true;
-
-  constructor(private helperService: HelperService) { }
 
   ngOnChanges(_changes: SimpleChanges): void {
     this.getPokemonColor();

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Ability } from '../../../../../entities/pokemon.entity';
 import { AbilityName } from '../../../../../entities/pokemon-ability.entity';
@@ -20,13 +20,11 @@ import { PokemonMoveAbilityService } from './pokemon-move-ability.service';
   providedIn: 'root'
 })
 export class HelperService {
+  private pokemonCache = inject(PokemonCacheService);
+  private customPokemonCatalog = inject(CustomPokemonCatalogService);
+  private pokemonDisplay = inject(PokemonDisplayService);
+  private pokemonMoveAbility = inject(PokemonMoveAbilityService);
 
-  constructor(
-    private pokemonCache: PokemonCacheService,
-    private customPokemonCatalog: CustomPokemonCatalogService,
-    private pokemonDisplay: PokemonDisplayService,
-    private pokemonMoveAbility: PokemonMoveAbilityService
-  ) {}
 
   get cacheLoadingProgress$() {
     return this.pokemonCache.cacheLoadingProgress$;

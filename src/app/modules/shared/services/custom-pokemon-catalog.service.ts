@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { combineLatest, Observable, catchError, map, of, shareReplay } from 'rxjs';
 import { PoochyDexApiService } from 'app/modules/poochyDexApi/services/poochy-dex-api.service';
 import { Pokemon, PokemonForm, PokemonResponse } from '../../../../../entities/poochydex-api/pokemon.type';
@@ -12,6 +12,8 @@ import { getCorrectPokemonName } from '../../../../../entities/common/enum';
   providedIn: 'root'
 })
 export class CustomPokemonCatalogService {
+  private poochyDexApiService = inject(PoochyDexApiService);
+
 
   allPokemon: Pokemon[] = [];
   allPokemonForms: PokemonForm[] = [];
@@ -26,7 +28,7 @@ export class CustomPokemonCatalogService {
    */
   private readonly catalogReady$: Observable<[Pokemon[], PokemonForm[]]>;
 
-  constructor(private poochyDexApiService: PoochyDexApiService) {
+  constructor() {
     const allPokemon$ = this.poochyDexApiService.getAllPokemon().pipe(
       map((response) => {
         this.allPokemon = response.data;

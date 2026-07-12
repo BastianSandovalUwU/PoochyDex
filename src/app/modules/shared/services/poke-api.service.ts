@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -18,6 +18,9 @@ import { createPlaceHolderMove } from '../utils/move.utils';
   providedIn: 'root'
 })
 export class PokeApiService {
+  private http = inject(HttpClient);
+  private networkService = inject(NetworkService);
+
   private readonly POKEMON_CACHE_KEY = 'pokemon_cache';
   private readonly MAX_CACHE_SIZE = 2000;
 
@@ -29,8 +32,7 @@ export class PokeApiService {
 
   private isOnline = true;
 
-  constructor(private http: HttpClient,
-              private networkService: NetworkService) {
+  constructor() {
     this.networkService.isOnline$.subscribe(v => this.isOnline = v);
   }
 

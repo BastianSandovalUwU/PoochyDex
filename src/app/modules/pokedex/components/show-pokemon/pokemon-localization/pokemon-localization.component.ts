@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, inject } from '@angular/core';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
@@ -22,6 +22,11 @@ interface GroupedDataView extends GroupedData {
     standalone: false
 })
 export class PokemonLocalizationComponent implements OnInit, OnChanges, OnDestroy {
+  private helperService = inject(HelperService);
+  private pokeApiService = inject(PokeApiService);
+  private errorMessageService = inject(ErrorMessageService);
+  private cdr = inject(ChangeDetectorRef);
+
   @Input() language: string;
   @Input() pokemonSpecie: PokemonSpecie;
   @Input() pokemon: Pokemon;
@@ -33,12 +38,6 @@ export class PokemonLocalizationComponent implements OnInit, OnChanges, OnDestro
   loadInfo: boolean;
   filtersVisible = false;
   private destroy$ = new Subject<void>();
-
-  constructor(private helperService: HelperService,
-              private pokeApiService: PokeApiService,
-              private errorMessageService: ErrorMessageService,
-              private cdr: ChangeDetectorRef
-  ) { }
 
   ngOnInit() {
     this.getPokemonColor();

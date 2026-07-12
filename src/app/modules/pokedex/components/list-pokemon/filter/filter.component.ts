@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, inject } from '@angular/core';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
 @Component({
@@ -9,6 +9,8 @@ import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/t
     standalone: false
 })
 export class FilterComponent implements OnInit, OnChanges {
+  private helperService = inject(HelperService);
+
   @Input() language: string = 'es';
   @Input() isShow: boolean = false;
 
@@ -20,8 +22,6 @@ export class FilterComponent implements OnInit, OnChanges {
   generations = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   generationGridClass: string = 'grid grid-cols-2 sm:grid-cols-3 gap-1';
   formGridClass: string = 'grid grid-cols-1 gap-1';
-
-  constructor(private helperService: HelperService) { }
 
   ngOnInit() {
     this.selectedGenerations = [...this.generations];

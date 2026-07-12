@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { LanguageService } from '../services/language.service';
 import { MusicPlayerService, MusicRepeatMode } from '../services/music-player.service';
@@ -35,6 +35,9 @@ const EASE_IN = 'cubic-bezier(0.4, 0, 1, 1)';
     standalone: false
 })
 export class MusicPlayerComponent implements OnInit, OnDestroy {
+  music = inject(MusicPlayerService);
+  private languageService = inject(LanguageService);
+
   /** When true, the player is fixed above the fold (e.g. shell). When false, host controls layout via class. */
   @Input() fixedLayout = true;
 
@@ -59,11 +62,6 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
     /iP(hone|ad|od)/.test(navigator.userAgent);
 
   private destroy$ = new Subject<void>();
-
-  constructor(
-    public music: MusicPlayerService,
-    private languageService: LanguageService
-  ) {}
 
   ngOnInit(): void {
     this.hasTracks = this.music.hasTracks;

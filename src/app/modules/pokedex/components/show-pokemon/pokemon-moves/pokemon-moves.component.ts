@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, inject } from '@angular/core';
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
@@ -20,6 +20,11 @@ import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/t
     standalone: false
 })
 export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
+  private pokeApiService = inject(PokeApiService);
+  private helperService = inject(HelperService);
+  private errorMessageService = inject(ErrorMessageService);
+  private cdr = inject(ChangeDetectorRef);
+
   @Input() language: string = 'es';
   @Input() pokemon: Pokemon;
   @Input() pokemonSpecie: PokemonSpecie;
@@ -49,11 +54,6 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   filtersVisibleEgg = true;
   /** Caches resolved machine moves per version group to avoid refetching (e.g. on language toggle). */
   private machineMovesCache = new Map<string, FilteredByMachine[]>();
-
-  constructor(private pokeApiService: PokeApiService,
-              private helperService: HelperService,
-              private errorMessageService: ErrorMessageService,
-              private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.getPokemonColor();

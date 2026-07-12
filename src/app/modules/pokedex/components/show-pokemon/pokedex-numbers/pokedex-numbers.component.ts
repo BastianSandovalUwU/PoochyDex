@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
 import { PokemonSpecie, PokedexNumber } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
@@ -12,13 +12,13 @@ import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/t
     standalone: false
 })
 export class PokedexNumbersComponent implements OnInit, OnChanges {
+  private helperService = inject(HelperService);
+
   @Input() language: string;
   @Input() pokemonSpecie: PokemonSpecie;
 
   backgroundColor: string = '';
   filtersVisible = false;
-
-  constructor(private helperService: HelperService) { }
 
   ngOnInit() {
     this.getPokemonColor();

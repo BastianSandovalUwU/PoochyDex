@@ -21,6 +21,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class SignUpComponent implements OnInit, OnDestroy {
+  private fb = inject(UntypedFormBuilder);
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private languageService = inject(LanguageService);
+
   private destroyRef = inject(DestroyRef);
 
   errorMessage = '';
@@ -32,12 +37,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   private readonly subs = new Subscription();
 
-  constructor(
-    private fb: UntypedFormBuilder,
-    private authService: AuthService,
-    private router: Router,
-    private languageService: LanguageService
-  ) {
+  constructor() {
     this.signUpForm = this.fb.group(
       {
         username: [

@@ -13,6 +13,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class SettingsComponent implements OnInit, OnDestroy {
+  private languageService = inject(LanguageService);
+  private userSettingsService = inject(UserSettingsService);
+  private authService = inject(AuthService);
+
   private destroyRef = inject(DestroyRef);
   language = 'es';
 
@@ -27,12 +31,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
   private readonly subs = new Subscription();
 
   selectedLanguage: string;
-
-  constructor(
-    private languageService: LanguageService,
-    private userSettingsService: UserSettingsService,
-    private authService: AuthService
-  ) {}
 
   ngOnInit(): void {
     this.subs.add(

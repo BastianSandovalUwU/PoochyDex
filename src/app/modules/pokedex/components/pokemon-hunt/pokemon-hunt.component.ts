@@ -13,13 +13,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class PokemonHuntComponent implements OnInit {
+  private languageService = inject(LanguageService);
+
   private destroyRef = inject(DestroyRef);
   language: string;
   selectedPokedexNumber: number | null = null;
   isExpanded: boolean = false;
   pokedexOptions = ALL_POKEDEX_OPTIONS;
-
-  constructor(private languageService: LanguageService) { }
 
   ngOnInit() {
     this.getLanguage();

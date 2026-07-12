@@ -12,6 +12,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class AppHeaderComponent {
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private profileAvatarService = inject(ProfileAvatarService);
+
   private destroyRef = inject(DestroyRef);
 
   @Input() isMenuOpen = false;
@@ -24,12 +28,6 @@ export class AppHeaderComponent {
   @Output() installPwaClick = new EventEmitter<void>();
 
   profileMenuOpen = false;
-
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private profileAvatarService: ProfileAvatarService,
-  ) {}
 
   @HostListener('document:click')
   onDocumentClick(): void {

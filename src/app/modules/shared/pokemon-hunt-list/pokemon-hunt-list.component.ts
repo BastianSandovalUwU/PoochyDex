@@ -18,6 +18,15 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     standalone: false
 })
 export class PokemonHuntListComponent implements OnInit, OnChanges {
+  private pokeApiService = inject(PokeApiService);
+  private languageService = inject(LanguageService);
+  private helperService = inject(HelperService);
+  private errorMessageService = inject(ErrorMessageService);
+  private pokemonHuntService = inject(PokemonHuntService);
+  private authService = inject(AuthService);
+  private poochyDexApiService = inject(PoochyDexApiService);
+  private loadingService = inject(LoadingService);
+
   private destroyRef = inject(DestroyRef);
   @Input() pokedexNumber: number = 34;
 
@@ -31,17 +40,6 @@ export class PokemonHuntListComponent implements OnInit, OnChanges {
   isLoading: boolean = false;
   isSyncing: boolean = false;
   lastSync: Date | null = null;
-
-  constructor(
-    private pokeApiService: PokeApiService,
-    private languageService: LanguageService,
-    private helperService: HelperService,
-    private errorMessageService: ErrorMessageService,
-    private pokemonHuntService: PokemonHuntService,
-    private authService: AuthService,
-    private poochyDexApiService: PoochyDexApiService,
-    private loadingService: LoadingService,
-  ) {}
 
   ngOnInit() {
     this.getLanguage();

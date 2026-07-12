@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { Router } from '@angular/router';
@@ -20,16 +20,15 @@ interface FlavorTextEntryView {
     standalone: false
 })
 export class PokedexEntriesComponent implements OnInit, OnChanges {
+  private helperService = inject(HelperService);
+  private router = inject(Router);
+
   @Input() language: string;
   @Input() pokemonSpecie: PokemonSpecie;
 
   flavorTextEntries: FlavorTextEntryView[] = [];
   backgroundColor: string = '';
   filtersVisible = false;
-
-  constructor(private helperService: HelperService,
-              private router: Router
-  ) { }
 
   ngOnInit() {
     this.getPokemonColor();
