@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -13,7 +13,7 @@ describe('AppComponent', () => {
     schemas: [NO_ERRORS_SCHEMA],
     imports: [RouterTestingModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: false })],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 }).compileComponents();
   });
 

@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, inject, ChangeDetectionStrategy } from '@angular/core';
 import { HelperService } from '../services/helper.service';
 import { Pokemon } from '../../../../../entities/poochydex-api/pokemon.type';
 
@@ -6,6 +6,7 @@ import { Pokemon } from '../../../../../entities/poochydex-api/pokemon.type';
     selector: 'app-pokemon-card',
     templateUrl: './pokemon-card.component.html',
     styleUrls: ['./pokemon-card.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PokemonCardComponent {

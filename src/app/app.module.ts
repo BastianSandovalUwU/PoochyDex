@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { AppHeaderComponent } from './modules/shared/app-header/app-header.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routing';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { LanguageService } from './modules/shared/services/language.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -29,5 +29,5 @@ import { AuthInterceptor } from './modules/auth/auth.interceptor';
             registrationStrategy: 'registerWithDelay:5000'
         })], providers: [LanguageService,
         AuthService,
-        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, provideHttpClient(withInterceptorsFromDi())] })
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, provideHttpClient(withXhr(), withInterceptorsFromDi())] })
 export class AppModule { }

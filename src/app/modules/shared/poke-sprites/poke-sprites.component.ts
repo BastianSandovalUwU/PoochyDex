@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges, inject } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Pokemon } from '../../../../../entities/pokemon.entity';
 import { Showdown, Sprites } from '../../../../../entities/sprites.entity';
 import { Versions } from '../../../../../entities/versions.entity';
@@ -22,6 +22,7 @@ export interface LabeledSprite {
     templateUrl: './poke-sprites.component.html',
     styleUrls: ['./poke-sprites.component.scss'],
     animations: toggleSectionCollapseAnimations,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PokeSpritesComponent implements OnChanges {

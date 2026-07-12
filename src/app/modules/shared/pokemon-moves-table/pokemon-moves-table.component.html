@@ -46,7 +46,7 @@
           <div class="grid grid-cols-7 gap-2 mb-1 dark:border-gray-600">
             <ng-container *ngTemplateOutlet="moveRow; context: {
               $implicit: pokeMove,
-              versionGroup: pokeMove['machineDetail']?.version_group.name
+              versionGroup: $safeNavigationMigration(pokeMove['machineDetail']?.version_group.name)
             }"></ng-container>
           </div>
         } @else {
@@ -117,7 +117,7 @@
           <div class="move-row dark:border-gray-600 dark:bg-gray-800">
             <ng-container *ngTemplateOutlet="mobileRow; context: {
               $implicit: pokeMove,
-              versionGroup: pokeMove['machineDetail']?.version_group.name
+              versionGroup: $safeNavigationMigration(pokeMove['machineDetail']?.version_group.name)
             }"></ng-container>
           </div>
         } @else {

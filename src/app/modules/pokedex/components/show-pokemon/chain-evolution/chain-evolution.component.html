@@ -73,11 +73,11 @@
                 </p>
                 @if (stage.evolution_details[0]?.trigger) {
                   <p class="text-sm text-center mt-2">
-                    {{ stage.evolution_details[stage.evolution_details.length - 1]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
+                    {{ $safeNavigationMigration(stage.evolution_details[stage.evolution_details.length - 1]?.trigger.name) |translateEvoMethod |replaceDash |titlecase}}
                     @if (stage.evolution_details[0]?.time_of_day) {
                       <span>
                         {{ language === 'es' ? 'durante': 'in' }}
-                        {{ stage.evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
+                        {{ $safeNavigationMigration(stage.evolution_details[0]?.time_of_day) |translateEvoMethod |replaceDash |titlecase}}
                       </span>
                     }
                   </p>
@@ -91,7 +91,7 @@
                 @if (stage.evolution_details[0]?.known_move_type) {
                   <p class="text-sm text-center">
                     {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
-                    {{ stage.evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}}
+                    {{ $safeNavigationMigration(stage.evolution_details[0]?.known_move_type.name) |translateEvoMethod |replaceDash |titlecase}}
                     {{ language === 'en' ? 'type move': '' }}
                   </p>
                 }
@@ -103,7 +103,7 @@
                 }
                 @if (stage && stage.evolution_details && stage.evolution_details.length > 0) {
                   <p class="text-sm text-center hover:text-blue-500 cursor-pointer">
-                    {{ stage.evolution_details[stage.evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
+                    {{ $safeNavigationMigration(stage.evolution_details[stage.evolution_details.length - 1]?.item?.name) |translateEvoMethod  |titlecase }}
                   </p>
                 }
                 <!-- Additional evolutions in circular pattern -->
@@ -137,11 +137,11 @@
                       </p>
                       @if (stage.evolves_to[0].evolution_details[0]?.trigger) {
                         <p class="text-sm text-center mt-2">
-                          {{ stage.evolves_to[0].evolution_details[0]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
+                          {{ $safeNavigationMigration(stage.evolves_to[0].evolution_details[0]?.trigger.name) |translateEvoMethod |replaceDash |titlecase}}
                           @if (stage.evolves_to[0].evolution_details[0]?.time_of_day) {
                             <span>
                               {{ language === 'es' ? 'durante': 'in' }}
-                              {{ stage.evolves_to[0].evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
+                              {{ $safeNavigationMigration(stage.evolves_to[0].evolution_details[0]?.time_of_day) |translateEvoMethod |replaceDash |titlecase}}
                             </span>
                           }
                         </p>
@@ -155,7 +155,7 @@
                       @if (stage.evolves_to[0].evolution_details[0]?.known_move_type) {
                         <p class="text-sm text-center">
                           {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
-                          {{ stage.evolves_to[0].evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}}
+                          {{ $safeNavigationMigration(stage.evolves_to[0].evolution_details[0]?.known_move_type.name) |translateEvoMethod |replaceDash |titlecase}}
                           {{ language === 'en' ? 'type move': '' }}
                         </p>
                       }
@@ -167,7 +167,7 @@
                       }
                       @if (stage.evolves_to[0] && stage.evolves_to[0].evolution_details && stage.evolves_to[0].evolution_details.length > 0) {
                         <p class="text-sm text-center hover:text-blue-500 cursor-pointer">
-                          {{ stage.evolves_to[0].evolution_details[stage.evolves_to[0].evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
+                          {{ $safeNavigationMigration(stage.evolves_to[0].evolution_details[stage.evolves_to[0].evolution_details.length - 1]?.item?.name) |translateEvoMethod  |titlecase }}
                         </p>
                       }
                     </div>
@@ -226,11 +226,11 @@
             </div>
             @if (stage.evolution_details[0]?.trigger) {
               <p>
-                {{ stage.evolution_details[stage.evolution_details.length - 1]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
+                {{ $safeNavigationMigration(stage.evolution_details[stage.evolution_details.length - 1]?.trigger.name) |translateEvoMethod |replaceDash |titlecase}}
                 @if (stage.evolution_details[0]?.time_of_day) {
                   <span>
                     {{ language === 'es' ? 'durante': 'in' }}
-                    {{ stage.evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
+                    {{ $safeNavigationMigration(stage.evolution_details[0]?.time_of_day) |translateEvoMethod |replaceDash |titlecase}}
                   </span>
                 }
               </p>
@@ -244,7 +244,7 @@
             @if (stage.evolution_details[0]?.known_move_type) {
               <p class="text-md">
                 {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
-                {{ stage.evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}}
+                {{ $safeNavigationMigration(stage.evolution_details[0]?.known_move_type.name) |translateEvoMethod |replaceDash |titlecase}}
                 {{ language === 'en' ? 'type move': '' }}
               </p>
             }
@@ -256,7 +256,7 @@
             }
             @if (stage && stage.evolution_details && stage.evolution_details.length > 0) {
               <p class="hover:text-blue-500 cursor-pointer text-md">
-                {{ stage.evolution_details[stage.evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
+                {{ $safeNavigationMigration(stage.evolution_details[stage.evolution_details.length - 1]?.item?.name) |translateEvoMethod  |titlecase }}
               </p>
             }
             @if (stage?.evolution_details[0]?.turn_upside_down) {
@@ -267,7 +267,7 @@
             @if (stage?.evolution_details[0]?.trade_species) {
               <p class="hover:text-blue-500 cursor-pointer text-md">
                 {{ language === 'es' ? 'por': 'with' }}
-                {{ stage?.evolution_details[0]?.trade_species.name |titlecase}}
+                {{ $safeNavigationMigration(stage?.evolution_details[0]?.trade_species.name) |titlecase}}
               </p>
             }
           </div>
@@ -295,11 +295,11 @@
               </div>
               @if (stage2.evolution_details[0]?.trigger) {
                 <p>
-                  {{ stage2.evolution_details[0]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
+                  {{ $safeNavigationMigration(stage2.evolution_details[0]?.trigger.name) |translateEvoMethod |replaceDash |titlecase}}
                   @if (stage2.evolution_details[0]?.time_of_day) {
                     <span>
                       {{ language === 'es' ? 'durante': 'in' }}
-                      {{ stage2.evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
+                      {{ $safeNavigationMigration(stage2.evolution_details[0]?.time_of_day) |translateEvoMethod |replaceDash |titlecase}}
                     </span>
                   }
                 </p>
@@ -314,7 +314,7 @@
               @if (stage2.evolution_details[0]?.known_move_type) {
                 <p class="text-md">
                   {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
-                  {{ stage2.evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}} move
+                  {{ $safeNavigationMigration(stage2.evolution_details[0]?.known_move_type.name) |translateEvoMethod |replaceDash |titlecase}} move
                   {{ language === 'en' ? 'type move': '' }}
                 </p>
               }
@@ -326,7 +326,7 @@
               }
               @if (stage2 && stage2.evolution_details && stage2.evolution_details.length > 0) {
                 <p class="hover:text-blue-500 cursor-pointer text-md">
-                  {{ stage2.evolution_details[stage.evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
+                  {{ $safeNavigationMigration(stage2.evolution_details[stage.evolution_details.length - 1]?.item?.name) |translateEvoMethod  |titlecase }}
                 </p>
               }
             </div>
@@ -381,11 +381,11 @@
             </p>
             @if (stage.evolution_details[0]?.trigger) {
               <p>
-                {{ stage.evolution_details[stage.evolution_details.length - 1]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
+                {{ $safeNavigationMigration(stage.evolution_details[stage.evolution_details.length - 1]?.trigger.name) |translateEvoMethod |replaceDash |titlecase}}
                 @if (stage.evolution_details[0]?.time_of_day) {
                   <span>
                     {{ language === 'es' ? 'durante': 'in' }}
-                    {{ stage.evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
+                    {{ $safeNavigationMigration(stage.evolution_details[0]?.time_of_day) |translateEvoMethod |replaceDash |titlecase}}
                   </span>
                 }
               </p>
@@ -399,7 +399,7 @@
             @if (stage.evolution_details[0]?.known_move_type) {
               <p class="text-md">
                 {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
-                {{ stage.evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}}
+                {{ $safeNavigationMigration(stage.evolution_details[0]?.known_move_type.name) |translateEvoMethod |replaceDash |titlecase}}
                 {{ language === 'en' ? 'type move': '' }}
               </p>
             }
@@ -411,7 +411,7 @@
             }
             @if (stage && stage.evolution_details && stage.evolution_details.length > 0) {
               <p class="hover:text-blue-500 cursor-pointer text-md">
-                {{ stage.evolution_details[stage.evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
+                {{ $safeNavigationMigration(stage.evolution_details[stage.evolution_details.length - 1]?.item?.name) |translateEvoMethod  |titlecase }}
               </p>
             }
             @if (stage?.evolution_details[0]?.turn_upside_down) {
@@ -422,7 +422,7 @@
             @if (stage?.evolution_details[0]?.trade_species) {
               <p class="hover:text-blue-500 cursor-pointer text-md">
                 {{ language === 'es' ? 'por': 'with' }}
-                {{ stage?.evolution_details[0]?.trade_species.name |titlecase}}
+                {{ $safeNavigationMigration(stage?.evolution_details[0]?.trade_species.name) |titlecase}}
               </p>
             }
           </div>
@@ -450,11 +450,11 @@
               </p>
               @if (stage2.evolution_details[0]?.trigger) {
                 <p>
-                  {{ stage2.evolution_details[0]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
+                  {{ $safeNavigationMigration(stage2.evolution_details[0]?.trigger.name) |translateEvoMethod |replaceDash |titlecase}}
                   @if (stage2.evolution_details[0]?.time_of_day) {
                     <span>
                       {{ language === 'es' ? 'durante': 'in' }}
-                      {{ stage2.evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
+                      {{ $safeNavigationMigration(stage2.evolution_details[0]?.time_of_day) |translateEvoMethod |replaceDash |titlecase}}
                     </span>
                   }
                 </p>
@@ -469,7 +469,7 @@
               @if (stage2.evolution_details[0]?.known_move_type) {
                 <p class="text-md">
                   {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
-                  {{ stage2.evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}} move
+                  {{ $safeNavigationMigration(stage2.evolution_details[0]?.known_move_type.name) |translateEvoMethod |replaceDash |titlecase}} move
                   {{ language === 'en' ? 'type move': '' }}
                 </p>
               }
@@ -481,7 +481,7 @@
               }
               @if (stage2 && stage2.evolution_details && stage2.evolution_details.length > 0) {
                 <p class="hover:text-blue-500 cursor-pointer text-md">
-                  {{ stage2.evolution_details[stage.evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
+                  {{ $safeNavigationMigration(stage2.evolution_details[stage.evolution_details.length - 1]?.item?.name) |translateEvoMethod  |titlecase }}
                 </p>
               }
             </div>
@@ -534,11 +534,11 @@
               </p>
               @if (stage.evolution_details[0]?.trigger) {
                 <p>
-                  {{ stage.evolution_details[stage.evolution_details.length - 1]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
+                  {{ $safeNavigationMigration(stage.evolution_details[stage.evolution_details.length - 1]?.trigger.name) |translateEvoMethod |replaceDash |titlecase}}
                   @if (stage.evolution_details[0]?.time_of_day) {
                     <span>
                       {{ language === 'es' ? 'durante': 'in' }}
-                      {{ stage.evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
+                      {{ $safeNavigationMigration(stage.evolution_details[0]?.time_of_day) |translateEvoMethod |replaceDash |titlecase}}
                     </span>
                   }
                 </p>
@@ -552,7 +552,7 @@
               @if (stage.evolution_details[0]?.known_move_type) {
                 <p class="text-md">
                   {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
-                  {{ stage.evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}}
+                  {{ $safeNavigationMigration(stage.evolution_details[0]?.known_move_type.name) |translateEvoMethod |replaceDash |titlecase}}
                   {{ language === 'en' ? 'type move': '' }}
                 </p>
               }
@@ -564,7 +564,7 @@
               }
               @if (stage && stage.evolution_details && stage.evolution_details.length > 0) {
                 <p class="hover:text-blue-500 cursor-pointer text-md">
-                  {{ stage.evolution_details[stage.evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
+                  {{ $safeNavigationMigration(stage.evolution_details[stage.evolution_details.length - 1]?.item?.name) |translateEvoMethod  |titlecase }}
                 </p>
               }
               @if (stage?.evolution_details[0]?.turn_upside_down) {
@@ -575,7 +575,7 @@
               @if (stage?.evolution_details[0]?.trade_species) {
                 <p class="hover:text-blue-500 cursor-pointer text-md">
                   {{ language === 'es' ? 'por': 'with' }}
-                  {{ stage?.evolution_details[0]?.trade_species.name |titlecase}}
+                  {{ $safeNavigationMigration(stage?.evolution_details[0]?.trade_species.name) |titlecase}}
                 </p>
               }
             </div>
@@ -603,11 +603,11 @@
                 </p>
                 @if (stage2.evolution_details[0]?.trigger) {
                   <p>
-                    {{ stage2.evolution_details[0]?.trigger.name |translateEvoMethod |replaceDash |titlecase}}
+                    {{ $safeNavigationMigration(stage2.evolution_details[0]?.trigger.name) |translateEvoMethod |replaceDash |titlecase}}
                     @if (stage2.evolution_details[0]?.time_of_day) {
                       <span>
                         {{ language === 'es' ? 'durante': 'in' }}
-                        {{ stage2.evolution_details[0]?.time_of_day |translateEvoMethod |replaceDash |titlecase}}
+                        {{ $safeNavigationMigration(stage2.evolution_details[0]?.time_of_day) |translateEvoMethod |replaceDash |titlecase}}
                       </span>
                     }
                   </p>
@@ -622,7 +622,7 @@
                 @if (stage2.evolution_details[0]?.known_move_type) {
                   <p class="text-md">
                     {{ language === 'es' ? 'Conociendo un movimiento tipo': 'Knowing a' }}
-                    {{ stage2.evolution_details[0]?.known_move_type.name |translateEvoMethod |replaceDash |titlecase}} move
+                    {{ $safeNavigationMigration(stage2.evolution_details[0]?.known_move_type.name) |translateEvoMethod |replaceDash |titlecase}} move
                     {{ language === 'en' ? 'type move': '' }}
                   </p>
                 }
@@ -634,7 +634,7 @@
                 }
                 @if (stage2 && stage2.evolution_details && stage2.evolution_details.length > 0) {
                   <p class="hover:text-blue-500 cursor-pointer text-md">
-                    {{ stage2.evolution_details[stage.evolution_details.length - 1]?.item?.name |translateEvoMethod  |titlecase }}
+                    {{ $safeNavigationMigration(stage2.evolution_details[stage.evolution_details.length - 1]?.item?.name) |translateEvoMethod  |titlecase }}
                   </p>
                 }
               </div>

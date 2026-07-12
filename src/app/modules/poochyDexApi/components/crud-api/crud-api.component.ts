@@ -1,4 +1,4 @@
-import { Component, OnInit, DestroyRef, inject } from '@angular/core';
+import { Component, OnInit, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { PoochyDexApiService } from '../../services/poochy-dex-api.service';
 import { POKEMON_TYPES } from '../../../../../../entities/common/const.interface';
 import { LanguageService } from 'app/modules/shared/services/language.service';
@@ -15,6 +15,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     templateUrl: './crud-api.component.html',
     styleUrls: ['./crud-api.component.scss'],
     animations: detailFadeInAnimations,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CrudApiComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, OnInit, DestroyRef, inject } from '@angular/core';
+import { Component, OnInit, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { LoadingService } from 'app/modules/shared/services/loading.service';
@@ -24,6 +24,7 @@ interface PokedexListResponse {
     templateUrl: './list-pokedex.component.html',
     styleUrls: ['./list-pokedex.component.scss'],
     animations: detailFadeInAnimations,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ListPokedexComponent implements OnInit {

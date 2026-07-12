@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, DestroyRef, inject } from '@angular/core';
+import { Component, Input, OnInit, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { HelperService } from '../services/helper.service';
 import { LanguageService } from '../services/language.service';
@@ -8,6 +8,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     selector: 'app-hyperlink',
     templateUrl: './hyperlink.component.html',
     styleUrls: ['./hyperlink.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HyperlinkComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 
 export interface TabItem {
   label: string;
@@ -9,6 +9,7 @@ export interface TabItem {
     selector: 'app-custom-tabs',
     templateUrl: './custom-tabs.component.html',
     styleUrls: ['./custom-tabs.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CustomTabsComponent {

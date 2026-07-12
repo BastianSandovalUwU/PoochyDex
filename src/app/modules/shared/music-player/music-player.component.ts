@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { LanguageService } from '../services/language.service';
 import { MusicPlayerService, MusicRepeatMode } from '../services/music-player.service';
@@ -32,6 +32,7 @@ const EASE_IN = 'cubic-bezier(0.4, 0, 1, 1)';
             ])
         ])
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MusicPlayerComponent implements OnInit, OnDestroy {

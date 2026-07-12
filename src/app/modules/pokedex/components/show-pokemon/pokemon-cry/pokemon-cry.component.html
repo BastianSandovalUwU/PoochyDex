@@ -23,7 +23,7 @@
         </app-ui-button>
       }
       <audio id="audioPlayerLatest" #audioPlayerLatest (ended)="audioEnded('latest')">
-        <source [src]="pokemon?.cries?.latest" type="audio/mpeg">
+        <source [src]="$safeNavigationMigration(pokemon?.cries?.latest)" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
       </audio>
     </span>
@@ -53,7 +53,7 @@
         </app-ui-button>
       }
       <audio id="audioPlayerLegacy" #audioPlayerLegacy (ended)="audioEnded('legacy')">
-        <source [src]="pokemon?.cries?.legacy" type="audio/mpeg">
+        <source [src]="$safeNavigationMigration(pokemon?.cries?.legacy)" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
       </audio>
     </span>

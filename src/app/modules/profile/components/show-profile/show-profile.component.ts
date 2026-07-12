@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, DestroyRef, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from 'app/modules/auth/services/auth.service';
 import { UserConfigData, UserData } from '../../../../../../entities/auth/user.entity';
 import { Router } from '@angular/router';
@@ -15,6 +15,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     templateUrl: './show-profile.component.html',
     styleUrls: ['./show-profile.component.scss'],
     animations: detailFadeInAnimations,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ShowProfileComponent implements OnInit, OnDestroy {

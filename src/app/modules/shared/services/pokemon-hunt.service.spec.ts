@@ -4,7 +4,7 @@ import { PokemonHuntService } from './pokemon-hunt.service';
 import { AuthService } from 'app/modules/auth/services/auth.service';
 import { RegisteredPokemon } from '../../../../../entities/pokemon-hunt.entity';
 import { environment } from 'environments/environment';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('PokemonHuntService', () => {
   let service: PokemonHuntService;
@@ -27,7 +27,7 @@ describe('PokemonHuntService', () => {
     providers: [
         PokemonHuntService,
         { provide: AuthService, useValue: authServiceSpy },
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting()
     ]
 });
