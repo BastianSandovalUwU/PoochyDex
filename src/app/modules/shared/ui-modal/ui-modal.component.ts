@@ -6,7 +6,8 @@ import {
   OnChanges,
   OnDestroy,
   Output,
-  SimpleChanges
+  SimpleChanges,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 /**
@@ -17,6 +18,7 @@ import {
     selector: 'app-ui-modal',
     templateUrl: './ui-modal.component.html',
     styleUrls: ['./ui-modal.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class UiModalComponent implements OnChanges, OnDestroy {

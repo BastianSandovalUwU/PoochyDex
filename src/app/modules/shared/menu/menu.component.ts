@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, OnDestroy, Output, SimpleChanges, DestroyRef, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, OnDestroy, Output, SimpleChanges, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { UserData } from '../../../../../entities/auth/user.entity';
 import { PokeApiService } from '../services/poke-api.service';
@@ -15,6 +15,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     selector: 'app-menu',
     templateUrl: './menu.component.html',
     styleUrls: ['./menu.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MenuComponent implements OnInit, OnChanges, OnDestroy {

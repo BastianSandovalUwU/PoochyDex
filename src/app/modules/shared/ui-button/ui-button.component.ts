@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
 export type UiButtonVariant =
   | 'primary'
@@ -13,6 +13,7 @@ export type UiButtonVariant =
     selector: 'app-ui-button',
     templateUrl: './ui-button.component.html',
     styleUrls: ['./ui-button.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class UiButtonComponent {

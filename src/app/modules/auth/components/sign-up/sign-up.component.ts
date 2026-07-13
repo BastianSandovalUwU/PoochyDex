@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit, DestroyRef, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import {
   AbstractControl,
   UntypedFormBuilder,
@@ -18,6 +18,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     selector: 'app-sign-up',
     templateUrl: './sign-up.component.html',
     styleUrls: ['./sign-up.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SignUpComponent implements OnInit, OnDestroy {

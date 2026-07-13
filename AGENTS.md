@@ -18,8 +18,8 @@ El proyecto nativo vive en `android/` y **está versionado** (se ignoran solo `b
 
 | Área | Tecnología |
 |------|------------|
-| Framework | Angular **20** (NgModules, no standalone por defecto) |
-| Lenguaje | TypeScript **~5.8** |
+| Framework | Angular **22** (NgModules, no standalone por defecto) |
+| Lenguaje | TypeScript **~6.0** |
 | Estilos | **SCSS** por componente + Tailwind (`src/styles/`, `src/tailwind.css`; script `build:tailwind`) |
 | UI | Angular Material (tema prebuilt `purple-green` en `angular.json`) |
 | HTTP / estado | `HttpClient`, RxJS |
@@ -68,7 +68,7 @@ Las **reglas por módulo** están en **`.cursor/rules/module-*.mdc`**: Cursor la
 - **Idioma en código:** identificadores y comentarios en **inglés**. **Texto de UI:** español e inglés según el idioma activo (`language` / `currentLanguage` en `'es'` | `'en'`, vía `LanguageService` y pipes o ramas existentes).
 - Cambios de UI: coherencia con Material + estilos globales en `src/styles/`.
 - **Botones:** usar **`app-ui-button`** (`SharedModule`, `shared/ui-button/`); si hace falta un estilo nuevo, ampliar **`UiButtonComponent`** en shared, no duplicar clases en cada vista (véase **`.cursor/rules/ui-button.mdc`**).
-- **Entrada de vista:** en componentes de ruta y contenedores raíz cuyo contenido aparece con `*ngIf` tras carga, usar la animación compartida **`detailFadeInAnimations`** y **`[@detailFadeIn]`** (véase **`.cursor/rules/detail-fade-in.mdc`**, `shared/animations/detail-fade-in.animation.ts`).
+- **Entrada de vista:** en componentes de ruta y contenedores raíz cuyo contenido aparece con `@if` tras carga, usar la animación compartida **`detailFadeInAnimations`** y **`[@detailFadeIn]`** (véase **`.cursor/rules/detail-fade-in.mdc`**, `shared/animations/detail-fade-in.animation.ts`).
 - **Seguridad:** no commitear secretos; cuidado con HTML dinámico y enlaces externos; la autorización real es en el backend (ver **`.cursor/rules/security.mdc`**).
 
 ## Commits (Git)
@@ -103,7 +103,7 @@ En **`.cursor/rules/`**:
 | **`english-code-i18n-ui.mdc`** | Siempre: código en inglés; UI bilingüe con `language` / `LanguageService`. |
 | **`security.mdc`** | Siempre: secretos, XSS, almacenamiento, APIs, dependencias. |
 | **`ui-button.mdc`** | Siempre: usar `app-ui-button`; personalizar en `shared/ui-button/`. |
-| **`detail-fade-in.mdc`** | Siempre: pantallas y contenedores principales con `*ngIf` → `detailFadeInAnimations` + `[@detailFadeIn]`. |
+| **`detail-fade-in.mdc`** | Siempre: pantallas y contenedores principales con `@if` → `detailFadeInAnimations` + `[@detailFadeIn]`. |
 | **`module-pokedex.mdc`** … **`module-shared.mdc`** | Al trabajar en `src/app/modules/<módulo>/**` (rutas y dependencias de ese feature). |
 | **`angular-templates.mdc`** | Archivos `*.html`. |
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, DestroyRef, inject } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { PokeApiService } from '../services/poke-api.service';
 import { LanguageService } from '../services/language.service';
 import { HelperService } from '../services/helper.service';
@@ -15,6 +15,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     selector: 'app-pokemon-hunt-list',
     templateUrl: './pokemon-hunt-list.component.html',
     styleUrls: ['./pokemon-hunt-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PokemonHuntListComponent implements OnInit, OnChanges {

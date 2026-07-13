@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, DestroyRef, inject } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { Subscription } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -7,6 +7,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     selector: 'app-loading-spinner',
     templateUrl: './loading-spinner.component.html',
     styleUrls: ['./loading-spinner.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LoadingSpinnerComponent implements OnInit, OnDestroy {

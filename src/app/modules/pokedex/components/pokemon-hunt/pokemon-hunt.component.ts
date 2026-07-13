@@ -1,4 +1,4 @@
-import { Component, OnInit, DestroyRef, inject } from '@angular/core';
+import { Component, OnInit, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { PokedexOption } from '../../../../../../entities/pokemon-hunt.entity';
 import { ALL_POKEDEX_OPTIONS } from '../../../../../../entities/common/const.interface';
@@ -10,6 +10,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     templateUrl: './pokemon-hunt.component.html',
     styleUrls: ['./pokemon-hunt.component.scss'],
     animations: detailFadeInAnimations,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PokemonHuntComponent implements OnInit {

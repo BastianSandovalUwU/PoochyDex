@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { FilteredByEgg, FilteredByMachine, FilteredByTutor } from '../../../../../entities/moves.entity';
 import { TabItem } from '../custom-tabs/custom-tabs.component';
 import { MatTabChangeEvent } from '@angular/material/tabs';
@@ -9,6 +9,7 @@ import { toggleSectionCollapseAnimations } from '../animations/toggle-section-co
     templateUrl: './pokemon-moves-table.component.html',
     styleUrls: ['./pokemon-moves-table.component.scss'],
     animations: toggleSectionCollapseAnimations,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PokemonMovesTableComponent implements OnChanges {

@@ -1,31 +1,36 @@
 <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 2xl:grid-cols-11 gap-1 pb-15 w-full mt-2">
-  <div *ngFor="let pokemon of filteredPokemon" class="relative">
-    <div [class.opacity-50]="!isPokemonRegistered(pokemon)">
-      <app-pokemon-card
-        [pokemon]="pokemon"
-        [language]="language"
-        [routerLinkPath]="['/pokedex/show-pokemon']">
-      </app-pokemon-card>
+  @for (pokemon of filteredPokemon; track pokemon) {
+    <div class="relative">
+      <div [class.opacity-50]="!isPokemonRegistered(pokemon)">
+        <app-pokemon-card
+          [pokemon]="pokemon"
+          [language]="language"
+          [routerLinkPath]="['/pokedex/show-pokemon']">
+        </app-pokemon-card>
+      </div>
+      <app-ui-button
+        type="button"
+        variant="icon"
+        [extraClasses]="huntToggleExtraClasses(pokemon)"
+        [ariaLabel]="(isPokemonRegistered(pokemon) ? (language === 'es' ? 'Desregistrar ' : 'Unregister ') : (language === 'es' ? 'Registrar ' : 'Register ')) + pokemon.name"
+        [ariaPressed]="isPokemonRegistered(pokemon)"
+        (buttonClick)="togglePokemonRegistration(pokemon, $event)">
+        <mat-icon class="!m-0 !p-0" style="font-size: 24px; width: 24px; height: 24px; line-height: 24px;">
+          {{ isPokemonRegistered(pokemon) ? 'check_circle' : 'add_circle_outline' }}
+        </mat-icon>
+      </app-ui-button>
     </div>
+  }
+</div>
 
-    <app-ui-button
-      type="button"
-      variant="icon"
-      [extraClasses]="huntToggleExtraClasses(pokemon)"
-      [ariaLabel]="(isPokemonRegistered(pokemon) ? (language === 'es' ? 'Desregistrar ' : 'Unregister ') : (language === 'es' ? 'Registrar ' : 'Register ')) + pokemon.name"
-      [ariaPressed]="isPokemonRegistered(pokemon)"
-      (buttonClick)="togglePokemonRegistration(pokemon, $event)">
-      <mat-icon class="!m-0 !p-0" style="font-size: 24px; width: 24px; height: 24px; line-height: 24px;">
-        {{ isPokemonRegistered(pokemon) ? 'check_circle' : 'add_circle_outline' }}
-      </mat-icon>
-    </app-ui-button>
+@if (isLoading) {
+  <div>
+    <h1 class="text-center text-2xl text-gray-800 dark:text-gray-200">{{ language === 'es' ? 'Cargando Pokémon de la Pokédex...' : 'Loading Pokémon from Pokédex...' }}</h1>
   </div>
-</div>
+}
 
-<div *ngIf="isLoading">
-  <h1 class="text-center text-2xl text-gray-800 dark:text-gray-200">{{ language === 'es' ? 'Cargando Pokémon de la Pokédex...' : 'Loading Pokémon from Pokédex...' }}</h1>
-</div>
-
-<div *ngIf="!isLoading && filteredPokemon.length === 0 && pokemonLoaded">
-  <h1 class="text-center text-2xl text-gray-800 dark:text-gray-200">{{ language === 'es' ? 'No hay Pokémon en esta Pokédex.' : 'No Pokémon in this Pokédex.' }}</h1>
-</div>
+@if (!isLoading && filteredPokemon.length === 0 && pokemonLoaded) {
+  <div>
+    <h1 class="text-center text-2xl text-gray-800 dark:text-gray-200">{{ language === 'es' ? 'No hay Pokémon en esta Pokédex.' : 'No Pokémon in this Pokédex.' }}</h1>
+  </div>
+}

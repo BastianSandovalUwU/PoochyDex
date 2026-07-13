@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, DestroyRef, inject } from '@angular/core';
+import { Component, Input, OnInit, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { HelperService } from '../services/helper.service';
 import { LanguageService } from '../services/language.service';
@@ -8,6 +8,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     selector: 'app-hyperlink',
     templateUrl: './hyperlink.component.html',
     styleUrls: ['./hyperlink.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HyperlinkComponent implements OnInit {
@@ -34,20 +35,17 @@ export class HyperlinkComponent implements OnInit {
   }
 
   redirecTo(): void {
-    let url = '';
     switch (this.type) {
       case 'pokemon':
-        url = '/pokedex/show-pokemon/' + this.value.toLowerCase();
-        this.routerTo(url);
+        this.routerTo('/pokedex/show-pokemon/' + this.value.toLowerCase());
         break;
       case 'game': {
         const name = this.navigateToGame(this.value);
         if(name === '') {
-          console.error('juego no agregado')
+          console.error('game not added')
           return;
         }
-        url = '/game/show-game/' + name;
-        this.routerTo(url);
+        this.routerTo('/game/show-game/' + name);
         break;
       }
       default:

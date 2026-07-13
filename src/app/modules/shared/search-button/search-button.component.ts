@@ -1,4 +1,4 @@
-import { Component, OnInit, DestroyRef, inject } from '@angular/core';
+import { Component, OnInit, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { LanguageService } from '../services/language.service';
 import { ALL_POKEMON_ALOLA } from '../../../../../entities/common/alola-pokemon-data';
@@ -17,6 +17,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     selector: 'app-search-button',
     templateUrl: './search-button.component.html',
     styleUrls: ['./search-button.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SearchButtonComponent implements OnInit {

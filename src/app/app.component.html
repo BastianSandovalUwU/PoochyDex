@@ -12,9 +12,9 @@
 
   <!-- Menu Component -->
   <app-menu [isOpen]="isMenuOpen"
-            (menuClosed)="closeMenu()"
-            [language]="currentLanguage"
-            [userData]="currentUser">
+    (menuClosed)="closeMenu()"
+    [language]="currentLanguage"
+    [userData]="currentUser">
   </app-menu>
 
   <!-- Main Content -->
@@ -26,9 +26,15 @@
     <router-outlet></router-outlet>
   </main>
 
-  <app-up-button *ngIf="!loading"></app-up-button>
-  <app-music-player *ngIf="currentUser"></app-music-player>
-  <app-search-button *ngIf="!loading"></app-search-button>
+  @if (!loading) {
+    <app-up-button></app-up-button>
+  }
+  @if (currentUser) {
+    <app-music-player></app-music-player>
+  }
+  @if (!loading) {
+    <app-search-button></app-search-button>
+  }
   <app-footer></app-footer>
   <app-loading-spinner [loading]="loading"></app-loading-spinner>
   <app-new-update-view></app-new-update-view>

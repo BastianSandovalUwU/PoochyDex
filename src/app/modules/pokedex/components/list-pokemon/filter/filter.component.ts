@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, inject, ChangeDetectionStrategy } from '@angular/core';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
 @Component({
@@ -6,6 +6,7 @@ import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/t
     templateUrl: './filter.component.html',
     styleUrls: ['./filter.component.scss'],
     animations: toggleSectionCollapseAnimations,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class FilterComponent implements OnInit, OnChanges {

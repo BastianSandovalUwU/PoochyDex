@@ -21,9 +21,11 @@
       {{ isFormMode ? (language === 'es' ? 'Recargar formas' : 'Reload forms') : (language === 'es' ? 'Recargar Pokémon' : 'Reload Pokémon') }}
     </app-ui-button>
 
-    <span *ngIf="loading" class="text-sm text-gray-500">
-      {{ language === 'es' ? 'Cargando...' : 'Loading...' }}
-    </span>
+    @if (loading) {
+      <span class="text-sm text-gray-500">
+        {{ language === 'es' ? 'Cargando...' : 'Loading...' }}
+      </span>
+    }
 
     <div class="flex items-center gap-2 ml-auto">
       <span class="text-xs text-gray-600 dark:text-gray-300">
@@ -39,206 +41,199 @@
     </div>
   </div>
 
-  <div *ngIf="errorMessage" class="mb-4 text-sm text-red-600">
-    {{ errorMessage }}
-  </div>
+  @if (errorMessage) {
+    <div class="mb-4 text-sm text-red-600">
+      {{ errorMessage }}
+    </div>
+  }
 
   <!-- Modal del Formulario -->
-  <div
-    *ngIf="showModal"
-    class="fixed inset-0 bg-black/70 flex items-center justify-center z-99999 p-4"
-    tabindex="-1"
-    role="dialog"
-    aria-modal="true"
-    (click)="closeModal()"
-    (keydown.escape)="closeModal()">
+  @if (showModal) {
     <div
-      class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto"
+      class="fixed inset-0 bg-black/70 flex items-center justify-center z-99999 p-4"
       tabindex="-1"
-      (click)="$event.stopPropagation()"
-      (keydown)="$event.stopPropagation()">
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
-          {{ isFormMode
-              ? (isEditMode ? (language === 'es' ? 'Editar forma alternativa' : 'Edit alt. form') : (language === 'es' ? 'Crear forma alternativa' : 'Create alt. form'))
-              : (isEditMode ? (language === 'es' ? 'Editar Pokémon' : 'Edit Pokémon') : (language === 'es' ? 'Crear Pokémon' : 'Create Pokémon')) }}
-        </h2>
-        <app-ui-button
-          variant="ghost"
-          type="button"
-          ariaLabel="Close"
-          extraClasses="!text-gray-500 dark:!text-gray-400 hover:!text-gray-700 dark:hover:!text-gray-200 !text-2xl !font-bold !min-w-0 !px-2"
-          (buttonClick)="closeModal()">
-          ×
-        </app-ui-button>
-      </div>
-
-      <form (ngSubmit)="savePokemon()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-            {{ language === 'es' ? 'Número *' : 'Number *' }}
-          </label>
-          <input
-            type="number"
-            class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
-            [(ngModel)]="formData.number"
-            name="number"
-            required
-          />
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-            {{ language === 'es' ? 'Nombre *' : 'Name *' }}
-          </label>
-          <input
-            type="text"
-            class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
-            [(ngModel)]="formData.name"
-            name="name"
-            required
-          />
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-            {{ language === 'es' ? 'Tipo principal *' : 'Primary type *' }}
-          </label>
-          <select
-            class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
-            [(ngModel)]="formData.type"
-            name="type"
-            required>
-            <option [ngValue]="''" disabled>{{ language === 'es' ? 'Selecciona un tipo' : 'Select a type' }}</option>
-            <option *ngFor="let type of pokemonTypes" [ngValue]="type">
-              {{ getTypeLabel(type) }}
-            </option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-            {{ language === 'es' ? 'Segundo tipo' : 'Secondary type' }}
-          </label>
-          <select
-            class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
-            [(ngModel)]="formData.type2"
-            name="type2">
-            <option [ngValue]="''">
-              {{ language === 'es' ? 'Ninguno' : 'None' }}
-            </option>
-            <option *ngFor="let type of pokemonTypes" [ngValue]="type">
-              {{ getTypeLabel(type) }}
-            </option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-            {{ language === 'es' ? 'Generación *' : 'Generation *' }}
-          </label>
-          <input
-            type="number"
-            class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
-            [(ngModel)]="formData.generationId"
-            name="generationId"
-            required
-          />
-        </div>
-
-        <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-              Sprite Home URL *
-            </label>
-            <input
-              type="text"
-              class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
-              [(ngModel)]="formData.sprites.homeUrl"
-              name="homeUrl"
-              required
-            />
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-              Sprite Home Shiny URL
-            </label>
-            <input
-              type="text"
-              class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
-              [(ngModel)]="formData.sprites.homeShinyUrl"
-              name="homeShinyUrl"
-            />
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-              Sprite Icon URL *
-            </label>
-            <input
-              type="text"
-              class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
-              [(ngModel)]="formData.sprites.iconUrl"
-              name="iconUrl"
-              required
-            />
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-              Sprite Sugimori Art URL
-            </label>
-            <input
-              type="text"
-              class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
-              [(ngModel)]="formData.sprites.sugimoriArt"
-              name="sugimoriArt"
-            />
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-              Sprite Global Link Art URL
-            </label>
-            <input
-              type="text"
-              class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
-              [(ngModel)]="formData.sprites.globalLinkArt"
-              name="globalLinkArt"
-            />
-          </div>
-
-        </div>
-
-        <div class="md:col-span-2 flex items-center gap-3 mt-2">
+      role="dialog"
+      aria-modal="true"
+      (click)="closeModal()"
+      (keydown.escape)="closeModal()">
+      <div
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto"
+        tabindex="-1"
+        (click)="$event.stopPropagation()"
+        (keydown)="$event.stopPropagation()">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
+            {{ isFormMode
+            ? (isEditMode ? (language === 'es' ? 'Editar forma alternativa' : 'Edit alt. form') : (language === 'es' ? 'Crear forma alternativa' : 'Create alt. form'))
+            : (isEditMode ? (language === 'es' ? 'Editar Pokémon' : 'Edit Pokémon') : (language === 'es' ? 'Crear Pokémon' : 'Create Pokémon')) }}
+          </h2>
           <app-ui-button
-            type="submit"
-            variant="primary"
-            [disabled]="loading"
-            extraClasses="!bg-green-600 hover:!bg-green-700 !text-white !rounded-md px-4 py-2 text-sm font-medium">
-            {{ isEditMode ? (language === 'es' ? 'Guardar cambios' : 'Save changes') : (language === 'es' ? 'Crear Pokémon' : 'Create Pokémon') }}
-          </app-ui-button>
-
-          <app-ui-button
+            variant="ghost"
             type="button"
-            variant="secondary"
-            extraClasses="px-4 py-2 text-sm !rounded-md"
-            (buttonClick)="resetForm()">
-            {{ language === 'es' ? 'Limpiar formulario' : 'Clear form' }}
-          </app-ui-button>
-
-          <app-ui-button
-            type="button"
-            variant="secondary"
-            extraClasses="px-4 py-2 text-sm !rounded-md ml-auto"
+            ariaLabel="Close"
+            extraClasses="!text-gray-500 dark:!text-gray-400 hover:!text-gray-700 dark:hover:!text-gray-200 !text-2xl !font-bold !min-w-0 !px-2"
             (buttonClick)="closeModal()">
-            {{ language === 'es' ? 'Cancelar' : 'Cancel' }}
+            ×
           </app-ui-button>
         </div>
-      </form>
+        <form (ngSubmit)="savePokemon()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+              {{ language === 'es' ? 'Número *' : 'Number *' }}
+            </label>
+            <input
+              type="number"
+              class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
+              [(ngModel)]="formData.number"
+              name="number"
+              required
+              />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+              {{ language === 'es' ? 'Nombre *' : 'Name *' }}
+            </label>
+            <input
+              type="text"
+              class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
+              [(ngModel)]="formData.name"
+              name="name"
+              required
+              />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+              {{ language === 'es' ? 'Tipo principal *' : 'Primary type *' }}
+            </label>
+            <select
+              class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
+              [(ngModel)]="formData.type"
+              name="type"
+              required>
+              <option [ngValue]="''" disabled>{{ language === 'es' ? 'Selecciona un tipo' : 'Select a type' }}</option>
+              @for (type of pokemonTypes; track type) {
+                <option [ngValue]="type">
+                  {{ getTypeLabel(type) }}
+                </option>
+              }
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+              {{ language === 'es' ? 'Segundo tipo' : 'Secondary type' }}
+            </label>
+            <select
+              class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
+              [(ngModel)]="formData.type2"
+              name="type2">
+              <option [ngValue]="''">
+                {{ language === 'es' ? 'Ninguno' : 'None' }}
+              </option>
+              @for (type of pokemonTypes; track type) {
+                <option [ngValue]="type">
+                  {{ getTypeLabel(type) }}
+                </option>
+              }
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+              {{ language === 'es' ? 'Generación *' : 'Generation *' }}
+            </label>
+            <input
+              type="number"
+              class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
+              [(ngModel)]="formData.generationId"
+              name="generationId"
+              required
+              />
+          </div>
+          <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+                Sprite Home URL *
+              </label>
+              <input
+                type="text"
+                class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
+                [(ngModel)]="formData.sprites.homeUrl"
+                name="homeUrl"
+                required
+                />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+                Sprite Home Shiny URL
+              </label>
+              <input
+                type="text"
+                class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
+                [(ngModel)]="formData.sprites.homeShinyUrl"
+                name="homeShinyUrl"
+                />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+                Sprite Icon URL *
+              </label>
+              <input
+                type="text"
+                class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
+                [(ngModel)]="formData.sprites.iconUrl"
+                name="iconUrl"
+                required
+                />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+                Sprite Sugimori Art URL
+              </label>
+              <input
+                type="text"
+                class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
+                [(ngModel)]="formData.sprites.sugimoriArt"
+                name="sugimoriArt"
+                />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+                Sprite Global Link Art URL
+              </label>
+              <input
+                type="text"
+                class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm"
+                [(ngModel)]="formData.sprites.globalLinkArt"
+                name="globalLinkArt"
+                />
+            </div>
+          </div>
+          <div class="md:col-span-2 flex items-center gap-3 mt-2">
+            <app-ui-button
+              type="submit"
+              variant="primary"
+              [disabled]="loading"
+              extraClasses="!bg-green-600 hover:!bg-green-700 !text-white !rounded-md px-4 py-2 text-sm font-medium">
+              {{ isEditMode ? (language === 'es' ? 'Guardar cambios' : 'Save changes') : (language === 'es' ? 'Crear Pokémon' : 'Create Pokémon') }}
+            </app-ui-button>
+            <app-ui-button
+              type="button"
+              variant="secondary"
+              extraClasses="px-4 py-2 text-sm !rounded-md"
+              (buttonClick)="resetForm()">
+              {{ language === 'es' ? 'Limpiar formulario' : 'Clear form' }}
+            </app-ui-button>
+            <app-ui-button
+              type="button"
+              variant="secondary"
+              extraClasses="px-4 py-2 text-sm !rounded-md ml-auto"
+              (buttonClick)="closeModal()">
+              {{ language === 'es' ? 'Cancelar' : 'Cancel' }}
+            </app-ui-button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
+  }
 
   <!-- Tabla -->
   <div class="rounded-lg border border-gray-200 dark:border-gray-700 overflow-x-auto bg-white dark:bg-gray-800">
@@ -254,26 +249,30 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let pokemon of pokemonList" class="border-t border-gray-200 dark:border-gray-700">
-          <td class="px-3 py-2 text-gray-800 dark:text-gray-100">
-            {{ pokemon.number }}
-          </td>
-          <td class="px-3 py-2 text-gray-800 dark:text-gray-100">
-            {{ pokemon.name }}
-          </td>
-          <td class="px-3 py-2 text-gray-700 dark:text-gray-200">
-            {{ pokemon.type }}<span *ngIf="pokemon.type2"> / {{ pokemon.type2 }}</span>
+        @for (pokemon of pokemonList; track pokemon) {
+          <tr class="border-t border-gray-200 dark:border-gray-700">
+            <td class="px-3 py-2 text-gray-800 dark:text-gray-100">
+              {{ pokemon.number }}
+            </td>
+            <td class="px-3 py-2 text-gray-800 dark:text-gray-100">
+              {{ pokemon.name }}
+            </td>
+            <td class="px-3 py-2 text-gray-700 dark:text-gray-200">
+              {{ pokemon.type }}@if (pokemon.type2) {
+              <span> / {{ pokemon.type2 }}</span>
+            }
           </td>
           <td class="px-3 py-2 text-gray-700 dark:text-gray-200">
             {{ pokemon.generationId }}
           </td>
           <td class="px-3 py-2">
-            <img
-              *ngIf="pokemon.sprites?.iconUrl"
-              [src]="pokemon.sprites.iconUrl"
-              alt="{{ pokemon.name }}"
-              class="w-8 h-8 object-contain"
-            />
+            @if (pokemon.sprites?.iconUrl) {
+              <img
+                [src]="pokemon.sprites.iconUrl"
+                alt="{{ pokemon.name }}"
+                class="w-8 h-8 object-contain"
+                />
+            }
           </td>
           <td class="px-3 py-2 text-right">
             <app-ui-button
@@ -292,16 +291,19 @@
             </app-ui-button>
           </td>
         </tr>
+      }
 
-        <tr *ngIf="!loading && pokemonList.length === 0">
+      @if (!loading && pokemonList.length === 0) {
+        <tr>
           <td colspan="6" class="px-3 py-4 text-center text-gray-500">
             {{ isFormMode
-              ? (language === 'es' ? 'No hay formas de Pokémon en la base de datos.' : 'No Pokémon forms in the database.')
-              : (language === 'es' ? 'No hay Pokémon en la base de datos.' : 'No Pokémon in the database.') }}
+            ? (language === 'es' ? 'No hay formas de Pokémon en la base de datos.' : 'No Pokémon forms in the database.')
+            : (language === 'es' ? 'No hay Pokémon en la base de datos.' : 'No Pokémon in the database.') }}
           </td>
         </tr>
-      </tbody>
-    </table>
-  </div>
+      }
+    </tbody>
+  </table>
+</div>
 </div>
 

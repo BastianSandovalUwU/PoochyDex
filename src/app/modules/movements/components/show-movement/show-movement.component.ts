@@ -1,4 +1,4 @@
-import { Component, OnInit, DestroyRef, inject } from '@angular/core';
+import { Component, OnInit, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { DetailMove, FlavorTextEntry } from '../../../../../../entities/moves.entity';
@@ -16,6 +16,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     templateUrl: './show-movement.component.html',
     styleUrls: ['./show-movement.component.scss'],
     animations: detailFadeInAnimations,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ShowMovementComponent implements OnInit {

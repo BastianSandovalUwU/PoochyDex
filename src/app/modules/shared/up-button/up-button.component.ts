@@ -1,9 +1,10 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-up-button',
     templateUrl: './up-button.component.html',
     styleUrls: ['./up-button.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class UpButtonComponent implements OnInit {
@@ -21,7 +22,7 @@ export class UpButtonComponent implements OnInit {
     this.downButton.style.display = 'flex';
   }
 
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:scroll')
   onWindowScroll() {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollMaximo = document.documentElement.scrollHeight - window.innerHeight;

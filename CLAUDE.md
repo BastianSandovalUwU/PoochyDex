@@ -23,7 +23,7 @@ npm run android:icons  # regenerate icons/splash from assets/icon.png
 
 ## Architecture
 
-**Angular 20 with NgModules** (not standalone components by default). Lazy-loaded feature modules are declared under `src/app/modules/` and wired via `app.routing.ts`.
+**Angular 22 with NgModules** (not standalone components by default). Lazy-loaded feature modules are declared under `src/app/modules/` and wired via `app.routing.ts`.
 
 ### Module map
 
@@ -75,7 +75,7 @@ The native Android project lives in `android/` and is versioned in git (only `bu
 Always use `app-ui-button` (`SharedModule`) for UI actions. Available variants: `primary`, `secondary`, `outline`, `ghost`, `icon`, `cry-play`, `cry-pause`. If a new variant is needed, extend `UiButtonComponent` in `shared/ui-button/` — do not add one-off button styles per view.
 
 ### Fade-in animation
-Every route component and every top-level container that shows data via `*ngIf` must apply `detailFadeInAnimations`:
+Every route component and every top-level container that shows data via `@if` must apply `detailFadeInAnimations`:
 
 ```typescript
 import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fade-in.animation';
@@ -83,7 +83,9 @@ import { detailFadeInAnimations } from 'app/modules/shared/animations/detail-fad
 animations: detailFadeInAnimations
 ```
 ```html
-<div *ngIf="loaded" [@detailFadeIn]>...</div>
+@if (loaded) {
+  <div [@detailFadeIn]>...</div>
+}
 ```
 Exception: sub-components, tabs, list cells, modals, toasts.
 

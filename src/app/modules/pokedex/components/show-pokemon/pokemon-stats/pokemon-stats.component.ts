@@ -92,10 +92,6 @@ export class PokemonStatsComponent implements OnInit, OnChanges {
     }));
   }
 
-  trackByStat(index: number): number {
-    return index;
-  }
-
   getMaxStat(): number {
     return Math.max(...this.pokemon.stats.map(stat => stat.base_stat));
   }

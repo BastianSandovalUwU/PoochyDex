@@ -1,4 +1,4 @@
-import { Component, OnInit, DestroyRef, inject } from '@angular/core';
+import { Component, OnInit, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
@@ -18,6 +18,7 @@ const FALLBACK_SPRITE = 'https://i.imgur.com/uKx7iOF.png';
     templateUrl: './show-ability.component.html',
     styleUrls: ['./show-ability.component.scss'],
     animations: detailFadeInAnimations,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ShowAbilityComponent implements OnInit {

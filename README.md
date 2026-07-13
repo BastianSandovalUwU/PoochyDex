@@ -5,7 +5,7 @@
   
   **Una Pokédex moderna y completa construida con Angular que integra la PokéAPI**
   
-  [![Angular](https://img.shields.io/badge/Angular-20.3.26-red.svg)](https://angular.io/)
+  [![Angular](https://img.shields.io/badge/Angular-22.0.6-red.svg)](https://angular.io/)
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.4.5-blue.svg)](https://www.typescriptlang.org/)
   [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.3-38B2AC.svg)](https://tailwindcss.com/)
   [![Capacitor](https://img.shields.io/badge/Capacitor-7.0.1-119EFF.svg)](https://capacitorjs.com/)
@@ -32,7 +32,7 @@ PoochyDex es una aplicación web moderna y responsive que funciona como una Pok�
 ## 🚀 Tecnologías Utilizadas
 
 ### Frontend
-- **Angular 20.3.26** - Framework principal
+- **Angular 22.0.6** - Framework principal
 - **TypeScript 5.4.5** - Lenguaje de programación
 - **Tailwind CSS 3.4.3** - Framework de CSS
 - **Angular Material 16.2.14** - Componentes de UI
@@ -50,7 +50,7 @@ PoochyDex es una aplicación web moderna y responsive que funciona como una Pok�
 ## 📦 Instalación
 
 ### Prerrequisitos
-- Node.js (versión 16 o superior)
+- Node.js (versión 24.15 o superior)
 - npm o yarn
 - Angular CLI
 

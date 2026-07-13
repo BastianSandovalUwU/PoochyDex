@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, DestroyRef, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { LanguageService } from '../../../shared/services/language.service';
 import { UserSettingsService } from '../../../shared/services/user-settings.service';
 import { AuthService } from '../../../auth/services/auth.service';
@@ -10,6 +10,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     selector: 'app-settings',
     templateUrl: './settings.component.html',
     styleUrls: ['./settings.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SettingsComponent implements OnInit, OnDestroy {

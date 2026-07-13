@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input, ChangeDetectionStrategy } from '@angular/core';
 
 /**
  * Shimmer placeholder for loading states. Place inside a `position: relative` container
@@ -8,6 +8,7 @@ import { Component, HostBinding, Input } from '@angular/core';
     selector: 'app-ui-skeleton',
     templateUrl: './ui-skeleton.component.html',
     styleUrls: ['./ui-skeleton.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class UiSkeletonComponent {

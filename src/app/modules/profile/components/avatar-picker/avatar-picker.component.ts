@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, DestroyRef, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { DEFAULT_AVATARS, DefaultAvatar, ProfileAvatarService } from 'app/modules/shared/services/profile-avatar.service';
 import { AuthService } from 'app/modules/auth/services/auth.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -9,6 +9,7 @@ type PickerTab = 'default' | 'upload';
     selector: 'app-avatar-picker',
     templateUrl: './avatar-picker.component.html',
     styleUrls: ['./avatar-picker.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AvatarPickerComponent implements OnInit {

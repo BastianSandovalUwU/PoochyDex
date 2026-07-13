@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Input, Output, DestroyRef, inject } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserData } from '../../../../../entities/auth/user.entity';
 import { AuthService } from '../../auth/services/auth.service';
@@ -9,6 +9,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     selector: 'app-header',
     templateUrl: './app-header.component.html',
     styleUrls: ['./app-header.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AppHeaderComponent {

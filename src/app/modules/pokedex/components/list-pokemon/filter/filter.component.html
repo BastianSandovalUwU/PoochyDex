@@ -18,10 +18,10 @@
   <div [@toggleFilters]="filtersVisible ? 'visible' : 'hidden'" class="filters-container">
     <div class="sticky-wrapper">
       <div class="filter-container">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 p-0 sm:p-2">
-            <div [ngClass]="generationGridClass" class="w-full">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 p-0 sm:p-2">
+          <div [ngClass]="generationGridClass" class="w-full">
+            @for (gen of generations; track gen) {
               <app-ui-button
-                *ngFor="let gen of generations"
                 type="button"
                 variant="ghost"
                 [extraClasses]="generationButtonExtraClasses(gen)"
@@ -32,10 +32,11 @@
                   <img class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 translate-x-1/2 w-7 h-7 sm:w-8 sm:h-8" [src]="'./assets/pokemon-version-icon-sprite/' + getGameIconForGeneration(gen)[1] + '.png'" alt="">
                 </div>
               </app-ui-button>
-            </div>
-            <div [ngClass]="formGridClass" class="w-full">
+            }
+          </div>
+          <div [ngClass]="formGridClass" class="w-full">
+            @for (form of ['alola', 'galar', 'paldea', 'hisui', 'gmax', 'mega']; track form) {
               <app-ui-button
-                *ngFor="let form of ['alola', 'galar', 'paldea', 'hisui', 'gmax', 'mega']"
                 type="button"
                 variant="ghost"
                 [extraClasses]="formButtonExtraClasses(form)"
@@ -45,31 +46,34 @@
                   <span class="text-center flex-1 mx-2">
                     {{ language === 'es' ?
                     (form === 'alola' ? 'Formas Alola' :
-                     form === 'galar' ? 'Formas Galar' :
-                     form === 'paldea' ? 'Formas Paldea' :
-                     form === 'hisui' ? 'Formas Hisui' :
-                     form === 'gmax' ? 'Formas Gigamax' :
-                     'Formas Mega') :
+                    form === 'galar' ? 'Formas Galar' :
+                    form === 'paldea' ? 'Formas Paldea' :
+                    form === 'hisui' ? 'Formas Hisui' :
+                    form === 'gmax' ? 'Formas Gigamax' :
+                    'Formas Mega') :
                     (form === 'alola' ? 'Alola Forms' :
-                     form === 'galar' ? 'Galar Forms' :
-                     form === 'paldea' ? 'Paldea Forms' :
-                     form === 'hisui' ? 'Hisui Forms' :
-                     form === 'gmax' ? 'Gigantamax Forms' :
-                     'Mega Forms') }}
+                    form === 'galar' ? 'Galar Forms' :
+                    form === 'paldea' ? 'Paldea Forms' :
+                    form === 'hisui' ? 'Hisui Forms' :
+                    form === 'gmax' ? 'Gigantamax Forms' :
+                    'Mega Forms') }}
                   </span>
                   <img class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 translate-x-1/2 w-7 h-7 sm:w-8 sm:h-8" [src]="getGameIconForForm(form)[1]" alt="">
                 </div>
               </app-ui-button>
-              <div *ngFor="let i of [1,2,3]">
+            }
+            @for (i of [1,2,3]; track i) {
+              <div>
                 &nbsp;
               </div>
-            </div>
+            }
           </div>
-          <div class="p-2">
-            <app-ui-button variant="primary" type="button" extraClasses="mt-4" (buttonClick)="applyFilters()">
-              {{ language === 'es' ? 'Aplicar Filtros' : 'Apply Filters' }}
-            </app-ui-button>
-          </div>
+        </div>
+        <div class="p-2">
+          <app-ui-button variant="primary" type="button" extraClasses="mt-4" (buttonClick)="applyFilters()">
+            {{ language === 'es' ? 'Aplicar Filtros' : 'Apply Filters' }}
+          </app-ui-button>
+        </div>
       </div>
     </div>
   </div>
