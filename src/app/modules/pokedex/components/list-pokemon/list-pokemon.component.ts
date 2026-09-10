@@ -22,9 +22,13 @@ export class ListPokemonComponent implements OnInit {
 
   private destroyRef = inject(DestroyRef);
 
+  private static readonly PAGE_SIZE = 60;
+  private static readonly LOAD_MORE_OFFSET = 800;
+
   allPokemon: Pokemon[] = [];
   allPokemonForms: PokemonForm[] = [];
   filteredPokemon: Pokemon[] = [];
+  visiblePokemon: Pokemon[] = [];
   language: string;
   filtersVisible = false;
   showFloatingFilter: boolean = false;
@@ -43,7 +47,7 @@ export class ListPokemonComponent implements OnInit {
     this.poochyDexApiService.getAllPokemon().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         this.allPokemon = response.data;
-        this.filteredPokemon = this.allPokemon;
+        this.setFilteredPokemon(this.allPokemon);
         this.loadingService.hide();
         this.loading = false;
       },
@@ -127,7 +131,24 @@ export class ListPokemonComponent implements OnInit {
       }
     }
 
-    this.filteredPokemon = Array.from(uniqueMap.values()).sort((a, b) => a.number - b.number);
+    this.setFilteredPokemon(
+      Array.from(uniqueMap.values()).sort((a, b) => a.number - b.number)
+    );
+  }
+
+  private setFilteredPokemon(pokemon: Pokemon[]) {
+    this.filteredPokemon = pokemon;
+    this.visiblePokemon = pokemon.slice(0, ListPokemonComponent.PAGE_SIZE);
+  }
+
+  private loadMorePokemon() {
+    if (this.visiblePokemon.length >= this.filteredPokemon.length) {
+      return;
+    }
+    this.visiblePokemon = this.filteredPokemon.slice(
+      0,
+      this.visiblePokemon.length + ListPokemonComponent.PAGE_SIZE
+    );
   }
 
   getGameIconNameForLanguage(typeName: string, language: string): string {
@@ -138,6 +159,11 @@ export class ListPokemonComponent implements OnInit {
   onScroll() {
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     this.showFloatingFilter = scrollPosition > this.scrollThreshold;
+
+    const distanceToBottom = document.documentElement.scrollHeight - (scrollPosition + window.innerHeight);
+    if (distanceToBottom < ListPokemonComponent.LOAD_MORE_OFFSET) {
+      this.loadMorePokemon();
+    }
   }
 
   addZerosToNumber(number: number): string {
