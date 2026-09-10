@@ -9,8 +9,9 @@
     <div class="absolute inset-0 flex flex-col items-center justify-center">
       <h1 class="text-white text-lg font-bold">N° #{{ addZerosToNumber(pokemon.number) }}</h1>
       <div class="cursor-pointer">
-        <img class="w-24"
+        <img class="w-24 h-24 object-contain"
           [src]="pokemon.sprites.iconUrl" alt=""
+          width="96" height="96" loading="lazy" decoding="async"
           >
       </div>
       <h1 class="text-black text-xl"
@@ -21,7 +22,8 @@
       @if (pokemon.type) {
         <div class="rounded-md w-3/4">
           <img class="w-full"
-            [src]="'./assets/icons/types/' + getGameIconNameForLanguage(pokemon.type, language) + '.png'">
+            [src]="'./assets/icons/types/' + getGameIconNameForLanguage(pokemon.type, language) + '.png'"
+            alt="" loading="lazy" decoding="async">
           </div>
         }
         @if (!pokemon.type) {
@@ -32,7 +34,8 @@
         @if (pokemon.type2) {
           <div class="rounded-md w-3/4">
             <img class="w-full"
-              [src]="'./assets/icons/types/' + getGameIconNameForLanguage(pokemon.type2, language) + '.png'">
+              [src]="'./assets/icons/types/' + getGameIconNameForLanguage(pokemon.type2, language) + '.png'"
+              alt="" loading="lazy" decoding="async">
             </div>
           }
           @if (!pokemon.type2) {

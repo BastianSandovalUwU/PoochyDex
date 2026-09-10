@@ -1,6 +1,11 @@
 /* Force white background for Pokemon cards in both themes */
 .pokemon-card {
   background-color: white !important;
+
+  /* Skip layout/paint for off-screen cards. Long lists (1000+ cards) otherwise
+     exhaust memory on mobile browsers and the renderer is killed. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 12rem;
 }
 
 /* Dark theme specific overrides */
