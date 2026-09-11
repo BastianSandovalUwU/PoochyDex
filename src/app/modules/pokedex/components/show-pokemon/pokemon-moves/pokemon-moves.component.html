@@ -289,3 +289,26 @@
         (tabChangeEvent)="eggChangeGame($event)">
       </app-pokemon-moves-table>
     }
+
+    <!-- Sección de movimientos por entrenamiento (Champions) -->
+    @if (!movesLoading && trainVersionGroups.length > 0) {
+      <app-pokemon-moves-table
+        [language]="language"
+        titleEs="Movimientos Pokémon"
+        titleEn="Pokémon Moves"
+        subtitleEs="Mediante entrenamiento"
+        subtitleEn="By Training"
+        [backgroundColor]="backgroundColor"
+        [filtersVisible]="filtersVisibleTrain"
+        [versionGroups]="trainVersionGroups"
+        [selectedTabIndex]="selectedTabIndexTrain"
+        [filteredMoves]="filteredMovesByTrain"
+        moveType="train"
+        [getGameName]="getGameNameWrapper"
+        [getGameIconGame]="getGameIconGameWrapper"
+        [getGameVersionColor]="getGameVersionColorWrapper"
+        [getTypeName]="getTypeNameWrapper"
+        (toggleFiltersEvent)="toggleFiltersTrain()"
+        (tabChangeEvent)="trainChangeGame($event)">
+      </app-pokemon-moves-table>
+    }
