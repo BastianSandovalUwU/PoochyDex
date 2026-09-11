@@ -21,6 +21,7 @@ alwaysApply: false
 | `show-ability/:ability` | `ShowAbilityComponent` | Habilidad |
 | `list-pokedex` | `ListPokedexComponent` | Listado Pokédex |
 | `show-pokedex/:number` | `ShowPokedexComponent` | Pokédex regional |
+| `camera-scan` | `CameraScanComponent` | Escanea una foto (input con `capture="environment"`) y la "identifica" vía `PokemonRecognitionService` — **mockeado en el front** (`MOCK_RECOGNITION`) hasta que exista `POST /api/pokemon-recognition/identify`; contrato en `docs/api-services.md`. Luego busca el Pokémon real con `PokeApiService.getPokemonByName`. |
 
 **Dependencias del módulo:** `SharedModule` (incluye **`app-ui-button`** para filtros, caza y gritos), `MatButton`/`MatIcon`/`MatTabs`, `FormsModule`, `NgxLoadingModule`.
 
