@@ -111,6 +111,10 @@
                 [routerLink]="['/pokedex/show-ability', abilityGroup.ability.ability.name]">{{ abilityGroup.name }}</span>
               </div>
             </div>
+          } @empty {
+            <div>
+              <span class="font-bold">{{ language === 'es' ? 'Habilidad': 'Ability' }}: </span>{{ language === 'es' ? 'Desconocida': 'Unknown' }}
+            </div>
           }
           @for (eggGroupName of eggGroupNames; track eggGroupName) {
             <div>

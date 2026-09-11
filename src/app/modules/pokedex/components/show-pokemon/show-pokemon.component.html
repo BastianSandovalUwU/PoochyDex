@@ -1,4 +1,4 @@
-@if (pokemon && pokemonSpecie && filteredAbilityNames.length > 0) {
+@if (pokemon && pokemonSpecie && !loading) {
   <div class="m-4 max-w-4xl mx-auto" [@detailFadeIn]>
     <app-pokemon-info
       [language]="language"

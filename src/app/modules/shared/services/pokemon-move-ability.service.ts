@@ -16,6 +16,11 @@ export class PokemonMoveAbilityService {
 
 
   getAbilityNames(abilities: Ability[]): Observable<{ ability: Ability, names: AbilityName[] }[]> {
+    // forkJoin([]) completes without emitting, which would leave callers waiting forever
+    if (!abilities?.length) {
+      return of([]);
+    }
+
     const observables = abilities.map(ability =>
       this.pokeApiService.getAbilityById(ability.ability.name)
     );
