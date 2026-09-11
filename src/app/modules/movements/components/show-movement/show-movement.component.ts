@@ -1,4 +1,4 @@
-import { Component, OnInit, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, HostListener, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { DetailMove, FlavorTextEntry } from '../../../../../../entities/moves.entity';
@@ -30,16 +30,23 @@ export class ShowMovementComponent implements OnInit {
 
   private destroyRef = inject(DestroyRef);
 
+  private static readonly PAGE_SIZE = 60;
+  private static readonly LOAD_MORE_OFFSET = 800;
+
   language: string;
   backgroundColor: string = '';
   pokemonMove: string;
   moveName: string = '';
   move: DetailMove;
   pokemon: Pokemon[] = [];
+  /** Rendered subset of `pokemon`, grown in batches on scroll to keep mobile browsers from crashing. */
+  visiblePokemon: Pokemon[] = [];
   allPokemon: Pokemon[] = [];
   pokemonDataMap: Map<string, Pokemon> = new Map();
   moveEffectEntry: any;
   flavorTextsByGame: Map<string, FlavorTextEntry[]> = new Map();
+  /** Flavor texts ready to render; computed once so the template keeps stable row identities. */
+  flavorTexts: Array<{ flavor_text: string; version: string }> = [];
   moveType: string = '';
 
   constructor() {
@@ -99,6 +106,8 @@ export class ShowMovementComponent implements OnInit {
       }
       this.flavorTextsByGame.get(versionGroupName)!.push(entry);
     });
+
+    this.flavorTexts = this.getFlavorTextsByGame();
   }
 
   getFlavorTextsByGame(): Array<{ flavor_text: string; version: string }> {
@@ -185,7 +194,27 @@ export class ShowMovementComponent implements OnInit {
     }
 
     this.pokemon = pokemonList;
+    this.visiblePokemon = pokemonList.slice(0, ShowMovementComponent.PAGE_SIZE);
     this.loadingService.hide();
+  }
+
+  private loadMorePokemon() {
+    if (this.visiblePokemon.length >= this.pokemon.length) {
+      return;
+    }
+    this.visiblePokemon = this.pokemon.slice(
+      0,
+      this.visiblePokemon.length + ShowMovementComponent.PAGE_SIZE
+    );
+  }
+
+  @HostListener('window:scroll')
+  onScroll() {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const distanceToBottom = document.documentElement.scrollHeight - (scrollPosition + window.innerHeight);
+    if (distanceToBottom < ShowMovementComponent.LOAD_MORE_OFFSET) {
+      this.loadMorePokemon();
+    }
   }
 
   getPokemonSprite(pokemonName: string): string {
