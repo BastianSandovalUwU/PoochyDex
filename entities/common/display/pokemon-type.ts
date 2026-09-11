@@ -1,22 +1,23 @@
+/** Declared in in-game type order; `TYPE_ORDER` relies on it. */
 export enum PokemonType {
-  GRASS = 'Grass',
+  NORMAL = 'Normal',
+  FIGHTING = 'Fighting',
+  FLYING = 'Flying',
+  POISON = 'Poison',
+  GROUND = 'Ground',
+  ROCK = 'Rock',
+  BUG = 'Bug',
+  GHOST = 'Ghost',
+  STEEL = 'Steel',
   FIRE = 'Fire',
   WATER = 'Water',
-  BUG = 'Bug',
-  NORMAL = 'Normal',
-  POISON = 'Poison',
+  GRASS = 'Grass',
   ELECTRIC = 'Electric',
-  GROUND = 'Ground',
-  FAIRY = 'Fairy',
-  FIGHTING = 'Fighting',
   PSYCHIC = 'Psychic',
-  ROCK = 'Rock',
-  GHOST = 'Ghost',
   ICE = 'Ice',
   DRAGON = 'Dragon',
   DARK = 'Dark',
-  STEEL = 'Steel',
-  FLYING = 'Flying'
+  FAIRY = 'Fairy'
 }
 
 export const POKEMON_TYPE_TRANSLATIONS: Record<PokemonType, string> = {

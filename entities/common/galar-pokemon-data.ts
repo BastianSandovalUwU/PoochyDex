@@ -1,5 +1,5 @@
 import { PokemonList } from "../pokemon-list.entity";
-import { POKEMON_TYPES } from "./const.interface";
+import { PokemonType } from "./display/pokemon-type";
 
 export const ALL_POKEMON_GALAR: PokemonList[] = [
   {
@@ -11,7 +11,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 810,
     generationId: 8,
-    type: POKEMON_TYPES.Grass,
+    type: PokemonType.GRASS,
     type2: null
   },
   {
@@ -23,7 +23,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 811,
     generationId: 8,
-    type: POKEMON_TYPES.Grass,
+    type: PokemonType.GRASS,
     type2: null
   },
   {
@@ -35,7 +35,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 812,
     generationId: 8,
-    type: POKEMON_TYPES.Grass,
+    type: PokemonType.GRASS,
     type2: null
   },
   {
@@ -47,7 +47,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 813,
     generationId: 8,
-    type: POKEMON_TYPES.Fire,
+    type: PokemonType.FIRE,
     type2: null
   },
   {
@@ -59,7 +59,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 814,
     generationId: 8,
-    type: POKEMON_TYPES.Fire,
+    type: PokemonType.FIRE,
     type2: null
   },
   {
@@ -71,7 +71,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 815,
     generationId: 8,
-    type: POKEMON_TYPES.Fire,
+    type: PokemonType.FIRE,
     type2: null
   },
   {
@@ -83,7 +83,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 816,
     generationId: 8,
-    type: POKEMON_TYPES.Water,
+    type: PokemonType.WATER,
     type2: null
   },
   {
@@ -95,7 +95,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 817,
     generationId: 8,
-    type: POKEMON_TYPES.Water,
+    type: PokemonType.WATER,
     type2: null
   },
   {
@@ -107,7 +107,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 818,
     generationId: 8,
-    type: POKEMON_TYPES.Water,
+    type: PokemonType.WATER,
     type2: null
   },
   {
@@ -119,7 +119,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 819,
     generationId: 8,
-    type: POKEMON_TYPES.Normal,
+    type: PokemonType.NORMAL,
     type2: null
   },
   {
@@ -131,7 +131,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 820,
     generationId: 8,
-    type: POKEMON_TYPES.Normal,
+    type: PokemonType.NORMAL,
     type2: null
   },
   {
@@ -143,7 +143,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 821,
     generationId: 8,
-    type: POKEMON_TYPES.Flying,
+    type: PokemonType.FLYING,
     type2: null
   },
   {
@@ -155,7 +155,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 822,
     generationId: 8,
-    type: POKEMON_TYPES.Flying,
+    type: PokemonType.FLYING,
     type2: null
   },
   {
@@ -167,8 +167,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 823,
     generationId: 8,
-    type: POKEMON_TYPES.Flying,
-    type2: POKEMON_TYPES.Steel
+    type: PokemonType.FLYING,
+    type2: PokemonType.STEEL
   },
   {
     name: "blipbug",
@@ -179,7 +179,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 824,
     generationId: 8,
-    type: POKEMON_TYPES.Bug,
+    type: PokemonType.BUG,
     type2: null
   },
   {
@@ -191,8 +191,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 825,
     generationId: 8,
-    type: POKEMON_TYPES.Bug,
-    type2: POKEMON_TYPES.Psychic
+    type: PokemonType.BUG,
+    type2: PokemonType.PSYCHIC
   },
   {
     name: "orbeetle",
@@ -203,8 +203,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 826,
     generationId: 8,
-    type: POKEMON_TYPES.Bug,
-    type2: POKEMON_TYPES.Psychic
+    type: PokemonType.BUG,
+    type2: PokemonType.PSYCHIC
   },
   {
     name: "nickit",
@@ -215,7 +215,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 827,
     generationId: 8,
-    type: POKEMON_TYPES.Dark,
+    type: PokemonType.DARK,
     type2: null
   },
   {
@@ -227,7 +227,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 828,
     generationId: 8,
-    type: POKEMON_TYPES.Dark,
+    type: PokemonType.DARK,
     type2: null
   },
   {
@@ -239,7 +239,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 829,
     generationId: 8,
-    type: POKEMON_TYPES.Grass,
+    type: PokemonType.GRASS,
     type2: null
   },
   {
@@ -251,7 +251,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 830,
     generationId: 8,
-    type: POKEMON_TYPES.Grass,
+    type: PokemonType.GRASS,
     type2: null
   },
   {
@@ -263,7 +263,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 831,
     generationId: 8,
-    type: POKEMON_TYPES.Normal,
+    type: PokemonType.NORMAL,
     type2: null
   },
   {
@@ -275,7 +275,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 832,
     generationId: 8,
-    type: POKEMON_TYPES.Normal,
+    type: PokemonType.NORMAL,
     type2: null
   },
   {
@@ -287,7 +287,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 833,
     generationId: 8,
-    type: POKEMON_TYPES.Water,
+    type: PokemonType.WATER,
     type2: null
   },
   {
@@ -299,8 +299,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 834,
     generationId: 8,
-    type: POKEMON_TYPES.Water,
-    type2: POKEMON_TYPES.Rock
+    type: PokemonType.WATER,
+    type2: PokemonType.ROCK
   },
   {
     name: "yamper",
@@ -311,7 +311,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 835,
     generationId: 8,
-    type: POKEMON_TYPES.Electric,
+    type: PokemonType.ELECTRIC,
     type2: null
   },
   {
@@ -323,7 +323,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 836,
     generationId: 8,
-    type: POKEMON_TYPES.Electric,
+    type: PokemonType.ELECTRIC,
     type2: null
   },
   {
@@ -335,7 +335,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 837,
     generationId: 8,
-    type: POKEMON_TYPES.Rock,
+    type: PokemonType.ROCK,
     type2: null
   },
   {
@@ -347,8 +347,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 838,
     generationId: 8,
-    type: POKEMON_TYPES.Rock,
-    type2: POKEMON_TYPES.Fire
+    type: PokemonType.ROCK,
+    type2: PokemonType.FIRE
   },
   {
     name: "coalossal",
@@ -359,8 +359,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 839,
     generationId: 8,
-    type: POKEMON_TYPES.Rock,
-    type2: POKEMON_TYPES.Fire
+    type: PokemonType.ROCK,
+    type2: PokemonType.FIRE
   },
   {
     name: "applin",
@@ -371,8 +371,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 840,
     generationId: 8,
-    type: POKEMON_TYPES.Grass,
-    type2: POKEMON_TYPES.Dragon
+    type: PokemonType.GRASS,
+    type2: PokemonType.DRAGON
   },
   {
     name: "flapple",
@@ -383,8 +383,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 841,
     generationId: 8,
-    type: POKEMON_TYPES.Grass,
-    type2: POKEMON_TYPES.Dragon
+    type: PokemonType.GRASS,
+    type2: PokemonType.DRAGON
   },
   {
     name: "appletun",
@@ -395,8 +395,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 842,
     generationId: 8,
-    type: POKEMON_TYPES.Grass,
-    type2: POKEMON_TYPES.Dragon
+    type: PokemonType.GRASS,
+    type2: PokemonType.DRAGON
   },
   {
     name: "silicobra",
@@ -407,7 +407,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 843,
     generationId: 8,
-    type: POKEMON_TYPES.Ground,
+    type: PokemonType.GROUND,
     type2: null
   },
   {
@@ -419,7 +419,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 844,
     generationId: 8,
-    type: POKEMON_TYPES.Ground,
+    type: PokemonType.GROUND,
     type2: null
   },
   {
@@ -431,8 +431,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 845,
     generationId: 8,
-    type: POKEMON_TYPES.Flying,
-    type2: POKEMON_TYPES.Water
+    type: PokemonType.FLYING,
+    type2: PokemonType.WATER
   },
   {
     name: "arrokuda",
@@ -443,7 +443,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 846,
     generationId: 8,
-    type: POKEMON_TYPES.Water,
+    type: PokemonType.WATER,
     type2: null
   },
   {
@@ -455,7 +455,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 847,
     generationId: 8,
-    type: POKEMON_TYPES.Water,
+    type: PokemonType.WATER,
     type2: null
   },
   {
@@ -467,8 +467,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 848,
     generationId: 8,
-    type: POKEMON_TYPES.Electric,
-    type2: POKEMON_TYPES.Poison
+    type: PokemonType.ELECTRIC,
+    type2: PokemonType.POISON
   },
   {
     name: "toxtricity-amped",
@@ -479,8 +479,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 849,
     generationId: 8,
-    type: POKEMON_TYPES.Electric,
-    type2: POKEMON_TYPES.Poison
+    type: PokemonType.ELECTRIC,
+    type2: PokemonType.POISON
   },
   {
     name: "sizzlipede",
@@ -491,8 +491,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 850,
     generationId: 8,
-    type: POKEMON_TYPES.Fire,
-    type2: POKEMON_TYPES.Bug
+    type: PokemonType.FIRE,
+    type2: PokemonType.BUG
   },
   {
     name: "centiskorch",
@@ -503,8 +503,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 851,
     generationId: 8,
-    type: POKEMON_TYPES.Fire,
-    type2: POKEMON_TYPES.Bug
+    type: PokemonType.FIRE,
+    type2: PokemonType.BUG
   },
   {
     name: "clobbopus",
@@ -515,7 +515,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 852,
     generationId: 8,
-    type: POKEMON_TYPES.Fighting,
+    type: PokemonType.FIGHTING,
     type2: null
   },
   {
@@ -527,7 +527,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 853,
     generationId: 8,
-    type: POKEMON_TYPES.Fighting,
+    type: PokemonType.FIGHTING,
     type2: null
   },
   {
@@ -539,7 +539,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 854,
     generationId: 8,
-    type: POKEMON_TYPES.Ghost,
+    type: PokemonType.GHOST,
     type2: null
   },
   {
@@ -551,7 +551,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 855,
     generationId: 8,
-    type: POKEMON_TYPES.Ghost,
+    type: PokemonType.GHOST,
     type2: null
   },
   {
@@ -563,7 +563,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 856,
     generationId: 8,
-    type: POKEMON_TYPES.Psychic,
+    type: PokemonType.PSYCHIC,
     type2: null
   },
   {
@@ -575,7 +575,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 857,
     generationId: 8,
-    type: POKEMON_TYPES.Psychic,
+    type: PokemonType.PSYCHIC,
     type2: null
   },
   {
@@ -587,8 +587,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 858,
     generationId: 8,
-    type: POKEMON_TYPES.Psychic,
-    type2: POKEMON_TYPES.Fairy
+    type: PokemonType.PSYCHIC,
+    type2: PokemonType.FAIRY
   },
   {
     name: "impidimp",
@@ -599,8 +599,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 859,
     generationId: 8,
-    type: POKEMON_TYPES.Dark,
-    type2: POKEMON_TYPES.Fairy
+    type: PokemonType.DARK,
+    type2: PokemonType.FAIRY
   },
   {
     name: "morgrem",
@@ -611,8 +611,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 860,
     generationId: 8,
-    type: POKEMON_TYPES.Dark,
-    type2: POKEMON_TYPES.Fairy
+    type: PokemonType.DARK,
+    type2: PokemonType.FAIRY
   },
   {
     name: "grimmsnarl",
@@ -623,8 +623,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 861,
     generationId: 8,
-    type: POKEMON_TYPES.Dark,
-    type2: POKEMON_TYPES.Fairy
+    type: PokemonType.DARK,
+    type2: PokemonType.FAIRY
   },
   {
     name: "obstagoon",
@@ -635,8 +635,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 862,
     generationId: 8,
-    type: POKEMON_TYPES.Dark,
-    type2: POKEMON_TYPES.Normal
+    type: PokemonType.DARK,
+    type2: PokemonType.NORMAL
   },
   {
     name: "perrserker",
@@ -647,7 +647,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 863,
     generationId: 8,
-    type: POKEMON_TYPES.Steel,
+    type: PokemonType.STEEL,
     type2: null
   },
   {
@@ -659,7 +659,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 864,
     generationId: 8,
-    type: POKEMON_TYPES.Ghost,
+    type: PokemonType.GHOST,
     type2: null
   },
   {
@@ -671,7 +671,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 865,
     generationId: 8,
-    type: POKEMON_TYPES.Fighting,
+    type: PokemonType.FIGHTING,
     type2: null
   },
   {
@@ -683,8 +683,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 866,
     generationId: 8,
-    type: POKEMON_TYPES.Ice,
-    type2: POKEMON_TYPES.Psychic
+    type: PokemonType.ICE,
+    type2: PokemonType.PSYCHIC
   },
   {
     name: "runerigus",
@@ -695,8 +695,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 867,
     generationId: 8,
-    type: POKEMON_TYPES.Ground,
-    type2: POKEMON_TYPES.Ghost
+    type: PokemonType.GROUND,
+    type2: PokemonType.GHOST
   },
   {
     name: "milcery",
@@ -707,7 +707,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 868,
     generationId: 8,
-    type: POKEMON_TYPES.Fairy,
+    type: PokemonType.FAIRY,
     type2: null
   },
   {
@@ -719,7 +719,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 869,
     generationId: 8,
-    type: POKEMON_TYPES.Fairy,
+    type: PokemonType.FAIRY,
     type2: null
   },
   {
@@ -731,7 +731,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 870,
     generationId: 8,
-    type: POKEMON_TYPES.Fighting,
+    type: PokemonType.FIGHTING,
     type2: null
   },
   {
@@ -743,7 +743,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 871,
     generationId: 8,
-    type: POKEMON_TYPES.Electric,
+    type: PokemonType.ELECTRIC,
     type2: null
   },
   {
@@ -755,8 +755,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 872,
     generationId: 8,
-    type: POKEMON_TYPES.Ice,
-    type2: POKEMON_TYPES.Bug
+    type: PokemonType.ICE,
+    type2: PokemonType.BUG
   },
   {
     name: "frosmoth",
@@ -767,8 +767,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 873,
     generationId: 8,
-    type: POKEMON_TYPES.Ice,
-    type2: POKEMON_TYPES.Bug
+    type: PokemonType.ICE,
+    type2: PokemonType.BUG
   },
   {
     name: "stonjourner",
@@ -779,7 +779,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 874,
     generationId: 8,
-    type: POKEMON_TYPES.Rock,
+    type: PokemonType.ROCK,
     type2: null
   },
   {
@@ -791,7 +791,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 875,
     generationId: 8,
-    type: POKEMON_TYPES.Ice,
+    type: PokemonType.ICE,
     type2: null
   },
   {
@@ -803,8 +803,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 876,
     generationId: 8,
-    type: POKEMON_TYPES.Psychic,
-    type2: POKEMON_TYPES.Normal
+    type: PokemonType.PSYCHIC,
+    type2: PokemonType.NORMAL
   },
   {
     name: "morpeko-full-belly",
@@ -815,8 +815,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 877,
     generationId: 8,
-    type: POKEMON_TYPES.Electric,
-    type2: POKEMON_TYPES.Dark
+    type: PokemonType.ELECTRIC,
+    type2: PokemonType.DARK
   },
   {
     name: "cufant",
@@ -827,7 +827,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 878,
     generationId: 8,
-    type: POKEMON_TYPES.Steel,
+    type: PokemonType.STEEL,
     type2: null
   },
   {
@@ -839,7 +839,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 879,
     generationId: 8,
-    type: POKEMON_TYPES.Steel,
+    type: PokemonType.STEEL,
     type2: null
   },
   {
@@ -851,8 +851,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 880,
     generationId: 8,
-    type: POKEMON_TYPES.Electric,
-    type2: POKEMON_TYPES.Dragon
+    type: PokemonType.ELECTRIC,
+    type2: PokemonType.DRAGON
   },
   {
     name: "arctozolt",
@@ -863,8 +863,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 881,
     generationId: 8,
-    type: POKEMON_TYPES.Electric,
-    type2: POKEMON_TYPES.Ice
+    type: PokemonType.ELECTRIC,
+    type2: PokemonType.ICE
   },
   {
     name: "dracovish",
@@ -875,8 +875,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 882,
     generationId: 8,
-    type: POKEMON_TYPES.Water,
-    type2: POKEMON_TYPES.Dragon
+    type: PokemonType.WATER,
+    type2: PokemonType.DRAGON
   },
   {
     name: "arctovish",
@@ -887,8 +887,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 883,
     generationId: 8,
-    type: POKEMON_TYPES.Water,
-    type2: POKEMON_TYPES.Ice
+    type: PokemonType.WATER,
+    type2: PokemonType.ICE
   },
   {
     name: "duraludon",
@@ -899,8 +899,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 884,
     generationId: 8,
-    type: POKEMON_TYPES.Steel,
-    type2: POKEMON_TYPES.Dragon
+    type: PokemonType.STEEL,
+    type2: PokemonType.DRAGON
   },
   {
     name: "dreepy",
@@ -911,8 +911,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 885,
     generationId: 8,
-    type: POKEMON_TYPES.Dragon,
-    type2: POKEMON_TYPES.Ghost
+    type: PokemonType.DRAGON,
+    type2: PokemonType.GHOST
   },
   {
     name: "drakloak",
@@ -923,8 +923,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 886,
     generationId: 8,
-    type: POKEMON_TYPES.Dragon,
-    type2: POKEMON_TYPES.Ghost
+    type: PokemonType.DRAGON,
+    type2: PokemonType.GHOST
   },
   {
     name: "dragapult",
@@ -935,8 +935,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 887,
     generationId: 8,
-    type: POKEMON_TYPES.Dragon,
-    type2: POKEMON_TYPES.Ghost
+    type: PokemonType.DRAGON,
+    type2: PokemonType.GHOST
   },
   {
     name: "zacian",
@@ -947,8 +947,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 888,
     generationId: 8,
-    type: POKEMON_TYPES.Fairy,
-    type2: POKEMON_TYPES.Steel
+    type: PokemonType.FAIRY,
+    type2: PokemonType.STEEL
   },
   {
     name: "zamazenta",
@@ -959,8 +959,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 889,
     generationId: 8,
-    type: POKEMON_TYPES.Fighting,
-    type2: POKEMON_TYPES.Steel
+    type: PokemonType.FIGHTING,
+    type2: PokemonType.STEEL
   },
   {
     name: "eternatus",
@@ -971,8 +971,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 890,
     generationId: 8,
-    type: POKEMON_TYPES.Poison,
-    type2: POKEMON_TYPES.Dragon
+    type: PokemonType.POISON,
+    type2: PokemonType.DRAGON
   },
   {
     name: "kubfu",
@@ -983,7 +983,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 891,
     generationId: 8,
-    type: POKEMON_TYPES.Fighting,
+    type: PokemonType.FIGHTING,
     type2: null
   },
   {
@@ -995,8 +995,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 892,
     generationId: 8,
-    type: POKEMON_TYPES.Fighting,
-    type2: POKEMON_TYPES.Dark
+    type: PokemonType.FIGHTING,
+    type2: PokemonType.DARK
   },
   {
     name: "zarude",
@@ -1007,8 +1007,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 893,
     generationId: 8,
-    type: POKEMON_TYPES.Dark,
-    type2: POKEMON_TYPES.Grass
+    type: PokemonType.DARK,
+    type2: PokemonType.GRASS
   },
   {
     name: "regieleki",
@@ -1019,7 +1019,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 894,
     generationId: 8,
-    type: POKEMON_TYPES.Electric,
+    type: PokemonType.ELECTRIC,
     type2: null
   },
   {
@@ -1031,7 +1031,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 895,
     generationId: 8,
-    type: POKEMON_TYPES.Dragon,
+    type: PokemonType.DRAGON,
     type2: null
   },
   {
@@ -1043,7 +1043,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 896,
     generationId: 8,
-    type: POKEMON_TYPES.Ice,
+    type: PokemonType.ICE,
     type2: null
   },
   {
@@ -1055,7 +1055,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 897,
     generationId: 8,
-    type: POKEMON_TYPES.Ghost,
+    type: PokemonType.GHOST,
     type2: null
   },
   {
@@ -1067,8 +1067,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 898,
     generationId: 8,
-    type: POKEMON_TYPES.Psychic,
-    type2: POKEMON_TYPES.Grass
+    type: PokemonType.PSYCHIC,
+    type2: PokemonType.GRASS
   },
   {
     name: "wyrdeer",
@@ -1079,8 +1079,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 899,
     generationId: 8,
-    type: POKEMON_TYPES.Normal,
-    type2: POKEMON_TYPES.Psychic
+    type: PokemonType.NORMAL,
+    type2: PokemonType.PSYCHIC
   },
   {
     name: "kleavor",
@@ -1091,8 +1091,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 900,
     generationId: 8,
-    type: POKEMON_TYPES.Bug,
-    type2: POKEMON_TYPES.Rock
+    type: PokemonType.BUG,
+    type2: PokemonType.ROCK
   },
   {
     name: "ursaluna",
@@ -1103,8 +1103,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 901,
     generationId: 8,
-    type: POKEMON_TYPES.Ground,
-    type2: POKEMON_TYPES.Normal
+    type: PokemonType.GROUND,
+    type2: PokemonType.NORMAL
   },
   {
     name: "basculegion-male",
@@ -1115,8 +1115,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 902,
     generationId: 8,
-    type: POKEMON_TYPES.Water,
-    type2: POKEMON_TYPES.Ghost
+    type: PokemonType.WATER,
+    type2: PokemonType.GHOST
   },
   {
     name: "sneasler",
@@ -1127,8 +1127,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 903,
     generationId: 8,
-    type: POKEMON_TYPES.Fighting,
-    type2: POKEMON_TYPES.Poison
+    type: PokemonType.FIGHTING,
+    type2: PokemonType.POISON
   },
   {
     name: "overqwil",
@@ -1139,8 +1139,8 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 904,
     generationId: 8,
-    type: POKEMON_TYPES.Dark,
-    type2: POKEMON_TYPES.Poison
+    type: PokemonType.DARK,
+    type2: PokemonType.POISON
   },
   {
     name: "enamorus-incarnate",
@@ -1151,7 +1151,7 @@ export const ALL_POKEMON_GALAR: PokemonList[] = [
     },
     number: 905,
     generationId: 8,
-    type: POKEMON_TYPES.Fairy,
-    type2: POKEMON_TYPES.Flying
+    type: PokemonType.FAIRY,
+    type2: PokemonType.FLYING
   }
 ];

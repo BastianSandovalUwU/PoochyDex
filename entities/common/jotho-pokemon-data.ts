@@ -1,5 +1,5 @@
 import { PokemonList } from "../pokemon-list.entity";
-import { POKEMON_TYPES } from "./const.interface";
+import { PokemonType } from "./display/pokemon-type";
 
 export const ALL_POKEMON_JOTHO: PokemonList[] = [
   {
@@ -10,7 +10,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/ZBuRdUS.png"
     },
     number: 152,
-    type: POKEMON_TYPES.Grass,
+    type: PokemonType.GRASS,
     generationId: 2
   },
   {
@@ -21,7 +21,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/wEssu3G.png"
     },
     number: 153,
-    type: POKEMON_TYPES.Grass,
+    type: PokemonType.GRASS,
     generationId: 2
   },
   {
@@ -32,7 +32,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/cIHk6OM.png"
     },
     number: 154,
-    type: POKEMON_TYPES.Grass,
+    type: PokemonType.GRASS,
     generationId: 2
   },
   {
@@ -43,7 +43,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/yOEisQo.png"
     },
     number: 155,
-    type: POKEMON_TYPES.Fire,
+    type: PokemonType.FIRE,
     generationId: 2
   },
   {
@@ -54,7 +54,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/GMF4lb4.png"
     },
     number: 156,
-    type: POKEMON_TYPES.Fire,
+    type: PokemonType.FIRE,
     generationId: 2
   },
   {
@@ -65,7 +65,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/RFYaXRF.png"
     },
     number: 157,
-    type: POKEMON_TYPES.Fire,
+    type: PokemonType.FIRE,
     generationId: 2
   },
   {
@@ -76,7 +76,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/MAxx6JI.png"
     },
     number: 158,
-    type: POKEMON_TYPES.Water,
+    type: PokemonType.WATER,
     generationId: 2
   },
   {
@@ -87,7 +87,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/ycQCHMv.png"
     },
     number: 159,
-    type: POKEMON_TYPES.Water,
+    type: PokemonType.WATER,
     generationId: 2
   },
   {
@@ -98,7 +98,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/BSJbtJt.png"
     },
     number: 160,
-    type: POKEMON_TYPES.Water,
+    type: PokemonType.WATER,
     generationId: 2
   },
   {
@@ -109,7 +109,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/xudn5jP.png"
     },
     number: 161,
-    type: POKEMON_TYPES.Normal,
+    type: PokemonType.NORMAL,
     generationId: 2
   },
   {
@@ -120,7 +120,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/CfTyYBd.png"
     },
     number: 162,
-    type: POKEMON_TYPES.Normal,
+    type: PokemonType.NORMAL,
     generationId: 2
   },
   {
@@ -131,8 +131,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/k0Upumi.png"
     },
     number: 163,
-    "type": POKEMON_TYPES.Flying,
-    type2: POKEMON_TYPES.Normal,
+    "type": PokemonType.FLYING,
+    type2: PokemonType.NORMAL,
     generationId: 2
   },
   {
@@ -143,8 +143,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/2RNtXcW.png"
     },
     number: 164,
-    "type": POKEMON_TYPES.Flying,
-    type2: POKEMON_TYPES.Normal,
+    "type": PokemonType.FLYING,
+    type2: PokemonType.NORMAL,
     generationId: 2
   },
   {
@@ -155,8 +155,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/RKcHuxr.png"
     },
     number: 165,
-    "type": POKEMON_TYPES.Bug,
-    type2: POKEMON_TYPES.Flying,
+    "type": PokemonType.BUG,
+    type2: PokemonType.FLYING,
     generationId: 2
   },
   {
@@ -167,8 +167,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/bmQPUyb.png"
     },
     number: 166,
-    "type": POKEMON_TYPES.Bug,
-    type2: POKEMON_TYPES.Flying,
+    "type": PokemonType.BUG,
+    type2: PokemonType.FLYING,
     generationId: 2
   },
   {
@@ -179,8 +179,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/qvZsOMh.png"
     },
     number: 167,
-    "type": POKEMON_TYPES.Bug,
-    type2: POKEMON_TYPES.Poison,
+    "type": PokemonType.BUG,
+    type2: PokemonType.POISON,
     generationId: 2
   },
   {
@@ -191,8 +191,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/J4lHTzb.png"
     },
     number: 168,
-    "type": POKEMON_TYPES.Bug,
-    type2: POKEMON_TYPES.Poison,
+    "type": PokemonType.BUG,
+    type2: PokemonType.POISON,
     generationId: 2
   },
   {
@@ -203,8 +203,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/PMTOLQw.png"
     },
     number: 169,
-    "type": POKEMON_TYPES.Poison,
-    type2: POKEMON_TYPES.Flying,
+    "type": PokemonType.POISON,
+    type2: PokemonType.FLYING,
     generationId: 2
   },
   {
@@ -216,7 +216,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
     },
     number: 170,
     "type": "Water",
-    type2: POKEMON_TYPES.Electric,
+    type2: PokemonType.ELECTRIC,
     generationId: 2
   },
   {
@@ -228,7 +228,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
     },
     number: 171,
     "type": "Water",
-    type2: POKEMON_TYPES.Electric,
+    type2: PokemonType.ELECTRIC,
     generationId: 2
   },
   {
@@ -239,7 +239,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       iconUrl: "https://i.imgur.com/vFgObH0.png"
     },
     number: 172,
-    type: POKEMON_TYPES.Electric,
+    type: PokemonType.ELECTRIC,
     generationId: 2
   },
   {
@@ -249,7 +249,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/9yeVPPJ.png"
     },
-    type: POKEMON_TYPES.Fairy,
+    type: PokemonType.FAIRY,
     number: 173,
     generationId: 2
   },
@@ -260,8 +260,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/ZIrV48l.png"
     },
-    type: POKEMON_TYPES.Normal,
-    type2: POKEMON_TYPES.Fairy,
+    type: PokemonType.NORMAL,
+    type2: PokemonType.FAIRY,
     number: 174,
     generationId: 2
   },
@@ -272,7 +272,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/TZdG57x.png"
     },
-    type: POKEMON_TYPES.Fairy,
+    type: PokemonType.FAIRY,
     number: 175,
     generationId: 2
   },
@@ -283,8 +283,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/UjVYmHI.png"
     },
-    type: POKEMON_TYPES.Fairy,
-    type2: POKEMON_TYPES.Flying,
+    type: PokemonType.FAIRY,
+    type2: PokemonType.FLYING,
     number: 176,
     generationId: 2
   },
@@ -295,8 +295,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/r3gXjQ0.png"
     },
-    type: POKEMON_TYPES.Psychic,
-    type2: POKEMON_TYPES.Flying,
+    type: PokemonType.PSYCHIC,
+    type2: PokemonType.FLYING,
     number: 177,
     generationId: 2
   },
@@ -307,8 +307,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/KzJ3ZJN.png"
     },
-    type: POKEMON_TYPES.Psychic,
-    type2: POKEMON_TYPES.Flying,
+    type: PokemonType.PSYCHIC,
+    type2: PokemonType.FLYING,
     number: 178,
     generationId: 2
   },
@@ -319,7 +319,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/riOgNFA.png"
     },
-    type: POKEMON_TYPES.Electric,
+    type: PokemonType.ELECTRIC,
     number: 179,
     generationId: 2
   },
@@ -330,7 +330,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/QH1gHoc.png"
     },
-    type: POKEMON_TYPES.Electric,
+    type: PokemonType.ELECTRIC,
     number: 180,
     generationId: 2
   },
@@ -341,7 +341,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/5AonsM5.png"
     },
-    type: POKEMON_TYPES.Electric,
+    type: PokemonType.ELECTRIC,
     number: 181,
     generationId: 2
   },
@@ -352,7 +352,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/mdUqveJ.png"
     },
-    type: POKEMON_TYPES.Grass,
+    type: PokemonType.GRASS,
     number: 182,
     generationId: 2
   },
@@ -363,8 +363,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/k9BnGV3.png"
     },
-    type: POKEMON_TYPES.Water,
-    type2: POKEMON_TYPES.Fairy,
+    type: PokemonType.WATER,
+    type2: PokemonType.FAIRY,
     number: 183,
     generationId: 2
   },
@@ -375,8 +375,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/SeKOPe6.png"
     },
-    type: POKEMON_TYPES.Water,
-    type2: POKEMON_TYPES.Fairy,
+    type: PokemonType.WATER,
+    type2: PokemonType.FAIRY,
     number: 184,
     generationId: 2
   },
@@ -387,7 +387,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/B4iKdN9.png"
     },
-    type: POKEMON_TYPES.Rock,
+    type: PokemonType.ROCK,
     number: 185,
     generationId: 2
   },
@@ -398,7 +398,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/l7teYts.png"
     },
-    type: POKEMON_TYPES.Water,
+    type: PokemonType.WATER,
     number: 186,
     generationId: 2
   },
@@ -409,8 +409,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/3W7WUJN.png"
     },
-    type: POKEMON_TYPES.Grass,
-    type2: POKEMON_TYPES.Flying,
+    type: PokemonType.GRASS,
+    type2: PokemonType.FLYING,
     number: 187,
     generationId: 2
   },
@@ -421,8 +421,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/4ITldS9.png"
     },
-    type: POKEMON_TYPES.Grass,
-    type2: POKEMON_TYPES.Flying,
+    type: PokemonType.GRASS,
+    type2: PokemonType.FLYING,
     number: 188,
     generationId: 2
   },
@@ -433,8 +433,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/30TcjUT.png"
     },
-    type: POKEMON_TYPES.Grass,
-    type2: POKEMON_TYPES.Flying,
+    type: PokemonType.GRASS,
+    type2: PokemonType.FLYING,
     number: 189,
     generationId: 2
   },
@@ -445,7 +445,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/9hfiBjL.png"
     },
-    type: POKEMON_TYPES.Normal,
+    type: PokemonType.NORMAL,
     number: 190,
     generationId: 2
   },
@@ -456,7 +456,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/AMvuqIm.png"
     },
-    type: POKEMON_TYPES.Grass,
+    type: PokemonType.GRASS,
     number: 191,
     generationId: 2
   },
@@ -467,7 +467,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/lPAvHeg.png"
     },
-    type: POKEMON_TYPES.Grass,
+    type: PokemonType.GRASS,
     number: 192,
     generationId: 2
   },
@@ -478,8 +478,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Od7B2po.png"
     },
-    type: POKEMON_TYPES.Bug,
-    type2: POKEMON_TYPES.Flying,
+    type: PokemonType.BUG,
+    type2: PokemonType.FLYING,
     number: 193,
     generationId: 2
   },
@@ -490,8 +490,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/NBvp8Cc.png"
     },
-    type: POKEMON_TYPES.Water,
-    type2: POKEMON_TYPES.Ground,
+    type: PokemonType.WATER,
+    type2: PokemonType.GROUND,
     number: 194,
     generationId: 2
   },
@@ -502,8 +502,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/TrIGDJy.png"
     },
-    type: POKEMON_TYPES.Water,
-    type2: POKEMON_TYPES.Ground,
+    type: PokemonType.WATER,
+    type2: PokemonType.GROUND,
     number: 195,
     generationId: 2
   },
@@ -514,7 +514,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/X1BDJFk.png"
     },
-    type: POKEMON_TYPES.Psychic,
+    type: PokemonType.PSYCHIC,
     number: 196,
     generationId: 2
   },
@@ -525,7 +525,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Pzrbnzp.png"
     },
-    type: POKEMON_TYPES.Dark,
+    type: PokemonType.DARK,
     number: 197,
     generationId: 2
   },
@@ -536,8 +536,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/3iwGYQn.png"
     },
-    type: POKEMON_TYPES.Dark,
-    type2: POKEMON_TYPES.Flying,
+    type: PokemonType.DARK,
+    type2: PokemonType.FLYING,
     number: 198,
     generationId: 2
   },
@@ -548,8 +548,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/R4dShq1.png"
     },
-    type: POKEMON_TYPES.Water,
-    type2: POKEMON_TYPES.Psychic,
+    type: PokemonType.WATER,
+    type2: PokemonType.PSYCHIC,
     number: 199,
     generationId: 2
   },
@@ -560,7 +560,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/xHDhGIb.png"
     },
-    type: POKEMON_TYPES.Ghost,
+    type: PokemonType.GHOST,
     number: 200,
     generationId: 2
   },
@@ -571,7 +571,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/IEOiKsD.png"
     },
-    type: POKEMON_TYPES.Psychic,
+    type: PokemonType.PSYCHIC,
     number: 201,
     generationId: 2
   },
@@ -582,7 +582,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/8ly3CP0.png"
     },
-    type: POKEMON_TYPES.Psychic,
+    type: PokemonType.PSYCHIC,
     number: 202,
     generationId: 2
   },
@@ -593,8 +593,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/9XeQw4L.png"
     },
-    type: POKEMON_TYPES.Psychic,
-    type2: POKEMON_TYPES.Normal,
+    type: PokemonType.PSYCHIC,
+    type2: PokemonType.NORMAL,
     number: 203,
     generationId: 2
   },
@@ -605,7 +605,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/sgBnft5.png"
     },
-    type: POKEMON_TYPES.Bug,
+    type: PokemonType.BUG,
     number: 204,
     generationId: 2
   },
@@ -616,8 +616,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/8CUGeDd.png"
     },
-    type: POKEMON_TYPES.Bug,
-    type2: POKEMON_TYPES.Steel,
+    type: PokemonType.BUG,
+    type2: PokemonType.STEEL,
     number: 205,
     generationId: 2
   },
@@ -628,7 +628,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/mw48BQr.png"
     },
-    type: POKEMON_TYPES.Normal,
+    type: PokemonType.NORMAL,
     number: 206,
     generationId: 2
   },
@@ -639,8 +639,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/i7oBjhA.png"
     },
-    type: POKEMON_TYPES.Ground,
-    type2: POKEMON_TYPES.Flying,
+    type: PokemonType.GROUND,
+    type2: PokemonType.FLYING,
     number: 207,
     generationId: 2
   },
@@ -651,8 +651,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/CWFMSCe.png"
     },
-    type: POKEMON_TYPES.Steel,
-    type2: POKEMON_TYPES.Ground,
+    type: PokemonType.STEEL,
+    type2: PokemonType.GROUND,
     number: 208,
     generationId: 2
   },
@@ -663,7 +663,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/XFFG0n1.png"
     },
-    type: POKEMON_TYPES.Fairy,
+    type: PokemonType.FAIRY,
     number: 209,
     generationId: 2
   },
@@ -674,7 +674,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/aNCNSD5.png"
     },
-    type: POKEMON_TYPES.Fairy,
+    type: PokemonType.FAIRY,
     number: 210,
     generationId: 2
   },
@@ -685,8 +685,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/SIQSBjz.png"
     },
-    type: POKEMON_TYPES.Water,
-    type2: POKEMON_TYPES.Poison,
+    type: PokemonType.WATER,
+    type2: PokemonType.POISON,
     number: 211,
     generationId: 2
   },
@@ -697,8 +697,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/4hTeNFw.png"
     },
-    type: POKEMON_TYPES.Bug,
-    type2: POKEMON_TYPES.Steel,
+    type: PokemonType.BUG,
+    type2: PokemonType.STEEL,
     number: 212,
     generationId: 2
   },
@@ -709,8 +709,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/cdObIDd.png"
     },
-    type: POKEMON_TYPES.Bug,
-    type2: POKEMON_TYPES.Rock,
+    type: PokemonType.BUG,
+    type2: PokemonType.ROCK,
     number: 213,
     generationId: 2
   },
@@ -721,8 +721,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/0nSRjAl.png"
     },
-    type: POKEMON_TYPES.Bug,
-    type2: POKEMON_TYPES.Fighting,
+    type: PokemonType.BUG,
+    type2: PokemonType.FIGHTING,
     number: 214,
     generationId: 2
   },
@@ -733,8 +733,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/H1i5gey.png"
     },
-    type: POKEMON_TYPES.Dark,
-    type2: POKEMON_TYPES.Ice,
+    type: PokemonType.DARK,
+    type2: PokemonType.ICE,
     number: 215,
     generationId: 2
   },
@@ -745,7 +745,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/GZ5aAi1.png"
     },
-    type: POKEMON_TYPES.Normal,
+    type: PokemonType.NORMAL,
     number: 216,
     generationId: 2
   },
@@ -756,7 +756,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/hvtv3z4.png"
     },
-    type: POKEMON_TYPES.Normal,
+    type: PokemonType.NORMAL,
     number: 217,
     generationId: 2
   },
@@ -767,7 +767,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/ObhHlI7.png"
     },
-    type: POKEMON_TYPES.Fire,
+    type: PokemonType.FIRE,
     number: 218,
     generationId: 2
   },
@@ -778,8 +778,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/6hICxQ4.png"
     },
-    type: POKEMON_TYPES.Fire,
-    type2: POKEMON_TYPES.Rock,
+    type: PokemonType.FIRE,
+    type2: PokemonType.ROCK,
     number: 219,
     generationId: 2
   },
@@ -790,8 +790,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/giWSATv.png"
     },
-    type: POKEMON_TYPES.Ice,
-    type2: POKEMON_TYPES.Ground,
+    type: PokemonType.ICE,
+    type2: PokemonType.GROUND,
     number: 220,
     generationId: 2
   },
@@ -802,8 +802,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/zWEuBtT.png"
     },
-    type: POKEMON_TYPES.Ice,
-    type2: POKEMON_TYPES.Ground,
+    type: PokemonType.ICE,
+    type2: PokemonType.GROUND,
     number: 221,
     generationId: 2
   },
@@ -814,8 +814,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/KustYs2.png"
     },
-    type: POKEMON_TYPES.Water,
-    type2: POKEMON_TYPES.Rock,
+    type: PokemonType.WATER,
+    type2: PokemonType.ROCK,
     number: 222,
     generationId: 2
   },
@@ -826,7 +826,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/d8NJG6p.png"
     },
-    type: POKEMON_TYPES.Water,
+    type: PokemonType.WATER,
     number: 223,
     generationId: 2
   },
@@ -837,7 +837,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/mKakvj8.png"
     },
-    type: POKEMON_TYPES.Water,
+    type: PokemonType.WATER,
     number: 224,
     generationId: 2
   },
@@ -848,8 +848,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/XYiB0E0.png"
     },
-    type: POKEMON_TYPES.Ice,
-    type2: POKEMON_TYPES.Flying,
+    type: PokemonType.ICE,
+    type2: PokemonType.FLYING,
     number: 225,
     generationId: 2
   },
@@ -860,8 +860,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/tNATm9s.png"
     },
-    type: POKEMON_TYPES.Water,
-    type2: POKEMON_TYPES.Flying,
+    type: PokemonType.WATER,
+    type2: PokemonType.FLYING,
     number: 226,
     generationId: 2
   },
@@ -872,8 +872,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Ih807mN.png"
     },
-    type: POKEMON_TYPES.Steel,
-    type2: POKEMON_TYPES.Flying,
+    type: PokemonType.STEEL,
+    type2: PokemonType.FLYING,
     number: 227,
     generationId: 2
   },
@@ -884,8 +884,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/dkd0jhG.png"
     },
-    type: POKEMON_TYPES.Dark,
-    type2: POKEMON_TYPES.Fire,
+    type: PokemonType.DARK,
+    type2: PokemonType.FIRE,
     number: 228,
     generationId: 2
   },
@@ -896,8 +896,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/fA5znh4.png"
     },
-    type: POKEMON_TYPES.Dark,
-    type2: POKEMON_TYPES.Fire,
+    type: PokemonType.DARK,
+    type2: PokemonType.FIRE,
     number: 229,
     generationId: 2
   },
@@ -908,8 +908,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/6JHBBuI.png"
     },
-    type: POKEMON_TYPES.Water,
-    type2: POKEMON_TYPES.Dragon,
+    type: PokemonType.WATER,
+    type2: PokemonType.DRAGON,
     number: 230,
     generationId: 2
   },
@@ -920,7 +920,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/ok3fhGC.png"
     },
-    type: POKEMON_TYPES.Ground,
+    type: PokemonType.GROUND,
     number: 231,
     generationId: 2
   },
@@ -931,7 +931,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/vA0AClS.png"
     },
-    type: POKEMON_TYPES.Ground,
+    type: PokemonType.GROUND,
     number: 232,
     generationId: 2
   },
@@ -942,7 +942,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/4clmqMG.png"
     },
-    type: POKEMON_TYPES.Normal,
+    type: PokemonType.NORMAL,
     number: 233,
     generationId: 2
   },
@@ -953,7 +953,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/lkQVGU5.png"
     },
-    type: POKEMON_TYPES.Normal,
+    type: PokemonType.NORMAL,
     number: 234,
     generationId: 2
   },
@@ -964,7 +964,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/7ccLziP.png"
     },
-    type: POKEMON_TYPES.Normal,
+    type: PokemonType.NORMAL,
     number: 235,
     generationId: 2
   },
@@ -975,7 +975,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/lWekfIc.png"
     },
-    type: POKEMON_TYPES.Fighting,
+    type: PokemonType.FIGHTING,
     number: 236,
     generationId: 2
   },
@@ -986,7 +986,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/iOnTbGG.png"
     },
-    type: POKEMON_TYPES.Fighting,
+    type: PokemonType.FIGHTING,
     number: 237,
     generationId: 2
   },
@@ -997,8 +997,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/X5ecMBF.png"
     },
-    type: POKEMON_TYPES.Ice,
-    type2: POKEMON_TYPES.Psychic,
+    type: PokemonType.ICE,
+    type2: PokemonType.PSYCHIC,
     number: 238,
     generationId: 2
   },
@@ -1009,7 +1009,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/qnskffA.png"
     },
-    type: POKEMON_TYPES.Electric,
+    type: PokemonType.ELECTRIC,
     number: 239,
     generationId: 2
   },
@@ -1020,7 +1020,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/CJURutW.png"
     },
-    type: POKEMON_TYPES.Fire,
+    type: PokemonType.FIRE,
     number: 240,
     generationId: 2
   },
@@ -1031,7 +1031,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/UVbk3BX.png"
     },
-    type: POKEMON_TYPES.Normal,
+    type: PokemonType.NORMAL,
     number: 241,
     generationId: 2
   },
@@ -1042,7 +1042,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/8l5hbxb.png"
     },
-    type: POKEMON_TYPES.Normal,
+    type: PokemonType.NORMAL,
     number: 242,
     generationId: 2
   },
@@ -1053,7 +1053,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/uEUmbHz.png"
     },
-    type: POKEMON_TYPES.Electric,
+    type: PokemonType.ELECTRIC,
     number: 243,
     generationId: 2
   },
@@ -1064,7 +1064,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/63V65hh.png"
     },
-    type: POKEMON_TYPES.Fire,
+    type: PokemonType.FIRE,
     number: 244,
     generationId: 2
   },
@@ -1075,7 +1075,7 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/Uljbrv2.png"
     },
-    type: POKEMON_TYPES.Water,
+    type: PokemonType.WATER,
     number: 245,
     generationId: 2
   },
@@ -1086,8 +1086,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/QKsnCm4.png"
     },
-    type: POKEMON_TYPES.Rock,
-    type2: POKEMON_TYPES.Ground,
+    type: PokemonType.ROCK,
+    type2: PokemonType.GROUND,
     number: 246,
     generationId: 2
   },
@@ -1098,8 +1098,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/M2r1JBX.png"
     },
-    type: POKEMON_TYPES.Rock,
-    type2: POKEMON_TYPES.Ground,
+    type: PokemonType.ROCK,
+    type2: PokemonType.GROUND,
     number: 247,
     generationId: 2
   },
@@ -1110,8 +1110,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/VcnZD2A.png"
     },
-    type: POKEMON_TYPES.Rock,
-    type2: POKEMON_TYPES.Dark,
+    type: PokemonType.ROCK,
+    type2: PokemonType.DARK,
     number: 248,
     generationId: 2
   },
@@ -1122,8 +1122,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/v26upq4.png"
     },
-    type: POKEMON_TYPES.Psychic,
-    type2: POKEMON_TYPES.Flying,
+    type: PokemonType.PSYCHIC,
+    type2: PokemonType.FLYING,
     number: 249,
     generationId: 2
   },
@@ -1134,8 +1134,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/bxRBlLu.png"
     },
-    type: POKEMON_TYPES.Fire,
-    type2: POKEMON_TYPES.Flying,
+    type: PokemonType.FIRE,
+    type2: PokemonType.FLYING,
     number: 250,
     generationId: 2
   },
@@ -1146,8 +1146,8 @@ export const ALL_POKEMON_JOTHO: PokemonList[] = [
       homeShinyUrl: "",
       iconUrl: "https://i.imgur.com/KwGwTnL.png"
     },
-    type: POKEMON_TYPES.Psychic,
-    type2: POKEMON_TYPES.Grass,
+    type: PokemonType.PSYCHIC,
+    type2: PokemonType.GRASS,
     number: 251,
     generationId: 2
   }

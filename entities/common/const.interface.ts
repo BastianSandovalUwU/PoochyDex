@@ -1,4 +1,5 @@
 import { PokedexOption } from "../pokemon-hunt.entity";
+import { PokemonType } from "./display/pokemon-type";
 
 export const VERSION_NUMBER = '1.1.0';
 
@@ -58,26 +59,7 @@ const TARGET_TYPES = [
 ];
 export type TargetTypes = (typeof TARGET_TYPES)[number];
 
-export enum POKEMON_TYPES {
-  Normal = 'Normal',
-  Fire = 'Fire',
-  Water = 'Water',
-  Grass = 'Grass',
-  Electric = 'Electric',
-  Ice = 'Ice',
-  Fighting = 'Fighting',
-  Poison = 'Poison',
-  Ground = 'Ground',
-  Flying = 'Flying',
-  Psychic = 'Psychic',
-  Bug = 'Bug',
-  Rock = 'Rock',
-  Ghost = 'Ghost',
-  Dragon = 'Dragon',
-  Dark = 'Dark',
-  Steel = 'Steel',
-  Fairy = 'Fairy'
-}
+export const TYPE_ORDER: PokemonType[] = Object.values(PokemonType);
 
 export const ALL_POKEDEX_OPTIONS: PokedexOption[] = [
     { id: 2, name: 'Kanto', nameEs: 'Kanto', images: ['https://i.imgur.com/pyl4mwd.jpeg', 'https://i.imgur.com/ZtA1AOr.jpeg'] },
