@@ -20,6 +20,10 @@ export interface FilteredByTutor extends FilteredMove {
 export interface FilteredByEgg extends FilteredMove {
   eggDetail: VersionGroupDetail;
 }
+
+export interface FilteredByTrain extends FilteredMove {
+  trainDetail: VersionGroupDetail;
+}
 export interface FilteredByMachine extends FilteredMove {
   machineDetail:      ExtendedMachineDetail;
 }

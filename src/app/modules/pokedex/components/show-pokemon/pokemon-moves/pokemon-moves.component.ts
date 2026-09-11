@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges
 import { Pokemon } from '../../../../../../../entities/pokemon.entity';
 import { PokeApiService } from 'app/modules/shared/services/poke-api.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
-import { FilteredByEgg, FilteredByMachine, FilteredByTutor, FilteredMove, Move, TypeDetail } from '../../../../../../../entities/moves.entity';
+import { FilteredByEgg, FilteredByMachine, FilteredByTrain, FilteredByTutor, FilteredMove, Move, TypeDetail } from '../../../../../../../entities/moves.entity';
 import { Subject, catchError, forkJoin, of, takeUntil } from 'rxjs';
 import { ExtendedMachineDetail } from '../../../../../../../entities/machine-move.entity';
 import { PokemonSpecie } from '../../../../../../../entities/pokemon-specie.entity';
@@ -34,24 +34,30 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
   private unsubscribe$ = new Subject<void>();
 
   versionGroups: string[] = [];
+  /** Version groups that teach moves via the 'train' method (e.g. Champions); shown only in the training section. */
+  trainVersionGroups: string[] = [];
   levelUpTabs: TabItem[] = [];
   levelUpSelectedVersionGroup: string = '';
   tutorSelectedVersionGroup: string = '';
   machineSelectedVersionGroup: string = '';
   eggSelectedVersionGroup: string = '';
+  trainSelectedVersionGroup: string = '';
   filteredMoves: FilteredMove[] = [];
   filteredMovesByMachine: FilteredByMachine[] = [];
   filteredMovesByTutor: FilteredByTutor[] = [];
   filteredMovesByEgg: FilteredByEgg[] = [];
+  filteredMovesByTrain: FilteredByTrain[] = [];
   backgroundColor: string = '';
   selectedTabIndex = 0;
   selectedTabIndexMT = 0;
   selectedTabIndexTutor = 0;
   selectedTabIndexTutorEgg = 0;
+  selectedTabIndexTrain = 0;
   filtersVisibleLevel = true;
   filtersVisibleMt = true;
   filtersVisibleTutor = true;
   filtersVisibleEgg = true;
+  filtersVisibleTrain = true;
   /** Caches resolved machine moves per version group to avoid refetching (e.g. on language toggle). */
   private machineMovesCache = new Map<string, FilteredByMachine[]>();
 
@@ -94,6 +100,9 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
       case "egg":
         this.filtersVisibleEgg = !this.filtersVisibleEgg;
         break;
+      case "train":
+        this.filtersVisibleTrain = !this.filtersVisibleTrain;
+        break;
       default:
         break;
     }
@@ -104,10 +113,12 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
       this.extractVersionGroups();
     } else {
       this.versionGroups = [];
+      this.trainVersionGroups = [];
       this.filteredMoves = [];
       this.filteredMovesByMachine = [];
       this.filteredMovesByTutor = [];
       this.filteredMovesByEgg = [];
+      this.filteredMovesByTrain = [];
     }
   }
 
@@ -150,8 +161,16 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     this.filterMovesByEgg();
   }
 
+  trainChangeGame(event: MatTabChangeEvent | { index: number; value: any }): void {
+    const index = (event as any).index !== undefined ? (event as any).index : (event as MatTabChangeEvent).index;
+    this.trainSelectedVersionGroup = this.trainVersionGroups[index];
+    this.selectedTabIndexTrain = index;
+    this.filterMovesByTrain();
+  }
+
   extractVersionGroups(): void {
     const desiredOrder = [
+      "champions",
       "scarlet-violet",
       "brilliant-diamond-and-shining-pearl",
       "sword-shield",
@@ -175,17 +194,25 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     ];
 
     const versionGroupsSet = new Set<string>();
+    const trainVersionGroupsSet = new Set<string>();
 
     this.movesWithTypes.forEach(moveWithTypes => {
       moveWithTypes.move.version_group_details.forEach(detail => {
-        versionGroupsSet.add(detail.version_group.name);
+        // 'train' moves get their own section, so their games stay out of the other tabs.
+        if (detail.move_learn_method.name === 'train') {
+          trainVersionGroupsSet.add(detail.version_group.name);
+        } else {
+          versionGroupsSet.add(detail.version_group.name);
+        }
       });
     });
 
-    this.versionGroups = Array.from(versionGroupsSet);
-    this.versionGroups = desiredOrder.filter(version => this.versionGroups.includes(version));
-    this.versionGroups.sort((a, b) => desiredOrder.indexOf(a) - desiredOrder.indexOf(b));
+    this.versionGroups = desiredOrder.filter(version => versionGroupsSet.has(version));
+    this.trainVersionGroups = desiredOrder.filter(version => trainVersionGroupsSet.has(version));
     this.buildLevelUpTabs();
+
+    this.trainSelectedVersionGroup = this.trainVersionGroups[0] ?? '';
+    this.selectedTabIndexTrain = 0;
 
     const defaultVersion = 'scarlet-violet';
 
@@ -206,6 +233,7 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     this.filterMovesByMachine();
     this.filterMovesByTutor();
     this.filterMovesByEgg();
+    this.filterMovesByTrain();
   }
 
   filterMovesByLevel(): void {
@@ -346,6 +374,34 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
     this.filteredMovesByEgg = filteredMoves as FilteredByEgg[];
   }
 
+  filterMovesByTrain(): void {
+    const trainMoves = this.movesWithTypes
+      .map(moveWithTypes => {
+        const trainDetails = moveWithTypes.move.version_group_details.filter(detail =>
+          detail.move_learn_method.name === 'train' &&
+          detail.version_group.name === this.trainSelectedVersionGroup
+        );
+
+        if (trainDetails.length > 0) {
+          return {
+            ...moveWithTypes,
+            move: {
+              ...moveWithTypes.move,
+              version_group_details: trainDetails
+            },
+            trainDetail: trainDetails[0]
+          };
+        }
+
+        return null;
+      })
+      .filter(moveWithDetails => moveWithDetails !== null);
+
+    trainMoves.sort((move1, move2) => move1.moveName.localeCompare(move2.moveName));
+
+    this.filteredMovesByTrain = trainMoves as FilteredByTrain[];
+  }
+
   trackByMove(_index: number, pokeMove: FilteredMove): string {
     return pokeMove.move.move.name;
   }
@@ -424,6 +480,10 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
 
   toggleFiltersEgg(): void {
     this.toggleFilters('egg');
+  }
+
+  toggleFiltersTrain(): void {
+    this.toggleFilters('train');
   }
 
 }

@@ -52,7 +52,8 @@ export enum GameName {
   SWORD_SHIELD = 'sword-shield',
   SCARLET_VIOLET = 'scarlet-violet',
   BRILLIANT_DIAMOND_AND_SHINING_PEARL = 'brilliant-diamond-and-shining-pearl',
-  LEGENDS_ARCEUS = 'legends-arceus'
+  LEGENDS_ARCEUS = 'legends-arceus',
+  CHAMPIONS = 'champions'
 }
 
 export const GAME_NAME_TRANSLATIONS: Record<GameName, string> = {
@@ -109,7 +110,8 @@ export const GAME_NAME_TRANSLATIONS: Record<GameName, string> = {
   [GameName.SWORD_SHIELD]: 'Espada - Escudo',
   [GameName.SCARLET_VIOLET]: 'Escarlata - Purpura',
   [GameName.BRILLIANT_DIAMOND_AND_SHINING_PEARL]: 'Diamante B. - Perla R.',
-  [GameName.LEGENDS_ARCEUS]: 'Legendas Arceus'
+  [GameName.LEGENDS_ARCEUS]: 'Legendas Arceus',
+  [GameName.CHAMPIONS]: 'Campeones'
 };
 
 export const GAME_ICON_MAP: Record<GameName, string[]> = {
@@ -166,7 +168,8 @@ export const GAME_ICON_MAP: Record<GameName, string[]> = {
   [GameName.SWORD_SHIELD]: ['sword', 'shield'],
   [GameName.SCARLET_VIOLET]: ['scarlet', 'violet'],
   [GameName.BRILLIANT_DIAMOND_AND_SHINING_PEARL]: ['diamond', 'pearl'],
-  [GameName.LEGENDS_ARCEUS]: ['legends-arceus']
+  [GameName.LEGENDS_ARCEUS]: ['legends-arceus'],
+  [GameName.CHAMPIONS]: ['champions']
 };
 
 export function getGameName(gameName: string, language: string): string {
@@ -235,7 +238,8 @@ export const GAME_VERSION_COLOR_CLASSES: Partial<Record<GameName, string>> & Rec
   [GameName.SWORD_SHIELD]: 'bg-pokemon-sword',
   [GameName.SCARLET_VIOLET]: 'bg-pokemon-scarlet',
   [GameName.BRILLIANT_DIAMOND_AND_SHINING_PEARL]: 'bg-pokemon-brilliant-diamond text-black',
-  [GameName.LEGENDS_ARCEUS]: 'bg-white text-black'
+  [GameName.LEGENDS_ARCEUS]: 'bg-white text-black',
+  [GameName.CHAMPIONS]: 'bg-pokemon-champions text-black'
 };
 
 export function getGameVersionColor(gameVersion: string): string {

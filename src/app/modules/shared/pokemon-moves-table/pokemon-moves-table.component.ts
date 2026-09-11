@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
-import { FilteredByEgg, FilteredByMachine, FilteredByTutor } from '../../../../../entities/moves.entity';
+import { FilteredByEgg, FilteredByMachine, FilteredByTrain, FilteredByTutor } from '../../../../../entities/moves.entity';
 import { TabItem } from '../custom-tabs/custom-tabs.component';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { toggleSectionCollapseAnimations } from '../animations/toggle-section-collapse.animation';
@@ -22,8 +22,8 @@ export class PokemonMovesTableComponent implements OnChanges {
   @Input() filtersVisible: boolean = true;
   @Input() versionGroups: string[] = [];
   @Input() selectedTabIndex: number = 0;
-  @Input() filteredMoves: (FilteredByMachine | FilteredByTutor | FilteredByEgg)[] = [];
-  @Input() moveType: 'machine' | 'tutor' | 'egg' = 'machine';
+  @Input() filteredMoves: (FilteredByMachine | FilteredByTutor | FilteredByEgg | FilteredByTrain)[] = [];
+  @Input() moveType: 'machine' | 'tutor' | 'egg' | 'train' = 'machine';
 
   @Output() toggleFiltersEvent = new EventEmitter<void>();
   @Output() tabChangeEvent = new EventEmitter<MatTabChangeEvent | { index: number; value: any }>();
