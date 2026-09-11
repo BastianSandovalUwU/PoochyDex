@@ -69,18 +69,18 @@
         </div>
       </div>
       <div class="lg:col-span-8 space-y-6">
-        @if (getFlavorTextsByGame().length > 0) {
-          <div [ngClass]="getColorClassByLanguageAndType(moveType)" class="p-4 rounded-md border border-gray-200 dark:border-gray-600 dark:bg-gray-800">
-            <h1 class="font-bold text-xl hover:text-gray-800">{{ language === 'es' ? 'Descripciones por Juego' : 'Descriptions by Game' }}</h1>
-            <div class="border-black border p-1 rounded-md bg-white filters-container">
-              <div class="sm:grid grid-cols-6 gap-4 border-b border-black pb-1 dark:border-gray-600 dark:bg-gray-800 hidden">
+        @if (flavorTexts.length > 0) {
+          <div [ngClass]="getColorClassByLanguageAndType(moveType)" class="p-4 rounded-md border border-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white">
+            <h1 class="font-bold text-xl mb-2">{{ language === 'es' ? 'Descripciones por Juego' : 'Descriptions by Game' }}</h1>
+            <div class="border-black border p-1 rounded-md bg-white text-black dark:border-gray-600 dark:text-gray-100 filters-container">
+              <div class="sm:grid grid-cols-6 gap-4 border-b border-black pb-1 dark:border-gray-600 hidden">
                 <span class="text-center font-semibold col-span-2">{{ language === 'es' ? 'Juego' : 'Game' }}</span>
                 <span class="font-semibold col-span-4">{{ language === 'es' ? 'Descripción' : 'Description' }}</span>
               </div>
               <div class="grid grid-cols-6">
-                @for (entry of getFlavorTextsByGame(); track entry) {
-                  <div class="col-span-6 grid grid-cols-1 sm:grid-cols-6 gap-4 border-b border-black py-2">
-                    <div [ngClass]="getGameVersionColor(entry.version)" class="relative col-span-2 rounded-md text-white border border-black flex justify-center items-center">
+                @for (entry of flavorTexts; track entry.version) {
+                  <div class="col-span-6 grid grid-cols-1 sm:grid-cols-6 gap-4 border-b border-black py-2 dark:border-gray-600">
+                    <div [ngClass]="getGameVersionColor(entry.version)" class="relative col-span-2 min-h-[2.5rem] rounded-md text-white border border-black pl-2 pr-16 flex justify-center items-center">
                       <span class="text-center hover:text-blue-500 cursor-pointer">
                         <app-hyperlink type="game" [value]="entry.version" [textBlue]="false"></app-hyperlink>
                       </span>
@@ -91,7 +91,7 @@
                           >
                       }
                     </div>
-                    <div class="col-span-4">
+                    <div class="col-span-4 flex items-center">
                       <p>{{ entry.flavor_text }}</p>
                     </div>
                   </div>
@@ -111,7 +111,7 @@
           </h2>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
-          @for (pokemon of pokemon; track pokemon) {
+          @for (pokemon of visiblePokemon; track pokemon) {
             <app-pokemon-card
               [pokemon]="pokemon"
               [language]="language">
