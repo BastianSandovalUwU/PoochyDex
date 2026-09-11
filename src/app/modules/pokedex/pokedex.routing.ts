@@ -6,11 +6,16 @@ import { PokedexComponent } from "./pokedex.component";
 import { ShowPokedexComponent } from "./components/show-pokedex/show-pokedex.component";
 import { PokemonHuntComponent } from "./components/pokemon-hunt/pokemon-hunt.component";
 import { ListPokedexComponent } from "./components/list-pokedex/list-pokedex.component";
+import { CameraScanComponent } from "./components/camera-scan/camera-scan.component";
 
 export const pokedexRoute: Route[] = [
   {
     path: '',
     component: PokedexComponent
+  },
+  {
+    path: 'camera-scan',
+    component: CameraScanComponent
   },
   {
     path: 'list',
