@@ -10,6 +10,7 @@ import { TabItem } from 'app/modules/shared/custom-tabs/custom-tabs.component';
 import { ErrorMessageService } from 'app/services/error-message.service';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { toggleSectionCollapseAnimations } from 'app/modules/shared/animations/toggle-section-collapse.animation';
+import { TYPE_ORDER } from '../../../../../../../entities/common/const.interface';
 
 @Component({
     selector: 'app-pokemon-moves',
@@ -397,9 +398,19 @@ export class PokemonMovesComponent implements OnInit, OnDestroy, OnChanges {
       })
       .filter(moveWithDetails => moveWithDetails !== null);
 
-    trainMoves.sort((move1, move2) => move1.moveName.localeCompare(move2.moveName));
+    // Group moves of the same type together, then sort alphabetically within each type.
+    trainMoves.sort((move1, move2) =>
+      this.getTypeOrderIndex(move1.move.detailMove?.type?.name) - this.getTypeOrderIndex(move2.move.detailMove?.type?.name) ||
+      move1.moveName.localeCompare(move2.moveName)
+    );
 
     this.filteredMovesByTrain = trainMoves as FilteredByTrain[];
+  }
+
+  /** Position of a PokéAPI type slug in the in-game type order; unknown types go last. */
+  private getTypeOrderIndex(typeSlug: string | undefined): number {
+    const index = TYPE_ORDER.findIndex(type => type.toLowerCase() === typeSlug);
+    return index === -1 ? TYPE_ORDER.length : index;
   }
 
   trackByMove(_index: number, pokeMove: FilteredMove): string {

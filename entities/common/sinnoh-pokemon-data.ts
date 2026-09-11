@@ -1,5 +1,5 @@
 import { PokemonList } from "../pokemon-list.entity";
-import { POKEMON_TYPES } from "./const.interface";
+import { PokemonType } from "./display/pokemon-type";
 
 export const ALL_POKEMON_SINNOH: PokemonList[] = [
     {
@@ -11,7 +11,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 387,
       generationId: 4,
-      type: POKEMON_TYPES.Grass
+      type: PokemonType.GRASS
     },
     {
       name: "grotle",
@@ -22,7 +22,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 388,
       generationId: 4,
-      type: POKEMON_TYPES.Grass
+      type: PokemonType.GRASS
     },
     {
       name: "torterra",
@@ -33,8 +33,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 389,
       generationId: 4,
-      type: POKEMON_TYPES.Grass,
-      type2: POKEMON_TYPES.Ground
+      type: PokemonType.GRASS,
+      type2: PokemonType.GROUND
     },
     {
       name: "chimchar",
@@ -45,7 +45,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 390,
       generationId: 4,
-      type: POKEMON_TYPES.Fire
+      type: PokemonType.FIRE
     },
     {
       name: "monferno",
@@ -56,8 +56,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 391,
       generationId: 4,
-      type: POKEMON_TYPES.Fire,
-      type2: POKEMON_TYPES.Fighting
+      type: PokemonType.FIRE,
+      type2: PokemonType.FIGHTING
     },
     {
       name: "infernape",
@@ -68,8 +68,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 392,
       generationId: 4,
-      type: POKEMON_TYPES.Fire,
-      type2: POKEMON_TYPES.Fighting
+      type: PokemonType.FIRE,
+      type2: PokemonType.FIGHTING
     },
     {
       name: "piplup",
@@ -80,7 +80,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 393,
       generationId: 4,
-      type: POKEMON_TYPES.Water
+      type: PokemonType.WATER
     },
     {
       name: "prinplup",
@@ -91,7 +91,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 394,
       generationId: 4,
-      type: POKEMON_TYPES.Water
+      type: PokemonType.WATER
     },
     {
       name: "empoleon",
@@ -102,8 +102,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 395,
       generationId: 4,
-      type: POKEMON_TYPES.Water,
-      type2: POKEMON_TYPES.Steel
+      type: PokemonType.WATER,
+      type2: PokemonType.STEEL
     },
     {
       name: "starly",
@@ -114,8 +114,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 396,
       generationId: 4,
-      type: POKEMON_TYPES.Normal,
-      type2: POKEMON_TYPES.Flying
+      type: PokemonType.NORMAL,
+      type2: PokemonType.FLYING
     },
     {
       name: "staravia",
@@ -126,8 +126,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 397,
       generationId: 4,
-      type: POKEMON_TYPES.Normal,
-      type2: POKEMON_TYPES.Flying
+      type: PokemonType.NORMAL,
+      type2: PokemonType.FLYING
     },
     {
       name: "staraptor",
@@ -138,8 +138,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 398,
       generationId: 4,
-      type: POKEMON_TYPES.Normal,
-      type2: POKEMON_TYPES.Flying
+      type: PokemonType.NORMAL,
+      type2: PokemonType.FLYING
     },
     {
       name: "bidoof",
@@ -150,7 +150,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 399,
       generationId: 4,
-      type: POKEMON_TYPES.Normal
+      type: PokemonType.NORMAL
     },
     {
       name: "bibarel",
@@ -161,8 +161,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 400,
       generationId: 4,
-      type: POKEMON_TYPES.Normal,
-      type2: POKEMON_TYPES.Water
+      type: PokemonType.NORMAL,
+      type2: PokemonType.WATER
     },
     {
       name: "kricketot",
@@ -173,7 +173,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 401,
       generationId: 4,
-      type: POKEMON_TYPES.Bug
+      type: PokemonType.BUG
     },
     {
       name: "kricketune",
@@ -184,7 +184,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 402,
       generationId: 4,
-      type: POKEMON_TYPES.Bug
+      type: PokemonType.BUG
     },
     {
       name: "shinx",
@@ -195,7 +195,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 403,
       generationId: 4,
-      type: POKEMON_TYPES.Electric
+      type: PokemonType.ELECTRIC
     },
     {
       name: "luxio",
@@ -206,7 +206,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 404,
       generationId: 4,
-      type: POKEMON_TYPES.Electric
+      type: PokemonType.ELECTRIC
     },
     {
       name: "luxray",
@@ -217,7 +217,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 405,
       generationId: 4,
-      type: POKEMON_TYPES.Electric
+      type: PokemonType.ELECTRIC
     },
     {
       name: "budew",
@@ -228,8 +228,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 406,
       generationId: 4,
-      type: POKEMON_TYPES.Grass,
-      type2: POKEMON_TYPES.Poison
+      type: PokemonType.GRASS,
+      type2: PokemonType.POISON
     },
     {
       name: "roserade",
@@ -240,8 +240,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 407,
       generationId: 4,
-      type: POKEMON_TYPES.Grass,
-      type2: POKEMON_TYPES.Poison
+      type: PokemonType.GRASS,
+      type2: PokemonType.POISON
     },
     {
       name: "cranidos",
@@ -252,7 +252,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 408,
       generationId: 4,
-      type: POKEMON_TYPES.Rock
+      type: PokemonType.ROCK
     },
     {
       name: "rampardos",
@@ -263,7 +263,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 409,
       generationId: 4,
-      type: POKEMON_TYPES.Rock
+      type: PokemonType.ROCK
     },
     {
       name: "shieldon",
@@ -274,8 +274,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 410,
       generationId: 4,
-      type: POKEMON_TYPES.Rock,
-      type2: POKEMON_TYPES.Steel
+      type: PokemonType.ROCK,
+      type2: PokemonType.STEEL
     },
     {
       name: "bastiodon",
@@ -286,8 +286,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 411,
       generationId: 4,
-      type: POKEMON_TYPES.Rock,
-      type2: POKEMON_TYPES.Steel
+      type: PokemonType.ROCK,
+      type2: PokemonType.STEEL
     },
     {
       name: "burmy",
@@ -298,7 +298,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 412,
       generationId: 4,
-      type: POKEMON_TYPES.Bug
+      type: PokemonType.BUG
     },
     {
       name: "wormadam-plant",
@@ -309,8 +309,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 413,
       generationId: 4,
-      type: POKEMON_TYPES.Bug,
-      type2: POKEMON_TYPES.Grass
+      type: PokemonType.BUG,
+      type2: PokemonType.GRASS
     },
     {
       name: "mothim",
@@ -321,8 +321,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 414,
       generationId: 4,
-      type: POKEMON_TYPES.Bug,
-      type2: POKEMON_TYPES.Flying
+      type: PokemonType.BUG,
+      type2: PokemonType.FLYING
     },
     {
       name: "combee",
@@ -333,8 +333,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 415,
       generationId: 4,
-      type: POKEMON_TYPES.Bug,
-      type2: POKEMON_TYPES.Flying
+      type: PokemonType.BUG,
+      type2: PokemonType.FLYING
     },
     {
       name: "vespiquen",
@@ -345,8 +345,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 416,
       generationId: 4,
-      type: POKEMON_TYPES.Bug,
-      type2: POKEMON_TYPES.Flying
+      type: PokemonType.BUG,
+      type2: PokemonType.FLYING
     },
     {
       name: "pachirisu",
@@ -357,7 +357,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 417,
       generationId: 4,
-      type: POKEMON_TYPES.Electric
+      type: PokemonType.ELECTRIC
     },
     {
       name: "buizel",
@@ -368,7 +368,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 418,
       generationId: 4,
-      type: POKEMON_TYPES.Water
+      type: PokemonType.WATER
     },
     {
       name: "floatzel",
@@ -379,7 +379,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 419,
       generationId: 4,
-      type: POKEMON_TYPES.Water
+      type: PokemonType.WATER
     },
     {
       name: "cherubi",
@@ -390,7 +390,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 420,
       generationId: 4,
-      type: POKEMON_TYPES.Grass
+      type: PokemonType.GRASS
     },
     {
       name: "cherrim",
@@ -401,7 +401,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 421,
       generationId: 4,
-      type: POKEMON_TYPES.Grass
+      type: PokemonType.GRASS
     },
     {
       name: "shellos",
@@ -412,7 +412,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 422,
       generationId: 4,
-      type: POKEMON_TYPES.Water
+      type: PokemonType.WATER
     },
     {
       name: "gastrodon",
@@ -423,8 +423,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 423,
       generationId: 4,
-      type: POKEMON_TYPES.Water,
-      type2: POKEMON_TYPES.Ground
+      type: PokemonType.WATER,
+      type2: PokemonType.GROUND
     },
     {
       name: "ambipom",
@@ -435,7 +435,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 424,
       generationId: 4,
-      type: POKEMON_TYPES.Normal
+      type: PokemonType.NORMAL
     },
     {
       name: "drifloon",
@@ -446,8 +446,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 425,
       generationId: 4,
-      type: POKEMON_TYPES.Ghost,
-      type2: POKEMON_TYPES.Flying
+      type: PokemonType.GHOST,
+      type2: PokemonType.FLYING
     },
     {
       name: "drifblim",
@@ -458,8 +458,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 426,
       generationId: 4,
-      type: POKEMON_TYPES.Ghost,
-      type2: POKEMON_TYPES.Flying
+      type: PokemonType.GHOST,
+      type2: PokemonType.FLYING
     },
     {
       name: "buneary",
@@ -470,7 +470,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 427,
       generationId: 4,
-      type: POKEMON_TYPES.Normal
+      type: PokemonType.NORMAL
     },
     {
       name: "lopunny",
@@ -481,7 +481,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 428,
       generationId: 4,
-      type: POKEMON_TYPES.Normal
+      type: PokemonType.NORMAL
     },
     {
       name: "mismagius",
@@ -492,7 +492,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 429,
       generationId: 4,
-      type: POKEMON_TYPES.Ghost
+      type: PokemonType.GHOST
     },
     {
       name: "honchkrow",
@@ -503,8 +503,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 430,
       generationId: 4,
-      type: POKEMON_TYPES.Dark,
-      type2: POKEMON_TYPES.Flying
+      type: PokemonType.DARK,
+      type2: PokemonType.FLYING
     },
     {
       name: "glameow",
@@ -515,7 +515,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 431,
       generationId: 4,
-      type: POKEMON_TYPES.Normal
+      type: PokemonType.NORMAL
     },
     {
       name: "purugly",
@@ -526,7 +526,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 432,
       generationId: 4,
-      type: POKEMON_TYPES.Normal
+      type: PokemonType.NORMAL
     },
     {
       name: "chingling",
@@ -537,7 +537,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 433,
       generationId: 4,
-      type: POKEMON_TYPES.Ghost
+      type: PokemonType.GHOST
     },
     {
       name: "stunky",
@@ -548,8 +548,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 434,
       generationId: 4,
-      type: POKEMON_TYPES.Poison,
-      type2: POKEMON_TYPES.Dark
+      type: PokemonType.POISON,
+      type2: PokemonType.DARK
     },
     {
       name: "skuntank",
@@ -560,8 +560,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 435,
       generationId: 4,
-      type: POKEMON_TYPES.Poison,
-      type2: POKEMON_TYPES.Dark
+      type: PokemonType.POISON,
+      type2: PokemonType.DARK
     },
     {
       name: "bronzor",
@@ -572,8 +572,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 436,
       generationId: 4,
-      type: POKEMON_TYPES.Steel,
-      type2: POKEMON_TYPES.Psychic
+      type: PokemonType.STEEL,
+      type2: PokemonType.PSYCHIC
     },
     {
       name: "bronzong",
@@ -584,8 +584,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 437,
       generationId: 4,
-      type: POKEMON_TYPES.Steel,
-      type2: POKEMON_TYPES.Psychic
+      type: PokemonType.STEEL,
+      type2: PokemonType.PSYCHIC
     },
     {
       name: "bonsly",
@@ -596,7 +596,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 438,
       generationId: 4,
-      type: POKEMON_TYPES.Rock
+      type: PokemonType.ROCK
     },
     {
       name: "mime-jr",
@@ -607,8 +607,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 439,
       generationId: 4,
-      type: POKEMON_TYPES.Psychic,
-      type2: POKEMON_TYPES.Fairy
+      type: PokemonType.PSYCHIC,
+      type2: PokemonType.FAIRY
     },
     {
       name: "happiny",
@@ -619,7 +619,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 440,
       generationId: 4,
-      type: POKEMON_TYPES.Normal
+      type: PokemonType.NORMAL
     },
     {
       name: "chatot",
@@ -630,8 +630,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 441,
       generationId: 4,
-      type: POKEMON_TYPES.Normal,
-      type2: POKEMON_TYPES.Flying
+      type: PokemonType.NORMAL,
+      type2: PokemonType.FLYING
     },
     {
       name: "spiritomb",
@@ -642,8 +642,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 442,
       generationId: 4,
-      type: POKEMON_TYPES.Ghost,
-      type2: POKEMON_TYPES.Dark
+      type: PokemonType.GHOST,
+      type2: PokemonType.DARK
     },
     {
       name: "gible",
@@ -654,8 +654,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 443,
       generationId: 4,
-      type: POKEMON_TYPES.Dragon,
-      type2: POKEMON_TYPES.Ground
+      type: PokemonType.DRAGON,
+      type2: PokemonType.GROUND
     },
     {
       name: "gabite",
@@ -666,8 +666,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 444,
       generationId: 4,
-      type: POKEMON_TYPES.Dragon,
-      type2: POKEMON_TYPES.Ground
+      type: PokemonType.DRAGON,
+      type2: PokemonType.GROUND
     },
     {
       name: "garchomp",
@@ -678,8 +678,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 445,
       generationId: 4,
-      type: POKEMON_TYPES.Dragon,
-      type2: POKEMON_TYPES.Ground
+      type: PokemonType.DRAGON,
+      type2: PokemonType.GROUND
     },
     {
       name: "munchlax",
@@ -690,7 +690,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 446,
       generationId: 4,
-      type: POKEMON_TYPES.Normal
+      type: PokemonType.NORMAL
     },
     {
       name: "riolu",
@@ -701,7 +701,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 447,
       generationId: 4,
-      type: POKEMON_TYPES.Fighting
+      type: PokemonType.FIGHTING
     },
     {
       name: "lucario",
@@ -712,8 +712,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 448,
       generationId: 4,
-      type: POKEMON_TYPES.Fighting,
-      type2: POKEMON_TYPES.Steel
+      type: PokemonType.FIGHTING,
+      type2: PokemonType.STEEL
     },
     {
       name: "hippopotas",
@@ -724,7 +724,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 449,
       generationId: 4,
-      type: POKEMON_TYPES.Ground
+      type: PokemonType.GROUND
     },
     {
       name: "hippowdon",
@@ -735,7 +735,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 450,
       generationId: 4,
-      type: POKEMON_TYPES.Ground
+      type: PokemonType.GROUND
     },
     {
       name: "skorupi",
@@ -746,8 +746,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 451,
       generationId: 4,
-      type: POKEMON_TYPES.Poison,
-      type2: POKEMON_TYPES.Bug
+      type: PokemonType.POISON,
+      type2: PokemonType.BUG
     },
     {
       name: "drapion",
@@ -758,8 +758,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 452,
       generationId: 4,
-      type: POKEMON_TYPES.Poison,
-      type2: POKEMON_TYPES.Dark
+      type: PokemonType.POISON,
+      type2: PokemonType.DARK
     },
     {
       name: "croagunk",
@@ -770,8 +770,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 453,
       generationId: 4,
-      type: POKEMON_TYPES.Poison,
-      type2: POKEMON_TYPES.Fighting
+      type: PokemonType.POISON,
+      type2: PokemonType.FIGHTING
     },
     {
       name: "toxicroak",
@@ -782,8 +782,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 454,
       generationId: 4,
-      type: POKEMON_TYPES.Poison,
-      type2: POKEMON_TYPES.Fighting
+      type: PokemonType.POISON,
+      type2: PokemonType.FIGHTING
     },
     {
       name: "carnivine",
@@ -794,7 +794,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 455,
       generationId: 4,
-      type: POKEMON_TYPES.Grass
+      type: PokemonType.GRASS
     },
     {
       name: "finneon",
@@ -805,7 +805,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 456,
       generationId: 4,
-      type: POKEMON_TYPES.Water
+      type: PokemonType.WATER
     },
     {
       name: "lumineon",
@@ -816,7 +816,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 457,
       generationId: 4,
-      type: POKEMON_TYPES.Water
+      type: PokemonType.WATER
     },
     {
       name: "mantyke",
@@ -827,8 +827,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 458,
       generationId: 4,
-      type: POKEMON_TYPES.Water,
-      type2: POKEMON_TYPES.Flying
+      type: PokemonType.WATER,
+      type2: PokemonType.FLYING
     },
     {
       name: "snover",
@@ -839,8 +839,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 459,
       generationId: 4,
-      type: POKEMON_TYPES.Grass,
-      type2: POKEMON_TYPES.Ice
+      type: PokemonType.GRASS,
+      type2: PokemonType.ICE
     },
     {
       name: "abomasnow",
@@ -851,8 +851,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 460,
       generationId: 4,
-      type: POKEMON_TYPES.Grass,
-      type2: POKEMON_TYPES.Ice
+      type: PokemonType.GRASS,
+      type2: PokemonType.ICE
     },
     {
       name: "weavile",
@@ -863,8 +863,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 461,
       generationId: 4,
-      type: POKEMON_TYPES.Dark,
-      type2: POKEMON_TYPES.Ice
+      type: PokemonType.DARK,
+      type2: PokemonType.ICE
     },
     {
       name: "magnezone",
@@ -875,8 +875,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 462,
       generationId: 4,
-      type: POKEMON_TYPES.Electric,
-      type2: POKEMON_TYPES.Steel
+      type: PokemonType.ELECTRIC,
+      type2: PokemonType.STEEL
     },
     {
       name: "lickilicky",
@@ -887,7 +887,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 463,
       generationId: 4,
-      type: POKEMON_TYPES.Normal
+      type: PokemonType.NORMAL
     },
     {
       name: "rhyperior",
@@ -898,8 +898,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 464,
       generationId: 4,
-      type: POKEMON_TYPES.Rock,
-      type2: POKEMON_TYPES.Ground
+      type: PokemonType.ROCK,
+      type2: PokemonType.GROUND
     },
     {
       name: "tangrowth",
@@ -910,7 +910,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 465,
       generationId: 4,
-      type: POKEMON_TYPES.Grass
+      type: PokemonType.GRASS
     },
     {
       name: "electivire",
@@ -921,7 +921,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 466,
       generationId: 4,
-      type: POKEMON_TYPES.Electric
+      type: PokemonType.ELECTRIC
     },
     {
       name: "magmortar",
@@ -932,7 +932,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 467,
       generationId: 4,
-      type: POKEMON_TYPES.Fire
+      type: PokemonType.FIRE
     },
     {
       name: "togekiss",
@@ -943,8 +943,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 468,
       generationId: 4,
-      type: POKEMON_TYPES.Fairy,
-      type2: POKEMON_TYPES.Flying
+      type: PokemonType.FAIRY,
+      type2: PokemonType.FLYING
     },
     {
       name: "yanmega",
@@ -955,8 +955,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 469,
       generationId: 4,
-      type: POKEMON_TYPES.Bug,
-      type2: POKEMON_TYPES.Flying
+      type: PokemonType.BUG,
+      type2: PokemonType.FLYING
     },
     {
       name: "leafeon",
@@ -967,7 +967,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 470,
       generationId: 4,
-      type: POKEMON_TYPES.Grass
+      type: PokemonType.GRASS
     },
     {
       name: "glaceon",
@@ -978,7 +978,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 471,
       generationId: 4,
-      type: POKEMON_TYPES.Ice
+      type: PokemonType.ICE
     },
     {
       name: "gliscor",
@@ -989,8 +989,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 472,
       generationId: 4,
-      type: POKEMON_TYPES.Ground,
-      type2: POKEMON_TYPES.Flying
+      type: PokemonType.GROUND,
+      type2: PokemonType.FLYING
     },
     {
       name: "mamoswine",
@@ -1001,8 +1001,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 473,
       generationId: 4,
-      type: POKEMON_TYPES.Ice,
-      type2: POKEMON_TYPES.Ground
+      type: PokemonType.ICE,
+      type2: PokemonType.GROUND
     },
     {
       name: "porygon-z",
@@ -1013,7 +1013,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 474,
       generationId: 4,
-      type: POKEMON_TYPES.Normal
+      type: PokemonType.NORMAL
     },
     {
       name: "gallade",
@@ -1024,8 +1024,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 475,
       generationId: 4,
-      type: POKEMON_TYPES.Psychic,
-      type2: POKEMON_TYPES.Fighting
+      type: PokemonType.PSYCHIC,
+      type2: PokemonType.FIGHTING
     },
     {
       name: "probopass",
@@ -1036,8 +1036,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 476,
       generationId: 4,
-      type: POKEMON_TYPES.Rock,
-      type2: POKEMON_TYPES.Steel
+      type: PokemonType.ROCK,
+      type2: PokemonType.STEEL
     },
     {
       name: "dusknoir",
@@ -1048,7 +1048,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 477,
       generationId: 4,
-      type: POKEMON_TYPES.Ghost
+      type: PokemonType.GHOST
     },
     {
       name: "froslass",
@@ -1059,8 +1059,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 478,
       generationId: 4,
-      type: POKEMON_TYPES.Ice,
-      type2: POKEMON_TYPES.Ghost
+      type: PokemonType.ICE,
+      type2: PokemonType.GHOST
     },
     {
       name: "rotom",
@@ -1071,8 +1071,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 479,
       generationId: 4,
-      type: POKEMON_TYPES.Electric,
-      type2: POKEMON_TYPES.Ghost
+      type: PokemonType.ELECTRIC,
+      type2: PokemonType.GHOST
     },
     {
       name: "uxie",
@@ -1083,7 +1083,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 480,
       generationId: 4,
-      type: POKEMON_TYPES.Psychic
+      type: PokemonType.PSYCHIC
     },
     {
       name: "mesprit",
@@ -1094,7 +1094,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 481,
       generationId: 4,
-      type: POKEMON_TYPES.Psychic
+      type: PokemonType.PSYCHIC
     },
     {
       name: "azelf",
@@ -1105,7 +1105,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 482,
       generationId: 4,
-      type: POKEMON_TYPES.Psychic
+      type: PokemonType.PSYCHIC
     },
     {
       name: "dialga",
@@ -1116,8 +1116,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 483,
       generationId: 4,
-      type: POKEMON_TYPES.Steel,
-      type2: POKEMON_TYPES.Dragon
+      type: PokemonType.STEEL,
+      type2: PokemonType.DRAGON
     },
     {
       name: "palkia",
@@ -1128,8 +1128,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 484,
       generationId: 4,
-      type: POKEMON_TYPES.Water,
-      type2: POKEMON_TYPES.Dragon
+      type: PokemonType.WATER,
+      type2: PokemonType.DRAGON
     },
     {
       name: "heatran",
@@ -1140,8 +1140,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 485,
       generationId: 4,
-      type: POKEMON_TYPES.Fire,
-      type2: POKEMON_TYPES.Steel
+      type: PokemonType.FIRE,
+      type2: PokemonType.STEEL
     },
     {
       name: "regigigas",
@@ -1152,7 +1152,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 486,
       generationId: 4,
-      type: POKEMON_TYPES.Normal
+      type: PokemonType.NORMAL
     },
     {
       name: "giratina-altered",
@@ -1163,8 +1163,8 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 487,
       generationId: 4,
-      type: POKEMON_TYPES.Ghost,
-      type2: POKEMON_TYPES.Dragon
+      type: PokemonType.GHOST,
+      type2: PokemonType.DRAGON
     },
     {
       name: "cresselia",
@@ -1175,7 +1175,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 488,
       generationId: 4,
-      type: POKEMON_TYPES.Psychic
+      type: PokemonType.PSYCHIC
     },
     {
       name: "phione",
@@ -1186,7 +1186,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 489,
       generationId: 4,
-      type: POKEMON_TYPES.Water
+      type: PokemonType.WATER
     },
     {
       name: "manaphy",
@@ -1197,7 +1197,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 490,
       generationId: 4,
-      type: POKEMON_TYPES.Water
+      type: PokemonType.WATER
     },
     {
       name: "darkrai",
@@ -1208,7 +1208,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 491,
       generationId: 4,
-      type: POKEMON_TYPES.Dark
+      type: PokemonType.DARK
     },
     {
       name: "shaymin-land",
@@ -1219,7 +1219,7 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 492,
       generationId: 4,
-      type: POKEMON_TYPES.Grass
+      type: PokemonType.GRASS
     },
     {
       name: "arceus",
@@ -1230,6 +1230,6 @@ export const ALL_POKEMON_SINNOH: PokemonList[] = [
       },
       number: 493,
       generationId: 4,
-      type: POKEMON_TYPES.Normal
+      type: PokemonType.NORMAL
     }
 ];

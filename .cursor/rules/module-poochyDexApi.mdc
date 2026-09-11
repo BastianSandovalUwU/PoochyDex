@@ -18,6 +18,6 @@ alwaysApply: false
 
 **Servicio:** `services/poochy-dex-api.service.ts` (HTTP a la API propia). **Endpoints:** `docs/api-services.md` (sección `PoochyDexApiService`).
 
-**Cruzado con:** `AuthService` (sesión), `LanguageService`, `HelperService` (shared). Tipos en `entities/poochydex-api/`. Tipos de Pokémon: `POKEMON_TYPES` en `entities/common/const.interface`.
+**Cruzado con:** `AuthService` (sesión), `LanguageService`, `HelperService` (shared). Tipos en `entities/poochydex-api/`. Tipos de Pokémon: `PokemonType` en `entities/common/display/pokemon-type`.
 
 **Build:** `NODE_JS_API` debe estar definido (`generate-env.js`) para que la API responda.

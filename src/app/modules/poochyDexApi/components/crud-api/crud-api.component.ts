@@ -1,6 +1,6 @@
 import { Component, OnInit, DestroyRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { PoochyDexApiService } from '../../services/poochy-dex-api.service';
-import { POKEMON_TYPES } from '../../../../../../entities/common/const.interface';
+import { PokemonType } from '../../../../../../entities/common/display/pokemon-type';
 import { LanguageService } from 'app/modules/shared/services/language.service';
 import { HelperService } from 'app/modules/shared/services/helper.service';
 import { CreatePokemonRequest, Pokemon } from '../../../../../../entities/poochydex-api/pokemon.type';
@@ -31,7 +31,7 @@ export class CrudApiComponent implements OnInit {
   loading = false;
   errorMessage = '';
 
-  pokemonTypes: string[] = Object.values(POKEMON_TYPES);
+  pokemonTypes: string[] = Object.values(PokemonType);
   language: string = 'es';
 
   // Simple create/edit form state
