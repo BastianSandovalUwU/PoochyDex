@@ -8,6 +8,7 @@ export const URL_ROUTES = {
     SHOW_ABILITY: '/pokedex/show-ability/',
     LIST_POKEDEX: '/pokedex/list-pokedex',
     SHOW_POKEDEX: '/pokedex/show-pokedex/',
+    CAMERA_SCAN: '/pokedex/camera-scan',
   },
   MOVEMENTS: {
     SHOW: '/movements/show-movement/',
@@ -61,6 +62,12 @@ export const MENU_OPTIONS: MenuOption[] = [
         icon: 'list',
         imageIcon: '/assets/icons/menu-icons/ultraball.png',
         route: URL_ROUTES.POKEDEX.HUNT
+      },
+      {
+        labelEs: 'Pokédex por Cámara',
+        labelEn: 'Camera Pokédex',
+        icon: 'photo_camera',
+        route: URL_ROUTES.POKEDEX.CAMERA_SCAN
       },
     ]
   },

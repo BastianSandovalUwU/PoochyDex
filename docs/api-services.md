@@ -118,6 +118,44 @@ This document describes **Angular injectables** that perform **HTTP** calls to e
 
 ---
 
+## `PokemonRecognitionService` (planned — front-end mock, backend not implemented yet)
+
+**File:** `src/app/modules/shared/services/pokemon-recognition.service.ts`
+**Base:** `environment.nodeJsApi` (same Node API as the rest of this document).
+
+Feeds the camera-based scan screen (`/pokedex/camera-scan`, `CameraScanComponent`). Today `identifyPokemon` returns a **mocked** `PokemonRecognitionResult` (random entry from `ALL_POKEMON`, simulated network delay) — the `MOCK_RECOGNITION` flag at the top of the file switches it to a real HTTP call once the endpoint below exists; no other front-end code needs to change.
+
+**Planned endpoint (not implemented server-side yet):**
+
+| Method | Path | Notes |
+|--------|------|-------|
+| `identifyPokemon` | POST | `/api/pokemon-recognition/identify` |
+
+**Request body:**
+
+```json
+{ "image": "data:image/jpeg;base64,..." }
+```
+
+`image` is the captured photo as a data URL (base64), read from the device camera via a `<input type="file" capture="environment">` and `FileReader`.
+
+**Expected response (`PokemonRecognitionResult`, `entities/pokemon-recognition.entity.ts`):**
+
+```json
+{
+  "pokemonName": "pikachu",
+  "confidence": 0.93,
+  "candidates": [
+    { "pokemonName": "pikachu", "confidence": 0.93 },
+    { "pokemonName": "raichu", "confidence": 0.41 }
+  ]
+}
+```
+
+`pokemonName` values must be valid PokéAPI name slugs — the front looks up the recognized Pokémon via the existing `PokeApiService.getPokemonByName` to render its sprite/details, so no additional fields (sprites, stats, etc.) need to come from this endpoint.
+
+---
+
 ## Maintenance
 
 When you add or change HTTP endpoints in these services, update this file and the relevant **`module-*.mdc`** / **`AGENTS.md`** if behaviour crosses features.
