@@ -1,0 +1,98 @@
+<div class="mt-4 flex flex-col items-center px-4" [@detailFadeIn]>
+  <h1 class="text-black text-2xl font-bold dark:text-white text-center">
+    {{ language === 'es' ? 'Pokédex por Cámara' : 'Camera Pokédex' }}
+  </h1>
+  <p class="mt-2 max-w-md text-center text-sm text-gray-600 dark:text-gray-400">
+    {{ language === 'es'
+      ? 'Toma una foto de un Pokémon y te diremos cuál es. (Prototipo: la identificación está simulada mientras el backend no esté listo.)'
+      : "Take a photo of a Pokémon and we'll tell you which one it is. (Prototype: recognition is simulated until the backend is ready.)" }}
+  </p>
+
+  <div class="mt-6 w-full max-w-sm">
+
+    <!-- Capture step: no photo yet -->
+    @if (step === 'capture') {
+      <label
+        class="flex flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-10 cursor-pointer hover:border-red-400 dark:hover:border-red-500 transition-colors">
+        <mat-icon class="!w-12 !h-12 text-gray-400 dark:text-gray-500" style="font-size: 48px;">photo_camera</mat-icon>
+        <span class="text-sm font-medium text-gray-600 dark:text-gray-300">
+          {{ language === 'es' ? 'Toca para abrir la cámara' : 'Tap to open the camera' }}
+        </span>
+        <input type="file" accept="image/*" capture="environment" class="hidden" (change)="onPhotoSelected($event)">
+      </label>
+    }
+
+    <!-- Preview step: photo selected, not yet identified -->
+    @if (step === 'preview' || step === 'identifying') {
+      <div class="flex flex-col items-center gap-4">
+        <div class="relative w-full aspect-square rounded-lg overflow-hidden border-2 border-gray-300 dark:border-gray-600 bg-black">
+          @if (capturedImage) {
+            <img [src]="capturedImage" class="w-full h-full object-cover" alt="">
+          }
+          <app-ui-skeleton [loading]="step === 'identifying'" extraClasses="absolute inset-0"></app-ui-skeleton>
+        </div>
+
+        @if (step === 'preview') {
+          <div class="flex w-full gap-3">
+            <app-ui-button variant="secondary" [fullWidth]="true" (buttonClick)="retake()">
+              {{ language === 'es' ? 'Elegir otra' : 'Choose another' }}
+            </app-ui-button>
+            <app-ui-button variant="primary" [fullWidth]="true" (buttonClick)="identify()">
+              {{ language === 'es' ? 'Identificar' : 'Identify' }}
+            </app-ui-button>
+          </div>
+        }
+
+        @if (step === 'identifying') {
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            {{ language === 'es' ? 'Analizando imagen…' : 'Analyzing image…' }}
+          </p>
+        }
+      </div>
+    }
+
+    <!-- Result step -->
+    @if (step === 'result' && recognizedPokemon && recognition) {
+      <div class="flex flex-col items-center gap-4">
+        <div class="w-full rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 flex flex-col items-center">
+          <img
+            [src]="recognizedSpriteUrl"
+            class="w-32 h-32 object-contain" alt="" loading="lazy" decoding="async">
+          <h2 class="mt-2 text-xl font-bold text-black dark:text-white">
+            {{ recognizedPokemon.name | translatePokemonName | replaceDash | titlecase }}
+          </h2>
+          <span class="text-sm font-medium text-green-600 dark:text-green-400">
+            {{ language === 'es' ? 'Coincidencia' : 'Match' }}: {{ confidencePercent(recognition.confidence) }}%
+          </span>
+
+          <app-ui-button variant="primary" [fullWidth]="true" extraClasses="mt-4"
+            [routerLink]="['/pokedex/show-pokemon', recognizedPokemon.name]">
+            {{ language === 'es' ? 'Ver ficha completa' : 'View full entry' }}
+          </app-ui-button>
+        </div>
+
+        @if (recognition.candidates.length > 1) {
+          <div class="w-full">
+            <p class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">
+              {{ language === 'es' ? 'Otras posibilidades' : 'Other possibilities' }}
+            </p>
+            <ul class="space-y-1">
+              @for (candidate of recognition.candidates.slice(1); track candidate.pokemonName) {
+                <li class="flex items-center justify-between rounded-md bg-gray-100 dark:bg-gray-700 px-3 py-1.5 text-sm">
+                  <span class="text-gray-700 dark:text-gray-200">
+                    {{ candidate.pokemonName | translatePokemonName | replaceDash | titlecase }}
+                  </span>
+                  <span class="text-gray-500 dark:text-gray-400">{{ confidencePercent(candidate.confidence) }}%</span>
+                </li>
+              }
+            </ul>
+          </div>
+        }
+
+        <app-ui-button variant="outline" [fullWidth]="true" (buttonClick)="retake()">
+          {{ language === 'es' ? 'Escanear otro' : 'Scan another' }}
+        </app-ui-button>
+      </div>
+    }
+  </div>
+</div>
